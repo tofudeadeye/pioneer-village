@@ -21,6 +21,57 @@ declare namespace Camera {
   type setInactive = (id: string, easeTime?: number) => void;
   type interpolate = (id: string, duration: number, easeLocation?: boolean, easeRotation?: boolean) => Promise<void>;
 
+  // Light Management Types
+  interface LightData {
+    id: string;
+    x?: number;
+    y?: number;
+    z?: number;
+    posX?: number;
+    posY?: number;
+    posZ?: number;
+    r?: number;
+    g?: number;
+    b?: number;
+    colorR?: number;
+    colorG?: number;
+    colorB?: number;
+    range?: number;
+    intensity?: number;
+  }
+
+  interface LightInfo {
+    id: string;
+    posX: number;
+    posY: number;
+    posZ: number;
+    colorR: number;
+    colorG: number;
+    colorB: number;
+    range: number;
+    intensity: number;
+    active: boolean;
+  }
+
+  type lightCreate = (data: LightData) => boolean;
+  type lightUpdate = (id: string, data: Partial<LightData>) => boolean;
+  type lightSetPosition = (id: string, x: number, y: number, z: number) => boolean;
+  type lightSetColor = (id: string, r: number, g: number, b: number) => boolean;
+  type lightSetRange = (id: string, range: number) => boolean;
+  type lightSetIntensity = (id: string, intensity: number) => boolean;
+  type lightTurnOn = (id: string) => boolean;
+  type lightTurnOff = (id: string) => boolean;
+  type lightToggle = (id: string) => boolean;
+  type lightExists = (id: string) => boolean;
+  type lightIsActive = (id: string) => boolean;
+  type lightGet = (id: string) => LightInfo | undefined;
+  type lightGetAll = () => Record<string, LightInfo>;
+  type lightGetActive = () => Record<string, LightInfo>;
+  type lightDestroy = (id: string) => boolean;
+  type lightCreateAndTurnOn = (data: LightData) => boolean;
+  type lightCreateOrUpdate = (data: LightData) => boolean;
+  type lightDestroyAll = () => boolean;
+
   type ClientExports = {
     create: create;
     setCoord: setCoord;
@@ -31,5 +82,25 @@ declare namespace Camera {
     setActive: setActive;
     setInactive: setInactive;
     interpolate: interpolate;
+    
+    // Light exports
+    lightCreate: lightCreate;
+    lightUpdate: lightUpdate;
+    lightSetPosition: lightSetPosition;
+    lightSetColor: lightSetColor;
+    lightSetRange: lightSetRange;
+    lightSetIntensity: lightSetIntensity;
+    lightTurnOn: lightTurnOn;
+    lightTurnOff: lightTurnOff;
+    lightToggle: lightToggle;
+    lightExists: lightExists;
+    lightIsActive: lightIsActive;
+    lightGet: lightGet;
+    lightGetAll: lightGetAll;
+    lightGetActive: lightGetActive;
+    lightDestroy: lightDestroy;
+    lightCreateAndTurnOn: lightCreateAndTurnOn;
+    lightCreateOrUpdate: lightCreateOrUpdate;
+    lightDestroyAll: lightDestroyAll;
   };
 }

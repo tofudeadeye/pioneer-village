@@ -54,12 +54,10 @@ const createResource = async (path) => {
     replaceText(`${path}/src/server/types.d.ts`, '_boilerplate', name);
   }
 
-  if (dir.length > 1) {
-    replaceText(`${path}/webpack.config.js`, "'../", `'${'../'.repeat(dir.length)}`);
+  replaceText(`${path}/rspack.config.js`, "'../", `'${'../'.repeat(dir.length + 1)}`);
 
-    replaceText(`${path}/src/client/tsconfig.json`, '"../', `"${'../'.repeat(dir.length)}`);
-    replaceText(`${path}/src/server/tsconfig.json`, '"../', `"${'../'.repeat(dir.length)}`);
-  }
+  replaceText(`${path}/src/client/tsconfig.json`, '"../', `"${'../'.repeat(dir.length + 1)}`);
+  replaceText(`${path}/src/server/tsconfig.json`, '"../', `"${'../'.repeat(dir.length + 1)}`);
 
   console.log(`Resource ${chalk.green(name)} created!`);
 };

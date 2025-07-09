@@ -1,15 +1,12 @@
-import { emitUI, focusUI, onUI, PVGame } from '@lib/client';
+import { PVGame, emitUI, focusUI, onUI } from '@lib/client';
+import { AnimFlag } from '@lib/flags';
 
 import './natives';
-
 import './stuff/animal';
 import './stuff/apple';
 import './stuff/gold-panning';
 import './stuff/instruments';
 import './stuff/police';
-// import './stuff/side-saddle';
-
-import { AnimFlag } from '@lib/flags';
 
 RegisterCommand(
   'anim_menu',

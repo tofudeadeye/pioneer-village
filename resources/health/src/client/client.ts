@@ -197,8 +197,8 @@ const initHealth = async () => {
       if (!characterSelected && !DEBUG) return;
       emitSocket(
         'character-update.food-drink',
-        parseInt(healthManager.food.toFixed(2)),
-        parseInt(healthManager.water.toFixed(2)),
+        Number(healthManager.food.toFixed(2)),
+        Number(healthManager.water.toFixed(2)),
       );
       emitSocket(
         'character-update.health-status',

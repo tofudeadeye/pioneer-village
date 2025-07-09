@@ -11,6 +11,5 @@ server_scripts {
 }
 
 client_scripts {
-  "lua/client.lua",
   "build/client.js"
 }

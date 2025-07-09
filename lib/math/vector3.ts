@@ -184,6 +184,17 @@ export class Vector3 {
     return [this.x, this.y, this.z];
   }
 
+  static fromOrCreate(vectors?: Vector3 | Vector3Format | Array<number>): Vector3 {
+    if (vectors instanceof Vector3) {
+      return vectors;
+    } else if (Array.isArray(vectors)) {
+      return Vector3.fromArray(vectors);
+    } else if (vectors && typeof vectors === 'object') {
+      return Vector3.fromObject(vectors);
+    }
+    return new Vector3();
+  }
+
   static fromArray(vectors: Array<number>): Vector3 {
     return new Vector3(vectors[0], vectors[1], vectors[2]);
   }

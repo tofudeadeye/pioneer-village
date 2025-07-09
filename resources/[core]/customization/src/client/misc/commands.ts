@@ -30,12 +30,6 @@ RegisterCommand(
   false,
 );
 
-onUI('customization.set-layers', (layers: UI.Customization.LayerData[]) => {
-  Log('overlaycustomization.set-layers', layers);
-
-  creationManager.setOverlays(layers);
-});
-
 RegisterCommand(
   'overlay',
   async () => {

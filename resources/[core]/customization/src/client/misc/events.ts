@@ -54,6 +54,12 @@ onUI('customization.set-face-feature', (feature, value) => {
   creationManager.setFaceFeature(feature, value);
 });
 
+onUI('customization.set-layers', (layers: UI.Customization.LayerData[]) => {
+  Log('overlaycustomization.set-layers', layers);
+
+  creationManager.setOverlays(layers);
+});
+
 onUI('customization.rotate-chosen', (rotation) => {
   creationManager.rotateChosen(rotation);
 });

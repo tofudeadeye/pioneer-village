@@ -8,6 +8,9 @@
     "forceConsistentCasingInFileNames": true,
     "lib": ["es2017"],
     "paths": {
+      "~": [
+        "./*"
+      ],
       "@lib/*": [
         "./lib/*"
       ]

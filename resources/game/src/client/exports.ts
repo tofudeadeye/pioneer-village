@@ -1,9 +1,10 @@
 import { exports } from '@lib/client';
-import { Vector3 } from '@lib/math/vector3';
-import gameManager from './managers/game-manager';
-import componentManager from './managers/component-manager';
-import vegModifierManager from './managers/veg-modifier-manager';
 import { VegModifierFlag } from '@lib/flags/veg-modifiers';
+import { Vector3 } from '@lib/math/vector3';
+
+import componentManager from './managers/component-manager';
+import gameManager from './managers/game-manager';
+import vegModifierManager from './managers/veg-modifier-manager';
 
 const playerPed = (): number => gameManager.playerPed;
 const mountPed = (): number | null => gameManager.mountPed;
@@ -15,20 +16,13 @@ const playerCoords = (update = false): Vector3Format => {
 };
 
 const createObject: Game.createObject = (model, coord = undefined, rot = undefined, network = true) => {
-  let coordinates = new Vector3(0, 0, 0);
-  if (coord) {
-    coordinates.setFromObject(coord);
-  }
-
-  let rotation = new Vector3(0, 0, 0);
-  if (rot) {
-    rotation.setFromObject(rot);
-  }
+  const coordinates = Vector3.fromOrCreate(coord);
+  const rotation = Vector3.fromOrCreate(rot);
 
   return gameManager.createObject(model, coordinates, rotation, network);
 };
 
-const createPed: Game.createPed = (model, x, y, z, heading, randomOutfit, networked): Promise<number> => {
+const createPed: Game.createPed = (model, x, y, z, heading, randomOutfit, networked) => {
   return gameManager.createPed(model, x, y, z, heading, randomOutfit, networked);
 };
 
@@ -61,15 +55,8 @@ const getNetworkControlOfEntity: Game.getNetworkControlOfEntity = (entity) => {
 };
 
 const attachEntityToBoneIndex: Game.attachEntityToBoneIndex = (attacher, boneIndex, attachee, off, rot) => {
-  const offset = new Vector3(0, 0, 0);
-  if (off) {
-    offset.setFromObject(off);
-  }
-
-  const rotation = new Vector3(0, 0, 0);
-  if (rot) {
-    rotation.setFromObject(rot);
-  }
+  const offset = Vector3.fromOrCreate(off);
+  const rotation = Vector3.fromOrCreate(rot);
 
   if (!attachee) {
     attachee = gameManager.playerPed;
@@ -79,15 +66,8 @@ const attachEntityToBoneIndex: Game.attachEntityToBoneIndex = (attacher, boneInd
 };
 
 const attachEntityToBoneName: Game.attachEntityToBoneName = (attacher, boneName, attachee, off, rot) => {
-  const offset = new Vector3(0, 0, 0);
-  if (off) {
-    offset.setFromObject(off);
-  }
-
-  const rotation = new Vector3(0, 0, 0);
-  if (rot) {
-    rotation.setFromObject(rot);
-  }
+  const offset = Vector3.fromOrCreate(off);
+  const rotation = Vector3.fromOrCreate(rot);
 
   if (!attachee) {
     attachee = gameManager.playerPed;

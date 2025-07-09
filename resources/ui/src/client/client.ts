@@ -1,6 +1,7 @@
 import './auto-close-layers';
 import './cleanup';
 import './crosshair';
+import './commands';
 import { Log } from '@lib/client/comms/ui';
 
 const callListeners: Map<string, Map<string, (...args: any[]) => any>> = new Map();

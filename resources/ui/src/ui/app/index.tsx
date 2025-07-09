@@ -16,7 +16,7 @@ export default (socket: Socket<UISocketEvents, SocketServer.Client & SocketServe
   };
 
   onClient('nui.restart', () => {
-    console.log('nui.restart');
+    sessionStorage.clear();
     restartUI();
   });
 

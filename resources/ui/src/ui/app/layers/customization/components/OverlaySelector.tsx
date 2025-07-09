@@ -42,6 +42,7 @@ const OSAddLayer = styled.button`
 interface Props {
   onChange?: (layers: UI.Customization.LayerData[]) => void;
   overlays: Record<string, UI.Customization.OverlayJson>;
+  layers?: UI.Customization.LayerData[];
 }
 
 interface State {
@@ -55,23 +56,7 @@ export default class OverlaySelector extends Component<Props, State> {
 
     this.state = {
       active: false,
-      layers: [
-        {
-          uid: 'a',
-          id: '',
-          opacity: 1.0,
-        },
-        {
-          uid: 'b',
-          id: '',
-          opacity: 1.0,
-        },
-        {
-          uid: 'c',
-          id: '',
-          opacity: 1.0,
-        },
-      ],
+      layers: this.props.layers || [],
     };
   }
 
@@ -108,7 +93,9 @@ export default class OverlaySelector extends Component<Props, State> {
     layers[index].id = id;
 
     this.setState({ layers });
-    this.props.onChange(layers);
+    if (this.props.onChange) {
+      this.props.onChange(layers);
+    }
   }
 
   setLayerOpacity(uid: string, value: number) {
@@ -121,10 +108,12 @@ export default class OverlaySelector extends Component<Props, State> {
     layers[index].opacity = value;
 
     this.setState({ layers });
-    this.props.onChange(layers);
+    if (this.props.onChange) {
+      this.props.onChange(layers);
+    }
   }
 
-  setLayerPalette(uid: string, palette: UI.Customization.Palette) {
+  setLayerPalette(uid: string, palette: Customization.Palette) {
     const layers = [...this.state.layers];
     const index = layers.findIndex((layer) => layer.uid === uid);
     if (index === -1) {
@@ -134,7 +123,9 @@ export default class OverlaySelector extends Component<Props, State> {
     layers[index].palette = palette;
 
     this.setState({ layers });
-    this.props.onChange(layers);
+    if (this.props.onChange) {
+      this.props.onChange(layers);
+    }
   }
 
   canUsePalette(uid: string): boolean {
@@ -161,6 +152,9 @@ export default class OverlaySelector extends Component<Props, State> {
     }
     layers.splice(index, 1);
     this.setState({ layers });
+    if (this.props.onChange) {
+      this.props.onChange(layers);
+    }
   }
 
   render() {
@@ -193,7 +187,7 @@ export default class OverlaySelector extends Component<Props, State> {
                 {Object.entries(this.props.overlays).map(([category, overlays]) => (
                   <optgroup key={category} label={category}>
                     {overlays.components.map((overlay, index) => (
-                      <option key={index} value={overlay.id}>
+                      <option key={index} value={overlay.id} selected={overlay.id === layer.id}>
                         {overlay.id}
                       </option>
                     ))}

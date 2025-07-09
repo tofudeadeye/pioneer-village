@@ -75,6 +75,8 @@ interface Props {
   onChange: (style: number, option: number) => void;
   components: { name: string; components: any[] }[];
   gender: 'male' | 'female';
+  style?: number;
+  option?: number;
 }
 
 interface State {
@@ -87,13 +89,13 @@ interface State {
 export default class StyleColorSelector extends Component<Props, State> {
   refContent = createRef<HTMLDivElement>();
 
-  constructor() {
+  constructor(props: Props) {
     super();
 
     this.state = {
       active: false,
-      currentStyle: -1,
-      currentOption: 0,
+      currentStyle: props.style || -1,
+      currentOption: props.option || 0,
       erroredImages: new Set(),
     };
   }
@@ -143,7 +145,7 @@ export default class StyleColorSelector extends Component<Props, State> {
               <p>
                 {this.state.currentStyle === -1
                   ? 'None'
-                  : this.props.components[this.state.currentStyle]?.name ?? 'Misc'}
+                  : (this.props.components[this.state.currentStyle]?.name ?? 'Misc')}
                 <br />
                 {this.state.currentStyle + 1} of {this.props.components.length}
               </p>
@@ -156,6 +158,9 @@ export default class StyleColorSelector extends Component<Props, State> {
             </SCSSelector>
             <SCSOptions>
               {this.props.components[this.state.currentStyle]?.components.map((component, index) => {
+                if (!component.name?.includes('BLACK')) {
+                  return;
+                }
                 if (
                   (this.props.gender === 'male' && component.type === '1') ||
                   (this.props.gender === 'female' && component.type === '0')

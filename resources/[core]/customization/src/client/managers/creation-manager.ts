@@ -21,46 +21,123 @@ enum CreationState {
 }
 
 const faceFeatures: Record<string, number> = {
-  headWidth: 0x84d6,
-  eyebrowHeight: 0x3303,
-  eyebrowWidth: 0x2ff9,
-  eyebrowDepth: 0x4ad1,
-  earsWidth: 0xc04f,
-  earsAngle: 0xb6ce,
-  earsHeight: 0x2844,
-  earlobeSize: 0xed30,
-  cheekBoneHeight: 0x6a0b,
-  cheekBoneWidth: 0xabcf,
-  cheekBoneDepth: 0x358d,
-  jawHeight: 0x8d0a,
-  jawWidth: 0xebae,
-  jawDepth: 0x1df6,
-  chinHeight: 0x3c0f,
-  chinWidth: 0xc3b2,
-  chinDepth: 0xe323,
-  eyelidHeight: 0x8b2b,
-  eyelidWidth: 0x1b6b,
-  eyesDepth: 0xee44,
-  eyesAngle: 0xd266,
-  eyesDistance: 0xa54e,
-  eyesHeight: 0xddfb,
-  noseWidth: 0x6e7f,
-  noseSize: 0x3471,
-  noseHeight: 0x03f5,
-  noseAngle: 0x34b1,
-  noseCurvature: 0xf156,
-  nostrilsDistance: 0x561e,
-  mouthWidth: 0xf065,
-  mouthDepth: 0xaa69,
-  mouthXPos: 0x7ac3,
-  mouthYPos: 0x410d,
-  upperLipHeight: 0x1a00,
-  upperLipWidth: 0x91c1,
-  upperLipDepth: 0xc375,
-  lowerLipHeight: 0xbb4d,
-  lowerLipWidth: 0xb0b0,
-  lowerLipDepth: 0x5d16,
-  horseGender: 0xa28b,
+  headWidth: 34006,
+  faceWidth: 41396,
+  eyebrowHeight: 13059,
+  eyebrowWidth: 12281,
+  eyebrowDepth: 19153,
+  earsDepth: 49231,
+  earsAngle: 46798,
+  earsHeight: 10308,
+  earlobeSize: 60720,
+  cheekBoneHeight: 27147,
+  cheekBoneWidth: 43983,
+  cheekBoneDepth: 13709,
+  chinHeight: 15375,
+  chinWidth: 50098,
+  chinDepth: 58147,
+  eyelidHeight: 35627,
+  eyelidWidth: 7019,
+  eyesDepth: 60996,
+  eyesAngle: 53862,
+  eyesDistance: 42318,
+  eyesHeight: 56827,
+  noseWidth: 28287,
+  noseSize: 13425,
+  noseHeight: 1013,
+  noseAngle: 13489,
+  noseCurvature: 61782,
+  nostrilsDistance: 22046,
+  mouthWidth: 61541,
+  mouthDepth: 43625,
+  mouthXPos: 31427,
+  mouthYPos: 16653,
+  upperLipHeight: 6656,
+  upperLipWidth: 37313,
+  upperLipDepth: 50037,
+  lowerLipHeight: 47949,
+  lowerLipWidth: 45232,
+  lowerLipDepth: 23830,
+  jawHeight: 36106,
+  jawWidth: 60334,
+  jawDepth: 7670,
+  jawYPos: 55182,
+  mouthCornerLeftWidth: 57350,
+  mouthCornerLeftDepth: 40950,
+  mouthCornerLeftHeight: 46661,
+  mouthCornerLeftUpperLipDistance: 22344,
+  mouthCornerRightUpperLipDistance: 60292,
+  mouthCornerRightHeight: 49299,
+  mouthCornerRightDepth: 9423,
+  mouthCornerRightWidth: 55718,
+  rightEyelidOpenClose: 22421,
+  leftEyelidOpenClose: 52902,
+  neckWidth: 36277,
+  neckDepth: 60890,
+  shoulderHeight: 15833,
+  backWidth: 41478,
+  forearms: 8420,
+  shoulderBlades: 18046,
+  armsSize: 46032,
+  chest: 27779,
+  waistWidth: 50460,
+  hipWidth: 49787,
+  thighs: 64834,
+  calves: 42067,
+  shoulders: 50039,
+  shoulderThickness: 7010,
+  anteriorTrapezius: 33485,
+  chestHeight: 46240,
+  buttHipSize: 8991,
+  bodyWeight: 2007,
+  muscles: 65374,
+  shoulderSizeFemales: 50957,
+  leftMouthCornerYPosition: 18365,
+  leftMouthCornerXPosition: 56529,
+  leftMouthCornerDepth: 38761,
+  rightMouthCornerYPosition: 18269,
+  rightMouthCornerXPosition: 26786,
+  rightMouthCornerDepth: 37225,
+  rightMouthWidth: 64491,
+  leftMouthWidth: 65229,
+  leftEarHeight: 47172,
+  leftEarWidth: 50511,
+  leftEarAngle: 55285,
+  leftEarlobeSize: 60384,
+  rightEarHeight: 38980,
+  rightEarWidth: 51023,
+  rightEarAngle: 53071,
+  rightEarlobeSize: 60352,
+  leftBrowYPosition: 12691,
+  leftBrowXPosition: 16401,
+  leftBrowDepth: 45521,
+  rightBrowYPosition: 12723,
+  rightBrowXPosition: 4593,
+  rightBrowDepth: 46033,
+  leftEyeYPosition: 53838,
+  leftEyeXPosition: 50805,
+  leftEyeDepth: 60884,
+  leftEyeAngle: 30023,
+  rightEyeYPosition: 47265,
+  rightEyeXPosition: 48591,
+  rightEyeDepth: 60852,
+  rightEyeAngle: 41831,
+  leftEyelidHeight: 38948,
+  leftEyelidWidth: 60155,
+  rightEyelidHeight: 38210,
+  rightEyelidWidth: 48347,
+  leftCheekboneYPosition: 28571,
+  leftCheekboneXPosition: 51671,
+  leftCheekboneDepth: 3213,
+  rightCheekboneYPosition: 28603,
+  rightCheekboneXPosition: 39863,
+  rightCheekboneDepth: 3725,
+  rightNostrilSize: 21326,
+  leftNostrilSize: 21422,
+  skullWidth: 58204,
+  skullHeight: 38632,
+  skullDepth: 35929,
+  horseGender: 41611,
 };
 
 /**
@@ -68,22 +145,21 @@ headWidth
 
 eyebrowHeight|eyebrowWidth|eyebrowDepth
 
-earsWidth|earsAngle|earsHeight|earlobeSize
-
-cheekBoneHeight|cheekBoneWidth|cheekBoneDepth
-
-jawHeight|jawWidth|jawDepth
-
-chinHeight|chinWidth|chinDepth
-
 eyelidHeight|eyelidWidth|eyesDepth|eyesAngle|eyesDistance|eyesHeight
 
+earsWidth|earsAngle|earsHeight|earlobeSize
+
 noseWidth|noseSize|noseHeight|noseAngle|noseCurvature|nostrilsDistance
+
+cheekBoneHeight|cheekBoneWidth|cheekBoneDepth
 
 mouthWidth|mouthDepth|mouthXPos|mouthYPos
 
 upperLipHeight|upperLipWidth|upperLipDepth|lowerLipHeight|lowerLipWidth|lowerLipDepth
 
+jawHeight|jawWidth|jawDepth
+
+chinHeight|chinWidth|chinDepth
 
               headWidth
           _____________________
@@ -92,7 +168,6 @@ upperLipHeight|upperLipWidth|upperLipDepth|lowerLipHeight|lowerLipWidth|lowerLip
        |   eyebrow    eyelid    |
    ear /|                       |\
       | |             cheek    | |
-
 
  */
 
@@ -169,6 +244,9 @@ class CreationManager {
   private currentGender: 'male' | 'female' = 'male';
   private wasRunning = false;
 
+  private cameraFaceMalePos = { x: -559.25, y: -3781.125, z: 239.315 };
+  private cameraFaceFemalePos = { x: -559.25, y: -3781.125, z: 239.2 };
+
   constructor() {
     on('onResourceStop', (resourceName: string) => {
       console.log('onResourceStop', resourceName);
@@ -190,6 +268,19 @@ class CreationManager {
         this.start();
       }
     });
+
+    PVCamera.lightCreateOrUpdate({
+      id: 'CreationLight',
+      x: this.cameraFaceMalePos.x,
+      y: this.cameraFaceMalePos.y,
+      z: this.cameraFaceMalePos.z,
+      r: 255,
+      g: 0,
+      b: 255,
+      intensity: 50.1,
+      range: 25.1,
+    });
+    PVCamera.lightTurnOn('BWTS');
   }
 
   destroy() {
@@ -206,6 +297,8 @@ class CreationManager {
 
     this.currentState = CreationState.None;
     this.currentGender = 'male';
+
+    PVCamera.lightTurnOff('CreationLight');
   }
 
   getChosen() {
@@ -239,6 +332,8 @@ class CreationManager {
 
     emitUI('customization.state', { show: true, state: 'gender', gender: 'male' });
     focusUI(true, true);
+
+    PVCamera.lightTurnOn('CreationLight');
   }
 
   private createCameras() {
@@ -265,14 +360,14 @@ class CreationManager {
 
     PVCamera.create({
       id: 'CreationDressing',
-      coords: { x: -562.5, y: -3781.0, z: 238.9 },
+      coords: { x: -562.5, y: -3781.125, z: 238.9 },
       rot: { x: -4.0, y: 0.0, z: -90.0 },
       fov: 30,
     });
 
     PVCamera.create({
       id: 'CreationFace',
-      coords: { x: -559.5, y: -3781.0, z: 239.25 },
+      coords: this.cameraFaceMalePos,
       rot: { x: -4.0, y: 0.0, z: -90.0 },
       fov: 30,
     });
@@ -330,6 +425,10 @@ class CreationManager {
 
   async chooseGender() {
     emitUI('customization.state', { state: 'transition' });
+
+    const faceCamPos = this.currentGender === 'male' ? this.cameraFaceMalePos : this.cameraFaceFemalePos;
+    PVCamera.setCoord('CreationFace', faceCamPos);
+
     this.chosenComponents = this.currentGender === 'male' ? this.maleComponents : this.femaleComponents;
     this.chosenSkinTones = this.currentGender === 'male' ? skinTones.male : skinTones.female;
     this.chosenHeads = this.currentGender === 'male' ? heads.male : heads.female;
@@ -353,6 +452,7 @@ class CreationManager {
     TaskForceMotionState(this.chosen, PedMotionState.DoNothing, false);
 
     this.freezeChosen();
+    this.setIdleFaceAnim();
 
     // FreezeEntityPosition(this.chosen, true);
     await PVCamera.interpolate('CreationTransition', 1500);
@@ -551,10 +651,14 @@ class CreationManager {
     }
   }
 
-  clearTeethAnim = debounce(10_000, () => {
+  setIdleFaceAnim() {
+    Log('Clear Facial Idle Anim Override', this.chosen);
     ClearFacialIdleAnimOverride(this.chosen);
-    SetFacialIdleAnimOverride(this.chosen, 'portrait_normal', 'face_human@gen_male@portrait');
-    ClearFacialIdleAnimOverride(this.chosen);
+    SetFacialIdleAnimOverride(this.chosen, 'eyefocus', 'FACE_HUMAN@GEN_MALE@BASE');
+  }
+
+  setIdleFaceAnimDebounce = debounce(10_000, () => {
+    this.setIdleFaceAnim();
   });
 
   async setTeeth(teethIndex: number) {
@@ -566,7 +670,7 @@ class CreationManager {
 
     ClearFacialIdleAnimOverride(this.chosen);
     SetFacialIdleAnimOverride(this.chosen, 'Face_Dentistry_Loop', 'FACE_HUMAN@GEN_MALE@BASE');
-    this.clearTeethAnim();
+    this.setIdleFaceAnimDebounce();
 
     Log('setTeeth', teethIndex);
     if (teethIndex >= 0 && teethIndex < teethOptions.length) {

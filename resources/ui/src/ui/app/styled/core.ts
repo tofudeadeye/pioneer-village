@@ -31,7 +31,8 @@ export const HiddenActiveVisible = styled.div`
   opacity: 0;
   visibility: hidden;
   transition-property: opacity, visibility, width, height, margin;
-  transition-duration: ${theme.transitionSpeed.slow}, ${theme.transitionSpeed.slow}, ${theme.transitionSpeed.slow},
+  transition-duration:
+    ${theme.transitionSpeed.slow}, ${theme.transitionSpeed.slow}, ${theme.transitionSpeed.slow},
     ${theme.transitionSpeed.slow}, ${theme.transitionSpeed.slow};
   transition-delay: 2s, 2s, 2.375s, 2.375s, 2.375s;
 
@@ -61,7 +62,12 @@ export const Modal = styled.div`
   border-radius: ${theme.borderRadius.normal};
 `;
 
-export const Snackbar = styled.div`
+type SnackbarProps = {
+  bgColor: keyof typeof theme.colors;
+  color: keyof typeof theme.colors;
+};
+
+export const Snackbar = styled.div<SnackbarProps>`
   background-color: ${(props) => themeColor('hex', 'blue', props?.bgColor)};
   color: ${(props) => theme.colors[props?.color]?.hex || theme.colors.white.hex};
 
@@ -76,4 +82,31 @@ export const Snackbar = styled.div`
   font-weight: 600;
   text-align: center;
   z-index: 1;
+`;
+
+export const DisabledLayers = styled.div`
+  position: fixed;
+  bottom: ${uiSize(10)};
+  left: ${uiSize(10)};
+  //left: 50%;
+  //transform: translateX(-50%);
+  font-size: ${uiSize(10)};
+  font-weight: bold;
+  color: ${theme.colors.red.hex};
+  display: flex;
+  gap: ${uiSize(8)};
+  align-items: center;
+  text-shadow:
+    -1px -1px 0 #000,
+    -1px 0 0 #000,
+    -1px 1px 0 #000,
+    0 -1px 0 #000,
+    0 1px 0 #000,
+    -1px 1px 0 #000,
+    1px 0 0 #000,
+    1px 1px 0 #000;
+
+  svg {
+    filter: drop-shadow(0 0 1px #000) drop-shadow(0 0 1px #000);
+  }
 `;

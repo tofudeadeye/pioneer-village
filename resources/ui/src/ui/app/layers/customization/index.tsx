@@ -140,7 +140,328 @@ const teethTypes = [
   'The Yokel',
 ];
 
-const horseComponentCategories = ['head', 'hand', 'hair', 'mane', 'teef', 'hair', 'mane'];
+const horseComponentCategories = ['head', 'hand', 'hair', 'mane', 'teef'];
+
+const faceFeatures = [
+  {
+    id: 34006,
+    label: 'Head Width',
+    min: -2,
+    max: 3,
+  },
+  {
+    id: 41396,
+    label: 'Face Width',
+    min: -2,
+    max: 2,
+  },
+  {
+    id: 13059,
+    label: 'Eyebrow Height',
+    min: -1.5,
+    max: 1.5,
+  },
+  {
+    id: 12281,
+    label: 'Eyebrow Width',
+    min: -1.5,
+    max: 1.5,
+  },
+  {
+    id: 19153,
+    label: 'Eyebrow Depth',
+    min: -1.5,
+    max: 1.5,
+  },
+  {
+    id: 49231,
+    label: 'Ears Depth',
+    min: -1.5,
+    max: 1.5,
+  },
+  {
+    id: 46798,
+    label: 'Ears Angle',
+    min: -1.5,
+    max: 1.5,
+  },
+  {
+    id: 10308,
+    label: 'Ears Height',
+    min: -1.5,
+    max: 1.5,
+  },
+  {
+    id: 60720,
+    label: 'Earlobes',
+    min: -1.5,
+    max: 1.5,
+  },
+  {
+    id: 27147,
+    label: 'Cheekbones Height',
+    min: -2.5,
+    max: 2.5,
+  },
+  {
+    id: 43983,
+    label: 'Cheekbones Width',
+    min: -4,
+    max: 3.5,
+  },
+  {
+    id: 13709,
+    label: 'Cheekbones Depth',
+    min: -2.5,
+    max: 2.5,
+  },
+  {
+    id: 15375,
+    label: 'Chin Height',
+    min: -1.5,
+    max: 1.5,
+  },
+  {
+    id: 50098,
+    label: 'Chin Width',
+    min: -1.5,
+    max: 1.5,
+  },
+  {
+    id: 58147,
+    label: 'Chin Depth',
+    min: -1.5,
+    max: 1.5,
+  },
+  {
+    id: 35627,
+    label: 'Eyelid Height',
+    min: -1.5,
+    max: 1.5,
+  },
+  {
+    id: 7019,
+    label: 'Eyelid Width',
+    min: -1.5,
+    max: 1.5,
+  },
+  {
+    id: 60996,
+    label: 'Eyes Depth',
+    min: -1.5,
+    max: 1.5,
+  },
+  {
+    id: 53862,
+    label: 'Eyes Angle',
+    min: -1.5,
+    max: 1.5,
+  },
+  {
+    id: 42318,
+    label: 'Eyes Distance',
+    min: -1.5,
+    max: 1.5,
+  },
+  {
+    id: 56827,
+    label: 'Eyes Height',
+    min: -1.5,
+    max: 1.5,
+  },
+  {
+    id: 28287,
+    label: 'Nose Width',
+    min: -1.5,
+    max: 1.5,
+  },
+  {
+    id: 13425,
+    label: 'Nose Depth',
+    min: -1.5,
+    max: 1.5,
+  },
+  {
+    id: 1013,
+    label: 'Nose Height',
+    min: -1.5,
+    max: 1.5,
+  },
+  {
+    id: 13489,
+    label: 'Nose Angle',
+    min: -1.5,
+    max: 1.5,
+  },
+  {
+    id: 61782,
+    label: 'Nose Curvature',
+    min: -1.5,
+    max: 1.5,
+  },
+  {
+    id: 22046,
+    label: 'Nostrils Distance',
+    min: -1.5,
+    max: 1.5,
+  },
+  {
+    id: 61541,
+    label: 'Mouth Width',
+    min: -1.5,
+    max: 1.5,
+  },
+  {
+    id: 43625,
+    label: 'Mouth Depth',
+    min: -1.5,
+    max: 1.5,
+  },
+  {
+    id: 31427,
+    label: 'Mouth X Position',
+    min: -1,
+    max: 1,
+  },
+  {
+    id: 16653,
+    label: 'Mouth Y Position',
+    min: -1,
+    max: 1,
+  },
+  {
+    id: 6656,
+    label: 'Upper Lip Height',
+    min: -1.5,
+    max: 1.5,
+  },
+  {
+    id: 37313,
+    label: 'Upper Lip Width',
+    min: -1.5,
+    max: 1.5,
+  },
+  {
+    id: 50037,
+    label: 'Upper Lip Depth',
+    min: -1.5,
+    max: 1.5,
+  },
+  {
+    id: 47949,
+    label: 'Lower Lip Height',
+    min: -1.5,
+    max: 1.5,
+  },
+  {
+    id: 45232,
+    label: 'Lower Lip Width',
+    min: -1.5,
+    max: 1.5,
+  },
+  {
+    id: 23830,
+    label: 'Lower Lip Depth',
+    min: -1.5,
+    max: 1.5,
+  },
+  {
+    id: 36106,
+    label: 'Jaw Height',
+    min: -2.5,
+    max: 1.5,
+  },
+  {
+    id: 60334,
+    label: 'Jaw Width',
+    min: -2,
+    max: 2.5,
+  },
+  {
+    id: 7670,
+    label: 'Jaw Depth',
+    min: -2.5,
+    max: 2.5,
+  },
+  {
+    id: 55182,
+    label: 'Jaw Y Position',
+    min: -1,
+    max: 1,
+  },
+  {
+    id: 57350,
+    label: 'Mouth Corner Left Width',
+    min: 0,
+    max: 1.5,
+  },
+  {
+    id: 40950,
+    label: 'Mouth Corner Left Depth',
+    min: 0,
+    max: 1.5,
+  },
+  {
+    id: 46661,
+    label: 'Mouth Corner Left Height',
+    min: 0,
+    max: 1.5,
+  },
+  {
+    id: 22344,
+    label: 'Mouth Corner Left Upper Lip Distance',
+    min: 0,
+    max: 1.5,
+  },
+  {
+    id: 60292,
+    label: 'Mouth Corner Right Upper Lip Distance',
+    min: 0,
+    max: 1.5,
+  },
+  {
+    id: 49299,
+    label: 'Mouth Corner Right Height',
+    min: 0,
+    max: 1.5,
+  },
+  {
+    id: 9423,
+    label: 'Mouth Corner Right Depth',
+    min: 0,
+    max: 1.5,
+  },
+  {
+    id: 55718,
+    label: 'Mouth Corner Right Width',
+    min: 0,
+    max: 1.5,
+  },
+  {
+    id: 22421,
+    label: 'Right Eyelid Open/Close',
+    min: -1,
+    max: 1,
+  },
+  {
+    id: 52902,
+    label: 'Left Eyelid Open/Close',
+    min: -1,
+    max: 1,
+  },
+  {
+    id: 36277,
+    label: 'Neck Width',
+    min: -1.5,
+    max: 1.5,
+  },
+  {
+    id: 60890,
+    label: 'Neck Depth',
+    min: -1,
+    max: 1,
+  },
+];
 
 export default class Customization extends UIComponent<UI.Customization.Props, UI.Customization.State, {}> {
   constructor(
@@ -166,6 +487,10 @@ export default class Customization extends UIComponent<UI.Customization.Props, U
       lastName: '',
       dateOfBirth: '',
       tints: {},
+      head: 0,
+      teeth: 0,
+      skinTone: 0,
+      bodyType: 2,
     };
 
     onClient('customization.state', (state) => {
@@ -348,21 +673,26 @@ export default class Customization extends UIComponent<UI.Customization.Props, U
 
   handleChangeSkinTone(value: number) {
     console.log('handleChangeSkinTone', value);
+    this.setState({ skinTone: value });
     emitClient('customization.set-skin-tone', value);
+    emitClient('customization.set-layers', this.state.currentLayers);
   }
 
   handleChangeHead(value: number) {
     console.log('handleChangeHead', value);
+    this.setState({ head: value });
     emitClient('customization.set-head', value);
   }
 
   handleChangeTeeth(value: number) {
     console.log('handleChangeTeeth', value);
+    this.setState({ teeth: value });
     emitClient('customization.set-teeth', value);
   }
 
   handleChangeBodyType(value: number) {
     console.log('handleChangeBodyType', value);
+    this.setState({ bodyType: value });
     emitClient('customization.set-body-type', value);
   }
 
@@ -446,13 +776,19 @@ export default class Customization extends UIComponent<UI.Customization.Props, U
                       type="text"
                       placeholder="First Name"
                       onChange={(e) => this.updateFirstName(e.target as HTMLInputElement)}
+                      value={this.state.firstName}
                     />
                     <input
                       type="text"
                       placeholder="Last Name"
                       onChange={(e) => this.updateLastName(e.target as HTMLInputElement)}
+                      value={this.state.lastName}
                     />
-                    <input type="date" onChange={(e) => this.updateDateOfBirth(e.target as HTMLInputElement)} />
+                    <input
+                      type="date"
+                      onChange={(e) => this.updateDateOfBirth(e.target as HTMLInputElement)}
+                      value={this.state.dateOfBirth}
+                    />
                     <XYSlider
                       label="Test XY Grid"
                       xMin={-1}
@@ -477,15 +813,38 @@ export default class Customization extends UIComponent<UI.Customization.Props, U
               {this.state.state === 'head' && (
                 <>
                   <ModalContents>
-                    <OverlaySelector onChange={this.changeLayers.bind(this)} overlays={OverlaysData} />
-                    <RangeSlider label="Head" min={0} max={19} onChange={this.handleChangeHead.bind(this)} />
+                    <OverlaySelector
+                      onChange={this.changeLayers.bind(this)}
+                      overlays={OverlaysData}
+                      layers={this.state.currentLayers}
+                    />
+                    <RangeSlider
+                      label="Head"
+                      min={0}
+                      max={19}
+                      defaultValue={this.state.head}
+                      resetTo={0}
+                      onChange={this.handleChangeHead.bind(this)}
+                    />
                     <RangeSlider
                       label="Teeth"
                       labels={teethTypes}
                       min={0}
                       max={6}
+                      defaultValue={this.state.teeth}
+                      resetTo={0}
                       onChange={this.handleChangeTeeth.bind(this)}
                     />
+
+                    <StyleColorSelector
+                      label="hair"
+                      onChange={(style, option) => this.setComponent('hair', style, option)}
+                      components={ComponentsData['hair']}
+                      style={this.state.currentComponents['hair']?.style || -1}
+                      option={this.state.currentComponents['hair']?.option || 0}
+                      gender={this.state.gender}
+                    />
+
                     {/*<RangeSlider*/}
                     {/*  label="Head Width"*/}
                     {/*  min={-2}*/}
@@ -516,189 +875,38 @@ export default class Customization extends UIComponent<UI.Customization.Props, U
                     {/*  vertical={true}*/}
                     {/*/>*/}
 
-                    {/*<RangeSlider*/}
-                    {/*  label="mouth corner left width"*/}
-                    {/*  min={0}*/}
-                    {/*  max={1.5}*/}
-                    {/*  step={0.1}*/}
-                    {/*  onChange={this.handleChangeFaceFeature.bind(this, 57350)}*/}
-                    {/*/>*/}
-                    {/*<RangeSlider*/}
-                    {/*  label="mouth corner left depth"*/}
-                    {/*  min={0}*/}
-                    {/*  max={1.5}*/}
-                    {/*  step={0.1}*/}
-                    {/*  onChange={this.handleChangeFaceFeature.bind(this, 40950)}*/}
-                    {/*/>*/}
-                    <RangeSlider
-                      label="mouth corner left height"
-                      min={0}
-                      max={1.5}
-                      step={0.1}
-                      onChange={this.handleChangeFaceFeature.bind(this, 46661)}
-                    />
-                    <RangeSlider
-                      label="mouth corner left upper lip distance"
-                      min={0}
-                      max={1.5}
-                      step={0.1}
-                      onChange={this.handleChangeFaceFeature.bind(this, 22344)}
-                    />
-                    <RangeSlider
-                      label="mouth corner right upper lip distance"
-                      min={0}
-                      max={1.5}
-                      step={0.1}
-                      onChange={this.handleChangeFaceFeature.bind(this, 60292)}
-                    />
-                    <RangeSlider
-                      label="mouth corner right height"
-                      min={0}
-                      max={1.5}
-                      step={0.1}
-                      onChange={this.handleChangeFaceFeature.bind(this, 49299)}
-                    />
-                    {/*<RangeSlider*/}
-                    {/*  label="mouth corner right width"*/}
-                    {/*  min={0}*/}
-                    {/*  max={1.5}*/}
-                    {/*  step={0.1}*/}
-                    {/*  onChange={this.handleChangeFaceFeature.bind(this, 55718)}*/}
-                    {/*/>*/}
-                    {/*<RangeSlider*/}
-                    {/*  label="mouth corner right depth"*/}
-                    {/*  min={0}*/}
-                    {/*  max={1.5}*/}
-                    {/*  step={0.1}*/}
-                    {/*  onChange={this.handleChangeFaceFeature.bind(this, 9423)}*/}
-                    {/*/>*/}
-
-                    <RangeSlider
-                      label="upper lip height"
-                      min={-1.5}
-                      max={1.5}
-                      step={0.1}
-                      onChange={this.handleChangeFaceFeature.bind(this, 6656)}
-                    />
-                    {/*<RangeSlider*/}
-                    {/*  label="upper lip width"*/}
-                    {/*  min={-1.5}*/}
-                    {/*  max={1.5}*/}
-                    {/*  step={0.1}*/}
-                    {/*  onChange={this.handleChangeFaceFeature.bind(this, 37313)}*/}
-                    {/*/>*/}
-                    {/*<RangeSlider*/}
-                    {/*  label="upper lip depth"*/}
-                    {/*  min={-1.5}*/}
-                    {/*  max={1.5}*/}
-                    {/*  step={0.1}*/}
-                    {/*  onChange={this.handleChangeFaceFeature.bind(this, 50037)}*/}
-                    {/*/>*/}
-                    <RangeSlider
-                      label="lower lip height"
-                      min={-1.5}
-                      max={1.5}
-                      step={0.1}
-                      onChange={this.handleChangeFaceFeature.bind(this, 47949)}
-                    />
-                    {/*<RangeSlider*/}
-                    {/*  label="lower lip width"*/}
-                    {/*  min={-1.5}*/}
-                    {/*  max={1.5}*/}
-                    {/*  step={0.1}*/}
-                    {/*  onChange={this.handleChangeFaceFeature.bind(this, 45232)}*/}
-                    {/*/>*/}
-                    {/*<RangeSlider*/}
-                    {/*  label="lower lip depth"*/}
-                    {/*  min={-1.5}*/}
-                    {/*  max={1.5}*/}
-                    {/*  step={0.1}*/}
-                    {/*  onChange={this.handleChangeFaceFeature.bind(this, 23830)}*/}
-                    {/*/>*/}
-
-                    {/*<RangeSlider*/}
-                    {/*  label="jaw height"*/}
-                    {/*  min={-2.5}*/}
-                    {/*  max={1.5}*/}
-                    {/*  step={0.1}*/}
-                    {/*  onChange={this.handleChangeFaceFeature.bind(this, 36106)}*/}
-                    {/*/>*/}
-                    {/*<RangeSlider*/}
-                    {/*  label="jaw width"*/}
-                    {/*  min={-2}*/}
-                    {/*  max={2.5}*/}
-                    {/*  step={0.1}*/}
-                    {/*  onChange={this.handleChangeFaceFeature.bind(this, 60334)}*/}
-                    {/*/>*/}
-                    {/*<RangeSlider*/}
-                    {/*  label="jaw depth"*/}
-                    {/*  min={-2.5}*/}
-                    {/*  max={2.5}*/}
-                    {/*  step={0.1}*/}
-                    {/*  onChange={this.handleChangeFaceFeature.bind(this, 7670)}*/}
-                    {/*/>*/}
-                    <RangeSlider
-                      label="jaw y pos"
-                      min={-1}
-                      max={1}
-                      step={0.1}
-                      onChange={this.handleChangeFaceFeature.bind(this, 55182)}
-                    />
-
-                    {/*<RangeSlider*/}
-                    {/*  label="Hat Rotation"*/}
-                    {/*  min={-6.5}*/}
-                    {/*  max={6.5}*/}
-                    {/*  step={0.1}*/}
-                    {/*  onChange={this.handleChangeFaceFeature.bind(this, 9584)}*/}
-                    {/*/>*/}
-                    {/*<RangeSlider*/}
-                    {/*  label="Hat Angle Forward/Backward"*/}
-                    {/*  min={-2}*/}
-                    {/*  max={1}*/}
-                    {/*  step={0.1}*/}
-                    {/*  onChange={this.handleChangeFaceFeature.bind(this, 9586)}*/}
-                    {/*/>*/}
-                    {/*<RangeSlider*/}
-                    {/*  label="Hat Angle Left/Right"*/}
-                    {/*  min={-1.5}*/}
-                    {/*  max={1.5}*/}
-                    {/*  step={0.1}*/}
-                    {/*  onChange={this.handleChangeFaceFeature.bind(this, 3437)}*/}
-                    {/*/>*/}
-                    {/*<RangeSlider*/}
-                    {/*  label="Hat X Position"*/}
-                    {/*  min={-1}*/}
-                    {/*  max={1}*/}
-                    {/*  step={0.1}*/}
-                    {/*  onChange={this.handleChangeFaceFeature.bind(this, 52553)}*/}
-                    {/*/>*/}
-                    {/*<RangeSlider*/}
-                    {/*  label="Hat Y Position"*/}
-                    {/*  min={-1}*/}
-                    {/*  max={1}*/}
-                    {/*  step={0.1}*/}
-                    {/*  onChange={this.handleChangeFaceFeature.bind(this, 16009)}*/}
-                    {/*/>*/}
-                    {/*<RangeSlider*/}
-                    {/*  label="Hat Z Position"*/}
-                    {/*  min={-1}*/}
-                    {/*  max={0.5}*/}
-                    {/*  step={0.1}*/}
-                    {/*  onChange={this.handleChangeFaceFeature.bind(this, 38169)}*/}
-                    {/*/>*/}
+                    {faceFeatures.map((feature) => (
+                      <RangeSlider
+                        key={feature.id}
+                        label={feature.label}
+                        min={feature.min}
+                        max={feature.max}
+                        step={0.1}
+                        defaultValue={this.state.currentFaceFeatures[`${feature.id}`] || 0}
+                        resetTo={0}
+                        onChange={this.handleChangeFaceFeature.bind(this, feature.id)}
+                      />
+                    ))}
                   </ModalContents>
                 </>
               )}
               {this.state.state === 'body' && (
                 <>
                   <ModalContents>
-                    <RangeSlider label="Skin Tone" min={0} max={5} onChange={this.handleChangeSkinTone.bind(this)} />
+                    <RangeSlider
+                      label="Skin Tone"
+                      min={0}
+                      max={5}
+                      defaultValue={this.state.skinTone}
+                      resetTo={0}
+                      onChange={this.handleChangeSkinTone.bind(this)}
+                    />
                     {/*<RangeSlider label="Eyes" min={0} max={1} onChange={this.handleChangeEyes.bind(this)} />*/}
                     <RangeSlider
                       label="Body Type"
                       labels={bodyTypes}
-                      defaultValue={2}
+                      defaultValue={this.state.bodyType}
+                      resetTo={0}
                       max={4}
                       onChange={this.handleChangeBodyType.bind(this)}
                     />
@@ -708,6 +916,8 @@ export default class Customization extends UIComponent<UI.Customization.Props, U
                       min={-10}
                       max={10}
                       step={0.1}
+                      defaultValue={this.state.currentFaceFeatures['2007'] || 0}
+                      resetTo={0}
                       onChange={this.handleChangeFaceFeature.bind(this, 2007)}
                     />
                     <RangeSlider
@@ -715,6 +925,8 @@ export default class Customization extends UIComponent<UI.Customization.Props, U
                       min={-2.5}
                       max={2.5}
                       step={0.1}
+                      defaultValue={this.state.currentFaceFeatures['65374'] || 0}
+                      resetTo={0}
                       onChange={this.handleChangeFaceFeature.bind(this, 65374)}
                     />
                     <RangeSlider
@@ -722,6 +934,8 @@ export default class Customization extends UIComponent<UI.Customization.Props, U
                       min={-1}
                       max={1}
                       step={0.1}
+                      defaultValue={this.state.currentFaceFeatures['33485'] || 0}
+                      resetTo={0}
                       onChange={this.handleChangeFaceFeature.bind(this, 33485)}
                     />
 
@@ -732,6 +946,8 @@ export default class Customization extends UIComponent<UI.Customization.Props, U
                           min={-1.5}
                           max={2.5}
                           step={0.1}
+                          defaultValue={this.state.currentFaceFeatures[46240] || 0}
+                          resetTo={0}
                           onChange={this.handleChangeFaceFeature.bind(this, 46240)}
                         />
                         <RangeSlider
@@ -739,6 +955,8 @@ export default class Customization extends UIComponent<UI.Customization.Props, U
                           min={-1}
                           max={2.5}
                           step={0.1}
+                          defaultValue={this.state.currentFaceFeatures[8991] || 0}
+                          resetTo={0}
                           onChange={this.handleChangeFaceFeature.bind(this, 8991)}
                         />
                       </>
@@ -754,10 +972,11 @@ export default class Customization extends UIComponent<UI.Customization.Props, U
                         label={category}
                         onChange={(style, option) => this.setComponent(category, style, option)}
                         components={ComponentsData[category]}
+                        style={this.state.currentComponents[category]?.style || -1}
+                        option={this.state.currentComponents[category]?.option || 0}
                         gender={this.state.gender}
                       />
                     ))}
-                    <pre>{JSON.stringify(this.state.currentComponents, null, 2)}</pre>
                   </ModalContents>
                 </>
               )}

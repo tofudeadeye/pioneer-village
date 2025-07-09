@@ -100,6 +100,7 @@ type Props = {
   labels?: string[];
   labelsAlt?: string[];
   defaultValue?: number;
+  resetTo?: number;
   min?: number;
   max: number;
   step?: number;
@@ -133,7 +134,7 @@ export default class XYSlider extends Component<Props, State> {
 
   onMouseDown = (e: MouseEvent) => {
     if (e.button === 2) {
-      const value = this.props.defaultValue || 0;
+      const value = this.props.resetTo ?? this.props.defaultValue ?? 0;
       console.log('value', value);
       this.setState({ value });
       this.props.onChange(value);

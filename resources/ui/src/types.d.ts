@@ -80,15 +80,18 @@ declare namespace UI.App {
   interface State extends UI.BaseState {
     isFramed: boolean;
     bg: string;
+    disabledLayers: Set<string>;
   }
 }
 
 declare namespace UI.Catcher {
   interface Props {
+    layer: string;
     reloadWindow: boolean;
   }
 
   interface State {
+    layer: string;
     errored: boolean;
   }
 }
@@ -117,6 +120,10 @@ declare namespace UI.Customization {
     lastName: string;
     dateOfBirth: string;
     tints: Record<string, CustomizationPalette>;
+    head: number;
+    teeth: number;
+    skinTone: number;
+    bodyType: number;
   }
 
   type Event = Partial<State>;

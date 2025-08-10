@@ -1,4 +1,4 @@
-import { emitUI, focusUI } from '@lib/client';
+import { PVInit, emitUI, focusUI } from '@lib/client';
 import { Log } from '@lib/client/comms/ui';
 
 const Inputs = {
@@ -10,6 +10,12 @@ const Inputs = {
   // Keys
   KeyI: GetHashKey('INPUT_QUICK_USE_ITEM'),
   KeyL: GetHashKey('INPUT_PLAYER_MENU'),
+};
+
+const openUI = async () => {
+  await PVInit.initialized('ui::ready');
+  emitUI('inventory.state', { show: true });
+  focusUI(true, true);
 };
 
 setTick(() => {
@@ -47,8 +53,7 @@ setTick(() => {
   }
   if (IsDisabledControlJustReleased(0, Inputs.KeyI)) {
     Log('KeyI');
-    emitUI('inventory.state', { show: true });
-    focusUI(true, true);
+    openUI();
   }
   if (IsDisabledControlJustReleased(0, Inputs.KeyL)) {
     Log('KeyL');

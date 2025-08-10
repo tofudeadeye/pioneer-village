@@ -48,4 +48,6 @@ export default (socket: Socket<UISocketEvents, SocketServer.Client & SocketServe
       restartUI();
     });
   }
+
+  emitClient('ui.ready');
 };

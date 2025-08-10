@@ -38,6 +38,7 @@ declare interface UIEvents {
   ['nui.close']: () => void;
   ['nui.restart']: () => void;
   ['hud.state']: (event: UI.HUD.Event) => void;
+  ['ui.ready']: () => void;
   ['form.state']: (event: UI.Form.Event) => void;
   ['form.answer']: (event: UI.Form.Event) => void;
   ['notification.notify']: (

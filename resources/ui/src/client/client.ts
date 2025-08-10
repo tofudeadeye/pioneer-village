@@ -1,8 +1,10 @@
+import { PVInit } from '@lib/client';
+import { Log } from '@lib/client/comms/ui';
+
 import './auto-close-layers';
 import './cleanup';
-import './crosshair';
 import './commands';
-import { Log } from '@lib/client/comms/ui';
+import './crosshair';
 
 const callListeners: Map<string, Map<string, (...args: any[]) => any>> = new Map();
 const eventListeners: Map<string, Map<string, (...args: any[]) => any>> = new Map();
@@ -162,6 +164,10 @@ global.exports('onUI', onUI);
 global.exports('awaitUI', awaitUI);
 global.exports('emitUI', emitUI);
 global.exports('focusUI', focusUI);
+
+onUI('ui.ready', () => {
+  PVInit.resolve('ui::ready');
+});
 
 RegisterCommand(
   'formTest',

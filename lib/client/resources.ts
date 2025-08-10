@@ -15,3 +15,4 @@ export const PVDatabindings = exports['databindings'];
 export const PVDoors = exports['doors'];
 export const PVZone = exports['zones'];
 export const PVCustomization = exports['customization'];
+export const PVJobs = exports['jobs'];

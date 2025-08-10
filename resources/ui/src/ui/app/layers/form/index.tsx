@@ -1,8 +1,10 @@
-import { RenderableProps } from 'preact';
+import { PropsWithChildren } from 'react';
+
+import { emitClient, onClient } from '@lib/ui';
 
 import { Headline, Modal } from '@styled/core';
+
 import UIComponent from '@uiLib/ui-component';
-import { emitClient, onClient } from '@lib/ui';
 
 export default class Form extends UIComponent<UI.BaseProps, UI.Form.State, {}> {
   closeOnEscape = true;
@@ -37,7 +39,7 @@ export default class Form extends UIComponent<UI.BaseProps, UI.Form.State, {}> {
     emitClient('form.answer', { title: this.state.title, text: this.state.text });
   }
 
-  render(props: RenderableProps<UI.BaseProps>, state: Readonly<UI.Form.State>) {
+  render(props: PropsWithChildren<UI.BaseProps>, state: Readonly<UI.Form.State>) {
     return (
       this.state.show && (
         <Modal>

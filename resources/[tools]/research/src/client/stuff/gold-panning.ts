@@ -1,20 +1,19 @@
 // import PromptManager from '@ts-shared/client/managers/prompt-manager';
 // import entityManager from '@ts-shared/shared/managers/entity-manager';
-
 import {
-  onResourceInit,
-  onResourceStart,
   PVBase,
   PVGame,
   PVHealth,
   PVPlaceObject,
   PVPrompt,
   PVTarget,
+  onResourceInit,
+  onResourceStart,
 } from '@lib/client';
-import { AnimFlag } from '@lib/flags';
-import { Vector3 } from '@lib/math';
-import { Delay } from '@lib/functions';
 import { Log } from '@lib/client/comms/ui';
+import { AnimFlag } from '@lib/flags';
+import { Delay } from '@lib/functions';
+import { Vector3 } from '@lib/math';
 
 // let bucket = PVGame.getChildEntity(1822722, 'bucket');
 // Log('bucket', bucket);
@@ -262,7 +261,8 @@ onResourceInit('prompts', async () => {
 
 const carryBucket = () => {
   carryBucketTick = setTick(() => {
-    if (IsEntityInWater(PlayerPedId()) && !PVGame.getStateValue(carryBucketEntity, 'hasWater')) {
+    const carryBucket = Entity(carryBucketEntity);
+    if (IsEntityInWater(PlayerPedId()) && !carryBucket.state.hasWater) {
       PVPrompt.show('fill_bucket');
     } else {
       PVPrompt.hide('fill_bucket');
@@ -453,11 +453,9 @@ const registerTargets = async () => {
       distance: 2.0,
       isEnabled(data) {
         const bucketEntity = PVGame.getChildEntity(data.entity, 'bucket');
-        return (
-          !PVGame.getStateValue(data.entity, 'inUse') &&
-          PVGame.getStateValue(bucketEntity, 'hasWater') &&
-          !GetEntityAttachedTo(bucketEntity)
-        );
+        const bucket = Entity(bucketEntity);
+        const entity = Entity(data.entity);
+        return !entity.state.inUse && bucket.state.hasWater && !GetEntityAttachedTo(bucketEntity);
       },
     },
   });
@@ -479,11 +477,9 @@ const registerTargets = async () => {
       distance: 2.0,
       isEnabled(data) {
         const bucketEntity = PVGame.getChildEntity(data.entity, 'bucket');
-        return (
-          !PVGame.getStateValue(data.entity, 'inUse') &&
-          !PVGame.getStateValue(bucketEntity, 'hasWater') &&
-          !GetEntityAttachedTo(bucketEntity)
-        );
+        const bucket = Entity(bucketEntity);
+        const entity = Entity(data.entity);
+        return !entity.state.inUse && !bucket.state.hasWater && !GetEntityAttachedTo(bucketEntity);
       },
     },
   });

@@ -1,26 +1,27 @@
 import { Socket } from 'socket.io-client';
+import styled from 'styled-components';
 
+import { boolval } from '@lib/functions';
+import { clamp } from '@lib/math';
 import { emitClient, onClient, onClientCall } from '@lib/ui';
-import UIComponent from '@uiLib/ui-component';
 
 import PlaceholderSvg from '@styled/components/PlaceholderSvg';
+import ProgressBar from '@styled/components/ProgressBar';
+
+import { uiSize } from '@uiLib/helpers';
+import UIComponent from '@uiLib/ui-component';
 
 import {
-  MainInventoryContainer,
-  TargetInventoryContainer,
-  InventoryWrapper,
+  ClothingInventoryContainer,
+  InventoryFooter,
+  InventoryGlobalStyle,
+  InventoryHeader,
   InventorySlot,
   InventoryTooltip,
-  InventoryFooter,
-  InventoryHeader,
-  InventoryGlobalStyle,
-  ClothingInventoryContainer,
+  InventoryWrapper,
+  MainInventoryContainer,
+  TargetInventoryContainer,
 } from './styles';
-import { boolval } from '@lib/functions';
-import ProgressBar from '@styled/components/ProgressBar';
-import { uiSize } from '@uiLib/helpers';
-import { clamp } from '@lib/math';
-import styled from 'styled-components';
 
 const progressStyle = { position: 'absolute', left: 0, right: 0, overflow: 'hidden' };
 const progressStyleTop = { ...progressStyle, top: 0, borderTopLeftRadius: uiSize(4), borderTopRightRadius: uiSize(4) };
@@ -87,11 +88,11 @@ export default class Inventories extends UIComponent<UI.BaseProps, UI.Inventory.
 
     onClient('inventory.state', (event) => {
       if (event.clothingInventory) {
-        context.socket.emit('inventorySubscribe', event.clothingInventory);
+        context.socket.emit('inventory.subscribe', event.clothingInventory);
       }
 
       if (event.mainInventory) {
-        context.socket.emit('inventorySubscribe', event.mainInventory);
+        context.socket.emit('inventory.subscribe', event.mainInventory);
 
         const [inventoryType, characterId] = event.mainInventory.split(':');
 
@@ -99,11 +100,13 @@ export default class Inventories extends UIComponent<UI.BaseProps, UI.Inventory.
       }
 
       if (this.state.targetInventory && this.state.targetInventory !== event.targetInventory) {
-        context.socket.emit('inventoryUnsubscribe', this.state.targetInventory);
+        context.socket.emit('inventory.unsubscribe', this.state.targetInventory);
       }
 
       if (event.targetInventory) {
-        context.socket.emit('inventorySubscribe', event.targetInventory);
+        context.socket.emit('inventory.subscribe', event.targetInventory);
+      } else {
+        context.socket.emit('inventory.subscribe-world');
       }
 
       this.onEvent(event);
@@ -117,12 +120,15 @@ export default class Inventories extends UIComponent<UI.BaseProps, UI.Inventory.
 
     onClientCall('inventory.player-get-items', this.playerGetItems.bind(this));
 
-    context.socket.on('inventoryLoad', this.eventLoad.bind(this));
-    context.socket.on('inventoryAdd', this.eventAdd.bind(this));
-    context.socket.on('inventoryMove', this.eventMove.bind(this));
-    context.socket.on('inventorySuccess', this.eventSuccess.bind(this));
-    context.socket.on('inventoryFail', this.eventFail.bind(this));
-    context.socket.on('inventoryWear', this.eventWear.bind(this));
+    context.socket.on('inventory.load', this.eventLoad.bind(this));
+    context.socket.on('inventory.item-add', this.eventAdd.bind(this));
+    context.socket.on('inventory.item-move', this.eventMove.bind(this));
+    context.socket.on('inventory.success', this.eventSuccess.bind(this));
+    context.socket.on('inventory.fail', this.eventFail.bind(this));
+    context.socket.on('inventory.item-wear', this.eventWear.bind(this));
+    context.socket.on('inventory.open-world', this.eventWorldOpen.bind(this));
+
+    emitClient('inventory.startup');
   }
 
   componentDidMount() {
@@ -133,16 +139,26 @@ export default class Inventories extends UIComponent<UI.BaseProps, UI.Inventory.
   componentWillUnmount() {
     document.removeEventListener('mouseup', this.mouseupBinding);
     document.removeEventListener('mousemove', this.mousemoveBinding);
+    this.context.socket.emit('inventory.unsubscribe', this.state.targetInventory);
+
+    this.setState({
+      targetInventory: '',
+    });
   }
 
   onEvent(event: UI.Inventory.Event) {
     this.setState(event);
+
+    if (!this.state.targetInventory && !event.targetInventory) {
+      this.context.socket.emit('inventory.check-world');
+    }
   }
 
   onEscape() {
     this.cancelDrag();
     this.setState({
       show: false,
+      targetInventory: '',
     });
   }
 
@@ -345,6 +361,12 @@ export default class Inventories extends UIComponent<UI.BaseProps, UI.Inventory.
     }
   }
 
+  eventWorldOpen(targetInventory: string) {
+    this.setState({
+      targetInventory,
+    });
+  }
+
   stackItem(sourceIdentifier: string, oldSlot: number, targetIdentifier: string, newSlot: number) {
     if (sourceIdentifier === targetIdentifier && oldSlot === newSlot) {
       return;
@@ -353,7 +375,7 @@ export default class Inventories extends UIComponent<UI.BaseProps, UI.Inventory.
     this.failedImages.delete(`${sourceIdentifier}::${oldSlot}`);
     this.failedImages.delete(`${targetIdentifier}::${newSlot}`);
 
-    this.context.socket.emit('inventoryStack', ++requestId, sourceIdentifier, oldSlot, targetIdentifier, newSlot);
+    this.context.socket.emit('inventory.item-stack', ++requestId, sourceIdentifier, oldSlot, targetIdentifier, newSlot);
     requests.set(requestId, { sourceIdentifier, oldSlot, targetIdentifier, newSlot });
 
     const { inventories } = this.state;
@@ -389,9 +411,38 @@ export default class Inventories extends UIComponent<UI.BaseProps, UI.Inventory.
     this.setState({ inventories });
   }
 
-  moveItem(sourceIdentifier: string, oldSlot: number, targetIdentifier: string, newSlot: number) {
+  moveItem(
+    sourceIdentifier: string,
+    oldSlot: number,
+    targetIdentifier: string,
+    newSlot?: number | null,
+    force = false,
+  ) {
     if (sourceIdentifier === targetIdentifier && oldSlot === newSlot) {
       return;
+    }
+
+    if (newSlot === undefined || newSlot === null) {
+      const targetInventory = this.state.inventories.get(targetIdentifier);
+      if (!targetInventory) {
+        if (force) {
+          const sourceInventory = this.state.inventories.get(sourceIdentifier);
+          if (sourceInventory) {
+            delete sourceInventory.items[oldSlot];
+          }
+        }
+        return;
+      }
+      for (let s = 0; s < targetInventory.slots; s++) {
+        if (!targetInventory.items[s]) {
+          newSlot = s;
+          break;
+        }
+      }
+
+      if (newSlot === undefined || newSlot === null) {
+        return;
+      }
     }
 
     this.failedImages.delete(`${sourceIdentifier}::${oldSlot}`);
@@ -404,7 +455,7 @@ export default class Inventories extends UIComponent<UI.BaseProps, UI.Inventory.
 
             Not sure if this is needed I'm not seeing the requests being doubled up.
      */
-    this.context.socket.emit('inventoryMove', ++requestId, sourceIdentifier, oldSlot, targetIdentifier, newSlot);
+    this.context.socket.emit('inventory.item-move', ++requestId, sourceIdentifier, oldSlot, targetIdentifier, newSlot);
     requests.set(requestId, { sourceIdentifier, oldSlot, targetIdentifier, newSlot });
 
     const { inventories } = this.state;
@@ -442,6 +493,14 @@ export default class Inventories extends UIComponent<UI.BaseProps, UI.Inventory.
 
     this.setState({ inventories });
     this.computeInventoryWeight();
+  }
+
+  dropItem(identifier: string, slot: number) {
+    if (this.state.targetInventory.startsWith('_WORLD_:')) {
+      return this.moveItem(identifier, slot, this.state.targetInventory, undefined, true);
+    }
+
+    this.context.socket.emit('inventory.item-drop', ++requestId, identifier, slot);
   }
 
   onmousedown(e: MouseEvent) {
@@ -496,6 +555,11 @@ export default class Inventories extends UIComponent<UI.BaseProps, UI.Inventory.
       // Check if Source Item Still Exists
       if (sourceInventory?.items[oldSlot]?.identifier) {
         const itemData = this.items[sourceInventory.items[oldSlot].identifier];
+        console.log(
+          sourceInventory.items[oldSlot].identifier,
+          targetInventory?.items[newSlot]?.identifier,
+          itemData.stackSize,
+        );
         // Check if Target is same and stack or move
         if (
           sourceInventory.items[oldSlot].identifier === targetInventory?.items[newSlot]?.identifier &&
@@ -506,8 +570,10 @@ export default class Inventories extends UIComponent<UI.BaseProps, UI.Inventory.
           this.moveItem(dragItem.dataset.inventoryIdentifier, oldSlot, targetEl.dataset.inventoryIdentifier, newSlot);
         }
       }
+    } else if (dragItem.dataset.inventoryIdentifier) {
+      this.dropItem(dragItem.dataset.inventoryIdentifier, Number(dragItem.dataset.slot));
     } else {
-      // TODO: Drop Item on Ground
+      return;
     }
     document.body.removeChild(dragItem);
     const draggedElements = document.getElementsByClassName('dragged-source');
@@ -599,7 +665,7 @@ export default class Inventories extends UIComponent<UI.BaseProps, UI.Inventory.
       durabilityProgress = durability / item.maxDurability;
     }
 
-    const firstMetadata = itemData.metadatas[0];
+    const firstMetadata: Inventory.AnyItemMetadata = itemData.metadatas[0];
 
     return (
       <>
@@ -632,7 +698,8 @@ export default class Inventories extends UIComponent<UI.BaseProps, UI.Inventory.
             />
           </div>
         )}
-        {firstMetadata.palette &&
+        {firstMetadata &&
+          'palette' in firstMetadata &&
           firstMetadata.palette !== 'NONE' &&
           this.renderTint(
             firstMetadata.palette,

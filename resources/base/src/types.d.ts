@@ -20,6 +20,7 @@ declare interface CharacterData {
   lastX: number;
   lastY: number;
   lastZ: number;
+  lastNow: number;
   model: string;
   food: number;
   steamId: string;

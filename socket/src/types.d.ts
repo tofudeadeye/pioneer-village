@@ -5,7 +5,8 @@ declare namespace SocketServer {
   }
 
   interface ServerEvents {
-    connectedPlayers: (players: Base.PlayerInfo[]) => void;
+    'base.connected-players': (players: Base.PlayerInfo[]) => void;
+    'base.player-coords': (serverId: number, coords: Vector3Format) => void;
   }
 
   interface Client {}
@@ -13,7 +14,25 @@ declare namespace SocketServer {
   interface ClientEvents {
     chatSend: (chatSend: UI.Chat.Send) => void;
   }
+
+  interface SocketEvents {
+    'player-management.kick': () => void;
+  }
+
+  interface SocketData {
+    user: {
+      serverId: number;
+      userId: number;
+      iat: number;
+      exp: number;
+    };
+    character?: {
+      id: number;
+    };
+  }
 }
+
+declare interface UISocketEvents {}
 
 // type onClient = <T extends keyof NetEvents>(evtName: T, callback: (...args: Parameters<NetEvents[T]>) => void) => void;
 

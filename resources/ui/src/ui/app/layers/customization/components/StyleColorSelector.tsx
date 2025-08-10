@@ -1,7 +1,8 @@
-import { Component, createRef } from 'preact';
+import { Component, createRef } from 'react';
 import styled from 'styled-components';
 
 import theme from '@styled/theme';
+
 import { uiSize } from '@uiLib/helpers';
 
 const SCSContainer = styled.div`

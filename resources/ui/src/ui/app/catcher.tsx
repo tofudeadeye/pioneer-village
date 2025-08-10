@@ -1,7 +1,7 @@
-import { Component, RenderableProps } from 'preact';
+import { Component, PropsWithChildren } from 'react';
+import type { ErrorInfo } from 'react';
 
 import { Snackbar } from '@styled/core';
-import type { ErrorInfo } from 'react';
 
 interface CrashEntry {
   timestamp: number;
@@ -87,7 +87,7 @@ export class Catcher extends Component<UI.Catcher.Props, UI.Catcher.State> {
     }
   }
 
-  render(props: RenderableProps<any>, state: Readonly<any>) {
+  render(props: PropsWithChildren<any>, state: Readonly<any>) {
     if (state.errored) {
       const layerName = state.layer;
       if (state.layer) {

@@ -1,9 +1,10 @@
-import theme, { themeColor } from '../theme';
+import { PropsWithChildren } from 'react';
+import { HTMLAttributes } from 'react';
 import styled from 'styled-components';
 
-import { RenderableProps } from 'preact';
-import { HTMLAttributes } from 'react';
 import { uiSize } from '@uiLib/helpers';
+
+import theme, { themeColor } from '../theme';
 
 const FillContainer = styled.div`
   position: relative;
@@ -84,7 +85,7 @@ const defaultProps = {
   border: false,
 };
 
-export default function ProgressBar(props: RenderableProps<ProgressBarProps>) {
+export default function ProgressBar(props: PropsWithChildren<ProgressBarProps>) {
   const { width, height, backgroundColor, source } = { ...defaultProps, ...props };
   const isVertical = source === 'top' || source === 'bottom' || source === 'middle';
   const color = themeColor('hex', defaultProps.color, props.color);

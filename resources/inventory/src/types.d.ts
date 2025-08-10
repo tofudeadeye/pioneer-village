@@ -1,5 +1,9 @@
 declare interface RPC {}
 
+interface NetEvents {
+  ['inventory.pickup-hat']: (hatNetId: number) => void;
+}
+
 declare namespace Inventory {
   enum ItemFlags {
     MATERIAL = 1,
@@ -85,6 +89,36 @@ declare namespace Inventory {
   };
 
   type UIItems = Record<number, UIItem>;
+
+  type ItemMetadata = {
+    name: string;
+    image: string;
+  };
+
+  type ClothingMetadata = ItemMetadata & {
+    palette: string;
+    tint0: number;
+    tint1: number;
+    tint2: number;
+  };
+
+  type DoorKeyMetadata = ItemMetadata & {
+    doorHash?: number;
+    doorHashes?: number[];
+    linkedDoors?: number[][];
+  };
+
+  type AnyItemMetadata = ItemMetadata | ClothingMetadata | DoorKeyMetadata | undefined;
+
+  type InventoryMetadata = {
+    name: string;
+  };
+
+  type WorldMetadata = InventoryMetadata & {
+    slotId: number;
+  };
+
+  type AnyInventoryMetadata = InventoryMetadata | WorldMetadata | undefined;
 }
 
 declare namespace Weapon {

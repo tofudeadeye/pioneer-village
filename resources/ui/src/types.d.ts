@@ -1,13 +1,15 @@
 declare interface UISocketEvents {
   chatMessage: (chatMessage: UI.Chat.Message) => void;
 
-  inventoryLoad: (data: UI.Inventory.LoadData) => void;
-  inventoryAdd: (data: UI.Inventory.AddData) => void;
-  inventoryMove: (data: UI.Inventory.MoveData) => void;
-  inventoryWear: (itemId: number, change: number) => void;
+  ['inventory.load']: (data: UI.Inventory.LoadData) => void;
+  ['inventory.item-add']: (data: UI.Inventory.AddData) => void;
+  ['inventory.item-move']: (data: UI.Inventory.MoveData) => void;
+  ['inventory.item-wear']: (itemId: number, change: number) => void;
+  ['inventory.open-world']: (identifier: string) => void;
+  ['inventory.world-inventories']: (inventories: string[]) => void;
   // inventoryRemove: (data: UI.Inventory.RemoveData) => void;
-  inventorySuccess: (data: UI.Inventory.SuccessFailData) => void;
-  inventoryFail: (data: UI.Inventory.SuccessFailData) => void;
+  ['inventory.success']: (data: UI.Inventory.SuccessFailData) => void;
+  ['inventory.fail']: (data: UI.Inventory.SuccessFailData) => void;
 
   ['world.register-object']: (name: string, id: number) => void;
   ['world.unregister-object']: (name: string) => void;
@@ -17,6 +19,11 @@ declare interface UISocketEvents {
   ['character-client-update.updateAttribute']: (attr: keyof CharacterData, newVal: any) => void;
 
   ['log.message']: (data: UI.Log.Data) => void;
+
+  ['jobs.clock-in-update']: Jobs.Events.ClockInUpdate;
+  ['jobs.clock-out-update']: Jobs.Events.ClockOutUpdate;
+  ['jobs.task-created']: Jobs.Events.TaskCreated;
+  ['jobs.payment-processed']: Jobs.Events.PaymentProcessed;
 }
 
 declare module '*.svg' {

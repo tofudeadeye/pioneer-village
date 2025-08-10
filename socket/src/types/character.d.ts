@@ -2,10 +2,12 @@ declare namespace SocketServer {
   interface Server {}
 
   interface ServerEvents {
+    'player-management.kick': () => void;
     ['character-update.last-position']: (serverId: number, coords: Vector3Format) => void;
     ['character-event.disconnected']: (serverId: number) => void;
     ['character-get.food-drink']: (charId: number, cb: (food: number, drink: number) => void) => void;
     ['character-get.health-metadata']: (charId: number, cb: (metadata: CharacterHealthMetadata) => void) => void;
+    ['inventory.pickup-hat']: (source: number, hatNetId: number) => void;
   }
 
   interface Client {}

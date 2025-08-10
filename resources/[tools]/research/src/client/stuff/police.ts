@@ -1,8 +1,8 @@
-import { PVBase, PVGame, PVKeymapper } from '@lib/client';
+import { PVBase, PVGame, PVJobs, PVKeymapper } from '@lib/client';
+import { Log } from '@lib/client/comms/ui';
 import { AnimFlag } from '@lib/flags';
 import { Delay } from '@lib/functions';
 import { Vector3 } from '@lib/math';
-import { Log } from '@lib/client/comms/ui';
 
 let isWhistling = false;
 
@@ -42,3 +42,17 @@ if (typeof PrepareSoundset !== 'undefined') {
 } else {
   Log('PrepareSoundset is undefined');
 }
+
+const sheriffJob = {
+  handle: 'sheriff',
+  name: 'Sheriff Department',
+  description: 'Maintain law and order in the town',
+  paymentType: 'HOURLY',
+  paymentAmount: '25.00',
+  requirements: { badge: true },
+  clockInConstraints: {
+    location: { x: -275.0, y: 804.0, z: 118.0, radius: 10 },
+    hours: { start: 6, end: 22 },
+  },
+  metadata: { department: 'law_enforcement' },
+};

@@ -1,27 +1,38 @@
+import { relations } from 'drizzle-orm';
 import {
+  boolean,
+  decimal,
+  foreignKey,
+  integer,
+  json,
+  pgEnum,
   pgTable,
   serial,
-  boolean,
-  integer,
-  varchar,
-  timestamp,
-  decimal,
-  json,
-  text,
-  pgEnum,
-  foreignKey,
-  unique,
   smallint,
+  text,
+  timestamp,
+  unique,
+  varchar,
 } from 'drizzle-orm/pg-core';
-import { relations } from 'drizzle-orm';
 
 // Enums
 export const roleEnum = pgEnum('Role', ['USER', 'DEVELOPER', 'ADMIN']);
 export const genderEnum = pgEnum('Gender', ['MALE', 'FEMALE', 'OTHER']);
 export const sealedEnum = pgEnum('Sealed', ['NONE', 'SEALED', 'BROKEN']);
+export const paymentTypeEnum = pgEnum('PaymentType', ['HOURLY', 'PER_TASK', 'COMMISSION', 'SALARY', 'CALLBACK']);
+export const taskStatusEnum = pgEnum('TaskStatus', [
+  'AVAILABLE',
+  'ASSIGNED',
+  'IN_PROGRESS',
+  'COMPLETED',
+  'FAILED',
+  'EXPIRED',
+]);
+export const permissionTypeEnum = pgEnum('PermissionType', ['JOB', 'TASK']);
+export const repeatTypeEnum = pgEnum('RepeatType', ['COOLDOWN', 'BURST', 'WINDOW', 'UNLIMITED']);
 
 // Tables
-export const accounts = pgTable('Accounts', {
+export const AccountsSchema = pgTable('Accounts', {
   id: serial('id').primaryKey(),
   allowed: boolean('allowed').default(true),
   priority: integer('priority').default(10),
@@ -35,7 +46,7 @@ export const accounts = pgTable('Accounts', {
   role: roleEnum('role').default('USER'),
 });
 
-export const characters = pgTable('Characters', {
+export const CharactersSchema = pgTable('Characters', {
   id: serial('id').primaryKey(),
   accountId: integer('accountId').notNull(),
   firstName: varchar('firstName').notNull(),
@@ -49,14 +60,16 @@ export const characters = pgTable('Characters', {
   food: decimal('food').default('100.0'),
   drink: decimal('drink').default('100.0'),
   currencies: json('currencies').default('{"dollars": 20, "gold": 0}'),
-  healthMetadata: json('healthMetadata').default('{"health": 100, "stamina": 100, "litersOfBlood": 5, "boneHealth": [], "activeTonic": false, "sick": false, "boneStatus": []}'),
+  healthMetadata: json('healthMetadata').default(
+    '{"health": 100, "stamina": 100, "litersOfBlood": 5, "boneHealth": [], "activeTonic": false, "sick": false, "boneStatus": []}',
+  ),
   components: json('components').default('[]'),
   model: varchar('model').default('mp_male'),
   whistle: json('whistle').default('{"pitch": 0.5, "shape": 5, "clarity": 0.5}'),
   features: json('features').default('{}'),
 });
 
-export const faces = pgTable('Faces', {
+export const FacesSchema = pgTable('Faces', {
   id: serial('id').primaryKey(),
   characterId: integer('characterId').unique().notNull(),
   noseHeight: decimal('noseHeight').default('0.0'),
@@ -101,14 +114,14 @@ export const faces = pgTable('Faces', {
   overlays: json('overlays'),
 });
 
-export const outfits = pgTable('Outfits', {
+export const OutfitsSchema = pgTable('Outfits', {
   id: serial('id').primaryKey(),
   characterId: integer('characterId').notNull(),
   name: varchar('name').notNull(),
   components: json('components').default('[]'),
 });
 
-export const brands = pgTable('Brands', {
+export const BrandsSchema = pgTable('Brands', {
   id: serial('id').primaryKey(),
   name: varchar('name').notNull(),
   identifier: varchar('identifier').notNull(),
@@ -116,7 +129,7 @@ export const brands = pgTable('Brands', {
   createdAt: timestamp('createdAt').defaultNow(),
 });
 
-export const horses = pgTable('Horses', {
+export const HorsesSchema = pgTable('Horses', {
   id: serial('id').primaryKey(),
   name: varchar('name').notNull(),
   ownerId: integer('ownerId').notNull(),
@@ -150,7 +163,7 @@ export const horses = pgTable('Horses', {
   createdAt: timestamp('createdAt').defaultNow(),
 });
 
-export const livestock = pgTable('Livestock', {
+export const LivestockSchema = pgTable('Livestock', {
   id: serial('id').primaryKey(),
   name: varchar('name').notNull(),
   ownerId: integer('ownerId').unique().notNull(),
@@ -161,20 +174,20 @@ export const livestock = pgTable('Livestock', {
   lastZ: decimal('lastZ').notNull(),
 });
 
-export const inventory = pgTable('Inventory', {
+export const InventorySchema = pgTable('Inventory', {
   id: serial('id').primaryKey(),
   identifier: varchar('identifier').unique().notNull(),
   metadata: json('metadata').default('{}'),
   containerId: integer('containerId').unique().notNull(),
 });
 
-export const container = pgTable('Container', {
+export const ContainerSchema = pgTable('Container', {
   id: serial('id').primaryKey(),
   locked: boolean('locked').default(false),
   sealed: sealedEnum('sealed').default('NONE'),
 });
 
-export const item = pgTable('Item', {
+export const ItemSchema = pgTable('Item', {
   id: serial('id').primaryKey(),
   metadata: json('metadata').default('{}'),
   containerId: integer('containerId').notNull(),
@@ -185,125 +198,287 @@ export const item = pgTable('Item', {
   durability: integer('durability'),
 });
 
-export const door = pgTable('Door', {
+export const DoorSchema = pgTable('Door', {
   id: serial('id').primaryKey(),
   hash: integer('hash').notNull(),
   state: smallint('state').default(-1),
 });
 
+// Job System Tables
+export const JobsSchema = pgTable('Jobs', {
+  id: serial('id').primaryKey(),
+  handle: varchar('handle').unique().notNull(),
+  name: varchar('name').notNull(),
+  description: text('description'),
+  paymentType: paymentTypeEnum('paymentType').default('HOURLY'),
+  paymentAmount: decimal('paymentAmount').default('0.0'),
+  requirements: json('requirements').default('{}'),
+  inventory: json('inventory').default('{}'),
+  clockInConstraints: json('clockInConstraints').default('{}'),
+  metadata: json('metadata').default('{}'),
+  active: boolean('active').default(true),
+  createdAt: timestamp('createdAt').defaultNow(),
+  updatedAt: timestamp('updatedAt'),
+});
+
+export const JobTasksSchema = pgTable('JobTasks', {
+  id: serial('id').primaryKey(),
+  jobId: integer('jobId').notNull(),
+  handle: varchar('handle').notNull(),
+  name: varchar('name').notNull(),
+  description: text('description'),
+  taskType: varchar('taskType').notNull(),
+  requirements: json('requirements').default('{}'),
+  rewards: json('rewards').default('{}'),
+  timeConstraints: json('timeConstraints').default('{}'),
+  repeatConfig: json('repeatConfig').default('{}'),
+  rateLimits: json('rateLimits').default('{}'),
+  metadata: json('metadata').default('{}'),
+  active: boolean('active').default(true),
+  createdAt: timestamp('createdAt').defaultNow(),
+  updatedAt: timestamp('updatedAt'),
+});
+
+export const JobEmployeesSchema = pgTable('JobEmployees', {
+  id: serial('id').primaryKey(),
+  characterId: integer('characterId').notNull(),
+  jobId: integer('jobId').notNull(),
+  position: varchar('position').default('Employee'),
+  salary: decimal('salary').default('0.0'),
+  clockedInAt: timestamp('clockedInAt'),
+  totalHoursWorked: decimal('totalHoursWorked').default('0.0'),
+  hiredAt: timestamp('hiredAt').defaultNow(),
+  firedAt: timestamp('firedAt'),
+  metadata: json('metadata').default('{}'),
+});
+
+export const JobPermissionsSchema = pgTable('JobPermissions', {
+  id: serial('id').primaryKey(),
+  characterId: integer('characterId').notNull(),
+  type: permissionTypeEnum('type').notNull(),
+  typeId: varchar('typeId').notNull(),
+  grantedAt: timestamp('grantedAt').defaultNow(),
+  grantedBy: integer('grantedBy'),
+  revokedAt: timestamp('revokedAt'),
+  metadata: json('metadata').default('{}'),
+});
+
+export const JobTaskInstancesSchema = pgTable('JobTaskInstances', {
+  id: serial('id').primaryKey(),
+  taskId: integer('taskId').notNull(),
+  assignedTo: integer('assignedTo'),
+  status: taskStatusEnum('status').default('AVAILABLE'),
+  progress: json('progress').default('{}'),
+  createdAt: timestamp('createdAt').defaultNow(),
+  assignedAt: timestamp('assignedAt'),
+  startedAt: timestamp('startedAt'),
+  completedAt: timestamp('completedAt'),
+  scheduledFor: timestamp('scheduledFor'),
+  expiresAt: timestamp('expiresAt'),
+  metadata: json('metadata').default('{}'),
+});
+
+export const JobTaskCooldownsSchema = pgTable('JobTaskCooldowns', {
+  id: serial('id').primaryKey(),
+  characterId: integer('characterId').notNull(),
+  taskId: integer('taskId').notNull(),
+  lastCompletedAt: timestamp('lastCompletedAt').notNull(),
+  completionCount: integer('completionCount').default(1),
+  hourlyResetAt: timestamp('hourlyResetAt').notNull(),
+  hourlyCount: integer('hourlyCount').default(1),
+  dailyResetAt: timestamp('dailyResetAt').notNull(),
+  dailyCount: integer('dailyCount').default(1),
+  metadata: json('metadata').default('{}'),
+});
+
 // Relations
-export const accountsRelations = relations(accounts, ({ many }) => ({
-  characters: many(characters),
+export const accountsRelations = relations(AccountsSchema, ({ many }) => ({
+  characters: many(CharactersSchema),
 }));
 
-export const charactersRelations = relations(characters, ({ one, many }) => ({
-  account: one(accounts, {
-    fields: [characters.accountId],
-    references: [accounts.id],
+export const charactersRelations = relations(CharactersSchema, ({ one, many }) => ({
+  account: one(AccountsSchema, {
+    fields: [CharactersSchema.accountId],
+    references: [AccountsSchema.id],
   }),
-  face: one(faces, {
-    fields: [characters.id],
-    references: [faces.characterId],
+  face: one(FacesSchema, {
+    fields: [CharactersSchema.id],
+    references: [FacesSchema.characterId],
   }),
-  brand: one(brands, {
-    fields: [characters.id],
-    references: [brands.ownerId],
+  brand: one(BrandsSchema, {
+    fields: [CharactersSchema.id],
+    references: [BrandsSchema.ownerId],
   }),
-  horses: many(horses),
-  livestock: one(livestock, {
-    fields: [characters.id],
-    references: [livestock.ownerId],
+  horses: many(HorsesSchema),
+  livestock: one(LivestockSchema, {
+    fields: [CharactersSchema.id],
+    references: [LivestockSchema.ownerId],
   }),
-  outfits: many(outfits),
+  outfits: many(OutfitsSchema),
+  jobEmployees: many(JobEmployeesSchema),
+  jobPermissions: many(JobPermissionsSchema),
+  jobTaskInstances: many(JobTaskInstancesSchema),
+  jobTaskCooldowns: many(JobTaskCooldownsSchema),
 }));
 
-export const facesRelations = relations(faces, ({ one }) => ({
-  character: one(characters, {
-    fields: [faces.characterId],
-    references: [characters.id],
-  }),
-}));
-
-export const outfitsRelations = relations(outfits, ({ one }) => ({
-  character: one(characters, {
-    fields: [outfits.characterId],
-    references: [characters.id],
+export const facesRelations = relations(FacesSchema, ({ one }) => ({
+  character: one(CharactersSchema, {
+    fields: [FacesSchema.characterId],
+    references: [CharactersSchema.id],
   }),
 }));
 
-export const brandsRelations = relations(brands, ({ one, many }) => ({
-  owner: one(characters, {
-    fields: [brands.ownerId],
-    references: [characters.id],
-  }),
-  horses: many(horses),
-  livestock: many(livestock),
-}));
-
-export const horsesRelations = relations(horses, ({ one }) => ({
-  owner: one(characters, {
-    fields: [horses.ownerId],
-    references: [characters.id],
-  }),
-  brand: one(brands, {
-    fields: [horses.brandId],
-    references: [brands.id],
+export const outfitsRelations = relations(OutfitsSchema, ({ one }) => ({
+  character: one(CharactersSchema, {
+    fields: [OutfitsSchema.characterId],
+    references: [CharactersSchema.id],
   }),
 }));
 
-export const livestockRelations = relations(livestock, ({ one }) => ({
-  owner: one(characters, {
-    fields: [livestock.ownerId],
-    references: [characters.id],
+export const brandsRelations = relations(BrandsSchema, ({ one, many }) => ({
+  owner: one(CharactersSchema, {
+    fields: [BrandsSchema.ownerId],
+    references: [CharactersSchema.id],
   }),
-  brand: one(brands, {
-    fields: [livestock.brandId],
-    references: [brands.id],
+  horses: many(HorsesSchema),
+  livestock: many(LivestockSchema),
+}));
+
+export const horsesRelations = relations(HorsesSchema, ({ one }) => ({
+  owner: one(CharactersSchema, {
+    fields: [HorsesSchema.ownerId],
+    references: [CharactersSchema.id],
+  }),
+  brand: one(BrandsSchema, {
+    fields: [HorsesSchema.brandId],
+    references: [BrandsSchema.id],
   }),
 }));
 
-export const inventoryRelations = relations(inventory, ({ one }) => ({
-  container: one(container, {
-    fields: [inventory.containerId],
-    references: [container.id],
+export const livestockRelations = relations(LivestockSchema, ({ one }) => ({
+  owner: one(CharactersSchema, {
+    fields: [LivestockSchema.ownerId],
+    references: [CharactersSchema.id],
+  }),
+  brand: one(BrandsSchema, {
+    fields: [LivestockSchema.brandId],
+    references: [BrandsSchema.id],
   }),
 }));
 
-export const containerRelations = relations(container, ({ one, many }) => ({
-  inventory: one(inventory, {
-    fields: [container.id],
-    references: [inventory.containerId],
+export const inventoryRelations = relations(InventorySchema, ({ one }) => ({
+  container: one(ContainerSchema, {
+    fields: [InventorySchema.containerId],
+    references: [ContainerSchema.id],
   }),
-  items: many(item),
 }));
 
-export const itemRelations = relations(item, ({ one }) => ({
-  container: one(container, {
-    fields: [item.containerId],
-    references: [container.id],
+export const containerRelations = relations(ContainerSchema, ({ one, many }) => ({
+  inventory: one(InventorySchema, {
+    fields: [ContainerSchema.id],
+    references: [InventorySchema.containerId],
+  }),
+  items: many(ItemSchema),
+}));
+
+export const itemRelations = relations(ItemSchema, ({ one }) => ({
+  container: one(ContainerSchema, {
+    fields: [ItemSchema.containerId],
+    references: [ContainerSchema.id],
+  }),
+}));
+
+// Job System Relations
+export const jobsRelations = relations(JobsSchema, ({ many }) => ({
+  tasks: many(JobTasksSchema),
+  employees: many(JobEmployeesSchema),
+}));
+
+export const jobTasksRelations = relations(JobTasksSchema, ({ one, many }) => ({
+  job: one(JobsSchema, {
+    fields: [JobTasksSchema.jobId],
+    references: [JobsSchema.id],
+  }),
+  instances: many(JobTaskInstancesSchema),
+  cooldowns: many(JobTaskCooldownsSchema),
+}));
+
+export const jobEmployeesRelations = relations(JobEmployeesSchema, ({ one }) => ({
+  character: one(CharactersSchema, {
+    fields: [JobEmployeesSchema.characterId],
+    references: [CharactersSchema.id],
+  }),
+  job: one(JobsSchema, {
+    fields: [JobEmployeesSchema.jobId],
+    references: [JobsSchema.id],
+  }),
+}));
+
+export const jobPermissionsRelations = relations(JobPermissionsSchema, ({ one }) => ({
+  character: one(CharactersSchema, {
+    fields: [JobPermissionsSchema.characterId],
+    references: [CharactersSchema.id],
+  }),
+  grantedByCharacter: one(CharactersSchema, {
+    fields: [JobPermissionsSchema.grantedBy],
+    references: [CharactersSchema.id],
+  }),
+}));
+
+export const jobTaskInstancesRelations = relations(JobTaskInstancesSchema, ({ one }) => ({
+  task: one(JobTasksSchema, {
+    fields: [JobTaskInstancesSchema.taskId],
+    references: [JobTasksSchema.id],
+  }),
+  assignedToCharacter: one(CharactersSchema, {
+    fields: [JobTaskInstancesSchema.assignedTo],
+    references: [CharactersSchema.id],
+  }),
+}));
+
+export const jobTaskCooldownsRelations = relations(JobTaskCooldownsSchema, ({ one }) => ({
+  character: one(CharactersSchema, {
+    fields: [JobTaskCooldownsSchema.characterId],
+    references: [CharactersSchema.id],
+  }),
+  task: one(JobTasksSchema, {
+    fields: [JobTaskCooldownsSchema.taskId],
+    references: [JobTasksSchema.id],
   }),
 }));
 
 // Type exports for use in application
-export type Account = typeof accounts.$inferSelect;
-export type NewAccount = typeof accounts.$inferInsert;
-export type Character = typeof characters.$inferSelect;
-export type NewCharacter = typeof characters.$inferInsert;
-export type Face = typeof faces.$inferSelect;
-export type NewFace = typeof faces.$inferInsert;
-export type Outfit = typeof outfits.$inferSelect;
-export type NewOutfit = typeof outfits.$inferInsert;
-export type Brand = typeof brands.$inferSelect;
-export type NewBrand = typeof brands.$inferInsert;
-export type Horse = typeof horses.$inferSelect;
-export type NewHorse = typeof horses.$inferInsert;
-export type Livestock = typeof livestock.$inferSelect;
-export type NewLivestock = typeof livestock.$inferInsert;
-export type Inventory = typeof inventory.$inferSelect;
-export type NewInventory = typeof inventory.$inferInsert;
-export type Container = typeof container.$inferSelect;
-export type NewContainer = typeof container.$inferInsert;
-export type Item = typeof item.$inferSelect;
-export type NewItem = typeof item.$inferInsert;
-export type Door = typeof door.$inferSelect;
-export type NewDoor = typeof door.$inferInsert;
+export type AccountSchemaType = typeof AccountsSchema.$inferSelect;
+export type NewAccountSchemaType = typeof AccountsSchema.$inferInsert;
+export type CharacterSchemaType = typeof CharactersSchema.$inferSelect;
+export type NewCharacterSchemaType = typeof CharactersSchema.$inferInsert;
+export type FaceSchemaType = typeof FacesSchema.$inferSelect;
+export type NewFaceSchemaType = typeof FacesSchema.$inferInsert;
+export type OutfitSchemaType = typeof OutfitsSchema.$inferSelect;
+export type NewOutfitSchemaType = typeof OutfitsSchema.$inferInsert;
+export type BrandSchemaType = typeof BrandsSchema.$inferSelect;
+export type NewBrandSchemaType = typeof BrandsSchema.$inferInsert;
+export type HorseSchemaType = typeof HorsesSchema.$inferSelect;
+export type NewHorseSchemaType = typeof HorsesSchema.$inferInsert;
+export type LivestockSchemaType = typeof LivestockSchema.$inferSelect;
+export type NewLivestockSchemaType = typeof LivestockSchema.$inferInsert;
+export type InventorySchemaType = typeof InventorySchema.$inferSelect;
+export type NewInventorySchemaType = typeof InventorySchema.$inferInsert;
+export type ContainerSchemaType = typeof ContainerSchema.$inferSelect;
+export type NewContainerSchemaType = typeof ContainerSchema.$inferInsert;
+export type ItemSchemaType = typeof ItemSchema.$inferSelect;
+export type NewItemSchemaType = typeof ItemSchema.$inferInsert;
+export type DoorSchemaType = typeof DoorSchema.$inferSelect;
+export type NewDoorSchemaType = typeof DoorSchema.$inferInsert;
+export type JobSchemaType = typeof JobsSchema.$inferSelect;
+export type NewJobSchemaType = typeof JobsSchema.$inferInsert;
+export type JobTaskSchemaType = typeof JobTasksSchema.$inferSelect;
+export type NewJobTaskSchemaType = typeof JobTasksSchema.$inferInsert;
+export type JobEmployeeSchemaType = typeof JobEmployeesSchema.$inferSelect;
+export type NewJobEmployeeSchemaType = typeof JobEmployeesSchema.$inferInsert;
+export type JobPermissionSchemaType = typeof JobPermissionsSchema.$inferSelect;
+export type NewJobPermissionSchemaType = typeof JobPermissionsSchema.$inferInsert;
+export type JobTaskInstanceSchemaType = typeof JobTaskInstancesSchema.$inferSelect;
+export type NewJobTaskInstanceSchemaType = typeof JobTaskInstancesSchema.$inferInsert;
+export type JobTaskCooldownSchemaType = typeof JobTaskCooldownsSchema.$inferSelect;
+export type NewJobTaskCooldownSchemaType = typeof JobTaskCooldownsSchema.$inferInsert;

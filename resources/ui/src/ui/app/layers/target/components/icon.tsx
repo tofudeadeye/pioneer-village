@@ -1,6 +1,7 @@
-import { Component } from 'preact';
+import { Component } from 'react';
 
 import theme from '@styled/theme';
+
 import { uiSize } from '@uiLib/helpers';
 
 const requiredIcons: Record<string, any> = {

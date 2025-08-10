@@ -1,23 +1,24 @@
+import { debounce } from 'lodash';
+import { createRef } from 'react';
 import type { Socket } from 'socket.io-client';
 
+import { Delay } from '@lib/functions';
 import { onClient } from '@lib/ui';
+
+import Desktop from '@styled/fa5/solid/desktop.svg';
+import DiceFive from '@styled/fa5/solid/dice-five.svg';
+import DiceFour from '@styled/fa5/solid/dice-four.svg';
+import DiceOne from '@styled/fa5/solid/dice-one.svg';
+import DiceSix from '@styled/fa5/solid/dice-six.svg';
+import DiceThree from '@styled/fa5/solid/dice-three.svg';
+import DiceTwo from '@styled/fa5/solid/dice-two.svg';
+import Info from '@styled/fa5/solid/info.svg';
+import Server from '@styled/fa5/solid/server.svg';
+import TrashAlt from '@styled/fa5/solid/trash-alt.svg';
+
 import UIComponent from '@uiLib/ui-component';
 
-import Server from '@styled/fa5/solid/server.svg';
-import Desktop from '@styled/fa5/solid/desktop.svg';
-import Info from '@styled/fa5/solid/info.svg';
-import TrashAlt from '@styled/fa5/solid/trash-alt.svg';
-import DiceOne from '@styled/fa5/solid/dice-one.svg';
-import DiceTwo from '@styled/fa5/solid/dice-two.svg';
-import DiceThree from '@styled/fa5/solid/dice-three.svg';
-import DiceFour from '@styled/fa5/solid/dice-four.svg';
-import DiceFive from '@styled/fa5/solid/dice-five.svg';
-import DiceSix from '@styled/fa5/solid/dice-six.svg';
-
-import { Frame, Item, List, Filter, FilterItem } from './styled';
-import { debounce } from 'lodash';
-import { createRef } from 'preact';
-import { Delay } from '@lib/functions';
+import { Filter, FilterItem, Frame, Item, List } from './styled';
 
 export default class Log extends UIComponent<UI.BaseProps, UI.Log.State, {}> {
   refLog = createRef<HTMLDivElement>();

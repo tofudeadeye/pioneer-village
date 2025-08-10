@@ -1,25 +1,26 @@
 import { eq } from 'drizzle-orm';
+
 import { db } from '../db/connection';
-import { door } from '../db/schema';
-
-import { serverNamespace, userNamespace } from '../server';
-import { logInfo, logInfoC, logInfoS } from '../helpers/log';
-
+import { DoorSchema } from '../db/schema';
+import { logInfo, logInfoC, logInfoS } from '../helpers';
 import Inventories from '../managers/inventories';
+import { serverNamespace, userNamespace } from '../server';
 
 // TODO: Ability to re-key doors via a version number or something.
 
 export default () => {
   const DoorState = new Map<number, number>();
 
-  db.select().from(door).then((doors) => {
-    // logInfo('[doors]', doors);
+  db.select()
+    .from(DoorSchema)
+    .then((doors) => {
+      // logInfo('[doors]', doors);
 
-    for (const doorRecord of doors) {
-      DoorState.set(doorRecord.hash << 0, doorRecord.state || -1);
-      // logInfo('[Door State]', doorRecord.hash, doorRecord.hash >>> 0, doorRecord.state);
-    }
-  });
+      for (const doorRecord of doors) {
+        DoorState.set(doorRecord.hash << 0, doorRecord.state || -1);
+        // logInfo('[Door State]', doorRecord.hash, doorRecord.hash >>> 0, doorRecord.state);
+      }
+    });
 
   serverNamespace.on('connection', (socket) => {
     //
@@ -41,7 +42,7 @@ export default () => {
       }
 
       if (currentDoorState === undefined) {
-        await db.insert(door).values({
+        await db.insert(DoorSchema).values({
           hash: doorHash << 0,
           state,
         });

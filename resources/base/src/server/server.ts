@@ -1,6 +1,8 @@
+import { Vector3 } from '@lib/math/vector3';
+import { onSocket } from '@lib/server';
+
 import './comms';
 import { emitSocket } from './comms';
-import { Vector3 } from '@lib/math/vector3';
 
 let connectedPlayers: Base.PlayerInfo[] = [];
 
@@ -19,7 +21,7 @@ const getConnectedPlayers = () => {
     const playerData: Base.PlayerInfo = { serverId };
 
     if (playerPed !== 0) {
-      playerData.coords = GetEntityCoords(playerPed) as Base.PlayerInfo['coords'];
+      playerData.coords = Vector3.fromArray(GetEntityCoords(playerPed));
     }
 
     players.push(playerData);
@@ -30,12 +32,23 @@ const getConnectedPlayers = () => {
 
 setInterval(async () => {
   connectedPlayers = getConnectedPlayers();
-  emitSocket('connectedPlayers', connectedPlayers);
-}, 3e3);
+  emitSocket('base.connected-players', connectedPlayers);
+}, 30_000);
 
 on('playerDropped', () => {
   const src = global.source;
   const coords = new Vector3().setFromArray(GetEntityCoords(GetPlayerPed(String(src))));
   emitSocket('character-update.last-position', src, coords);
   emitSocket('character-event.disconnected', src);
+});
+
+onSocket('base.force-coords-update', (serverId) => {
+  console.log('[Base] Force coords update for serverId:', serverId);
+
+  const playerPed = GetPlayerPed(String(serverId));
+  if (playerPed !== 0) {
+    const coords = Vector3.fromArray(GetEntityCoords(playerPed));
+    console.log('[Base] Coords for serverId:', serverId, coords);
+    emitSocket('character-update.last-position', serverId, coords);
+  }
 });

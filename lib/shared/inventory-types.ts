@@ -8,6 +8,11 @@ enum Restrictions {
 }
 
 const InventoryTypes: Record<string, Inventory.Type> = {
+  _WORLD_: {
+    slots: 32,
+    maxWeight: Infinity,
+    restrictions: Restrictions.None,
+  },
   DEFAULT: {
     slots: 16,
     maxWeight: 50,

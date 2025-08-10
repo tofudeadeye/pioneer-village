@@ -1,6 +1,8 @@
-import { uiSize } from '@uiLib/helpers';
+import { PropsWithChildren } from 'react';
+
 import { themeColor } from '@styled/theme';
-import { RenderableProps } from 'preact';
+
+import { uiSize } from '@uiLib/helpers';
 
 interface PlaceholderSvgProps {
   width?: number;
@@ -18,7 +20,7 @@ const defaultProps: Required<PlaceholderSvgProps> = {
   fgColor: 'white',
 };
 
-export default function PlaceholderSvg(props: RenderableProps<PlaceholderSvgProps>) {
+export default function PlaceholderSvg(props: PropsWithChildren<PlaceholderSvgProps>) {
   const { width, height, text } = { ...defaultProps, ...props };
   const bgColor = themeColor('hex', defaultProps.bgColor, props.bgColor) as string;
   const fgColor = themeColor('hex', defaultProps.fgColor, props.fgColor) as string;

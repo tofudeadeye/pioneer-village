@@ -1,10 +1,10 @@
-import theme from '@styled/theme';
+import { PropsWithChildren } from 'react';
+import styled, { CSSProperties } from 'styled-components';
+
 import { HiddenActiveVisible } from '@styled/core';
+import theme from '@styled/theme';
 
 import { uiSize } from '@uiLib/helpers';
-
-import { RenderableProps } from 'preact';
-import styled, { CSSProperties } from 'styled-components';
 
 interface ProgressIconProps {
   width: number;
@@ -33,7 +33,7 @@ const Icon = styled.div`
   }
 `;
 
-export default function ProgressIcon(props: RenderableProps<ProgressIconProps>) {
+export default function ProgressIcon(props: PropsWithChildren<ProgressIconProps>) {
   return (
     <HiddenActiveVisible
       className={props.className}

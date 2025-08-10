@@ -1,9 +1,10 @@
 import type { Socket } from 'socket.io-client';
 
 import { onClient } from '@lib/ui';
+
 import UIComponent from '@uiLib/ui-component';
 
-import { Frame, Container, JobCard, StatusBar, Button } from './styled';
+import { Button, Container, Frame, JobCard, StatusBar } from './styled';
 
 export default class Jobs extends UIComponent<UI.BaseProps, UI.Jobs.State, {}> {
   closeOnEscape = true;
@@ -25,11 +26,11 @@ export default class Jobs extends UIComponent<UI.BaseProps, UI.Jobs.State, {}> {
     };
 
     // Listen for job state updates
-    onClient('jobs:clockInUpdate', (characterId: number, jobHandle: string) => {
+    onClient('jobs.clock-in-update', (characterId: number, jobHandle: string) => {
       this.refreshJobState();
     });
 
-    onClient('jobs:clockOutUpdate', (characterId: number, hoursWorked: number, payment: number) => {
+    onClient('jobs.clock-out-update', (characterId: number, hoursWorked: number, payment: number) => {
       this.refreshJobState();
     });
 
@@ -46,7 +47,7 @@ export default class Jobs extends UIComponent<UI.BaseProps, UI.Jobs.State, {}> {
       return;
     }
     const { socket } = this.props;
-    socket.emit('jobs:getState', (state: any) => {
+    socket.emit('jobs.get-state', (state: any) => {
       console.log('jobs:getState', state);
       if (!state.error) {
         this.setState({
@@ -61,7 +62,7 @@ export default class Jobs extends UIComponent<UI.BaseProps, UI.Jobs.State, {}> {
 
   handleClockIn(jobHandle: string) {
     const { socket } = this.context;
-    socket.emit('jobs:clockIn', jobHandle, undefined, (result: any) => {
+    socket.emit('jobs.clock-in', jobHandle, undefined, (result: any) => {
       if (result.success) {
         this.refreshJobState();
       } else {
@@ -72,7 +73,7 @@ export default class Jobs extends UIComponent<UI.BaseProps, UI.Jobs.State, {}> {
 
   handleClockOut() {
     const { socket } = this.context;
-    socket.emit('jobs:clockOut', (result: any) => {
+    socket.emit('jobs.clock-out', (result: any) => {
       if (result.success) {
         this.refreshJobState();
       } else {

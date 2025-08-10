@@ -1,4 +1,4 @@
-import { emitSocket } from '@lib/server';
+import { emitSocket, onClient, onSocket } from '@lib/server';
 
 RegisterCommand(
   'giveItem',
@@ -33,3 +33,25 @@ RegisterCommand(
   },
   false,
 );
+
+onClient('inventory.pickup-hat', (hatNetId) => {
+  console.log(`Player picked up a hat with network ID: ${hatNetId}`);
+
+  const hatEntity = NetworkGetEntityFromNetworkId(hatNetId);
+  const hat = Entity(hatEntity);
+
+  const itemId = hat.state.hatItemId;
+  console.log(`Hat Item ID: ${itemId}`);
+
+  emitSocket('inventory.pickup-hat', source, itemId);
+});
+
+onSocket('inventory.set-hat-item-id', (hatNetworkId, itemId) => {
+  const hatEntity = NetworkGetEntityFromNetworkId(hatNetworkId);
+
+  console.log(`Hat Entity: ${hatEntity}`);
+  const coords = GetEntityCoords(hatEntity);
+  console.log(`Hat Coords: ${coords[0]}, ${coords[1]}, ${coords[2]}`);
+
+  Entity(hatEntity).state.set('hatItemId', itemId, true);
+});

@@ -1,9 +1,10 @@
-import { Component, createRef } from 'preact';
+import { clamp } from 'lodash';
+import { Component, createRef } from 'react';
 import styled from 'styled-components';
 
 import theme from '@styled/theme';
+
 import { uiSize } from '@uiLib/helpers';
-import { clamp } from 'lodash';
 
 const XYContainer = styled.div`
   border-top: 2px solid ${theme.colors.white.hex};

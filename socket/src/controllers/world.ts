@@ -1,5 +1,5 @@
+import { logInfoC, logInfoS } from '../helpers';
 import { serverNamespace, userNamespace } from '../server';
-import { logInfoC, logInfoS } from '../helpers/log';
 
 export default () => {
   const claimed: Set<string> = new Set();
@@ -52,16 +52,16 @@ export default () => {
       } else {
         const id = objects.get(name);
         if (id) {
-          // logInfoC('netIdExists', id);
-          serverNamespace.timeout(250).emit('netIdExists', id, (err, responses) => {
-            logInfoC('exists', err, responses);
-            if (responses.includes(true)) {
-              cb(false);
-            } else {
-              cb(true);
-              objects.delete(name);
-            }
-          });
+          logInfoC('netIdExists', id);
+          // serverNamespace.timeout(250).emit('world.net-id-exists', id, (err, responses) => {
+          //   logInfoC('exists', err, responses);
+          //   if (responses.includes(true)) {
+          //     cb(false);
+          //   } else {
+          //     cb(true);
+          //     objects.delete(name);
+          //   }
+          // });
         } else {
           cb(false);
         }

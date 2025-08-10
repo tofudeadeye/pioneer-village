@@ -1,9 +1,10 @@
 import { eq } from 'drizzle-orm';
-import { db } from '../db/connection';
-import { horses, brands, type Horse } from '../db/schema';
-import { logInfo } from '../helpers/log';
 
-type HorseWithBrand = Horse & { brand?: typeof brands.$inferSelect | null };
+import { db } from '../db/connection';
+import { BrandsSchema, type HorseSchemaType, HorsesSchema } from '../db/schema';
+import { logInfo } from '../helpers';
+
+type HorseWithBrand = HorseSchemaType & { brand?: typeof BrandsSchema.$inferSelect | null };
 
 class Stables {
   static readonly instance: Stables = new Stables();
@@ -17,11 +18,11 @@ class Stables {
   async loadCharacterHorses(characterId: number): Promise<HorseWithBrand[]> {
     const result = await db
       .select()
-      .from(horses)
-      .leftJoin(brands, eq(horses.brandId, brands.id))
-      .where(eq(horses.ownerId, characterId));
+      .from(HorsesSchema)
+      .leftJoin(BrandsSchema, eq(HorsesSchema.brandId, BrandsSchema.id))
+      .where(eq(HorsesSchema.ownerId, characterId));
 
-    return result.map(row => ({
+    return result.map((row) => ({
       ...row.Horses,
       brand: row.Brands,
     }));

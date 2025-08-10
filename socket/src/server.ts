@@ -1,9 +1,10 @@
-import { createServer } from 'http';
-import { Namespace, Server, Socket } from 'socket.io';
-import { verify } from 'jsonwebtoken';
 import { randomBytes } from 'crypto';
-import { logEvent } from './helpers/log';
+import { createServer } from 'http';
+import { verify } from 'jsonwebtoken';
+import { Namespace, Server, Socket } from 'socket.io';
 import { inspect } from 'util';
+
+import { logEvent } from './helpers';
 
 export const userAccessKey = randomBytes(64).toString('hex');
 

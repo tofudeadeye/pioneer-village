@@ -1,14 +1,27 @@
 import { sign } from 'jsonwebtoken';
-import { serverNamespace, userNamespace } from '../server';
+
+import { logGreen, logInfoC, logInfoS } from '../helpers';
 import Accounts from '../managers/accounts';
-import { logGreen, logInfoC, logInfoS } from '../helpers/log';
+import Characters from '../managers/characters';
+import { serverNamespace, userNamespace } from '../server';
 
 export default (userAccessKey: string) => {
-
   serverNamespace.on('connection', (socket) => {
-    logGreen('[User]', 'Game server connected');
+    logInfoS('[User]', 'Game server connected');
 
-    socket.on('connectedPlayers', (players) => {});
+    socket.on('base.connected-players', (players) => {
+      logInfoS('players', players);
+      for (const player of players) {
+        const character = Characters.getActiveCharacterForServerId(player.serverId);
+        if (!character || !player.coords) continue;
+
+        Characters.setLastCoords(character.id, {
+          x: player.coords.x || 0,
+          y: player.coords.y || 0,
+          z: player.coords.z || 0,
+        });
+      }
+    });
 
     socket.on('getAccount', async (_identifiers, cb) => {
       const account = await Accounts.getOrCreate(_identifiers);
@@ -35,6 +48,6 @@ export default (userAccessKey: string) => {
   });
 
   userNamespace.on('connection', (socket) => {
-    logInfoC('user connected', socket.data);
+    logInfoC('[User]', 'User connected', socket.data);
   });
 };

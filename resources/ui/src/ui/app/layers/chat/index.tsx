@@ -1,16 +1,17 @@
+import { debounce } from 'lodash';
+import { createRef } from 'react';
 import type { Socket } from 'socket.io-client';
 
-import { createRef } from 'preact';
-import { debounce } from 'lodash';
-
 import { onClient } from '@lib/ui';
-import UIComponent from '@uiLib/ui-component';
-import { uiSize } from '@uiLib/helpers';
-import theme from '@styled/theme';
+
 import Select from '@styled/components/Select';
 import Suggestions from '@styled/components/Suggestions';
+import theme from '@styled/theme';
 
-import { Frame, Messages, Message, Channel, Sender, Input, channels } from './styled';
+import { uiSize } from '@uiLib/helpers';
+import UIComponent from '@uiLib/ui-component';
+
+import { Channel, Frame, Input, Message, Messages, Sender, channels } from './styled';
 
 export default class Chat extends UIComponent<UI.BaseProps, UI.Chat.State, {}> {
   closeOnEscape = true;

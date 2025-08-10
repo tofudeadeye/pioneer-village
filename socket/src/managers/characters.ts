@@ -1,11 +1,22 @@
-import { eq, and } from 'drizzle-orm';
-import { db } from '../db/connection';
-import { characters, faces, accounts, type Character, type Face, type NewCharacter, type NewFace } from '../db/schema';
-import { logInfoC, logInfoS } from '../helpers/log';
+import { and, eq } from 'drizzle-orm';
 import { Socket } from 'socket.io';
-import { JSONObject } from 'three/examples/jsm/loaders/IFCLoader';
 
-type CharacterWithFace = Character & { face: Face | null };
+import { db } from '../db/connection';
+import {
+  AccountsSchema,
+  type CharacterSchemaType,
+  CharactersSchema,
+  type FaceSchemaType,
+  FacesSchema,
+  type NewCharacterSchemaType,
+  type NewFaceSchemaType,
+} from '../db/schema';
+import zpc from '../db/zpc';
+import { logInfoC, logInfoS } from '../helpers';
+
+type CharacterWithFace = CharacterSchemaType & { face: FaceSchemaType | null };
+
+const COORDS_ZERO = { x: 0, y: 0, z: 0 };
 
 export const GetFaceDataFromDatabase = (result: CharacterWithFace): Game.Face => {
   // NOTE: There are defaults just in case, but they should never really not exist in the DB
@@ -57,7 +68,7 @@ export const GetFaceDataFromDatabase = (result: CharacterWithFace): Game.Face =>
 class Characters {
   static readonly instance: Characters = new Characters();
 
-  characters: CharacterData[] = [];
+  characters: CharacterData[] = []; // TODO This needs to be a Map<number, CharacterData> for faster access
 
   constructor() {
     if (Characters.instance) {
@@ -69,9 +80,9 @@ class Characters {
   async getCharacters(accountId: number): Promise<CharacterWithFace[]> {
     const result = await db
       .select()
-      .from(characters)
-      .leftJoin(faces, eq(characters.id, faces.characterId))
-      .where(eq(characters.accountId, accountId));
+      .from(CharactersSchema)
+      .leftJoin(FacesSchema, eq(CharactersSchema.id, FacesSchema.characterId))
+      .where(eq(CharactersSchema.accountId, accountId));
 
     return result.map((row) => ({
       ...row.Characters,
@@ -82,9 +93,9 @@ class Characters {
   private async getCharacter(charId: number): Promise<CharacterData | undefined> {
     const result = await db
       .select()
-      .from(characters)
-      .leftJoin(faces, eq(characters.id, faces.characterId))
-      .where(eq(characters.id, charId))
+      .from(CharactersSchema)
+      .leftJoin(FacesSchema, eq(CharactersSchema.id, FacesSchema.characterId))
+      .where(eq(CharactersSchema.id, charId))
       .limit(1);
 
     if (result.length === 0) return;
@@ -111,6 +122,7 @@ class Characters {
       lastX: Number(characterData.lastX || '0'),
       lastY: Number(characterData.lastY || '0'),
       lastZ: Number(characterData.lastZ || '0'),
+      lastNow: Date.now(),
       model: characterData.model || 'mp_male',
       food: Number(characterData.food || '100'),
       drink: Number(characterData.drink || '100'),
@@ -145,6 +157,15 @@ class Characters {
     }
   }
 
+  getServerIdForCharacterId(characterId: number): number | undefined {
+    for (const char of this.characters) {
+      if (!char) continue;
+      if (char.id !== characterId) continue;
+      return char.source;
+    }
+    return undefined; // If character not found
+  }
+
   getActiveCharacterForCharacterId(characterId: number) {
     for (const char of this.characters) {
       if (!char) continue;
@@ -163,6 +184,15 @@ class Characters {
       }
       break;
     }
+  }
+
+  getLocalCharacterAtributeWithCharId(charId: number, attribute: keyof CharacterData): any {
+    for (const char of this.characters) {
+      if (!char) continue;
+      if (char.id !== charId) continue;
+      return char[attribute];
+    }
+    return null; // If character not found
   }
 
   /**
@@ -207,7 +237,7 @@ export type Prisma.CharactersCreateInput = {
   ): Promise<CharacterWithFace | null> {
     console.log('ownerId', ownerId);
 
-    const newCharacter: NewCharacter = {
+    const newCharacter: NewCharacterSchemaType = {
       accountId: ownerId,
       firstName: characterData.firstName,
       lastName: characterData.lastName,
@@ -233,11 +263,11 @@ export type Prisma.CharactersCreateInput = {
       features: faceFeatures || {},
     };
 
-    const character = await db.insert(characters).values(newCharacter).returning();
+    const character = await db.insert(CharactersSchema).values(newCharacter).returning();
 
     if (character.length === 0) return null;
 
-    const newFace: NewFace = {
+    const newFace: NewFaceSchemaType = {
       characterId: character[0].id,
       noseHeight: faceData.noseHeight?.toString() || '0.0',
       lowerLipWidth: faceData.lowerLipWidth?.toString() || '0.0',
@@ -281,14 +311,14 @@ export type Prisma.CharactersCreateInput = {
       overlays: faceData.overlays || {},
     };
 
-    await db.insert(faces).values(newFace);
+    await db.insert(FacesSchema).values(newFace);
 
     // Return the character with face
     const result = await db
       .select()
-      .from(characters)
-      .leftJoin(faces, eq(characters.id, faces.characterId))
-      .where(eq(characters.id, character[0].id))
+      .from(CharactersSchema)
+      .leftJoin(FacesSchema, eq(CharactersSchema.id, FacesSchema.characterId))
+      .where(eq(CharactersSchema.id, character[0].id))
       .limit(1);
 
     if (result.length === 0) return null;
@@ -299,39 +329,97 @@ export type Prisma.CharactersCreateInput = {
     };
   }
 
+  async forceCoordsUpdate(characterId: number): Promise<Vector3Format | void> {
+    const serverId = this.getServerIdForCharacterId(characterId);
+    if (!serverId) {
+      logInfoS('[Characters]', 'Attempted to force coords update for character', characterId, 'but is offline');
+      return;
+    }
+
+    const [, coords] = await zpc.awaitServer('character-update.last-position', 'base.force-coords-update', serverId);
+
+    logInfoS('coords', coords);
+
+    return coords;
+  }
+
   async setLastCoords(characterId: number, coords: Vector3Format) {
     await db
-      .update(characters)
+      .update(CharactersSchema)
       .set({
         lastX: coords.x.toFixed(3), // Limit the coords to 3 decimal places because more are useless
         lastY: coords.y.toFixed(3),
         lastZ: coords.z.toFixed(3),
       })
-      .where(eq(characters.id, characterId));
+      .where(eq(CharactersSchema.id, characterId));
 
     this.updateLocalCharacterAtributeWithCharId(characterId, 'lastX', coords.x.toFixed(3));
     this.updateLocalCharacterAtributeWithCharId(characterId, 'lastY', coords.y.toFixed(3));
     this.updateLocalCharacterAtributeWithCharId(characterId, 'lastZ', coords.z.toFixed(3));
+    this.updateLocalCharacterAtributeWithCharId(characterId, 'lastNow', Date.now());
+  }
+
+  async getLastCoords(characterId: number, allowedAge = 15_000): Promise<Vector3Format> {
+    const character = this.getActiveCharacterForCharacterId(characterId);
+
+    if (!character) {
+      logInfoS('[Characters]', 'Attempted to get last coords for character', characterId, 'but is offline');
+      return COORDS_ZERO;
+    }
+
+    const lastNow = this.getLocalCharacterAtributeWithCharId(characterId, 'lastNow');
+    const now = Date.now();
+
+    if (lastNow && now - lastNow > allowedAge) {
+      logInfoS('[Characters]', 'Last coords for character', characterId, 'are too old. Fetching new coords');
+      const coords = await this.forceCoordsUpdate(characterId);
+
+      if (!coords) {
+        logInfoS(
+          '[Characters]',
+          'Failed to force coords update for character',
+          characterId,
+          'returning default coords',
+        );
+        return COORDS_ZERO;
+      }
+
+      return coords;
+    }
+
+    const lastX = this.getLocalCharacterAtributeWithCharId(characterId, 'lastX');
+    const lastY = this.getLocalCharacterAtributeWithCharId(characterId, 'lastY');
+    const lastZ = this.getLocalCharacterAtributeWithCharId(characterId, 'lastZ');
+    if (lastX === undefined || lastY === undefined || lastZ === undefined) {
+      logInfoS('[Characters]', 'Last coords for character', characterId, 'are not set. Returning default coords');
+      return COORDS_ZERO;
+    }
+
+    return {
+      x: parseFloat(lastX),
+      y: parseFloat(lastY),
+      z: parseFloat(lastZ),
+    };
   }
 
   private async updateCharacterFoodAndDrink(characterId: number, food: number, drink: number) {
     await db
-      .update(characters)
+      .update(CharactersSchema)
       .set({
         food: food.toString(),
         drink: drink.toString(),
       })
-      .where(eq(characters.id, characterId));
+      .where(eq(CharactersSchema.id, characterId));
   }
 
   async getCharacterFoodAndDrink(characterId: number) {
     const result = await db
       .select({
-        food: characters.food,
-        drink: characters.drink,
+        food: CharactersSchema.food,
+        drink: CharactersSchema.drink,
       })
-      .from(characters)
-      .where(eq(characters.id, characterId))
+      .from(CharactersSchema)
+      .where(eq(CharactersSchema.id, characterId))
       .limit(1);
 
     if (result.length === 0) return null;
@@ -344,11 +432,11 @@ export type Prisma.CharactersCreateInput = {
 
   async updateCharacterHealthMetadata(characterId: number, metadata: CharacterHealthMetadata) {
     const result = await db
-      .update(characters)
+      .update(CharactersSchema)
       .set({
         healthMetadata: metadata as any,
       })
-      .where(eq(characters.id, characterId))
+      .where(eq(CharactersSchema.id, characterId))
       .returning();
 
     return result[0];
@@ -357,10 +445,10 @@ export type Prisma.CharactersCreateInput = {
   async getCharacterHealthMetadata(characterId: number): Promise<CharacterHealthMetadata | undefined> {
     const result = await db
       .select({
-        healthMetadata: characters.healthMetadata,
+        healthMetadata: CharactersSchema.healthMetadata,
       })
-      .from(characters)
-      .where(eq(characters.id, characterId))
+      .from(CharactersSchema)
+      .where(eq(CharactersSchema.id, characterId))
       .limit(1);
 
     if (result.length === 0 || !result[0].healthMetadata) {
@@ -396,10 +484,10 @@ export type Prisma.CharactersCreateInput = {
   async getCharacterCurrencies(charId: number): Promise<CharacterCurrencies | undefined> {
     const result = await db
       .select({
-        currencies: characters.currencies,
+        currencies: CharactersSchema.currencies,
       })
-      .from(characters)
-      .where(eq(characters.id, charId))
+      .from(CharactersSchema)
+      .where(eq(CharactersSchema.id, charId))
       .limit(1);
 
     if (result.length === 0 || !result[0].currencies) {
@@ -411,11 +499,11 @@ export type Prisma.CharactersCreateInput = {
 
   async updateCharacterCurrencies(characterId: number, currencies: CharacterCurrencies) {
     const result = await db
-      .update(characters)
+      .update(CharactersSchema)
       .set({
         currencies: currencies as any,
       })
-      .where(eq(characters.id, characterId))
+      .where(eq(CharactersSchema.id, characterId))
       .returning();
 
     return result[0];
@@ -490,10 +578,10 @@ export type Prisma.CharactersCreateInput = {
   async doesPlayerOwnCharacter(characterId: number, steamId: string): Promise<boolean> {
     const accountResult = await db
       .select({
-        id: accounts.id,
+        id: AccountsSchema.id,
       })
-      .from(accounts)
-      .where(eq(accounts.identifier_steam, steamId))
+      .from(AccountsSchema)
+      .where(eq(AccountsSchema.identifier_steam, steamId))
       .limit(1);
 
     if (accountResult.length === 0) {
@@ -503,10 +591,10 @@ export type Prisma.CharactersCreateInput = {
     const accountId = accountResult[0].id;
     const charactersResult = await db
       .select({
-        id: characters.id,
+        id: CharactersSchema.id,
       })
-      .from(characters)
-      .where(and(eq(characters.accountId, accountId), eq(characters.id, characterId)))
+      .from(CharactersSchema)
+      .where(and(eq(CharactersSchema.accountId, accountId), eq(CharactersSchema.id, characterId)))
       .limit(1);
 
     return charactersResult.length > 0;

@@ -1,8 +1,9 @@
-import { RenderableProps } from 'preact';
+import { PropsWithChildren } from 'react';
 import styled, { CSSProperties } from 'styled-components';
 
-import { uiSize } from '@uiLib/helpers';
 import theme, { themeColor } from '@styled/theme';
+
+import { uiSize } from '@uiLib/helpers';
 
 const SuggestionsContainer = styled.ul`
   margin: 0;
@@ -48,7 +49,7 @@ const defaultProps = {
   style: {},
 };
 
-export default function Suggestions(props: RenderableProps<SuggestionsProps>) {
+export default function Suggestions(props: PropsWithChildren<SuggestionsProps>) {
   const { input, suggestions, active, style } = { ...defaultProps, ...props };
 
   const inputs = input.split(' ');

@@ -1,9 +1,8 @@
-import { serverNamespace, userNamespace } from '../server';
+import { logInfoC, logInfoS } from '../helpers';
 import Stables from '../managers/stables';
-import { logInfoC, logInfoS } from '../helpers/log';
+import { serverNamespace, userNamespace } from '../server';
 
 export default () => {
-
   serverNamespace.on('connection', (socket) => {
     //
   });

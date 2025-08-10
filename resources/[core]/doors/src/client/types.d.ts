@@ -22,7 +22,9 @@ declare namespace Doors {
   }
 }
 
-declare interface UIRPC {}
+declare interface UIRPC {
+  ['doors.get-door-states']: () => [doorHash: number, state: number][];
+}
 
 declare interface UIEvents {
   ['doors.set-door-state']: Doors.Events.SetDoorState;

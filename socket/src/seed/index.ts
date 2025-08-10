@@ -1,69 +1,82 @@
 import { eq } from 'drizzle-orm';
-import { db } from '../db/connection';
-import { accounts, characters, faces, inventory, container, horses } from '../db/schema';
 
-import { developers, datas } from './data';
+import { db } from '../db/connection';
+import {
+  AccountsSchema,
+  CharactersSchema,
+  ContainerSchema,
+  FacesSchema,
+  HorsesSchema,
+  InventorySchema,
+} from '../db/schema';
+import { datas, developers } from './data';
 
 export const seedDB = async () => {
   for (const developer of developers) {
     const existingAccount = await db
       .select()
-      .from(accounts)
-      .where(eq(accounts.identifier_steam, `steam:${developer}`))
+      .from(AccountsSchema)
+      .where(eq(AccountsSchema.identifier_steam, `steam:${developer}`))
       .limit(1);
 
     const accountNotExists = existingAccount.length === 0;
-    
+
     let results;
     if (accountNotExists) {
-      results = await db.insert(accounts).values({
-        identifier_steam: `steam:${developer}`,
-        allowed: true,
-        role: 'DEVELOPER',
-        priority: 69,
-      }).returning();
+      results = await db
+        .insert(AccountsSchema)
+        .values({
+          identifier_steam: `steam:${developer}`,
+          allowed: true,
+          role: 'DEVELOPER',
+          priority: 69,
+        })
+        .returning();
     } else {
       results = await db
-        .update(accounts)
+        .update(AccountsSchema)
         .set({
           allowed: true,
           role: 'DEVELOPER',
           priority: 69,
         })
-        .where(eq(accounts.identifier_steam, `steam:${developer}`))
+        .where(eq(AccountsSchema.identifier_steam, `steam:${developer}`))
         .returning();
     }
 
     if (accountNotExists && results && results.length > 0 && datas[developer]) {
       for (const data of datas[developer]) {
-        const character = await db.insert(characters).values({
-          accountId: results[0].id,
-          firstName: data.character.firstName,
-          lastName: data.character.lastName,
-          dateOfBirth: new Date(data.character.dateOfBirth),
-          lastX: data.character.lastX?.toString() || '0.0',
-          lastY: data.character.lastY?.toString() || '0.0',
-          lastZ: data.character.lastZ?.toString() || '0.0',
-          food: data.character.food?.toString() || '100.0',
-          drink: data.character.drink?.toString() || '100.0',
-          currencies: data.character.currencies || { dollars: 20, gold: 0 },
-          healthMetadata: data.character.healthMetadata || {
-            health: 100,
-            stamina: 100,
-            litersOfBlood: 5,
-            boneHealth: [],
-            activeTonic: false,
-            sick: false,
-            boneStatus: [],
-          },
-          components: data.character.components || [],
-          model: data.character.model || 'mp_male',
-          whistle: data.character.whistle || { pitch: 0.5, shape: 5, clarity: 0.5 },
-          features: data.character.features || {},
-        }).returning();
+        const character = await db
+          .insert(CharactersSchema)
+          .values({
+            accountId: results[0].id,
+            firstName: data.character.firstName,
+            lastName: data.character.lastName,
+            dateOfBirth: new Date(data.character.dateOfBirth),
+            lastX: data.character.lastX?.toString() || '0.0',
+            lastY: data.character.lastY?.toString() || '0.0',
+            lastZ: data.character.lastZ?.toString() || '0.0',
+            food: data.character.food?.toString() || '100.0',
+            drink: data.character.drink?.toString() || '100.0',
+            currencies: data.character.currencies || { dollars: 20, gold: 0 },
+            healthMetadata: data.character.healthMetadata || {
+              health: 100,
+              stamina: 100,
+              litersOfBlood: 5,
+              boneHealth: [],
+              activeTonic: false,
+              sick: false,
+              boneStatus: [],
+            },
+            components: data.character.components || [],
+            model: data.character.model || 'mp_male',
+            whistle: data.character.whistle || { pitch: 0.5, shape: 5, clarity: 0.5 },
+            features: data.character.features || {},
+          })
+          .returning();
 
         if (character && character.length > 0) {
-          await db.insert(faces).values({
+          await db.insert(FacesSchema).values({
             characterId: character[0].id,
             noseHeight: data.face.noseHeight?.toString() || '0.0',
             lowerLipWidth: data.face.lowerLipWidth?.toString() || '0.0',
@@ -108,22 +121,22 @@ export const seedDB = async () => {
           });
 
           // Create character inventory container
-          const characterContainer = await db.insert(container).values({}).returning();
-          await db.insert(inventory).values({
+          const characterContainer = await db.insert(ContainerSchema).values({}).returning();
+          await db.insert(InventorySchema).values({
             identifier: `character:${character[0].id}`,
             containerId: characterContainer[0].id,
           });
 
           // Create clothing inventory container
-          const clothingContainer = await db.insert(container).values({}).returning();
-          await db.insert(inventory).values({
+          const clothingContainer = await db.insert(ContainerSchema).values({}).returning();
+          await db.insert(InventorySchema).values({
             identifier: `clothing:${character[0].id}`,
             containerId: clothingContainer[0].id,
           });
 
           if (data.horses) {
             for (const horseData of data.horses) {
-              await db.insert(horses).values({
+              await db.insert(HorsesSchema).values({
                 ownerId: character[0].id,
                 stable: '',
                 age: 5,

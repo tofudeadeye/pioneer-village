@@ -1,22 +1,23 @@
 // hand-paper
-import { RenderableProps } from 'preact';
+import { PropsWithChildren } from 'react';
 
-import UIComponent from '@uiLib/ui-component';
 import { emitClient, onClient } from '@lib/ui';
-import { uiSize } from '@uiLib/helpers';
-import theme from '@styled/theme';
 
+import Bus from '@styled/fa5/light/bus-alt.svg';
+import Car from '@styled/fa5/light/car.svg';
+import CashRegister from '@styled/fa5/light/cash-register.svg';
+import Eye from '@styled/fa5/light/eye.svg';
 import Hand from '@styled/fa5/light/hand-paper.svg';
 import Person from '@styled/fa5/light/male.svg';
-import Car from '@styled/fa5/light/car.svg';
-import Bus from '@styled/fa5/light/bus-alt.svg';
-import Truck from '@styled/fa5/light/truck.svg';
 import Pickup from '@styled/fa5/light/truck-pickup.svg';
-import Eye from '@styled/fa5/light/eye.svg';
-import CashRegister from '@styled/fa5/light/cash-register.svg';
+import Truck from '@styled/fa5/light/truck.svg';
+import theme from '@styled/theme';
 
-import { Frame, Choices } from './styled';
+import { uiSize } from '@uiLib/helpers';
+import UIComponent from '@uiLib/ui-component';
+
 import Icon from './components/icon';
+import { Choices, Frame } from './styled';
 
 export default class Target extends UIComponent<UI.BaseProps, UI.TargetLayer.State, {}> {
   closeOnEscape = true;
@@ -80,7 +81,7 @@ export default class Target extends UIComponent<UI.BaseProps, UI.TargetLayer.Sta
     }
   }
 
-  render(props: RenderableProps<UI.BaseProps>, state: Readonly<UI.TargetLayer.State>) {
+  render(props: PropsWithChildren<UI.BaseProps>, state: Readonly<UI.TargetLayer.State>) {
     const InteractIcon = this.getIcon();
     return (
       <Frame>

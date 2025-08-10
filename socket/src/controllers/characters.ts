@@ -1,12 +1,11 @@
-import { serverNamespace, userNamespace } from '../server';
+import { logInfoC, logInfoS } from '../helpers';
 import Characters, { GetFaceDataFromDatabase } from '../managers/characters';
 import Inventories from '../managers/inventories';
-import { logGreen, logInfoC, logInfoS } from '../helpers/log';
+import { serverNamespace, userNamespace } from '../server';
 
 export default (userAccessKey: string) => {
-
   serverNamespace.on('connection', (socket) => {
-    logGreen('[Characters]', 'Game server connected');
+    logInfoS('[Characters]', 'Game server connected');
 
     socket.on('character-update.last-position', async (serverId, coords) => {
       const selectedCharacter = Characters.getActiveCharacterForServerId(serverId);
@@ -76,7 +75,7 @@ export default (userAccessKey: string) => {
   });
 
   userNamespace.on('connection', (socket) => {
-    logInfoC('user connected', socket.data);
+    logInfoC('[Characters]', 'User connected', socket.data);
 
     socket.on('customization.finalize', async (json) => {
       const data = JSON.parse(json);
@@ -157,11 +156,11 @@ export default (userAccessKey: string) => {
     socket.on('character-select.choose', async (characterId, steamId) => {
       const ownsCharacter = await Characters.doesPlayerOwnCharacter(characterId, steamId);
       if (!ownsCharacter) {
-        serverNamespace.emit(
-          'player-management.kick',
-          socket.data.user.serverId,
-          'You do not own this character please try again later.',
-        );
+        // serverNamespace.emit(
+        //   'player-management.kick',
+        //   socket.data.user.serverId,
+        //   'You do not own this character please try again later.',
+        // );
         return;
       }
       logInfoC('socket.data', socket.data);

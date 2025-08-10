@@ -4,8 +4,8 @@ interface ServerExports {
 
 declare namespace SocketServer {
   interface SocketEvents {
-    test: (one: string) => void;
-    ['player-management.kick']: (serverId: number, reason: string) => void;
+    'player-management.kick': (serverId: number, reason: string) => void;
+    'base.force-coords-update': (serverId: number) => void;
   }
 }
 
@@ -37,6 +37,6 @@ declare namespace Base {
 
   type PlayerInfo = {
     serverId: number;
-    coords?: [number, number, number];
+    coords?: Vector3Format;
   };
 }

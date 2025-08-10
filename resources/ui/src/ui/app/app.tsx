@@ -1,13 +1,14 @@
-import { Component } from 'preact';
-
 import 'normalize.css';
+import { Component } from 'react';
+import { Socket } from 'socket.io-client';
+
+import { Button, DisabledLayers } from '@styled/core';
+import ExclamationTriangle from '@styled/fa5/solid/exclamation-triangle.svg';
+
+import { uiSize } from '@uiLib/helpers';
+
 import './app.scss';
 import { Catcher } from './catcher';
-
-import { Button, DisabledLayers, DisabledLayersList } from '@styled/core';
-import ExclamationTriangle from '@styled/fa5/solid/exclamation-triangle.svg';
-import { Socket } from 'socket.io-client';
-import { uiSize } from '@uiLib/helpers';
 
 String.prototype.GetHashKey = function (this: string): number {
   const keyLowered = this.toLowerCase();

@@ -1,10 +1,10 @@
-import { RenderableProps } from 'preact';
+import { PropsWithChildren } from 'react';
 import { CSSProperties } from 'styled-components';
 
-import { uiSize } from '@uiLib/helpers';
-
-import theme from '@styled/theme';
 import { HiddenActiveVisible } from '@styled/core';
+import theme from '@styled/theme';
+
+import { uiSize } from '@uiLib/helpers';
 
 interface FoodAndDrinkProps {
   width: number;
@@ -15,7 +15,7 @@ interface FoodAndDrinkProps {
   className?: string | undefined;
 }
 
-export default function FoodAndDrink(props: RenderableProps<FoodAndDrinkProps>) {
+export default function FoodAndDrink(props: PropsWithChildren<FoodAndDrinkProps>) {
   return (
     <HiddenActiveVisible
       className={props.className}

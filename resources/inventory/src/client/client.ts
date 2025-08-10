@@ -1,9 +1,11 @@
-import { emitUI, onUI, PVCustomization, PVGame } from '@lib/client';
+import { PVCustomization, PVGame, emitUI, onUI } from '@lib/client';
+import { Log, emitSocket, onSocket } from '@lib/client/comms/ui';
+import { Delay } from '@lib/functions';
 import PVItems from '@lib/shared/items';
+
+import './events';
 import './keybinds';
 import './weapons';
-import { Delay } from '@lib/functions';
-import { Log } from '@lib/client/comms/ui';
 
 onUI('inventory.use-item', (itemData: UI.Inventory.ItemData) => {
   // Log(itemData);
@@ -51,6 +53,7 @@ const sendUIData = async () => {
     emitUI('inventory.state', {
       clothingInventory: `clothing:${character.id}`,
       mainInventory: `character:${character.id}`,
+      // targetInventory: '_WORLD_:-207_631_113',
     });
   }
 };
@@ -60,6 +63,10 @@ on('onResourceStart', (resourceName: string) => {
   if (resourceName === 'ui') {
     sendUIData();
   }
+});
+
+onUI('inventory.startup', () => {
+  sendUIData();
 });
 
 if (GetResourceState('ui') === 'started') {
@@ -105,8 +112,24 @@ onUI('inventory.main-inventory', (data, clothingData) => {
 });
 
 onUI('inventory.clothing-change', async (equippedItems) => {
-  Log('inventory.clothing-change', equippedItems);
+  // Log('inventory.clothing-change', equippedItems);
   const playerPed = PVGame.playerPed();
 
   PVCustomization.equipItems(playerPed, equippedItems);
 });
+
+console.log('hatItemId', Entity(7238405).state.hatItemId);
+
+// TODO: _
+// Hold Key to see Marker
+// Sync all World Inventories at coordinates with clients, only coords.
+// Removal inventories that no longer have items from clients coords tracking.
+
+(async () => {
+  // ApplyShopItemToPed(PlayerPedId(), `CLOTHING_ITEM_M_HAT_006_TINT_004`, true, true, false);
+  // await Delay(15);
+  // KnockOffPedProp(PlayerPedId(), false, true, false, true);
+  // const hat = GetPedLastDroppedHat(PlayerPedId());
+  // SetEntityVisible(hat, false, false);
+  // emitSocket('inventory.world-inventories');
+})();

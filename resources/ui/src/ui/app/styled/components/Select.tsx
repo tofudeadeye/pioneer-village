@@ -1,9 +1,10 @@
-import { RenderableProps } from 'preact';
 import { useState } from 'preact/hooks';
+import { PropsWithChildren } from 'react';
 import styled, { StyledComponent } from 'styled-components';
 
-import theme from '../theme';
 import { uiSize } from '@uiLib/helpers';
+
+import theme from '../theme';
 
 const NormalSelect = styled.div``;
 
@@ -71,7 +72,7 @@ const defaultProps: SelectProps = {
   options: {},
 };
 
-export default function Select(props: RenderableProps<SelectProps>) {
+export default function Select(props: PropsWithChildren<SelectProps>) {
   let { style, options, selected } = { ...defaultProps, ...props };
 
   const [isOpen, setIsOpen] = useState(false);

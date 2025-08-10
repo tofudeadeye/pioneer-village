@@ -1,16 +1,17 @@
-import { emitUI, focusUI, PVBase, PVCamera, PVGame } from '@lib/client';
-import { debounce, Delay } from '@lib/functions';
-import { PedMotionState } from '@lib/flags/ped-motion-state';
+import { PVBase, PVCamera, PVGame, emitUI, focusUI } from '@lib/client';
 import { Log } from '@lib/client/comms/ui';
-import { componentManager } from './component-manager';
-import waists from '../data/waists';
-import bodyTypes from '../data/body-types';
-import skinTones from '../data/skin-tones';
-import heads from '../data/heads';
-import teeth from '../data/teeth';
 import { AnimFlag } from '@lib/flags/anim-flag';
+import { PedMotionState } from '@lib/flags/ped-motion-state';
+import { Delay, debounce } from '@lib/functions';
+
 import BaseOverlay from '../data/base-overlay';
+import bodyTypes from '../data/body-types';
+import heads from '../data/heads';
 import OverlayInfo from '../data/overlay-info';
+import skinTones from '../data/skin-tones';
+import teeth from '../data/teeth';
+import waists from '../data/waists';
+import { componentManager } from './component-manager';
 import { paletteManager } from './palette-manager';
 
 enum CreationState {
@@ -275,12 +276,11 @@ class CreationManager {
       y: this.cameraFaceMalePos.y,
       z: this.cameraFaceMalePos.z,
       r: 255,
-      g: 0,
+      g: 255,
       b: 255,
-      intensity: 50.1,
-      range: 25.1,
+      intensity: 50,
+      range: 25,
     });
-    PVCamera.lightTurnOn('BWTS');
   }
 
   destroy() {

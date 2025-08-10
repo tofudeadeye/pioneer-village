@@ -15,8 +15,17 @@ declare interface UIEvents {
   ['inventory.clothing-change']: (equippedItems: UI.Inventory.ItemData[]) => void;
   ['inventory.main-inventory']: (data: UI.Inventory.LoadData, clothingData?: UI.Inventory.LoadData) => void;
   ['inventory.target-inventory']: (data: UI.Inventory.LoadData) => void;
+  ['inventory.startup']: () => void;
+  ['inventory.world-inventories']: (inventories: string[]) => void;
+}
+
+declare interface ClientForwardEvents {
+  ['inventory.world-inventories']: (inventories: string[]) => void;
 }
 
 declare interface SocketForwardEvents {
   ['inventory.item-wear']: (itemId: number) => void;
+  ['inventory.lost-hat']: (hatNetId: number, coords: Vector3) => void;
+  ['inventory.pickup-hat']: (hatNetId: number) => void;
+  ['inventory.world-inventories']: (inventories: string[]) => void;
 }

@@ -1,6 +1,6 @@
 declare namespace SocketServer {
   interface SocketEvents {
-    netIdExists: (id: number, cb: (valid: boolean) => void) => void;
+    'world.net-id-exists': (id: number) => void;
   }
 }
 

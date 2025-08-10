@@ -1,8 +1,9 @@
+import { createRef } from 'react';
 import * as THREE from 'three';
 
-import UIComponent from '@uiLib/ui-component';
 import { emitClient, onClient } from '@lib/ui';
-import { createRef } from 'preact';
+
+import UIComponent from '@uiLib/ui-component';
 
 export default class ThreeJS extends UIComponent<UI.BaseProps, UI.ThreeJS.State, {}> {
   closeOnEscape = true;

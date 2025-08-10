@@ -1,4 +1,5 @@
 import { Buffer } from 'buffer';
+
 import { PVEventsManager } from '@lib/client/resources';
 
 const intToFloat = (int: number) => {
@@ -11,7 +12,9 @@ const registeredEvents = new Set();
 
 const callbacks = new Map();
 
-const eventMappings: Record<string, { [p: string]: 'i' | 'f' }> = {
+type EventMappingData = { [p: string]: 'i' | 'f' };
+
+const eventMappings = {
   EVENT_ENTITY_DAMAGED: {
     attacked: 'i',
     attacker: 'i',
@@ -42,13 +45,64 @@ const eventMappings: Record<string, { [p: string]: 'i' | 'f' }> = {
     y: 'f',
     z: 'f',
   },
+  EVENT_PLAYER_HAT_KNOCKED_OFF: {
+    originPed: 'i',
+    causePed: 'i',
+    hat: 'i',
+    _3: 'i',
+    _4: 'i',
+  },
+  EVENT_CARRIABLE_UPDATE_CARRY_STATE: {
+    carriable: 'i',
+    ped: 'i',
+    ped2: 'i',
+    _3: 'i',
+    _4: 'i',
+  },
+  EVENT_PICKUP_CARRIABLE: {
+    ped: 'i',
+    carriable: 'i',
+    _2: 'i',
+    _3: 'i',
+  },
+  EVENT_PLAYER_HAT_EQUIPPED: {
+    ped: 'i',
+    hat: 'i',
+    _2: 'i',
+    _3: 'i',
+    _4: 'i',
+    _5: 'i',
+    palette: 'i',
+    tint0: 'i',
+    tint1: 'i',
+    tint2: 'i',
+  },
   weapon: {
     mainHand: 'i',
     offHand: 'i',
   },
 };
 
-const register = (event: EventsManager.EventName, callback: (data: Record<string, number>) => void) => {
+// type emitSocket = <T extends keyof SocketServer.ServerEvents>(
+//   evtName: T,
+//   ...params: Parameters<SocketServer.ServerEvents[T]>
+// ) => void;
+//
+// type awaitSocket = <
+//   T extends keyof {
+//     [K in keyof SocketServer.Server]: LastParam<SocketServer.Server[K]> extends () => any ? T : never;
+//   },
+// >(
+//   evtName: T,
+//   ...params: DropLastParam<SocketServer.Server[T]>
+// ) => Promise<Parameters<LastParam<SocketServer.Server[T]>>[0]>;
+
+type EventsManagerDataStuff = Record<keyof (typeof eventMappings)[EventsManager.EventName], number>;
+
+function register<T extends keyof typeof eventMappings>(
+  event: T,
+  callback: (data: Record<keyof (typeof eventMappings)[T], number>) => void,
+) {
   if (!callbacks.has(event)) {
     callbacks.set(event, []);
   }
@@ -82,7 +136,7 @@ const register = (event: EventsManager.EventName, callback: (data: Record<string
       }
     });
   }
-};
+}
 
 export const PVEvents = {
   register,

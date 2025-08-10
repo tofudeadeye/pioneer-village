@@ -1,7 +1,8 @@
-import { Component } from 'preact';
+import { Component } from 'react';
 import styled from 'styled-components';
 
 import theme from '@styled/theme';
+
 import { uiSize } from '@uiLib/helpers';
 
 const RContainer = styled.div`

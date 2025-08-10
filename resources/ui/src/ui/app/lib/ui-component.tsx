@@ -1,7 +1,9 @@
-import { emitClient } from '@lib/ui/comms/client';
-import { Component, ComponentChild, RenderableProps } from 'preact';
-import EventBus from './event-bus';
+import { Component, ComponentChild, PropsWithChildren } from 'react';
 import { Socket } from 'socket.io-client';
+
+import { emitClient } from '@lib/ui/comms/client';
+
+import EventBus from './event-bus';
 
 export default abstract class UIComponent<P, S extends UI.BaseState, C> extends Component<P, S> {
   context: { socket: Socket<UISocketEvents, SocketServer.Client & SocketServer.ClientEvents> } & C;

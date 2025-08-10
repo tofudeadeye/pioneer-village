@@ -1,7 +1,8 @@
 import { io } from 'socket.io-client';
 
-import App from '../app';
 import PVItems from '@lib/shared/items';
+
+import App from '../app';
 
 const socketServerUri = process.env.SOCKET_SERVER_CONNECTION as string;
 const socketServerKey = process.env.SOCKET_SERVER_KEY as string;
@@ -140,5 +141,6 @@ const loadApp = async () => {
 
 export default () => {
   loadApp();
+  console.log('UI Dev Index Loaded');
   return <></>;
 };

@@ -92,3 +92,5 @@ RegisterCommand(
   },
   false,
 );
+
+console.log(global);

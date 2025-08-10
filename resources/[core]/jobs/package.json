@@ -1,0 +1,11 @@
+{
+  "name": "jobs",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "rspack --mode production",
+    "watch": "rspack --mode development --watch",
+    "prettier": "prettier src/**/*.{ts,tsx} --write"
+  }
+}

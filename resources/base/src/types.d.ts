@@ -1,12 +1,24 @@
 declare namespace UI {}
 
-interface NetEvents {
-  myEvent: (blah: string) => void;
+// Extend ClientIn.FromServer and ClientOut.ToServer with base events
+declare namespace ClientIn {
+  interface FromServer {
+    myEvent: (blah: string) => void;
+  }
 }
 
-declare interface UIEvents {
-  ['character-client-update.getCharacter']: (charData: string) => void;
-  ['character-client-update.updateAttribute']: (attribute: keyof CharacterData, newValue: any) => void;
+declare namespace ClientOut {
+  interface ToServer {
+    myEvent: (blah: string) => void;
+  }
+}
+
+// Extend ClientIn.FromSocket with base UI events
+declare namespace ClientIn {
+  interface FromSocket {
+    ['character-client-update.getCharacter']: (charData: string) => void;
+    ['character-client-update.updateAttribute']: (attribute: keyof CharacterData, newValue: any) => void;
+  }
 }
 
 declare interface CharacterData {

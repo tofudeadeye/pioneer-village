@@ -1,28 +1,15 @@
-import { exports } from '@lib/client';
-
-import DataManager from './managers/data-manager';
+import './exports';
 import { PVGame } from '@lib/client';
-import { Delay } from '@lib/functions';
 import { Log } from '@lib/client/comms/ui';
-
-const bindRootData: Databindings.bindRootData = (index, data) => {
-  DataManager.bindRootData(index, data);
-};
-
-exports<'databindings'>('bindRootData', bindRootData);
-
-const bindData: Databindings.bindData = (index, data) => {
-  DataManager.bindData(index, data);
-};
-
-exports<'databindings'>('bindData', bindData);
+import { Delay } from '@lib/functions';
+import DataManager from './managers/data-manager';
 
 /*
 (async () => {
   const flowblockId = await PVGame.requestFlowblock(1911615281);
   PVGame.createStateMachine(-1436556974, flowblockId);
 
-  bindData('Poster0', {
+  DataManager.bindData('Poster0', {
     isVisible: true,
     isDiffVisible: true,
     type: 1,
@@ -42,7 +29,7 @@ RegisterCommand(
   () => {
     LaunchUiappByHashWithEntry('TRANSLATION_OVERLAY', 'Generic');
 
-    bindData('Generic', {
+    DataManager.bindData('Generic', {
       textField0: {
         text: -54957657,
         style: 0,
@@ -102,7 +89,7 @@ RegisterCommand(
   () => {
     LaunchUiappByHashWithEntry('TRANSLATION_OVERLAY', 'Catalogue');
 
-    bindData('Catalogue', {
+    DataManager.bindData('Catalogue', {
       textField0: {
         text: 'My Catalogue',
         style: 0,
@@ -156,7 +143,7 @@ RegisterCommand(
   async () => {
     const flowblockId = await PVGame.requestFlowblock(GetHashKey('SHOP_BROWSING_MAIN_FLOW'));
 
-    bindData('CatalogItemInspection', {
+    DataManager.bindData('CatalogItemInspection', {
       isVisible: true,
       itemLabel: GetHashKey('WEAPON_PISTOL_VOLCANIC'),
       itemDescription: 'itemDescription',
@@ -181,7 +168,7 @@ RegisterCommand(
 
     await Delay(5000);
 
-    bindData('CatalogItemInspection', {
+    DataManager.bindData('CatalogItemInspection', {
       isVisible: true,
       itemLabel: GetHashKey('WEAPON_PISTOL_VOLCANIC'),
       itemDescription: 'itemDescription',
@@ -210,7 +197,7 @@ RegisterCommand(
 RegisterCommand(
   'shelf_inspect',
   async () => {
-    bindData('price_details', {
+    DataManager.bindData('price_details', {
       purchasePrice: 250,
       isGoldPrice: false,
       modifiedPriceVisible: true,
@@ -218,6 +205,7 @@ RegisterCommand(
       purchaseModifiedPrice: 350,
     });
 
+    // @ts-ignore
     const str = VarString(2, 'SHOP_H_LOCKED', 0);
 
     const struct1 = new DataView(new ArrayBuffer(8 * 4));
@@ -234,7 +222,7 @@ RegisterCommand(
 RegisterCommand(
   'scoreboard',
   async () => {
-    bindRootData('helperTextfields', {
+    DataManager.bindRootData('helperTextfields', {
       rawLabel0: 'TEAM 1',
       rawValue0: '4',
       rawLabel1: 'TEAM 2',
@@ -253,13 +241,13 @@ RegisterCommand(
   async () => {
     let i = 5;
 
-    bindRootData('MPCountdown', { showTimer: true });
+    DataManager.bindRootData('MPCountdown', { showTimer: true });
     while (i > 0) {
-      bindRootData('MPCountdown', { Timer: String(i--) });
+      DataManager.bindRootData('MPCountdown', { Timer: String(i--) });
       await Delay(1000);
     }
 
-    bindRootData('MPCountdown', { showTimer: false });
+    DataManager.bindRootData('MPCountdown', { showTimer: false });
   },
   false,
 );
@@ -299,7 +287,7 @@ RegisterCommand(
       });
     }
 
-    bindRootData('PostMatchAndLeaderboard', {
+    DataManager.bindRootData('PostMatchAndLeaderboard', {
       Title: {
         Heading: 'Heading',
         HeadingColor: GetHashKey('COLOR_PURE_WHITE'),
@@ -382,7 +370,7 @@ RegisterCommand(
       });
     }
 
-    bindRootData('FastTravel', {
+    DataManager.bindRootData('FastTravel', {
       header: 'Header',
       subHeader: 'Sub Header',
       description: 'Description',

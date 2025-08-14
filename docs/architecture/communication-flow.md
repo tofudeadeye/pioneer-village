@@ -89,7 +89,7 @@ onNet('player:updatePosition', (position: Vector3) => {
 
 ### 2. Game Client ↔ UI Communication
 
-The UI system uses NUI (Native UI) for browser-based interfaces with a sophisticated RPC system.
+The UI system uses NUI (Native UI) for browser-based interfaces with a sophisticated ClientRPC.Server system.
 
 #### UI Communication Architecture
 
@@ -135,7 +135,7 @@ export const onUI = (event: string, callback: (...args: any[]) => void) => {
   eventListeners.get(event)!.add(callback);
 };
 
-// RPC-style UI call with response
+// ClientRPC.Server-style UI call with response
 export const awaitUI = <T = any>(event: string, ...args: any[]): Promise<T> => {
   return new Promise((resolve, reject) => {
     const id = generateCallId();

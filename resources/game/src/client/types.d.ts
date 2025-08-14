@@ -83,7 +83,9 @@ declare namespace Game {
 
   type playerServerId = number;
 
-  type playerSteamId = string;
+  type playerSteamId = string | null;
+
+  type characterId = number | null;
 
   type ClientExports = {
     playerPed: () => number;
@@ -142,6 +144,8 @@ declare namespace Game {
     getPlayerServerId: () => number;
 
     getPlayerSteamId: () => Promise<string>;
+
+    characterId: () => number | null;
   };
 
   interface CharacterSpot {
@@ -253,7 +257,31 @@ interface CameraData {
   fov: number;
 }
 
-declare interface UIRPC {
-  getCharacters: () => Game.Character[];
-  createCharacter: (characterData: Game.Character, faceData: Game.Face) => void;
+// Client perspective - RPC calls to various destinations
+declare namespace ClientRPC {
+  interface Socket {
+    getCharacters: () => Game.Character[];
+    createCharacter: (characterData: Game.Character, faceData: Game.Face) => void;
+  }
+  
+  interface Server {
+    'game.getSteamId': () => string;
+  }
 }
+
+// Client perspective - events received from various sources
+declare namespace ClientIn {
+  interface FromSocket {
+    // Add game events from socket here when needed
+  }
+}
+
+// Client perspective - events sent to various destinations
+declare namespace ClientOut {
+  interface ToSocket {
+    // Add game events to socket here when needed
+  }
+}
+
+// Raw Socket.io events for UI layer typing - DEDUPLICATED
+// Note: SocketIO.Events eliminated - use ClientRPC.Socket and ClientIn/ClientOut directly

@@ -11,7 +11,7 @@ interface CrashData {
   [layerName: string]: CrashEntry[];
 }
 
-// TODO: Might need a better way than reload the window but re-rendering with preact seems to be problematic.
+// Error boundaries still need to be class components in React 19
 export class Catcher extends Component<UI.Catcher.Props, UI.Catcher.State> {
   constructor(props: UI.Catcher.Props) {
     super(props);
@@ -87,20 +87,20 @@ export class Catcher extends Component<UI.Catcher.Props, UI.Catcher.State> {
     }
   }
 
-  render(props: PropsWithChildren<any>, state: Readonly<any>) {
-    if (state.errored) {
-      const layerName = state.layer;
-      if (state.layer) {
+  render() {
+    if (this.state.errored) {
+      const layerName = this.state.layer;
+      if (this.state.layer) {
         // Record crash with timestamp
         this.updateCrashCount(layerName);
       }
 
       return (
         <Snackbar bgColor="red" color="black">
-          {state.layer}: UI Crash ... Restarting
+          {this.state.layer}: UI Crash ... Restarting
         </Snackbar>
       );
     }
-    return props.children;
+    return this.props.children;
   }
 }

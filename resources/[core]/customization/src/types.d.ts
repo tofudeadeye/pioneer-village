@@ -1,4 +1,9 @@
-declare interface RPC {}
+// Extend the client event namespaces with customization-specific events
+declare namespace ClientIn {
+  interface FromSocket {
+    'customization.set-layers': (layers: UI.Customization.LayerData[]) => void;
+  }
+}
 
 declare namespace Customization {
   enum CreationState {

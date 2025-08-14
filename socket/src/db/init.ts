@@ -2,8 +2,6 @@ import { config } from 'dotenv';
 
 config({ path: `${__dirname}/../../../.env`, quiet: true });
 
-console.log('test');
-
 String.prototype.GetHashKey = function (this: string): number {
   const keyLowered = this.toLowerCase();
   const length = this.length;

@@ -1,73 +1,7 @@
 import { clamp } from 'lodash';
-import { Component, createRef } from 'react';
-import styled from 'styled-components';
+import { Component, createRef, MouseEvent as ReactMouseEvent } from 'react';
 
-import theme from '@styled/theme';
-
-import { uiSize } from '@uiLib/helpers';
-
-const XYContainer = styled.div`
-  border-top: 2px solid ${theme.colors.white.hex};
-  padding-top: 20px;
-  padding-bottom: 20px;
-  font-size: ${uiSize(18)};
-  user-select: none;
-
-  &.cheek-bone {
-    position: absolute;
-    top: 50%;
-    left: 25%;
-    transform: translate(-50%, -50%);
-  }
-`;
-
-const XYTitle = styled.div`
-  font-size: ${uiSize(32)};
-`;
-
-const XYContents = styled.div`
-  display: none;
-  justify-content: center;
-  align-items: center;
-
-  &.active {
-    display: flex;
-  }
-`;
-
-const XYGrid = styled.div`
-  position: relative;
-  width: 50%;
-  aspect-ratio: 1;
-
-  border: 2px solid ${theme.colors.white.hex};
-
-  &::before,
-  &::after {
-    content: '';
-    display: block;
-    position: absolute;
-    width: 100%;
-    height: 0;
-    border-top: 1px solid ${theme.colors.white.hex};
-    border-bottom: 1px solid ${theme.colors.white.hex};
-    top: 50%;
-    transform: translateY(-50%);
-  }
-
-  &::after {
-    transform: translateY(-50%) rotateZ(90deg);
-  }
-`;
-
-const XYGridMarker = styled.div`
-  position: absolute;
-  width: ${uiSize(16)};
-  height: ${uiSize(16)};
-  background-color: ${theme.colors.white.hex};
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-`;
+import styles from './styles.module.scss';
 
 interface Props {
   label: string;
@@ -97,7 +31,7 @@ export default class XYSlider extends Component<Props, State> {
   mousemoveBinding = this.onmousemove.bind(this);
 
   constructor(props: Props) {
-    super();
+    super(props);
 
     this.state = {
       isDragging: false,
@@ -121,7 +55,7 @@ export default class XYSlider extends Component<Props, State> {
     this.setState({ active: !this.state.active });
   }
 
-  onmousedown(e: MouseEvent) {
+  onmousedown(e: ReactMouseEvent<HTMLDivElement>) {
     if (e.button === 2) {
       this.setState({
         xValue: this.props.xDefaultValue || 0,
@@ -137,7 +71,7 @@ export default class XYSlider extends Component<Props, State> {
     this.onmousemove(e, true);
   }
 
-  onmousemove(e: MouseEvent, force = false) {
+  onmousemove(e: MouseEvent | ReactMouseEvent<HTMLDivElement>, force = false) {
     if (!this.state.isDragging && !force) return;
 
     const grid = this.refGrid.current;
@@ -183,15 +117,23 @@ export default class XYSlider extends Component<Props, State> {
   }
 
   render() {
+    const containerClass =
+      this.props.className === 'cheek-bone' ? `${styles.xyContainer} ${styles.cheekBone}` : styles.xyContainer;
+
     return (
-      <XYContainer className={this.props.className}>
-        <XYTitle onClick={this.toggleContent.bind(this)}>{this.props.label}</XYTitle>
-        <XYContents ref={this.refContent} className={this.state.active ? 'active' : ''}>
-          <XYGrid ref={this.refGrid} onMouseDown={this.onmousedown.bind(this)}>
-            <XYGridMarker style={{ top: this.top(), left: this.left() }} />
-          </XYGrid>
-        </XYContents>
-      </XYContainer>
+      <div className={containerClass}>
+        <div className={styles.xyTitle} onClick={this.toggleContent.bind(this)}>
+          {this.props.label}
+        </div>
+        <div
+          ref={this.refContent}
+          className={this.state.active ? `${styles.xyContents} ${styles.active}` : styles.xyContents}
+        >
+          <div ref={this.refGrid} className={styles.xyGrid} onMouseDown={this.onmousedown.bind(this)}>
+            <div className={styles.xyKnob} style={{ top: this.top(), left: this.left() }} />
+          </div>
+        </div>
+      </div>
     );
   }
 }

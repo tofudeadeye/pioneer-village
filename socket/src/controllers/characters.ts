@@ -1,10 +1,12 @@
+import { Socket } from 'socket.io';
+
 import { logInfoC, logInfoS } from '../helpers';
 import Characters, { GetFaceDataFromDatabase } from '../managers/characters';
 import Inventories from '../managers/inventories';
 import { serverNamespace, userNamespace } from '../server';
 
 export default (userAccessKey: string) => {
-  serverNamespace.on('connection', (socket) => {
+  serverNamespace.on('connection', (socket: Socket<SocketIn.FromGameServer, SocketOut.ToGameServer>) => {
     logInfoS('[Characters]', 'Game server connected');
 
     socket.on('character-update.last-position', async (serverId, coords) => {
@@ -74,7 +76,7 @@ export default (userAccessKey: string) => {
     });
   });
 
-  userNamespace.on('connection', (socket) => {
+  userNamespace.on('connection', (socket: Socket<SocketIn.FromClient, SocketOut.ToClient>) => {
     logInfoC('[Characters]', 'User connected', socket.data);
 
     socket.on('customization.finalize', async (json) => {

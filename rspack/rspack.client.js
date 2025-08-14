@@ -1,12 +1,18 @@
 const path = require('path');
 const HotReloadPlugin = require('./rspack.hot-reload');
+const { TsCheckerRspackPlugin } = require('ts-checker-rspack-plugin');
 
+const isDev = process.env.NODE_ENV === 'development';
+
+// @ts-check
+/** @type {import('@rspack/cli').Configuration} */
 module.exports = () => ({
+  name: 'client',
   entry: path.resolve('./src/client/client.ts'),
   module: {
     rules: [
       {
-        test: /\.tsx?$/,
+        test: /\.ts$/,
         exclude: [/node_modules/, /build/],
         loader: 'builtin:swc-loader',
         options: {
@@ -20,7 +26,15 @@ module.exports = () => ({
       },
     ],
   },
-  plugins: [new HotReloadPlugin('client')],
+  plugins: [
+    isDev && new HotReloadPlugin('client'),
+    new TsCheckerRspackPlugin({
+      typescript: {
+        typescriptPath: require.resolve('typescript'),
+        configFile: path.resolve('./src/client/tsconfig.json'),
+      },
+    }),
+  ],
   optimization: {
     minimize: false,
   },
@@ -31,5 +45,8 @@ module.exports = () => ({
   output: {
     path: path.resolve('./build'),
     filename: 'client.js',
+  },
+  performance: {
+    hints: false,
   },
 });

@@ -1,5 +1,6 @@
 import theme from '../theme';
 import styled from 'styled-components';
+import { ReactNode } from 'react';
 
 const BoxBg = styled.div`
   position: absolute;
@@ -19,10 +20,16 @@ const BoxContent = styled.div`
   padding: 30px;
 `;
 
-export default function Border(props: any) {
+interface BorderProps {
+  highlight?: boolean;
+  color?: string;
+  children?: ReactNode;
+}
+
+export default function Border(props: BorderProps) {
   let color = 'transparent';
   if (props.highlight) {
-    color = theme.colors[props.color] ? theme.colors[props.color].hex : theme.colors.green.hex;
+    color = props.color && theme.colors[props.color] ? theme.colors[props.color].hex : theme.colors.green.hex;
   }
 
   return (
@@ -37,7 +44,7 @@ export default function Border(props: any) {
         <defs>
           <rect id="bg" width="35" height="35" transform="translate(5 5)" fill="#fff" opacity="0.1" />
           <symbol id="box-bg" viewBox="5 5 35 35" preserveAspectRatio="none">
-            <use xlinkHref="#bg" style="overflow:none;" />
+            <use xlinkHref="#bg" style={{ overflow: 'visible' }} />
           </symbol>
           <g id="top-left" transform="translate(-5 -5)">
             <line
@@ -63,16 +70,16 @@ export default function Border(props: any) {
             <rect width="2" height="2" transform="translate(10 10)" fill="#fff" />
           </g>
           <symbol id="box-top-left" viewBox="0 0 15 15" preserveAspectRatio="none">
-            <use xlinkHref="#top-left" style="overflow:none;" />
+            <use xlinkHref="#top-left" style={{ overflow: 'visible' }} />
           </symbol>
           <symbol id="box-top-right" viewBox="-15 0 15 15" preserveAspectRatio="none">
-            <use xlinkHref="#top-left" style="overflow:none;transform:rotateZ(90deg)" />
+            <use xlinkHref="#top-left" style={{ overflow: 'visible', transform: 'rotateZ(90deg)' }} />
           </symbol>
           <symbol id="box-bottom-right" viewBox="-15 -15 15 15" preserveAspectRatio="none">
-            <use xlinkHref="#top-left" style="overflow:none;;transform:rotateZ(180deg)" />
+            <use xlinkHref="#top-left" style={{ overflow: 'visible', transform: 'rotateZ(180deg)' }} />
           </symbol>
           <symbol id="box-bottom-left" viewBox="0 -15 15 15" preserveAspectRatio="none">
-            <use xlinkHref="#top-left" style="overflow:none;transform:rotateZ(270deg)" />
+            <use xlinkHref="#top-left" style={{ overflow: 'visible', transform: 'rotateZ(270deg)' }} />
           </symbol>
         </defs>
         <foreignObject
@@ -139,7 +146,7 @@ export default function Border(props: any) {
           </BoxCorner>
         </foreignObject>
       </svg>
-      <BoxContent>{props.children}</BoxContent>
+      <BoxContent>{props.children as any}</BoxContent>
     </div>
   );
 }

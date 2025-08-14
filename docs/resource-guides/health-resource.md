@@ -638,7 +638,7 @@ try {
 **Health data returns null:**
 - Character may not be fully initialized
 - Health metadata might not be loaded yet
-- Check server-side RPC connection
+- Check server-side ClientRPC.Server connection
 
 ### Debug Commands
 

@@ -1,7 +1,8 @@
 import { PVGame } from '@lib/client';
-import { AnimFlag } from '@lib/flags';
-import { EmoteInterface, EMOTES } from '../data';
 import { Log } from '@lib/client/comms/ui';
+import { AnimFlag } from '@lib/flags';
+
+import { EMOTES, type EmoteInterface } from '../data';
 
 export class EmoteManager {
   protected static instance: EmoteManager;

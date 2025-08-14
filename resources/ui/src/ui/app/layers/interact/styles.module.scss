@@ -1,0 +1,27 @@
+@use '../../styles/theme.module.scss' as theme;
+@use '../../styles/mixins.module.scss' as mixins;
+
+.poi {
+  position: absolute;
+
+  width: mixins.uiSize(16);
+  height: mixins.uiSize(16);
+
+  border-radius: mixins.uiSize(8);
+  border: mixins.uiSize(3) solid var(--theme-red);
+
+  &.active {
+    width: mixins.uiSize(32);
+    height: mixins.uiSize(32);
+    border-radius: mixins.uiSize(4);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: mixins.uiSize(24);
+
+    color: var(--theme-white);
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+}

@@ -5,61 +5,70 @@ const socketBuffer: Set<any[]> = new Set();
 const awaitBuffer: Map<any[], any> = new Map();
 const focusBuffer: Map<any[], any> = new Map();
 
-//@ts-ignore
-export const emitUI: UI.emitUI = (...args) => {
+export const emitUI: UI.emitUI = <T extends keyof ClientIn.FromSocket>(
+  evtName: T,
+  ...args: Parameters<ClientIn.FromSocket[T]>
+) => {
   if (GetResourceState('ui') === 'started') {
-    setImmediate(() => global.exports['ui'].emitUI(...args));
+    setImmediate(() => global.exports['ui'].emitUI(evtName, ...args));
   } else {
-    emitBuffer.add(args);
+    emitBuffer.add([evtName, ...args]);
   }
 };
 
-//@ts-ignore
-export const emitSocket: UI.emitSocket = (...args) => {
+export const emitSocket: UI.emitSocket = <T extends keyof SocketForwardEvents>(
+  evtName: T,
+  ...args: Parameters<SocketForwardEvents[T]>
+) => {
   if (GetResourceState('ui') === 'started') {
-    setImmediate(() => global.exports['ui'].emitUI('__socket__', ...args));
+    setImmediate(() => global.exports['ui'].emitUI('__socket__', evtName, ...args));
   } else {
-    socketBuffer.add(args);
+    socketBuffer.add([evtName, ...args]);
   }
 };
 
-//@ts-ignore
-export const awaitUI: UI.awaitUI = (...args) => {
+export const awaitUI: UI.awaitUI = <T extends keyof ClientRPC.Socket>(
+  evtName: T,
+  ...args: Parameters<ClientRPC.Socket[T]>
+): Promise<ReturnType<ClientRPC.Socket[T]>> => {
   if (GetResourceState('ui') === 'started') {
-    return new Promise((res) => setImmediate(() => res(global.exports['ui'].awaitUI(...args))));
+    return new Promise((res) => setImmediate(() => res(global.exports['ui'].awaitUI(evtName, ...args))));
   }
   return new Promise((res) => {
-    awaitBuffer.set(args, res);
+    awaitBuffer.set([evtName, ...args], res);
   });
 };
 
-//@ts-ignore
-export const onUI: UI.onUI = (...args) => {
+export const onUI: UI.onUI = <T extends keyof ClientIn.FromSocket>(
+  evtName: T,
+  callback: (...args: Parameters<ClientIn.FromSocket[T]>) => void,
+) => {
   if (GetResourceState('ui') === 'started') {
-    setImmediate(() => global.exports['ui'].onUI(...args));
+    setImmediate(() => global.exports['ui'].onUI(evtName, callback));
   }
-  eventListenerRegistry.add(args);
+  eventListenerRegistry.add([evtName, callback]);
 };
 
-//@ts-ignore
 export const onSocket: UI.onUI = onUI;
 
-//@ts-ignore
-export const onUICall: UI.onUICall = (...args) => {
+export const onUICall: UI.onUICall = <T extends keyof ClientRPC.Socket>(
+  evtName: T,
+  callback: (
+    ...args: Parameters<ClientRPC.Socket[T]>
+  ) => Promise<ReturnType<ClientRPC.Socket[T]>> | ReturnType<ClientRPC.Socket[T]>,
+) => {
   if (GetResourceState('ui') === 'started') {
-    setImmediate(() => global.exports['ui'].onUICall(...args));
+    setImmediate(() => global.exports['ui'].onUICall(evtName, callback));
   }
-  rpcBuffer.add(args);
+  rpcBuffer.add([evtName, callback]);
 };
 
-//@ts-ignore
-export const focusUI: UI.focusUI = (...args) => {
+export const focusUI: UI.focusUI = (hasFocus: boolean, hasCursor: boolean) => {
   if (GetResourceState('ui') === 'started') {
-    return new Promise((res) => setImmediate(() => res(global.exports['ui'].focusUI(...args))));
+    setImmediate(() => global.exports['ui'].focusUI(hasFocus, hasCursor));
+  } else {
+    focusBuffer.set([hasFocus, hasCursor], true);
   }
-  return new Promise((res) => {
-    focusBuffer.set(args, res);
-  });
 };
 
 on('onResourceStart', (resource: string) => {
@@ -67,44 +76,37 @@ on('onResourceStart', (resource: string) => {
     return;
   }
 
-  //@ts-ignore
-  eventListenerRegistry.forEach((params) => exports['ui'].onUI(...params));
+  eventListenerRegistry.forEach((params) => global.exports['ui'].onUI(...params));
 
-  //@ts-ignore
-  rpcBuffer.forEach((params) => exports['ui'].onUICall(...params));
+  rpcBuffer.forEach((params) => global.exports['ui'].onUICall(...params));
 
-  //@ts-ignore
-  emitBuffer.forEach((params) => exports['ui'].emitUI(...params));
+  emitBuffer.forEach((params) => global.exports['ui'].emitUI(...params));
 
-  //@ts-ignore
-  socketBuffer.forEach((params) => exports['ui'].emitUI('__socket__', ...params));
+  socketBuffer.forEach((params) => global.exports['ui'].emitUI('__socket__', ...params));
 
   awaitBuffer.forEach(async (resolve, args) => {
-    //@ts-ignore
     resolve(global.exports['ui'].awaitUI(...args));
   });
 
-  //@ts-ignore
-  focusBuffer.forEach((params) => exports['ui'].focusBuffer(...params));
+  focusBuffer.forEach((_, params) => global.exports['ui'].focusUI(...params));
 });
 
-// TODO: Replace this
 const DEV_ENV = true;
 export const Log = (...messages: any[]) => {
-  if (DEV_ENV) {
-    emitUI('log.message', {
-      resource: GetCurrentResourceName(),
-      message: messages
-        .map((item) => {
-          if (typeof item === 'object') {
-            return JSON.stringify(item, null, 2);
-          }
-          return item;
-        })
-        .join(' '),
-    });
-  }
+  if (!DEV_ENV) return;
+  emitUI('log.message', {
+    resource: GetCurrentResourceName(),
+    message: messages
+      .map((item) => {
+        if (typeof item === 'object') {
+          return JSON.stringify(item, null, 2);
+        }
+        return item;
+      })
+      .join(' '),
+  });
 };
+
 export const LogExtra = (...messages: any[]) => {
   console.log(...messages);
   Log(...messages);

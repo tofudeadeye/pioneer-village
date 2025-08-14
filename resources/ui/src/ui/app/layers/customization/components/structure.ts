@@ -16,9 +16,9 @@ type CreationStructure = {
   }[];
   whistle?: boolean;
   children?: CreationStructure[];
-}[];
+};
 
-export const structure: CreationStructure = [
+export const structure: CreationStructure[] = [
   {
     label: 'General',
     camera: 'body',

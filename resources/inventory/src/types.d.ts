@@ -1,9 +1,3 @@
-declare interface RPC {}
-
-interface NetEvents {
-  ['inventory.pickup-hat']: (hatNetId: number) => void;
-}
-
 declare namespace Inventory {
   enum ItemFlags {
     MATERIAL = 1,

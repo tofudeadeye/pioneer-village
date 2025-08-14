@@ -1,0 +1,67 @@
+// Icon Registry - Manually add icons as needed to reduce bundle size
+// Icons are organized by style (light, regular, solid, duotone)
+
+import { ComponentType } from 'react';
+
+// Solid icons
+import CashRegisterSolid from '@fa/5/solid/cash-register.svg';
+import CloudMeatballSolid from '@fa/5/solid/cloud-meatball.svg';
+import DoorClosedSolid from '@fa/5/solid/door-closed.svg';
+import DoorOpenSolid from '@fa/5/solid/door-open.svg';
+import EyeSolid from '@fa/5/solid/eye.svg';
+import FillSolid from '@fa/5/solid/fill.svg';
+import HandPaperSolid from '@fa/5/solid/hand-paper.svg';
+import HorseSaddleSolid from '@fa/5/solid/horse-saddle.svg';
+import MaleSolid from '@fa/5/solid/male.svg';
+import RecycleSolid from '@fa/5/solid/recycle.svg';
+import WagonCoveredSolid from '@fa/5/solid/wagon-covered.svg';
+
+// Light icons
+import EyeLight from '@fa/5/light/eye.svg';
+
+// Regular icons (add as needed)
+
+// Duotone icons
+import CashRegisterDuotone from '@fa/5/duotone/cash-register.svg';
+
+// Icon registry mapping
+export const iconRegistry: Record<string, Record<string, ComponentType<any>>> = {
+  solid: {
+    'cash-register': CashRegisterSolid,
+    'cloud-meatball': CloudMeatballSolid,
+    'door-closed': DoorClosedSolid,
+    'door-open': DoorOpenSolid,
+    'eye': EyeSolid,
+    'fill': FillSolid,
+    'hand-paper': HandPaperSolid,
+    'horse-saddle': HorseSaddleSolid,
+    'male': MaleSolid,
+    'recycle': RecycleSolid,
+    'wagon-covered': WagonCoveredSolid,
+  },
+  light: {
+    'eye': EyeLight,
+  },
+  regular: {
+    // Add regular icons as needed
+  },
+  duotone: {
+    'cash-register': CashRegisterDuotone,
+  },
+};
+
+export function getIcon(style: string, name: string): ComponentType<any> | null {
+  const styleIcons = iconRegistry[style];
+  if (!styleIcons) {
+    console.error(`Icon style "${style}" not found in registry`);
+    return null;
+  }
+
+  const icon = styleIcons[name];
+  if (!icon) {
+    console.error(`Icon "${name}" not found in style "${style}". Add it to icon-registry.ts`);
+    return null;
+  }
+
+  return icon;
+}

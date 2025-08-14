@@ -1,14 +1,16 @@
+import ExclamationTriangle from '@fa/5/solid/exclamation-triangle.svg';
 import 'normalize.css';
-import { Component } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { Socket } from 'socket.io-client';
 
 import { Button, DisabledLayers } from '@styled/core';
-import ExclamationTriangle from '@styled/fa5/solid/exclamation-triangle.svg';
 
 import { uiSize } from '@uiLib/helpers';
 
-import './app.scss';
+import styles from './app.module.scss';
 import { Catcher } from './catcher';
+import { SocketProvider } from './contexts/socket-context';
+import { UIComponents } from './types';
 
 String.prototype.GetHashKey = function (this: string): number {
   const keyLowered = this.toLowerCase();
@@ -30,11 +32,16 @@ String.prototype.GetHashKey = function (this: string): number {
 
 // @ts-expect-error
 const requiredLayers = require.context('./layers', true, /index\.tsx$/);
-const namedLayers: Record<string, any> = {};
+const namedLayers: Record<string, React.ComponentType<any>> = {};
 for (const layer of requiredLayers.keys()) {
-  const layerDefault = requiredLayers(layer);
+  const layerModule = requiredLayers(layer);
   const name = layer.split('/')[1];
-  namedLayers[name] = layerDefault;
+  // Only use default export for React components, not the whole module
+  if (layerModule.default && typeof layerModule.default === 'function') {
+    namedLayers[name] = layerModule.default;
+  } else {
+    console.warn(`Layer ${name} does not have a valid default export`, layerModule);
+  }
 }
 
 interface CrashEntry {
@@ -45,53 +52,28 @@ interface CrashData {
   [layerName: string]: CrashEntry[];
 }
 
-export default class App extends Component<UI.App.Props, UI.App.State> {
-  state = {
-    isFramed: !!window.frameElement,
-    bg: '',
-    disabledLayers: new Set<string>(),
-  };
+export default function App({ socket }: UIComponents.App.Props) {
+  const isFramed = useMemo(() => !!window.frameElement, []);
+  const [bg, setBG] = useState(() => (!isFramed ? 'daytime' : ''));
+  const [disabledLayers, setDisabledLayers] = useState<Set<string>>(new Set());
 
-  private crashCheckInterval: number | null = null;
-
-  constructor() {
-    super();
-
-    if (!this.state.isFramed) {
-      this.setBG('daytime');
-    }
-
-    this.updateDisabledLayers();
-  }
-
-  componentWillUnmount() {
-    if (this.crashCheckInterval) {
-      clearInterval(this.crashCheckInterval);
-    }
-  }
-
-  setBG(bg: string) {
-    this.setState({ bg });
-  }
-
-  private getCrashData(): CrashData {
+  const getCrashData = useCallback<() => CrashData>(() => {
     try {
       const data = sessionStorage.getItem('ui-crash-data');
-      // console.log('getCrashData', data);
       return data ? JSON.parse(data) : {};
     } catch (error) {
       console.error('Failed to get crash data:', error);
       return {};
     }
-  }
+  }, []);
 
-  private cleanOldCrashes(crashes: CrashEntry[]): CrashEntry[] {
+  const cleanOldCrashes = useCallback<(crashes: CrashEntry[]) => CrashEntry[]>((crashes) => {
     const oneMinuteAgo = Date.now() - 60 * 1000;
     return crashes.filter((crash) => crash.timestamp > oneMinuteAgo);
-  }
+  }, []);
 
-  private updateDisabledLayers() {
-    const crashData = this.getCrashData();
+  const updateDisabledLayers = useCallback<() => void>(() => {
+    const crashData = getCrashData();
     const newDisabledLayers = new Set<string>();
 
     for (const [layerName, crashes] of Object.entries(crashData)) {
@@ -100,7 +82,7 @@ export default class App extends Component<UI.App.Props, UI.App.State> {
 
       if (Array.isArray(crashes)) {
         // New format - filter by time
-        recentCrashes = this.cleanOldCrashes(crashes);
+        recentCrashes = cleanOldCrashes(crashes);
       }
 
       // Disable layer if it has 3 or more crashes in the last minute
@@ -111,30 +93,31 @@ export default class App extends Component<UI.App.Props, UI.App.State> {
     }
 
     // Update state if disabled layers changed
-    if (
-      newDisabledLayers.size !== this.state.disabledLayers.size ||
-      [...newDisabledLayers].some((layer) => !this.state.disabledLayers.has(layer))
-    ) {
-      this.setState({ disabledLayers: newDisabledLayers });
-    }
-  }
+    setDisabledLayers((prev) => {
+      if (newDisabledLayers.size !== prev.size || [...newDisabledLayers].some((layer) => !prev.has(layer))) {
+        return newDisabledLayers;
+      }
+      return prev;
+    });
+  }, [getCrashData, cleanOldCrashes]);
 
-  private isLayerDisabled(layerName: string): boolean {
-    return this.state.disabledLayers.has(layerName);
-  }
+  useEffect(() => {
+    updateDisabledLayers();
+  }, [updateDisabledLayers]);
 
-  getChildContext(): { socket: Socket<SocketServer.Client & SocketServer.ClientEvents, UISocketEvents> } {
-    return {
-      socket: this.props.socket,
-    };
-  }
+  const isLayerDisabled = useCallback<(layerName: string) => boolean>(
+    (layerName) => {
+      return disabledLayers.has(layerName);
+    },
+    [disabledLayers],
+  );
 
-  renderLayers(): [Record<string, any>, string[]] {
-    const layersEnabled: Record<string, any> = {};
+  const renderLayers = useMemo((): [Record<string, React.ComponentType<any>>, string[]] => {
+    const layersEnabled: Record<string, React.ComponentType<any>> = {};
     const layersDisabled: string[] = [];
 
     for (const [name, LayerComponent] of Object.entries(namedLayers)) {
-      if (this.isLayerDisabled(name)) {
+      if (isLayerDisabled(name)) {
         layersDisabled.push(name);
       } else {
         layersEnabled[name] = LayerComponent;
@@ -142,21 +125,24 @@ export default class App extends Component<UI.App.Props, UI.App.State> {
     }
 
     return [layersEnabled, layersDisabled];
-  }
+  }, [isLayerDisabled]);
 
-  render() {
-    const [layersEnabled, layersDisabled] = this.renderLayers();
+  const [layersEnabled, layersDisabled] = renderLayers;
 
-    return (
-      <div id="app" className={`${this.state.bg ? `app--${this.state.bg}` : ''} app--16-9`}>
-        {!this.state.isFramed && (
+  return (
+    <SocketProvider socket={socket}>
+      <div
+        id="app"
+        className={`${bg === 'daytime' ? styles.appDaytime : bg === 'nighttime' ? styles.appNighttime : bg === 'inside' ? styles.appInside : ''} ${styles.appRatio16x9}`}
+      >
+        {!isFramed && (
           <div style={{ position: 'absolute', top: 0, right: 0 }}>
-            <Button onClick={() => this.setBG('daytime')}>Daytime</Button>
-            <Button onClick={() => this.setBG('inside')}>Inside</Button>
-            <Button onClick={() => this.setBG('nighttime')}>Nighttime</Button>
-            {this.state.disabledLayers.size > 0 && (
+            <Button onClick={() => setBG('daytime')}>Daytime</Button>
+            <Button onClick={() => setBG('inside')}>Inside</Button>
+            <Button onClick={() => setBG('nighttime')}>Nighttime</Button>
+            {disabledLayers.size > 0 && (
               <div style={{ color: 'red', fontSize: '12px', marginTop: '5px' }}>
-                Disabled: {Array.from(this.state.disabledLayers).join(', ')}
+                Disabled: {Array.from(disabledLayers).join(', ')}
               </div>
             )}
           </div>
@@ -172,14 +158,14 @@ export default class App extends Component<UI.App.Props, UI.App.State> {
             ))}
           </DisabledLayers>
         )}
-        {Object.entries(layersEnabled).map(([name, layer]) => {
+        {Object.entries(layersEnabled).map(([name, LayerComponent]) => {
           return (
-            <Catcher key={name} layer={name} reloadWindow={this.state.isFramed}>
-              <layer.default socket={this.props.socket} />
+            <Catcher key={name} layer={name} reloadWindow={isFramed}>
+              <LayerComponent />
             </Catcher>
           );
         })}
       </div>
-    );
-  }
+    </SocketProvider>
+  );
 }

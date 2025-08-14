@@ -1,100 +1,6 @@
-import { Component } from 'react';
-import styled from 'styled-components';
+import { Component, MouseEvent as ReactMouseEvent } from 'react';
 
-import theme from '@styled/theme';
-
-import { uiSize } from '@uiLib/helpers';
-
-const RContainer = styled.div`
-  border-top: 2px solid ${theme.colors.white.hex};
-  padding-top: 20px;
-  padding-bottom: 20px;
-  font-size: ${uiSize(18)};
-  user-select: none;
-
-  input {
-    -webkit-appearance: none;
-    appearance: none;
-    background: transparent;
-    cursor: pointer;
-
-    border: 2px solid ${theme.colors.white.hex};
-
-    height: ${uiSize(20)};
-    padding: ${uiSize(2)};
-
-    &::-webkit-slider-thumb {
-      -webkit-appearance: none;
-      width: ${uiSize(14)};
-      height: ${uiSize(14)};
-      background-color: ${theme.colors.white.hex};
-    }
-  }
-
-  &.layer {
-    border: none;
-    padding: 0;
-
-    display: flex;
-    align-items: center;
-    gap: ${uiSize(16)};
-  }
-
-  &.vertical {
-    input {
-      transform: rotateZ(-90deg);
-    }
-  }
-
-  &.head-width {
-    position: absolute;
-    top: 5%;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-
-  &.cheek-depth {
-    position: absolute;
-    top: 50%;
-    left: 75%;
-    transform: translate(-50%, -50%);
-  }
-
-  &.rotation {
-    border-top: none;
-    padding: 0;
-
-    input {
-      width: 100%;
-    }
-  }
-
-  .markers {
-    display: flex;
-    justify-content: space-between;
-    margin-top: ${uiSize(10)};
-    font-size: ${uiSize(14)};
-    font-weight: bold;
-    color: ${theme.colors.gray50.hex};
-    width: calc(100% + ${uiSize(70)});
-    margin-left: -${uiSize(35)};
-
-    span {
-      width: 100%;
-      text-align: center;
-    }
-  }
-`;
-
-const RTitle = styled.div`
-  font-size: ${uiSize(32)};
-  margin-bottom: ${uiSize(10)};
-
-  .layer & {
-    font-size: ${uiSize(18)};
-    margin-bottom: 0;
-  }
-`;
+import styles from './styles.module.scss';
 
 type Props = {
   label?: string;
@@ -116,9 +22,9 @@ interface State {
   value: number;
 }
 
-export default class XYSlider extends Component<Props, State> {
+export default class RangeSlider extends Component<Props, State> {
   constructor(props: Props) {
-    super();
+    super(props);
 
     this.state = {
       isDragging: false,
@@ -127,13 +33,13 @@ export default class XYSlider extends Component<Props, State> {
     };
   }
 
-  updateValue(e: InputEvent) {
-    const value = Number((e.target as HTMLInputElement).value);
+  updateValue(e: React.ChangeEvent<HTMLInputElement>) {
+    const value = Number(e.target.value);
     this.setState({ value });
     this.props.onChange(value);
   }
 
-  onMouseDown = (e: MouseEvent) => {
+  onMouseDown = (e: ReactMouseEvent<HTMLInputElement>) => {
     if (e.button === 2) {
       const value = this.props.resetTo ?? this.props.defaultValue ?? 0;
       console.log('value', value);
@@ -145,13 +51,21 @@ export default class XYSlider extends Component<Props, State> {
   };
 
   render() {
+    const classNames = [
+      styles.rContainer,
+      this.props.className ? styles[this.props.className.replace(/-/g, '')] : '',
+      this.props.vertical ? styles.vertical : '',
+    ]
+      .filter(Boolean)
+      .join(' ');
+
     return (
-      <RContainer className={[this.props.className, this.props.vertical && 'vertical'].join(' ')}>
+      <div className={classNames}>
         {(this.props.label || this.props.labels) && (
-          <RTitle>
+          <div className={styles.rTitle}>
             {this.props.label}
             {this.props.labels && `: ${this.props.labels[this.state.value]}`}
-          </RTitle>
+          </div>
         )}
         <input
           type="range"
@@ -163,13 +77,13 @@ export default class XYSlider extends Component<Props, State> {
           onMouseDown={this.onMouseDown.bind(this)}
         />
         {this.props.labelsAlt && (
-          <div className="markers">
+          <div className={styles.markers}>
             {this.props.labelsAlt.map((label, index) => (
               <span key={index}>{label}</span>
             ))}
           </div>
         )}
-      </RContainer>
+      </div>
     );
   }
 }

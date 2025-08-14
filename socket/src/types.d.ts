@@ -1,25 +1,46 @@
-declare namespace SocketServer {
-  interface Server {
+// Import resource-specific socket type definitions
+/// <reference path="./base.d.ts" />
+/// <reference path="./inventory.d.ts" />
+/// <reference path="./jobs.d.ts" />
+/// <reference path="./world.d.ts" />
+/// <reference path="./doors.d.ts" />
+/// <reference path="./stable.d.ts" />
+/// <reference path="./character.d.ts" />
+
+// Core socket communication namespaces
+// These contain events that don't belong to any specific resource
+declare namespace SocketIn {
+  interface FromGameServer {
     getAccount: (identifiers: Record<string, string>, callback: (whitelist: {}) => void) => void;
     generateJWT: (serverId: number, identifiers: Record<string, string>, callback: (jwt: string) => void) => void;
   }
-
-  interface ServerEvents {
-    'base.connected-players': (players: Base.PlayerInfo[]) => void;
-    'base.player-coords': (serverId: number, coords: Vector3Format) => void;
+  
+  interface FromClient {
+    chatSend: (chatMessage: UI.Chat.Send) => void;
   }
+}
 
-  interface Client {}
-
-  interface ClientEvents {
+declare namespace SocketOut {
+  interface ToGameServer {
+    // Core server events - resource-specific events are in their respective files
+    'player-management.kick': (serverId: number, reason: string) => void;
+  }
+  
+  interface ToClient {
     chatSend: (chatSend: UI.Chat.Send) => void;
+    chatMessage: (chatMessage: UI.Chat.Message) => void;
+    ['notification.notify']: (notification: UI.Notification.Notification) => void;
+    ['__client__']: (eventName: string, ...args: any[]) => void;
   }
+}
 
-  interface SocketEvents {
-    'player-management.kick': () => void;
+// Socket internal events
+declare namespace SocketInternal {
+  interface Events {
+    'player-management.kick': (serverId: number, reason: string) => void;
   }
-
-  interface SocketData {
+  
+  interface Data {
     user: {
       serverId: number;
       userId: number;
@@ -32,7 +53,6 @@ declare namespace SocketServer {
   }
 }
 
-declare interface UISocketEvents {}
 
 // type onClient = <T extends keyof NetEvents>(evtName: T, callback: (...args: Parameters<NetEvents[T]>) => void) => void;
 

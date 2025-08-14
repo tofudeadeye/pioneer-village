@@ -1,10 +1,52 @@
-import { exports } from '@lib/client';
+import { exports, PVCustomization } from '@lib/client';
 import { VegModifierFlag } from '@lib/flags/veg-modifiers';
 import { Vector3 } from '@lib/math/vector3';
+import { Delay } from '@lib/functions';
 
 import componentManager from './managers/component-manager';
 import gameManager from './managers/game-manager';
 import vegModifierManager from './managers/veg-modifier-manager';
+
+// Character-related functionality from character-select controller
+let currentCharacter: Game.Character | undefined;
+
+export const setCurrentCharacter = (character: Game.Character | undefined) => {
+  currentCharacter = character;
+};
+
+const getCurrentCharacter = () => currentCharacter;
+
+const setPedOutfit = async (ped: number, components: number[]) => {
+  let currentComponentCount = GetNumComponentsInPed(ped);
+  for (let n = currentComponentCount; n--; ) {
+    const component = GetShopItemComponentAtIndex(
+      ped,
+      n,
+      false,
+      new DataView(new ArrayBuffer(255)),
+      new DataView(new ArrayBuffer(255)),
+    );
+    if (!components.includes(component)) {
+      const componentCategory = GetShopItemComponentCategory(component, 0, true);
+      RemoveTagFromMetaPed(ped, componentCategory, 0); // _SET_PED_COMPONENT_DISABLED
+      await Delay(1);
+    }
+  }
+
+  // Set Components
+  for (const component of components) {
+    ApplyShopItemToPed(ped, component, false, true, false); // _SET_PED_COMPONENT_ENABLED
+    await Delay(1);
+  }
+  Citizen.invokeNative('0x704c908e9c405136', ped); // Fix clothing???
+  UpdatePedVariation(ped, false, true, true, true, false);
+  await Delay(1);
+};
+
+export const skinPed = async (ped: number, character: Game.Character) => {
+  await setPedOutfit(ped, character.components);
+  await PVCustomization.equipItems(ped, character.clothing);
+};
 
 const playerPed = (): number => gameManager.playerPed;
 const mountPed = (): number | null => gameManager.mountPed;
@@ -202,6 +244,10 @@ const getPlayerSteamId = (): Promise<Game.playerSteamId> => {
   return gameManager.getPlayerSteamId();
 };
 
+const characterId = (): Game.characterId => {
+  return gameManager.characterId;
+};
+
 exports<'game'>('playerPed', playerPed);
 exports<'game'>('mountPed', mountPed);
 exports<'game'>('playerCoords', playerCoords);
@@ -251,3 +297,8 @@ exports<'game'>('vegRemoveAllSpheres', vegRemoveAllSpheres);
 
 exports<'game'>('getPlayerServerId', getPlayerServerId);
 exports<'game'>('getPlayerSteamId', getPlayerSteamId);
+exports<'game'>('characterId', characterId);
+
+// Character-related exports
+exports<'game'>('skinPed', skinPed);
+exports<'game'>('getCurrentCharacter', getCurrentCharacter);

@@ -1,0 +1,139 @@
+@use '../../styles/theme.module.scss' as theme;
+@use '../../styles/mixins.module.scss' as mixins;
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes infection {
+  0% {
+    color: var(--theme-green);
+  }
+  50% {
+    color: var(--theme-yellow);
+  }
+  100% {
+    color: var(--theme-green);
+  }
+}
+
+@keyframes bleeding {
+  0% {
+    color: var(--theme-gray50);
+  }
+  50% {
+    color: var(--theme-red);
+  }
+  100% {
+    color: var(--theme-gray50);
+  }
+}
+
+@keyframes bloodOne {
+  0% {
+    top: 200%;
+  }
+  9.999% {
+    top: 200%;
+  }
+  10% {
+    top: 30%;
+  }
+  25% {
+    top: 200%;
+  }
+  100% {
+    top: 200%;
+  }
+}
+
+@keyframes bloodTwo {
+  0% {
+    top: 200%;
+  }
+  74.999% {
+    top: 200%;
+  }
+  75% {
+    top: 0%;
+  }
+  90% {
+    top: 200%;
+  }
+  100% {
+    top: 200%;
+  }
+}
+
+@keyframes bloodThree {
+  0% {
+    top: 200%;
+  }
+  39.999% {
+    top: 200%;
+  }
+  40% {
+    top: -20%;
+  }
+  75% {
+    top: 200%;
+  }
+  100% {
+    top: 200%;
+  }
+}
+
+.animInfection {
+  color: var(--theme-lime-green);
+
+  &.active {
+    animation: infection 5s linear infinite;
+  }
+}
+
+.animBleeding {
+  color: var(--theme-yellow);
+
+  &.active {
+    :global(.clawMarks) {
+      animation: bleeding 2.5s linear infinite;
+    }
+
+    :global(.blood) {
+      position: absolute;
+      color: var(--theme-red);
+
+      &:nth-child(2) {
+        animation: bloodOne 7.5s linear infinite;
+        left: calc(-1 * mixins.uiSize(10));
+        transform: scale(0.4);
+      }
+
+      &:nth-child(3) {
+        animation: bloodTwo 7.5s linear infinite;
+        left: mixins.uiSize(12);
+        transform: scale(0.35);
+      }
+
+      &:nth-child(4) {
+        animation: bloodThree 7.5s linear infinite;
+        left: calc(-1 * mixins.uiSize(5));
+        transform: scale(0.45);
+      }
+    }
+  }
+}

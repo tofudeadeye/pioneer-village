@@ -1,73 +1,59 @@
 // hand-paper
-import { PropsWithChildren } from 'react';
+import Bus from '@fa/5/light/bus-alt.svg';
+import Car from '@fa/5/light/car.svg';
+import CashRegister from '@fa/5/light/cash-register.svg';
+import Eye from '@fa/5/light/eye.svg';
+import Hand from '@fa/5/light/hand-paper.svg';
+import Person from '@fa/5/light/male.svg';
+import Pickup from '@fa/5/light/truck-pickup.svg';
+import Truck from '@fa/5/light/truck.svg';
+import { PropsWithChildren, useCallback, useEffect, useState } from 'react';
 
-import { emitClient, onClient } from '@lib/ui';
-
-import Bus from '@styled/fa5/light/bus-alt.svg';
-import Car from '@styled/fa5/light/car.svg';
-import CashRegister from '@styled/fa5/light/cash-register.svg';
-import Eye from '@styled/fa5/light/eye.svg';
-import Hand from '@styled/fa5/light/hand-paper.svg';
-import Person from '@styled/fa5/light/male.svg';
-import Pickup from '@styled/fa5/light/truck-pickup.svg';
-import Truck from '@styled/fa5/light/truck.svg';
-import theme from '@styled/theme';
+import { emitClient } from '@lib/ui';
 
 import { uiSize } from '@uiLib/helpers';
-import UIComponent from '@uiLib/ui-component';
 
-import Icon from './components/icon';
-import { Choices, Frame } from './styled';
+import targetStore from '../../stores/target-store';
+import { useEscapeKey } from '../../hooks/use-game-events';
+import { getIcon } from './components/icon-registry';
+import styles from './styles.module.scss';
 
-export default class Target extends UIComponent<UI.BaseProps, UI.TargetLayer.State, {}> {
-  closeOnEscape = true;
-  // resolver: ((value: { action: Target.Item; context: number|string }) => void) | null;
+export default function Target() {
+  const [state, setState] = useState(targetStore.getState());
 
-  state = {
-    show: false,
-    active: false,
-    context: 0,
-    type: -1,
-    flag: '',
-    actions: [],
+  useEffect(() => {
+    const unsubscribe = targetStore.subscribe(setState);
+    return unsubscribe;
+  }, []);
+
+  useEffect(() => {
+    // Store handles all events
+  }, [state.actions]);
+
+  // Handle escape key
+  const onEscape = useCallback(() => {
+    targetStore.reset();
+  }, []);
+
+  useEscapeKey(state.show, onEscape);
+
+  const performAction = (action: Target.Item) => {
+    console.log('performAction', action);
+    emitClient('target.action', state.context, action);
+    targetStore.reset();
+    // Note: closeUI functionality would need to be handled differently
   };
 
-  constructor() {
-    super();
-
-    onClient('target.state', (data) => {
-      if (!data.show && this.state.actions.length) {
-        return;
-      }
-      this.onEvent(data);
-    });
-  }
-
-  onEvent(targetEvent: UI.TargetLayer.Event) {
-    this.setState(targetEvent);
-  }
-
-  onEscape() {
-    this.setState({ show: false, active: false, type: -1, flag: '', context: 0, actions: [] });
-  }
-
-  performAction(action: Target.Item) {
-    console.log('performAction', action);
-    emitClient('target.action', this.state.context, action);
-    this.onEscape();
-    this.closeUI();
-  }
-
-  getIcon(): { style?: 'light' | 'regular' | 'solid' | 'duotone'; icon: string } {
-    // console.log(this.state.flag);
-    switch (this.state.flag) {
+  const getIconData = (): { style?: 'light' | 'regular' | 'solid' | 'duotone'; icon: string } => {
+    // console.log(state.flag);
+    switch (state.flag) {
       case 'isHorse':
         return { style: 'solid', icon: 'horse-saddle' };
       case 'isCashRegister':
         return { style: 'duotone', icon: 'cash-register' };
     }
 
-    switch (this.state.type) {
+    switch (state.type) {
       case 3:
         return { style: 'solid', icon: 'hand-paper' }; // Objects / Doors
       case 2:
@@ -79,29 +65,30 @@ export default class Target extends UIComponent<UI.BaseProps, UI.TargetLayer.Sta
       default:
         return { style: 'light', icon: 'eye' };
     }
-  }
+  };
 
-  render(props: PropsWithChildren<UI.BaseProps>, state: Readonly<UI.TargetLayer.State>) {
-    const InteractIcon = this.getIcon();
-    return (
-      <Frame>
-        {this.state.show && state.actions.length === 0 && (
-          <Icon
-            width={uiSize(28)}
-            height={uiSize(28)}
-            color={theme.colors[this.state.active ? 'white' : 'gray50'].hex}
-            style={InteractIcon.style}
-            name={InteractIcon.icon}
-          />
-        )}
-        <Choices>
-          {state.actions.map((action) => (
-            <li key={action.id} onClick={() => this.performAction(action)}>
-              <Icon name={action.icon} /> {action.label}
+  const interactIconData = getIconData();
+  const InteractIconComponent = getIcon(interactIconData.style || 'solid', interactIconData.icon);
+
+  return (
+    <div className={styles.frame}>
+      {state.show && state.actions.length === 0 && InteractIconComponent && (
+        <InteractIconComponent
+          width={uiSize(28)}
+          height={uiSize(28)}
+          color={state.active ? 'var(--theme-white)' : 'var(--theme-gray-medium)'}
+        />
+      )}
+      <ul className={styles.choices}>
+        {state.actions.map((action) => {
+          const ActionIconComponent = getIcon('solid', action.icon);
+          return (
+            <li key={action.id} onClick={() => performAction(action)}>
+              {ActionIconComponent && <ActionIconComponent />} {action.label}
             </li>
-          ))}
-        </Choices>
-      </Frame>
-    );
-  }
+          );
+        })}
+      </ul>
+    </div>
+  );
 }

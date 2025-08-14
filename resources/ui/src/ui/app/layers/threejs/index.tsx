@@ -1,137 +1,117 @@
-import { createRef } from 'react';
+import { createRef, useState, useEffect, useRef, useCallback } from 'react';
 import * as THREE from 'three';
 
-import { emitClient, onClient } from '@lib/ui';
+import { emitClient } from '@lib/ui';
+import threejsStore from '../../stores/threejs-store';
+import { useEscapeKey } from '../../hooks/use-game-events';
 
-import UIComponent from '@uiLib/ui-component';
+export default function ThreeJS() {
+  const [state, setState] = useState(threejsStore.getState());
+  const refWrapper = createRef<HTMLDivElement>();
+  const camera = useRef<THREE.PerspectiveCamera | null>(null);
+  const scene = useRef<THREE.Scene | null>(null);
+  const renderer = useRef<THREE.WebGLRenderer | null>(null);
+  const cube = useRef<THREE.Mesh | null>(null);
+  const sprite = useRef<THREE.Sprite | null>(null);
+  const lastTime = useRef<number | null>(null);
 
-export default class ThreeJS extends UIComponent<UI.BaseProps, UI.ThreeJS.State, {}> {
-  closeOnEscape = true;
-  refWrapper = createRef<HTMLDivElement>();
-  camera: THREE.PerspectiveCamera;
-  scene: THREE.Scene;
-  renderer: THREE.WebGLRenderer;
-  cube: THREE.Mesh;
-  sprite: THREE.Sprite;
-  lastTime: number;
+  useEffect(() => {
+    const unsubscribe = threejsStore.subscribe(setState);
+    return unsubscribe;
+  }, []);
 
-  constructor() {
-    super();
+  // Handle escape key
+  const onEscape = useCallback(() => {
+    threejsStore.close();
+  }, []);
 
-    this.state = {
-      show: false,
-      fov: 50,
-      cameraPosition: { x: 0, y: 0, z: 0 },
-      cameraRotation: { x: 0, y: 0, z: 0 },
-      targetPosition: { x: 0, y: 0, z: 0 },
-      targetRotation: { x: 0, y: 0, z: 0 },
-    };
+  useEscapeKey(state.show, onEscape);
 
-    onClient('threejs.state', this.onEvent.bind(this));
-  }
-
-  componentDidMount() {
-    this.camera = new THREE.PerspectiveCamera(this.state.fov, window.innerWidth / window.innerHeight, 0.1, 1000);
-    this.scene = new THREE.Scene();
+  useEffect(() => {
+    camera.current = new THREE.PerspectiveCamera(state.fov, window.innerWidth / window.innerHeight, 0.1, 1000);
+    scene.current = new THREE.Scene();
 
     const geometry = new THREE.BoxGeometry(0.25, 0.5, 0.25);
     const material = new THREE.MeshNormalMaterial();
-    this.cube = new THREE.Mesh(geometry, material);
-    this.scene.add(this.cube);
+    cube.current = new THREE.Mesh(geometry, material);
+    scene.current.add(cube.current);
 
     const map = new THREE.TextureLoader().load('https://p--v.b-cdn.net/smear-1.png');
     const material2 = new THREE.SpriteMaterial({ map });
-    this.sprite = new THREE.Sprite(material2);
-    this.sprite.scale.set(0.75, 0.18, 1);
-    this.scene.add(this.sprite);
+    sprite.current = new THREE.Sprite(material2);
+    sprite.current.scale.set(0.75, 0.18, 1);
+    scene.current.add(sprite.current);
 
-    this.renderer = new THREE.WebGLRenderer({ alpha: true });
-    this.renderer.setSize(window.innerWidth, window.innerHeight);
-    this.renderer.setAnimationLoop(this.handleAnimate.bind(this));
+    renderer.current = new THREE.WebGLRenderer({ alpha: true });
+    renderer.current.setSize(window.innerWidth, window.innerHeight);
+    renderer.current.setAnimationLoop(handleAnimate);
 
-    this.refWrapper?.current?.appendChild(this.renderer.domElement);
-  }
+    refWrapper?.current?.appendChild(renderer.current.domElement);
 
-  onEvent(threeEvent: UI.ThreeJS.Event) {
-    if (threeEvent.cameraPosition) {
-      threeEvent.cameraPosition = {
-        x: threeEvent.cameraPosition.x,
-        y: threeEvent.cameraPosition.z,
-        z: -threeEvent.cameraPosition.y,
-      };
+    return () => {
+      if (renderer.current && refWrapper?.current) {
+        refWrapper.current.removeChild(renderer.current.domElement);
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    // Store handles all events
+    // THREE.js state updates are handled by the store
+  }, []);
+
+  useEffect(() => {
+    if (!camera.current || !cube.current || !sprite.current) return;
+
+    camera.current.fov = state.fov;
+    camera.current.updateProjectionMatrix();
+
+    camera.current.position.set(state.cameraPosition.x, state.cameraPosition.y, state.cameraPosition.z);
+    camera.current.rotation.set(state.cameraRotation.x, state.cameraRotation.y, state.cameraRotation.z);
+
+    cube.current.position.set(state.targetPosition.x, state.targetPosition.y, state.targetPosition.z);
+    cube.current.rotation.set(state.targetRotation.x, state.targetRotation.y, state.targetRotation.z);
+    sprite.current.position.set(state.targetPosition.x, state.targetPosition.y, state.targetPosition.z);
+  }, [state]);
+
+  const handleAnimate = (time: number) => {
+    // const delta = time - lastTime.current;
+    // lastTime.current = time;
+
+    if (renderer.current && scene.current && camera.current) {
+      renderer.current.render(scene.current, camera.current);
     }
-    if (threeEvent.cameraRotation) {
-      threeEvent.cameraRotation = {
-        x: THREE.MathUtils.degToRad(threeEvent.cameraRotation.x),
-        y: THREE.MathUtils.degToRad(threeEvent.cameraRotation.z),
-        z: THREE.MathUtils.degToRad(-threeEvent.cameraRotation.y),
-      };
-    }
-    if (threeEvent.targetPosition) {
-      threeEvent.targetPosition = {
-        x: threeEvent.targetPosition.x,
-        y: threeEvent.targetPosition.z,
-        z: -threeEvent.targetPosition.y,
-      };
-    }
-    if (threeEvent.targetRotation) {
-      threeEvent.targetRotation = {
-        x: THREE.MathUtils.degToRad(threeEvent.targetRotation.x),
-        y: THREE.MathUtils.degToRad(threeEvent.targetRotation.z),
-        z: THREE.MathUtils.degToRad(-threeEvent.targetRotation.y),
-      };
-    }
-    this.setState(threeEvent);
+  };
 
-    this.camera.fov = this.state.fov;
-    this.camera.updateProjectionMatrix();
-
-    this.camera.position.set(this.state.cameraPosition.x, this.state.cameraPosition.y, this.state.cameraPosition.z);
-    this.camera.rotation.set(this.state.cameraRotation.x, this.state.cameraRotation.y, this.state.cameraRotation.z);
-
-    this.cube.position.set(this.state.targetPosition.x, this.state.targetPosition.y, this.state.targetPosition.z);
-    this.cube.rotation.set(this.state.targetRotation.x, this.state.targetRotation.y, this.state.targetRotation.z);
-    this.sprite.position.set(this.state.targetPosition.x, this.state.targetPosition.y, this.state.targetPosition.z);
-  }
-
-  handleAnimate(time: number) {
-    // const delta = time - this.lastTime;
-    // this.lastTime = time;
-
-    this.renderer.render(this.scene, this.camera);
-  }
-
-  render() {
-    return (
-      <>
-        <div
-          ref={this.refWrapper}
-          style={{
-            position: 'absolute',
-            inset: 0,
-            display: this.state.show ? 'block' : 'none',
-          }}
-        />
-        <div
-          style={{
-            position: 'absolute',
-            bottom: '20%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)',
-            color: 'white',
-            display: this.state.show ? 'block' : 'none',
-          }}
-        >
-          <h1>
-            {this.state.cameraPosition.x.toFixed(2)}, {-this.state.cameraPosition.z.toFixed(2)},{' '}
-            {this.state.cameraPosition.y.toFixed(2)}
-          </h1>
-          <h1>
-            {this.state.cameraRotation.x.toFixed(2)}, {-this.state.cameraRotation.z.toFixed(2)},{' '}
-            {this.state.cameraRotation.y.toFixed(2)}
-          </h1>
-        </div>
-      </>
-    );
-  }
+  return (
+    <>
+      <div
+        ref={refWrapper}
+        style={{
+          position: 'absolute',
+          inset: 0,
+          display: state.show ? 'block' : 'none',
+        }}
+      />
+      <div
+        style={{
+          position: 'absolute',
+          bottom: '20%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+          color: 'white',
+          display: state.show ? 'block' : 'none',
+        }}
+      >
+        <h1>
+          {state.cameraPosition.x.toFixed(2)}, {-state.cameraPosition.z.toFixed(2)},{' '}
+          {state.cameraPosition.y.toFixed(2)}
+        </h1>
+        <h1>
+          {state.cameraRotation.x.toFixed(2)}, {-state.cameraRotation.z.toFixed(2)},{' '}
+          {state.cameraRotation.y.toFixed(2)}
+        </h1>
+      </div>
+    </>
+  );
 }

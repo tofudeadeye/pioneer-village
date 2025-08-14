@@ -1,35 +1,11 @@
-declare interface UISocketEvents {
-  chatMessage: (chatMessage: UI.Chat.Message) => void;
-
-  ['inventory.load']: (data: UI.Inventory.LoadData) => void;
-  ['inventory.item-add']: (data: UI.Inventory.AddData) => void;
-  ['inventory.item-move']: (data: UI.Inventory.MoveData) => void;
-  ['inventory.item-wear']: (itemId: number, change: number) => void;
-  ['inventory.open-world']: (identifier: string) => void;
-  ['inventory.world-inventories']: (inventories: string[]) => void;
-  // inventoryRemove: (data: UI.Inventory.RemoveData) => void;
-  ['inventory.success']: (data: UI.Inventory.SuccessFailData) => void;
-  ['inventory.fail']: (data: UI.Inventory.SuccessFailData) => void;
-
-  ['world.register-object']: (name: string, id: number) => void;
-  ['world.unregister-object']: (name: string) => void;
-
-  ['doors.set-door-state']: (doorHash: number, state: number) => void;
-  ['character-client-update.getCharacter']: (character: string) => void;
-  ['character-client-update.updateAttribute']: (attr: keyof CharacterData, newVal: any) => void;
-
-  ['log.message']: (data: UI.Log.Data) => void;
-
-  ['jobs.clock-in-update']: Jobs.Events.ClockInUpdate;
-  ['jobs.clock-out-update']: Jobs.Events.ClockOutUpdate;
-  ['jobs.task-created']: Jobs.Events.TaskCreated;
-  ['jobs.payment-processed']: Jobs.Events.PaymentProcessed;
-}
-
 declare module '*.svg' {
-  const content: any;
+  import { ComponentType, SVGProps } from 'react';
+  const content: ComponentType<SVGProps<SVGSVGElement>>;
   export default content;
 }
+
+// UI Socket Events - events the UI layer sends to the socket server
+type UISocketEvents = SocketIn.FromClient & SocketOut.ToClient;
 
 declare namespace UI {
   interface BaseProps {}
@@ -39,11 +15,6 @@ declare namespace UI {
   }
 
   type BaseEvent = Partial<BaseState>;
-
-  interface BaseContext {
-    socket: any;
-    // socket: Socket<UISocketEvents, SocketServer.Client & SocketServer.ClientEvents>;
-  }
 
   interface Channel {
     label: string;
@@ -79,11 +50,6 @@ declare namespace UI.Splash {
 }
 
 declare namespace UI.App {
-  interface Props extends UI.BaseProps {
-    socket: any;
-    // socket: Socket<UISocketEvents, SocketServer.Client & SocketServer.ClientEvents>;
-  }
-
   interface State extends UI.BaseState {
     isFramed: boolean;
     bg: string;
@@ -95,6 +61,7 @@ declare namespace UI.Catcher {
   interface Props {
     layer: string;
     reloadWindow: boolean;
+    children?: React.ReactNode;
   }
 
   interface State {
@@ -106,23 +73,18 @@ declare namespace UI.Catcher {
 type CustomizationPalette = Customization.Palette;
 
 declare namespace UI.Customization {
-  interface Props extends UI.BaseProps {
-    socket: any;
-    // socket: Socket<UISocketEvents, SocketServer.Client & SocketServer.ClientEvents>;
-  }
-
   interface State extends UI.BaseState {
     state: globalThis.Customization.State;
-    components: Record<string, any>;
+    components: Record<string, number>;
     model: string | number;
     gender: 'male' | 'female';
-    currentComponents: Record<string, any>;
-    hiddenComponents: Record<string, any>;
+    currentComponents: Record<string, { style: number; option: number }>;
+    hiddenComponents: Record<string, { style: number; option: number }>;
     currentFaceOptions: Record<string, number>;
     currentFaceFeatures: Record<string, number>;
-    currentBodyOptions: Record<string, any>;
-    currentLayers: any[];
-    currentWhistle: Record<string, any>;
+    currentBodyOptions: Record<string, number>;
+    currentLayers: LayerData[];
+    currentWhistle: Record<string, number>;
     firstName: string;
     lastName: string;
     dateOfBirth: string;

@@ -2,12 +2,9 @@ interface ServerExports {
   base: Base.ServerExports;
 }
 
-declare namespace SocketServer {
-  interface SocketEvents {
-    'player-management.kick': (serverId: number, reason: string) => void;
-    'base.force-coords-update': (serverId: number) => void;
-  }
-}
+// Removed SocketServer.SocketEvents - events now defined in centralized socket types
+// 'player-management.kick' is defined in SocketInternal.Events
+// 'base.force-coords-update' is defined in SocketOut.ToGameServer
 
 declare namespace Base {
   type ServerExports = {
@@ -39,4 +36,46 @@ declare namespace Base {
     serverId: number;
     coords?: Vector3Format;
   };
+}
+
+// Server perspective - RPC calls to various destinations
+declare namespace ServerRPC {
+  interface Socket {
+    ['base.get-player-info']: (serverId: number) => Base.PlayerInfo;
+  }
+  interface Client {
+    ['base.request-network-control']: (serverId: number, entity: number) => boolean;
+  }
+}
+
+// Server perspective - events received from various sources
+declare namespace ServerIn {
+  interface FromSocket {
+    ['player-management.kick']: SocketInternal.Events['player-management.kick'];
+    ['base.force-coords-update']: SocketOut.ToGameServer['base.force-coords-update'];
+  }
+  interface FromClient {
+    myEvent: (blah: string) => void;
+    ['base.entity-deleted']: (entity: number) => void;
+    ['base.entities-deleted']: (entities: number[]) => void;
+  }
+}
+
+// Server perspective - events sent to various destinations
+declare namespace ServerOut {
+  interface ToSocket {
+    ['base.player-update']: (playerInfo: Base.PlayerInfo) => void;
+    ['character-update.last-position']: (serverId: number, coords: Vector3Format) => void;
+    ['character-event.disconnected']: (serverId: number) => void;
+  }
+  interface ToClient {
+    ['base.force-coords-update']: () => void;
+  }
+}
+
+// Keep backward compatibility during migration
+declare namespace SocketServer {
+  interface Server extends ServerRPC.Socket {}
+  interface ServerEvents extends ServerOut.ToSocket {}
+  interface SocketEvents extends ServerIn.FromSocket {}
 }

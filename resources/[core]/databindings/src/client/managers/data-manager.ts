@@ -1,7 +1,8 @@
 import { PVGame } from '@lib/client';
-import { bindingTypes, dataContainers, dataTypes, listBindingTypes, rootBindingTypes, rootDataTypes } from '../data';
-import { Delay } from '@lib/functions';
 import { Log } from '@lib/client/comms/ui';
+import { Delay } from '@lib/functions';
+
+import { bindingTypes, dataContainers, dataTypes, listBindingTypes, rootBindingTypes, rootDataTypes } from '../data';
 
 class DataManager {
   protected static instance: DataManager;
@@ -293,6 +294,7 @@ class DataManager {
 
     // DatabindingRemoveDataEntry(DatabindingAddUiItemList(container, key));
     binding.container = DatabindingAddUiItemList(container, key);
+    // @ts-ignore
     DatabindingClearBindingArray(binding.container);
 
     for (const [key, _type] of Object.entries(types)) {

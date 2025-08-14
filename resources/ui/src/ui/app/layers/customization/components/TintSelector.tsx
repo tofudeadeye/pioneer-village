@@ -1,111 +1,11 @@
-import styled from 'styled-components';
-import { emitClient } from '@lib/ui';
-import { uiSize } from '@uiLib/helpers';
-import theme from '@styled/theme';
 import { ColorPaletteNames, ColorPalettes } from '@lib/shared/color-palettes';
+import { emitClient } from '@lib/ui';
 
-const TSContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  padding: ${uiSize(64)} 0;
-  gap: ${uiSize(16)};
-  font-family: 'Open Sans', sans-serif;
-  font-size: ${uiSize(11)};
-`;
+import { uiSize } from '@uiLib/helpers';
 
-const TSSelect = styled.select`
-  font-size: 2rem;
-`;
-
-const TSPalettes = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  gap: ${uiSize(6)};
-  text-transform: capitalize;
-`;
-
-const TSPalette = styled.label`
-  position: relative;
-  background-color: #444;
-  text-align: center;
-  display: inline-block;
-  padding: ${uiSize(4)} ${uiSize(6)};
-  border-radius: ${uiSize(4)};
-
-  &:has(input:checked) {
-    background-color: ${theme.colors.blue.hex};
-  }
-
-  input {
-    display: none;
-  }
-`;
-
-const TSOptions = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  gap: ${uiSize(16)} ${uiSize(4)};
-  width: calc(100% + ${uiSize(9)});
-  height: 100%;
-  overflow: auto;
-  margin-left: ${uiSize(-4)};
-
-  &::-webkit-scrollbar {
-    width: ${uiSize(2)};
-  }
-
-  &::-webkit-scrollbar-track {
-    background: transparent;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background: rgba(${theme.colors.white.rgb}, 0.5);
-  }
-
-  &::-webkit-scrollbar-thumb:hover {
-    background: rgba(${theme.colors.white.rgb}, 0.75);
-  }
-`;
-
-const TSOption = styled.div`
-  width: ${uiSize(48)};
-  height: ${uiSize(57)};
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  position: relative;
-  gap: ${uiSize(3)};
-`;
+import styles from './styles.module.scss';
 
 const tsThumbScale = 5.3;
-const TSThumb = styled.div`
-  image-rendering: pixelated;
-  width: ${uiSize(8 * tsThumbScale)};
-  height: ${uiSize(8 * tsThumbScale)};
-  background-size: ${uiSize(64 * tsThumbScale)};
-  transform: translateX(-50%);
-  transform-origin: center top;
-  position: absolute;
-  top: 0;
-  left: 50%;
-`;
-
-const TSRadio = styled.label`
-  position: relative;
-  background-color: #444;
-  width: 25%;
-  text-align: center;
-
-  &:has(input:checked) {
-    background-color: ${theme.colors.blue.hex};
-  }
-
-  input {
-    display: none;
-  }
-`;
 
 type Props = Customization.Palette & {
   label?: string;
@@ -118,16 +18,16 @@ export default function TintSelector({ label, identifier, palette, tint0, tint1,
     palette = palette.GetHashKey();
   }
 
-  const handleTint0Change = (target: HTMLInputElement) => {
-    onChange(identifier, { palette, tint0: Number(target.value), tint1, tint2 });
+  const handleTint0Change = (e: React.ChangeEvent<HTMLInputElement>) => {
+    onChange(identifier, { palette, tint0: Number(e.target.value), tint1, tint2 });
   };
 
-  const handleTint1Change = (target: HTMLInputElement) => {
-    onChange(identifier, { palette, tint0, tint1: Number(target.value), tint2 });
+  const handleTint1Change = (e: React.ChangeEvent<HTMLInputElement>) => {
+    onChange(identifier, { palette, tint0, tint1: Number(e.target.value), tint2 });
   };
 
-  const handleTint2Change = (target: HTMLInputElement) => {
-    onChange(identifier, { palette, tint0, tint1, tint2: Number(target.value) });
+  const handleTint2Change = (e: React.ChangeEvent<HTMLInputElement>) => {
+    onChange(identifier, { palette, tint0, tint1, tint2: Number(e.target.value) });
   };
 
   const removePalette = () => {
@@ -143,21 +43,21 @@ export default function TintSelector({ label, identifier, palette, tint0, tint1,
   };
 
   return (
-    <TSContainer>
+    <div className={styles.tsContainer}>
       {label && <h1>{label}</h1>}
 
       <h2>Presets</h2>
       {/* TODO */}
 
       <h2>Palettes</h2>
-      <TSPalettes>
-        <TSPalette>
+      <div className={styles.tsPalettes}>
+        <label className={styles.tsPalette}>
           <input type="radio" name="palette" value={0} checked={palette === -1} onClick={() => removePalette()} />
           None
-        </TSPalette>
+        </label>
         {Object.keys(ColorPalettes).map((p: Customization.PaletteNames) => {
           return (
-            <TSPalette>
+            <label className={styles.tsPalette}>
               <input
                 type="radio"
                 name={`palette-${identifier}`}
@@ -166,18 +66,22 @@ export default function TintSelector({ label, identifier, palette, tint0, tint1,
                 onClick={() => setPalette(p)}
               />
               {p.replace('metaped_tint_', '').split('_').join(' ')}
-            </TSPalette>
+            </label>
           );
         })}
-      </TSPalettes>
+      </div>
 
       <h2>Dyes</h2>
-      <TSOptions>
+      <div className={styles.tsOptions}>
         {palette !== -1 &&
           new Array(ColorPalettes[ColorPaletteNames[palette >>> 0]]?.count || 0).fill(0).map((_, i) => (
-            <TSOption key={i}>
-              <TSThumb
+            <div key={i} className={styles.tsOption}>
+              <div
+                className={styles.tsThumb}
                 style={{
+                  width: uiSize(8 * tsThumbScale),
+                  height: uiSize(8 * tsThumbScale),
+                  backgroundSize: uiSize(64 * tsThumbScale),
                   backgroundImage: `url(https://p--v.b-cdn.net/customization/palettes/${
                     ColorPaletteNames[palette >>> 0]
                   }_thumbs.png)`,
@@ -188,40 +92,40 @@ export default function TintSelector({ label, identifier, palette, tint0, tint1,
                 onClick={() => setTints(i)}
               >
                 {i}
-              </TSThumb>
-              <TSRadio>
+              </div>
+              <label className={styles.tsRadio}>
                 <input
                   type="radio"
                   name={`primary-${identifier}`}
                   value={i}
                   checked={tint0 === i}
-                  onChange={(e) => handleTint0Change(e.target as HTMLInputElement)}
+                  onChange={handleTint0Change}
                 />
                 1
-              </TSRadio>
-              <TSRadio>
+              </label>
+              <label className={styles.tsRadio}>
                 <input
                   type="radio"
                   name={`secondary-${identifier}`}
                   value={i}
                   checked={tint1 === i}
-                  onChange={(e) => handleTint1Change(e.target as HTMLInputElement)}
+                  onChange={handleTint1Change}
                 />
                 2
-              </TSRadio>
-              <TSRadio>
+              </label>
+              <label className={styles.tsRadio}>
                 <input
                   type="radio"
                   name={`tertiary-${identifier}`}
                   value={i}
                   checked={tint2 === i}
-                  onChange={(e) => handleTint2Change(e.target as HTMLInputElement)}
+                  onChange={handleTint2Change}
                 />
                 3
-              </TSRadio>
-            </TSOption>
+              </label>
+            </div>
           ))}
-      </TSOptions>
-    </TSContainer>
+      </div>
+    </div>
   );
 }

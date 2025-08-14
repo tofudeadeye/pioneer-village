@@ -1,0 +1,53 @@
+@use '../../styles/theme.module.scss' as theme;
+@use '../../styles/mixins.module.scss' as *;
+
+.normalSelect {
+  // Empty for now, can be styled later if needed
+}
+
+.chatSelect {
+  color: currentColor;
+  position: relative;
+  user-select: none;
+
+  ul {
+    position: absolute;
+    top: calc(100% + #{uiSize(8)});
+    left: calc(0px - #{uiSize(6)});
+    margin: 0;
+    padding: 0;
+    border-radius: var(--theme-border-radius-small);
+    background-color: var(--theme-black);
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
+    transition: var(--theme-transition-fast);
+    list-style: none;
+
+    &.active {
+      opacity: 1;
+      pointer-events: all;
+      visibility: visible;
+    }
+  }
+
+  li {
+    display: flex;
+    padding: uiSize(4) uiSize(8);
+    border-radius: var(--theme-border-radius-small);
+    color: var(--theme-white);
+
+    &:hover {
+      background-color: var(--theme-lightBlue);
+      color: var(--theme-black);
+    }
+  }
+}
+
+.selectLabel {
+  display: inline-block;
+  font-size: uiSize(11);
+  font-weight: 600;
+  margin-top: uiSize(2.5);
+  margin-right: uiSize(4);
+}

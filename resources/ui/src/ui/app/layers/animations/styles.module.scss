@@ -1,0 +1,20 @@
+@use '../../styles/mixins.module.scss' as mixins;
+
+.animationsContainer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: mixins.uiSize(960);
+  background-color: rgba(0, 0, 0, 0.75);
+  color: var(--theme-white);
+  padding: mixins.uiSize(16) mixins.uiSize(24);
+  font-size: mixins.uiSize(12);
+
+  label {
+    color: var(--theme-white);
+  }
+
+  [type='checkbox'] {
+    margin-right: mixins.uiSize(8);
+  }
+}

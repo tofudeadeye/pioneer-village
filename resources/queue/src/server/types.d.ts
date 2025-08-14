@@ -13,6 +13,13 @@ interface LineData {
  */
 type CardCallback = (data: {}, rawData: string) => void;
 
+// Server perspective - RPC calls from client
+declare namespace ServerRPC {
+  interface Client {
+    getSocketDetails: (useCache?: boolean) => SocketDetails;
+  }
+}
+
 interface Deferrals {
   /**
    * will initialize deferrals for the current resource. It is required to wait for at least a tick after calling defer before calling update, presentCard or done.

@@ -1,46 +1,13 @@
+import TrashAlt from '@fa/5/solid/trash-alt.svg';
 import { Component } from 'react';
-import styled from 'styled-components';
 
 import { emitClient } from '@lib/ui';
-
-import TrashAlt from '@styled/fa5/solid/trash-alt.svg';
-import theme from '@styled/theme';
 
 import { uiSize } from '@uiLib/helpers';
 
 import RangeSlider from '../components/RangeSlider';
 import TintSelector from './TintSelector';
-
-const OSContainer = styled.div`
-  border-top: 2px solid ${theme.colors.white.hex};
-  padding-top: 20px;
-  padding-bottom: 20px;
-  font-size: ${uiSize(18)};
-  user-select: none;
-`;
-
-const OSLayer = styled.div`
-  border-bottom: 2px dashed ${theme.colors.white.hex};
-  padding-block: ${uiSize(16)};
-  display: flex;
-  flex-direction: column;
-  gap: ${uiSize(8)};
-`;
-
-const OSRow = styled.div`
-  display: flex;
-  align-items: center;
-  gap: ${uiSize(16)};
-  justify-content: space-between;
-
-  svg {
-    margin: ${uiSize(4)};
-  }
-`;
-
-const OSAddLayer = styled.button`
-  margin-top: ${uiSize(16)};
-`;
+import styles from './styles.module.scss';
 
 interface Props {
   onChange?: (layers: UI.Customization.LayerData[]) => void;
@@ -162,27 +129,27 @@ export default class OverlaySelector extends Component<Props, State> {
 
   render() {
     return (
-      <OSContainer>
+      <div className={styles.osContainer}>
         {this.state.layers.map((layer, index) => (
-          <OSLayer key={layer.uid}>
-            <OSRow>
+          <div key={layer.uid} className={styles.osLayer}>
+            <div className={styles.osRow}>
               <div>
                 Layer Id: {index} | {layer.uid}
               </div>
               <TrashAlt
                 width={uiSize(16)}
+                style={{ cursor: 'pointer' }}
                 onClick={() => {
                   this.deleteLayer(layer.uid);
                 }}
               />
-            </OSRow>
+            </div>
 
-            <OSRow>
+            <div className={styles.osRow}>
               <div>Texture:</div>
               <select
                 onChange={(e) => {
-                  const value = (e.target as HTMLSelectElement).value;
-                  this.setLayerId(layer.uid, value);
+                  this.setLayerId(layer.uid, e.target.value);
                 }}
                 data-layer={index}
               >
@@ -197,7 +164,7 @@ export default class OverlaySelector extends Component<Props, State> {
                   </optgroup>
                 ))}
               </select>
-            </OSRow>
+            </div>
             <RangeSlider
               label="Opacity"
               min={0}
@@ -221,10 +188,12 @@ export default class OverlaySelector extends Component<Props, State> {
                 tint2={layer.palette?.tint2 || 0}
               />
             )}
-          </OSLayer>
+          </div>
         ))}
-        <OSAddLayer onClick={this.addLayer.bind(this)}>Add Layer</OSAddLayer>
-      </OSContainer>
+        <button className={styles.osAddLayer} onClick={this.addLayer.bind(this)}>
+          Add Layer
+        </button>
+      </div>
     );
   }
 }

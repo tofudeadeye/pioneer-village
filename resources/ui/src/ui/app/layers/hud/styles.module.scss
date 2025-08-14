@@ -1,0 +1,64 @@
+@use '../../styles/theme.module.scss' as theme;
+@use '../../styles/mixins.module.scss' as mixins;
+
+$bottom: mixins.uiSize(20);
+$leftRight: mixins.uiSize(40);
+$height: mixins.uiSize(60);
+$spacing: mixins.uiSize(16);
+
+.crosshair {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: mixins.uiSize(6);
+  height: mixins.uiSize(6);
+  border-radius: 50%;
+  background-color: var(--theme-text-tertiary);
+  border: mixins.uiSize(1) solid var(--theme-border-secondary);
+  opacity: 0.75;
+  user-select: none;
+}
+
+.hudBottomLeft {
+  position: absolute;
+  bottom: $bottom;
+  left: $leftRight;
+  display: flex;
+  align-items: center;
+  height: $height;
+  user-select: none;
+  
+  > *:not(:last-child) {
+    &.active {
+      margin-right: $spacing;
+    }
+  }
+}
+
+.hudBottomCenter {
+  position: absolute;
+  bottom: $bottom;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  height: $height;
+  user-select: none;
+  margin-left: $spacing;
+  margin-right: $spacing;
+}
+
+.hudBottomRight {
+  position: absolute;
+  bottom: $bottom;
+  right: $leftRight;
+  display: flex;
+  align-items: center;
+  height: $height;
+  user-select: none;
+  
+  > *:not(:first-child) {
+    margin-left: $spacing;
+  }
+}

@@ -457,7 +457,14 @@ class CreationManager {
     // FreezeEntityPosition(this.chosen, true);
     await PVCamera.interpolate('CreationTransition', 1500);
     await PVCamera.interpolate('CreationDressing', 750);
-    emitUI('customization.state', { state: 'info', components: this.chosenComponents });
+    // Filter out undefined values to match Record<string, number> type
+    const definedComponents = Object.entries(this.chosenComponents).reduce((acc, [key, value]) => {
+      if (value !== undefined) {
+        acc[key] = value;
+      }
+      return acc;
+    }, {} as Record<string, number>);
+    emitUI('customization.state', { state: 'info', components: definedComponents });
     this.currentState = CreationState.NameSelection;
   }
 
@@ -598,7 +605,14 @@ class CreationManager {
   }
 
   setUIComponents() {
-    emitUI('customization.state', { components: this.chosenComponents });
+    // Filter out undefined values to match Record<string, number> type
+    const definedComponents = Object.entries(this.chosenComponents).reduce((acc, [key, value]) => {
+      if (value !== undefined) {
+        acc[key] = value;
+      }
+      return acc;
+    }, {} as Record<string, number>);
+    emitUI('customization.state', { components: definedComponents });
   }
 
   async setSkinTone(skinTone: number, updatePed = true) {

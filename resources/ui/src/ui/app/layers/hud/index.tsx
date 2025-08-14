@@ -1,212 +1,185 @@
-import { Crosshair, HudBottomLeft, HudBottomCenter, HudBottomRight } from './styles';
-import UIComponent from '@uiLib/ui-component';
-import { onClient } from '@lib/ui';
+import ClawMarks from '@fa/5/duotone/claw-marks.svg';
+import VoiceLoud from '@fa/5/modified/mouth-loud.svg';
+import VoiceNormal from '@fa/5/modified/mouth-normal.svg';
+import VoiceQuiet from '@fa/5/modified/mouth-quiet.svg';
+// import Horse from '@fa/5/solid/horse.svg';
+// import HorseSaddle from '@fa/5/solid/horse-saddle.svg';
+import Bacterium from '@fa/5/solid/bacterium.svg';
+import Bolt from '@fa/5/solid/bolt.svg';
+import BoneBreak from '@fa/5/solid/bone-break.svg';
+import Fire from '@fa/5/solid/fire-alt.svg';
+// import Microphone from '@fa/5/solid/microphone-alt.svg';
+import Heart from '@fa/5/solid/heart.svg';
+import Running from '@fa/5/solid/running.svg';
+import Snowflake from '@fa/5/solid/snowflake.svg';
+import Speed from '@fa/5/solid/tachometer-alt-average.svg';
+import SpeedFast from '@fa/5/solid/tachometer-alt-fast.svg';
+import SpeedFastest from '@fa/5/solid/tachometer-alt-fastest.svg';
+import SpeedSlow from '@fa/5/solid/tachometer-alt-slow.svg';
+import SpeedSlowest from '@fa/5/solid/tachometer-alt-slowest.svg';
+import Tint from '@fa/5/solid/tint.svg';
+import Walking from '@fa/5/solid/walking.svg';
+import { useEffect, useState } from 'react';
 
-import VoiceQuiet from '@styled/fa5/modified/mouth-quiet.svg';
-import VoiceNormal from '@styled/fa5/modified/mouth-normal.svg';
-import VoiceLoud from '@styled/fa5/modified/mouth-loud.svg';
-// import Microphone from '@styled/fa5/solid/microphone-alt.svg';
-import Heart from '@styled/fa5/solid/heart.svg';
-import Fire from '@styled/fa5/solid/fire-alt.svg';
-import Snowflake from '@styled/fa5/solid/snowflake.svg';
-import Bolt from '@styled/fa5/solid/bolt.svg';
-import Walking from '@styled/fa5/solid/walking.svg';
-import Running from '@styled/fa5/solid/running.svg';
-// import Horse from '@styled/fa5/solid/horse.svg';
-// import HorseSaddle from '@styled/fa5/solid/horse-saddle.svg';
-import Bacterium from '@styled/fa5/solid/bacterium.svg';
-import ClawMarks from '@styled/fa5/duotone/claw-marks.svg';
-import Tint from '@styled/fa5/solid/tint.svg';
-import BoneBreak from '@styled/fa5/solid/bone-break.svg';
-import SpeedFastest from '@styled/fa5/solid/tachometer-alt-fastest.svg';
-import SpeedFast from '@styled/fa5/solid/tachometer-alt-fast.svg';
-import Speed from '@styled/fa5/solid/tachometer-alt-average.svg';
-import SpeedSlow from '@styled/fa5/solid/tachometer-alt-slow.svg';
-import SpeedSlowest from '@styled/fa5/solid/tachometer-alt-slowest.svg';
+import { uiSize } from '@uiLib/helpers';
 
+import hudStore from '../../stores/hud-store';
 import FoodAndDrink from './icons/FoodAndDrink';
 import ProgressIcon from './icons/ProgressIcon';
-import { uiSize } from '@uiLib/helpers';
-import { AnimInfection, AnimBleeding } from '@styled/animations';
+import styles from './styles.module.scss';
+import animStyles from './animations.module.scss';
 
-export default class HUD extends UIComponent<UI.BaseProps, UI.HUD.State, {}> {
-  constructor() {
-    super();
+export default function HUD() {
+  const [state, setState] = useState(hudStore.getState());
 
-    this.state = {
-      show: true,
-      crosshair: false,
-      health: 100,
-      isHot: false,
-      isCold: false,
-      bleeding: false,
-      brokenBone: false,
-      infection: 0,
-      food: 100,
-      drink: 100,
-      stamina: 100,
-      moveSpeed: 100,
-      horseSpeed: 0,
-      speakVolume: 2,
-      isSpeaking: false,
-    };
+  useEffect(() => {
+    const unsubscribe = hudStore.subscribe(setState);
+    return unsubscribe;
+  }, []);
 
-    onClient('hud.state', this.onEvent.bind(this));
-  }
+  // Store handles all events
 
-  onEvent(hudEvent: UI.HUD.Event) {
-    this.setState(hudEvent);
-  }
-
-  render() {
-    return (
-      this.state.show && (
-        <>
-          {this.state.crosshair && <Crosshair />}
-          <HudBottomLeft>
-            <ProgressIcon
-              width={36}
-              height={36}
-              color={this.state.isSpeaking ? 'red' : 'white'}
-              fill={100}
-              style={{ transform: `translateY(-${uiSize(4)})` }}
-              className={this.state.isSpeaking || this.state.speakVolume !== 2 ? 'active' : undefined}
-            >
-              {this.state.speakVolume === 1 ? (
-                <VoiceQuiet />
-              ) : this.state.speakVolume === 2 ? (
-                <VoiceNormal />
-              ) : this.state.speakVolume === 3 ? (
-                <VoiceLoud />
-              ) : (
-                <VoiceNormal />
-              )}
-            </ProgressIcon>
-            {/*<ProgressIcon*/}
-            {/*  width={34}*/}
-            {/*  height={34}*/}
-            {/*  color="white"*/}
-            {/*  fill={this.state.speakVolume * 33.333}*/}
-            {/*  style={{ transform: `translateY(-${uiSize(2)})` }}*/}
-            {/*  className={this.state.speakVolume !== 2 ? 'active' : undefined}*/}
-            {/*>*/}
-            {/*  <Microphone />*/}
-            {/*</ProgressIcon>*/}
-            <ProgressIcon
-              width={40}
-              height={40}
-              color={this.state.health < 25 ? 'red' : 'green'}
-              fill={this.state.health}
-              style={{ transform: `translateY(-${uiSize(3)})` }}
-              className={this.state.health < 100 ? 'active' : undefined}
-            >
-              <Heart />
-            </ProgressIcon>
-            <ProgressIcon
-              width={38}
-              height={38}
-              color="red"
-              fill={100}
-              className={this.state.isHot ? 'active' : undefined}
-            >
-              <Fire />
-            </ProgressIcon>
-            <ProgressIcon
-              width={38}
-              height={38}
-              color="lightBlue"
-              fill={100}
-              className={this.state.isCold ? 'active' : undefined}
-            >
-              <Snowflake />
-            </ProgressIcon>
-            <AnimBleeding className={this.state.bleeding ? 'active' : undefined}>
-              <ProgressIcon
-                width={38}
-                height={38}
-                color="white"
-                fill={100}
-                className={this.state.bleeding ? 'active' : undefined}
-              >
-                <ClawMarks className="clawMarks" />
-                {this.state.bleeding && (
-                  <>
-                    <Tint className="blood" />
-                    <Tint className="blood" />
-                    <Tint className="blood" />
-                  </>
-                )}
-              </ProgressIcon>
-            </AnimBleeding>
+  return (
+    state.show && (
+      <>
+        {state.crosshair && <div className={styles.crosshair} />}
+        <div className={styles.hudBottomLeft}>
+          <ProgressIcon
+            width={36}
+            height={36}
+            color={state.isSpeaking ? 'red' : 'white'}
+            fill={100}
+            style={{ transform: `translateY(-${uiSize(4)})` }}
+            className={state.isSpeaking || state.speakVolume !== 2 ? 'active' : undefined}
+          >
+            {state.speakVolume === 1 ? (
+              <VoiceQuiet />
+            ) : state.speakVolume === 2 ? (
+              <VoiceNormal />
+            ) : state.speakVolume === 3 ? (
+              <VoiceLoud />
+            ) : (
+              <VoiceNormal />
+            )}
+          </ProgressIcon>
+          {/*<ProgressIcon*/}
+          {/*  width={34}*/}
+          {/*  height={34}*/}
+          {/*  color="white"*/}
+          {/*  fill={state.speakVolume * 33.333}*/}
+          {/*  style={{ transform: `translateY(-${uiSize(2)})` }}*/}
+          {/*  className={state.speakVolume !== 2 ? 'active' : undefined}*/}
+          {/*>*/}
+          {/*  <Microphone />*/}
+          {/*</ProgressIcon>*/}
+          <ProgressIcon
+            width={40}
+            height={40}
+            color={state.health < 25 ? 'red' : 'green'}
+            fill={state.health}
+            style={{ transform: `translateY(-${uiSize(3)})` }}
+            className={state.health < 100 ? 'active' : undefined}
+          >
+            <Heart />
+          </ProgressIcon>
+          <ProgressIcon width={38} height={38} color="red" fill={100} className={state.isHot ? 'active' : undefined}>
+            <Fire />
+          </ProgressIcon>
+          <ProgressIcon
+            width={38}
+            height={38}
+            color="lightBlue"
+            fill={100}
+            className={state.isCold ? 'active' : undefined}
+          >
+            <Snowflake />
+          </ProgressIcon>
+          <div className={`${animStyles.animBleeding} ${state.bleeding ? 'active' : ''}`}>
             <ProgressIcon
               width={38}
               height={38}
               color="white"
               fill={100}
-              className={this.state.brokenBone ? 'active' : undefined}
+              className={state.bleeding ? 'active' : undefined}
             >
-              <BoneBreak />
-            </ProgressIcon>
-            <AnimInfection className={this.state.infection > 50 ? 'active' : undefined}>
-              <ProgressIcon
-                width={32}
-                height={32}
-                fill={this.state.infection}
-                className={this.state.infection > 0 ? 'active' : undefined}
-              >
-                <Bacterium />
-              </ProgressIcon>
-            </AnimInfection>
-            <FoodAndDrink
-              width={48}
-              height={48}
-              food={this.state.food}
-              drink={this.state.drink}
-              className={this.state.food < 85 || this.state.drink < 85 ? 'active' : undefined}
-            />
-            <ProgressIcon
-              width={38}
-              height={38}
-              color={this.state.stamina < 25 ? 'red' : 'white'}
-              fill={this.state.stamina}
-              className={this.state.stamina < 90 ? 'active' : undefined}
-            >
-              <Bolt />
-            </ProgressIcon>
-            <ProgressIcon
-              width={38}
-              height={38}
-              color="white"
-              fill={this.state.moveSpeed}
-              className={this.state.moveSpeed < 100 ? 'active' : undefined}
-            >
-              {this.state.moveSpeed <= 50 ? <Walking /> : <Running />}
-            </ProgressIcon>
-          </HudBottomLeft>
-          <HudBottomCenter>
-            <ProgressIcon
-              width={38}
-              height={38}
-              color="gray50"
-              fill={100}
-              className={this.state.horseSpeed > 0 ? 'active' : undefined}
-            >
-              {this.state.horseSpeed > 80 ? (
-                <SpeedFastest />
-              ) : this.state.horseSpeed > 60 ? (
-                <SpeedFast />
-              ) : this.state.horseSpeed > 40 ? (
-                <Speed />
-              ) : this.state.horseSpeed > 20 ? (
-                <SpeedSlow />
-              ) : (
-                <SpeedSlowest />
+              <ClawMarks className="clawMarks" />
+              {state.bleeding && (
+                <>
+                  <Tint className="blood" />
+                  <Tint className="blood" />
+                  <Tint className="blood" />
+                </>
               )}
             </ProgressIcon>
-          </HudBottomCenter>
-          {/*<HudBottomRight></HudBottomRight>*/}
-        </>
-      )
-    );
-  }
+          </div>
+          <ProgressIcon
+            width={38}
+            height={38}
+            color="white"
+            fill={100}
+            className={state.brokenBone ? 'active' : undefined}
+          >
+            <BoneBreak />
+          </ProgressIcon>
+          <div className={`${animStyles.animInfection} ${state.infection > 50 ? 'active' : ''}`}>
+            <ProgressIcon
+              width={32}
+              height={32}
+              fill={state.infection}
+              className={state.infection > 0 ? 'active' : undefined}
+            >
+              <Bacterium />
+            </ProgressIcon>
+          </div>
+          <FoodAndDrink
+            width={48}
+            height={48}
+            food={state.food}
+            drink={state.drink}
+            className={state.food < 85 || state.drink < 85 ? 'active' : undefined}
+          />
+          <ProgressIcon
+            width={38}
+            height={38}
+            color={state.stamina < 25 ? 'red' : 'white'}
+            fill={state.stamina}
+            className={state.stamina < 90 ? 'active' : undefined}
+          >
+            <Bolt />
+          </ProgressIcon>
+          <ProgressIcon
+            width={38}
+            height={38}
+            color="white"
+            fill={state.moveSpeed}
+            className={state.moveSpeed < 100 ? 'active' : undefined}
+          >
+            {state.moveSpeed <= 50 ? <Walking /> : <Running />}
+          </ProgressIcon>
+        </div>
+        <div className={styles.hudBottomCenter}>
+          <ProgressIcon
+            width={38}
+            height={38}
+            color="gray50"
+            fill={100}
+            className={state.horseSpeed > 0 ? 'active' : undefined}
+          >
+            {state.horseSpeed > 80 ? (
+              <SpeedFastest />
+            ) : state.horseSpeed > 60 ? (
+              <SpeedFast />
+            ) : state.horseSpeed > 40 ? (
+              <Speed />
+            ) : state.horseSpeed > 20 ? (
+              <SpeedSlow />
+            ) : (
+              <SpeedSlowest />
+            )}
+          </ProgressIcon>
+        </div>
+        {/*<div className={styles.hudBottomRight}></div>*/}
+      </>
+    )
+  );
 }

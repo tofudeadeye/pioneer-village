@@ -1,0 +1,103 @@
+@use './theme.module.scss' as theme;
+@use './mixins.module.scss' as mixins;
+
+.headline {
+  font-size: mixins.uiSize(24);
+  color: var(--theme-white);
+  line-height: mixins.uiSize(24);
+  margin-bottom: mixins.uiSize(24);
+}
+
+.center {
+  text-align: center;
+}
+
+.button {
+  background-color: var(--theme-blue);
+  color: var(--theme-white);
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: mixins.uiSize(12);
+  line-height: mixins.uiSize(12);
+  padding: mixins.uiSize(6) mixins.uiSize(8);
+  border: none;
+  border-radius: var(--theme-border-radius-normal);
+  margin: mixins.uiSize(4);
+  outline: none;
+}
+
+.hiddenActiveVisible {
+  opacity: 0;
+  visibility: hidden;
+  transition-property: opacity, visibility, width, height, margin;
+  transition-duration:
+    var(--theme-transition-slow), var(--theme-transition-slow), var(--theme-transition-slow),
+    var(--theme-transition-slow), var(--theme-transition-slow);
+  transition-delay: 2s, 2s, 2.375s, 2.375s, 2.375s;
+
+  &.active {
+    opacity: 1;
+    visibility: visible;
+    transition-delay: var(--theme-transition-slow), var(--theme-transition-slow), 0s, 0s, 0s;
+  }
+
+  &:not(.active) {
+    width: 0 !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+}
+
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 20vh;
+  padding: 4vh 3vh;
+  text-align: center;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.8);
+  border-radius: var(--theme-border-radius-normal);
+}
+
+.snackbar {
+  background-color: var(--theme-blue);
+  color: var(--theme-white);
+  position: absolute;
+  bottom: mixins.uiSize(100);
+  left: 50%;
+  transform: translateX(-50%);
+  padding: mixins.uiSize(16) mixins.uiSize(24);
+  border-radius: var(--theme-border-radius-normal);
+  font-size: 16px;
+  line-height: 16px;
+  font-weight: 600;
+  text-align: center;
+  z-index: 1;
+}
+
+.disabledLayers {
+  position: fixed;
+  bottom: mixins.uiSize(10);
+  left: mixins.uiSize(10);
+  font-size: mixins.uiSize(10);
+  font-weight: bold;
+  color: var(--theme-red);
+  display: flex;
+  gap: mixins.uiSize(8);
+  align-items: center;
+  text-shadow:
+    -1px -1px 0 #000,
+    -1px 0 0 #000,
+    -1px 1px 0 #000,
+    0 -1px 0 #000,
+    0 1px 0 #000,
+    -1px 1px 0 #000,
+    1px 0 0 #000,
+    1px 1px 0 #000;
+
+  svg {
+    filter: drop-shadow(0 0 1px #000) drop-shadow(0 0 1px #000);
+  }
+}

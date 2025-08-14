@@ -12,32 +12,118 @@ declare interface ServerExports {
   ): void;
 }
 
-declare interface RPC {}
-declare interface NetEvents {}
-declare interface UIRPC {}
-declare interface UIEvents {}
+// Initialize base namespaces for client communication
+declare namespace ClientRPC {
+  interface Socket {} // RPC calls to socket server (via UI)
+  interface Server {} // RPC calls to game server
+}
+
+declare namespace ClientIn {
+  interface FromSocket {} // Events from socket server (via UI)
+  interface FromServer {} // Events from game server
+}
+
+declare namespace ClientOut {
+  interface ToSocket {} // Events to socket server (via UI)
+  interface ToServer {} // Events to game server
+}
+
+declare namespace SocketIO {
+  interface Events {
+    // Chat is a core UI feature
+    chatMessage: (chatMessage: UI.Chat.Message) => void;
+
+    // Log messages are UI-specific
+    ['log.message']: (data: UI.Log.Data) => void;
+
+    // Character updates might be UI-specific (if not defined elsewhere)
+    ['character-client-update.getCharacter']: (character: string) => void;
+    ['character-client-update.updateAttribute']: (attr: keyof CharacterData, newVal: any) => void;
+  } // Raw Socket.io events for UI layer
+}
+
+// Initialize base namespaces for server communication
+declare namespace ServerRPC {
+  interface Client {} // RPC calls from client
+}
+
+declare namespace ServerIn {
+  interface FromClient {} // Events from game client
+  interface FromSocket {} // Events from socket server
+}
+
+declare namespace ServerOut {
+  interface ToClient {} // Events to game client
+  interface ToSocket {} // Events to socket server
+}
 
 type DropLast<T extends any[]> = T extends [...rest: infer U, arg: any] ? U : T;
 type DropLastParam<T extends (...args: any[]) => any> = DropLast<Parameters<T>>;
 type Last<T extends any[]> = T extends [...any[], infer R] ? R : never;
 type LastParam<T extends (...args: any[]) => any> = Last<Parameters<T>>;
 
-type onClient = <T extends keyof NetEvents>(evtName: T, callback: (...args: Parameters<NetEvents[T]>) => void) => void;
-type onClientCall = <T extends keyof RPC>(
-  evtName: T,
-  callback: (serverId: number, ...args: Parameters<RPC[T]>) => ReturnType<RPC[T]> | Promise<ReturnType<RPC[T]>>,
-) => void;
-type emitClient = <T extends keyof NetEvents>(evtName: T, serverId: number, ...args: Parameters<NetEvents[T]>) => void;
-type awaitClient = <T extends keyof RPC>(
-  evtName: T,
-  serverId: number,
-  ...args: Parameters<RPC[T]>
-) => Promise<ReturnType<RPC[T]>>;
+// Check if we're in server context by checking for 'source' global variable
+// which is only available in @citizenfx/server
+type IsServer = typeof source extends number ? true : false;
+
+// Use conditional typing based on whether we're in server or client context
+type onClient = IsServer extends true
+  ? <T extends keyof ServerIn.FromClient>(
+      evtName: T,
+      callback: (...args: Parameters<ServerIn.FromClient[T]>) => void,
+    ) => void
+  : <T extends keyof (ClientIn.FromServer & ClientOut.ToServer)>(
+      evtName: T,
+      callback: (...args: Parameters<(ClientIn.FromServer & ClientOut.ToServer)[T]>) => void,
+    ) => void;
+type onClientCall = IsServer extends true
+  ? <T extends keyof ServerRPC.Client>(
+      evtName: T,
+      callback: (
+        serverId: number,
+        ...args: Parameters<ServerRPC.Client[T]>
+      ) => ReturnType<ServerRPC.Client[T]> | Promise<ReturnType<ServerRPC.Client[T]>>,
+    ) => void
+  : <T extends keyof ClientRPC.Server>(
+      evtName: T,
+      callback: (
+        serverId: number,
+        ...args: Parameters<ClientRPC.Server[T]>
+      ) => ReturnType<ClientRPC.Server[T]> | Promise<ReturnType<ClientRPC.Server[T]>>,
+    ) => void;
+type emitClient = IsServer extends true
+  ? <T extends keyof ServerOut.ToClient>(
+      evtName: T,
+      serverId: number,
+      ...args: Parameters<ServerOut.ToClient[T]>
+    ) => void
+  : <T extends keyof (ClientIn.FromServer & ClientOut.ToServer)>(
+      evtName: T,
+      serverId: number,
+      ...args: Parameters<(ClientIn.FromServer & ClientOut.ToServer)[T]>
+    ) => void;
+type awaitClient = IsServer extends true
+  ? <T extends keyof ServerRPC.Client>(
+      evtName: T,
+      serverId: number,
+      ...args: Parameters<ServerRPC.Client[T]>
+    ) => Promise<ReturnType<ServerRPC.Client[T]>>
+  : <T extends keyof ClientRPC.Server>(
+      evtName: T,
+      serverId: number,
+      ...args: Parameters<ClientRPC.Server[T]>
+    ) => Promise<ReturnType<ClientRPC.Server[T]>>;
 
 type onServer = onClient;
 type onServerCall = onClientCall;
-type emitServer = <T extends keyof NetEvents>(evtName: T, ...args: Parameters<NetEvents[T]>) => void;
-type awaitServer = <T extends keyof RPC>(evtName: T, ...args: Parameters<RPC[T]>) => Promise<ReturnType<RPC[T]>>;
+type emitServer = <T extends keyof (ClientIn.FromServer & ClientOut.ToServer)>(
+  evtName: T,
+  ...args: Parameters<(ClientIn.FromServer & ClientOut.ToServer)[T]>
+) => void;
+type awaitServer = <T extends keyof ClientRPC.Server>(
+  evtName: T,
+  ...args: Parameters<ClientRPC.Server[T]>
+) => Promise<ReturnType<ClientRPC.Server[T]>>;
 
 type PendingCallback = {
   resolve: (response: any) => void;
@@ -111,5 +197,3 @@ interface MinMax {
   min: number;
   max: number;
 }
-
-type ValueOf<T> = T[keyof T];

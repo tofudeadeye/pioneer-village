@@ -1,0 +1,104 @@
+@use '../../styles/theme.module.scss' as theme;
+@use '../../styles/mixins.module.scss' as mixins;
+
+.characters {
+  user-select: none;
+  position: fixed;
+  right: mixins.uiSize(64);
+  bottom: mixins.uiSize(96);
+  left: mixins.uiSize(64);
+}
+
+.createCharacter {
+  cursor: pointer;
+  user-select: none;
+  position: fixed;
+  bottom: mixins.uiSize(16);
+  left: 50%;
+  font-family: 'Caveat', cursive;
+  display: inline-block;
+  color: var(--theme-white);
+  font-size: mixins.uiSize(24);
+  transform: translateX(-50%);
+  // filter: drop-shadow(0 mixins.uiSize(1) mixins.uiSize(1) rgba(0, 0, 0, 0.5)) drop-shadow(0 -mixins.uiSize(1) mixins.uiSize(1) rgba(0, 0, 0, 0.5))
+  //   drop-shadow(mixins.uiSize(1) 0 mixins.uiSize(1) rgba(0, 0, 0, 0.5)) drop-shadow(-mixins.uiSize(1) 0 mixins.uiSize(1) rgba(0, 0, 0, 0.5));
+  transition: var(--theme-transition-normal);
+  opacity: 0.75;
+
+  text-align: center;
+  width: 355px;
+  height: 64px;
+  line-height: 56px;
+  background-image: url(https://p--v.b-cdn.net/smear-1.png);
+
+  &:hover {
+    opacity: 1;
+    // filter: drop-shadow(0 mixins.uiSize(1) mixins.uiSize(2) rgba(0, 0, 0, 0.25)) drop-shadow(0 -mixins.uiSize(1) mixins.uiSize(2) rgba(0, 0, 0, 0.25))
+    //   drop-shadow(mixins.uiSize(1) 0 mixins.uiSize(2) rgba(0, 0, 0, 0.25)) drop-shadow(-mixins.uiSize(1) 0 mixins.uiSize(2) rgba(0, 0, 0, 0.25));
+  }
+}
+
+.characterLabel {
+  display: inline-block;
+  margin-left: mixins.uiSize(16);
+  margin-right: mixins.uiSize(16);
+  font-family: 'Caveat', cursive;
+  color: var(--theme-white);
+  font-size: mixins.uiSize(24);
+  // Text shadow effect since drop-shadow with opacity not supported with oklch colors
+  text-shadow: 
+    0 #{mixins.uiSize(1)} #{mixins.uiSize(1)} var(--theme-gray12),
+    0 calc(-1 * #{mixins.uiSize(1)}) #{mixins.uiSize(1)} var(--theme-gray12),
+    #{mixins.uiSize(1)} 0 #{mixins.uiSize(1)} var(--theme-gray12),
+    calc(-1 * #{mixins.uiSize(1)}) 0 #{mixins.uiSize(1)} var(--theme-gray12);
+  transition: var(--theme-transition-normal);
+  opacity: 0.75;
+
+  &.positioned {
+    margin: 0;
+    padding: mixins.uiSize(72) mixins.uiSize(32);
+    transform: translateX(-50%) translateY(-50%);
+    opacity: 0;
+  }
+
+  &:hover {
+    opacity: 1;
+  }
+
+  //&:nth-child(1) {
+  //  font-family: 'Caveat', cursive;
+  //  &:before {
+  //    content: 'Caveat : ';
+  //  }
+  //}
+  //&:nth-child(2) {
+  //  font-family: 'Dancing Script', cursive;
+  //  &:before {
+  //    content: 'Dancing Script : ';
+  //  }
+  //}
+  //&:nth-child(3) {
+  //  font-family: 'Josefin Sans', sans-serif;
+  //  &:before {
+  //    content: 'Josefin Sans : ';
+  //  }
+  //}
+  //&:nth-child(4) {
+  //  font-family: 'Redressed', cursive;
+  //  &:before {
+  //    content: 'Redressed : ';
+  //  }
+  //}
+  //&:nth-child(5) {
+  //  font-family: 'Satisfy', cursive;
+  //  &:before {
+  //    content: 'Satisfy : ';
+  //  }
+  //}
+  //&:nth-child(6) {
+  //  font-family: 'Waiting for the Sunrise', cursive;
+  //  &:before {
+  //    content: 'Waiting for the Sunrise : ';
+  //  }
+  //}
+}

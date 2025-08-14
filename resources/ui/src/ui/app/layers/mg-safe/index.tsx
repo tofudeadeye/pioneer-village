@@ -1,26 +1,22 @@
 import { Howl, Howler } from 'howler';
-import UIComponent from '@uiLib/ui-component';
+import { useState, useEffect, useRef } from 'react';
 
-import { MGSafeFrame, MGDial } from './styles';
+import styles from './styles.module.scss';
 import throttle from 'lodash/throttle';
 
-export default class MGSafe extends UIComponent<UI.BaseProps, UI.BaseState, {}> {
-  lastClick = Date.now();
-  throttledOnmousemove = throttle(this.onmousemove, 5);
-  mousedownBinding = this.onmousedown.bind(this);
-  mousemoveBinding = this.throttledOnmousemove.bind(this);
-  mouseupBinding = this.onmouseup.bind(this);
+export default function MGSafe() {
+  const [state, setState] = useState({ show: false });
+  const [mouseDown, setMouseDown] = useState(false);
+  const [dial, setDial] = useState(0);
+  const [rotation, setRotation] = useState(0);
+  const [rotationOffset, setRotationOffset] = useState(0);
+  
+  const lastClick = useRef(Date.now());
+  const dialMax = 100;
+  const centerX = window.innerWidth / 2;
+  const centerY = window.innerHeight / 2;
 
-  centerX = window.innerWidth / 2;
-  centerY = window.innerHeight / 2;
-
-  mouseDown = false;
-  dial = 0;
-  dialMax = 100;
-  rotationOffset = 0;
-  rotation = 0;
-
-  clicks = [
+  const clicks = useRef([
     new Howl({
       src: ['https://p--v.b-cdn.net/Safe-Lock-Click-A1.mp3'],
       html5: true,
@@ -37,83 +33,70 @@ export default class MGSafe extends UIComponent<UI.BaseProps, UI.BaseState, {}> 
       src: ['https://p--v.b-cdn.net/Safe-Lock-Click-A4.mp3'],
       html5: true,
     }),
-  ];
+  ]);
 
-  constructor() {
-    super();
-
-    this.state = {
-      show: false,
-    };
-  }
-
-  componentDidMount() {
-    document.addEventListener('mouseup', this.mouseupBinding);
-    document.addEventListener('mousemove', this.mousemoveBinding, { passive: true });
-  }
-
-  componentWillUnmount() {
-    document.removeEventListener('mouseup', this.mouseupBinding);
-    document.removeEventListener('mousemove', this.mousemoveBinding);
-  }
-
-  getRotation(e: MouseEvent) {
+  const getRotation = (e: MouseEvent) => {
     const { clientX, clientY } = e;
-
-    const angle = (Math.atan2(clientY - this.centerY, clientX - this.centerX) * 180) / Math.PI;
-
+    const angle = (Math.atan2(clientY - centerY, clientX - centerX) * 180) / Math.PI;
     return (Math.round(angle) + 90) % 360;
-  }
+  };
 
-  onmousedown(e: MouseEvent) {
-    this.mouseDown = true;
-    this.rotationOffset = this.getRotation(e) - this.rotation;
-  }
+  const onmousedown = (e: React.MouseEvent<HTMLDivElement>) => {
+    setMouseDown(true);
+    setRotationOffset(getRotation(e.nativeEvent) - rotation);
+  };
 
-  onmousemove(e: MouseEvent) {
-    if (!this.mouseDown) {
+  const onmousemove = throttle((e: MouseEvent) => {
+    if (!mouseDown) {
       return;
     }
-    this.rotation = (this.getRotation(e) - this.rotationOffset + 360) % 360;
-    const newDial = Math.floor((this.rotation / 360) * this.dialMax);
-    if (newDial !== this.dial) {
+    const newRotation = (getRotation(e) - rotationOffset + 360) % 360;
+    setRotation(newRotation);
+    const newDial = Math.floor((newRotation / 360) * dialMax);
+    if (newDial !== dial) {
       const nextClick = Date.now();
-      const deltaClick = nextClick - this.lastClick;
-      this.lastClick = nextClick;
+      const deltaClick = nextClick - lastClick.current;
+      lastClick.current = nextClick;
       const volumeAdjust = Math.min(Math.max((200 - deltaClick) / 100, 0), 1);
 
-      this.clicks[newDial % this.clicks.length].volume(Math.random() * 0.25 + 0.15 - volumeAdjust * 0.05);
-      this.clicks[newDial % this.clicks.length].rate(1 + volumeAdjust);
-      this.clicks[newDial % this.clicks.length].play();
+      clicks.current[newDial % clicks.current.length].volume(Math.random() * 0.25 + 0.15 - volumeAdjust * 0.05);
+      clicks.current[newDial % clicks.current.length].rate(1 + volumeAdjust);
+      clicks.current[newDial % clicks.current.length].play();
     }
-    this.dial = newDial;
-    this.forceUpdate();
-  }
+    setDial(newDial);
+  }, 5);
 
-  onmouseup(e: MouseEvent) {
-    this.mouseDown = false;
-    this.forceUpdate();
-  }
+  const onmouseup = (e: MouseEvent) => {
+    setMouseDown(false);
+  };
 
-  render() {
-    return (
-      this.state.show && (
-        <MGSafeFrame>
-          <MGDial onMousedown={this.mousedownBinding} style={{ transform: `rotateZ(${this.rotation}deg)` }} />
-          <div
-            style={{
-              position: 'absolute',
-              top: '50%',
-              left: '50%',
-              zIndex: 1,
-              fontSize: '12px',
-              transform: 'translate(-50%, -50%)',
-            }}
-          >
-            {this.dial}
-          </div>
-        </MGSafeFrame>
-      )
-    );
-  }
+  useEffect(() => {
+    document.addEventListener('mouseup', onmouseup);
+    document.addEventListener('mousemove', onmousemove, { passive: true });
+    
+    return () => {
+      document.removeEventListener('mouseup', onmouseup);
+      document.removeEventListener('mousemove', onmousemove);
+    };
+  }, [onmousemove, mouseDown, rotation, rotationOffset, dial]);
+
+  return (
+    state.show && (
+      <div className={styles.mgSafeFrame}>
+        <div className={styles.mgDial} onMouseDown={onmousedown} style={{ transform: `rotateZ(${rotation}deg)` }} />
+        <div
+          style={{
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            zIndex: 1,
+            fontSize: '12px',
+            transform: 'translate(-50%, -50%)',
+          }}
+        >
+          {dial}
+        </div>
+      </div>
+    )
+  );
 }

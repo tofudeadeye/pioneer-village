@@ -1,0 +1,183 @@
+@use './colors.module.scss';
+
+// Theme color mappings - semantic names that map to the actual colors
+// These can be changed to create different themes while keeping component code the same
+:root {
+  // Primary UI Colors
+  --theme-primary: var(--color-blue-500);
+  --theme-primary-hover: var(--color-blue-600);
+  --theme-primary-active: var(--color-blue-700);
+  
+  // Secondary UI Colors
+  --theme-secondary: var(--color-purple-500);
+  --theme-secondary-hover: var(--color-purple-600);
+  --theme-secondary-active: var(--color-purple-700);
+  
+  // Success/Positive States
+  --theme-success: var(--color-green-500);
+  --theme-success-light: var(--color-green-400);
+  --theme-success-dark: var(--color-green-600);
+  
+  // Warning States
+  --theme-warning: var(--color-yellow-500);
+  --theme-warning-light: var(--color-yellow-400);
+  --theme-warning-dark: var(--color-yellow-600);
+  
+  // Danger/Error States
+  --theme-danger: var(--color-red-500);
+  --theme-danger-light: var(--color-red-400);
+  --theme-danger-dark: var(--color-red-600);
+  
+  // Info States
+  --theme-info: var(--color-light-blue-500);
+  --theme-info-light: var(--color-light-blue-400);
+  --theme-info-dark: var(--color-light-blue-600);
+  
+  // Background Colors
+  --theme-bg-primary: var(--color-grey-950);
+  --theme-bg-secondary: var(--color-grey-900);
+  --theme-bg-tertiary: var(--color-grey-800);
+  --theme-bg-elevated: var(--color-grey-700);
+  
+  // Surface Colors (cards, panels, etc)
+  --theme-surface: var(--color-grey-800);
+  --theme-surface-hover: var(--color-grey-700);
+  --theme-surface-active: var(--color-grey-600);
+  
+  // Text Colors
+  --theme-text-primary: var(--white);
+  --theme-text-secondary: var(--color-grey-200);
+  --theme-text-tertiary: var(--color-grey-400);
+  --theme-text-disabled: var(--color-grey-600);
+  
+  // Border Colors
+  --theme-border-primary: var(--color-grey-600);
+  --theme-border-secondary: var(--color-grey-700);
+  --theme-border-light: var(--color-grey-500);
+  
+  // Interactive States
+  --theme-hover: rgba(255, 255, 255, 0.05);
+  --theme-active: rgba(255, 255, 255, 0.1);
+  --theme-selected: var(--color-blue-700);
+  --theme-focus: var(--color-blue-500);
+  
+  // Overlay/Modal Colors
+  --theme-overlay: rgba(0, 0, 0, 0.7);
+  --theme-modal-bg: var(--color-grey-900);
+  
+  // Game-specific Colors (mapping to existing theme)
+  --theme-health: var(--color-red-500);
+  --theme-mana: var(--color-blue-500);
+  --theme-stamina: var(--color-green-500);
+  --theme-experience: var(--color-purple-500);
+  
+  // Rarity Colors (common in games)
+  --theme-common: var(--color-grey-400);
+  --theme-uncommon: var(--color-green-500);
+  --theme-rare: var(--color-blue-500);
+  --theme-epic: var(--color-purple-500);
+  --theme-legendary: var(--color-orange-500);
+  
+  // Direct color mappings for existing theme compatibility
+  --theme-black: var(--black);
+  --theme-white: var(--white);
+  --theme-gray12: var(--color-grey-950);
+  --theme-gray25: var(--color-grey-700);
+  --theme-gray50: var(--color-grey-500);
+  --theme-gray75: var(--color-grey-300);
+  --theme-gray88: var(--color-grey-100);
+  --theme-green: var(--color-green-400);
+  --theme-blueGray12: var(--color-blue-grey-950);
+  --theme-redGray12: var(--color-red-grey-950);
+  --theme-limeGreen: var(--color-lime-green-400);
+  --theme-yellow: var(--color-yellow-400);
+  --theme-orange: var(--color-orange-500);
+  --theme-red: var(--color-red-500);
+  --theme-pink: var(--color-pink-500);
+  --theme-purple: var(--color-purple-500);
+  --theme-blue: var(--color-blue-600);
+  --theme-lightBlue: var(--color-light-blue-500);
+  
+  // Transitions
+  --theme-transition-fast: 125ms;
+  --theme-transition-normal: 250ms;
+  --theme-transition-slow: 375ms;
+  
+  // Border Radius
+  --theme-radius-sm: 0.2rem;
+  --theme-radius-md: 0.4rem;
+  --theme-radius-lg: 0.6rem;
+  --theme-radius-xl: 1rem;
+  --theme-radius-full: 9999px;
+  
+  // Shadows
+  --theme-shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --theme-shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+  --theme-shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+  --theme-shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+}
+
+// Dark theme variant (can be toggled with a class)
+.theme-dark {
+  // Keep most colors the same but can adjust specific ones
+  --theme-bg-primary: var(--color-grey-950);
+  --theme-bg-secondary: var(--color-grey-900);
+  --theme-text-primary: var(--white);
+}
+
+// Light theme variant (if needed in future)
+.theme-light {
+  --theme-bg-primary: var(--white);
+  --theme-bg-secondary: var(--color-grey-50);
+  --theme-bg-tertiary: var(--color-grey-100);
+  --theme-bg-elevated: var(--color-grey-200);
+  
+  --theme-surface: var(--white);
+  --theme-surface-hover: var(--color-grey-50);
+  --theme-surface-active: var(--color-grey-100);
+  
+  --theme-text-primary: var(--color-grey-900);
+  --theme-text-secondary: var(--color-grey-700);
+  --theme-text-tertiary: var(--color-grey-500);
+  
+  --theme-border-primary: var(--color-grey-300);
+  --theme-border-secondary: var(--color-grey-200);
+  
+  --theme-overlay: rgba(0, 0, 0, 0.5);
+  --theme-modal-bg: var(--white);
+}
+
+// SCSS Functions to help with usage
+@function theme-color($name) {
+  @return var(--theme-#{$name});
+}
+
+// Helper classes for common use cases - using camelCase for better TypeScript integration
+.bgPrimary { background-color: var(--theme-bg-primary); }
+.bgSecondary { background-color: var(--theme-bg-secondary); }
+.bgTertiary { background-color: var(--theme-bg-tertiary); }
+.bgElevated { background-color: var(--theme-bg-elevated); }
+.bgSurface { background-color: var(--theme-surface); }
+
+.textPrimary { color: var(--theme-text-primary); }
+.textSecondary { color: var(--theme-text-secondary); }
+.textTertiary { color: var(--theme-text-tertiary); }
+.textDisabled { color: var(--theme-text-disabled); }
+
+.borderPrimary { border-color: var(--theme-border-primary); }
+.borderSecondary { border-color: var(--theme-border-secondary); }
+.borderLight { border-color: var(--theme-border-light); }
+
+// Color utilities
+.colorPrimary { color: var(--theme-primary); }
+.colorSecondary { color: var(--theme-secondary); }
+.colorSuccess { color: var(--theme-success); }
+.colorWarning { color: var(--theme-warning); }
+.colorDanger { color: var(--theme-danger); }
+.colorInfo { color: var(--theme-info); }
+
+// Background color utilities
+.bgSuccess { background-color: var(--theme-success); }
+.bgWarning { background-color: var(--theme-warning); }
+.bgDanger { background-color: var(--theme-danger); }
+.bgInfo { background-color: var(--theme-info); }

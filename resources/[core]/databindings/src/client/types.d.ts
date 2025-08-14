@@ -174,7 +174,7 @@ declare namespace Databindings {
 
   type RootBindingTypes = {
     [K in keyof RootTypes]: Record<keyof RootTypes[K], BindingType>;
-  };
+  }
 
   type RootDataTypes = Record<keyof RootBindings, keyof RootBindingTypes>;
 
@@ -406,7 +406,7 @@ declare namespace Databindings {
 
   type BindingTypes = {
     [K in keyof Types]: Record<keyof Types[K], BindingType>;
-  };
+  }
 
   type DataTypes = Record<keyof Bindings, keyof BindingTypes>;
 
@@ -415,9 +415,31 @@ declare namespace Databindings {
   type ClientExports = {
     bindRootData: bindRootData;
     bindData: bindData;
-  };
+  }
 }
 
-declare interface UIRPC {}
+// Client perspective - RPC calls to various destinations
+declare namespace ClientRPC {
+  interface Socket {
+    // Add databindings RPC calls here when needed
+  }
+}
 
-declare interface UIEvents {}
+// Client perspective - events received from various sources
+declare namespace ClientIn {
+  interface FromSocket {
+    // Add databindings events from socket here when needed
+  }
+}
+
+// Client perspective - events sent to various destinations
+declare namespace ClientOut {
+  interface ToSocket {
+    // Add databindings events to socket here when needed
+  }
+}
+
+// Raw Socket.io events for UI layer typing - DEDUPLICATED
+// Note: SocketIO.Events eliminated - use ClientIn.FromSocket and ClientOut.ToSocket directly
+
+

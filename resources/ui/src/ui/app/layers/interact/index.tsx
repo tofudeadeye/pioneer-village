@@ -1,42 +1,32 @@
-import UIComponent from '@uiLib/ui-component';
-import { onClient } from '@lib/ui';
+import { useState, useEffect } from 'react';
+import interactStore from '../../stores/interact-store';
 
-import { POI } from './styled';
+import styles from './styles.module.scss';
 
-export default class Interact extends UIComponent<UI.BaseProps, UI.Interact.State, {}> {
-  constructor() {
-    super();
+export default function Interact() {
+  const [state, setState] = useState(interactStore.getState());
 
-    this.state = {
-      show: true,
-      pois: [],
-      active: null,
-    };
+  useEffect(() => {
+    const unsubscribe = interactStore.subscribe(setState);
+    return unsubscribe;
+  }, []);
 
-    onClient('interact.pois', (pois) => {
-      this.setState({ ...this.state, pois });
-    });
+  // Store handles all events
 
-    onClient('interact.active', (active) => {
-      this.setState({ ...this.state, active });
-    });
-  }
-
-  render() {
-    return this.state.pois.map(
-      (poi) =>
-        poi.distance < 5 && (
-          <POI
-            className={poi.id === this.state.active ? 'active' : ''}
-            style={{
-              left: `${poi.screenX * 100}%`,
-              top: `${poi.screenY * 100}%`,
-              transform: `scale(${(5 - poi.distance) / 5})`,
-            }}
-          >
-            {poi.id === this.state.active && 'E'}
-          </POI>
-        ),
-    );
-  }
+  return state.pois.map(
+    (poi) =>
+      poi.distance < 5 && (
+        <div
+          key={poi.id}
+          className={`${styles.poi} ${poi.id === state.active ? 'active' : ''}`}
+          style={{
+            left: `${poi.screenX * 100}%`,
+            top: `${poi.screenY * 100}%`,
+            transform: `scale(${(5 - poi.distance) / 5})`,
+          }}
+        >
+          {poi.id === state.active && 'E'}
+        </div>
+      ),
+  );
 }

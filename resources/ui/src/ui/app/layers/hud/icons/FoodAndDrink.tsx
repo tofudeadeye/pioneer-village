@@ -1,5 +1,4 @@
-import { PropsWithChildren } from 'react';
-import { CSSProperties } from 'styled-components';
+import { PropsWithChildren, CSSProperties } from 'react';
 
 import { HiddenActiveVisible } from '@styled/core';
 import theme from '@styled/theme';

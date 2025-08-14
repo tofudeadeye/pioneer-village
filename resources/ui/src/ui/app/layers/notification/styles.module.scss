@@ -1,0 +1,36 @@
+@use '../../styles/theme.module.scss' as theme;
+@use '../../styles/mixins.module.scss' as mixins;
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.notif {
+  position: absolute;
+  bottom: mixins.uiSize(100);
+  left: mixins.uiSize(40);
+  max-width: mixins.uiSize(300);
+  background-color: var(--theme-primary);
+  color: var(--theme-white);
+  padding: mixins.uiSize(6) mixins.uiSize(10);
+  border-radius: var(--theme-radius-lg);
+  font-size: mixins.uiSize(12);
+  font-weight: 600;
+  animation: fadeIn var(--theme-transition-normal) forwards;
+  opacity: 0;
+
+  &.active {
+    opacity: 1;
+  }
+
+  &.centered {
+    bottom: mixins.uiSize(11.5);
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}

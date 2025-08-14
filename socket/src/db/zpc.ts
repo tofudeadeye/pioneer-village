@@ -3,15 +3,15 @@ import { Socket } from 'socket.io';
 import { logInfo, logInfoS } from '../helpers';
 import { serverNamespace } from '../server';
 
-type Sender = keyof SocketServer.SocketEvents;
-type Receiver = keyof SocketServer.ServerEvents;
-type SenderParams<T extends Sender> = Parameters<SocketServer.SocketEvents[T]>;
-type ReceiverParams<T extends Receiver> = Parameters<SocketServer.ServerEvents[T]>;
+type Sender = keyof SocketOut.ToGameServer;
+type Receiver = keyof SocketIn.FromGameServer;
+type SenderParams<T extends Sender> = Parameters<SocketOut.ToGameServer[T]>;
+type ReceiverParams<T extends Receiver> = Parameters<SocketIn.FromGameServer[T]>;
 
 class ZPC {
   static readonly instance: ZPC = new ZPC();
 
-  private socket: Socket<SocketServer.Server & SocketServer.ServerEvents, SocketServer.SocketEvents>;
+  private socket?: Socket<SocketIn.FromGameServer, SocketOut.ToGameServer>;
 
   constructor() {
     if (ZPC.instance) {
@@ -34,18 +34,22 @@ class ZPC {
     senderEvent: S,
     ...senderParams: SenderParams<S>
   ): Promise<ReceiverParams<R>> {
+    if (!this.socket) {
+      throw new Error('Socket not initialized');
+    }
+
     const rtn = new Promise<ReceiverParams<R>>((resolve, reject) => {
       const callback = (...receiverParams: ReceiverParams<R>) => {
         logInfo('[ZPC]', '.awaitServer callback', senderEvent, receiverEvent, ...receiverParams);
         // TODO: This wont work going forward because it wont work for all events but we only have 1 right now.
         if (senderParams[0] === receiverParams[0]) {
           resolve(receiverParams);
-          this.socket.off(receiverEvent, callback);
+          this.socket!.off(receiverEvent, callback);
         }
       };
 
       // @ts-ignore
-      this.socket.on(receiverEvent, callback);
+      this.socket!.on(receiverEvent, callback);
     });
 
     logInfo('[ZPC]', '.awaitServer emit', receiverEvent, senderEvent, ...senderParams);

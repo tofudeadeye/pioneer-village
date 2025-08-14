@@ -156,7 +156,7 @@ export default () => {
     });
 
     // Get available tasks
-    socket.on('jobs.get-available-tasks', async (jobHandle?: string, cb = () => {}) => {
+    socket.on('jobs.get-available-tasks', async (cb = () => {}, jobHandle?: string) => {
       const characterId = socket.data?.character?.id;
       if (!characterId) {
         cb([]);

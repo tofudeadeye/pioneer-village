@@ -1,39 +1,6 @@
-import { PropsWithChildren } from 'react';
-import styled, { CSSProperties } from 'styled-components';
+import { CSSProperties, PropsWithChildren } from 'react';
 
-import theme, { themeColor } from '@styled/theme';
-
-import { uiSize } from '@uiLib/helpers';
-
-const SuggestionsContainer = styled.ul`
-  margin: 0;
-  padding: 0;
-  border-radius: ${theme.borderRadius.small};
-  background-color: ${theme.colors.black.hex};
-  opacity: 0;
-  pointer-events: none;
-  visibility: unset;
-  transition: ${theme.transitionSpeed.fast};
-  list-style: none;
-
-  &.active {
-    opacity: 1;
-    visibility: visible;
-  }
-
-  li {
-    display: flex;
-    padding: ${uiSize(4)} ${uiSize(8)};
-    border-radius: ${theme.borderRadius.small};
-    color: ${theme.colors.white.hex};
-
-    span {
-      opacity: 0.333;
-      text-align: right;
-      flex-grow: 1;
-    }
-  }
-`;
+import styles from './Suggestions.module.scss';
 
 interface SuggestionsProps {
   input: string;
@@ -72,13 +39,13 @@ export default function Suggestions(props: PropsWithChildren<SuggestionsProps>) 
   matchingSuggestions = matchingSuggestions.slice(0, 6);
 
   return (
-    <SuggestionsContainer style={style} className={active ? 'active' : ''}>
+    <ul style={style} className={`${styles.suggestionsContainer} ${active ? 'active' : ''}`}>
       {input &&
         matchingSuggestions.map((suggestion) => (
           <li key={suggestion}>
             {prefix} {suggestion} <span>{suggestions[suggestion]?.description}</span>
           </li>
         ))}
-    </SuggestionsContainer>
+    </ul>
   );
 }

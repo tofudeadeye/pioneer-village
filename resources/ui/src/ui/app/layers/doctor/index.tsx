@@ -1,14 +1,13 @@
-import UIComponent from '@uiLib/ui-component';
-import { onClient } from '@lib/ui';
+import Bacterium from '@fa/5/solid/bacterium.svg';
+import BoneBreak from '@fa/5/solid/bone-break.svg';
+import ClawMarks from '@fa/5/solid/claw-marks.svg';
+import Fire from '@fa/5/solid/fire.svg';
+import { useCallback, useEffect, useState } from 'react';
 
-import { DoctorWrapper, DoctorCircle } from './styles';
-
-import BoneBreak from '@styled/fa5/solid/bone-break.svg';
-import ClawMarks from '@styled/fa5/solid/claw-marks.svg';
-import Bacterium from '@styled/fa5/solid/bacterium.svg';
-import Fire from '@styled/fa5/solid/fire.svg';
-
+import doctorStore from '../../stores/doctor-store';
+import { useEscapeKey } from '../../hooks/use-game-events';
 import Circle from './icon/circle';
+import styles from './styles.module.scss';
 
 const SPEEDS = {
   slowest: 7500,
@@ -41,51 +40,35 @@ const boneInspectSpeed: Record<string, keyof typeof SPEEDS> = {
   SKEL_SPINE4: 'slower',
 };
 
-export default class Doctor extends UIComponent<UI.BaseProps, UI.Doctor.State, {}> {
-  closeOnEscape = true;
+export default function Doctor() {
+  const [state, setState] = useState(doctorStore.getState());
 
-  constructor() {
-    super();
+  useEffect(() => {
+    const unsubscribe = doctorStore.subscribe(setState);
+    return unsubscribe;
+  }, []);
 
-    this.state = {
-      show: false,
-      entity: 0,
-      boneStatus: [],
-      inspecting: -1,
-      inspected: [],
-    };
+  // Store handles all events - removed onClient from here
 
-    onClient('doctor.state', this.onEvent.bind(this));
-  }
+  // Handle escape key
+  const onEscape = useCallback(() => {
+    doctorStore.close();
+  }, []);
 
-  onEvent(doctorEvent: UI.Doctor.Event) {
-    if (doctorEvent.entity && doctorEvent.entity !== this.state.entity) {
-      if (doctorEvent.boneStatus?.length) {
-        doctorEvent.inspected = new Array(doctorEvent.boneStatus.length).fill(false);
-      }
-    }
+  useEscapeKey(state.show, onEscape);
 
-    this.setState(doctorEvent);
-  }
-
-  onEscape() {
-    this.setState({ show: false });
-  }
-
-  inspect(index: number) {
-    if (this.state.inspecting !== -1 || this.state.inspected[index]) {
+  const inspect = (index: number) => {
+    if (state.inspecting !== -1 || state.inspected[index]) {
       return;
     }
-    const { boneStatus, inspected } = this.state;
+    const { boneStatus, inspected } = state;
     const bone = boneStatus[index];
 
     if (bone) {
       const newInspected = [...inspected];
       newInspected[index] = true;
 
-      this.setState({
-        inspecting: index,
-      });
+      doctorStore.setInspecting(index);
 
       console.log('bone', bone);
       const speed = SPEEDS[boneInspectSpeed[bone.name]] || 500;
@@ -93,16 +76,13 @@ export default class Doctor extends UIComponent<UI.BaseProps, UI.Doctor.State, {
       console.log('speed', speed);
 
       setTimeout(() => {
-        this.setState({
-          inspecting: -1,
-          inspected: newInspected,
-        });
+        doctorStore.finishInspection(newInspected);
       }, speed);
     }
-  }
+  };
 
-  boneHealthColor(b: number, bone: UI.Doctor.BoneStatus) {
-    if (this.state.inspected[b]) {
+  const boneHealthColor = (b: number, bone: UI.Doctor.BoneStatus) => {
+    if (state.inspected[b]) {
       if (bone.health < 20) {
         return 'red';
       }
@@ -112,40 +92,39 @@ export default class Doctor extends UIComponent<UI.BaseProps, UI.Doctor.State, {
       return 'green';
     }
     return 'white';
-  }
+  };
 
-  render() {
-    return (
-      this.state.show && (
-        <DoctorWrapper>
-          {this.state.boneStatus.map((bone, b) => (
-            <DoctorCircle
-              className={b === this.state.inspecting ? 'inspecting' : this.state.inspected[b] ? 'inspected' : ''}
-              style={{ top: `${bone.coords.y}vh`, left: `${bone.coords.x}vw` }}
-              onClick={() => this.inspect(b)}
-              data-name={bone.name
-                .replace(/(SKEL_|[0-9])/g, '')
-                .replace('L_', 'Left ')
-                .replace('R_', 'Right ')
-                .toLowerCase()}
-            >
-              <Circle
-                className={`borderCircle ${boneInspectSpeed[bone.name]}`}
-                percentage={this.state.inspected[b] ? bone.health : 0}
-                color={this.boneHealthColor(b, bone)}
-              />
-              {this.state.inspected[b] && (
-                <>
-                  {(bone.broken && <BoneBreak />) || ''}
-                  {(bone.wound && <ClawMarks />) || ''}
-                  {(bone.burned && <Fire />) || ''}
-                  {(bone.infection && <Bacterium />) || ''}
-                </>
-              )}
-            </DoctorCircle>
-          ))}
-        </DoctorWrapper>
-      )
-    );
-  }
+  return (
+    state.show && (
+      <div className={styles.doctorWrapper}>
+        {state.boneStatus.map((bone, b) => (
+          <div
+            key={b}
+            className={`${styles.doctorCircle} ${b === state.inspecting ? styles.inspecting : ''} ${state.inspected[b] ? styles.inspected : ''}`}
+            style={{ top: `${bone.coords.y}vh`, left: `${bone.coords.x}vw` }}
+            onClick={() => inspect(b)}
+            data-name={bone.name
+              .replace(/(SKEL_|[0-9])/g, '')
+              .replace('L_', 'Left ')
+              .replace('R_', 'Right ')
+              .toLowerCase()}
+          >
+            <Circle
+              className={`borderCircle ${boneInspectSpeed[bone.name]}`}
+              percentage={state.inspected[b] ? bone.health : 0}
+              color={boneHealthColor(b, bone)}
+            />
+            {state.inspected[b] && (
+              <>
+                {(bone.broken && <BoneBreak />) || ''}
+                {(bone.wound && <ClawMarks />) || ''}
+                {(bone.burned && <Fire />) || ''}
+                {(bone.infection && <Bacterium />) || ''}
+              </>
+            )}
+          </div>
+        ))}
+      </div>
+    )
+  );
 }

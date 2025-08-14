@@ -1,6 +1,28 @@
-declare interface UIEvents {
-  ['target.state']: (interactEvent: UI.TargetLayer.Event) => void;
+// Client perspective - RPC calls to various destinations
+declare namespace ClientRPC {
+  interface Socket {
+    // Add target RPC calls here when needed
+  }
 }
+
+// Client perspective - events received from various sources
+declare namespace ClientIn {
+  interface FromSocket {
+    ['target.state']: (interactEvent: UI.TargetLayer.Event) => void;
+  }
+}
+
+// Client perspective - events sent to various destinations
+declare namespace ClientOut {
+  interface ToSocket {
+    // Add target events to socket here when needed
+  }
+}
+
+// Raw Socket.io events for UI layer typing - DEDUPLICATED
+// Note: SocketIO.Events eliminated - use ClientIn.FromSocket directly
+
+
 
 declare interface ClientExports {
   target: Target.ClientExports;
@@ -21,8 +43,8 @@ declare namespace Target {
       buffer: {
         type: string;
         data: number[];
-      };
-    };
+      }
+    }
     entity: number;
     model: number;
     type: number;
@@ -54,5 +76,5 @@ declare namespace Target {
     AddTarget: AddTarget;
     RemoveTarget: RemoveTarget;
     GetEntityPlayerIsLookingAt: GetEntityPlayerIsLookingAt;
-  };
+  }
 }

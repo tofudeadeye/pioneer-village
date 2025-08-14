@@ -1,4 +1,4 @@
-import { Component, ComponentChild, PropsWithChildren } from 'react';
+import { Component, PropsWithChildren, ReactNode } from 'react';
 import { Socket } from 'socket.io-client';
 
 import { emitClient } from '@lib/ui/comms/client';
@@ -41,7 +41,7 @@ export default abstract class UIComponent<P, S extends UI.BaseState, C> extends 
     }
   }
 
-  componentDidCatch(error: Error, info: any) {
+  componentDidCatch(error: Error, info: React.ErrorInfo) {
     console.log('ComponentDidCatch 2');
     // console.error('error', error);
     // console.info('info', info);

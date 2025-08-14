@@ -1,5 +1,5 @@
 import type { Socket } from 'socket.io';
-import { SocketReservedEventsMap } from 'socket.io/dist/socket-types';
+import type { SocketReservedEventsMap } from 'socket.io/dist/socket-types';
 import type { DefaultEventsMap, ReservedOrUserEventNames } from 'socket.io/dist/typed-events';
 
 import { logInfoC, logInfoS } from '../helpers';
@@ -13,14 +13,14 @@ export default () => {
   // inventoryTest(prisma);
 
   type SocketType = Socket<
-    SocketServer.Client & SocketServer.ClientEvents,
-    UISocketEvents,
+    SocketIn.FromClient & SocketOut.ToClient,
+    SocketOut.ToClient,
     DefaultEventsMap,
-    SocketServer.SocketData
+    SocketInternal.Data
   >;
 
   const sendMoveOrFailData = (
-    socket: Socket<SocketServer.Client & SocketServer.ClientEvents, UISocketEvents, DefaultEventsMap, any>,
+    socket: Socket<SocketIn.FromClient & SocketOut.ToClient, SocketOut.ToClient, DefaultEventsMap, any>,
     requestId: number,
     requestType: UI.Inventory.RequestType,
     event?: UI.Inventory.MoveOrFailData | null,
@@ -41,7 +41,7 @@ export default () => {
   class ClientspaceInventory {
     socket: SocketType;
 
-    events: ReservedOrUserEventNames<SocketReservedEventsMap, SocketServer.Client & SocketServer.ClientEvents>[] = [
+    events: ReservedOrUserEventNames<SocketReservedEventsMap, SocketIn.FromClient & SocketOut.ToClient>[] = [
       'inventory.subscribe',
       'inventory.subscribe-world',
       'inventory.unsubscribe',
@@ -57,7 +57,7 @@ export default () => {
       this.socket = socket;
     }
 
-    ['inventory.subscribe']: SocketServer.ClientEvents['inventory.subscribe'] = async (identifier) => {
+    ['inventory.subscribe']: SocketIn.FromClient['inventory.subscribe'] = async (identifier) => {
       logInfoC('Subscribing to inventory', identifier);
 
       // TODO: Check if user can access inventory. ie. Is Own Pockets, Distance, etc.
@@ -73,16 +73,16 @@ export default () => {
       userNamespace.to(`inventory:${identifier}`).emit('inventory.load', inventory);
     };
 
-    ['inventory.subscribe-world']: SocketServer.ClientEvents['inventory.subscribe-world'] = async () => {
+    ['inventory.subscribe-world']: SocketIn.FromClient['inventory.subscribe-world'] = async () => {
       // TODO: Get player coords rounded and emit to client that it exists and has items.
     };
 
-    ['inventory.unsubscribe']: SocketServer.ClientEvents['inventory.unsubscribe'] = (identifier) => {
+    ['inventory.unsubscribe']: SocketIn.FromClient['inventory.unsubscribe'] = (identifier) => {
       logInfoC('Unsubscribing to inventory', identifier);
       this.socket.leave(`inventory:${identifier}`);
     };
 
-    ['inventory.item-stack']: SocketServer.ClientEvents['inventory.item-stack'] = async (
+    ['inventory.item-stack']: SocketIn.FromClient['inventory.item-stack'] = async (
       requestId,
       oldIdentifier,
       oldSlot,
@@ -111,7 +111,7 @@ export default () => {
       }
     };
 
-    ['inventory.item-move']: SocketServer.ClientEvents['inventory.item-move'] = async (
+    ['inventory.item-move']: SocketIn.FromClient['inventory.item-move'] = async (
       requestId,
       oldIdentifier,
       oldSlot,
@@ -136,7 +136,7 @@ export default () => {
       sendMoveOrFailData(this.socket, requestId, 'move', eventDestination);
     };
 
-    ['inventory.item-wear']: SocketServer.ClientEvents['inventory.item-wear'] = async (itemId) => {
+    ['inventory.item-wear']: SocketIn.FromClient['inventory.item-wear'] = async (itemId) => {
       logInfoC('inventory.item-wear', itemId);
       const wearAmount = -1;
       const { success, inventoryIdentifier } = await Inventories.changeDurability(itemId, wearAmount);
@@ -147,7 +147,7 @@ export default () => {
       }
     };
 
-    ['inventory.lost-hat']: SocketServer.ClientEvents['inventory.lost-hat'] = async (hatNetId, coords) => {
+    ['inventory.lost-hat']: SocketIn.FromClient['inventory.lost-hat'] = async (hatNetId, coords) => {
       // crun KnockOffPedProp(PlayerPedId(), false, true, false, true)
       const [x, y, z] = coords;
       logInfoC('inventory.lost-hat', `Player lost their hat at coordinates: ${x}, ${y}, ${z}`);
@@ -174,7 +174,7 @@ export default () => {
       }
     };
 
-    ['inventory.item-drop']: SocketServer.ClientEvents['inventory.item-drop'] = async (requestId, identifier, slot) => {
+    ['inventory.item-drop']: SocketIn.FromClient['inventory.item-drop'] = async (requestId, identifier, slot) => {
       logInfoC('inventory.item-drop', requestId, identifier, slot);
       if (!this.socket.data.character?.id) {
         return;
@@ -185,7 +185,7 @@ export default () => {
 
       logInfoC('this.socket.data', serverId, characterId);
 
-      const coords = await Characters.getLastCoords(characterId, 50);
+      const coords = await Characters.getLastCoords(characterId, 250);
 
       if (coords.x === 0 && coords.y === 0 && coords.z === 0) {
         logInfoC('inventory.item-drop', 'No valid coordinates found for item drop');
@@ -201,14 +201,14 @@ export default () => {
       sendMoveOrFailData(this.socket, requestId, 'stack', moveEvent);
     };
 
-    ['inventory.check-world']: SocketServer.ClientEvents['inventory.check-world'] = async () => {
+    ['inventory.check-world']: SocketIn.FromClient['inventory.check-world'] = async () => {
       logInfoC('inventory.check-world', 'Checking world inventories');
       if (!this.socket.data.character?.id) {
         return;
       }
 
       const characterId = this.socket.data.character.id;
-      const coords = await Characters.getLastCoords(characterId, 50);
+      const coords = await Characters.getLastCoords(characterId, 250);
 
       if (coords.x === 0 && coords.y === 0 && coords.z === 0) {
         return;

@@ -1,237 +1,181 @@
-import { debounce } from 'lodash';
-import { createRef } from 'react';
-import type { Socket } from 'socket.io-client';
-
-import { onClient } from '@lib/ui';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 import Select from '@styled/components/Select';
 import Suggestions from '@styled/components/Suggestions';
-import theme from '@styled/theme';
 
 import { uiSize } from '@uiLib/helpers';
-import UIComponent from '@uiLib/ui-component';
+import { useEscapeKey } from '../../hooks/use-game-events';
 
-import { Channel, Frame, Input, Message, Messages, Sender, channels } from './styled';
+import chatStore from '../../stores/chat-store';
+import styles from './styles.module.scss';
 
-export default class Chat extends UIComponent<UI.BaseProps, UI.Chat.State, {}> {
-  closeOnEscape = true;
-  refMessages = createRef<HTMLDivElement>();
-  refInput = createRef<HTMLInputElement>();
-  pastMessages: string[] = [];
-  currentPastMessage: number = -1;
+const channels: Record<string, UI.Channel> = {
+  general: {
+    label: 'General',
+    bg: 'black',
+    fg: 'white',
+  },
+  ooc: {
+    label: 'OOC',
+    bg: 'gray25',
+    fg: 'white',
+  },
+  admin: {
+    label: 'Admin',
+    bg: 'red',
+    fg: 'white',
+  },
+};
 
-  constructor(
-    props: UI.BaseProps,
-    context: { socket: Socket<UISocketEvents, SocketServer.Client & SocketServer.ClientEvents> },
-  ) {
-    super();
+export default function Chat() {
+  const [state, setState] = useState(chatStore.getState());
+  const refMessages = useRef<HTMLDivElement>(null);
+  const refInput = useRef<HTMLInputElement>(null);
 
-    this.state = {
-      show: false,
-      partialShow: false,
-      autoScroll: true,
-      currentChannel: 'general',
-      currentInput: '',
-      suggestions: {
-        '/ooc': {
-          description: 'Out of Character',
-        },
-        '/emote': {
-          description: 'Play an emote animation',
-          children: ['sit1', 'sit2', 'sit3', 'sit4', 'sit5', 'dance', 'dance2', 'dance3'],
-        },
-        '/me': {
-          description: 'Show me popup on character.',
-        },
-      },
-      messages: [],
+  useEffect(() => {
+    const unsubscribe = chatStore.subscribe(setState);
+
+    return () => {
+      unsubscribe();
     };
+  }, []);
 
-    onClient('chat.state', (event) => {
-      this.onEvent(event);
-    });
+  // Handle escape key
+  const onEscape = useCallback(() => {
+    chatStore.close();
+  }, []);
 
-    context.socket.on('chatMessage', (data) => {
-      this.onMessage(data);
-    });
-  }
+  useEscapeKey(state.show, onEscape);
 
-  onEvent(event: UI.Chat.Event) {
-    if (!this.state.show && event.show) {
-      setTimeout(() => {
-        this.refInput.current?.focus();
-      }, 10);
-      event = { ...event, partialShow: false };
-    }
-    this.setState(event);
-  }
-
-  onMessage(chatMessages: UI.Chat.Message) {
-    this.setState({
-      messages: [...this.state.messages, chatMessages],
-    });
-    if (!this.state.show) {
-      this.setState({
-        partialShow: true,
-      });
-      this.closePartial();
-    }
-  }
-
-  onEscape() {
-    this.setState({
-      show: false,
-    });
-  }
-
-  closePartial = debounce(() => {
-    if (this.state.partialShow) {
-      this.setState({
-        partialShow: false,
-      });
-    }
-  }, 3000);
-
-  componentDidUpdate() {
-    if (this.state.autoScroll) {
-      const messagesRef = this.refMessages.current;
+  // Auto scroll effect
+  useEffect(() => {
+    if (state.autoScroll) {
+      const messagesRef = refMessages.current;
       if (messagesRef) {
         messagesRef.scrollTo({ top: messagesRef.scrollHeight });
       }
     }
-  }
+  }, [state.messages, state.autoScroll]);
 
-  getChannelStyle(channel: string) {
-    let backgroundColor = theme.colors.black.hex;
-    let color = theme.colors.white.hex;
+  // Focus input when opening
+  useEffect(() => {
+    if (state.show) {
+      setTimeout(() => {
+        refInput.current?.focus();
+      }, 10);
+    }
+  }, [state.show]);
+
+  const getChannelStyle = (channel: string) => {
+    let backgroundColor = 'var(--theme-black)';
+    let color = 'var(--theme-white)';
     if (channels[channel]) {
-      if (theme.colors[channels[channel].bg]) {
-        backgroundColor = theme.colors[channels[channel].bg].hex;
-      }
-      if (theme.colors[channels[channel].fg]) {
-        color = theme.colors[channels[channel].fg].hex;
-      }
+      const bgColor = channels[channel].bg;
+      const fgColor = channels[channel].fg;
+      
+      if (bgColor === 'black') backgroundColor = 'var(--theme-black)';
+      else if (bgColor === 'gray25') backgroundColor = 'var(--theme-gray25)';
+      else if (bgColor === 'red') backgroundColor = 'var(--theme-red)';
+      
+      if (fgColor === 'white') color = 'var(--theme-white)';
+      else if (fgColor === 'black') color = 'var(--theme-black)';
     }
     return { backgroundColor, color };
-  }
+  };
 
-  handleMousewheel = debounce((e: WheelEvent) => {
-    if (e.deltaY < 0) {
-      this.setState({ autoScroll: false });
-    } else {
-      const messagesRef = this.refMessages?.current;
-      if (messagesRef) {
-        window.requestAnimationFrame(() => {
-          const autoScroll = messagesRef.scrollTop >= messagesRef.scrollHeight - messagesRef.clientHeight - e.deltaY;
-          if (autoScroll !== this.state.autoScroll) {
-            this.setState({ autoScroll });
-          }
-        });
-      }
-    }
-  }, 125);
+  const handleMouseWheel = (e: React.WheelEvent) => {
+    chatStore.handleMouseWheel(e.nativeEvent, refMessages.current);
+  };
 
-  checkChannels(input: HTMLInputElement): boolean {
+  const checkChannels = (input: HTMLInputElement): boolean => {
     for (const channel of Object.keys(channels)) {
       if (input.value.toLowerCase() === `/${channel} `) {
         input.value = '';
-        this.selectChannel(channel);
+        chatStore.selectChannel(channel);
+        return true;
       }
     }
     for (const channel of Object.keys(channels)) {
       if (input.value.toLowerCase() === '/s ' || input.value.toLowerCase() === '/g ') {
         input.value = '';
-        this.selectChannel('general');
+        chatStore.selectChannel('general');
+        return true;
       }
     }
     return false;
-  }
+  };
 
-  handleKeyUp(e: KeyboardEvent) {
-    const input = this.refInput?.current;
+  const handleKeyUp = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    const input = refInput.current;
     if (input) {
       let text = input.value;
-      if (this.state.currentInput !== text) {
-        if (this.checkChannels(input)) {
+      if (state.currentInput !== text) {
+        if (checkChannels(input)) {
           return;
         }
-        if (input.value === '') {
-          this.currentPastMessage = -1;
-        }
-        this.setState({
-          currentInput: text,
-        });
+        chatStore.setCurrentInput(text);
       }
+
       if (e.key === 'Enter') {
         input.value = '';
         if (text) {
-          this.pastMessages.unshift(text);
-          this.currentPastMessage = -1;
-          console.log(this.context.socket);
-          this.context.socket.emit('chatSend', {
-            channel: this.state.currentChannel,
-            text,
-          });
+          chatStore.sendMessage(text);
         }
       }
+
       if (e.key === 'ArrowUp') {
-        if (this.currentPastMessage < this.pastMessages.length - 1) {
-          this.currentPastMessage++;
-          input.value = this.pastMessages[this.currentPastMessage];
+        const message = chatStore.getPreviousMessage();
+        if (message !== null) {
+          input.value = message;
         }
       }
+
       if (e.key === 'ArrowDown') {
-        if (this.currentPastMessage > -1) {
-          this.currentPastMessage--;
-          input.value = this.pastMessages[this.currentPastMessage] || '';
-        }
+        const message = chatStore.getNextMessage();
+        input.value = message || '';
       }
     }
-  }
+  };
 
-  selectChannel(channel: string) {
-    this.setState({ currentChannel: channel });
-  }
+  const selectChannel = (channel: string) => {
+    chatStore.selectChannel(channel);
+  };
 
-  render() {
-    return (
-      <Frame className={this.state.show ? 'active' : this.state.partialShow ? 'partial' : ''}>
-        <Messages ref={this.refMessages} onWheel={this.handleMousewheel.bind(this)}>
-          {this.state.messages.map((message) => (
-            <Message style={this.getChannelStyle(message.channel)}>
-              {message.channel && message.channel !== 'general' && (
-                <Channel>[{channels[message.channel].label}]</Channel>
-              )}
-              {message.sender && (
-                <Sender>
-                  {message.sender} {message.id && <>[{message.id}]</>}
-                </Sender>
-              )}
-              {message.text}
-            </Message>
-          ))}
-        </Messages>
-        <Input style={this.getChannelStyle(this.state.currentChannel)} className={this.state.show ? 'active' : ''}>
-          <Select
-            style="chat"
-            options={channels}
-            selected={this.state.currentChannel}
-            onChange={(option) => this.selectChannel(option)}
-          />
-          <input ref={this.refInput} type="text" onKeyUp={(e) => this.handleKeyUp(e)} />
-          <Suggestions
-            input={this.refInput?.current?.value || ''}
-            suggestions={this.state.suggestions}
-            active={!!this.refInput?.current?.value}
-            style={{
-              position: 'absolute',
-              top: `calc(100% + ${uiSize(8)})`,
-              right: 0,
-              left: 0,
-            }}
-          />
-        </Input>
-      </Frame>
-    );
-  }
+  return (
+    <div className={`${styles.frame} ${state.show ? styles.active : state.partialShow ? styles.partial : ''}`}>
+      <div className={styles.messages} ref={refMessages} onWheel={handleMouseWheel}>
+        {state.messages.map((message, index) => (
+          <div key={index} className={styles.message} style={getChannelStyle(message.channel)}>
+            {message.channel && message.channel !== 'general' && <span className={styles.channel}>[{channels[message.channel].label}]</span>}
+            {message.sender && (
+              <span className={styles.sender}>
+                {message.sender} {message.id && <>[{message.id}]</>}
+              </span>
+            )}
+            {message.text}
+          </div>
+        ))}
+      </div>
+      <div className={`${styles.input} ${state.show ? styles.active : ''}`} style={getChannelStyle(state.currentChannel)}>
+        <Select
+          style="chat"
+          options={channels}
+          selected={state.currentChannel}
+          onChange={(option) => selectChannel(option)}
+        />
+        <input ref={refInput} type="text" onKeyUp={handleKeyUp} />
+        <Suggestions
+          input={refInput?.current?.value || ''}
+          suggestions={state.suggestions}
+          active={!!refInput?.current?.value}
+          style={{
+            position: 'absolute',
+            top: `calc(100% + ${uiSize(8)})`,
+            right: 0,
+            left: 0,
+          }}
+        />
+      </div>
+    </div>
+  );
 }

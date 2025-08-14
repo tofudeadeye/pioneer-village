@@ -16,24 +16,30 @@ declare namespace Doors {
     getClosestDoor: GetClosestDoor;
     closeDoor: CloseDoor;
   }
+}
 
-  namespace Events {
-    type SetDoorState = (doorHash: number, state: number) => void;
+// Client perspective - RPC calls to various destinations
+declare namespace ClientRPC {
+  interface Socket {
+    ['doors.get-door-states']: () => [doorHash: number, state: number][];
   }
 }
 
-declare interface UIRPC {
-  ['doors.get-door-states']: () => [doorHash: number, state: number][];
+// Client perspective - events received from various sources
+declare namespace ClientIn {
+  interface FromSocket {
+    ['doors.set-door-state']: (doorHash: number, state: number) => void;
+  }
 }
 
-declare interface UIEvents {
-  ['doors.set-door-state']: Doors.Events.SetDoorState;
+// Client perspective - events sent to various destinations
+declare namespace ClientOut {
+  interface ToSocket {
+    ['doors.set-door-state']: (doorHash: number, state: number) => void;
+  }
 }
 
-declare interface ClientForwardEvents {
-  ['doors.set-door-state']: Doors.Events.SetDoorState;
-}
+// Raw Socket.io events for UI layer typing - DEDUPLICATED
+// Note: SocketIO.Events eliminated - use ClientRPC.Socket for RPC calls and ClientIn/ClientOut for events
 
-declare interface SocketForwardEvents {
-  ['doors.set-door-state']: Doors.Events.SetDoorState;
-}
+

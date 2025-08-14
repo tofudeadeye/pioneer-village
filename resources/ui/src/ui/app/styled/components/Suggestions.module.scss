@@ -1,0 +1,32 @@
+@use '../../styles/theme.module.scss';
+@use '../../styles/mixins.module.scss' as mixins;
+
+.suggestionsContainer {
+  margin: 0;
+  padding: 0;
+  border-radius: var(--theme-border-radius-small);
+  background-color: var(--theme-black);
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+  transition: var(--theme-transition-fast);
+  list-style: none;
+
+  &.active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  li {
+    display: flex;
+    padding: mixins.uiSize(4) mixins.uiSize(8);
+    border-radius: var(--theme-border-radius-small);
+    color: var(--theme-white);
+
+    span {
+      opacity: 0.333;
+      text-align: right;
+      flex-grow: 1;
+    }
+  }
+}

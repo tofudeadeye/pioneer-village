@@ -1,143 +1,95 @@
-import type { Socket } from 'socket.io-client';
+import { useState, useEffect, useCallback } from 'react';
+import jobsStore from '../../stores/jobs-store';
+import { useEscapeKey } from '../../hooks/use-game-events';
+import styles from './styles.module.scss';
 
-import { onClient } from '@lib/ui';
+export default function Jobs() {
+  const [state, setState] = useState(jobsStore.getState());
 
-import UIComponent from '@uiLib/ui-component';
+  useEffect(() => {
+    const unsubscribe = jobsStore.subscribe(setState);
+    return unsubscribe;
+  }, []);
 
-import { Button, Container, Frame, JobCard, StatusBar } from './styled';
-
-export default class Jobs extends UIComponent<UI.BaseProps, UI.Jobs.State, {}> {
-  closeOnEscape = true;
-
-  constructor(
-    props: UI.BaseProps,
-    context: { socket: Socket<UISocketEvents, SocketServer.Client & SocketServer.ClientEvents> },
-  ) {
-    super();
-
-    console.log('context', context);
-
-    this.state = {
-      show: false,
-      isClocked: false,
-      currentJob: null,
-      availableJobs: [],
-      clockedInEmployees: 0,
-    };
-
-    // Listen for job state updates
-    onClient('jobs.clock-in-update', (characterId: number, jobHandle: string) => {
-      this.refreshJobState();
-    });
-
-    onClient('jobs.clock-out-update', (characterId: number, hoursWorked: number, payment: number) => {
-      this.refreshJobState();
-    });
-
+  useEffect(() => {
+    // Store handles all events
     // Get initial job state
     setTimeout(() => {
-      this.refreshJobState();
+      refreshJobState();
     }, 1000);
-  }
+  }, []);
 
-  refreshJobState() {
-    console.log('this', this);
-    console.log('this.props', this.props);
-    if (!this.props) {
-      return;
-    }
-    const { socket } = this.props;
-    socket.emit('jobs.get-state', (state: any) => {
-      console.log('jobs:getState', state);
-      if (!state.error) {
-        this.setState({
-          isClocked: state.isClocked || false,
-          currentJob: state.currentJob || null,
-          availableJobs: state.availableJobs || [],
-          clockedInEmployees: state.clockedInEmployees || 0,
-        });
-      }
-    });
-  }
+  // Handle escape key
+  const onEscape = useCallback(() => {
+    jobsStore.close();
+  }, []);
 
-  handleClockIn(jobHandle: string) {
-    const { socket } = this.context;
-    socket.emit('jobs.clock-in', jobHandle, undefined, (result: any) => {
-      if (result.success) {
-        this.refreshJobState();
-      } else {
-        console.error('Failed to clock in:', result.error);
-      }
-    });
-  }
+  useEscapeKey(state.show, onEscape);
 
-  handleClockOut() {
-    const { socket } = this.context;
-    socket.emit('jobs.clock-out', (result: any) => {
-      if (result.success) {
-        this.refreshJobState();
-      } else {
-        console.error('Failed to clock out');
-      }
-    });
-  }
+  const refreshJobState = () => {
+    jobsStore.refresh();
+  };
 
-  onEscape() {
-    this.setState({ show: false });
-  }
+  const handleClockIn = (jobHandle: string) => {
+    // Use dummy location since we don't have actual position data in the UI
+    const location = { x: 0, y: 0, z: 0 };
+    jobsStore.performClockIn(jobHandle, location);
+  };
 
-  render() {
-    const { isClocked, currentJob, availableJobs, clockedInEmployees } = this.state;
+  const handleClockOut = () => {
+    jobsStore.performClockOut();
+  };
 
-    return (
-      <Frame className={this.state.show ? 'active' : undefined}>
-        <Container>
-          <h2>Job Management</h2>
+  const { isClocked, currentJob, availableJobs, clockedInEmployees } = state;
 
-          <StatusBar>
+  return (
+    <div className={`${styles.frame} ${state.show ? 'active' : ''}`}>
+      <div className={styles.container}>
+        <h2>Job Management</h2>
+
+        <div className={styles.statusBar}>
+          <div>
+            <strong>Status:</strong> {isClocked ? 'Clocked In' : 'Not Working'}
+          </div>
+          {currentJob && (
             <div>
-              <strong>Status:</strong> {isClocked ? 'Clocked In' : 'Not Working'}
-            </div>
-            {currentJob && (
-              <div>
-                <strong>Current Job:</strong> {currentJob.name} ({currentJob.handle})
-              </div>
-            )}
-            <div>
-              <strong>Total Employees Online:</strong> {clockedInEmployees}
-            </div>
-          </StatusBar>
-
-          {isClocked && currentJob ? (
-            <div>
-              <h3>Current Job: {currentJob.name}</h3>
-              <p>{currentJob.description}</p>
-              <p>
-                <strong>Payment:</strong> {currentJob.paymentType} - ${currentJob.paymentAmount}
-              </p>
-              <Button onClick={() => this.handleClockOut()}>Clock Out</Button>
-            </div>
-          ) : (
-            <div>
-              <h3>Available Jobs</h3>
-              {availableJobs.length === 0 ? (
-                <p>No jobs available at this time.</p>
-              ) : (
-                availableJobs.map((job: any) => (
-                  <JobCard key={job.handle}>
-                    <h4>{job.name}</h4>
-                    <p>{job.description}</p>
-                    <p>
-                      <strong>Payment:</strong> {job.paymentType} - ${job.paymentAmount}
-                    </p>
-                    <Button onClick={() => this.handleClockIn(job.handle)}>Clock In</Button>
-                  </JobCard>
-                ))
-              )}
+              <strong>Current Job:</strong> {currentJob.name} ({currentJob.handle})
             </div>
           )}
-        </Container>
-      </Frame>
-    );
-  }
+          <div>
+            <strong>Total Employees Online:</strong> {clockedInEmployees}
+          </div>
+        </div>
+
+        {isClocked && currentJob ? (
+          <div>
+            <h3>Current Job: {currentJob.name}</h3>
+            <p>{currentJob.description}</p>
+            <p>
+              <strong>Payment:</strong> {currentJob.paymentType} - ${currentJob.paymentAmount}
+            </p>
+            <button className={styles.button} onClick={handleClockOut}>Clock Out</button>
+          </div>
+        ) : (
+          <div>
+            <h3>Available Jobs</h3>
+            {availableJobs.length === 0 ? (
+              <p>No jobs available at this time.</p>
+            ) : (
+              availableJobs.map((job: any) => (
+                <div className={styles.jobCard} key={job.handle}>
+                  <h4>{job.name}</h4>
+                  <p>{job.description}</p>
+                  <p>
+                    <strong>Payment:</strong> {job.paymentType} - ${job.paymentAmount}
+                  </p>
+                  <button className={styles.button} onClick={() => handleClockIn(job.handle)}>Clock In</button>
+                </div>
+              ))
+            )}
+          </div>
+        )}
+      </div>
+    </div>
+  );
 }

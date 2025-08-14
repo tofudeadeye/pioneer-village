@@ -1,91 +1,61 @@
-import { Socket } from 'socket.io-client';
+import { useState, useEffect } from 'react';
+import characterSelectStore from '../../stores/character-select-store';
 
-import UIComponent from '@uiLib/ui-component';
-import { emitClient, onClient, onClientCall } from '@lib/ui';
+import styles from './styles.module.scss';
 
-import { Characters, CreateCharacter, CharacterLabel } from './styled';
+export default function CharacterSelect() {
+  const [state, setState] = useState(characterSelectStore.getState());
 
-export default class CharacterSelect extends UIComponent<UI.BaseProps, UI.CharacterSelect.State, {}> {
-  constructor(
-    props: UI.BaseProps,
-    context: { socket: Socket<UISocketEvents, SocketServer.Client & SocketServer.ClientEvents> },
-  ) {
-    super();
-
-    this.state = {
-      show: false,
-      characters: [],
+  useEffect(() => {
+    const unsubscribe = characterSelectStore.subscribe(setState);
+    
+    return () => {
+      unsubscribe();
     };
+  }, []);
 
-    onClient('character-select.state', (state) => {
-      this.setState(state);
-    });
-
-    onClientCall('getCharacters', () => {
-      return new Promise((resolve) => {
-        context.socket.emit('getCharacters', (characters) => {
-          resolve(characters);
-        });
-      });
-    });
-
-    onClientCall('createCharacter', (character, face) => {
-      return new Promise((resolve) => {
-        context.socket.emit('createCharacter', character, face, () => {
-          resolve();
-        });
-      });
-    });
-  }
-
-  onEvent(event: UI.CharacterSelect.Event) {
-    this.setState(event);
-  }
-
-  characterStyle(character: UI.CharacterSelect.CharacterData) {
+  const characterStyle = (character: UI.CharacterSelect.CharacterData) => {
     if (!character.pos) {
       return {};
     }
     return {
-      position: 'fixed',
+      position: 'fixed' as const,
       top: `${character.pos.y * 100}%`,
       left: `${character.pos.x * 100}%`,
     };
-  }
+  };
 
-  chooseCharacter(characterId: number) {
-    this.setState({ show: false });
-    emitClient('character-select.choose', characterId);
-  }
+  const chooseCharacter = (characterId: number) => {
+    characterSelectStore.chooseCharacter(characterId);
+  };
 
-  createCharacter() {
-    this.setState({ show: false });
-    emitClient('character-select.create');
-    console.log('character-select.create');
-  }
+  const createCharacter = () => {
+    characterSelectStore.createCharacter();
+  };
 
-  render() {
-    return (
-      <>
-        {this.state.show && (
-          <>
-            <Characters>
-              {this.state.characters.map((character) => {
-                return (
-                  <CharacterLabel
-                    style={this.characterStyle(character)}
-                    className={character.pos ? 'positioned' : ''}
-                    onClick={() => this.chooseCharacter(character.id)}
-                  >
-                    {character.firstName} {character.lastName}
-                  </CharacterLabel>
-                );
-              })}
-            </Characters>
-            <CreateCharacter onClick={this.createCharacter.bind(this)}>Create Character</CreateCharacter>
-          </>
-        )}
-      </>
-    );
-  }
+  return (
+    <>
+      {state.show && (
+        <>
+          <div className={styles.characters}>
+            {state.characters.map((character) => {
+              return (
+                <div
+                  key={character.id}
+                  className={`${styles.characterLabel} ${character.pos ? styles.positioned : ''}`}
+                  style={characterStyle(character)}
+                  onClick={() => chooseCharacter(character.id)}
+                >
+                  {character.firstName} {character.lastName}
+                </div>
+              );
+            })}
+          </div>
+          <div className={styles.createCharacter} onClick={createCharacter}>
+            Create Character
+          </div>
+        </>
+      )}
+    </>
+  );
 }

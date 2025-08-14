@@ -97,7 +97,7 @@ const eventMappings = {
 //   ...params: DropLastParam<SocketServer.Server[T]>
 // ) => Promise<Parameters<LastParam<SocketServer.Server[T]>>[0]>;
 
-type EventsManagerDataStuff = Record<keyof (typeof eventMappings)[EventsManager.EventName], number>;
+type EventsManagerDataStuff = Record<keyof EventMappingData, number>;
 
 function register<T extends keyof typeof eventMappings>(
   event: T,

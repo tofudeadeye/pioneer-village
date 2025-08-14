@@ -1,64 +1,6 @@
-import { useState } from 'preact/hooks';
-import { PropsWithChildren } from 'react';
-import styled, { StyledComponent } from 'styled-components';
+import { PropsWithChildren, useState } from 'react';
 
-import { uiSize } from '@uiLib/helpers';
-
-import theme from '../theme';
-
-const NormalSelect = styled.div``;
-
-const ChatSelect = styled.div`
-  color: currentColor;
-  position: relative;
-  user-select: none;
-
-  ul {
-    position: absolute;
-    top: calc(100% + ${uiSize(8)});
-    left: -${uiSize(6)};
-    margin: 0;
-    padding: 0;
-    border-radius: ${theme.borderRadius.small};
-    background-color: ${theme.colors.black.hex};
-    opacity: 0;
-    pointer-events: none;
-    visibility: unset;
-    transition: ${theme.transitionSpeed.fast};
-    list-style: none;
-
-    &.active {
-      opacity: 1;
-      pointer-events: all;
-      visibility: visible;
-    }
-  }
-
-  li {
-    display: flex;
-    padding: ${uiSize(4)} ${uiSize(8)};
-    border-radius: ${theme.borderRadius.small};
-    color: ${theme.colors.white.hex};
-
-    &:hover {
-      background-color: ${theme.colors.lightBlue.hex};
-      color: ${theme.colors.black.hex};
-    }
-  }
-`;
-
-const SelectLabel = styled.label`
-  display: inline-block;
-  font-size: ${uiSize(11)};
-  font-weight: 600;
-  margin-top: ${uiSize(2.5)};
-  margin-right: ${uiSize(4)};
-`;
-
-const Selects: Record<'normal' | 'chat', typeof NormalSelect> = {
-  normal: NormalSelect,
-  chat: ChatSelect,
-};
+import styles from './Select.module.scss';
 
 interface SelectProps {
   style?: 'normal' | 'chat';
@@ -80,7 +22,7 @@ export default function Select(props: PropsWithChildren<SelectProps>) {
   if (!selected) {
     selected = Object.keys(options)[0];
   }
-  const SelectStyle = Selects[style || 'normal'];
+  const selectClass = style === 'chat' ? styles.chatSelect : styles.normalSelect;
 
   const chooseOption = (option: string) => {
     setIsOpen(false);
@@ -92,8 +34,10 @@ export default function Select(props: PropsWithChildren<SelectProps>) {
   };
 
   return (
-    <SelectStyle>
-      <SelectLabel onClick={() => setIsOpen(!isOpen)}>{options[selected].label}</SelectLabel>
+    <div className={selectClass}>
+      <label className={styles.selectLabel} onClick={() => setIsOpen(!isOpen)}>
+        {options[selected].label}
+      </label>
       <ul className={isOpen ? 'active' : ''}>
         {Object.entries(options).map(([key, value]) => (
           <li key={key} onClick={() => chooseOption(key)}>
@@ -101,6 +45,6 @@ export default function Select(props: PropsWithChildren<SelectProps>) {
           </li>
         ))}
       </ul>
-    </SelectStyle>
+    </div>
   );
 }

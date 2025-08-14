@@ -1,0 +1,43 @@
+@use '../../styles/theme.module.scss' as theme;
+@use '../../styles/mixins.module.scss' as mixins;
+
+$dialSize: mixins.uiSize(200);
+$dialSizeHalf: mixins.uiSize(100);
+
+.mgSafeFrame {
+  position: fixed;
+  inset: 0;
+}
+
+.mgDial {
+  position: absolute;
+  top: calc(50% - #{$dialSizeHalf});
+  left: calc(50% - #{$dialSizeHalf});
+  width: $dialSize;
+  height: $dialSize;
+  border-radius: 50%;
+  background-color: var(--theme-white);
+  z-index: 1;
+  border: mixins.uiSize(2) solid var(--theme-black);
+  
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: mixins.uiSize(2);
+    height: 25%;
+    background-color: var(--theme-black);
+    z-index: -1;
+    transform: translateX(-50%);
+  }
+}
+
+.dialNumber {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 1;
+  font-size: 12px;
+  transform: translate(-50%, -50%);
+}

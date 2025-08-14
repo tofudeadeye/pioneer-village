@@ -13,16 +13,7 @@ const sheriffJob = {
     hours: { start: 6, end: 22 },
   },
   metadata: { department: 'law_enforcement' },
-};
-
-// Register the job
-PVJobs.registerJob(sheriffJob).then((success) => {
-  if (success) {
-    console.log('Sheriff job registered successfully');
-  } else {
-    console.log('Failed to register sheriff job');
-  }
-});
+} satisfies Jobs.JobDefinition;
 
 // Create a patrol task
 const patrolTask = {
@@ -41,6 +32,30 @@ const patrolTask = {
     cooldownMinutes: 30,
     maxPerDay: 8,
   },
+} satisfies Jobs.TaskDefinition;
+
+// Function to register job and task
+const registerJobAndTask = () => {
+  if (PVJobs && PVJobs.registerJob) {
+    // Register the job
+    PVJobs.registerJob(sheriffJob);
+
+    // Create the task
+    PVJobs.createTask('sheriff', patrolTask);
+  } else {
+    console.error('[Research] Jobs exports not available - ensure jobs resource is started before research');
+  }
 };
 
-PVJobs.createTask('sheriff', patrolTask);
+// Wait for jobs resource to be available before registering
+on('onResourceStart', (resourceName: string) => {
+  if (resourceName === 'jobs') {
+    // Jobs resource just started, wait a moment for exports to be fully available
+    setTimeout(registerJobAndTask, 100);
+  }
+});
+
+// Also try to register immediately if jobs is already started
+if (GetResourceState('jobs') === 'started') {
+  setTimeout(registerJobAndTask, 100);
+}

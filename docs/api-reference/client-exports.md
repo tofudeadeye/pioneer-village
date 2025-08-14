@@ -29,18 +29,18 @@ Functions for communicating between client and server resources.
 
 #### `onServerCall<T>(evtName: T, callback: Function): void`
 
-Registers a callback function to handle RPC calls from the server.
+Registers a callback function to handle ClientRPC.Server calls from the server.
 
 **Parameters:**
-- `evtName: T` - The name of the RPC event to listen for
-- `callback: (serverId: number, ...args: Parameters<RPC[T]>) => ReturnType<RPC[T]> | Promise<ReturnType<RPC[T]>>` - Function to handle the RPC call
+- `evtName: T` - The name of the ClientRPC.Server event to listen for
+- `callback: (serverId: number, ...args: Parameters<ClientRPC.Server[T]>) => ReturnType<ClientRPC.Server[T]> | Promise<ReturnType<ClientRPC.Server[T]>>` - Function to handle the ClientRPC.Server call
 
 **Example:**
 ```typescript
 import { onServerCall } from '@lib/client';
 
 onServerCall('getUserData', async (serverId, userId) => {
-  // Handle the RPC call from server
+  // Handle the ClientRPC.Server call from server
   return { id: userId, name: 'Player' };
 });
 ```
@@ -51,7 +51,7 @@ Registers an event listener for server events.
 
 **Parameters:**
 - `evtName: T` - The event name to listen for
-- `callback: (...args: Parameters<NetEvents[T]>) => void` - Event handler function
+- `callback: (...args: Parameters<ClientIn.FromServer & ClientOut.ToServer[T]>) => void` - Event handler function
 
 **Example:**
 ```typescript
@@ -62,15 +62,15 @@ onServer('playerJoined', (playerId, playerName) => {
 });
 ```
 
-#### `awaitServer<T>(evtName: T, ...args): Promise<ReturnType<RPC[T]>>`
+#### `awaitServer<T>(evtName: T, ...args): Promise<ReturnType<ClientRPC.Server[T]>>`
 
-Makes an asynchronous RPC call to the server and waits for a response.
+Makes an asynchronous ClientRPC.Server call to the server and waits for a response.
 
 **Parameters:**
-- `evtName: T` - The RPC event name
-- `...args: Parameters<RPC[T]>` - Arguments to pass to the server
+- `evtName: T` - The ClientRPC.Server event name
+- `...args: Parameters<ClientRPC.Server[T]>` - Arguments to pass to the server
 
-**Returns:** `Promise<ReturnType<RPC[T]>>` - Promise that resolves with the server's response
+**Returns:** `Promise<ReturnType<ClientRPC.Server[T]>>` - Promise that resolves with the server's response
 
 **Example:**
 ```typescript
@@ -86,7 +86,7 @@ Sends an event to the server without expecting a response.
 
 **Parameters:**
 - `evtName: T` - The event name
-- `...args: Parameters<NetEvents[T]>` - Event arguments
+- `...args: Parameters<ClientIn.FromServer & ClientOut.ToServer[T]>` - Event arguments
 
 **Example:**
 ```typescript
@@ -101,11 +101,11 @@ Functions for communicating with the UI layer, including buffering for resource 
 
 #### `onUICall<T>(evtName: T, callback: Function): void`
 
-Registers a callback function to handle RPC calls from the UI.
+Registers a callback function to handle ClientRPC.Server calls from the UI.
 
 **Parameters:**
-- `evtName: T` - The RPC event name
-- `callback: Function` - Handler function for the RPC call
+- `evtName: T` - The ClientRPC.Server event name
+- `callback: Function` - Handler function for the ClientRPC.Server call
 
 **Features:**
 - Automatically buffers calls if the UI resource isn't ready
@@ -587,7 +587,7 @@ setInterval(() => {
 
 The Pioneer Village client library includes robust error handling:
 
-### RPC Timeouts
+### ClientRPC.Server Timeouts
 
 All `await*` functions include automatic timeout handling (10 seconds by default):
 

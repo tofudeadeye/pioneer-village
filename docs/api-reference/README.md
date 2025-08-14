@@ -79,12 +79,12 @@ emitSocket('playerConnected', {
 
 ### Type-Safe Communication
 
-The library provides full TypeScript support with type-safe RPC calls:
+The library provides full TypeScript support with type-safe ClientRPC.Server calls:
 
 ```typescript
 // Types are enforced across client/server boundaries
 const result = await awaitServer('typedRpcCall', param1, param2);
-//    ^^^^^^ Automatically typed based on RPC definition
+//    ^^^^^^ Automatically typed based on ClientRPC.Server definition
 ```
 
 ### Automatic Resource Management
@@ -127,7 +127,7 @@ PVEvents.register('EVENT_ENTITY_DAMAGED', (data) => {
 ## API Categories
 
 ### Communication
-- **RPC (Remote Procedure Calls)**: Type-safe, promise-based function calls
+- **ClientRPC.Server (Remote Procedure Calls)**: Type-safe, promise-based function calls
 - **Events**: Traditional event-based messaging
 - **Buffering**: Automatic queuing when resources aren't available
 
@@ -187,17 +187,28 @@ removeZone('tempZone'); // Automatically removes event listeners
 
 ### Type Safety
 
-Define your RPC and event interfaces for better development experience:
+Define your ClientRPC.Server and event interfaces for better development experience:
 
 ```typescript
-declare interface RPC {
-  getUserData: (userId: number) => { id: number; name: string };
-  saveUserData: (userData: UserData) => boolean;
+declare namespace ClientRPC {
+  interface Server {
+    getUserData: (userId: number) => { id: number; name: string };
+    saveUserData: (userData: UserData) => boolean;
+  }
 }
 
-declare interface NetEvents {
-  playerAction: (action: string, data: any) => void;
-  serverAnnouncement: (message: string) => void;
+declare namespace ClientIn {
+  interface FromServer {
+    playerAction: (action: string, data: any) => void;
+    serverAnnouncement: (message: string) => void;
+  }
+}
+
+declare namespace ClientOut {
+  interface ToServer {
+    playerAction: (action: string, data: any) => void;
+    serverAnnouncement: (message: string) => void;
+  }
 }
 ```
 
@@ -268,8 +279,8 @@ emitUI('someEvent', data); // Automatically sent when ready
 
 ### Common Issues
 
-1. **RPC Timeouts**: Check that the target resource is running and handling the call
-2. **Type Errors**: Ensure RPC interfaces are properly declared
+1. **ClientRPC.Server Timeouts**: Check that the target resource is running and handling the call
+2. **Type Errors**: Ensure ClientRPC.Server interfaces are properly declared
 3. **Resource Not Found**: Verify resource names and dependencies
 
 ### Debug Logging
@@ -278,12 +289,12 @@ Use the built-in logging functions for debugging:
 
 ```typescript
 // Client-side
-import { Log, LogExtra } from '@lib/client';
+import { Log, LogExtra } from '@lib/client/comms/ui';
 Log('Debug message'); // Sent to UI log
 LogExtra('Debug with console'); // Both UI and console
 
 // Server-side
-import { LogToUI } from '@lib/server';
+import { LogToUI } from '@lib/server/comms/client';
 LogToUI('Server debug message', true); // UI and console
 ```
 

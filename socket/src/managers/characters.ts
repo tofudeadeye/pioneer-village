@@ -68,7 +68,7 @@ export const GetFaceDataFromDatabase = (result: CharacterWithFace): Game.Face =>
 class Characters {
   static readonly instance: Characters = new Characters();
 
-  characters: CharacterData[] = []; // TODO This needs to be a Map<number, CharacterData> for faster access
+  characters: PVCharacterData[] = []; // TODO This needs to be a Map<number, PVCharacterData> for faster access
 
   constructor() {
     if (Characters.instance) {
@@ -90,7 +90,7 @@ class Characters {
     }));
   }
 
-  private async getCharacter(charId: number): Promise<CharacterData | undefined> {
+  private async getCharacter(charId: number): Promise<PVCharacterData | undefined> {
     const result = await db
       .select()
       .from(CharactersSchema)
@@ -174,7 +174,7 @@ class Characters {
     }
   }
 
-  updateLocalCharacterAtributeWithCharId(charId: number, attribute: keyof CharacterData, newValue: any) {
+  updateLocalCharacterAtributeWithCharId(charId: number, attribute: keyof PVCharacterData, newValue: any) {
     for (const [index, char] of this.characters.entries()) {
       if (!char) continue;
       if (char.id !== charId) continue;
@@ -186,7 +186,7 @@ class Characters {
     }
   }
 
-  getLocalCharacterAtributeWithCharId(charId: number, attribute: keyof CharacterData): any {
+  getLocalCharacterAtributeWithCharId(charId: number, attribute: keyof PVCharacterData): any {
     for (const char of this.characters) {
       if (!char) continue;
       if (char.id !== charId) continue;
@@ -472,7 +472,7 @@ export type Prisma.CharactersCreateInput = {
     return result[0].healthMetadata as unknown as CharacterHealthMetadata;
   }
 
-  private async updateDatabaseWithPlayerMetadata(character: CharacterData) {
+  private async updateDatabaseWithPlayerMetadata(character: PVCharacterData) {
     if (!character) return;
     await this.updateCharacterCurrencies(character.id, character.currencies);
     await this.updateCharacterHealthMetadata(character.id, character.healthMetadata);

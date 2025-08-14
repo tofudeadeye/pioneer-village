@@ -238,7 +238,7 @@ emitUI('notification', { type: 'info', message: 'Hello!' });
 // Focus UI layer
 focusUI('my-layer', true);
 
-// UI RPC call
+// UI ClientRPC.Server call
 const result = await awaitUI('getData', { id: 123 });
 ```
 

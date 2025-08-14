@@ -46,7 +46,6 @@ export class WorldManager {
       }
 
       const [x, y, z] = stringCoords.map(Number);
-      // Log(inventory, x, y, z);
 
       DrawMarker(
         0x94fdae17,
@@ -61,7 +60,7 @@ export class WorldManager {
         0,
         0.15,
         0.15,
-        0.15,
+        0.25,
         225,
         0,
         75,

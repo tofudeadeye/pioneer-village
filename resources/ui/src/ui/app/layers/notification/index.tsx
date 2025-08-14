@@ -1,64 +1,66 @@
-import UIComponent from '@uiLib/ui-component';
-import { onClient } from '@lib/ui';
+import { useState, useEffect } from 'react';
+import notificationStore from '../../stores/notification-store';
+import styles from './styles.module.scss';
 
-import { Notif } from './styled';
-import theme from '@styled/theme';
+export default function Notification() {
+  const [state, setState] = useState(notificationStore.getState());
 
-export default class Notification extends UIComponent<UI.BaseProps, UI.Notification.State, {}> {
-  constructor() {
-    super();
+  useEffect(() => {
+    const unsubscribe = notificationStore.subscribe(setState);
+    return unsubscribe;
+  }, []);
 
-    this.state = {
-      show: true,
-      active: false,
-      notifications: [],
-      currentNotification: null,
-    };
+  useEffect(() => {
+    // Store handles all events
+  }, []);
 
-    onClient('notification.notify', (text, duration = 3000, bgColor = 'blue', fgColor = 'white', centered = false) => {
-      this.setState({ notifications: [...this.state.notifications, { text, duration, bgColor, fgColor, centered }] });
-    });
-  }
+  useEffect(() => {
+    handleActive();
+  }, [state.notifications, state.active]);
 
-  componentDidUpdate() {
-    this.handleActive();
-  }
-
-  handleActive() {
-    if (this.state.active) {
+  const handleActive = () => {
+    if (state.active) {
       return;
     }
-    const notification = this.state.notifications.shift();
+    const notification = state.notifications[0];
     if (!notification) {
       return;
     }
-    this.setState({ currentNotification: notification, active: true });
+    notificationStore.showNotification();
     setTimeout(() => {
-      this.setState({ active: false, currentNotification: null });
+      notificationStore.hideNotification();
     }, notification.duration);
-  }
+  };
 
-  onEvent(notificationEvent: UI.Notification.Event) {
-    this.setState(notificationEvent);
-  }
+  // Map color names to CSS variables
+  const getColorVar = (color: string) => {
+    const colorMap: { [key: string]: string } = {
+      blue: 'var(--theme-primary)',
+      white: 'var(--theme-white)',
+      red: 'var(--theme-danger)',
+      green: 'var(--theme-success)',
+      yellow: 'var(--theme-warning)',
+      black: 'var(--theme-black)',
+      gray: 'var(--theme-gray)',
+    };
+    return colorMap[color] || color;
+  };
 
-  render() {
-    return (
-      <>
-        {this.state.currentNotification && (
-          <Notif
-            className={`${this.state.active ? 'active' : ''}${
-              this.state.currentNotification.centered ? ' centered' : ''
-            }`}
-            style={{
-              backgroundColor: theme.colors[this.state.currentNotification.bgColor].hex,
-              color: theme.colors[this.state.currentNotification.fgColor].hex,
-            }}
-          >
-            {this.state.currentNotification.text}
-          </Notif>
-        )}
-      </>
-    );
-  }
+  return (
+    <>
+      {state.currentNotification && (
+        <div
+          className={`${styles.notif} ${state.active ? 'active' : ''}${
+            state.currentNotification.centered ? ' centered' : ''
+          }`}
+          style={{
+            backgroundColor: getColorVar(state.currentNotification.bgColor),
+            color: getColorVar(state.currentNotification.fgColor),
+          }}
+        >
+          {state.currentNotification.text}
+        </div>
+      )}
+    </>
+  );
 }

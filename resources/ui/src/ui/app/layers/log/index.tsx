@@ -1,290 +1,199 @@
+import Desktop from '@fa/5/solid/desktop.svg';
+import DiceFive from '@fa/5/solid/dice-five.svg';
+import DiceFour from '@fa/5/solid/dice-four.svg';
+import DiceOne from '@fa/5/solid/dice-one.svg';
+import DiceSix from '@fa/5/solid/dice-six.svg';
+import DiceThree from '@fa/5/solid/dice-three.svg';
+import DiceTwo from '@fa/5/solid/dice-two.svg';
+import Info from '@fa/5/solid/info.svg';
+import Server from '@fa/5/solid/server.svg';
+import TrashAlt from '@fa/5/solid/trash-alt.svg';
 import { debounce } from 'lodash';
-import { createRef } from 'react';
+import { createRef, useCallback, useEffect, useState } from 'react';
 import type { Socket } from 'socket.io-client';
 
 import { Delay } from '@lib/functions';
-import { onClient } from '@lib/ui';
 
-import Desktop from '@styled/fa5/solid/desktop.svg';
-import DiceFive from '@styled/fa5/solid/dice-five.svg';
-import DiceFour from '@styled/fa5/solid/dice-four.svg';
-import DiceOne from '@styled/fa5/solid/dice-one.svg';
-import DiceSix from '@styled/fa5/solid/dice-six.svg';
-import DiceThree from '@styled/fa5/solid/dice-three.svg';
-import DiceTwo from '@styled/fa5/solid/dice-two.svg';
-import Info from '@styled/fa5/solid/info.svg';
-import Server from '@styled/fa5/solid/server.svg';
-import TrashAlt from '@styled/fa5/solid/trash-alt.svg';
+import { useEscapeKey } from '../../hooks/use-game-events';
+import logStore from '../../stores/log-store';
+import styles from './styles.module.scss';
 
-import UIComponent from '@uiLib/ui-component';
+export default function Log() {
+  const [state, setState] = useState(logStore.getState());
+  const refLog = createRef<HTMLDivElement>();
 
-import { Filter, FilterItem, Frame, Item, List } from './styled';
+  console.log('[Log Component] Rendering with show state:', state.show);
 
-export default class Log extends UIComponent<UI.BaseProps, UI.Log.State, {}> {
-  refLog = createRef<HTMLDivElement>();
-
-  closeOnEscape = true;
-
-  constructor(
-    props: UI.BaseProps,
-    context: { socket: Socket<UISocketEvents, SocketServer.Client & SocketServer.ClientEvents> },
-  ) {
-    super();
-
-    this.state = {
-      show: false,
-      autoScroll: true,
-      scrollOverride: 0,
-      filter: new Set(),
-      reverseFilter: new Set(),
-      messages: [],
-      colors: {},
-    };
-
-    onClient('log.state', (event) => {
-      this.setState(event);
+  useEffect(() => {
+    console.log('[Log Component] Setting up subscription');
+    const unsubscribe = logStore.subscribe((newState) => {
+      console.log('[Log Component] Received state update, show:', newState.show);
+      setState(newState);
     });
+    return unsubscribe;
+  }, []);
 
-    onClient('log.message', (data, overrideSource = 'client') => {
-      this.addMessage(overrideSource, data);
-    });
+  useEffect(() => {
+    logStore.initializeClientHandlers();
+    logStore.setLogRef(refLog);
+  }, []);
 
-    context.socket.on('log.message', (data) => {
-      this.addMessage('server', data);
-    });
-  }
-
-  addMessage(source: UI.Log.Source, data: UI.Log.Data) {
-    let colors = this.state.colors;
-    const color = colors[data.resource];
-
-    if (!color) {
-      colors = { ...colors, [data.resource]: this.randomColor() };
-    }
-
-    // console.log('addMessage', data);
-    if (!data.message) {
-      console.error('No log message', data);
-      return;
-    }
-
-    this.setState({
-      messages: [
-        ...this.state.messages.splice(-999),
-        {
-          source,
-          resource: data.resource,
-          message: data.message,
-        },
-      ],
-      colors,
-    });
-  }
-
-  randomizeColors() {
-    const colors = this.state.colors;
-
-    for (const resource of Object.keys(this.state.colors)) {
-      colors[resource] = this.randomColor();
-    }
-
-    this.setState({ colors });
-  }
-
-  randomColor(): UI.Log.ColorData {
-    let isNew = false;
-    let h: number;
-    let s: number;
-    let l: number;
-    let tries = 0;
-    do {
-      h = Math.floor(Math.random() * 360);
-      s = 50 + Math.floor(Math.random() * 50);
-      l = 70 + Math.floor(Math.random() * 10);
-
-      isNew = true;
-      for (const color of Object.values(this.state.colors)) {
-        if (Math.abs(color.h - h) < 10 && Math.abs(color.s - s) < 5) {
-          isNew = false;
-        }
-      }
-      tries++;
-      if (tries > 200) {
-        isNew = true;
-      }
-    } while (!isNew);
-
-    const hsl = `hsl(${h}, ${s}%, ${l}%)`;
-
-    return { h, s, l, hsl };
-  }
-
-  componentDidUpdate() {
-    if (this.state.autoScroll) {
-      const logRef = this.refLog.current;
+  const handleScrollUpdate = () => {
+    if (state.autoScroll) {
+      const logRef = refLog.current;
       if (logRef) {
         logRef.scrollTo({ top: logRef.scrollHeight });
       }
     }
-  }
+  };
 
-  handleMousewheel = debounce((e: WheelEvent) => {
+  // Handle escape key
+  const onEscape = useCallback(() => {
+    logStore.close();
+    setTimeout(async () => {
+      handleScrollUpdate();
+      await Delay(100);
+      handleScrollUpdate();
+    }, 400);
+  }, [handleScrollUpdate]);
+
+  useEscapeKey(state.show, onEscape);
+
+  const addMessage = (source: UI.Log.Source, data: UI.Log.Data) => {
+    logStore.addMessage(source, data);
+  };
+
+  const randomizeColors = () => {
+    logStore.randomizeColors();
+  };
+
+  useEffect(() => {
+    handleScrollUpdate();
+  }, [state.messages, state.autoScroll]);
+
+  const handleMousewheel = debounce((e: React.WheelEvent<HTMLDivElement>) => {
     if (e.deltaY < 0) {
-      this.setState({ autoScroll: false });
+      logStore.setAutoScroll(false);
     } else {
-      const logRef = this.refLog?.current;
+      const logRef = refLog?.current;
       if (logRef) {
         window.requestAnimationFrame(() => {
           const autoScroll = logRef.scrollTop >= logRef.scrollHeight - logRef.clientHeight - e.deltaY;
-          if (autoScroll !== this.state.autoScroll) {
-            this.setState({ autoScroll });
+          if (autoScroll !== state.autoScroll) {
+            logStore.setAutoScroll(autoScroll);
           }
         });
       }
     }
   }, 125);
 
-  onEscape() {
-    this.setState({
-      show: false,
-      autoScroll: true,
-    });
-    setTimeout(async () => {
-      this.componentDidUpdate();
-      await Delay(100);
-      this.componentDidUpdate();
-    }, 400);
-  }
+  const clearFilter = () => {
+    logStore.clearFilter();
+  };
 
-  clearFilter() {
-    this.setState({ filter: new Set(), reverseFilter: new Set() });
-  }
+  const toggleResource = (resource: string) => {
+    logStore.toggleResource(resource);
+  };
 
-  toggleResource(resource: string) {
-    if (this.state.filter.has(resource)) {
-      this.state.filter.delete(resource);
-      // if (this.state.filter.size === 0) {
-      //   this.state.reverseFilter.clear();
-      // }
-    } else {
-      if (this.state.filter.size > 0 || !this.state.reverseFilter.has(resource)) {
-        this.state.filter.add(resource);
-      }
-      this.state.reverseFilter.delete(resource);
-    }
-    this.setState({
-      filter: new Set(this.state.filter.values()),
-      reverseFilter: new Set(this.state.reverseFilter.values()),
-    });
-  }
+  const toggleReverseResource = (resource: string) => {
+    logStore.toggleReverseResource(resource);
+  };
 
-  toggleReverseResource(resource: string) {
-    if (this.state.reverseFilter.has(resource)) {
-      this.state.reverseFilter.delete(resource);
-    } else {
-      if (!this.state.filter.has(resource) && this.state.filter.size === 0) {
-        this.state.reverseFilter.add(resource);
-      }
-
-      this.state.filter.delete(resource);
-    }
-    this.setState({
-      filter: new Set(this.state.filter.values()),
-      reverseFilter: new Set(this.state.reverseFilter.values()),
-    });
-  }
-
-  getClassName(resource: string) {
-    if (this.state.filter.has(resource)) {
+  const getClassName = (resource: string) => {
+    if (state.filter.has(resource)) {
       return 'active';
     }
-    if (!this.state.reverseFilter.has(resource) && this.state.filter.size === 0) {
+    if (!state.reverseFilter.has(resource) && state.filter.size === 0) {
       return '';
     }
     return 'inactive';
-  }
+  };
 
-  shouldShow(resource: string) {
-    if (this.state.filter.size > 0 && !this.state.filter.has(resource)) {
+  const shouldShow = (resource: string) => {
+    if (state.filter.size > 0 && !state.filter.has(resource)) {
       return false;
     }
-    if (this.state.reverseFilter.has(resource)) {
+    if (state.reverseFilter.has(resource)) {
       return false;
     }
     return true;
-  }
+  };
 
-  render() {
-    const randomDice = () => {
-      const dice = [DiceOne, DiceTwo, DiceThree, DiceFour, DiceFive, DiceSix];
-      const random = Math.floor(Math.random() * 6);
-      return dice[random];
-    };
+  const randomDice = () => {
+    const dice = [DiceOne, DiceTwo, DiceThree, DiceFour, DiceFive, DiceSix];
+    const random = Math.floor(Math.random() * 6);
+    return dice[random];
+  };
 
-    const Dice = randomDice();
+  const Dice = randomDice();
 
-    return (
-      <>
-        <Frame ref={this.refLog}>
-          <List id="log" className={this.state.show ? 'active' : undefined} onWheel={this.handleMousewheel.bind(this)}>
-            {this.state.messages.map(
-              ({ source, resource, message }) =>
-                this.shouldShow(resource) && (
-                  <Item>
-                    <i data-source={source}>
-                      {source === 'server' && <Server />} {source === 'client' && <Desktop />}
-                    </i>
-                    <span style={{ backgroundColor: this.state.colors[resource].hsl }}>{resource}</span>
-                    <pre>{message}</pre>
-                  </Item>
-                ),
-            )}
-            {this.state.messages.length === 0 && (
-              <Item>
-                <i data-source="client">
-                  <Info />
-                </i>
-                <pre>No messages</pre>
-              </Item>
-            )}
-          </List>
-        </Frame>
-        {this.state.show && (
-          <Filter>
-            <FilterItem className="red">
-              <TrashAlt onClick={() => this.setState({ messages: [] })} />
-            </FilterItem>
-            <FilterItem>
-              <Dice className="dice" onClick={() => this.randomizeColors()} />
-            </FilterItem>
-            <FilterItem
-              className={
-                this.state.filter.size === 0 &&
-                this.state.reverseFilter.size !== Object.values(this.state.colors).length
-                  ? ''
-                  : 'inactive'
-              }
-              onClick={this.clearFilter.bind(this)}
+  return (
+    <>
+      <div className={`${styles.frame} ${state.show ? styles.active : ''}`}>
+        <div
+          id="log"
+          className={`${styles.list} ${state.show ? 'active' : ''}`}
+          ref={refLog}
+          onWheel={handleMousewheel}
+        >
+          {state.messages.map(
+            ({ source, resource, message }, index) =>
+              shouldShow(resource) && (
+                <div className={styles.item} key={index}>
+                  <i data-source={source}>
+                    {source === 'server' && <Server />} {source === 'client' && <Desktop />}
+                  </i>
+                  <span style={{ backgroundColor: state.colors[resource].hsl }}>{resource}</span>
+                  <pre>{message}</pre>
+                </div>
+              ),
+          )}
+          {state.messages.length === 0 && (
+            <div className={styles.item}>
+              <i data-source="client">
+                <Info />
+              </i>
+              <pre>No messages</pre>
+            </div>
+          )}
+        </div>
+      </div>
+      {state.show && (
+        <div className={styles.filter}>
+          <div className={`${styles.filterItem} ${styles.red}`}>
+            <TrashAlt onClick={() => logStore.clearMessages()} />
+          </div>
+          <div className={styles.filterItem}>
+            <Dice className="dice" onClick={randomizeColors} />
+          </div>
+          <div
+            className={`${styles.filterItem} ${
+              state.filter.size === 0 && state.reverseFilter.size !== Object.values(state.colors).length
+                ? ''
+                : 'inactive'
+            }`}
+            onClick={clearFilter}
+          >
+            all
+          </div>
+          {Object.entries(state.colors).map(([resource, color]) => (
+            <div
+              key={resource}
+              style={{ backgroundColor: color.hsl }}
+              className={`${styles.filterItem} ${getClassName(resource)}`}
+              onClick={() => {
+                toggleResource(resource);
+              }}
+              onContextMenu={(e) => {
+                e.preventDefault();
+                toggleReverseResource(resource);
+              }}
             >
-              all
-            </FilterItem>
-            {Object.entries(this.state.colors).map(([resource, color]) => (
-              <FilterItem
-                style={{ backgroundColor: color.hsl }}
-                className={this.getClassName(resource)}
-                onClick={() => {
-                  this.toggleResource(resource);
-                }}
-                onContextMenu={() => {
-                  this.toggleReverseResource(resource);
-                }}
-              >
-                {resource}
-              </FilterItem>
-            ))}
-          </Filter>
-        )}
-      </>
-    );
-  }
+              {resource}
+            </div>
+          ))}
+        </div>
+      )}
+    </>
+  );
 }

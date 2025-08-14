@@ -1,0 +1,179 @@
+// Common SCSS mixins and functions for Pioneer Village UI
+@use "sass:math";
+
+// UI Size function - scales based on viewport height (1080 base)
+@function uiSize($value) {
+  @return #{math.div($value, 1080) * 100}vh;
+}
+
+// Transition mixins
+@mixin transition($property: all, $speed: var(--theme-transition-normal)) {
+  transition: $property $speed ease-in-out;
+}
+
+@mixin transitionFast($property: all) {
+  @include transition($property, var(--theme-transition-fast));
+}
+
+@mixin transitionSlow($property: all) {
+  @include transition($property, var(--theme-transition-slow));
+}
+
+// Hover state mixin
+@mixin hover {
+  &:hover:not(:disabled) {
+    @content;
+  }
+}
+
+// Active state mixin
+@mixin active {
+  &:active:not(:disabled) {
+    @content;
+  }
+}
+
+// Focus state mixin
+@mixin focus {
+  &:focus-visible {
+    @content;
+  }
+}
+
+// Disabled state mixin
+@mixin disabled {
+  &:disabled,
+  &[disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+    @content;
+  }
+}
+
+// Card/Surface mixin
+@mixin surface($level: 1) {
+  @if $level == 1 {
+    background-color: var(--theme-surface);
+  } @else if $level == 2 {
+    background-color: var(--theme-bg-secondary);
+  } @else if $level == 3 {
+    background-color: var(--theme-bg-tertiary);
+  } @else {
+    background-color: var(--theme-bg-elevated);
+  }
+  border-radius: var(--theme-radius-md);
+}
+
+// Shadow mixins
+@mixin shadow($size: md) {
+  @if $size == sm {
+    box-shadow: var(--theme-shadow-sm);
+  } @else if $size == md {
+    box-shadow: var(--theme-shadow-md);
+  } @else if $size == lg {
+    box-shadow: var(--theme-shadow-lg);
+  } @else if $size == xl {
+    box-shadow: var(--theme-shadow-xl);
+  }
+}
+
+// Flex center mixin
+@mixin flexCenter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// Absolute center mixin
+@mixin absoluteCenter {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+// Text truncate mixin
+@mixin truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// Multi-line truncate mixin
+@mixin lineClamp($lines: 2) {
+  display: -webkit-box;
+  -webkit-line-clamp: $lines;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+// Scrollbar styling mixin
+@mixin customScrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: var(--theme-border-primary) transparent;
+  
+  &::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background: var(--theme-border-primary);
+    border-radius: var(--theme-radius-sm);
+    
+    &:hover {
+      background: var(--theme-border-light);
+    }
+  }
+}
+
+// Glass effect mixin
+@mixin glass($opacity: 0.1) {
+  background: rgba(255, 255, 255, $opacity);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+// Border mixin
+@mixin border($side: all, $color: var(--theme-border-primary), $width: 1px) {
+  @if $side == all {
+    border: $width solid $color;
+  } @else if $side == top {
+    border-top: $width solid $color;
+  } @else if $side == right {
+    border-right: $width solid $color;
+  } @else if $side == bottom {
+    border-bottom: $width solid $color;
+  } @else if $side == left {
+    border-left: $width solid $color;
+  }
+}
+
+// Text shadow for better readability on varied backgrounds
+@mixin textShadow($size: 1px, $opacity: 0.5) {
+  $shadow: rgba(0, 0, 0, $opacity);
+  filter: drop-shadow(0 $size $size $shadow)
+          drop-shadow(0 calc(-1 * #{$size}) $size $shadow)
+          drop-shadow($size 0 $size $shadow)
+          drop-shadow(calc(-1 * #{$size}) 0 $size $shadow);
+}
+
+// Text outline effect
+@mixin textOutline($color: rgba(0, 0, 0, 0.8), $width: 1px) {
+  text-shadow: 
+    calc(-1 * #{$width}) calc(-1 * #{$width}) 0 $color,
+    0 calc(-1 * #{$width}) 0 $color,
+    $width calc(-1 * #{$width}) 0 $color,
+    $width 0 0 $color,
+    $width $width 0 $color,
+    0 $width 0 $color,
+    calc(-1 * #{$width}) $width 0 $color,
+    calc(-1 * #{$width}) 0 0 $color;
+}
+
+// Game UI specific mixins
+// No responsive breakpoints needed - game runs at fixed resolutions

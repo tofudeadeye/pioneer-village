@@ -1,0 +1,115 @@
+@use '../../styles/theme.module.scss' as theme;
+@use '../../styles/mixins.module.scss' as mixins;
+
+.container {}
+
+.modal {
+  position: absolute;
+  top: mixins.uiSize(91); // = (1080 - 898) / 2
+  width: mixins.uiSize(555.5);
+  height: mixins.uiSize(898);
+  background-image: url(https://p--v.b-cdn.net/customization/background.webp);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  color: var(--theme-white);
+  font-family: 'Caveat', cursive;
+  user-select: none;
+
+  input {
+    width: 100%;
+    background-color: transparent;
+    border: none;
+    border-bottom: 2px dashed var(--theme-gray50);
+    font-size: mixins.uiSize(30);
+    color: var(--theme-white);
+
+    &:focus {
+      outline: none;
+      border-bottom-color: var(--theme-white);
+    }
+  }
+}
+
+.modalLeft {
+  @extend .modal;
+  right: mixins.uiSize(1337);
+}
+
+.modalRight {
+  @extend .modal;
+  left: mixins.uiSize(1337);
+}
+
+.modalContents {
+  position: absolute;
+  inset: mixins.uiSize(75) mixins.uiSize(60) mixins.uiSize(60);
+  //padding: mixins.uiSize(40) mixins.uiSize(60);
+  overflow: auto;
+
+  > * {
+    max-width: 99%;
+  }
+
+  &::-webkit-scrollbar {
+    width: mixins.uiSize(2);
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.75);
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: #000;
+  }
+}
+
+.modalTitle {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  text-align: center;
+  font-family: 'Homemade Apple', cursive;
+  font-size: mixins.uiSize(50);
+  transform: translateY(-50%);
+}
+
+.modalButtons {
+  position: absolute;
+  bottom: mixins.uiSize(40);
+  right: mixins.uiSize(60);
+  left: mixins.uiSize(30);
+  transform: translateY(50%);
+  display: flex;
+  gap: mixins.uiSize(30);
+  justify-content: space-between;
+}
+
+.modalButton {
+  padding: mixins.uiSize(10) mixins.uiSize(20);
+  background-color: transparent;
+  border: none;
+  color: var(--theme-white);
+
+  &:hover,
+  &.active {
+    color: var(--theme-red);
+  }
+
+  svg {
+    height: mixins.uiSize(24);
+  }
+}
+
+.bottomControls {
+  position: absolute;
+  bottom: mixins.uiSize(16);
+  width: 25vw;
+  left: 50%;
+  transform: translateX(-50%);
+}

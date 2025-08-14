@@ -50,7 +50,7 @@ const result = await awaitUI('form.getResponse', formData);
 // Listen for events from UI
 onUI(eventName: string, callback: Function): void
 
-// Listen for RPC calls from UI (can send response)
+// Listen for ClientRPC.Server calls from UI (can send response)
 onUICall(eventName: string, callback: Function): void
 
 // Examples

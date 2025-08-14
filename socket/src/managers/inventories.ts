@@ -1,6 +1,6 @@
 import { eq, inArray, like, or } from 'drizzle-orm';
 import { Socket } from 'socket.io';
-import { DefaultEventsMap } from 'socket.io/dist/typed-events';
+import type { DefaultEventsMap } from 'socket.io/dist/typed-events';
 
 import InventoryTypes from '../../../lib/shared/inventory-types';
 import PVItems from '../../../lib/shared/items';
@@ -306,12 +306,12 @@ class Inventories {
 
   // Helper function to find item in inventory slot
   private findItemsInSlot(inventory: InventoryWithContainerAndItems, slot: number) {
-    console.log(
-      'inventory.container.items',
-      typeof slot,
-      slot,
-      inventory.container.items.map((item: ItemSchemaType) => item.slot),
-    );
+    // console.log(
+    //   'inventory.container.items',
+    //   typeof slot,
+    //   slot,
+    //   inventory.container.items.map((item: ItemSchemaType) => item.slot),
+    // );
 
     return (
       inventory.container.items.filter((item: ItemSchemaType) => item.slot === slot && item.deletedAt === null) || null
@@ -847,9 +847,7 @@ class Inventories {
     return this.worldInventories.values();
   }
 
-  async sendWorldInventories(
-    socket: Socket<SocketServer.Client & SocketServer.ClientEvents, UISocketEvents, DefaultEventsMap, any>,
-  ) {
+  async sendWorldInventories(socket: Socket<SocketIn.FromClient, SocketOut.ToClient, DefaultEventsMap, any>) {
     await Delay(5000);
     const inventories = [...this.worldInventories.values()];
     logInfo('inventory.sendWorldInventories', 'Sending world inventories', inventories);

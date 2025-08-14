@@ -1,0 +1,69 @@
+@use '../../styles/theme.module.scss';
+@use '../../styles/mixins.module.scss' as mixins;
+
+.fillContainer {
+  position: relative;
+  background-color: var(--theme-hover);
+  border: 0 solid var(--theme-text-tertiary);
+
+  &.border {
+    &.horizontal {
+      border-left-width: mixins.uiSize(2);
+      border-right-width: mixins.uiSize(2);
+    }
+
+    &.vertical {
+      border-top-width: mixins.uiSize(2);
+      border-bottom-width: mixins.uiSize(2);
+    }
+  }
+}
+
+.fillBar {
+  transition: 255ms;
+  position: absolute;
+}
+
+.fillBarHorizontal {
+  @extend .fillBar;
+  top: 0;
+  bottom: 0;
+}
+
+.fillBarLeft {
+  @extend .fillBar;
+  left: 0;
+}
+
+.fillBarCenter {
+  @extend .fillBar;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.fillBarRight {
+  @extend .fillBar;
+  right: 0;
+}
+
+.fillBarVertical {
+  @extend .fillBar;
+  left: 0;
+  right: 0;
+}
+
+.fillBarTop {
+  @extend .fillBar;
+  top: 0;
+}
+
+.fillBarBottom {
+  @extend .fillBar;
+  bottom: 0;
+}
+
+.fillBarMiddle {
+  @extend .fillBar;
+  top: 50%;
+  transform: translateY(-50%);
+}

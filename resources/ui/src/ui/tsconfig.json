@@ -20,12 +20,16 @@
         "@uiLib/*": [
           "./app/lib/*",
         ],
-        "react": ["../../../../node_modules/preact/compat/"],
-        "react-dom": ["../../../../node_modules/preact/compat/"]
+        "@fa/5/*": [
+          "./app/styled/fa5/*",
+        ],
+        "@fa/6/*": [
+          "./app/styled/fa6/*",
+        ]
       },
       "experimentalDecorators": true,
       "jsx": "react-jsx",
-      "jsxImportSource": "preact",
+      "jsxImportSource": "react",
       "module": "esnext",
       "types": ["@citizenfx/client", "@types/node"],
       "moduleResolution": "node",

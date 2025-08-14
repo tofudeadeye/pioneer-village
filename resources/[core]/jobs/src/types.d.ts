@@ -1,3 +1,4 @@
+
 declare namespace UI {
   namespace Jobs {
     interface State {

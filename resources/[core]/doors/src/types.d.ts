@@ -1,5 +1,3 @@
-declare interface RPC {}
-
 declare namespace Doors {
   enum State {
     Invalid = -1,
@@ -15,5 +13,12 @@ declare namespace Doors {
     netId: number;
     state: State;
     coords: Vector3Format;
+  }
+}
+
+// Extend the ClientOut.ToSocket namespace with doors-specific socket events
+declare namespace ClientOut {
+  interface ToSocket {
+    'doors.set-door-state': (doorHash: number, state: Doors.State) => void;
   }
 }

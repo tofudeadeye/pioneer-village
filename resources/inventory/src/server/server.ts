@@ -7,7 +7,6 @@ RegisterCommand(
     const itemId = GetHashKey(args[1]);
 
     emitSocket('inventoryAddItem', `character:${characterId}`, itemId, Number(args[2] ?? 1), {}, (success: boolean) => {
-      console.log('success', success);
     });
   },
   false,
@@ -28,20 +27,16 @@ RegisterCommand(
     }
 
     emitSocket('inventoryAddItem', `character:${characterId}`, itemId, 1, metadata, (success: boolean) => {
-      console.log('success', success);
     });
   },
   false,
 );
 
 onClient('inventory.pickup-hat', (hatNetId) => {
-  console.log(`Player picked up a hat with network ID: ${hatNetId}`);
-
   const hatEntity = NetworkGetEntityFromNetworkId(hatNetId);
   const hat = Entity(hatEntity);
 
   const itemId = hat.state.hatItemId;
-  console.log(`Hat Item ID: ${itemId}`);
 
   emitSocket('inventory.pickup-hat', source, itemId);
 });
@@ -49,9 +44,7 @@ onClient('inventory.pickup-hat', (hatNetId) => {
 onSocket('inventory.set-hat-item-id', (hatNetworkId, itemId) => {
   const hatEntity = NetworkGetEntityFromNetworkId(hatNetworkId);
 
-  console.log(`Hat Entity: ${hatEntity}`);
   const coords = GetEntityCoords(hatEntity);
-  console.log(`Hat Coords: ${coords[0]}, ${coords[1]}, ${coords[2]}`);
 
   Entity(hatEntity).state.set('hatItemId', itemId, true);
 });

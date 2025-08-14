@@ -4,7 +4,7 @@ import { DrawTxt, TxtAtWorldCoord } from '@lib/client';
 import { Vector3 } from '@lib/math';
 
 import './misc/events';
-import './misc/exports';
+import './exports';
 import './misc/commands';
 
 import healthManager from './managers/health-manager';

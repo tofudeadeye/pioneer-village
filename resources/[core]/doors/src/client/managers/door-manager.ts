@@ -1,5 +1,5 @@
-import { awaitUI, PVGame, PVInit } from '@lib/client';
-import { emitSocket, Log } from '@lib/client/comms/ui';
+import { PVGame, PVInit, awaitUI } from '@lib/client';
+import { Log, emitSocket } from '@lib/client/comms/ui';
 import { Vector3 } from '@lib/math';
 
 class DoorManager {
@@ -25,13 +25,13 @@ class DoorManager {
     const doors = await awaitUI('doors.get-door-states');
 
     for (const [doorHash, state] of doors) {
-      const entity = GetEntityByDoorhash(doorHash);
+      const entity = GetEntityByDoorhash(doorHash, 0);
       if (entity) {
         const data = this.getDoor(doorHash) || {
           entity,
           netId: NetworkGetEntityIsNetworked(entity) ? NetworkGetNetworkIdFromEntity(entity) : 0,
           state,
-          coords: Vector3.fromArray(GetEntityCoords(entity)).toObject(),
+          coords: Vector3.fromArray(GetEntityCoords(entity, false)).toObject(),
         };
 
         this.doors.set(doorHash, data);
@@ -212,7 +212,7 @@ class DoorManager {
           entity: doorEntity,
           netId: doorNetId,
           state: DoorSystemGetDoorState(doorHash),
-          coords: Vector3.fromArray(GetEntityCoords(doorEntity)).toObject(),
+          coords: Vector3.fromArray(GetEntityCoords(doorEntity, false)).toObject(),
         };
 
         data.entity = doorEntity;
@@ -221,7 +221,7 @@ class DoorManager {
           DoorSystemSetDoorState(doorHash, data.state);
         }
         if (data.coords.z === -69) {
-          data.coords = Vector3.fromArray(GetEntityCoords(doorEntity)).toObject();
+          data.coords = Vector3.fromArray(GetEntityCoords(doorEntity, false)).toObject();
         }
 
         if (!this.getDoor(doorHash)) {
@@ -235,11 +235,11 @@ class DoorManager {
       } else {
         const data = this.getDoor(doorHash);
         if (data && data.entity === 0) {
-          const entity = GetEntityByDoorhash(doorHash);
+          const entity = GetEntityByDoorhash(doorHash, 0);
           if (entity) {
             data.entity = entity;
             data.netId = NetworkGetEntityIsNetworked(entity) ? NetworkGetNetworkIdFromEntity(entity) : 0;
-            data.coords = Vector3.fromArray(GetEntityCoords(entity)).toObject();
+            data.coords = Vector3.fromArray(GetEntityCoords(entity, false)).toObject();
           }
 
           // Log(`Setting Door Entity: ${doorHash} ${entity}`);

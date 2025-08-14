@@ -1,78 +1,113 @@
 const path = require('path');
 const HotReloadPlugin = require('./rspack.hot-reload');
-const { ProvidePlugin } = require('@rspack/core');
+const { TsCheckerRspackPlugin } = require('ts-checker-rspack-plugin');
 
+const isDev = process.env.NODE_ENV === 'development';
+
+// @ts-check
+/** @type {import('@rspack/cli').Configuration} */
 module.exports = () => ({
+  name: 'ui',
   entry: path.resolve('./src/ui/ui.ts'),
   performance: {
     hints: false,
     maxEntrypointSize: 512000,
     maxAssetSize: 512000,
   },
+  experiments: {
+    css: true,
+  },
   module: {
     rules: [
-      // {
-      //   test: /\.tsx?$/,
-      //   exclude: [/node_modules/, /build/],
-      //   loader: 'esbuild-loader',
-      //   options: {
-      //     loader: 'tsx',
-      //     target: 'es2017',
-      //     jsxFactory: 'h',
-      //     jsxFragment: 'Fragment',
-      //   },
-      // },
       {
-        test: /\.tsx?$/,
-        exclude: [/node_modules/, /build/],
-        use: {
-          loader: 'builtin:swc-loader',
-          options: {
-            jsc: {
-              parser: {
-                syntax: 'typescript',
-                tsx: true,
+        test: /\.(js|ts)$/,
+        exclude: [/[\\/]node_modules[\\/]/, /[\\/]build[\\/]/],
+        use: [
+          {
+            loader: 'builtin:swc-loader',
+            options: {
+              jsc: {
+                parser: {
+                  syntax: 'typescript',
+                },
+                externalHelpers: true,
               },
-              transform: {
-                react: {
-                  development: process.env.NODE_ENV === 'development',
-                  runtime: 'automatic',
-                  importSource: 'preact',
+            },
+          },
+        ],
+      },
+      {
+        test: /\.(jsx|tsx)$/,
+        use: [
+          {
+            loader: 'builtin:swc-loader',
+            options: {
+              jsc: {
+                parser: {
+                  syntax: 'typescript',
+                  tsx: true,
+                },
+                externalHelpers: true,
+                transform: {
+                  react: {
+                    runtime: 'automatic',
+                  },
                 },
               },
             },
           },
-        },
-        type: 'javascript/auto',
+          {
+            loader: 'babel-loader',
+          },
+        ],
       },
       {
-        test: /\.s[ac]ss$/i,
-        use: ['style-loader', 'css-loader', 'sass-loader'],
+        test: /\.(png|jpg)$/,
+        type: 'asset/resource',
       },
       {
-        test: /\.css$/i,
-        use: ['style-loader', 'css-loader'],
+        test: /\.(sass|scss)$/,
+        use: [
+          {
+            loader: 'sass-loader',
+            options: {
+              // using `modern-compiler` and `sass-embedded` together significantly improve build performance,
+              // requires `sass-loader >= 14.2.1`
+              api: 'modern-compiler',
+              implementation: require.resolve('sass-embedded'),
+            },
+          },
+        ],
+        // set to 'css/auto' if you want to support '*.module.(scss|sass)' as CSS Modules, otherwise set type to 'css'
+        type: 'css/auto',
       },
       {
-        test: /\.svg$/,
-        use: ['preact-svg-loader'],
+        test: /\.svg$/i,
+        issuer: /\.[jt]sx?$/,
+        use: ['@svgr/webpack'],
       },
     ],
+    parser: {
+      'css/auto': {
+        namedExports: false,
+      },
+    },
   },
   plugins: [
-    new HotReloadPlugin('ui'),
-    new ProvidePlugin({ h: ['preact', 'h'], Fragment: ['preact/compat', 'Fragment'] }),
-  ],
+    isDev && new HotReloadPlugin('ui'),
+    new TsCheckerRspackPlugin({
+      typescript: {
+        typescriptPath: require.resolve('typescript'),
+        configFile: path.resolve('./src/ui/tsconfig.json'),
+      },
+    }),
+  ].filter(Boolean),
   optimization: {
     minimize: false,
   },
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
     tsConfig: { configFile: path.resolve('./src/ui/tsconfig.json') },
-    alias: {
-      react: 'preact/compat',
-      'react-dom': 'preact/compat',
-    },
   },
   output: {
     path: path.resolve('./build'),

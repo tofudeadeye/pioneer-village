@@ -4,7 +4,7 @@ import doorManager from './managers/door-manager';
 
 import './misc/commands';
 import './misc/events';
-import './misc/exports';
+import './exports';
 
 onSocket('doors.set-door-state', (doorHash: number, state: number) => {
   // console.log('doors.set-door-state', doorHash, state);

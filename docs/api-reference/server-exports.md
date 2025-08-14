@@ -92,19 +92,19 @@ onSocket('playerDataUpdated', (playerId, newData) => {
 
 ### Client Communication
 
-Functions for communicating with connected clients using RPC and event systems.
+Functions for communicating with connected clients using ClientRPC.Server and event systems.
 
 #### `onClientCall<T>(evtName: T, callback: Function): void`
 
-Registers a callback function to handle RPC calls from clients.
+Registers a callback function to handle ClientRPC.Server calls from clients.
 
 **Parameters:**
-- `evtName: T` - The name of the RPC event to listen for
-- `callback: (serverId: number, ...args: Parameters<RPC[T]>) => ReturnType<RPC[T]> | Promise<ReturnType<RPC[T]>>` - Function to handle the RPC call
+- `evtName: T` - The name of the ClientRPC.Server event to listen for
+- `callback: (serverId: number, ...args: Parameters<ClientRPC.Server[T]>) => ReturnType<ClientRPC.Server[T]> | Promise<ReturnType<ClientRPC.Server[T]>>` - Function to handle the ClientRPC.Server call
 
 **Features:**
 - Automatic error handling and response sending
-- Type-safe RPC handling
+- Type-safe ClientRPC.Server handling
 - Client ID (source) injection
 
 **Example:**
@@ -129,7 +129,7 @@ Registers an event listener for client events.
 
 **Parameters:**
 - `evtName: T` - The event name to listen for
-- `callback: (...args: Parameters<NetEvents[T]>) => void` - Event handler function
+- `callback: (...args: Parameters<ClientIn.FromServer & ClientOut.ToServer[T]>) => void` - Event handler function
 
 **Example:**
 ```typescript
@@ -141,16 +141,16 @@ onClient('playerAction', (action, data) => {
 });
 ```
 
-#### `awaitClient<T>(evtName: T, serverId: number, ...args): Promise<ReturnType<RPC[T]>>`
+#### `awaitClient<T>(evtName: T, serverId: number, ...args): Promise<ReturnType<ClientRPC.Server[T]>>`
 
-Makes an asynchronous RPC call to a specific client and waits for a response.
+Makes an asynchronous ClientRPC.Server call to a specific client and waits for a response.
 
 **Parameters:**
-- `evtName: T` - The RPC event name
+- `evtName: T` - The ClientRPC.Server event name
 - `serverId: number` - The client's server ID to send the call to
-- `...args: Parameters<RPC[T]>` - Arguments to pass to the client
+- `...args: Parameters<ClientRPC.Server[T]>` - Arguments to pass to the client
 
-**Returns:** `Promise<ReturnType<RPC[T]>>` - Promise that resolves with the client's response
+**Returns:** `Promise<ReturnType<ClientRPC.Server[T]>>` - Promise that resolves with the client's response
 
 **Features:**
 - 10-second timeout for client responses
@@ -172,7 +172,7 @@ Sends an event to a specific client without expecting a response.
 **Parameters:**
 - `evtName: T` - The event name
 - `serverId: number` - The client's server ID
-- `...args: Parameters<NetEvents[T]>` - Event arguments
+- `...args: Parameters<ClientIn.FromServer & ClientOut.ToServer[T]>` - Event arguments
 
 **Example:**
 ```typescript
@@ -440,7 +440,7 @@ setInterval(async () => {
 ```typescript
 import { onClientCall, LogToUI } from '@lib/server';
 
-// Robust RPC handler with comprehensive error handling
+// Robust ClientRPC.Server handler with comprehensive error handling
 onClientCall('performComplexOperation', async (serverId, operationData) => {
   try {
     // Validate input
@@ -478,12 +478,12 @@ onClientCall('performComplexOperation', async (serverId, operationData) => {
 
 ## Error Handling
 
-### RPC Error Handling
+### ClientRPC.Server Error Handling
 
-The server library automatically handles RPC errors:
+The server library automatically handles ClientRPC.Server errors:
 
 ```typescript
-// Errors thrown in RPC handlers are automatically caught and sent to clients
+// Errors thrown in ClientRPC.Server handlers are automatically caught and sent to clients
 onClientCall('riskyOperation', async (serverId) => {
   throw new Error('Something went wrong'); // Automatically sent to client
 });

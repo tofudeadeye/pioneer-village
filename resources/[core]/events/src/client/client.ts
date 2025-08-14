@@ -1,5 +1,5 @@
 import './misc/events';
-import './misc/exports';
+import './exports';
 import './misc/commands';
 import eventListener from './event/event-listener';
 import { Log } from '@lib/client/comms/ui';

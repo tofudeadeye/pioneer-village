@@ -1,80 +1,13 @@
 import { Component, createRef } from 'react';
-import styled from 'styled-components';
-
-import theme from '@styled/theme';
 
 import { uiSize } from '@uiLib/helpers';
 
-const SCSContainer = styled.div`
-  border-top: 2px solid ${theme.colors.white.hex};
-  padding-top: 20px;
-  padding-bottom: 20px;
-  font-size: ${uiSize(18)};
-  user-select: none;
-`;
-
-const SCSTitle = styled.div`
-  font-size: ${uiSize(32)};
-`;
-
-const SCSContent = styled.div`
-  display: grid;
-  transition: grid-template-rows ${theme.transitionSpeed.fast};
-  grid-template-rows: 0fr;
-  overflow: hidden;
-
-  &.active {
-    grid-template-rows: 1fr;
-  }
-`;
-
-const SCSContentWrapper = styled.div`
-  overflow: hidden;
-`;
-
-const SCSSelector = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  text-align: center;
-  margin-bottom: 10px;
-`;
-
-const SCSOptions = styled.div`
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-`;
-
-const SCSOption = styled.div`
-  border: ${uiSize(1)} solid ${theme.colors.white.hex};
-  margin: ${uiSize(16)} ${uiSize(8)};
-  font-family: 'Redressed', cursive;
-  text-align: center;
-  font-size: 0;
-  line-height: 0;
-
-  img,
-  span {
-    display: inline-block;
-    width: ${uiSize(56)};
-    height: ${uiSize(56)};
-  }
-
-  span {
-    font-size: ${uiSize(24)};
-    line-height: ${uiSize(60)};
-  }
-
-  &.active {
-    border-color: ${theme.colors.red.hex};
-  }
-`;
+import styles from './styles.module.scss';
 
 interface Props {
   label: string;
   onChange: (style: number, option: number) => void;
-  components: { name: string; components: any[] }[];
+  components: { name: string; components: { name: string; type: string; component: number }[] }[];
   gender: 'male' | 'female';
   style?: number;
   option?: number;
@@ -91,7 +24,7 @@ export default class StyleColorSelector extends Component<Props, State> {
   refContent = createRef<HTMLDivElement>();
 
   constructor(props: Props) {
-    super();
+    super(props);
 
     this.state = {
       active: false,
@@ -132,11 +65,16 @@ export default class StyleColorSelector extends Component<Props, State> {
 
   render() {
     return (
-      <SCSContainer>
-        <SCSTitle onClick={this.toggleContent.bind(this)}>{this.props.label}</SCSTitle>
-        <SCSContent ref={this.refContent} className={this.state.active ? 'active' : ''}>
-          <SCSContentWrapper>
-            <SCSSelector>
+      <div className={styles.scsContainer}>
+        <div className={styles.scsTitle} onClick={this.toggleContent.bind(this)}>
+          {this.props.label}
+        </div>
+        <div
+          ref={this.refContent}
+          className={this.state.active ? `${styles.scsContent} ${styles.active}` : styles.scsContent}
+        >
+          <div className={styles.scsContentWrapper}>
+            <div className={styles.scsSelector}>
               <div
                 style={{ cursor: 'pointer', fontSize: uiSize(48), paddingRight: uiSize(8) }}
                 onClick={this.decrement.bind(this)}
@@ -156,8 +94,8 @@ export default class StyleColorSelector extends Component<Props, State> {
               >
                 &gt;
               </div>
-            </SCSSelector>
-            <SCSOptions>
+            </div>
+            <div className={styles.scsOptions}>
               {this.props.components[this.state.currentStyle]?.components.map((component, index) => {
                 if (!component.name?.includes('BLACK')) {
                   return;
@@ -169,29 +107,30 @@ export default class StyleColorSelector extends Component<Props, State> {
                   return null;
                 }
                 return (
-                  <SCSOption
+                  <div
                     key={index}
+                    className={styles.scsOption}
                     onClick={() => {
                       this.setState({ currentOption: index });
                       this.props.onChange(this.state.currentStyle, index);
                     }}
-                    className={index === this.state.currentOption ? 'active' : ''}
                   >
                     {this.state.erroredImages.has(component.component) ? (
-                      <span>{index + 1}</span>
+                      <span className={index === this.state.currentOption ? styles.selected : ''}>{index + 1}</span>
                     ) : (
                       <img
+                        className={index === this.state.currentOption ? styles.selected : ''}
                         src={`https://p--v.b-cdn.net/swatches/components/${component.component}.png`}
                         onError={() => this.optionError(component.component)}
                       />
                     )}
-                  </SCSOption>
+                  </div>
                 );
               })}
-            </SCSOptions>
-          </SCSContentWrapper>
-        </SCSContent>
-      </SCSContainer>
+            </div>
+          </div>
+        </div>
+      </div>
     );
   }
 }

@@ -1,6 +1,6 @@
 import { shuffle } from 'lodash';
 
-import { PVGame, exports, PVCustomization } from '@lib/client';
+import { PVGame, PVCustomization } from '@lib/client';
 import { PVBase, PVCamera } from '@lib/client';
 import { Vector3 } from '@lib/math/vector3';
 import { AnimFlag } from '@lib/flags';
@@ -127,53 +127,8 @@ const cleanupCharacters = () => {
   spawnedPeds.clear();
 };
 
-const setPedOutfit = async (ped: number, components: number[]) => {
-  let currentComponentCount = GetNumComponentsInPed(ped);
-  for (let n = currentComponentCount; n--; ) {
-    const component = GetShopItemComponentAtIndex(
-      ped,
-      n,
-      false,
-      new DataView(new ArrayBuffer(255)),
-      new DataView(new ArrayBuffer(255)),
-    );
-    if (!components.includes(component)) {
-      const componentCategory = GetShopItemComponentCategory(component, 0, true);
-      RemoveTagFromMetaPed(ped, componentCategory, 0); // _SET_PED_COMPONENT_DISABLED
-      await Delay(1);
-    }
-  }
-
-  // Set Components
-  for (const component of components) {
-    ApplyShopItemToPed(ped, component, false, true, false); // _SET_PED_COMPONENT_ENABLED
-    await Delay(1);
-  }
-  Citizen.invokeNative('0x704c908e9c405136', ped); // Fix clothing???
-  UpdatePedVariation(ped, false, true, true, true, false);
-  await Delay(1);
-};
-
-const skinPed = async (ped: number, character: Game.Character) => {
-  // for (const [feature, hash] of Object.entries(faceFeatures)) {
-  //     Citizen.invokeNative('0x5653AB26C82938CF', ped, hash, character.wardrobe.face[feature] + 0.000001);
-  //     await Delay(1);
-  // }
-
-  await setPedOutfit(ped, character.components);
-  await PVCustomization.equipItems(ped, character.clothing);
-
-  // setTimeout(() => {
-  //   setPedOutfit(ped, character.components);
-  //   PVCustomization.equipItems(ped, character.clothing);
-  // }, 2500);
-
-  // if (character.wardrobe.face.overlays) {
-  //     emit('customization:update_overlays', character.wardrobe.face.overlays);
-  // }
-};
-
-exports<'game'>('skinPed', skinPed);
+// Import skinPed from exports - it's now centralized there
+import { skinPed, setCurrentCharacter } from '../exports';
 
 const spawnCharacter = async (
   character: Game.Character,
@@ -268,7 +223,6 @@ export const spawnCharacters = async (characters: Game.Character[]): Promise<UI.
   return uiCharacters;
 };
 
-let currentCharacter: Game.Character | undefined;
 
 onUI('character-select.choose', async (characterId) => {
   Log('character-select.choose', characterId);
@@ -277,7 +231,7 @@ onUI('character-select.choose', async (characterId) => {
   if (!character) {
     return;
   }
-  currentCharacter = character;
+  setCurrentCharacter(character);
 
   DoScreenFadeOut(500);
 
@@ -308,7 +262,7 @@ on('onResourceStop', (resourceName: string) => {
   if (resourceName === GetCurrentResourceName()) {
     cleanupCharacters();
   }
-  if (resourceName === 'ui' && !currentCharacter) {
+  if (resourceName === 'ui' && !PVGame.getCurrentCharacter()) {
     cleanupCharacters();
     DoScreenFadeOut(0);
   }
@@ -317,6 +271,7 @@ on('onResourceStop', (resourceName: string) => {
 RegisterCommand(
   'reset_ped',
   async () => {
+    const currentCharacter = PVGame.getCurrentCharacter();
     if (!currentCharacter) return;
 
     const playerPed = await gameManager.setPlayerModel(GetHashKey(currentCharacter.model));
@@ -326,4 +281,3 @@ RegisterCommand(
   false,
 );
 
-exports<'game'>('getCurrentCharacter', () => currentCharacter);

@@ -3,6 +3,9 @@ interface SocketDetails {
   token: string;
 }
 
-declare interface RPC {
-  getSocketDetails: (useCache?: boolean) => SocketDetails;
+// Extend the ClientRPC.Server namespace with queue-specific RPC methods
+declare namespace ClientRPC {
+  interface Server {
+    getSocketDetails: (useCache?: boolean) => SocketDetails;
+  }
 }

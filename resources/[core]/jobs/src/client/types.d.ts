@@ -18,31 +18,38 @@ declare namespace Jobs {
   }
 }
 
-declare interface UIRPC {
-  ['jobs.clock-in']: (jobHandle: string, location: { x: number; y: number; z: number }) => Jobs.ClockResult;
-  ['jobs.clock-out']: () => Jobs.ClockResult;
-  ['jobs.get-state']: () => UI.Jobs.State & { error?: string };
-  ['jobs.can-start-task']: (taskId: number) => Jobs.TaskAvailability;
-  ['jobs.get-available-tasks']: (jobHandle?: string) => Jobs.TaskDefinition[];
+// Client perspective - RPC calls to various destinations
+declare namespace ClientRPC {
+  interface Socket {
+    ['jobs.clock-in']: (jobHandle: string, location: { x: number; y: number; z: number }) => Jobs.ClockResult;
+    ['jobs.clock-out']: () => Jobs.ClockResult;
+    ['jobs.get-state']: () => UI.Jobs.State & { error?: string };
+    ['jobs.can-start-task']: (taskId: number) => Jobs.TaskAvailability;
+    ['jobs.get-available-tasks']: (jobHandle?: string) => Jobs.TaskDefinition[];
+  }
 }
 
-declare interface UIEvents {
-  ['jobs.clock-in-update']: Jobs.Events.ClockInUpdate;
-  ['jobs.clock-out-update']: Jobs.Events.ClockOutUpdate;
-  ['jobs.task-created']: Jobs.Events.TaskCreated;
-  ['jobs.payment-processed']: Jobs.Events.PaymentProcessed;
+// Client perspective - events received from various sources
+declare namespace ClientIn {
+  interface FromSocket {
+    ['jobs.clock-in-update']: (characterId: number, jobHandle: string) => void;
+    ['jobs.clock-out-update']: (characterId: number, hoursWorked: number, payment: number) => void;
+    ['jobs.task-created']: (jobHandle: string, taskInstance: any) => void;
+    ['jobs.payment-processed']: (characterId: number, amount: number, reason: string) => void;
+    ['jobs.task-started']: (characterId: number, taskId: number) => void;
+    ['jobs.task-completed']: (characterId: number, taskId: number, payment: number) => void;
+    ['jobs.permission-granted']: (characterId: number, type: string, typeId: number) => void;
+  }
 }
 
-declare interface ClientForwardEvents {
-  ['jobs.clock-in-update']: Jobs.Events.ClockInUpdate;
-  ['jobs.clock-out-update']: Jobs.Events.ClockOutUpdate;
-  ['jobs.task-created']: Jobs.Events.TaskCreated;
-  ['jobs.payment-processed']: Jobs.Events.PaymentProcessed;
-}
-
-declare interface SocketForwardEvents {
-  ['jobs.clock-in-update']: Jobs.Events.ClockInUpdate;
-  ['jobs.clock-out-update']: Jobs.Events.ClockOutUpdate;
-  ['jobs.task-created']: Jobs.Events.TaskCreated;
-  ['jobs.payment-processed']: Jobs.Events.PaymentProcessed;
-}
+// Raw Socket.io events for UI layer typing - DEDUPLICATED
+// Note: SocketIO.Events eliminated - use ClientIn.FromSocket directly
+// Events are defined in socket types: SocketOut.ToClient
+// declare namespace SocketIO {
+//   interface Events extends SocketOut.ToClient {
+//     ['jobs.clock-in-update']: Jobs.Events.ClockInUpdate;
+//     ['jobs.clock-out-update']: Jobs.Events.ClockOutUpdate;
+//     ['jobs.task-created']: Jobs.Events.TaskCreated;
+//     ['jobs.payment-processed']: Jobs.Events.PaymentProcessed;
+//   }
+// }

@@ -34,12 +34,17 @@ const io = new Server(server);
 
 export default server;
 
-export const serverNamespace: Namespace<SocketServer.Server & SocketServer.ServerEvents, SocketServer.SocketEvents> = io
+export const serverNamespace: Namespace<SocketIn.FromGameServer, SocketOut.ToGameServer & SocketInternal.Events> = io
   .of('/server')
   .use(requireServerKey)
   .use(logAll);
 
-export const userNamespace: Namespace<SocketServer.Client & SocketServer.ClientEvents, UISocketEvents> = io
+export const userNamespace: Namespace<SocketIn.FromClient, SocketOut.ToClient> = io
   .of('/users')
   .use(requireUuid)
   .use(logAll);
+
+// setTimeout(() => {
+//   console.log('Shutting down server after 1 second for testing purposes');
+//   process.exit();
+// }, 1500);

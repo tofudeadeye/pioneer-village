@@ -125,7 +125,7 @@ onUI('inventory:useItem', (itemId: string) => {
   // Handle item usage
 });
 
-// RPC Pattern (Promise-based)
+// ClientRPC.Server Pattern (Promise-based)
 const result = await awaitUI('dialog:confirm', { 
   message: 'Are you sure?' 
 });

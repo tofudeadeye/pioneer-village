@@ -1,5 +1,7 @@
 import { io } from 'socket.io-client';
+
 import { awaitClient, emitClient } from '@lib/ui';
+
 import App from './app';
 
 /*******
@@ -16,21 +18,58 @@ setTimeout(async () => {
   const socket = io(socketUrl, {
     secure: false,
     rejectUnauthorized: false,
+    reconnection: false, // Explicitly disable automatic reconnection
     reconnectionAttempts: 0,
     autoConnect: false,
     auth: { token },
   });
 
+  let isReconnecting = false;
+  let reconnectAttempts = 0;
+  const maxReconnectAttempts = 5;
+  
   socket.on('connect_error', async (e) => {
     console.log('socket error', e);
-    await new Promise((res) => setTimeout(res, 1e3));
-    const { token } = await awaitClient('getSocketDetails', false);
-    socket.auth = { token };
-    socket.connect();
+    
+    // Check if we should attempt reconnection
+    if (isReconnecting) {
+      console.log('Already attempting to reconnect, skipping...');
+      return;
+    }
+    
+    if (reconnectAttempts >= maxReconnectAttempts) {
+      console.error(`Failed to connect after ${maxReconnectAttempts} attempts`);
+      return;
+    }
+    
+    isReconnecting = true;
+    reconnectAttempts++;
+    
+    console.log(`Attempting reconnection ${reconnectAttempts}/${maxReconnectAttempts}...`);
+    
+    // Wait before attempting reconnection (exponential backoff)
+    const delay = Math.min(1000 * Math.pow(2, reconnectAttempts - 1), 10000);
+    await new Promise((res) => setTimeout(res, delay));
+    
+    try {
+      const { token } = await awaitClient('getSocketDetails', false);
+      socket.auth = { token };
+      
+      // Only attempt to connect if socket is not already connected
+      if (!socket.connected) {
+        socket.connect();
+      }
+    } catch (error) {
+      console.error('Failed to get socket details:', error);
+    } finally {
+      isReconnecting = false;
+    }
   });
 
   socket.on('connect', () => {
     console.log('connected');
+    isReconnecting = false;
+    reconnectAttempts = 0; // Reset attempts on successful connection
     emitClient('socket.connected');
   });
 

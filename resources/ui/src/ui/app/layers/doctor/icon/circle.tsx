@@ -1,6 +1,13 @@
 import theme from '@styled/theme';
 
-export default function Battery(props: any) {
+interface CircleProps {
+  className?: string;
+  width?: string;
+  color?: keyof typeof theme.colors;
+  percentage?: number;
+}
+
+export default function Battery(props: CircleProps) {
   return (
     <svg className={props.className} viewBox="0 0 106 106" xmlns="http://www.w3.org/2000/svg">
       <circle

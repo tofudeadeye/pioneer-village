@@ -1,4 +1,5 @@
 import { PVGame, emitUI, focusUI, onUI } from '@lib/client';
+import { Log } from '@lib/client/comms/ui';
 import { AnimFlag } from '@lib/flags';
 
 import './natives';
@@ -93,4 +94,18 @@ RegisterCommand(
   false,
 );
 
-console.log(global);
+// @ts-ignore
+global.Log = Log;
+
+RegisterCommand(
+  'jcrun',
+  async (source: number, args: string[]) => {
+    const rtns = eval(args.join(' '));
+    if (!rtns) {
+      Log('No return value from command');
+      return;
+    }
+    Log(rtns);
+  },
+  false,
+);

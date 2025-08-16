@@ -1,8 +1,8 @@
-import { Vector3 } from '@lib/math';
-import worldController from './controllers/world-controller';
-import { onResourceInit, PVGame, PVTarget } from '@lib/client';
-import { Delay } from '@lib/functions';
+import { PVGame, PVTarget, onResourceInit } from '@lib/client';
 import { Log } from '@lib/client/comms/ui';
+import { Vector3 } from '@lib/math';
+
+import worldController from './controllers/world-controller';
 
 const registerTargets = () => {
   Log('register targets');

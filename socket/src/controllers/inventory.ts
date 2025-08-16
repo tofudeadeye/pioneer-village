@@ -51,6 +51,7 @@ export default () => {
       'inventory.item-drop',
       'inventory.lost-hat',
       'inventory.check-world',
+      'inventory.get-world-inventories',
     ];
 
     constructor(socket: SocketType) {
@@ -234,6 +235,11 @@ export default () => {
       const uiInventory = Inventories.convertToUIInventory(inventory);
       userNamespace.to(`inventory:${identifier}`).emit('inventory.load', uiInventory);
     };
+
+    ['inventory.get-world-inventories']: SocketIn.FromClient['inventory.get-world-inventories'] = async () => {
+      logInfoC('inventory.get-world-inventories', 'Requesting world inventories');
+      await Inventories.sendWorldInventories(this.socket);
+    };
   }
 
   serverNamespace.on('connection', (socket) => {
@@ -276,8 +282,6 @@ export default () => {
 
   userNamespace.on('connection', (socket) => {
     logInfoC('[Inventory]', 'User connected', socket.id, socket.data);
-
-    Inventories.sendWorldInventories(socket);
 
     const usI = new ClientspaceInventory(socket);
 

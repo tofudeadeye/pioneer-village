@@ -1,4 +1,4 @@
-import { MouseEventHandler, useCallback, useEffect, useRef, useState } from 'react';
+import { type FC, type MouseEventHandler, type ReactNode, useCallback, useEffect, useRef, useState } from 'react';
 
 import { boolval } from '@lib/functions';
 
@@ -23,7 +23,7 @@ const progressStyleWeight = { overflow: 'hidden' as const, width: '100%', border
 
 const itsThumbScale = 1;
 
-const Inventories: React.FC<UI.BaseProps> = () => {
+const Inventories: FC<UI.BaseProps> = () => {
   // Use store state
   const [state, setState] = useState(inventoryStore.getState());
 
@@ -220,12 +220,7 @@ const Inventories: React.FC<UI.BaseProps> = () => {
   );
 
   const renderItem = useCallback<
-    (
-      itemData: UI.Inventory.ItemData,
-      i: number,
-      identifier: string,
-      inventory: UI.Inventory.LoadData,
-    ) => React.ReactNode
+    (itemData: UI.Inventory.ItemData, i: number, identifier: string, inventory: UI.Inventory.LoadData) => ReactNode
   >(
     (itemData, i, identifier, inventory) => {
       const item = items[itemData.identifier];

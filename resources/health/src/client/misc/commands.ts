@@ -1,10 +1,9 @@
 import { PVGame, emitUI, focusUI, onUI } from '@lib/client';
-
+import { Log } from '@lib/client/comms/ui';
 import { AnimFlag } from '@lib/flags';
 import { Delay } from '@lib/functions';
 
 import healthManager from '../managers/health-manager';
-import { Log } from '@lib/client/comms/ui';
 
 RegisterCommand(
   'melee',
@@ -64,8 +63,8 @@ RegisterCommand(
 RegisterCommand(
   'bed',
   async (source: number, args: any[], rawCommand: string) => {
-    // const playerPed = PlayerPedId();
-    const playerPed = 643074;
+    const playerPed = PlayerPedId();
+    // const playerPed = 643074;
 
     FreezeEntityPosition(playerPed, true);
     SetEntityCollision(playerPed, false, false);
@@ -111,7 +110,16 @@ const bones = [
   'SKEL_SPINE4',
 ];
 
+const offsetBoneCoords = (bone: UI.Doctor.BoneStatus, boneTwo: UI.Doctor.BoneStatus, distance = 0.333) => {
+  if (!bone || !boneTwo) {
+    return;
+  }
+  bone.coords.x = bone.coords.x + (boneTwo.coords.x - bone.coords.x) * distance;
+  bone.coords.y = bone.coords.y + (boneTwo.coords.y - bone.coords.y) * distance;
+};
+
 const getUIBones = (ped = PlayerPedId()): [number, UI.Doctor.BoneStatus[]] => {
+  const uiBonesBase: Record<string, UI.Doctor.BoneStatus> = {};
   const uiBones: UI.Doctor.BoneStatus[] = [];
 
   // Log('ped', ped);
@@ -135,7 +143,7 @@ const getUIBones = (ped = PlayerPedId()): [number, UI.Doctor.BoneStatus[]] => {
         continue;
       }
       // Log('boneStatus', boneStatus);
-      uiBones.push({
+      uiBonesBase[boneName] = {
         coords: { x: screenCoords[1] * 100, y: screenCoords[2] * 100 },
         name: boneName,
         health: healthManager.boneHealth.get(bone.id) ?? 100,
@@ -143,8 +151,53 @@ const getUIBones = (ped = PlayerPedId()): [number, UI.Doctor.BoneStatus[]] => {
         wound: boneStatus.slash,
         burned: boneStatus.burned,
         infection: boneStatus.infection,
-      });
+      };
     }
+  }
+
+  for (const boneName of bones) {
+    const bone = uiBonesBase[boneName];
+    if (!bone) {
+      continue;
+    }
+
+    switch (boneName) {
+      case 'SKEL_HEAD':
+        bone.coords.y -= 2.5;
+        break;
+      case 'SKEL_L_CLAVICLE':
+        offsetBoneCoords(bone, uiBonesBase['SKEL_L_UPPERARM'], 0.5);
+        break;
+      case 'SKEL_R_CLAVICLE':
+        offsetBoneCoords(bone, uiBonesBase['SKEL_R_UPPERARM'], 0.5);
+        break;
+      case 'SKEL_L_UPPERARM':
+        offsetBoneCoords(bone, uiBonesBase['SKEL_L_FOREARM'], 0.25);
+        break;
+      case 'SKEL_R_UPPERARM':
+        offsetBoneCoords(bone, uiBonesBase['SKEL_R_FOREARM'], 0.25);
+        break;
+      case 'SKEL_L_FOREARM':
+        offsetBoneCoords(bone, uiBonesBase['SKEL_L_HAND']);
+        break;
+      case 'SKEL_R_FOREARM':
+        offsetBoneCoords(bone, uiBonesBase['SKEL_R_HAND']);
+        break;
+      case 'SKEL_L_THIGH':
+        offsetBoneCoords(bone, uiBonesBase['SKEL_L_CALF'], 0.4);
+        break;
+      case 'SKEL_R_THIGH':
+        offsetBoneCoords(bone, uiBonesBase['SKEL_R_CALF'], 0.4);
+        break;
+      case 'SKEL_L_CALF':
+        offsetBoneCoords(bone, uiBonesBase['SKEL_L_FOOT']);
+        break;
+      case 'SKEL_R_CALF':
+        offsetBoneCoords(bone, uiBonesBase['SKEL_R_FOOT']);
+        break;
+    }
+
+    uiBones.push(bone);
   }
 
   return [ped, uiBones];
@@ -157,15 +210,17 @@ RegisterCommand(
 
     const [entity, uiBones] = getUIBones();
 
-    // const update = setInterval(() => {
-    //   Log('Update');
-    //   const [entity, uiBones] = getUIBones();
-    //   emitUI('doctor.state', { entity: entity, boneStatus: uiBones });
-    // }, 1000);
-    //
-    // onUI('nui.close', () => {
-    //   clearInterval(update);
-    // });
+    if (args[0] === '1' || args[0] === 'true') {
+      const update = setInterval(() => {
+        Log('Update');
+        const [entity, uiBones] = getUIBones();
+        emitUI('doctor.state', { entity: entity, boneStatus: uiBones });
+      }, 1000);
+
+      onUI('nui.close', () => {
+        clearInterval(update);
+      });
+    }
 
     // Log({ show: true, entity, boneStatus: uiBones });
 

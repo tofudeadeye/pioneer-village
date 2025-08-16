@@ -5,6 +5,7 @@ import PVItems from '@lib/shared/items';
 
 import './events';
 import './keybinds';
+import './targets';
 import './weapons';
 
 onUI('inventory.use-item', (itemData: UI.Inventory.ItemData) => {

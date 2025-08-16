@@ -6,7 +6,7 @@
     div {
       opacity: 0.75;
       transform: scale(0.5);
-      
+
       &:hover {
         transform: scale(1);
         opacity: 1;
@@ -26,7 +26,7 @@
   transform: scale(0.666);
   @include mixins.flexCenter;
   flex-wrap: wrap;
-  
+
   &:after {
     transition: 250ms;
     content: attr(data-name);
@@ -44,23 +44,23 @@
     font-size: mixins.uiSize(20);
     font-family: 'Caveat', cursive;
   }
-  
+
   &:hover {
     border-width: mixins.uiSize(2);
     border-color: #fff;
     z-index: 1;
-    
+
     &:after {
       opacity: 1;
     }
   }
-  
+
   svg {
     margin: mixins.uiSize(2);
     width: mixins.uiSize(16);
     height: mixins.uiSize(16);
   }
-  
+
   .borderCircle {
     position: absolute;
     inset: -3px;
@@ -68,50 +68,50 @@
     height: calc(100% + 6px);
     margin: 0;
     opacity: 0;
-    
+
     &.slowest {
       circle {
-        transition: 7500ms linear;
+        transition: stroke-dashoffset 7500ms linear;
       }
     }
-    
+
     &.slower {
       circle {
-        transition: 2000ms linear;
+        transition: stroke-dashoffset 2000ms linear;
       }
     }
-    
+
     &.slow {
       circle {
-        transition: 1500ms linear;
+        transition: stroke-dashoffset 1500ms linear;
       }
     }
-    
+
     &.normal {
       circle {
-        transition: 1250ms linear;
+        transition: stroke-dashoffset 1250ms linear;
       }
     }
-    
+
     &.fast {
       circle {
-        transition: 1000ms linear;
+        transition: stroke-dashoffset 1000ms linear;
       }
     }
-    
+
     &.faster {
       circle {
-        transition: 750ms linear;
+        transition: stroke-dashoffset 750ms linear;
       }
     }
-    
+
     &.fastest {
       circle {
-        transition: 500ms linear;
+        transition: stroke-dashoffset 500ms linear;
       }
     }
   }
-  
+
   &:not(.inspected) {
     .borderCircle {
       circle {
@@ -119,28 +119,28 @@
       }
     }
   }
-  
+
   &.inspecting {
     border-color: transparent;
-    
+
     .borderCircle {
       opacity: 1;
-      
+
       circle {
         stroke-dashoffset: 0;
       }
     }
   }
-  
+
   &.inspected {
     border-style: solid;
     border-color: transparent;
     width: mixins.uiSize(48);
     height: mixins.uiSize(48);
-    
+
     .borderCircle {
       opacity: 1;
-      
+
       circle {
         transition: 250ms linear;
       }

@@ -1,9 +1,10 @@
+import { PVBase, PVGame, PVInit, onResourceInit } from '@lib/client';
+import { Log, awaitUI } from '@lib/client/comms/ui';
+import { PedConfigFlag } from '@lib/flags';
+import { Delay } from '@lib/functions';
+
 import Horse from '../classes/horse';
 import Stable from '../classes/stable';
-import { awaitUI, Log } from '@lib/client/comms/ui';
-import { onResourceInit, PVBase, PVGame, PVInit } from '@lib/client';
-import { Delay } from '@lib/functions';
-import { PedConfigFlag } from '@lib/flags';
 
 class StableController {
   protected static instance: StableController;
@@ -130,7 +131,19 @@ class StableController {
 
     const characterHorsePeds = stableHorsePeds.get(characterId) || new Set<number>();
 
-    PVBase.deleteEntities([...characterHorsePeds]);
+    const horsesInStables: number[] = [];
+
+    for (const horsePed of characterHorsePeds.values()) {
+      // TODO: Check if Horse in inside stable instead.
+      const rider = GetRiderOfMount(horsePed, false);
+      if (!rider) {
+        horsesInStables.push(horsePed);
+      }
+    }
+
+    PVBase.deleteEntities(horsesInStables);
+
+    // TODO: Flag removed horses as not in stable
 
     stableHorsePeds.delete(characterId);
     this._stableHorsePeds.set(stableId, stableHorsePeds);

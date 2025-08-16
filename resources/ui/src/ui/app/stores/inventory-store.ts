@@ -1,4 +1,5 @@
 import { Socket } from 'socket.io-client';
+
 import { clamp } from '@lib/math';
 import { emitClient, onClient, onClientCall } from '@lib/ui';
 
@@ -74,7 +75,7 @@ class InventoryStore {
 
     // Set up socket event handlers
     this.setupSocketHandlers();
-    
+
     // Set up client event handlers
     this.setupClientHandlers();
 
@@ -142,7 +143,7 @@ class InventoryStore {
 
     // Handle target inventory changes
     const previousTargetInventory = this.state.targetInventory;
-    
+
     // Unsubscribe from old target inventory
     if (previousTargetInventory && previousTargetInventory !== event.targetInventory) {
       this.socket.emit('inventory.unsubscribe', previousTargetInventory);
@@ -157,12 +158,12 @@ class InventoryStore {
     } else if (!event.targetInventory && !this.worldSubscribed) {
       // Subscribe to world if no target inventory
       this.socket.emit('inventory.subscribe-world');
-      
+
       // Check world inventories at current location if not coming from another target
-      if (!previousTargetInventory) {
+      if (event.show && !previousTargetInventory) {
         this.socket.emit('inventory.check-world');
       }
-      
+
       this.worldSubscribed = true;
     }
 
@@ -201,7 +202,7 @@ class InventoryStore {
   private handleItemAdd = (data: UI.Inventory.AddData): void => {
     const inventories = new Map(this.state.inventories);
     const inventory = inventories.get(data.identifier);
-    
+
     if (inventory) {
       for (const [slot, item] of Object.entries(data.items)) {
         if (inventory.items[slot]) {
@@ -223,20 +224,23 @@ class InventoryStore {
     if ('charRequestId' in data) {
       const moveData = data as UI.Inventory.MoveData;
       const [requestCharId] = moveData.charRequestId.split(':');
-      
+
       if (this.state.characterId === Number(requestCharId)) {
         return;
       }
-      
+
       const inventories = new Map(this.state.inventories);
       const inventory = inventories.get(moveData.identifier);
-      
+
       if (inventory) {
         // Check if drag item needs to be cancelled
         const dragItem = document.getElementById('drag-item');
         if (dragItem) {
           const dragItemSlot = Number(dragItem.dataset.slot);
-          if (dragItem.dataset.inventoryIdentifier === moveData.identifier && moveData.emptySlots.includes(dragItemSlot)) {
+          if (
+            dragItem.dataset.inventoryIdentifier === moveData.identifier &&
+            moveData.emptySlots.includes(dragItemSlot)
+          ) {
             this.cancelDrag();
           }
         }
@@ -272,19 +276,19 @@ class InventoryStore {
     if ('requestId' in data) {
       const failData = data as UI.Inventory.SuccessFailData;
       const request = this.requests.get(failData.requestId);
-      
+
       if (!request) return;
-      
+
       this.requests.delete(failData.requestId);
       const { sourceIdentifier, oldSlot, targetIdentifier, newSlot } = request;
-      
+
       if (failData.requestType === 'move') {
         const inventories = new Map(this.state.inventories);
         const sourceInventory = inventories.get(sourceIdentifier);
         const targetInventory = inventories.get(targetIdentifier);
-        
+
         if (!sourceInventory || !targetInventory) return;
-        
+
         // Revert the move
         const oldItem = sourceInventory.items[oldSlot];
         const newItem = targetInventory.items[newSlot];
@@ -311,24 +315,20 @@ class InventoryStore {
   private handleItemWear = (itemId: number, wearAmount: number): void => {
     let itemChanged = false;
     const inventories = new Map(this.state.inventories);
-    
+
     for (const inventory of inventories.values()) {
       for (const item of Object.values(inventory.items)) {
         if (item.ids.includes(itemId)) {
           const oldDurability = item.durabilities[0] || 0;
           const maxDurability = this.items[item.identifier]?.maxDurability || 1;
-          const newDurability = clamp(
-            oldDurability + wearAmount,
-            0,
-            maxDurability
-          );
+          const newDurability = clamp(oldDurability + wearAmount, 0, maxDurability);
 
           item.durabilities[0] = newDurability;
           itemChanged = true;
         }
       }
     }
-    
+
     if (itemChanged) {
       this.updateState({ inventories });
     }
@@ -343,7 +343,7 @@ class InventoryStore {
   private useSlot = (slot: number): void => {
     const inventory = this.state.inventories.get(this.state.mainInventory);
     if (!inventory) return;
-    
+
     const slotItem = inventory.items[slot];
     if (!slotItem) return;
 
@@ -361,9 +361,15 @@ class InventoryStore {
   };
 
   // Move an item between inventories
-  moveItem(sourceIdentifier: string, oldSlot: number, targetIdentifier: string, newSlot?: number | null, force = false): void {
+  moveItem(
+    sourceIdentifier: string,
+    oldSlot: number,
+    targetIdentifier: string,
+    newSlot?: number | null,
+    force = false,
+  ): void {
     if (!this.socket) return;
-    
+
     if (sourceIdentifier === targetIdentifier && oldSlot === newSlot) {
       return;
     }
@@ -382,7 +388,7 @@ class InventoryStore {
         }
         return;
       }
-      
+
       for (let s = 0; s < targetInventory.slots; s++) {
         if (!targetInventory.items[s]) {
           newSlot = s;
@@ -408,7 +414,7 @@ class InventoryStore {
     const inventories = new Map(this.state.inventories);
     const sourceInventory = inventories.get(sourceIdentifier);
     const targetInventory = inventories.get(targetIdentifier);
-    
+
     if (!sourceInventory || !targetInventory) return;
 
     const oldItem = sourceInventory.items[oldSlot];
@@ -443,7 +449,7 @@ class InventoryStore {
   // Stack items
   stackItem(sourceIdentifier: string, oldSlot: number, targetIdentifier: string, newSlot: number): void {
     if (!this.socket) return;
-    
+
     if (sourceIdentifier === targetIdentifier && oldSlot === newSlot) {
       return;
     }
@@ -461,9 +467,9 @@ class InventoryStore {
     const inventories = new Map(this.state.inventories);
     const sourceInventory = inventories.get(sourceIdentifier);
     const targetInventory = inventories.get(targetIdentifier);
-    
+
     if (!sourceInventory || !targetInventory) return;
-    
+
     const oldItem = sourceInventory.items[oldSlot];
     const newItem = targetInventory.items[newSlot];
 
@@ -495,7 +501,7 @@ class InventoryStore {
   // Drop an item
   dropItem(identifier: string, slot: number): void {
     if (!this.socket) return;
-    
+
     if (this.state.targetInventory.startsWith('_WORLD_:')) {
       this.moveItem(identifier, slot, this.state.targetInventory, undefined, true);
       return;
@@ -509,7 +515,7 @@ class InventoryStore {
   cancelDrag(): void {
     const dragItem = document.getElementById('drag-item');
     if (!dragItem) return;
-    
+
     document.body.removeChild(dragItem);
     const draggedElements = document.getElementsByClassName('dragged-source');
     for (const element of draggedElements) {
@@ -536,7 +542,7 @@ class InventoryStore {
         updated = true;
       }
     }
-    
+
     if (updated) {
       this.updateState({ inventoriesWeight });
     }
@@ -545,7 +551,7 @@ class InventoryStore {
   // Update state and notify listeners
   updateState(newState: Partial<InventoryState>): void {
     this.state = { ...this.state, ...newState };
-    this.listeners.forEach(listener => listener(this.state));
+    this.listeners.forEach((listener) => listener(this.state));
   }
 
   // Startup method required by component
@@ -559,7 +565,7 @@ class InventoryStore {
   subscribe(listener: StateListener): () => void {
     this.listeners.add(listener);
     listener(this.state); // Call immediately with current state
-    
+
     return () => {
       this.listeners.delete(listener);
     };
@@ -600,6 +606,8 @@ class InventoryStore {
   // Close inventory
   closeInventory(): void {
     this.cancelDrag();
+    this.socket!.emit('inventory.unsubscribe', this.state.targetInventory);
+    this.subscriptions.delete(this.state.targetInventory);
     this.updateState({
       show: false,
       targetInventory: '',

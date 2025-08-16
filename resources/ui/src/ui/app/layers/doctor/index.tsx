@@ -4,8 +4,10 @@ import ClawMarks from '@fa/5/solid/claw-marks.svg';
 import Fire from '@fa/5/solid/fire.svg';
 import { useCallback, useEffect, useState } from 'react';
 
-import doctorStore from '../../stores/doctor-store';
+import { conditionalClass } from '@uiLib/helpers';
+
 import { useEscapeKey } from '../../hooks/use-game-events';
+import doctorStore from '../../stores/doctor-store';
 import Circle from './icon/circle';
 import styles from './styles.module.scss';
 
@@ -97,33 +99,39 @@ export default function Doctor() {
   return (
     state.show && (
       <div className={styles.doctorWrapper}>
-        {state.boneStatus.map((bone, b) => (
-          <div
-            key={b}
-            className={`${styles.doctorCircle} ${b === state.inspecting ? styles.inspecting : ''} ${state.inspected[b] ? styles.inspected : ''}`}
-            style={{ top: `${bone.coords.y}vh`, left: `${bone.coords.x}vw` }}
-            onClick={() => inspect(b)}
-            data-name={bone.name
-              .replace(/(SKEL_|[0-9])/g, '')
-              .replace('L_', 'Left ')
-              .replace('R_', 'Right ')
-              .toLowerCase()}
-          >
-            <Circle
-              className={`borderCircle ${boneInspectSpeed[bone.name]}`}
-              percentage={state.inspected[b] ? bone.health : 0}
-              color={boneHealthColor(b, bone)}
-            />
-            {state.inspected[b] && (
-              <>
-                {(bone.broken && <BoneBreak />) || ''}
-                {(bone.wound && <ClawMarks />) || ''}
-                {(bone.burned && <Fire />) || ''}
-                {(bone.infection && <Bacterium />) || ''}
-              </>
-            )}
-          </div>
-        ))}
+        {state.boneStatus.map(
+          (bone, b) =>
+            bone && (
+              <div
+                key={b}
+                className={conditionalClass(styles.doctorCircle, {
+                  [styles.inspecting]: state.inspecting === b,
+                  [styles.inspected]: state.inspected[b],
+                })}
+                style={{ top: `${bone.coords.y}vh`, left: `${bone.coords.x}vw` }}
+                onClick={() => inspect(b)}
+                data-name={bone.name
+                  .replace(/(SKEL_|[0-9])/g, '')
+                  .replace('L_', 'Left ')
+                  .replace('R_', 'Right ')
+                  .toLowerCase()}
+              >
+                <Circle
+                  className={conditionalClass([styles.borderCircle, styles[boneInspectSpeed[bone.name]]])}
+                  percentage={state.inspected[b] ? bone.health : 0}
+                  color={boneHealthColor(b, bone)}
+                />
+                {state.inspected[b] && (
+                  <>
+                    {(bone.broken && <BoneBreak />) || ''}
+                    {(bone.wound && <ClawMarks />) || ''}
+                    {(bone.burned && <Fire />) || ''}
+                    {(bone.infection && <Bacterium />) || ''}
+                  </>
+                )}
+              </div>
+            ),
+        )}
       </div>
     )
   );

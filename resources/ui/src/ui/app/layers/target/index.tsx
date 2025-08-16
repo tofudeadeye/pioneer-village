@@ -13,8 +13,8 @@ import { emitClient } from '@lib/ui';
 
 import { uiSize } from '@uiLib/helpers';
 
-import targetStore from '../../stores/target-store';
 import { useEscapeKey } from '../../hooks/use-game-events';
+import targetStore from '../../stores/target-store';
 import { getIcon } from './components/icon-registry';
 import styles from './styles.module.scss';
 
@@ -41,7 +41,7 @@ export default function Target() {
     console.log('performAction', action);
     emitClient('target.action', state.context, action);
     targetStore.reset();
-    // Note: closeUI functionality would need to be handled differently
+    emitClient('nui.close');
   };
 
   const getIconData = (): { style?: 'light' | 'regular' | 'solid' | 'duotone'; icon: string } => {

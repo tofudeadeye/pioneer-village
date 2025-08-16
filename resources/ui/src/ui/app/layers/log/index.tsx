@@ -14,6 +14,8 @@ import type { Socket } from 'socket.io-client';
 
 import { Delay } from '@lib/functions';
 
+import { conditionalClass } from '@uiLib/helpers';
+
 import { useEscapeKey } from '../../hooks/use-game-events';
 import logStore from '../../stores/log-store';
 import styles from './styles.module.scss';
@@ -22,12 +24,12 @@ export default function Log() {
   const [state, setState] = useState(logStore.getState());
   const refLog = createRef<HTMLDivElement>();
 
-  console.log('[Log Component] Rendering with show state:', state.show);
+  // console.log('[Log Component] Rendering with show state:', state.show);
 
   useEffect(() => {
-    console.log('[Log Component] Setting up subscription');
+    // console.log('[Log Component] Setting up subscription');
     const unsubscribe = logStore.subscribe((newState) => {
-      console.log('[Log Component] Received state update, show:', newState.show);
+      // console.log('[Log Component] Received state update, show:', newState.show);
       setState(newState);
     });
     return unsubscribe;
@@ -167,11 +169,11 @@ export default function Log() {
             <Dice className="dice" onClick={randomizeColors} />
           </div>
           <div
-            className={`${styles.filterItem} ${
-              state.filter.size === 0 && state.reverseFilter.size !== Object.values(state.colors).length
-                ? ''
-                : 'inactive'
-            }`}
+            className={conditionalClass(styles.filterItem, {
+              [styles.inactive]: !(
+                state.filter.size === 0 && state.reverseFilter.size !== Object.values(state.colors).length
+              ),
+            })}
             onClick={clearFilter}
           >
             all
@@ -180,7 +182,9 @@ export default function Log() {
             <div
               key={resource}
               style={{ backgroundColor: color.hsl }}
-              className={`${styles.filterItem} ${getClassName(resource)}`}
+              className={conditionalClass([styles.filterItem, getClassName(resource)], {
+                [styles.inactive]: !shouldShow(resource),
+              })}
               onClick={() => {
                 toggleResource(resource);
               }}

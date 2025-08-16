@@ -1,6 +1,6 @@
-import { Vector3 } from '@lib/math/vector3';
-import { Delay } from '@lib/functions';
 import { Log } from '@lib/client/comms/ui';
+import { Delay } from '@lib/functions';
+import { Vector3 } from '@lib/math/vector3';
 
 class CameraManager {
   protected static instance: CameraManager;
@@ -19,7 +19,9 @@ class CameraManager {
   activeCamFov?: number;
 
   constructor() {
+    Log('CameraManager constructor');
     on('onResourceStop', (resourceName: string) => {
+      Log('CameraManager onResourceStop', resourceName);
       if (resourceName === GetCurrentResourceName()) {
         this.destruct();
       }

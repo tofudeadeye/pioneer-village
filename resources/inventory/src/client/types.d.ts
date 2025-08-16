@@ -31,5 +31,6 @@ declare namespace ClientOut {
     ['inventory.item-wear']: (itemId: number) => void;
     ['inventory.lost-hat']: (hatNetId: number, coords: Vector3) => void;
     ['inventory.pickup-hat']: (hatNetId: number) => void;
+    ['inventory.get-world-inventories']: () => void;
   }
 }

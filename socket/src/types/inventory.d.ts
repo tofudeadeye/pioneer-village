@@ -2,11 +2,17 @@
 declare namespace SocketIn {
   interface FromGameServer {
     createInventory: (identifier: string, inventoryType: number, callback: (success: boolean) => void) => void;
-    inventoryAddItem: (inventoryId: string, itemIdentifier: number, amount?: number, metadata?: Record<string, any>, callback?: (success: boolean) => void) => void;
+    inventoryAddItem: (
+      inventoryId: string,
+      itemIdentifier: number,
+      amount?: number,
+      metadata?: Record<string, any>,
+      callback?: (success: boolean) => void,
+    ) => void;
     'inventory.item-wear': (itemId: number) => void;
     'inventory.pickup-hat': (source: number, itemId: number) => void;
   }
-  
+
   interface FromClient {
     'inventory.subscribe': (identifier: string) => void;
     'inventory.unsubscribe': (identifier: string) => void;
@@ -29,6 +35,7 @@ declare namespace SocketIn {
     'inventory.item-wear': (itemId: number) => void;
     'inventory.lost-hat': (hatNetId: number, coords: Vector3) => void;
     'inventory.check-world': () => void;
+    'inventory.get-world-inventories': () => void;
   }
 }
 
@@ -37,12 +44,16 @@ declare namespace SocketOut {
   interface ToGameServer {
     'inventory.set-hat-item-id': (hatNetId: number, itemId: number) => void;
   }
-  
+
   interface ToClient {
     'inventory.world-inventories': (inventories: string[]) => void;
     'inventory.startup': (data: any) => void;
     'inventory.fail': (data: UI.Inventory.MoveOrFailData) => void;
-    'inventory.success': (data: { identifier: string; requestId: number; requestType: UI.Inventory.RequestType }) => void;
+    'inventory.success': (data: {
+      identifier: string;
+      requestId: number;
+      requestType: UI.Inventory.RequestType;
+    }) => void;
     'inventory.item-move': (data: UI.Inventory.MoveOrFailData) => void;
     'inventory.load': (inventory: any) => void;
     'inventory.item-add': (event: any) => void;

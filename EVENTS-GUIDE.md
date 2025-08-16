@@ -56,19 +56,19 @@ MyResourceController(socket);
 
 | Function | Type | Description | Usage |
 |----------|------|-------------|-------|
-| `onServerCall` | ClientRPC.Server Listener | Listen for server ClientRPC.Server with callback | `onServerCall('event', (serverId, ...args) => result)` |
+| `onServerCall` | RPC Listener | Listen for server RPC calls with callback | `onServerCall('event', (serverId, ...args) => result)` |
 | `emitServer` | Event | Send event to server | `emitServer('event', ...args)` |
 | `onServer` | Event Listener | Listen for server events | `onServer('event', (...args) => {})` |
-| `awaitServer` | ClientRPC.Server Call | Make ClientRPC.Server call to server | `const result = await awaitServer('event', ...args)` |
+| `awaitServer` | RPC Call | Make RPC call to server | `const result = await awaitServer('event', ...args)` |
 
 #### Client to UI (`@lib/client/comms/ui.ts`)
 
 | Function | Type | Description | Usage |
 |----------|------|-------------|-------|
 | `emitUI` | Event | Send data to UI | `emitUI('event', data)` |
-| `awaitUI` | ClientRPC.Server Call | Make ClientRPC.Server call to UI | `const result = await awaitUI('event', ...args)` |
+| `awaitUI` | RPC Call | Make RPC call to UI | `const result = await awaitUI('event', ...args)` |
 | `onUI` | Event Listener | Listen for UI events | `onUI('event', (data) => {})` |
-| `onUICall` | ClientRPC.Server Listener | Listen for UI ClientRPC.Server calls | `onUICall('event', (...args) => result)` |
+| `onUICall` | RPC Listener | Listen for UI RPC calls | `onUICall('event', (...args) => result)` |
 | `focusUI` | Control | Set UI focus state | `focusUI(hasFocus, hasCursor)` |
 | `emitSocket` | Event | Send to socket via UI | `emitSocket('event', ...args)` |
 | `onSocket` | Event Listener | Listen for socket events | `onSocket('event', (data) => {})` |
@@ -79,17 +79,17 @@ MyResourceController(socket);
 
 | Function | Type | Description | Usage |
 |----------|------|-------------|-------|
-| `onClientCall` | ClientRPC.Server Listener | Listen for client ClientRPC.Server calls | `onClientCall('event', (serverId, ...args) => result)` |
+| `onClientCall` | RPC Listener | Listen for client RPC calls | `onClientCall('event', (serverId, ...args) => result)` |
 | `emitClient` | Event | Send event to client(s) | `emitClient('event', ...args)` |
 | `onClient` | Event Listener | Listen for client events | `onClient('event', (serverId, ...args) => {})` |
-| `awaitClient` | ClientRPC.Server Call | Make ClientRPC.Server call to specific client | `const result = await awaitClient('event', serverId, ...args)` |
+| `awaitClient` | RPC Call | Make RPC call to specific client | `const result = await awaitClient('event', serverId, ...args)` |
 
 #### Server to Socket (`@lib/server/comms/socket.ts`)
 
 | Function | Type | Description | Usage |
 |----------|------|-------------|-------|
 | `emitSocket` | Event | Send event to socket server | `emitSocket('event', ...args)` |
-| `awaitSocket` | ClientRPC.Server Call | Make ClientRPC.Server call to socket server | `const result = await awaitSocket('event', ...args)` |
+| `awaitSocket` | RPC Call | Make RPC call to socket server | `const result = await awaitSocket('event', ...args)` |
 | `onSocket` | Event Listener | Listen for socket events | `onSocket('event', (data) => {})` |
 
 ### Socket Server Functions
@@ -108,7 +108,7 @@ MyResourceController(socket);
 | Function | Type | Description | Usage | Files |
 |----------|------|-------------|-------|-------|
 | `emitClient` | Forward to Client | Forward socket event to client | `emitClient('event', ...args)` | `./resources/ui/src/ui/app/controllers/**/*.ts` |
-| `onClientCall` | ClientRPC.Server Handler | Handle client ClientRPC.Server via UI | `onClientCall('event', (...args) => Promise)` | `./resources/ui/src/ui/app/controllers/**/*.ts` |
+| `onClientCall` | RPC Handler | Handle client RPC calls via UI | `onClientCall('event', (...args) => Promise)` | `./resources/ui/src/ui/app/controllers/**/*.ts` |
 | `socket.on` | Socket Listener | Listen to socket events | `socket.on('event', (...args) => {})` | `./resources/ui/src/ui/app/controllers/**/*.ts` |
 | `socket.emit` | Socket Call | Call socket with callback | `socket.emit('event', data, (result) => {})` | `./resources/ui/src/ui/app/controllers/**/*.ts` |
 
@@ -136,7 +136,7 @@ MyResourceController(socket);
 ```typescript
 import { awaitServer, emitServer, onServer } from '@lib/client/comms/server';
 
-// ClientRPC.Server call to server
+// RPC call to server
 const playerData = await awaitServer('my-resource.get-player-data', playerId);
 
 // Event to server
@@ -152,7 +152,7 @@ onServer('my-resource.state-update', (newState) => {
 ```typescript
 import { onClientCall, emitClient, onClient } from '@lib/server/comms/client';
 
-// Handle ClientRPC.Server from client
+// Handle RPC from client
 onClientCall('my-resource.get-player-data', async (serverId, playerId) => {
   // Return data to client
   return await getPlayerData(playerId);
@@ -200,7 +200,7 @@ import { emitUI, awaitUI, onUI } from '@lib/client/comms/ui';
 // Send data to UI
 emitUI('my-resource.update-hud', { health: 100, food: 80 });
 
-// Get data from UI (ClientRPC.Server)
+// Get data from UI (RPC)
 const selectedOption = await awaitUI('my-resource.show-menu', menuOptions);
 
 // Listen for UI events
@@ -227,14 +227,14 @@ export default function MyResourceLayer() {
 3. **Type Definitions**:
 ```typescript
 declare namespace ClientIn {
-  interface FromSocket {
+  interface FromUI {
     ['my-resource.update-hud']: (data: HudData) => void;
     ['my-resource.button-clicked']: (buttonId: string) => void;
   }
 }
 
 declare namespace ClientRPC {
-  interface Socket {
+  interface UI {
     ['my-resource.show-menu']: (options: MenuOption[]) => string;
   }
 }
@@ -253,7 +253,7 @@ import { emitSocket, onSocket, awaitUI } from '@lib/client/comms/ui';
 // Send data to socket server
 emitSocket('my-resource.save-data', characterId, gameData);
 
-// Get data from socket server (via UI ClientRPC.Server)
+// Get data from socket server (via UI RPC)
 const savedData = await awaitUI('my-resource.load-data', characterId);
 
 // Listen for socket events
@@ -267,13 +267,13 @@ onSocket('my-resource.data-updated', (characterId, newData) => {
 import { Socket } from 'socket.io-client';
 import { emitClient, onClientCall } from '@lib/ui';
 
-export default (socket: Socket<SocketIO.Events, SocketIn.FromClient & SocketOut.ToClient>) => {
+export default (socket: Socket<SocketOut.ToClient, SocketIn.FromClient>) => {
   // Forward socket events to client
   socket.on('my-resource.data-updated', (characterId, newData) => {
     emitClient('my-resource.data-updated', characterId, newData);
   });
 
-  // Handle client ClientRPC.Server calls to socket
+  // Handle client RPC calls to socket
   onClientCall('my-resource.load-data', (characterId) => {
     return new Promise((resolve) => {
       socket.emit('my-resource.load-data', characterId, (data) => {
@@ -305,14 +305,14 @@ export default () => {
 
 4. **Socket Types** (`socket/src/types/my-resource.d.ts`):
 ```typescript
-declare namespace SocketServer {
-  declare interface SocketIn {
+declare interface SocketIn {
   FromClient: {
     ['my-resource.save-data']: (characterId: number, gameData: GameData) => void;
     ['my-resource.load-data']: (characterId: number, callback: (data: GameData) => void) => void;
   }
-  
-  declare interface SocketOut {
+}
+
+declare interface SocketOut {
   ToClient: {
     ['my-resource.data-updated']: (characterId: number, newData: GameData) => void;
   }
@@ -330,7 +330,7 @@ declare interface SocketForwardEvents {
 }
 
 declare namespace ClientRPC {
-  interface Socket {
+  interface UI {
     ['my-resource.load-data']: (characterId: number) => GameData;
   }
 }
@@ -381,7 +381,7 @@ export default () => {
 import { Socket } from 'socket.io-client';
 import { emitClient, onClientCall } from '@lib/ui';
 
-export default (socket: Socket<SocketIO.Events, SocketIn.FromClient & SocketOut.ToClient>) => {
+export default (socket: Socket<SocketOut.ToClient, SocketIn.FromClient>) => {
   // Forward socket broadcasts to client
   socket.on('my-resource.registration-update', (data) => {
     emitClient('my-resource.registration-update', data);
@@ -391,7 +391,7 @@ export default (socket: Socket<SocketIO.Events, SocketIn.FromClient & SocketOut.
     emitClient('my-resource.action-update', characterId, result);
   });
 
-  // Handle client ClientRPC.Server calls
+  // Handle client RPC calls
   onClientCall('my-resource.perform-action', (actionData) => {
     return new Promise((resolve) => {
       socket.emit('my-resource.user-action', actionData, (result) => {
@@ -466,14 +466,14 @@ export default () => {
 
 3. **Socket Types**:
 ```typescript
-declare namespace SocketServer {
-  declare interface SocketIn {
+declare interface SocketIn {
   FromGameServer: {
     ['my-resource.server-save']: (serverId: number, serverData: ServerData) => void;
     ['my-resource.server-query']: (queryParams: QueryParams, callback: (result: QueryResult) => void) => void;
   }
-  
-  declare interface SocketOut {
+}
+
+declare interface SocketOut {
   ToGameServer: {
     ['my-resource.global-update']: (updateData: UpdateData) => void;
   }
@@ -521,7 +521,7 @@ Events must be declared in appropriate interfaces:
 ```typescript
 // For UI events
 declare namespace ClientIn {
-  interface FromSocket {
+  interface FromUI {
     ['my-resource.state-update']: MyResource.Events.StateUpdate;
   }
 }
@@ -536,9 +536,9 @@ declare interface SocketForwardEvents {
   ['my-resource.action-complete']: MyResource.Events.ActionComplete;
 }
 
-// For ClientRPC.Server calls
+// For RPC calls
 declare namespace ClientRPC {
-  interface Socket {
+  interface UI {
     ['my-resource.get-data']: (params: QueryParams) => DataResult;
   }
 }
@@ -549,23 +549,19 @@ Socket events require separate type files:
 
 ```typescript
 // socket/src/types/my-resource.d.ts
-declare namespace SocketServer {
-  declare interface SocketIn {
+declare interface SocketIn {
   FromClient: {
     ['my-resource.save']: (data: SaveData) => void;
   }
-  
-  declare interface SocketIn {
   FromGameServer: {
     ['my-resource.query']: (params: QueryParams, cb: (result: QueryResult) => void) => void;
   }
-  
-  declare interface SocketOut {
+}
+
+declare interface SocketOut {
   ToClient: {
     ['my-resource.notify']: (notification: NotificationData) => void;
   }
-  
-  declare interface SocketOut {
   ToGameServer: {
     ['my-resource.broadcast']: (message: BroadcastData) => void;
   }
@@ -574,8 +570,8 @@ declare namespace SocketServer {
 
 ## Error Handling and Best Practices
 
-### 1. ClientRPC.Server Timeout Handling
-All ClientRPC.Server calls include automatic timeout handling (10 seconds default):
+### 1. RPC Timeout Handling
+All RPC calls include automatic timeout handling (10 seconds default):
 
 ```typescript
 // Automatic timeout in awaitServer/awaitClient/awaitUI
@@ -593,7 +589,7 @@ onUI('my-resource.event', handler);  // Registered when UI starts
 ```
 
 ### 3. Error Propagation
-ClientRPC.Server calls properly propagate errors:
+RPC calls properly propagate errors:
 
 ```typescript
 onClientCall('my-resource.risky-operation', async (serverId, data) => {
@@ -609,7 +605,7 @@ onClientCall('my-resource.risky-operation', async (serverId, data) => {
 Always use typed functions with proper type parameters:
 
 ```typescript
-// Good: Typed ClientRPC.Server call
+// Good: Typed RPC call
 const result = await awaitUI<GameData>('my-resource.get-data', playerId);
 
 // Good: Typed event listener
@@ -637,7 +633,7 @@ When adding a new event or data flow:
 
 3. **Add proper type definitions**:
    - Event types in resource namespace
-   - Interface declarations (ClientIn.FromSocket, ClientRPC.Socket, etc.)
+   - Interface declarations (ClientIn.FromUI, ClientRPC.UI, etc.)
    - Socket types in separate files
 
 4. **Implement both sides**:
@@ -646,7 +642,7 @@ When adding a new event or data flow:
    - UI Controller: Forward events between client and socket
 
 5. **Test error handling**:
-   - ClientRPC.Server timeouts work correctly
+   - RPC timeouts work correctly
    - Errors are properly propagated
    - Resource load order doesn't break functionality
 
@@ -656,7 +652,7 @@ When adding a new event or data flow:
 - ❌ Using camelCase instead of param-case for events
 - ❌ Forgetting to add UI controller forwarding for socket events
 - ❌ Missing type definitions in appropriate interfaces
-- ❌ Not handling ClientRPC.Server errors properly
+- ❌ Not handling RPC errors properly
 - ❌ Using wrong communication pattern for the use case
 - ❌ Forgetting to register UI controllers in `index.tsx`
 - ❌ Not using the `__client__` pattern for socket broadcasts
@@ -682,7 +678,7 @@ When adding a new event or data flow:
 
 #### `onClientCall(...)` in UI Controllers
 - **Files**: `./resources/ui/src/ui/app/controllers/**/*.ts`
-- **Purpose**: Handling ClientRPC.Server calls from clients to socket server
+- **Purpose**: Handling RPC calls from clients to socket server
 - **Example**: Client requesting job data via UI layer
 
 #### `emitSocket(...)` in Server Resources

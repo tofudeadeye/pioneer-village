@@ -7,7 +7,7 @@ interface CircleProps {
   percentage?: number;
 }
 
-export default function Battery(props: CircleProps) {
+export default function Circle(props: CircleProps) {
   return (
     <svg className={props.className} viewBox="0 0 106 106" xmlns="http://www.w3.org/2000/svg">
       <circle
@@ -15,20 +15,21 @@ export default function Battery(props: CircleProps) {
         cy="53"
         r="50"
         fill="none"
-        stroke-dasharray="314.159"
+        strokeDasharray="314.159"
         stroke={theme.colors.gray50.hex}
-        stroke-width={props.width ?? '6px'}
+        strokeWidth={props.width ?? '6px'}
         opacity="0.75"
+        strokeDashoffset="0"
       />
       <circle
         cx="53"
         cy="53"
         r="50"
         fill="none"
-        stroke-dasharray="314.159"
+        strokeDasharray="314.159"
         stroke={theme.colors[props.color ?? 'white'].hex}
-        stroke-width={props.width ?? '6px'}
-        stroke-dashoffset={`${2 * Math.PI * 50 * ((100 - (props.percentage ?? 100)) / 100)}px`}
+        strokeWidth={props.width ?? '6px'}
+        strokeDashoffset={`${2 * Math.PI * 50 * ((100 - (props.percentage ?? 100)) / 100)}px`}
       />
     </svg>
   );

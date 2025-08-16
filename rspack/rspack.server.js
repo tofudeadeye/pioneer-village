@@ -2,8 +2,6 @@ const path = require('path');
 const HotReloadPlugin = require('./rspack.hot-reload');
 const { TsCheckerRspackPlugin } = require('ts-checker-rspack-plugin');
 
-const isDev = process.env.NODE_ENV === 'development';
-
 // @ts-check
 /** @type {import('@rspack/cli').Configuration} */
 module.exports = () => ({
@@ -30,13 +28,13 @@ module.exports = () => ({
     node: true,
   },
   plugins: [
-    isDev && new HotReloadPlugin('server'),
-    new TsCheckerRspackPlugin({
-      typescript: {
-        typescriptPath: require.resolve('typescript'),
-        configFile: path.resolve('./src/server/tsconfig.json'),
-      },
-    }),
+    new HotReloadPlugin('server'),
+    // new TsCheckerRspackPlugin({
+    //   typescript: {
+    //     typescriptPath: require.resolve('typescript'),
+    //     configFile: path.resolve('./src/server/tsconfig.json'),
+    //   },
+    // }),
   ].filter(Boolean),
   optimization: {
     minimize: false,

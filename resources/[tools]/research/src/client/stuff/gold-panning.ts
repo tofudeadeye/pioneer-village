@@ -570,12 +570,3 @@ TODO: This might fix P_CS_BUCKET01X to be actually empty???
     blendOutSpeed: -1,
 }
  */
-
-RegisterCommand(
-  'jcrun',
-  async (source: number, args: string[]) => {
-    const rtns = eval(args.join(' '));
-    Log(rtns);
-  },
-  false,
-);

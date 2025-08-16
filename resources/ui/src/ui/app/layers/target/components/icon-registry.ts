@@ -1,8 +1,10 @@
 // Icon Registry - Manually add icons as needed to reduce bundle size
 // Icons are organized by style (light, regular, solid, duotone)
-
-import { ComponentType } from 'react';
-
+// Regular icons (add as needed)
+// Duotone icons
+import CashRegisterDuotone from '@fa/5/duotone/cash-register.svg';
+// Light icons
+import EyeLight from '@fa/5/light/eye.svg';
 // Solid icons
 import CashRegisterSolid from '@fa/5/solid/cash-register.svg';
 import CloudMeatballSolid from '@fa/5/solid/cloud-meatball.svg';
@@ -14,15 +16,9 @@ import HandPaperSolid from '@fa/5/solid/hand-paper.svg';
 import HorseSaddleSolid from '@fa/5/solid/horse-saddle.svg';
 import MaleSolid from '@fa/5/solid/male.svg';
 import RecycleSolid from '@fa/5/solid/recycle.svg';
+import SackSolid from '@fa/5/solid/sack.svg';
 import WagonCoveredSolid from '@fa/5/solid/wagon-covered.svg';
-
-// Light icons
-import EyeLight from '@fa/5/light/eye.svg';
-
-// Regular icons (add as needed)
-
-// Duotone icons
-import CashRegisterDuotone from '@fa/5/duotone/cash-register.svg';
+import { ComponentType } from 'react';
 
 // Icon registry mapping
 export const iconRegistry: Record<string, Record<string, ComponentType<any>>> = {
@@ -31,16 +27,17 @@ export const iconRegistry: Record<string, Record<string, ComponentType<any>>> = 
     'cloud-meatball': CloudMeatballSolid,
     'door-closed': DoorClosedSolid,
     'door-open': DoorOpenSolid,
-    'eye': EyeSolid,
-    'fill': FillSolid,
+    eye: EyeSolid,
+    fill: FillSolid,
     'hand-paper': HandPaperSolid,
     'horse-saddle': HorseSaddleSolid,
-    'male': MaleSolid,
-    'recycle': RecycleSolid,
+    male: MaleSolid,
+    recycle: RecycleSolid,
     'wagon-covered': WagonCoveredSolid,
+    sack: SackSolid,
   },
   light: {
-    'eye': EyeLight,
+    eye: EyeLight,
   },
   regular: {
     // Add regular icons as needed

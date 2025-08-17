@@ -1,6 +1,9 @@
-import { emitUI, PVGame } from '@lib/client';
-import { mpMaleBoneNames, mpMaleBones } from '../data/bones-mp-male';
-import { mpFemaleBoneNames, mpFemaleBones } from '../data/bones-mp-female';
+import { PVGame, emitUI, onPVInit } from '@lib/client';
+import { Log, emitSocket } from '@lib/client/comms/ui';
+import { AttachPoint, PedConfigFlag } from '@lib/flags';
+import { Delay, clamp, distanceVector, lerp } from '@lib/functions';
+import { Vector3 } from '@lib/math';
+
 import {
   boneBulletFragmentChance,
   boneRedirection,
@@ -14,12 +17,10 @@ import {
   injuryOtherInfo,
   mpBoneHealth,
 } from '../data/bones-mp';
-import { horseWildlife, wildlife } from '../data/wildlife';
-import { Vector3 } from '@lib/math';
-import { clamp, Delay, distanceVector, lerp } from '@lib/functions';
+import { mpFemaleBoneNames, mpFemaleBones } from '../data/bones-mp-female';
+import { mpMaleBoneNames, mpMaleBones } from '../data/bones-mp-male';
 import { DamageType, weapons } from '../data/weapons';
-import { AttachPoint, PedConfigFlag } from '@lib/flags';
-import { emitSocket, Log } from '@lib/client/comms/ui';
+import { horseWildlife, wildlife } from '../data/wildlife';
 
 const playerId = PlayerId();
 
@@ -122,6 +123,17 @@ export class HealthManager {
     // ClearPedDesiredLocoForModel(this.playerPed);
     // SetPedDesiredLocoForModel(this.playerPed, 'default');
     // ClearPedDesiredLocoMotionType(this.playerPed);
+    onPVInit('ui::ready', () => {
+      emitUI('hud.state', {
+        isCold: this.isCold,
+        isHot: this.isHot,
+        health: clamp(this.health, 0, 100),
+        food: this.food,
+        drink: this.water,
+        bleeding: this._isBleeding,
+        brokenBone: this._hasBrokenBone,
+      });
+    });
   }
 
   async init() {

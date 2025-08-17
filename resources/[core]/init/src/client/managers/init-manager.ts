@@ -92,11 +92,12 @@ class InitManager {
   resolve: Init.resolve = (name) => {
     if (this._initializedResolver.has(name)) {
       Log('Resolving', name);
-      // @ts-ignore
-      this._initializedResolver.get(name)();
+      this._initializedResolver.get(name)!();
       this._initializedResolver.delete(name);
       this._initializedRejector.delete(name);
       this._initializedResources.add(name);
+
+      emit(`onPVInit::${name}`);
     }
   };
 

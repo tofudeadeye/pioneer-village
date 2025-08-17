@@ -19,7 +19,6 @@ const registerTargets = async () => {
       distance: 2.0,
       throttle: 60_000,
       isEnabled(data) {
-        Log('test', Math.random());
         return DecorGetBool(data.entity, 'isInventory') !== false;
       },
     },

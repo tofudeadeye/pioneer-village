@@ -1,5 +1,6 @@
 import { PVInit, PVZone } from '@lib/client/resources';
 import { Delay } from '@lib/functions';
+
 // import { initManager } from '@lib/shared/init-manager';
 
 const RegisteredEvents = new Map<string, (...args: any[]) => void>();
@@ -68,4 +69,11 @@ export const onResourceInit = (resourceName: string, cb: () => void) => {
       }
     });
   })();
+};
+
+export const onPVInit = (name: string, cb: () => void) => {
+  on(`onPVInit::${name}`, async () => {
+    await Delay(100); // Ensure the resource is fully initialized
+    cb();
+  });
 };

@@ -47,9 +47,26 @@ export default () => {
           createdAt: drizzleHorse.createdAt?.toISOString() || new Date().toISOString(),
         };
         horses.push(horse);
+
+        logInfoC('stable.load-character-horses', horse.id, horse.name);
       }
 
       cb(horses);
+    });
+
+    socket.on('stable.save-horse', async (horseData: Horse.DirtyData, cb) => {
+      const { id: horseId, ...dirtyData } = horseData;
+      logInfoC('stable.save-horse', horseId, dirtyData);
+
+      // @ts-expect-error apparently lastX is typed as a string, but it is a decimal...
+      const result = await Stables.saveHorse(horseId, dirtyData);
+      if (result) {
+        logInfoC('stable.save-horse', horseId, 'success');
+        cb(true);
+        return;
+      }
+
+      cb(false);
     });
   });
 };

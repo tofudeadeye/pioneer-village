@@ -118,6 +118,19 @@ const offsetBoneCoords = (bone: UI.Doctor.BoneStatus, boneTwo: UI.Doctor.BoneSta
   bone.coords.y = bone.coords.y + (boneTwo.coords.y - bone.coords.y) * distance;
 };
 
+const offsetBoneCoordsEnd = (
+  bone: UI.Doctor.BoneStatus,
+  boneTwo: UI.Doctor.BoneStatus,
+  boneThree: UI.Doctor.BoneStatus,
+  distance = 0.333,
+) => {
+  if (!bone || !boneTwo || !boneThree) {
+    return;
+  }
+  bone.coords.x = bone.coords.x + (boneTwo.coords.x - boneThree.coords.x) * distance;
+  bone.coords.y = bone.coords.y + (boneTwo.coords.y - boneThree.coords.y) * distance;
+};
+
 const getUIBones = (ped = PlayerPedId()): [number, UI.Doctor.BoneStatus[]] => {
   const uiBonesBase: Record<string, UI.Doctor.BoneStatus> = {};
   const uiBones: UI.Doctor.BoneStatus[] = [];
@@ -163,7 +176,10 @@ const getUIBones = (ped = PlayerPedId()): [number, UI.Doctor.BoneStatus[]] => {
 
     switch (boneName) {
       case 'SKEL_HEAD':
-        bone.coords.y -= 2.5;
+        offsetBoneCoordsEnd(bone, uiBonesBase['SKEL_NECK1'], uiBonesBase['SKEL_SPINE4'], 0.4);
+        break;
+      case 'SKEL_SPINE4':
+        offsetBoneCoordsEnd(bone, uiBonesBase['SKEL_NECK1'], uiBonesBase['SKEL_HEAD'], 0.4);
         break;
       case 'SKEL_L_CLAVICLE':
         offsetBoneCoords(bone, uiBonesBase['SKEL_L_UPPERARM'], 0.5);
@@ -183,6 +199,12 @@ const getUIBones = (ped = PlayerPedId()): [number, UI.Doctor.BoneStatus[]] => {
       case 'SKEL_R_FOREARM':
         offsetBoneCoords(bone, uiBonesBase['SKEL_R_HAND']);
         break;
+      case 'SKEL_L_HAND':
+        offsetBoneCoordsEnd(bone, uiBonesBase['SKEL_L_FOREARM'], uiBonesBase['SKEL_L_UPPERARM'], 0.2);
+        break;
+      case 'SKEL_R_HAND':
+        offsetBoneCoordsEnd(bone, uiBonesBase['SKEL_R_FOREARM'], uiBonesBase['SKEL_R_UPPERARM'], 0.2);
+        break;
       case 'SKEL_L_THIGH':
         offsetBoneCoords(bone, uiBonesBase['SKEL_L_CALF'], 0.4);
         break;
@@ -194,6 +216,12 @@ const getUIBones = (ped = PlayerPedId()): [number, UI.Doctor.BoneStatus[]] => {
         break;
       case 'SKEL_R_CALF':
         offsetBoneCoords(bone, uiBonesBase['SKEL_R_FOOT']);
+        break;
+      case 'SKEL_L_FOOT':
+        offsetBoneCoordsEnd(bone, uiBonesBase['SKEL_L_CALF'], uiBonesBase['SKEL_L_THIGH'], 0.2);
+        break;
+      case 'SKEL_R_FOOT':
+        offsetBoneCoordsEnd(bone, uiBonesBase['SKEL_R_CALF'], uiBonesBase['SKEL_R_THIGH'], 0.2);
         break;
     }
 

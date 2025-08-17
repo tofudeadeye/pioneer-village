@@ -1,13 +1,4 @@
-// hand-paper
-import Bus from '@fa/5/light/bus-alt.svg';
-import Car from '@fa/5/light/car.svg';
-import CashRegister from '@fa/5/light/cash-register.svg';
-import Eye from '@fa/5/light/eye.svg';
-import Hand from '@fa/5/light/hand-paper.svg';
-import Person from '@fa/5/light/male.svg';
-import Pickup from '@fa/5/light/truck-pickup.svg';
-import Truck from '@fa/5/light/truck.svg';
-import { PropsWithChildren, useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 import { emitClient } from '@lib/ui';
 
@@ -15,7 +6,7 @@ import { uiSize } from '@uiLib/helpers';
 
 import { useEscapeKey } from '../../hooks/use-game-events';
 import targetStore from '../../stores/target-store';
-import { getIcon } from './components/icon-registry';
+import { getIcon, getIconAny } from './components/icon-registry';
 import styles from './styles.module.scss';
 
 export default function Target() {
@@ -81,7 +72,7 @@ export default function Target() {
       )}
       <ul className={styles.choices}>
         {state.actions.map((action) => {
-          const ActionIconComponent = getIcon('solid', action.icon);
+          const ActionIconComponent = getIconAny(action.icon);
           return (
             <li key={action.id} onClick={() => performAction(action)}>
               {ActionIconComponent && <ActionIconComponent />} {action.label}

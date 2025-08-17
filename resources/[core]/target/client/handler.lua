@@ -104,7 +104,7 @@ function Target.Start(threadId)
 		ped = PlayerPedId(),
 		pedCoords = GetEntityCoords(PlayerPedId())
 	}
-	
+
 	-- Throttle configuration (milliseconds)
 	-- Support both old and new naming for backwards compatibility
 	self.throttleDelay = tonumber(GetConvar("target:throttle_delay", "500")) or 500 -- Deprecated, kept for backwards compatibility
@@ -470,7 +470,7 @@ function Target.AddTarget(data)
 					local cacheKey = ("%s_%s"):format(self.id, data.entity)
 					local cached = Target.enabledCache[cacheKey]
 					local currentTime = GetGameTimer()
-					
+
 					-- Check if we have a cached result that's still valid
 					if cached and currentTime < cached.expiry then
 						if not cached.result then
@@ -528,7 +528,7 @@ function Target.AddTarget(data)
 					local cacheKey = ("%s_%s"):format(self.id, data.entity)
 					local cached = Target.enabledCache[cacheKey]
 					local currentTime = GetGameTimer()
-					
+
 					-- Check if we have a cached result that's still valid
 					if cached and currentTime < cached.expiry then
 						if not cached.result then
@@ -584,7 +584,7 @@ function Target.AddTarget(data)
 					local cacheKey = ("%s_%s"):format(self.id, data.entity)
 					local cached = Target.enabledCache[cacheKey]
 					local currentTime = GetGameTimer()
-					
+
 					-- Check if we have a cached result that's still valid
 					if cached and currentTime < cached.expiry then
 						if not cached.result then
@@ -643,7 +643,7 @@ function Target.AddTarget(data)
 					local cacheKey = ("%s_%s_%s_%s"):format(self.id, math.floor(data.coords.x), math.floor(data.coords.y), math.floor(data.coords.z))
 					local cached = Target.enabledCache[cacheKey]
 					local currentTime = GetGameTimer()
-					
+
 					-- Check if we have a cached result that's still valid
 					if cached and currentTime < cached.expiry then
 						if not cached.result then
@@ -723,63 +723,63 @@ end
 CreateThread(function()
 	Wait(2000)
 	exports['init']:resolveResource('target')
-	print('Add Example Targets')
-	local flagKey = Target.AddTarget({
-		id = 'horse',
-		type = 'flag',
-		group = {'isHorse'},
-		icon = 'horse',
-		data = {
-			{
-				id = 'horse_drink',
-				label = 'Drink',
-				icon = 'water',
-				event = 'stable:client:drink',
-				parameters = {},
-			},
-			{
-				id = 'horse_lead',
-				label = 'Lead',
-				icon = 'lasso',
-				event = 'stable:client:lead',
-				parameters = {},
-			}
-		},
-		options = {
-			distance = 1.5,
-			isEnabled = function(data)
-				return IsEntityInWater(data.entity) == false
-			end
-		}
-	})
-	print('flagKey: ' .. flagKey)
-	Target.AddTarget({
-		id = 'coach',
-		type = 'flag',
-		group = {'isWagon'},
-		data = {
-			{
-				id = 'wagon_drink',
-				label = 'Drink',
-				icon = 'water',
-				event = 'stable:client:drink',
-				parameters = {},
-			},
-			{
-				id = 'wagon_lead',
-				label = 'Lead',
-				icon = 'lasso',
-				event = 'stable:client:lead',
-				parameters = {},
-			}
-		},
-		options = {
-			distance = 1.5,
-			isEnabled = function(data)
-				return IsEntityInWater(data.entity) == false
-			end
-		}
-	})
+	--print('Add Example Targets')
+	--local flagKey = Target.AddTarget({
+	--	id = 'horse',
+	--	type = 'flag',
+	--	group = {'isHorse'},
+	--	icon = 'horse',
+	--	data = {
+	--		{
+	--			id = 'horse_drink',
+	--			label = 'Drink',
+	--			icon = 'water',
+	--			event = 'stable:client:drink',
+	--			parameters = {},
+	--		},
+	--		{
+	--			id = 'horse_lead',
+	--			label = 'Lead',
+	--			icon = 'lasso',
+	--			event = 'stable:client:lead',
+	--			parameters = {},
+	--		}
+	--	},
+	--	options = {
+	--		distance = 1.5,
+	--		isEnabled = function(data)
+	--			return IsEntityInWater(data.entity) == false
+	--		end
+	--	}
+	--})
+	--print('flagKey: ' .. flagKey)
+	--Target.AddTarget({
+	--	id = 'coach',
+	--	type = 'flag',
+	--	group = {'isWagon'},
+	--	data = {
+	--		{
+	--			id = 'wagon_drink',
+	--			label = 'Drink',
+	--			icon = 'water',
+	--			event = 'stable:client:drink',
+	--			parameters = {},
+	--		},
+	--		{
+	--			id = 'wagon_lead',
+	--			label = 'Lead',
+	--			icon = 'lasso',
+	--			event = 'stable:client:lead',
+	--			parameters = {},
+	--		}
+	--	},
+	--	options = {
+	--		distance = 1.5,
+	--		isEnabled = function(data)
+	--			return IsEntityInWater(data.entity) == false
+	--		end
+	--	}
+	--})
 end)
 
 AddEventHandler('stable:client:drink', function()

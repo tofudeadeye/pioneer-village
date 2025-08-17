@@ -3,6 +3,7 @@
 // Regular icons (add as needed)
 // Duotone icons
 import CashRegisterDuotone from '@fa/5/duotone/cash-register.svg';
+import GarageDuotone from '@fa/5/duotone/garage.svg';
 // Light icons
 import EyeLight from '@fa/5/light/eye.svg';
 // Solid icons
@@ -44,6 +45,7 @@ export const iconRegistry: Record<string, Record<string, ComponentType<any>>> = 
   },
   duotone: {
     'cash-register': CashRegisterDuotone,
+    garage: GarageDuotone,
   },
 };
 
@@ -61,4 +63,16 @@ export function getIcon(style: string, name: string): ComponentType<any> | null 
   }
 
   return icon;
+}
+
+export function getIconAny(name: string): ComponentType<any> | null {
+  // Check all styles for the icon
+  for (const style in iconRegistry) {
+    const icon = getIcon(style, name);
+    if (icon) {
+      return icon;
+    }
+  }
+  console.error(`Icon "${name}" not found in any style. Add it to icon-registry.ts`);
+  return null;
 }

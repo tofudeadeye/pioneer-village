@@ -27,6 +27,18 @@ class Stables {
       brand: row.Brands,
     }));
   }
+
+  async saveHorse(horseId: number, dirtyData: Partial<HorseSchemaType>): Promise<boolean> {
+    try {
+      await db.update(HorsesSchema).set(dirtyData).where(eq(HorsesSchema.id, horseId));
+
+      logInfo('Horse saved successfully', horseId);
+      return true;
+    } catch (error) {
+      logInfo('Error saving horse', horseId, error);
+      return false;
+    }
+  }
 }
 
 export default Stables.instance;

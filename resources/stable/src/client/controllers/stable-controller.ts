@@ -1,10 +1,14 @@
-import { PVBase, PVGame, PVInit, onResourceInit } from '@lib/client';
+import { PVBase, PVGame, PVInit, PVZone, onResourceInit } from '@lib/client';
 import { Log, awaitUI } from '@lib/client/comms/ui';
 import { PedConfigFlag } from '@lib/flags';
 import { Delay } from '@lib/functions';
 
 import Horse from '../classes/horse';
 import Stable from '../classes/stable';
+import { ZonePrefix } from '../config';
+
+const DECOR_HORSE_ID = 'stable::horse.id';
+DecorRegister(DECOR_HORSE_ID, 3);
 
 class StableController {
   protected static instance: StableController;
@@ -44,7 +48,7 @@ class StableController {
     PVInit.register('stable::load-hoses', { reset: true });
     const horses = await awaitUI('stable.load-character-horses', characterId);
     for (const horse of horses) {
-      // Log('horse', horse);
+      Log('horse', horse);
       this._horses.set(horse.id, new Horse(horse));
       this._stabledHorses.set(horse.id, horse.stable || '');
     }
@@ -89,7 +93,7 @@ class StableController {
 
     const stableHorsePeds = this._stableHorsePeds.get(stableId) || new Map<number, Set<number>>();
 
-    const characterId = PVGame.getCurrentCharacter().id;
+    const characterId = PVGame.characterId();
 
     Log('characterId', characterId);
 
@@ -127,25 +131,33 @@ class StableController {
   async exitStable(stableId: Stable.Id): Promise<void> {
     const stableHorsePeds = this._stableHorsePeds.get(stableId) || new Map<number, Set<number>>();
 
-    const characterId = PVGame.getCurrentCharacter().id;
+    const characterId = PVGame.characterId();
+    if (!characterId) {
+      return;
+    }
 
     const characterHorsePeds = stableHorsePeds.get(characterId) || new Set<number>();
 
     const horsesInStables: number[] = [];
 
     for (const horsePed of characterHorsePeds.values()) {
-      // TODO: Check if Horse in inside stable instead.
-      const rider = GetRiderOfMount(horsePed, false);
-      if (!rider) {
+      const inZone = PVZone.IsEntityInZone(`${ZonePrefix}${stableId}`, horsePed);
+      if (inZone) {
         horsesInStables.push(horsePed);
+        continue;
+      }
+      Log(`Horse ${horsePed} not in stable zone, removing from stable`);
+      NetworkRegisterEntityAsNetworked(horsePed);
+      const horseId = DecorGetInt(horsePed, DECOR_HORSE_ID);
+      Log('horseId', horseId);
+
+      if (horseId) {
+        this.unstableHorse(horseId);
       }
     }
 
     PVBase.deleteEntities(horsesInStables);
 
-    // TODO: Flag removed horses as not in stable
-
-    stableHorsePeds.delete(characterId);
     this._stableHorsePeds.set(stableId, stableHorsePeds);
 
     this._currentStable = '';
@@ -155,15 +167,23 @@ class StableController {
     return this._stabledHorses.has(horseId);
   }
 
-  stableHorse(stableId: Stable.Id, horseId: Horse.Id): void {
+  stableHorse(horseId: Horse.Id, stableId: Stable.Id): void {
     const stable = this.getById(stableId);
-
     if (!stable || stable.horses.includes(horseId)) {
       return;
     }
+    const characterId = PVGame.characterId();
+    if (!characterId) {
+      return;
+    }
 
-    const horses = [...stable.horses];
-    horses.push(horseId);
+    stable.horses.push(horseId);
+
+    const stableHorsePeds = this._stableHorsePeds.get(stableId) || new Map<number, Set<number>>();
+    const stabledHorses = stableHorsePeds.get(characterId) || new Set<number>();
+    stabledHorses.add(horseId);
+    stableHorsePeds.set(characterId, stabledHorses);
+    this._stableHorsePeds.set(stableId, stableHorsePeds);
 
     this._stabledHorses.set(horseId, stableId);
 
@@ -175,6 +195,7 @@ class StableController {
   }
 
   unstableHorse(horseId: Horse.Id): void {
+    Log('unstableHorse', horseId);
     const stable = this.getByHorseId(horseId);
 
     if (!stable) {
@@ -209,7 +230,7 @@ class StableController {
     Log('spawning horse', horse.name);
 
     const playerPed = PVGame.playerPed();
-    const characterId = PVGame.getCurrentCharacter()?.id;
+    const characterId = PVGame.characterId();
     if (!characterId) {
       Log('Error no character');
       return 0;
@@ -286,7 +307,7 @@ class StableController {
     for (const component of horse.components) {
       // Log('component', component);
       const componentData = PVGame.getComponentById(component);
-      Log('componentData', componentData);
+      // Log('componentData', componentData);
       ApplyShopItemToPed(horsePed, component, false, componentData?.isMp || false, false); // _SET_PED_COMPONENT_ENABLED
       await Delay(1);
     }
@@ -319,6 +340,8 @@ class StableController {
     // this._spawningHorse.set(horse.id, false);
 
     // this.entitySetHorse(horsePed, horse);
+
+    DecorSetInt(horsePed, DECOR_HORSE_ID, horse.id);
 
     return horsePed;
   }

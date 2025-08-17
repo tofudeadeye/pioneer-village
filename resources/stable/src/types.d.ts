@@ -38,7 +38,7 @@ declare namespace Horse {
     ownerId: number;
     stable: string | null;
     brandId: number | null;
-    breeds: Record<Breed, number> | null;
+    breeds: Horse.BreedRecord | null;
     components: number[] | any;
     model: number;
     gender: 'MALE' | 'FEMALE' | 'OTHER';
@@ -65,6 +65,8 @@ declare namespace Horse {
     lastZ: number;
     createdAt: string;
   }
+
+  type DirtyData = Partial<Omit<Data, 'id' | 'createdAt'>> & { id: number };
 
   interface StatRange {
     health?: MinMax;

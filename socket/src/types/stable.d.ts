@@ -1,16 +1,17 @@
 // Socket perspective - what the socket server receives
 declare namespace SocketIn {
   interface FromGameServer {}
-  
+
   interface FromClient {
     ['stable.load-character-horses']: (characterId: number, callback: (data: Horse.Data[]) => void) => void;
+    ['stable.save-horse']: (horseData: Horse.DirtyData, callback: (result: boolean) => void) => void;
   }
 }
 
 // Socket perspective - what the socket server sends
 declare namespace SocketOut {
   interface ToGameServer {}
-  
+
   interface ToClient {
     // No stable events sent to client currently
   }

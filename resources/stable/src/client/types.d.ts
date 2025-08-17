@@ -4,12 +4,13 @@ declare namespace Stable {}
 declare namespace ClientRPC {
   interface Socket {
     ['stable.load-character-horses']: (characterId: number) => Horse.Data[];
+    ['stable.save-horse']: (horseData: Horse.DirtyData) => boolean;
   }
 }
 
 // Client perspective - events received from various sources
 declare namespace ClientIn {
-  interface FromSocket {};
+  interface FromSocket {}
 }
 
 // Client perspective - events sent to various destinations
@@ -21,5 +22,3 @@ declare namespace ClientOut {
 
 // Raw Socket.io events for UI layer typing - DEDUPLICATED
 // Note: SocketIO.Events eliminated - use ClientRPC.Socket for RPC calls
-
-

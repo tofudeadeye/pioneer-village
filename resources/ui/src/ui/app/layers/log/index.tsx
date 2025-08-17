@@ -131,10 +131,16 @@ export default function Log() {
 
   return (
     <>
-      <div className={`${styles.frame} ${state.show ? styles.active : ''}`}>
+      <div
+        className={conditionalClass(styles.frame, {
+          [styles.active]: state.show,
+        })}
+      >
         <div
           id="log"
-          className={`${styles.list} ${state.show ? 'active' : ''}`}
+          className={conditionalClass(styles.list, {
+            [styles.active]: state.show,
+          })}
           ref={refLog}
           onWheel={handleMousewheel}
         >

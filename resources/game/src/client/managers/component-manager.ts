@@ -86,18 +86,19 @@ class ComponentManager {
   componentsGroups: Map<string, Set<number>> = new Map();
 
   private constructor() {
-    // for (const componentFile of componentFiles) {
-    //   const componentsData = JSON.parse(
-    //     LoadResourceFile('rdr3-shared', `components/${componentFile}.json`),
-    //   ) as Component[];
-    //   for (const componentData of componentsData) {
-    //     if (!this.componentsGroups.has(componentFile)) {
-    //       this.componentsGroups.set(componentFile, new Set());
-    //     }
-    //     this.componentsGroups.get(componentFile)?.add(componentData.component << 0);
-    //     this.components.set(componentData.component << 0, componentData);
-    //   }
-    // }
+    for (const componentFile of componentFiles) {
+      const componentsData = JSON.parse(
+        LoadResourceFile('rdr3-shared', `components/${componentFile}.json`),
+      ) as Component[];
+      Log(`Loading components from file: ${componentFile} (${componentsData.length} components)`);
+      for (const componentData of componentsData) {
+        if (!this.componentsGroups.has(componentFile)) {
+          this.componentsGroups.set(componentFile, new Set());
+        }
+        this.componentsGroups.get(componentFile)?.add(componentData.component << 0);
+        this.components.set(componentData.component << 0, componentData);
+      }
+    }
     Log(`Loaded ${this.components.size} components`);
   }
 

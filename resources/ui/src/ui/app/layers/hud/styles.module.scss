@@ -1,7 +1,7 @@
 @use '../../styles/theme.module.scss' as theme;
 @use '../../styles/mixins.module.scss' as mixins;
 
-@import './animations.module';
+@use './animations.module';
 
 $bottom: mixins.uiSize(20);
 $leftRight: mixins.uiSize(40);

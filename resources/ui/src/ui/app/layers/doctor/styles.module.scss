@@ -5,10 +5,10 @@
   &:hover {
     div {
       opacity: 0.75;
-      transform: scale(0.5);
+      transform: translate(-50%, -50%) scale(0.5);
 
       &:hover {
-        transform: scale(1);
+        transform: translate(-50%, -50%) scale(1);
         opacity: 1;
       }
     }
@@ -23,7 +23,8 @@
   height: mixins.uiSize(48);
   border: mixins.uiSize(3) dashed #aaa;
   color: #fff;
-  transform: scale(0.666);
+  transform: translate(-50%, -50%) scale(0.666);
+  transform-origin: center;
   @include mixins.flexCenter;
   flex-wrap: wrap;
 

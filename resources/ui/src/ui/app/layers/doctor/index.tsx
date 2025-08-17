@@ -114,7 +114,8 @@ export default function Doctor() {
                   .replace(/(SKEL_|[0-9])/g, '')
                   .replace('L_', 'Left ')
                   .replace('R_', 'Right ')
-                  .toLowerCase()}
+                  .toLowerCase()
+                  .replace('spine', 'Torso')}
               >
                 <Circle
                   className={conditionalClass([styles.borderCircle, styles[boneInspectSpeed[bone.name]]])}

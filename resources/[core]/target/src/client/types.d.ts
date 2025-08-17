@@ -22,8 +22,6 @@ declare namespace ClientOut {
 // Raw Socket.io events for UI layer typing - DEDUPLICATED
 // Note: SocketIO.Events eliminated - use ClientIn.FromSocket directly
 
-
-
 declare interface ClientExports {
   target: Target.ClientExports;
 }
@@ -43,17 +41,20 @@ declare namespace Target {
       buffer: {
         type: string;
         data: number[];
-      }
-    }
+      };
+    };
     entity: number;
     model: number;
     type: number;
   }
 
-  interface Options {
+  type Options = {
     distance: number;
+    throttle?: number;
+    disabledThrottle?: number;
+    enabledThrottle?: number;
     isEnabled?: (data: IsEnabledData) => boolean;
-  }
+  };
 
   interface Menu {
     id: string;
@@ -76,5 +77,5 @@ declare namespace Target {
     AddTarget: AddTarget;
     RemoveTarget: RemoveTarget;
     GetEntityPlayerIsLookingAt: GetEntityPlayerIsLookingAt;
-  }
+  };
 }

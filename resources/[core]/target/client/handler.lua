@@ -61,6 +61,7 @@ function Target.Start(threadId)
 	self.targets = {}
 	self.zones = {}
 	self.class = {}
+	self.enabledCache = {} -- Cache for isEnabled results with throttling
 
 	setmetatable(self.targets, {
 		__call = function(self, data)
@@ -103,6 +104,13 @@ function Target.Start(threadId)
 		ped = PlayerPedId(),
 		pedCoords = GetEntityCoords(PlayerPedId())
 	}
+	
+	-- Throttle configuration (milliseconds)
+	-- Support both old and new naming for backwards compatibility
+	self.throttleDelay = tonumber(GetConvar("target:throttle_delay", "500")) or 500 -- Deprecated, kept for backwards compatibility
+	self.throttle = tonumber(GetConvar("target:throttle", "500")) or 500 -- Generic throttle for both states
+	self.disabledThrottle = tonumber(GetConvar("target:disabled_throttle", "500")) or 500 -- Throttle when isEnabled returns false
+	self.enabledThrottle = tonumber(GetConvar("target:enabled_throttle", "100")) or 100 -- Throttle when isEnabled returns true
 
 	self.name = GetCurrentResourceName()
 	self.active = false
@@ -227,6 +235,8 @@ function Target:Enable(state)
 	self.active = state
 
 	if not self.active then
+		-- Clear cache when targeting is disabled
+		self.enabledCache = {}
 		return
 	end
 
@@ -431,6 +441,11 @@ function Target.AddTarget(data)
 	self.targets[key].options = self.targets[key].options or {}
 	self.targets[key].options.isEnabled = self.targets[key].options.isEnabled
 	self.targets[key].options.distance = self.targets[key].options.distance and tonumber(self.targets[key].options.distance) or type(self.targets[key].options.distance) == "table" and self.targets[key].options.distance.radius and self.targets[key].options.distance.radius or self.distance
+	-- Per-target throttle overrides (support multiple naming schemes)
+	self.targets[key].options.throttleDelay = self.targets[key].options.throttleDelay and tonumber(self.targets[key].options.throttleDelay) or nil -- Deprecated
+	self.targets[key].options.throttle = self.targets[key].options.throttle and tonumber(self.targets[key].options.throttle) or nil
+	self.targets[key].options.disabledThrottle = self.targets[key].options.disabledThrottle and tonumber(self.targets[key].options.disabledThrottle) or nil
+	self.targets[key].options.enabledThrottle = self.targets[key].options.enabledThrottle and tonumber(self.targets[key].options.enabledThrottle) or nil
 
 	if data.type == "flag" then
 		if type(self.targets[key].group) == "string" then
@@ -451,8 +466,30 @@ function Target.AddTarget(data)
 					end
 				end
 
-				if rtn and rtn.options and rtn.options.isEnabled and not rtn.options.isEnabled(data) then
-					return false
+				if rtn and rtn.options and rtn.options.isEnabled then
+					local cacheKey = ("%s_%s"):format(self.id, data.entity)
+					local cached = Target.enabledCache[cacheKey]
+					local currentTime = GetGameTimer()
+					
+					-- Check if we have a cached result that's still valid
+					if cached and currentTime < cached.expiry then
+						if not cached.result then
+							return false
+						end
+					else
+						-- Evaluate and cache the result
+						local result = rtn.options.isEnabled(data)
+						-- Determine throttle values with priority: specific > generic > global
+						local enabledTime = rtn.options.enabledThrottle or rtn.options.throttle or rtn.options.throttleDelay or Target.enabledThrottle
+						local disabledTime = rtn.options.disabledThrottle or rtn.options.throttle or rtn.options.throttleDelay or Target.disabledThrottle
+						Target.enabledCache[cacheKey] = {
+							result = result,
+							expiry = currentTime + (result and enabledTime or disabledTime)
+						}
+						if not result then
+							return false
+						end
+					end
 				end
 
 				return rtn
@@ -487,8 +524,30 @@ function Target.AddTarget(data)
 				--print(json.encode(self))
 				--print(json.encode(rtn))
 				--print("------------------------------")
-				if rtn and rtn.options and rtn.options.isEnabled and not rtn.options.isEnabled(data) then
-					return false
+				if rtn and rtn.options and rtn.options.isEnabled then
+					local cacheKey = ("%s_%s"):format(self.id, data.entity)
+					local cached = Target.enabledCache[cacheKey]
+					local currentTime = GetGameTimer()
+					
+					-- Check if we have a cached result that's still valid
+					if cached and currentTime < cached.expiry then
+						if not cached.result then
+							return false
+						end
+					else
+						-- Evaluate and cache the result
+						local result = rtn.options.isEnabled(data)
+						-- Determine throttle values with priority: specific > generic > global
+						local enabledTime = rtn.options.enabledThrottle or rtn.options.throttle or rtn.options.throttleDelay or Target.enabledThrottle
+						local disabledTime = rtn.options.disabledThrottle or rtn.options.throttle or rtn.options.throttleDelay or Target.disabledThrottle
+						Target.enabledCache[cacheKey] = {
+							result = result,
+							expiry = currentTime + (result and enabledTime or disabledTime)
+						}
+						if not result then
+							return false
+						end
+					end
 				end
 
 				return rtn
@@ -521,8 +580,30 @@ function Target.AddTarget(data)
 					rtn = self
 				end
 
-				if rtn and rtn.options and rtn.options.isEnabled and not rtn.options.isEnabled(data) then
-					return false
+				if rtn and rtn.options and rtn.options.isEnabled then
+					local cacheKey = ("%s_%s"):format(self.id, data.entity)
+					local cached = Target.enabledCache[cacheKey]
+					local currentTime = GetGameTimer()
+					
+					-- Check if we have a cached result that's still valid
+					if cached and currentTime < cached.expiry then
+						if not cached.result then
+							return false
+						end
+					else
+						-- Evaluate and cache the result
+						local result = rtn.options.isEnabled(data)
+						-- Determine throttle values with priority: specific > generic > global
+						local enabledTime = rtn.options.enabledThrottle or rtn.options.throttle or rtn.options.throttleDelay or Target.enabledThrottle
+						local disabledTime = rtn.options.disabledThrottle or rtn.options.throttle or rtn.options.throttleDelay or Target.disabledThrottle
+						Target.enabledCache[cacheKey] = {
+							result = result,
+							expiry = currentTime + (result and enabledTime or disabledTime)
+						}
+						if not result then
+							return false
+						end
+					end
 				end
 
 				return rtn
@@ -557,8 +638,31 @@ function Target.AddTarget(data)
 					end
 				end
 
-				if rtn and rtn.options and rtn.options.isEnabled and not rtn.options.isEnabled(data) then
-					return false
+				if rtn and rtn.options and rtn.options.isEnabled then
+					-- For zones, use coords as part of cache key since there's no entity
+					local cacheKey = ("%s_%s_%s_%s"):format(self.id, math.floor(data.coords.x), math.floor(data.coords.y), math.floor(data.coords.z))
+					local cached = Target.enabledCache[cacheKey]
+					local currentTime = GetGameTimer()
+					
+					-- Check if we have a cached result that's still valid
+					if cached and currentTime < cached.expiry then
+						if not cached.result then
+							return false
+						end
+					else
+						-- Evaluate and cache the result
+						local result = rtn.options.isEnabled(data)
+						-- Determine throttle values with priority: specific > generic > global
+						local enabledTime = rtn.options.enabledThrottle or rtn.options.throttle or rtn.options.throttleDelay or Target.enabledThrottle
+						local disabledTime = rtn.options.disabledThrottle or rtn.options.throttle or rtn.options.throttleDelay or Target.disabledThrottle
+						Target.enabledCache[cacheKey] = {
+							result = result,
+							expiry = currentTime + (result and enabledTime or disabledTime)
+						}
+						if not result then
+							return false
+						end
+					end
 				end
 
 				return rtn

@@ -1,5 +1,4 @@
 import { Log } from '@lib/client/comms/ui';
-import { PVTarget } from '@lib/client';
 
 const loadModel = (model: number | string): Promise<void> => {
   if (typeof model === 'string') {

@@ -21,13 +21,12 @@ import Tint from '@fa/5/solid/tint.svg';
 import Walking from '@fa/5/solid/walking.svg';
 import { useEffect, useState } from 'react';
 
-import { uiSize } from '@uiLib/helpers';
+import { conditionalClass, uiSize } from '@uiLib/helpers';
 
 import hudStore from '../../stores/hud-store';
 import FoodAndDrink from './icons/FoodAndDrink';
 import ProgressIcon from './icons/ProgressIcon';
 import styles from './styles.module.scss';
-import animStyles from './animations.module.scss';
 
 export default function HUD() {
   const [state, setState] = useState(hudStore.getState());
@@ -50,7 +49,7 @@ export default function HUD() {
             color={state.isSpeaking ? 'red' : 'white'}
             fill={100}
             style={{ transform: `translateY(-${uiSize(4)})` }}
-            className={state.isSpeaking || state.speakVolume !== 2 ? 'active' : undefined}
+            className={state.isSpeaking || state.speakVolume !== 2 ? `active ${styles.active}` : undefined}
           >
             {state.speakVolume === 1 ? (
               <VoiceQuiet />
@@ -78,11 +77,17 @@ export default function HUD() {
             color={state.health < 25 ? 'red' : 'green'}
             fill={state.health}
             style={{ transform: `translateY(-${uiSize(3)})` }}
-            className={state.health < 100 ? 'active' : undefined}
+            className={state.health < 100 ? `active ${styles.active}` : undefined}
           >
             <Heart />
           </ProgressIcon>
-          <ProgressIcon width={38} height={38} color="red" fill={100} className={state.isHot ? 'active' : undefined}>
+          <ProgressIcon
+            width={38}
+            height={38}
+            color="red"
+            fill={100}
+            className={state.isHot ? `active ${styles.active}` : undefined}
+          >
             <Fire />
           </ProgressIcon>
           <ProgressIcon
@@ -90,11 +95,15 @@ export default function HUD() {
             height={38}
             color="lightBlue"
             fill={100}
-            className={state.isCold ? 'active' : undefined}
+            className={state.isCold ? `active ${styles.active}` : undefined}
           >
             <Snowflake />
           </ProgressIcon>
-          <div className={`${animStyles.animBleeding} ${state.bleeding ? 'active' : ''}`}>
+          <div
+            className={conditionalClass(styles.animBleeding, {
+              [styles.active]: state.bleeding || true,
+            })}
+          >
             <ProgressIcon
               width={38}
               height={38}
@@ -102,12 +111,12 @@ export default function HUD() {
               fill={100}
               className={state.bleeding ? 'active' : undefined}
             >
-              <ClawMarks className="clawMarks" />
+              <ClawMarks className={styles.clawMarks} />
               {state.bleeding && (
                 <>
-                  <Tint className="blood" />
-                  <Tint className="blood" />
-                  <Tint className="blood" />
+                  <Tint className={styles.blood} />
+                  <Tint className={styles.blood} />
+                  <Tint className={styles.blood} />
                 </>
               )}
             </ProgressIcon>
@@ -117,16 +126,16 @@ export default function HUD() {
             height={38}
             color="white"
             fill={100}
-            className={state.brokenBone ? 'active' : undefined}
+            className={state.brokenBone ? `active ${styles.active}` : undefined}
           >
             <BoneBreak />
           </ProgressIcon>
-          <div className={`${animStyles.animInfection} ${state.infection > 50 ? 'active' : ''}`}>
+          <div className={`${styles.animInfection} ${state.infection > 50 ? 'active' : ''}`}>
             <ProgressIcon
               width={32}
               height={32}
               fill={state.infection}
-              className={state.infection > 0 ? 'active' : undefined}
+              className={state.infection > 0 ? `active ${styles.active}` : undefined}
             >
               <Bacterium />
             </ProgressIcon>
@@ -136,14 +145,14 @@ export default function HUD() {
             height={48}
             food={state.food}
             drink={state.drink}
-            className={state.food < 85 || state.drink < 85 ? 'active' : undefined}
+            className={state.food < 85 || state.drink < 85 ? `active ${styles.active}` : undefined}
           />
           <ProgressIcon
             width={38}
             height={38}
             color={state.stamina < 25 ? 'red' : 'white'}
             fill={state.stamina}
-            className={state.stamina < 90 ? 'active' : undefined}
+            className={state.stamina < 90 ? `active ${styles.active}` : undefined}
           >
             <Bolt />
           </ProgressIcon>
@@ -152,7 +161,7 @@ export default function HUD() {
             height={38}
             color="white"
             fill={state.moveSpeed}
-            className={state.moveSpeed < 100 ? 'active' : undefined}
+            className={state.moveSpeed < 100 ? `active ${styles.active}` : undefined}
           >
             {state.moveSpeed <= 50 ? <Walking /> : <Running />}
           </ProgressIcon>
@@ -163,7 +172,7 @@ export default function HUD() {
             height={38}
             color="gray50"
             fill={100}
-            className={state.horseSpeed > 0 ? 'active' : undefined}
+            className={state.horseSpeed > 0 ? `active ${styles.active}` : undefined}
           >
             {state.horseSpeed > 80 ? (
               <SpeedFastest />

@@ -1,9 +1,3 @@
-declare module '*.svg' {
-  import { ComponentType, SVGProps } from 'react';
-  const content: ComponentType<SVGProps<SVGSVGElement>>;
-  export default content;
-}
-
 // UI Socket Events - events the UI layer sends to the socket server
 type UISocketEvents = SocketIn.FromClient & SocketOut.ToClient;
 

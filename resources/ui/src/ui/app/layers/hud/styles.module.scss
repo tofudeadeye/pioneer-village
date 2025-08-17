@@ -1,6 +1,8 @@
 @use '../../styles/theme.module.scss' as theme;
 @use '../../styles/mixins.module.scss' as mixins;
 
+@import './animations.module';
+
 $bottom: mixins.uiSize(20);
 $leftRight: mixins.uiSize(40);
 $height: mixins.uiSize(60);
@@ -28,7 +30,7 @@ $spacing: mixins.uiSize(16);
   align-items: center;
   height: $height;
   user-select: none;
-  
+
   > *:not(:last-child) {
     &.active {
       margin-right: $spacing;
@@ -57,7 +59,7 @@ $spacing: mixins.uiSize(16);
   align-items: center;
   height: $height;
   user-select: none;
-  
+
   > *:not(:first-child) {
     margin-left: $spacing;
   }

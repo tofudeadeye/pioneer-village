@@ -108,18 +108,18 @@
 .animBleeding {
   color: var(--theme-yellow);
 
-  &.active {
-    :global(.clawMarks) {
+  //&.active {
+    .clawMarks {
       animation: bleeding 2.5s linear infinite;
     }
 
-    :global(.blood) {
+    .blood {
       position: absolute;
       color: var(--theme-red);
 
       &:nth-child(2) {
         animation: bloodOne 7.5s linear infinite;
-        left: calc(-1 * mixins.uiSize(10));
+        left: calc(-1 * #{mixins.uiSize(10)});
         transform: scale(0.4);
       }
 
@@ -131,9 +131,9 @@
 
       &:nth-child(4) {
         animation: bloodThree 7.5s linear infinite;
-        left: calc(-1 * mixins.uiSize(5));
+        left: calc(-1 * #{mixins.uiSize(5)});
         transform: scale(0.45);
       }
     }
-  }
+  //}
 }

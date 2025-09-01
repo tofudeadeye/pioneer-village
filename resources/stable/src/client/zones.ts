@@ -1,7 +1,7 @@
 import { addZone, onResourceInit } from '@lib/client';
 import { Log } from '@lib/client/comms/ui';
 
-import Stables from '../shared/data/stables';
+import Stables from '../shared/data/stableData';
 import { ZonePrefix } from './config';
 import stableController from './controllers/stable-controller';
 

@@ -35,6 +35,15 @@ local function tlen(t)
 	return retval
 end
 
+function RegisterKeyMapping()
+	while GetResourceState("keymapper") ~= "started" do
+		Wait(1000)
+	end
+
+	exports.keymapper:RegisterKeyMapping("eye_target", "Eye Target", "raw", "LMENU")
+	exports.keymapper:RegisterKeyMapping("eye_target:click", "Eye Target Use", "game", "MOUSE1")
+end
+
 --- @param threadId number
 function Target.Start(threadId)
 	self = self or Target
@@ -116,10 +125,6 @@ function Target.Start(threadId)
 	self.active = false
 	self.distance = tonumber(GetConvar(("%s:raycast_distance"):format(self.name), "10")) or 10
 
-	while GetResourceState("keymapper") ~= "started" do
-		Wait(1000)
-	end
-
 	RegisterCommand('+eye_target', function() Target(true) end)
 	RegisterCommand('-eye_target', function() Target(false) end)
 
@@ -130,8 +135,7 @@ function Target.Start(threadId)
 
 	self.ready = true
 
-	exports.keymapper:RegisterKeyMapping("eye_target", "Eye Target", "keyboard", "LALT")
-	exports.keymapper:RegisterKeyMapping("eye_target:click", "Eye Target Use", "keyboard", "MOUSE1")
+	RegisterKeyMapping()
 
 	Wait(500)
 	Citizen.CreateThread(function()
@@ -163,26 +167,29 @@ function Target:RayCast(map)
 	local position, direction = self:Direction()
 	local destination = position + 10000 * direction
 
+	--Citizen.InvokeNative((GetHashKey('DRAW_LINE') & 0xFFFFFFFF), position.x, position.y, position.z, destination.x, destination.y, destination.z, 255, 0, 255, 255)
 	if not map then
-		for k,v in ipairs(self.intersect) do
-			local shapeTestSphere = StartShapeTestSweptSphere(position.x, position.y, position.z, destination.x, destination.y, destination.z, 0.25, v, self.cache.ped, 7)
+		local flags = 0
+		for _,v in ipairs(self.intersect) do
+			flags = flags + v
+		end
+		local shapeTestSphere = StartShapeTestSweptSphere(position.x, position.y, position.z, destination.x, destination.y, destination.z, 0.5, flags, self.cache.ped, 7)
 
-			while true do
-				local retval, hit, endCoords, surfaceNormal, entityHit = GetShapeTestResult(shapeTestSphere)
+		while true do
+			local retval, hit, endCoords, surfaceNormal, entityHit = GetShapeTestResult(shapeTestSphere)
 
-				if retval == 2 then
-					if hit == 1 then
-						return hit, endCoords, entityHit
-					else
-						break
-					end
+			if retval == 2 then
+				if hit == 1 then
+					return hit, endCoords, entityHit
+				else
+					break
 				end
-
-				Wait(0)
 			end
+
+			Wait(0)
 		end
 	else
-		local shapeTestSphere = StartShapeTestSweptSphere(position.x, position.y, position.z, destination.x, destination.y, destination.z, 0.25, 1, self.cache.ped, 7)
+		local shapeTestSphere = StartShapeTestSweptSphere(position.x, position.y, position.z, destination.x, destination.y, destination.z, 0.5, 1, self.cache.ped, 7)
 
 		while true do
 			local retval, hit, endCoords, surfaceNormal, entityHit = GetShapeTestResult(shapeTestSphere)
@@ -253,6 +260,7 @@ function Target:Enable(state)
 			self.cache.pedCoords = GetEntityCoords(self.cache.ped)
 
 			local data = {
+				playerPed = self.cache.ped,
 				entity = entity,
 				type = GetEntityType(entity),
 				model = GetEntityType(entity) ~= 0 and GetEntityModel(entity),
@@ -264,8 +272,25 @@ function Target:Enable(state)
 
 			local flag = ''
 
-			if Citizen.InvokeNative(0x772A1969F649E902, data.model) then -- _IS_THIS_MODEL_A_HORSE
+			local isHorse = IsThisModelAHorse(data.model)
+			local isBoat = IsThisModelABoat(data.model)
+			local isVehicle = IsThisModelADraftVehicle(data.model)
+			local isTrain = IsThisModelATrain(data.model)
+
+			if isHorse == 1 or isHorse == true then
 				flag = 'isHorse'
+			end
+
+			if isBoat == 1 or isBoat == true then
+				flag = 'isBoat'
+			end
+
+			if isVehicle == 1 or isVehicle == true then
+				flag = 'isWagon'
+			end
+
+			if isTrain == 1 or isTrain == true then
+				flag = 'isTrain'
 			end
 
 			if dstCheck then
@@ -711,7 +736,13 @@ end
 AddEventHandler('onResourceStart', function(resourceName)
 	if resourceName == 'ui' then
 		AddOnUIHandler()
+	--elseif resourceName == 'keymapper' then
+	--	RegisterKeyMapping()
 	end
+end)
+
+AddEventHandler('onPVInit::resource::keymapper', function()
+	RegisterKeyMapping()
 end)
 
 if GetResourceState('ui') == 'started' then

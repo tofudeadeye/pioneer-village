@@ -21,8 +21,8 @@ class CameraManager {
   constructor() {
     Log('CameraManager constructor');
     on('onResourceStop', (resourceName: string) => {
-      Log('CameraManager onResourceStop', resourceName);
       if (resourceName === GetCurrentResourceName()) {
+        Log('CameraManager onResourceStop', resourceName);
         this.destruct();
       }
     });

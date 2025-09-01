@@ -1,6 +1,7 @@
 import { PVGame } from '@lib/client';
-import horseDrawables from '../data/horse-drawables';
 import { Log } from '@lib/client/comms/ui';
+
+import horseDrawables from '../data/horse-drawables';
 
 class PaletteManager {
   protected static instance: PaletteManager;
@@ -134,6 +135,7 @@ class PaletteManager {
       palette = GetHashKey(palette);
     }
     const { drawable, albedo, normal, material } = this.getGuidsAtIndex(entity, index);
+    // Log({ drawable, albedo, normal, material });
 
     SetMetaPedTag(entity, drawable, albedo, normal, material, palette, tint0, tint1, tint2);
 

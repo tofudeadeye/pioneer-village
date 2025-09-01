@@ -1,11 +1,10 @@
+import { PVGame, PVInit, awaitUI, emitUI, focusUI, onUI } from '@lib/client';
+import { Log, emitSocket } from '@lib/client/comms/ui';
 import { Delay } from '@lib/functions';
-import { awaitUI, emitUI, focusUI, onUI, PVDoors, PVGame, PVInit } from '@lib/client';
-import gameManager from './managers/game-manager';
 
 import { spawnCharacters } from './controllers/character-select';
-
 import './exports';
-import { emitSocket, Log } from '@lib/client/comms/ui';
+import gameManager from './managers/game-manager';
 
 let shouldHideLoadscreen = false;
 let firstRun = true;
@@ -39,10 +38,14 @@ const characterSelection = async () => {
   characterSelectionRunning = true;
   let male = 0;
   let female = 0;
+  let horse = 0;
   if (firstRun) {
     // Game acts weird with the first ped created so lets spawn some trash ones to start.
     male = await gameManager.createPed('MP_MALE', spawnCoords.x, spawnCoords.y, spawnCoords.z);
     female = await gameManager.createPed('MP_FEMALE', spawnCoords.x, spawnCoords.y, spawnCoords.z);
+    horse = await gameManager.createPed('A_C_HORSE_ARABIAN_WHITE', spawnCoords.x, spawnCoords.y, spawnCoords.z);
+    EquipMetaPedOutfit(horse, 0xfbc20910);
+    UpdatePedVariation(horse, false, true, true, true, false);
     await Delay(2500);
   }
 
@@ -59,6 +62,7 @@ const characterSelection = async () => {
   if (firstRun) {
     gameManager.deleteEntity(male);
     gameManager.deleteEntity(female);
+    gameManager.deleteEntity(horse);
   }
   firstRun = false;
 

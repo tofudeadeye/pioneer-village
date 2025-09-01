@@ -2,6 +2,7 @@ import { PVGame, emitUI, focusUI, onUI } from '@lib/client';
 import { Log } from '@lib/client/comms/ui';
 import { AnimFlag } from '@lib/flags';
 
+import './commands';
 import './natives';
 import './stuff/animal';
 import './stuff/apple';

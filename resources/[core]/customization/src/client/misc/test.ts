@@ -1,12 +1,13 @@
-import componentCategories from '../data/component-categories';
-import wearableStates from '../data/wearable-states';
+import { PVBase, PVGame } from '@lib/client';
+import { Log } from '@lib/client/comms/ui';
+import { Delay } from '@lib/functions';
+import { Vector3 } from '@lib/math';
+
 import itemCategories from '../data/ci-categories';
 import itemTags from '../data/ci-tags';
+import componentCategories from '../data/component-categories';
 import horseDrawables from '../data/horse-drawables';
-import { PVBase, PVGame } from '@lib/client';
-import { Vector3 } from '@lib/math';
-import { Delay } from '@lib/functions';
-import { Log } from '@lib/client/comms/ui';
+import wearableStates from '../data/wearable-states';
 import { componentManager } from '../managers/component-manager';
 import { paletteManager } from '../managers/palette-manager';
 
@@ -42,6 +43,11 @@ RegisterCommand(
         Log(i, 'Unset Component');
       } else {
         Log(i, component, componentCategory, '=================');
+      }
+
+      if (IsThisModelAHorse(GetEntityModel(entity))) {
+        const drawable = paletteManager.getHorseDrawableAtIndex(entity, i);
+        Log('drawable', drawable);
       }
 
       const struct1Value = struct1.getInt32(0, true);
@@ -416,7 +422,9 @@ RegisterCommand(
 
     for (const expression of expressions) {
       const value = GetCharExpression(ped, expression);
-      Log(expression, value);
+      if (value !== 0) {
+        Log(expression, value);
+      }
     }
   },
   false,

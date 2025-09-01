@@ -26,6 +26,7 @@ declare namespace Stable {
     type: Type;
     zones: Record<string, Vector2Format[]>;
     stalls: Vector4Format[];
+    stallDoors?: number[];
   }
 }
 

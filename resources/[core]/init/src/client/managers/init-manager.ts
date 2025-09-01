@@ -38,20 +38,20 @@ class InitManager {
     });
 
     on('onResourceStop', (resourceName: string) => {
-      if (!this._initializedResources.has(`${this._resourcePrefix}${resourceName}`)) {
-        Log('onResourceStop', resourceName);
-        this.rejectResource(resourceName);
-        this.registerResource(resourceName, { reset: true });
-      }
+      Log('onResourceStop', resourceName);
+      this.rejectResource(resourceName);
+      this.registerResource(resourceName, { reset: true });
     });
   }
 
   register: Init.register = (name, options = {}) => {
+    // Log('Registering', name, options);
     if (options.reset && this._initialized.has(name)) {
       this.reject(name);
       this._initialized.delete(name);
       this._initializedResolver.delete(name);
       this._initializedRejector.delete(name);
+      this._initializedResources.delete(name);
     }
     if (!this._initialized.has(name)) {
       const promise = new Promise<void>((resolve, reject) => {
@@ -91,12 +91,12 @@ class InitManager {
 
   resolve: Init.resolve = (name) => {
     if (this._initializedResolver.has(name)) {
-      Log('Resolving', name);
       this._initializedResolver.get(name)!();
       this._initializedResolver.delete(name);
       this._initializedRejector.delete(name);
       this._initializedResources.add(name);
 
+      Log(`emit(onPVInit::${name})`);
       emit(`onPVInit::${name}`);
     }
   };

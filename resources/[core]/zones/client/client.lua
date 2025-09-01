@@ -56,13 +56,13 @@ end
 function generatePoly(data)
     local points = {} -- Will store the 3D vertices for the polygon
     local centerPoint = vector2(0, 0) -- Accumulator for calculating center position
-    
+
     -- Note: These appear swapped but it's correct - data.minZ is used for maxZ
     -- This might be due to coordinate system differences or a naming convention
     local maxZ = data.minZ
     local minZ = data.maxZ
     local centerZ = (minZ + maxZ) / 2 -- Calculate vertical center of the zone
-    
+
     -- Process each 2D point and convert to 3D vertices
     for _, point in pairs(data.points) do
         -- Accumulate points to calculate geometric center
@@ -70,7 +70,7 @@ function generatePoly(data)
         -- Convert 2D point to 3D by adding the center Z coordinate
         table.insert(points, vector3(point.x, point.y, centerZ))
     end
-    
+
     -- Calculate the average position (geometric center) of all points
     centerPoint = centerPoint / #points
     centerPoint = vector3(centerPoint.x, centerPoint.y, centerZ)
@@ -229,7 +229,7 @@ exports('IsCoordInZone', function(zoneName, coords)
     if not zone then
         return false -- Zone doesn't exist
     end
-    
+
     -- Check based on zone type
     if zone.polygon then
         -- For polygon and box zones, use GLM polygon containment
@@ -240,7 +240,7 @@ exports('IsCoordInZone', function(zoneName, coords)
         local distance = #(zone.data.coords - coords)
         return distance < zone.data.radius
     end
-    
+
     return false
 end)
 
@@ -253,9 +253,29 @@ exports('IsEntityInZone', function(zoneName, entity)
     if not DoesEntityExist(entity) then
         return false -- Entity doesn't exist
     end
-    
+
     local coords = GetEntityCoords(entity, false)
     return exports['zones']:IsCoordInZone(zoneName, coords)
+end)
+
+
+-- Export function to check if an entity is inside a specific zones
+-- Convenience wrapper that gets entity coordinates automatically
+-- @param zoneNames  string[] - Name of the zone to check
+-- @param entity    number - Entity handle to check
+-- @return string | null - True if entity is in zone, false otherwise
+exports('IsEntityInZones', function(zoneNames, entity)
+    if not DoesEntityExist(entity) then
+        return false -- Entity doesn't exist
+    end
+
+    local coords = GetEntityCoords(entity, false)
+    for _, zoneName in pairs(zoneNames) do
+        if exports['zones']:IsCoordInZone(zoneName, coords) then
+            return zoneName
+        end
+    end
+    return nil
 end)
 
 -- Export function to get all zones at a specific coordinate
@@ -264,10 +284,10 @@ end)
 -- @return table - Array of zone names at this position
 exports('GetZonesAtCoord', function(coords)
     local zonesAtCoord = {}
-    
+
     for zoneName, zone in pairs(Zones) do
         local inZone = false
-        
+
         if zone.polygon then
             -- Check polygon/box zones
             inZone = glm.polygon.contains(zone.polygon, coords, zone.data.size.z / 4)
@@ -276,12 +296,12 @@ exports('GetZonesAtCoord', function(coords)
             local distance = #(zone.data.coords - coords)
             inZone = distance < zone.data.radius
         end
-        
+
         if inZone then
             table.insert(zonesAtCoord, zoneName)
         end
     end
-    
+
     return zonesAtCoord
 end)
 
@@ -293,7 +313,7 @@ exports('GetZonesForEntity', function(entity)
     if not DoesEntityExist(entity) then
         return {} -- Return empty array if entity doesn't exist
     end
-    
+
     local coords = GetEntityCoords(entity, false)
     return exports['zones']:GetZonesAtCoord(coords)
 end)
@@ -315,10 +335,10 @@ end)
 -- Triggers enter/exit events with optional delays
 Citizen.CreateThread(function()
     Wait(2000) -- Initial delay to ensure game is loaded
-    
+
     -- Notify init system that zones resource is ready
     exports['init']:resolveResource('zones')
-    
+
     while true do
         -- Check each registered zone
         for zoneName, zone in pairs(Zones) do

@@ -46,6 +46,7 @@ declare namespace Target {
     entity: number;
     model: number;
     type: number;
+    playerPed: number;
   }
 
   type Options = {

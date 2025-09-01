@@ -15,3 +15,29 @@ function getChildEntity(entityId, name)
 end
 
 exports('getChildEntity', getChildEntity)
+
+function setPedFaceFeature(ped, index, scale)
+    SetPedFaceFeature(ped, index, scale + 0.0)
+end
+
+exports('setPedFaceFeature', setPedFaceFeature)
+
+function makeHorseMale(horsePed)
+    SetPedFaceFeature(horsePed, 0xa28b, 0.0);
+    Wait(10);
+    Citizen.InvokeNative(0x704c908e9c405136, horsePed);
+    Wait(10);
+    UpdatePedVariation(horsePed, false, true, true, true, false);
+end
+
+exports('makeHorseMale', makeHorseMale)
+
+function makeHorseFemale(horsePed)
+    SetPedFaceFeature(horsePed, 0xa28b, 1.0);
+    Wait(10);
+    Citizen.InvokeNative(0x704c908e9c405136, horsePed);
+    Wait(10);
+    UpdatePedVariation(horsePed, false, true, true, true, false);
+end
+
+exports('makeHorseFemale', makeHorseFemale)

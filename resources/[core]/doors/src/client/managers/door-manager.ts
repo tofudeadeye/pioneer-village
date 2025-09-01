@@ -87,6 +87,7 @@ class DoorManager {
 
   getDoorCoords(doorHash: number): Vector3Format | null {
     const data = this.getDoor(doorHash);
+    Log('getDoorCoords', doorHash, data);
     if (data && data.coords.z !== -69) {
       return data.coords;
     }
@@ -111,6 +112,7 @@ class DoorManager {
 
   getDoorDistance(doorHash: number): number {
     const coords = this.getDoorCoords(doorHash);
+    Log('getDoorDistance', doorHash, coords);
     if (coords) {
       return Vector3.fromObject(coords).getDistance(PVGame.playerCoords(true));
     }

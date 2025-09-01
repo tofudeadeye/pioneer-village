@@ -1,4 +1,4 @@
-const stables: Stable.Data[] = [
+const StableData: Stable.Data[] = [
   {
     name: 'Valentine Stables',
     identifier: 'valentine',
@@ -32,8 +32,8 @@ const stables: Stable.Data[] = [
         { x: -1823.8, y: -552.2 },
         { x: -1828.1, y: -567.8 },
         { x: -1822.1, y: -569.3 },
-        // { x: -1820.9, y: -564.9 },
-        // { x: -1815.1, y: -566.5 },
+        { x: -1820.9, y: -564.9 },
+        { x: -1815.1, y: -566.5 },
       ],
     },
     stalls: [
@@ -44,6 +44,7 @@ const stables: Stable.Data[] = [
       { x: -1825.969, y: -566.1664, z: 155.1683, w: 343.1788 },
       { x: -1823.12, y: -567.0253, z: 155.1612, w: 343.1788 },
     ],
+    stallDoors: [3687615949, 847625026, 1985988697, 3917949250, 1077466788, 1310356071],
   },
   {
     name: 'Dewberry Creek Stables',
@@ -132,6 +133,7 @@ const stables: Stable.Data[] = [
       { x: -863.5939, y: -1371.159, z: 42.63815, w: 34.695 },
       { x: -859.868, y: -1371.403, z: 42.67106, w: 34.695 },
     ],
+    stallDoors: [1924615787, 484025009, 254216012, 1441404053, 3350657073, 2202398540],
   },
   {
     name: 'Tumbleweed Stables',
@@ -316,4 +318,4 @@ const stables: Stable.Data[] = [
   },
 ];
 
-export default stables;
+export default StableData;

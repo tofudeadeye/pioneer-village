@@ -10,6 +10,7 @@ const whistle = async (): Promise<void> => {
   if (isWhistling) {
     return;
   }
+  isWhistling = true;
   const playerPed = PlayerPedId();
   const [ret, weaponHash] = GetCurrentPedWeapon(playerPed, false, 0, false);
   SetCurrentPedWeapon(playerPed, GetHashKey('WEAPON_UNARMED'), true);

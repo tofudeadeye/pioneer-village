@@ -1,8 +1,9 @@
+import { PVKeymapper } from '@lib/client';
+
 import './auto-close-layers';
 import './cleanup';
 import './commands';
 import './crosshair';
-
 // Import exports to register them
 import './exports';
 
@@ -34,7 +35,7 @@ RegisterCommand(
 );
 
 // Citizen.invokeNativeByHash(0x00000000, 0xd7664fd1, '+openChat', 'Chat', 'keyboard', 't');
-// RegisterKeyMapping('+openChat', 'Chat', 'keyboard', 't');
+PVKeymapper.RegisterKeyMapping('+openChat', 'Chat', 'keyboard', 'T');
 
 // Handle server log messages
 onNet('server.log.message', (logData: { resource: string; message: string }) => {

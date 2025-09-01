@@ -137,15 +137,18 @@ declare namespace Game {
     vegAddVolume: vegAddVolume;
     vegRemoveAllSpheres: vegRemoveAllSpheres;
 
-    // Lua
-    getStateValue: (entity: number, key: string) => any;
-    getChildEntity: (entity: number, name: string) => number;
-
     getPlayerServerId: () => number;
 
     getPlayerSteamId: () => Promise<string>;
 
     characterId: () => number | null;
+
+    // Lua Exports
+    // getStateValue: (entity: number, key: string) => any;
+    getChildEntity: (entity: number, name: string) => number;
+    setPedFaceFeature: (ped: number, index: number, scale: number) => void;
+    makeHorseMale: (ped: number) => void;
+    makeHorseFemale: (ped: number) => void;
   };
 
   interface CharacterSpot {
@@ -263,7 +266,7 @@ declare namespace ClientRPC {
     getCharacters: () => Game.Character[];
     createCharacter: (characterData: Game.Character, faceData: Game.Face) => void;
   }
-  
+
   interface Server {
     'game.getSteamId': () => string;
   }

@@ -3,9 +3,9 @@ import { Log, awaitUI } from '@lib/client/comms/ui';
 import { PedConfigFlag } from '@lib/flags';
 import { Delay } from '@lib/functions';
 
+import StableData from '../../shared/data/stableData';
 import Horse from '../classes/horse';
 import Stable from '../classes/stable';
-import { ZonePrefix } from '../config';
 
 const DECOR_HORSE_ID = 'stable::horse.id';
 DecorRegister(DECOR_HORSE_ID, 3);
@@ -19,10 +19,13 @@ class StableController {
   protected _stabledHorses: Map<Horse.Id, Stable.Id> = new Map();
 
   protected _currentStable: Stable.Id = '';
-  protected _currentStableStalls: Vector4Format[] = [];
+  // protected _currentStableStalls: Vector4Format[] = [];
 
   // protected _characterInStables: Map<Stable.Id, Set<number>> = new Map(); // Map<StableId, Set<CharacterId>>
   protected _stableHorsePeds: Map<Stable.Id, Map<number, Set<number>>> = new Map(); // Map<StableId, Map<CharacterId, Set<EntityId>>
+  protected _horsePedsStalls: Map<number, number> = new Map();
+
+  protected _unstabledHorsePedsTemp: Set<number> = new Set();
 
   static getInstance(): StableController {
     if (!StableController.instance) {
@@ -41,6 +44,23 @@ class StableController {
     onNet('game:character-selected', async (characterId: number) => {
       this.loadHorses(characterId);
     });
+    on('events_manager:mount', (onMount: number, mount: number, currentSeat: number) => {
+      if (this._unstabledHorsePedsTemp.has(mount)) {
+        this.horseMakeNetworked(mount);
+      }
+    });
+  }
+
+  get currentStable(): Stable.Id {
+    return this._currentStable;
+  }
+
+  currentStableData(): Stable.Data | undefined {
+    for (const stable of StableData) {
+      if (stable.identifier === this._currentStable) {
+        return stable;
+      }
+    }
   }
 
   async loadHorses(characterId: number) {
@@ -48,7 +68,7 @@ class StableController {
     PVInit.register('stable::load-hoses', { reset: true });
     const horses = await awaitUI('stable.load-character-horses', characterId);
     for (const horse of horses) {
-      Log('horse', horse);
+      // Log('horse', horse);
       this._horses.set(horse.id, new Horse(horse));
       this._stabledHorses.set(horse.id, horse.stable || '');
     }
@@ -91,7 +111,7 @@ class StableController {
 
     let usedStalls = 0;
 
-    const stableHorsePeds = this._stableHorsePeds.get(stableId) || new Map<number, Set<number>>();
+    const stableHorses = this._stableHorsePeds.get(stableId) || new Map<number, Set<number>>();
 
     const characterId = PVGame.characterId();
 
@@ -105,7 +125,7 @@ class StableController {
     await PVInit.initialized('stable::load-hoses');
     Log('Spawn Horses');
 
-    const characterHorsePeds = stableHorsePeds.get(characterId) || new Set<number>();
+    const stableHorsePeds = stableHorses.get(characterId) || new Set<number>();
 
     for (const horse of this._horses.values()) {
       if (horse.stable === stableId) {
@@ -119,44 +139,49 @@ class StableController {
             w: stall.w,
           },
         });
-        characterHorsePeds.add(horsePed);
+        stableHorsePeds.add(horsePed);
+        SetPedConfigFlag(horsePed, PedConfigFlag.CannotBeMounted, true);
+        this._horsePedsStalls.set(horsePed, usedStalls);
         usedStalls++;
       }
     }
 
-    stableHorsePeds.set(characterId, characterHorsePeds);
-    this._stableHorsePeds.set(stableId, stableHorsePeds);
+    stableHorses.set(characterId, stableHorsePeds);
+    this._stableHorsePeds.set(stableId, stableHorses);
   }
 
   async exitStable(stableId: Stable.Id): Promise<void> {
     const stableHorsePeds = this._stableHorsePeds.get(stableId) || new Map<number, Set<number>>();
+
+    Log('stableHorsePeds', stableHorsePeds.entries());
 
     const characterId = PVGame.characterId();
     if (!characterId) {
       return;
     }
 
-    const characterHorsePeds = stableHorsePeds.get(characterId) || new Set<number>();
+    const stableHorses = stableHorsePeds.get(characterId) || new Set<number>();
 
-    const horsesInStables: number[] = [];
+    // const horsesInStables: number[] = [];
 
-    for (const horsePed of characterHorsePeds.values()) {
-      const inZone = PVZone.IsEntityInZone(`${ZonePrefix}${stableId}`, horsePed);
-      if (inZone) {
-        horsesInStables.push(horsePed);
-        continue;
-      }
-      Log(`Horse ${horsePed} not in stable zone, removing from stable`);
-      NetworkRegisterEntityAsNetworked(horsePed);
-      const horseId = DecorGetInt(horsePed, DECOR_HORSE_ID);
-      Log('horseId', horseId);
+    // NOTE: Moved to PVTarget for removing horses from stables and making them networked.
+    // for (const horsePed of stableHorses.values()) {
+    //   const inZone = PVZone.IsEntityInZone(`${ZonePrefix}${stableId}`, horsePed);
+    //   if (inZone) {
+    //     horsesInStables.push(horsePed);
+    //     continue;
+    //   }
+    //   Log(`Horse ${horsePed} not in stable zone, removing from stable`);
+    //   NetworkRegisterEntityAsNetworked(horsePed);
+    //   const horseId = DecorGetInt(horsePed, DECOR_HORSE_ID);
+    //   Log('horseId', horseId);
+    //
+    //   if (horseId) {
+    //     this.unstableHorse(horseId);
+    //   }
+    // }
 
-      if (horseId) {
-        this.unstableHorse(horseId);
-      }
-    }
-
-    PVBase.deleteEntities(horsesInStables);
+    PVBase.deleteEntities([...stableHorses.values()]);
 
     this._stableHorsePeds.set(stableId, stableHorsePeds);
 
@@ -167,7 +192,7 @@ class StableController {
     return this._stabledHorses.has(horseId);
   }
 
-  stableHorse(horseId: Horse.Id, stableId: Stable.Id): void {
+  stableHorse(ped: number, horseId: Horse.Id, stableId: Stable.Id): void {
     const stable = this.getById(stableId);
     if (!stable || stable.horses.includes(horseId)) {
       return;
@@ -179,9 +204,11 @@ class StableController {
 
     stable.horses.push(horseId);
 
-    const stableHorsePeds = this._stableHorsePeds.get(stableId) || new Map<number, Set<number>>();
+    const stableHorsePeds = this._stableHorsePeds.get(stableId) || new Map<number, Set<number>>(); // Map<StableId, Map<CharacterId, Set<EntityId>>
     const stabledHorses = stableHorsePeds.get(characterId) || new Set<number>();
-    stabledHorses.add(horseId);
+    stabledHorses.add(ped);
+    Log(`stabledHorses.add(${ped});`);
+    Log('stabledHorses', [...stabledHorses.values()]);
     stableHorsePeds.set(characterId, stabledHorses);
     this._stableHorsePeds.set(stableId, stableHorsePeds);
 
@@ -194,7 +221,11 @@ class StableController {
     }
   }
 
-  unstableHorse(horseId: Horse.Id): void {
+  getHorseStall(horsePed: number): number | undefined {
+    return this._horsePedsStalls.get(horsePed);
+  }
+
+  unstableHorse(horseId: Horse.Id, horsePed: number, makeNetworked = false): void {
     Log('unstableHorse', horseId);
     const stable = this.getByHorseId(horseId);
 
@@ -203,6 +234,26 @@ class StableController {
     }
 
     this._stabledHorses.delete(horseId);
+    const stableHorsePeds = this._stableHorsePeds.get(stable.id);
+    if (stableHorsePeds) {
+      for (const [characterId, horsePeds] of stableHorsePeds.entries()) {
+        if (horsePeds.has(horsePed)) {
+          horsePeds.delete(horsePed);
+          Log(`horsePeds.delete(${horsePed});`);
+          Log('horsePeds', [...horsePeds.values()]);
+          stableHorsePeds.set(characterId, horsePeds);
+          break;
+        }
+      }
+      this._stableHorsePeds.set(stable.id, stableHorsePeds);
+    }
+
+    if (makeNetworked) {
+      NetworkRegisterEntityAsNetworked(horsePed);
+    } else {
+      this._unstabledHorsePedsTemp.add(horsePed);
+    }
+    SetPedConfigFlag(horsePed, PedConfigFlag.Unridable, false);
 
     if (stable.horses.includes(horseId)) {
       const horses = [...stable.horses];
@@ -215,6 +266,11 @@ class StableController {
       horse.stable = null;
       horse.save();
     }
+  }
+
+  horseMakeNetworked(horsePed: number): void {
+    NetworkRegisterEntityAsNetworked(horsePed);
+    this._unstabledHorsePedsTemp.delete(horsePed);
   }
 
   /**
@@ -292,10 +348,10 @@ class StableController {
 
     if (horse.gender === 'MALE') {
       Log('Set Horse Face Features to Male');
-      SetPedFaceFeature(horsePed, 0xa28b, 0.0); // Default
+      PVGame.setPedFaceFeature(horsePed, 0xa28b, 0.0); // Default
     } else if (horse.gender === 'FEMALE') {
       Log('Set Horse Face Features to Female');
-      SetPedFaceFeature(horsePed, 0xa28b, 1.0);
+      PVGame.setPedFaceFeature(horsePed, 0xa28b, 1.0);
     }
     // HORSE_EQUIPMENT_MALE_GENITALS
     // HORSE_EQUIPMENT_FEMALE_GENITALS
@@ -316,7 +372,10 @@ class StableController {
     // SetActiveMetaPedComponentsUpdated
     Citizen.invokeNative('0xaab86462966168ce', horsePed, true);
     await Delay(1);
-    UpdatePedVariation(horsePed, false, true, true, true, false); // _UPDATE_PED_VARIATION
+    UpdatePedVariation(horsePed, false, true, true, true, false);
+
+    await Delay(50);
+
     SetModelAsNoLongerNeeded(horse.model);
     await Delay(50);
 
@@ -327,7 +386,7 @@ class StableController {
     Citizen.invokeNative('0x931B241409216C1F', playerPed, horsePed);
 
     if (options.local) {
-      NetworkSetEntityInvisibleToNetwork(horsePed, true);
+      NetworkSetEntityOnlyExistsForParticipants(horsePed, true);
     } else {
       await PVGame.registerNetworkEntity(horsePed);
       // SetPedMotivation

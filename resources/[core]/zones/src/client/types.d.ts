@@ -23,9 +23,10 @@ declare namespace Zones {
   // Zone checking exports
   type IsCoordInZone = (zoneName: string, coords: Vector3Format) => boolean;
   type IsEntityInZone = (zoneName: string, entity: number) => boolean;
+  type IsEntityInZones = (zoneNames: string[], entity: number) => string | null;
   type GetZonesAtCoord = (coords: Vector3Format) => string[];
   type GetZonesForEntity = (entity: number) => string[];
-  
+
   // Zone data retrieval
   interface ZoneDataInfo {
     name: string;
@@ -51,6 +52,7 @@ declare namespace Zones {
     // Zone checking
     IsCoordInZone: IsCoordInZone;
     IsEntityInZone: IsEntityInZone;
+    IsEntityInZones: IsEntityInZones;
     GetZonesAtCoord: GetZonesAtCoord;
     GetZonesForEntity: GetZonesForEntity;
     // Zone data

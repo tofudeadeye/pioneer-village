@@ -1,9 +1,10 @@
-import doorManager from '../managers/door-manager';
 import { PVBase, PVGame } from '@lib/client';
-import { Vector3 } from '@lib/math';
+import { Log, emitSocket } from '@lib/client/comms/ui';
 import { Delay } from '@lib/functions';
+import { Vector3 } from '@lib/math';
+
+import doorManager from '../managers/door-manager';
 import { doorOpenAnim } from './anim-tasks';
-import { emitSocket } from '@lib/client/comms/ui';
 
 const toggleDoor = async (doorHash: number) => {
   if (Math.abs(DoorSystemGetOpenRatio(doorHash)) > 0.15) {
@@ -24,11 +25,13 @@ const toggleDoor = async (doorHash: number) => {
 };
 
 on('doors:client:toggle_door', async (item: Inventory.ItemBase, itemData: UI.Inventory.ItemData) => {
+  Log('doors:client:toggle_door', item, itemData);
   for (const metadata of itemData.metadatas) {
     let closestDoorHash = metadata.doorHash;
     let distance = doorManager.getDoorDistance(metadata.doorHash);
     for (const doorHash of metadata.doorHashes || []) {
       const curDistance = doorManager.getDoorDistance(doorHash);
+      Log('Checking door hash', doorHash, 'distance', curDistance);
       if (curDistance < distance) {
         closestDoorHash = doorHash;
         distance = curDistance;

@@ -38,6 +38,7 @@ const testNatives = (category: string, parameterCount: number, nativeArgs: any[]
         Log('rtn', HexToFloat32(rtn.toString(16)));
       } else {
         Log('rtn', rtn);
+        Log('rtn', HexToFloat32(rtn.toString(16)));
       }
     } catch {}
   }

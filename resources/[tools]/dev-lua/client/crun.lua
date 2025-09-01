@@ -226,3 +226,10 @@ end)
 --        Citizen.InvokeNative(0x669E223E64B1903C, 12, 0, 0)
 --    end
 --end)
+
+
+--[[
+<scale value="0.91875" />
+<scale value="1.1437" />
+<scale value="1.1437" />
+]]--

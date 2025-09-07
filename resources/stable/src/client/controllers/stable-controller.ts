@@ -1,9 +1,12 @@
-import { PVBase, PVGame, PVInit, PVZone, onResourceInit } from '@lib/client';
+import { PVBase, PVCustomization, PVGame, PVInit, PVZone, onResourceInit } from '@lib/client';
 import { Log, awaitUI } from '@lib/client/comms/ui';
 import { PedConfigFlag } from '@lib/flags';
 import { Delay } from '@lib/functions';
+import { lerp } from '@lib/math';
 
+import HorseExpressions from '../../shared/data/horse-expressions';
 import StableData from '../../shared/data/stableData';
+import type { DNA } from '../classes/dna';
 import Horse from '../classes/horse';
 import Stable from '../classes/stable';
 
@@ -254,6 +257,12 @@ class StableController {
       this._unstabledHorsePedsTemp.add(horsePed);
     }
     SetPedConfigFlag(horsePed, PedConfigFlag.Unridable, false);
+    SetPlayerOwnsMount(PlayerPedId(), horsePed);
+    // SetPedActivePlayerHorse(PlayerId(), horsePed);
+    SetPedAsSaddleHorseForPlayer(PlayerId(), horsePed);
+    SetAttributePoints(horsePed, 7, 2450);
+    CompendiumHorseBonding(GetSaddleHorseForPlayer(PlayerId()), 4);
+    SetMountBondingLevel(GetSaddleHorseForPlayer(PlayerId()), 4);
 
     if (stable.horses.includes(horseId)) {
       const horses = [...stable.horses];
@@ -268,14 +277,20 @@ class StableController {
     }
   }
 
+  /**
+   * horse stuff
+   */
+
   horseMakeNetworked(horsePed: number): void {
     NetworkRegisterEntityAsNetworked(horsePed);
     this._unstabledHorsePedsTemp.delete(horsePed);
   }
 
-  /**
-   * horse stuff
-   */
+  setHorseBlip(horsePed: number, horse: Horse): void {
+    const horseBlip = BlipAddForEntity(-1230993421, horsePed); // _BLIP_ADD_FOR_ENTITY
+    SetBlipSprite(horseBlip, GetHashKey('blip_horse_owned'), true);
+    SetBlipName(horseBlip, horse.name);
+  }
 
   async spawnHorse(horse: Horse, options: Horse.SpawnOptions = {}): Promise<number> {
     // if (this._spawningHorse.get(horse.id)) {
@@ -284,6 +299,7 @@ class StableController {
     // this._spawningHorse.set(horse.id, true);
 
     Log('spawning horse', horse.name);
+    // Log('horse dna', horse.dna);
 
     const playerPed = PVGame.playerPed();
     const characterId = PVGame.characterId();
@@ -320,11 +336,6 @@ class StableController {
       false,
     );
 
-    SetAttributePoints(horsePed, 0, horse.statHealth);
-    SetAttributePoints(horsePed, 1, horse.statEndurance);
-    SetAttributePoints(horsePed, 4, horse.statHandling);
-    SetAttributePoints(horsePed, 5, horse.statSpeed);
-    SetAttributePoints(horsePed, 6, horse.statAcceleration);
     if (horse.statBonding[characterId]) {
       SetAttributePoints(horsePed, 7, horse.statBonding[characterId]);
     }
@@ -344,21 +355,13 @@ class StableController {
       SetPedScale(horsePed, options.scale);
     }
 
-    await Delay(100);
-
-    if (horse.gender === 'MALE') {
-      Log('Set Horse Face Features to Male');
-      PVGame.setPedFaceFeature(horsePed, 0xa28b, 0.0); // Default
-    } else if (horse.gender === 'FEMALE') {
-      Log('Set Horse Face Features to Female');
-      PVGame.setPedFaceFeature(horsePed, 0xa28b, 1.0);
-    }
+    await Delay(50);
     // HORSE_EQUIPMENT_MALE_GENITALS
     // HORSE_EQUIPMENT_FEMALE_GENITALS
     await Delay(1);
     Citizen.invokeNative('0x704c908e9c405136', horsePed); // FIX_OUTFIT
 
-    await Delay(50);
+    await Delay(1);
 
     for (const component of horse.components) {
       // Log('component', component);
@@ -372,6 +375,16 @@ class StableController {
     // SetActiveMetaPedComponentsUpdated
     Citizen.invokeNative('0xaab86462966168ce', horsePed, true);
     await Delay(1);
+
+    await this.horsePedLoadDNA(horsePed, horse.dna);
+    if (horse.gender === 'MALE') {
+      Log('Set Horse Face Features to Male');
+      PVGame.setPedFaceFeature(horsePed, 0xa28b, 0.0); // Default
+    } else if (horse.gender === 'FEMALE') {
+      Log('Set Horse Face Features to Female');
+      PVGame.setPedFaceFeature(horsePed, 0xa28b, 1.0);
+    }
+    // UpdatePedVariation(horsePed, false, true, true, true, false);
     UpdatePedVariation(horsePed, false, true, true, true, false);
 
     await Delay(50);
@@ -402,7 +415,115 @@ class StableController {
 
     DecorSetInt(horsePed, DECOR_HORSE_ID, horse.id);
 
+    this.setHorseBlip(horsePed, horse);
+
     return horsePed;
+  }
+
+  async horsePedLoadDNA(horsePed: number, dna: DNA): Promise<void> {
+    const health = dna.getGene<number>('Health');
+    if (health !== undefined) {
+      SetAttributePoints(horsePed, 0, health.value);
+      await Delay(1);
+      // Log('Set Health', health.value);
+    }
+    const endurance = dna.getGene<number>('Endurance');
+    if (endurance !== undefined) {
+      SetAttributePoints(horsePed, 1, endurance.value);
+      await Delay(1);
+      // Log('Set Endurance', endurance.value);
+    }
+    const handling = dna.getGene<number>('Handling');
+    if (handling !== undefined) {
+      SetAttributePoints(horsePed, 4, handling.value);
+      await Delay(1);
+      // Log('Set Handling', handling.value);
+    }
+    const speed = dna.getGene<number>('Speed');
+    if (speed !== undefined) {
+      SetAttributePoints(horsePed, 5, speed.value);
+      await Delay(1);
+      // Log('Set Speed', speed.value);
+    }
+    const acceleration = dna.getGene<number>('Acceleration');
+    if (acceleration !== undefined) {
+      SetAttributePoints(horsePed, 6, acceleration.value);
+      await Delay(1);
+      // Log('Set Acceleration', acceleration.value);
+    }
+
+    for (const [name, id] of Object.entries(HorseExpressions)) {
+      const gene = dna.getGene<number>(name);
+      if (gene) {
+        SetPedFaceFeature(horsePed, id, gene.value);
+        await Delay(1);
+        // Log(`Set ${name}`, gene.value);
+      }
+    }
+
+    const HealthHandlingSpeed =
+      (dna.getGene<number>('Health')?.value || 0) +
+      (dna.getGene<number>('Handling')?.value || 0) +
+      (dna.getGene<number>('Speed')?.value || 0);
+    SetPedFaceFeature(horsePed, 8147, lerp(-1, 1, HealthHandlingSpeed / 6000));
+    await Delay(1);
+    // Log('HealthHandlingSpeed', lerp(-1, 1, HealthHandlingSpeed / 6000), HealthHandlingSpeed);
+    const OffRoadEnduranceAcceleration =
+      (dna.getGene<number>('OffRoad')?.value || 0) +
+      (dna.getGene<number>('Endurance')?.value || 0) +
+      (dna.getGene<number>('Acceleration')?.value || 0);
+    SetPedFaceFeature(horsePed, 3015, lerp(-1, 1, OffRoadEnduranceAcceleration / 6000));
+    await Delay(1);
+    // Log('OffRoadEnduranceAcceleration', lerp(-1, 1, OffRoadEnduranceAcceleration / 6000), OffRoadEnduranceAcceleration);
+
+    const scale = dna.getGene<number>('Scale');
+    if (scale) {
+      SetPedScale(horsePed, scale.value);
+      await Delay(1);
+      // Log('Set Scale', scale.value);
+    }
+
+    if (dna.getGene<number>('BodyTint0') || dna.getGene<number>('BodyTint1') || dna.getGene<number>('BodyTint2')) {
+      for (const part of ['head', 'hand']) {
+        PVCustomization.setTintByHorsePart(
+          horsePed,
+          // @ts-ignore
+          part,
+          'metaped_tint_horse',
+          Math.floor(dna.getGene<number>('BodyTint0')?.value || 0),
+          Math.floor(dna.getGene<number>('BodyTint1')?.value || 0),
+          Math.floor(dna.getGene<number>('BodyTint2')?.value || 0),
+        );
+        await Delay(1);
+        // Log(`Set ${part} tint`, {
+        //   part,
+        //   tint0: Math.floor(dna.getGene<number>('BodyTint0')?.value || 0),
+        //   tint1: Math.floor(dna.getGene<number>('BodyTint1')?.value || 0),
+        //   tint2: Math.floor(dna.getGene<number>('BodyTint2')?.value || 0),
+        // });
+      }
+    }
+
+    if (dna.getGene<number>('HairTint0') || dna.getGene<number>('HairTint1') || dna.getGene<number>('HairTint2')) {
+      for (const part of ['hair', 'mane']) {
+        PVCustomization.setTintByHorsePart(
+          horsePed,
+          // @ts-ignore
+          part,
+          'metaped_tint_horse',
+          Math.floor(dna.getGene<number>('HairTint0')?.value || 0),
+          Math.floor(dna.getGene<number>('HairTint1')?.value || 0),
+          Math.floor(dna.getGene<number>('HairTint2')?.value || 0),
+        );
+        await Delay(1);
+        // Log(`Set ${part} tint`, {
+        //   part,
+        //   tint0: Math.floor(dna.getGene<number>('HairTint0')?.value || 0),
+        //   tint1: Math.floor(dna.getGene<number>('HairTint1')?.value || 0),
+        //   tint2: Math.floor(dna.getGene<number>('HairTint2')?.value || 0),
+        // });
+      }
+    }
   }
 }
 

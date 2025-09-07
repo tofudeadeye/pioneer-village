@@ -1,4 +1,4 @@
-import { PVGame, PVZone } from '@lib/client';
+import { PVEvents, PVGame, PVZone } from '@lib/client';
 import { Log } from '@lib/client/comms/ui';
 import { PedConfigFlag } from '@lib/flags';
 import { Delay } from '@lib/functions';
@@ -155,6 +155,43 @@ on('stable:client:attach', async (pEntity: number, pArgs: Record<string, any>) =
       break;
     }
   }
+});
+
+enum WhistleType {
+  WHISTLE_MAIN,
+  WHISTLE_SECONDARY,
+  WHISTLE_DOUBLE,
+  WHISTLE_URGENT,
+  WHISTLE_LONG,
+}
+
+PVEvents.register('EVENT_PED_WHISTLE', (data) => {
+  const playerPed = PlayerPedId();
+
+  if (data._0 !== playerPed) {
+    return;
+  }
+
+  const horsePed = GetSaddleHorseForPlayer(PlayerId());
+
+  let whistleType = WhistleType.WHISTLE_MAIN;
+  switch (data._1) {
+    case GetHashKey('WHISTLEHORSERESPONSIVE'):
+    case GetHashKey('WHISTLEHORSETALK'):
+      whistleType = WhistleType.WHISTLE_MAIN;
+      break;
+    case GetHashKey('WHISTLEHORSEDOUBLE'):
+      whistleType = WhistleType.WHISTLE_DOUBLE;
+      break;
+    case GetHashKey('WHISTLEHORSESHORT'):
+      whistleType = WhistleType.WHISTLE_URGENT;
+      break;
+    case GetHashKey('WHISTLEHORSELONG'):
+      whistleType = WhistleType.WHISTLE_LONG;
+  }
+
+  TaskGoToWhistle(horsePed, playerPed, whistleType);
+  // Log(`TaskGoToWhistle(${horsePed}, ${playerPed}, ${whistleType});`);
 });
 
 // Generate random point within the scaled quadrilateral using triangulation

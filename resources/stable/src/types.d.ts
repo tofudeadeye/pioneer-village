@@ -50,13 +50,7 @@ declare namespace Horse {
     health: number;
     cleanliness: number;
     neuteredFixed: boolean;
-    statOffRoad: number;
-    statHealth: number;
-    statEndurance: number;
-    statFertility: number;
-    statHandling: number;
-    statSpeed: number;
-    statAcceleration: number;
+    dna: Record<string, any>;
     statBonding: Record<number, number>; // Record<CharacterId, Bonding>
     hooves: number;
     horseshoes: number;

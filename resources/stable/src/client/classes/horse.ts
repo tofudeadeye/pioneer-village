@@ -1,6 +1,8 @@
 import { Log, awaitUI } from '@lib/client/comms/ui';
 import { Vector3 } from '@lib/math';
 
+import { DNA, type Gene } from './dna';
+
 export default class Horse {
   _id: number;
   _name: string;
@@ -18,13 +20,7 @@ export default class Horse {
   _health: number;
   _cleanliness: number;
   _neuteredFixed: boolean;
-  _statOffRoad: number;
-  _statHealth: number;
-  _statEndurance: number;
-  _statFertility: number;
-  _statHandling: number;
-  _statSpeed: number;
-  _statAcceleration: number;
+  _dna: DNA;
   _statBonding: Record<number, number>; // Record<CharacterId, Bonding>
   _hooves: number;
   _horseshoes: number;
@@ -53,13 +49,7 @@ export default class Horse {
     this._health = data.health;
     this._cleanliness = data.cleanliness;
     this._neuteredFixed = data.neuteredFixed;
-    this._statOffRoad = data.statOffRoad;
-    this._statHealth = data.statHealth;
-    this._statEndurance = data.statEndurance;
-    this._statFertility = data.statFertility;
-    this._statHandling = data.statHandling;
-    this._statSpeed = data.statSpeed;
-    this._statAcceleration = data.statAcceleration;
+    this._dna = data.dna.genes ? DNA.fromObject(data.dna) : new DNA();
     this._statBonding = data.statBonding;
     this._hooves = data.hooves;
     this._horseshoes = data.horseshoes;
@@ -204,60 +194,36 @@ export default class Horse {
   }
 
   // Performance stats
-  get statOffRoad(): number {
-    return this._statOffRoad;
-  }
-  set statOffRoad(statOffRoad: number) {
-    this._statOffRoad = statOffRoad;
-    this._dirtyFields.add('statOffRoad');
+  get statOffRoad(): Gene<number> | undefined {
+    return this.dna.getGene<number>('OffRoad');
   }
 
-  get statHealth(): number {
-    return this._statHealth;
-  }
-  set statHealth(statHealth: number) {
-    this._statHealth = statHealth;
-    this._dirtyFields.add('statHealth');
+  get statHealth(): Gene<number> | undefined {
+    return this.dna.getGene<number>('Health');
   }
 
-  get statEndurance(): number {
-    return this._statEndurance;
-  }
-  set statEndurance(statEndurance: number) {
-    this._statEndurance = statEndurance;
-    this._dirtyFields.add('statEndurance');
+  get statEndurance(): Gene<number> | undefined {
+    return this.dna.getGene<number>('Endurance');
   }
 
-  get statFertility(): number {
-    return this._statFertility;
-  }
-  set statFertility(statFertility: number) {
-    this._statFertility = statFertility;
-    this._dirtyFields.add('statFertility');
+  get statFertility(): Gene<number> | undefined {
+    return this.dna.getGene<number>('Fertility');
   }
 
-  get statHandling(): number {
-    return this._statHandling;
-  }
-  set statHandling(statHandling: number) {
-    this._statHandling = statHandling;
-    this._dirtyFields.add('statHandling');
+  get statHandling(): Gene<number> | undefined {
+    return this.dna.getGene<number>('Handling');
   }
 
-  get statSpeed(): number {
-    return this._statSpeed;
-  }
-  set statSpeed(statSpeed: number) {
-    this._statSpeed = statSpeed;
-    this._dirtyFields.add('statSpeed');
+  get statSpeed(): Gene<number> | undefined {
+    return this.dna.getGene<number>('Speed');
   }
 
-  get statAcceleration(): number {
-    return this._statAcceleration;
+  get statAcceleration(): Gene<number> | undefined {
+    return this.dna.getGene<number>('Acceleration');
   }
-  set statAcceleration(statAcceleration: number) {
-    this._statAcceleration = statAcceleration;
-    this._dirtyFields.add('statAcceleration');
+
+  get dna(): DNA {
+    return this._dna;
   }
 
   get statBonding(): Record<number, number> {
@@ -397,13 +363,7 @@ export default class Horse {
       health: () => this._health,
       cleanliness: () => this._cleanliness,
       neuteredFixed: () => this._neuteredFixed,
-      statOffRoad: () => this._statOffRoad,
-      statHealth: () => this._statHealth,
-      statEndurance: () => this._statEndurance,
-      statFertility: () => this._statFertility,
-      statHandling: () => this._statHandling,
-      statSpeed: () => this._statSpeed,
-      statAcceleration: () => this._statAcceleration,
+      dna: () => this._dna.toObject(),
       statBonding: () => this._statBonding,
       hooves: () => this._hooves,
       horseshoes: () => this._horseshoes,

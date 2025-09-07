@@ -77,6 +77,10 @@ const eventMappings = {
     tint1: 'i',
     tint2: 'i',
   },
+  EVENT_PED_WHISTLE: {
+    _0: 'i',
+    _1: 'i',
+  },
   weapon: {
     mainHand: 'i',
     offHand: 'i',

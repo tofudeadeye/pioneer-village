@@ -1,65 +1,61 @@
 import { PVBase, PVCustomization, PVGame } from '@lib/client';
 import { Log } from '@lib/client/comms/ui';
 import { Delay } from '@lib/functions';
+import { lerp } from '@lib/math';
 
+import HorseExpressions from '../../shared/data/horse-expressions';
 import HorseModelScales from '../../shared/data/horse-model-scales';
 import { CreepMutation, DNA, DNABuilder, DNAUtils, GaussianMutation } from './dna';
 
 // <editor-fold desc="Gene Registration">
 DNAUtils.geneBuilder('OffRoad')
-  .dominance(0.5)
-  .mutationRate(0.05)
+  .mutationRate(0.5)
   .dataType('number')
   .range(0, 2000)
   .shorthand('O')
-  .mutationStrategy(new GaussianMutation(0.05))
+  .mutationStrategy(new GaussianMutation(0.025))
   .register();
 
 DNAUtils.geneBuilder('Health')
-  .dominance(0.5)
-  .mutationRate(0.05)
+  .mutationRate(0.5)
   .dataType('number')
   .range(0, 2000)
   .shorthand('H')
-  .mutationStrategy(new GaussianMutation(0.05))
+  .mutationStrategy(new GaussianMutation(0.025))
   .register();
 
 DNAUtils.geneBuilder('Endurance')
-  .dominance(0.5)
-  .mutationRate(0.05)
+  .mutationRate(0.5)
   .dataType('number')
   .range(0, 2000)
   .shorthand('E')
-  .mutationStrategy(new GaussianMutation(0.05))
+  .mutationStrategy(new GaussianMutation(0.025))
   .register();
 
-DNAUtils.geneBuilder('Sterile').dominance(0.25).mutationRate(0.05).dataType('boolean').shorthand('F').register();
+DNAUtils.geneBuilder('Sterile').dominance(0.25).dataType('boolean').shorthand('F').register();
 
 DNAUtils.geneBuilder('Handling')
-  .dominance(0.5)
-  .mutationRate(0.05)
+  .mutationRate(0.5)
   .dataType('number')
   .range(0, 2000)
   .shorthand('Ha')
-  .mutationStrategy(new GaussianMutation(0.05))
+  .mutationStrategy(new GaussianMutation(0.025))
   .register();
 
 DNAUtils.geneBuilder('Speed')
-  .dominance(0.5)
-  .mutationRate(0.05)
+  .mutationRate(0.5)
   .dataType('number')
   .range(0, 2000)
   .shorthand('S')
-  .mutationStrategy(new GaussianMutation(0.05))
+  .mutationStrategy(new GaussianMutation(0.025))
   .register();
 
 DNAUtils.geneBuilder('Acceleration')
-  .dominance(0.5)
-  .mutationRate(0.05)
+  .mutationRate(0.5)
   .dataType('number')
   .range(0, 2000)
   .shorthand('A')
-  .mutationStrategy(new GaussianMutation(0.05))
+  .mutationStrategy(new GaussianMutation(0.025))
   .register();
 
 DNAUtils.geneBuilder('BodyTint0')
@@ -67,7 +63,7 @@ DNAUtils.geneBuilder('BodyTint0')
   .dataType('number')
   .range(0, 254)
   .shorthand('BT0')
-  .mutationStrategy(new GaussianMutation(1 / 255))
+  .mutationStrategy(new GaussianMutation(3 / 255))
   .register();
 
 DNAUtils.geneBuilder('BodyTint1')
@@ -75,7 +71,7 @@ DNAUtils.geneBuilder('BodyTint1')
   .dataType('number')
   .range(0, 254)
   .shorthand('BT1')
-  .mutationStrategy(new GaussianMutation(1 / 255))
+  .mutationStrategy(new GaussianMutation(3 / 255))
   .register();
 
 DNAUtils.geneBuilder('BodyTint2')
@@ -83,7 +79,7 @@ DNAUtils.geneBuilder('BodyTint2')
   .dataType('number')
   .range(0, 254)
   .shorthand('BT2')
-  .mutationStrategy(new GaussianMutation(1 / 255))
+  .mutationStrategy(new GaussianMutation(3 / 255))
   .register();
 
 DNAUtils.geneBuilder('HairTint0')
@@ -91,7 +87,7 @@ DNAUtils.geneBuilder('HairTint0')
   .dataType('number')
   .range(0, 254)
   .shorthand('HT0')
-  .mutationStrategy(new GaussianMutation(1 / 255))
+  .mutationStrategy(new GaussianMutation(3 / 255))
   .register();
 
 DNAUtils.geneBuilder('HairTint1')
@@ -99,7 +95,7 @@ DNAUtils.geneBuilder('HairTint1')
   .dataType('number')
   .range(0, 254)
   .shorthand('HT1')
-  .mutationStrategy(new GaussianMutation(1 / 255))
+  .mutationStrategy(new GaussianMutation(3 / 255))
   .register();
 
 DNAUtils.geneBuilder('HairTint2')
@@ -107,68 +103,18 @@ DNAUtils.geneBuilder('HairTint2')
   .dataType('number')
   .range(0, 254)
   .shorthand('HT2')
-  .mutationStrategy(new GaussianMutation(1 / 255))
+  .mutationStrategy(new GaussianMutation(3 / 255))
   .register();
 
 DNAUtils.geneBuilder('Scale')
-  .dominance(0.5)
   .mutationRate(0.5)
   .dataType('number')
   .range(0.85, 1.15)
   .shorthand('Sc')
-  // .mutationStrategy(new GaussianMutation(0.05))
-  .mutationStrategy(new CreepMutation(0.05))
+  .mutationStrategy(new CreepMutation(0.0333333333))
   .register();
 
-// Register Expression Genes
-const expressions = {
-  ['cannon']: 60975,
-  ['ass size']: 62347,
-  ['belly height']: 63348,
-  ['belly width']: 57577,
-  ['belly x pos']: 60649,
-  ['belly y pos']: 18278,
-  ['body size']: 10726,
-  ['forehead height']: 55026,
-  ['head size']: 48003,
-  ['head width']: 43213,
-  ['hind legs']: 16934,
-  ['hooves height']: 9675,
-  ['pedal size']: 39436, // Hooves Size
-  ['knee and hock size']: 26933,
-  ['left ear forward backward']: 19812,
-  ['left ear size']: 22538,
-  ['left ear x pos']: 19813,
-  ['left eye forward backward']: 17185,
-  ['left eye height']: 17186,
-  ['left eye size']: 34338,
-  ['left nostril size']: 35608,
-  ['muscle tone veins']: 8147,
-  ['muscles']: 3015,
-  ['neck height']: 10002,
-  ['neck height base']: 42991,
-  ['neck thickness']: 26839,
-  ['nose bridge depth']: 62196,
-  ['nose bridge height']: 29982,
-  ['nose length']: 3054,
-  ['nose size']: 22549,
-  ['rear back height']: 11904,
-  ['right ear forward backward']: 19780,
-  ['right ear size']: 23050,
-  ['right ear x pos']: 19781,
-  ['right eye forward backward']: 17697,
-  ['right eye height']: 17698,
-  ['right eye size']: 34850,
-  ['right nostril size']: 36120,
-  ['tail angle']: 54287,
-  ['thighs']: 36550,
-  ['throat size']: 2075,
-  ['under jaw sagging']: 1589,
-  ['front legs']: 8420,
-  ['chest size']: 41478,
-};
-
-for (const [name, id] of Object.entries(expressions)) {
+for (const [name, id] of Object.entries(HorseExpressions)) {
   // console.log(`Registering expression gene: ${name} (${id})`);
   const shorthand = name
     .split(' ')
@@ -252,12 +198,12 @@ RegisterCommand(
     const parent1builder = new DNABuilder()
       .withMetadata('name', 'Parent 1')
       .withMetadata('generation', 0)
-      .addGene('OffRoad', 2000)
-      .addGene('Health', 2000)
-      .addGene('Endurance', 2000)
-      .addGene('Handling', 2000)
-      .addGene('Speed', 2000)
-      .addGene('Acceleration', 2000)
+      .addGene('OffRoad', 1000 * Math.random() + 1000)
+      .addGene('Health', 1000 * Math.random() + 1000)
+      .addGene('Endurance', 1000 * Math.random() + 1000)
+      .addGene('Handling', 1000 * Math.random() + 1000)
+      .addGene('Speed', 1000 * Math.random() + 1000)
+      .addGene('Acceleration', 1000 * Math.random() + 1000)
       .addGene('Scale', parent1Scale)
       .addGene('BodyTint0', parent1HeadTints.tint0)
       .addGene('BodyTint1', parent1HeadTints.tint1)
@@ -269,12 +215,12 @@ RegisterCommand(
     const parent2builder = new DNABuilder()
       .withMetadata('name', 'Parent 2')
       .withMetadata('generation', 0)
-      .addGene('OffRoad', 1000)
-      .addGene('Health', 1000)
-      .addGene('Endurance', 1000)
-      .addGene('Handling', 1000)
-      .addGene('Speed', 1000)
-      .addGene('Acceleration', 1000)
+      .addGene('OffRoad', 1000 * Math.random() + 500)
+      .addGene('Health', 1000 * Math.random() + 500)
+      .addGene('Endurance', 1000 * Math.random() + 500)
+      .addGene('Handling', 1000 * Math.random() + 500)
+      .addGene('Speed', 1000 * Math.random() + 500)
+      .addGene('Acceleration', 1000 * Math.random() + 500)
       .addGene('Scale', parent2Scale)
       .addGene('BodyTint0', parent2HeadTints.tint0)
       .addGene('BodyTint1', parent2HeadTints.tint1)
@@ -283,7 +229,7 @@ RegisterCommand(
       .addGene('HairTint1', parent2ManeTints.tint1)
       .addGene('HairTint2', parent2ManeTints.tint2);
 
-    for (const [name, id] of Object.entries(expressions)) {
+    for (const [name, id] of Object.entries(HorseExpressions)) {
       const value1 = GetPedFaceFeature(parent1Ped, id);
       const value2 = GetPedFaceFeature(parent2Ped, id);
       parent1builder.addGene(name, value1);
@@ -313,12 +259,26 @@ RegisterCommand(
         true,
       );
 
-      for (const [name, id] of Object.entries(expressions)) {
-        const gene = child.getGene(name);
+      for (const [name, id] of Object.entries(HorseExpressions)) {
+        const gene = child.getGene<number>(name);
         if (gene) {
-          SetPedFaceFeature(horsePed, id, gene.value as number);
+          SetPedFaceFeature(horsePed, id, gene.value);
         }
       }
+
+      // 0 = -1 | 1000 = 0 | 2000 = 1
+      // 8147 | Health | Handling | Speed
+      // 3015 | OffRoad | Endurance | Acceleration
+      const HealthHandlingSpeed =
+        (child.getGene<number>('Health')?.value || 0) +
+        (child.getGene<number>('Handling')?.value || 0) +
+        (child.getGene<number>('Speed')?.value || 0);
+      SetPedFaceFeature(horsePed, 8147, lerp(-1, 1, HealthHandlingSpeed / 6000));
+      const OffRoadEnduranceAcceleration =
+        (child.getGene<number>('OffRoad')?.value || 0) +
+        (child.getGene<number>('Endurance')?.value || 0) +
+        (child.getGene<number>('Acceleration')?.value || 0);
+      SetPedFaceFeature(horsePed, 3015, lerp(-1, 1, OffRoadEnduranceAcceleration / 6000));
 
       await PVGame.pedIsReadyToRender(horsePed);
 
@@ -379,8 +339,8 @@ RegisterCommand(
         inheritanceMode: 'random',
       });
 
-      // Log('Child:', child1.toString());
-      // Log('Child:', child2.toString());
+      Log('Child:', child1.toString());
+      Log('Child:', child2.toString());
 
       child1.metadata.generation = parent1.metadata.generation + 1;
       child2.metadata.generation = parent2.metadata.generation + 1;
@@ -466,6 +426,52 @@ function getComponents(entity: number) {
     }
   }
 }
+
+RegisterCommand(
+  'GetDNA',
+  async (source: number, args: any[], rawCommand: string) => {
+    // Log({ source, args, rawCommand });
+    const ped = Number(args[0] || 0);
+    if (!ped || !DoesEntityExist(ped)) {
+      Log('Invalid ped:', ped);
+      return;
+    }
+
+    const builder = new DNABuilder().withMetadata('name', 'Kevin').withMetadata('generation', 0);
+    const headIndex = PVCustomization.getIndexForHorsePart(ped, 'hand');
+    Log('headIndex', headIndex);
+    const maneIndex = PVCustomization.getIndexForHorsePart(ped, 'mane');
+    Log('maneIndex', maneIndex);
+    const headTints = PVCustomization.getTintAtIndex(ped, headIndex);
+    Log('headTints', headTints);
+    const maneTints = PVCustomization.getTintAtIndex(ped, maneIndex);
+    Log('maneTints', maneTints);
+
+    const pedScale = 0.91875;
+    Log('pedScale', pedScale);
+
+    builder
+      .addGene('OffRoad', GetAttributePoints(ped, 0))
+      .addGene('Health', GetAttributePoints(ped, 1))
+      .addGene('Endurance', GetAttributePoints(ped, 2))
+      .addGene('Handling', GetAttributePoints(ped, 5))
+      .addGene('Speed', GetAttributePoints(ped, 4))
+      .addGene('Acceleration', GetAttributePoints(ped, 6))
+      .addGene('Scale', pedScale)
+      .addGene('BodyTint0', headTints.tint0)
+      .addGene('BodyTint1', headTints.tint1)
+      .addGene('BodyTint2', headTints.tint2)
+      .addGene('HairTint0', maneTints.tint0)
+      .addGene('HairTint1', maneTints.tint1)
+      .addGene('HairTint2', maneTints.tint2);
+    for (const [name, id] of Object.entries(HorseExpressions)) {
+      const value = GetPedFaceFeature(ped, id);
+      builder.addGene(name, value);
+    }
+    Log(builder.build().toJSON());
+  },
+  false,
+);
 
 /*
 const PedAttribute = {

@@ -639,6 +639,28 @@ class DNA {
     return dna;
   }
 
+  toObject(): Record<string, any> {
+    return {
+      genes: Array.from(this.genes.entries()),
+      metadata: this._metadata,
+      fitness: this._fitness,
+    };
+  }
+
+  static fromObject(data: Record<string, any>): DNA {
+    const dna = new DNA();
+
+    const geneEntries: [string, Gene][] = data.genes;
+    geneEntries.forEach(([name, gene]) => {
+      dna.genes.set(name, gene);
+    });
+
+    dna._metadata = data.metadata || {};
+    dna._fitness = data.fitness;
+
+    return dna;
+  }
+
   toShortString(): string {
     const geneStrings = this.getAllGenes().map((gene) => {
       const definition = DNA.registry.getGeneDefinition(gene.name);

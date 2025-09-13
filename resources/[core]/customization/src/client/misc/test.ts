@@ -729,3 +729,24 @@ RegisterCommand(
 //   },
 //   false,
 // );
+
+RegisterCommand(
+  'horseTest',
+  async (source: number, args: any[], rawCommand: string) => {
+    const ped = Number(args[0]);
+    for (let n = 0; n < 10; n++) {
+      Log(n / 10);
+      SetPedFaceFeature(ped, 57577, n / 10); // Belly Size
+      SetPedFaceFeature(ped, 60649, -n / 5); // Shrink the width of belly size
+      SetPedFaceFeature(ped, 63348, -n / 3.75); // Lower the belly rear
+      UpdatePedVariation(ped, false, true, true, true, false);
+      await Delay(100);
+    }
+
+    await Delay(5e3);
+    SetPedFaceFeature(ped, 60649, 0);
+    SetPedFaceFeature(ped, 57577, 0);
+    UpdatePedVariation(ped, false, true, true, true, false);
+  },
+  false,
+);

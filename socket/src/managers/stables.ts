@@ -39,6 +39,23 @@ class Stables {
       return false;
     }
   }
+
+  async saveHorseLocations(locations: Horse.Location[]) {
+    for (const location of locations) {
+      if (!location.coords || !location.coords.x || !location.coords.y || !location.coords.z) {
+        continue;
+      }
+
+      await db
+        .update(HorsesSchema)
+        .set({
+          lastX: String(location.coords.x),
+          lastY: String(location.coords.y),
+          lastZ: String(location.coords.z),
+        })
+        .where(eq(HorsesSchema.id, location.horseId));
+    }
+  }
 }
 
 export default Stables.instance;

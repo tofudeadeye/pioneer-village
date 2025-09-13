@@ -15,7 +15,7 @@ on('stable:client:lead', (pEntity: number, pArgs: Record<string, any>) => {
 
 on('stable:client:stable-horse', (pEntity: number, pArgs: Record<string, any>) => {
   Log('stable:client:stable-horse', pEntity, pArgs);
-  const horseId = DecorGetInt(pEntity, 'stable::horse.id');
+  const horseId = Entity(pEntity).state.horseId;
   if (!horseId) {
     return;
   }
@@ -29,7 +29,7 @@ on('stable:client:stable-horse', (pEntity: number, pArgs: Record<string, any>) =
 
 on('stable:client:unstable-horse', async (pEntity: number, pArgs: Record<string, any>) => {
   Log('stable:client:unstable-horse', pEntity, pArgs);
-  const horseId = DecorGetInt(pEntity, 'stable::horse.id');
+  const horseId = DecorGetInt(pEntity, 'horseId');
   if (!horseId) {
     return;
   }
@@ -157,14 +157,6 @@ on('stable:client:attach', async (pEntity: number, pArgs: Record<string, any>) =
   }
 });
 
-enum WhistleType {
-  WHISTLE_MAIN,
-  WHISTLE_SECONDARY,
-  WHISTLE_DOUBLE,
-  WHISTLE_URGENT,
-  WHISTLE_LONG,
-}
-
 PVEvents.register('EVENT_PED_WHISTLE', (data) => {
   const playerPed = PlayerPedId();
 
@@ -172,26 +164,7 @@ PVEvents.register('EVENT_PED_WHISTLE', (data) => {
     return;
   }
 
-  const horsePed = GetSaddleHorseForPlayer(PlayerId());
-
-  let whistleType = WhistleType.WHISTLE_MAIN;
-  switch (data._1) {
-    case GetHashKey('WHISTLEHORSERESPONSIVE'):
-    case GetHashKey('WHISTLEHORSETALK'):
-      whistleType = WhistleType.WHISTLE_MAIN;
-      break;
-    case GetHashKey('WHISTLEHORSEDOUBLE'):
-      whistleType = WhistleType.WHISTLE_DOUBLE;
-      break;
-    case GetHashKey('WHISTLEHORSESHORT'):
-      whistleType = WhistleType.WHISTLE_URGENT;
-      break;
-    case GetHashKey('WHISTLEHORSELONG'):
-      whistleType = WhistleType.WHISTLE_LONG;
-  }
-
-  TaskGoToWhistle(horsePed, playerPed, whistleType);
-  // Log(`TaskGoToWhistle(${horsePed}, ${playerPed}, ${whistleType});`);
+  stableController.whistleLastOrNearby(data._1);
 });
 
 // Generate random point within the scaled quadrilateral using triangulation

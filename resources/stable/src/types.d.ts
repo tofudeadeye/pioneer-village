@@ -1,5 +1,9 @@
 declare interface RPC {}
 
+interface StateBagInterface {
+  horseId?: number;
+}
+
 declare namespace Stable {
   type Id = string;
 
@@ -32,6 +36,11 @@ declare namespace Stable {
 
 declare namespace Horse {
   type Id = number;
+
+  type Location = {
+    horseId: Horse.Id;
+    coords?: Vector3Format;
+  };
 
   interface Data {
     id: number;

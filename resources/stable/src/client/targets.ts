@@ -24,7 +24,7 @@ const registerTargets = async () => {
       distance: 3.0,
       throttle: 1_000,
       isEnabled(data) {
-        const horseId = DecorGetInt(data.entity, 'stable::horse.id');
+        const horseId = DecorGetInt(data.entity, 'horseId');
         if (horseId) {
           return !stableController.isStabled(horseId);
         }
@@ -72,16 +72,20 @@ const registerTargets = async () => {
       distance: 3.0,
       throttle: 1_000,
       isEnabled(data) {
+        // Log('stableController.currentStable', stableController.currentStable);
         if (!stableController.currentStable) {
           return false;
         }
-        const horseId = DecorGetInt(data.entity, 'stable::horse.id');
+        const horseId = Entity(data.entity).state.horseId;
+        // Log('Horse ID:', horseId);
         if (!horseId) {
           return false;
         }
+        // Log('Is horse stabled?', stableController.isStabled(horseId));
         if (stableController.isStabled(horseId)) {
           return false;
         }
+        // Log('Checking zones for entity:', data.entity);
         for (const stable of StableData) {
           if (PVZone.IsEntityInZone(`${ZonePrefix}${stable.identifier}`, data.entity)) {
             return true;
@@ -110,17 +114,17 @@ const registerTargets = async () => {
       distance: 5.0,
       throttle: 1_000,
       isEnabled(data) {
+        Log('stableController.currentStable', stableController.currentStable);
         if (!stableController.currentStable) {
           return false;
         }
-        const horseId = DecorGetInt(data.entity, 'stable::horse.id');
+        const horseId = DecorGetInt(data.entity, 'horseId');
+        Log('Horse ID:', horseId);
         if (!horseId) {
           return false;
         }
-        if (!stableController.isStabled(horseId)) {
-          return false;
-        }
-        return true;
+        Log('Is horse stabled?', stableController.isStabled(horseId));
+        return stableController.isStabled(horseId);
       },
     },
   });

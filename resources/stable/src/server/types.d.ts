@@ -9,3 +9,17 @@ declare namespace ServerRPC {
 declare namespace ServerIn {
   interface FromSocket {}
 }
+
+// Server perspective - events sent to socket
+declare namespace ServerOut {
+  interface ToSocket {
+    ['stable.horse-locations']: (locations: Horse.Location[]) => void;
+  }
+}
+
+// Extend the base ServerEvents
+declare namespace SocketServer {
+  interface ServerEvents {
+    ['stable.horse-locations']: ServerOut.ToSocket['stable.horse-locations'];
+  }
+}

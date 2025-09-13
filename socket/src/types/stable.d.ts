@@ -1,6 +1,8 @@
 // Socket perspective - what the socket server receives
 declare namespace SocketIn {
-  interface FromGameServer {}
+  interface FromGameServer {
+    ['stable.horse-locations']: ServerOut.ToSocket['stable.horse-locations'];
+  }
 
   interface FromClient {
     ['stable.load-character-horses']: (characterId: number, callback: (data: Horse.Data[]) => void) => void;

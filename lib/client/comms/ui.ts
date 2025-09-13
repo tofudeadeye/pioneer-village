@@ -99,7 +99,12 @@ export const Log = (...messages: any[]) => {
     message: messages
       .map((item) => {
         if (typeof item === 'object') {
-          if ('toString' in item && typeof item.toString === 'function' && item.toString() !== '[object Object]') {
+          if (
+            item &&
+            'toString' in item &&
+            typeof item.toString === 'function' &&
+            item.toString() !== '[object Object]'
+          ) {
             return item.toString();
           }
           return JSON.stringify(item, null, 2);

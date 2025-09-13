@@ -4,7 +4,11 @@ import { serverNamespace, userNamespace } from '../server';
 
 export default () => {
   serverNamespace.on('connection', (socket) => {
-    //
+    socket.on('stable.horse-locations', async (locations: Horse.Location[]) => {
+      logInfoS('stable.horse-locations', locations);
+
+      await Stables.saveHorseLocations(locations);
+    });
   });
 
   userNamespace.on('connection', (socket) => {

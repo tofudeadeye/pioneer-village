@@ -2,7 +2,7 @@ import { PVBase, PVCustomization, PVGame, PVInit, PVZone, onResourceInit } from 
 import { Log, awaitUI } from '@lib/client/comms/ui';
 import { PedConfigFlag } from '@lib/flags';
 import { Delay } from '@lib/functions';
-import { lerp } from '@lib/math';
+import { Vector3, lerp } from '@lib/math';
 
 import HorseExpressions from '../../shared/data/horse-expressions';
 import StableData from '../../shared/data/stableData';
@@ -10,8 +10,15 @@ import type { DNA } from '../classes/dna';
 import Horse from '../classes/horse';
 import Stable from '../classes/stable';
 
-const DECOR_HORSE_ID = 'stable::horse.id';
-DecorRegister(DECOR_HORSE_ID, 3);
+DecorRegister('horseId', 3);
+
+export enum WhistleType {
+  WHISTLE_MAIN,
+  WHISTLE_SECONDARY,
+  WHISTLE_DOUBLE,
+  WHISTLE_URGENT,
+  WHISTLE_LONG,
+}
 
 class StableController {
   protected static instance: StableController;
@@ -28,7 +35,10 @@ class StableController {
   protected _stableHorsePeds: Map<Stable.Id, Map<number, Set<number>>> = new Map(); // Map<StableId, Map<CharacterId, Set<EntityId>>
   protected _horsePedsStalls: Map<number, number> = new Map();
 
+  protected _unstabledHorsePeds: Set<number> = new Set();
   protected _unstabledHorsePedsTemp: Set<number> = new Set();
+
+  protected _whistlingHorse = false;
 
   static getInstance(): StableController {
     if (!StableController.instance) {
@@ -52,6 +62,10 @@ class StableController {
         this.horseMakeNetworked(mount);
       }
     });
+
+    setInterval(() => {
+      this.updateUnstableHorseCoords();
+    }, 5e3);
   }
 
   get currentStable(): Stable.Id {
@@ -63,6 +77,32 @@ class StableController {
       if (stable.identifier === this._currentStable) {
         return stable;
       }
+    }
+  }
+
+  updateUnstableHorseCoords(): void {
+    for (const horsePed of this._unstabledHorsePeds) {
+      if (!DoesEntityExist(horsePed)) {
+        this._unstabledHorsePeds.delete(horsePed);
+        continue;
+      }
+
+      const horseId = Entity(horsePed).state.horseId;
+      if (!horseId) {
+        this._unstabledHorsePeds.delete(horsePed);
+        continue;
+      }
+
+      const horse = this._horses.get(horseId);
+      if (!horse) {
+        this._unstabledHorsePeds.delete(horsePed);
+        continue;
+      }
+
+      const coords = GetEntityCoords(horsePed, true);
+      horse.lastX = coords[0];
+      horse.lastY = coords[1];
+      horse.lastZ = coords[2];
     }
   }
 
@@ -176,7 +216,7 @@ class StableController {
     //   }
     //   Log(`Horse ${horsePed} not in stable zone, removing from stable`);
     //   NetworkRegisterEntityAsNetworked(horsePed);
-    //   const horseId = DecorGetInt(horsePed, DECOR_HORSE_ID);
+    //   const horseId = Entity(horsePed).state.horseId;
     //   Log('horseId', horseId);
     //
     //   if (horseId) {
@@ -192,7 +232,7 @@ class StableController {
   }
 
   isStabled(horseId: Horse.Id): boolean {
-    return this._stabledHorses.has(horseId);
+    return !!this._stabledHorses.get(horseId);
   }
 
   stableHorse(ped: number, horseId: Horse.Id, stableId: Stable.Id): void {
@@ -252,17 +292,12 @@ class StableController {
     }
 
     if (makeNetworked) {
-      NetworkRegisterEntityAsNetworked(horsePed);
+      this.horseMakeNetworked(horsePed);
     } else {
       this._unstabledHorsePedsTemp.add(horsePed);
     }
     SetPedConfigFlag(horsePed, PedConfigFlag.Unridable, false);
-    SetPlayerOwnsMount(PlayerPedId(), horsePed);
-    // SetPedActivePlayerHorse(PlayerId(), horsePed);
-    SetPedAsSaddleHorseForPlayer(PlayerId(), horsePed);
-    SetAttributePoints(horsePed, 7, 2450);
-    CompendiumHorseBonding(GetSaddleHorseForPlayer(PlayerId()), 4);
-    SetMountBondingLevel(GetSaddleHorseForPlayer(PlayerId()), 4);
+    this.makeHorseActiveMount(horsePed);
 
     if (stable.horses.includes(horseId)) {
       const horses = [...stable.horses];
@@ -277,13 +312,104 @@ class StableController {
     }
   }
 
+  makeHorseActiveMount(horsePed: number): void {
+    SetPlayerOwnsMount(PlayerPedId(), horsePed);
+    // SetPedActivePlayerHorse(PlayerId(), horsePed);
+    SetPedAsSaddleHorseForPlayer(PlayerId(), horsePed);
+    SetAttributePoints(horsePed, 7, 2450);
+    CompendiumHorseBonding(GetSaddleHorseForPlayer(PlayerId()), 4);
+    SetMountBondingLevel(GetSaddleHorseForPlayer(PlayerId()), 4);
+  }
+
+  whistleHorsePed(horsePed: number, whistleEventType: number): boolean {
+    if (!horsePed || !DoesEntityExist(horsePed)) {
+      return false;
+    }
+    if (IsPedDeadOrDying(horsePed, true)) {
+      return true;
+    }
+    let whistleType = WhistleType.WHISTLE_MAIN;
+    switch (whistleEventType) {
+      case GetHashKey('WHISTLEHORSERESPONSIVE'):
+      case GetHashKey('WHISTLEHORSETALK'):
+        whistleType = WhistleType.WHISTLE_MAIN;
+        break;
+      case GetHashKey('WHISTLEHORSEDOUBLE'):
+        whistleType = WhistleType.WHISTLE_DOUBLE;
+        break;
+      case GetHashKey('WHISTLEHORSESHORT'):
+        whistleType = WhistleType.WHISTLE_URGENT;
+        break;
+      case GetHashKey('WHISTLEHORSELONG'):
+        whistleType = WhistleType.WHISTLE_LONG;
+    }
+
+    const playerPed = PVGame.playerPed();
+    TaskGoToWhistle(horsePed, playerPed, whistleType);
+    Log(`TaskGoToWhistle(${horsePed}, ${playerPed}, ${whistleType});`);
+    return true;
+  }
+
+  async whistleLastOrNearby(whistleEventType: number): Promise<void> {
+    const horsePed = GetSaddleHorseForPlayer(PlayerId());
+    if (horsePed && this.whistleHorsePed(horsePed, whistleEventType)) {
+      Log('Whistled current mount');
+      return;
+    }
+
+    if (this._whistlingHorse) {
+      return;
+    }
+    this._whistlingHorse = true;
+
+    const playerCoords = PVGame.playerCoords();
+    const nearbyUnstabledHorses = [];
+
+    // Log('Horses', this._horses.size);
+
+    for (const horse of this._horses.values()) {
+      if (!horse.stable) {
+        const horseCoords = new Vector3(horse.lastX, horse.lastY, horse.lastZ);
+
+        const distance = horseCoords.getDistance(playerCoords);
+
+        // Log('distance', distance);
+
+        if (distance > 60) {
+          continue;
+        }
+
+        nearbyUnstabledHorses.push(horse);
+      }
+    }
+
+    // Log(nearbyUnstabledHorses);
+
+    for (const horse of nearbyUnstabledHorses) {
+      const horsePed = await this.spawnHorse(horse);
+      this.makeHorseActiveMount(horsePed);
+      await Delay(125);
+      this.whistleHorsePed(horsePed, whistleEventType);
+    }
+
+    this._whistlingHorse = false;
+  }
+
   /**
    * horse stuff
    */
+  async horseMakeNetworked(horsePed: number): Promise<void> {
+    await PVGame.registerNetworkEntity(horsePed);
+    const horseNetId = NetworkGetNetworkIdFromEntity(horsePed);
+    if (horseNetId) {
+      emitNet('stable:track-horse', horseNetId);
+    }
 
-  horseMakeNetworked(horsePed: number): void {
-    NetworkRegisterEntityAsNetworked(horsePed);
     this._unstabledHorsePedsTemp.delete(horsePed);
+    this._unstabledHorsePeds.add(horsePed);
+
+    const horseId = DecorGetInt(horsePed, 'horseId');
+    Entity(horsePed).state.set('horseId', horseId, true);
   }
 
   setHorseBlip(horsePed: number, horse: Horse): void {
@@ -308,10 +434,12 @@ class StableController {
       return 0;
     }
 
+    const [retval, groundZ] = GetGroundZFor_3dCoord(horse.lastX, horse.lastY, horse.lastZ - 1.0, false);
+
     let spawnCoord = {
       x: horse.lastX,
       y: horse.lastY,
-      z: horse.lastZ - 1.0,
+      z: retval ? groundZ : horse.lastZ - 1.0,
       w: 0.0,
     };
     if (options.overrideCoord) {
@@ -368,7 +496,7 @@ class StableController {
       const componentData = PVGame.getComponentById(component);
       // Log('componentData', componentData);
       ApplyShopItemToPed(horsePed, component, false, componentData?.isMp || false, false); // _SET_PED_COMPONENT_ENABLED
-      await Delay(1);
+      await Delay(10);
     }
     await Delay(1);
     Citizen.invokeNative('0x704c908e9c405136', horsePed); // FIX_OUTFIT
@@ -401,7 +529,8 @@ class StableController {
     if (options.local) {
       NetworkSetEntityOnlyExistsForParticipants(horsePed, true);
     } else {
-      await PVGame.registerNetworkEntity(horsePed);
+      await this.horseMakeNetworked(horsePed);
+
       // SetPedMotivation
       // for (let n = 10; n--; ) {
       //   Citizen.invokeNative('0x06D26A96CA1BCA75', horsePed, n, 0.0, gameManager.playerPed)
@@ -413,7 +542,9 @@ class StableController {
 
     // this.entitySetHorse(horsePed, horse);
 
-    DecorSetInt(horsePed, DECOR_HORSE_ID, horse.id);
+    Log(`Entity(${horsePed}).state.set('horseId', ${horse.id}, true);`);
+    Entity(horsePed).state.set('horseId', horse.id, true);
+    DecorSetInt(horsePed, 'horseId', horse.id);
 
     this.setHorseBlip(horsePed, horse);
 

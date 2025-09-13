@@ -10,7 +10,7 @@ export default (userAccessKey: string) => {
     logInfoS('[User]', 'Game server connected');
 
     socket.on('base.connected-players', (players) => {
-      logInfoS('players', players);
+      logInfoS('base.connected-players', players);
       for (const player of players) {
         const character = Characters.getActiveCharacterForServerId(player.serverId);
         if (!character || !player.coords) continue;

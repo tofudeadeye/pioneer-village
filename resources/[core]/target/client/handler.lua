@@ -486,8 +486,10 @@ function Target.AddTarget(data)
                     return false
                 end
 
-                for k,v in pairs(self.group) do
-                    if Target.class(data.model, v) then
+                for _,v in pairs(self.group) do
+                    if v == "isEntity" and (IsEntityAPed(data.entity) or IsEntityAVehicle(data.entity)) then
+                        rtn = self
+                    elseif Target.class(data.model, v) then
                         rtn = self
                     end
                 end

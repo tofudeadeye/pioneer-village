@@ -96,7 +96,8 @@ RegisterCommand('spawn', function(source, args, rawCommand)
             if args[2] == 'false' then
                 isNetwork = false
             end
-            local entity = CreatePed(modelHash, spawnCoords.x, spawnCoords.y, spawnCoords.z, pDir, isNetwork, false, false, false)
+            local entity = CreatePed(modelHash, spawnCoords.x, spawnCoords.y, spawnCoords.z - 10, pDir, isNetwork, false, false, false)
+            SetEntityCoords(entity, spawnCoords.x, spawnCoords.y, spawnCoords.z - 1, 0, 0, 0, false)
             SetEntityVisible(entity, true)
             SetEntityAlpha(entity, 255, false)
             Citizen.InvokeNative(0x283978A15512B2FE, entity, true)

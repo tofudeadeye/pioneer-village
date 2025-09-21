@@ -10,6 +10,7 @@ import './stuff/gold-panning';
 import './stuff/hats';
 import './stuff/instruments';
 import './stuff/police';
+import './targets';
 
 RegisterCommand(
   'anim_menu',

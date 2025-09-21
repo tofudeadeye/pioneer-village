@@ -1,9 +1,9 @@
 import ExclamationTriangle from '@fa/5/solid/exclamation-triangle.svg';
+import WifiSlash from '@fa/5/solid/signal-slash.svg';
 import 'normalize.css';
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { Socket } from 'socket.io-client';
 
-import { Button, DisabledLayers } from '@styled/core';
+import { Button, DisabledLayers, DisconnectedSocket } from '@styled/core';
 
 import { uiSize } from '@uiLib/helpers';
 
@@ -56,6 +56,20 @@ export default function App({ socket }: UIComponents.App.Props) {
   const isFramed = useMemo(() => !!window.frameElement, []);
   const [bg, setBG] = useState(() => (!isFramed ? 'daytime' : ''));
   const [disabledLayers, setDisabledLayers] = useState<Set<string>>(new Set());
+  const [socketConnected, setSocketConnected] = useState(socket.connected);
+
+  socket.on('connect_error', () => {
+    setSocketConnected(false);
+    console.log(`setSocketConnected(false)`);
+  });
+  socket.on('disconnect', () => {
+    setSocketConnected(false);
+    console.log(`setSocketConnected(false)`);
+  });
+  socket.on('connect', () => {
+    setSocketConnected(true);
+    console.log(`setSocketConnected(true)`);
+  });
 
   const getCrashData = useCallback<() => CrashData>(() => {
     try {
@@ -157,6 +171,13 @@ export default function App({ socket }: UIComponents.App.Props) {
               <p key={name}>{name}</p>
             ))}
           </DisabledLayers>
+        )}
+        {!socketConnected && (
+          <DisconnectedSocket>
+            <p>
+              <WifiSlash width={uiSize(19)} />
+            </p>
+          </DisconnectedSocket>
         )}
         {Object.entries(layersEnabled).map(([name, LayerComponent]) => {
           return (

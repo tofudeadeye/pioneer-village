@@ -27,43 +27,58 @@ setTimeout(async () => {
   let isReconnecting = false;
   let reconnectAttempts = 0;
   const maxReconnectAttempts = 5;
-  
-  socket.on('connect_error', async (e) => {
-    console.log('socket error', e);
-    
+
+  const reconnect = async () => {
     // Check if we should attempt reconnection
     if (isReconnecting) {
       console.log('Already attempting to reconnect, skipping...');
       return;
     }
-    
-    if (reconnectAttempts >= maxReconnectAttempts) {
-      console.error(`Failed to connect after ${maxReconnectAttempts} attempts`);
-      return;
-    }
-    
-    isReconnecting = true;
-    reconnectAttempts++;
-    
-    console.log(`Attempting reconnection ${reconnectAttempts}/${maxReconnectAttempts}...`);
-    
-    // Wait before attempting reconnection (exponential backoff)
-    const delay = Math.min(1000 * Math.pow(2, reconnectAttempts - 1), 10000);
-    await new Promise((res) => setTimeout(res, delay));
-    
-    try {
-      const { token } = await awaitClient('getSocketDetails', false);
-      socket.auth = { token };
-      
-      // Only attempt to connect if socket is not already connected
-      if (!socket.connected) {
-        socket.connect();
+
+    while (true) {
+      if (socket.connected) break;
+      if (reconnectAttempts >= maxReconnectAttempts) {
+        console.error(`Failed to connect after ${maxReconnectAttempts} attempts`);
+        break;
       }
-    } catch (error) {
-      console.error('Failed to get socket details:', error);
-    } finally {
-      isReconnecting = false;
+
+      isReconnecting = true;
+      reconnectAttempts++;
+
+      console.log(`Attempting reconnection ${reconnectAttempts}/${maxReconnectAttempts}...`);
+
+      // Wait before attempting reconnection (exponential backoff)
+      const delay = Math.min(1000 * Math.pow(2, reconnectAttempts - 1), 10000);
+      console.log(`Waiting ${delay}ms before next reconnection attempt...`);
+      await new Promise((res) => setTimeout(res, delay));
+
+      try {
+        const { token } = await awaitClient('getSocketDetails', false);
+        socket.auth = { token };
+
+        console.log('Reconnecting to socket server with new token...');
+
+        // Only attempt to connect if socket is not already connected
+        if (!socket.connected) {
+          console.log('Socket not connected, attempting to connect...');
+          socket.connect();
+        }
+      } catch (error) {
+        console.error('Failed to get socket details:', error);
+      } finally {
+        isReconnecting = false;
+      }
     }
+  };
+
+  socket.on('connect_error', async (e) => {
+    console.log('socket error', e);
+    reconnect();
+  });
+
+  socket.on('disconnect', () => {
+    console.log('Disconnected from socket server');
+    reconnect();
   });
 
   socket.on('connect', () => {

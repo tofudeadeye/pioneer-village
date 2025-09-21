@@ -15,6 +15,8 @@ import EyeSolid from '@fa/5/solid/eye.svg';
 import FillSolid from '@fa/5/solid/fill.svg';
 import HandPaperSolid from '@fa/5/solid/hand-paper.svg';
 import HorseSaddleSolid from '@fa/5/solid/horse-saddle.svg';
+import HorseSolid from '@fa/5/solid/horse.svg';
+import LassoSolid from '@fa/5/solid/lasso.svg';
 import MaleSolid from '@fa/5/solid/male.svg';
 import RecycleSolid from '@fa/5/solid/recycle.svg';
 import SackSolid from '@fa/5/solid/sack.svg';
@@ -36,6 +38,8 @@ export const iconRegistry: Record<string, Record<string, ComponentType<any>>> = 
     recycle: RecycleSolid,
     'wagon-covered': WagonCoveredSolid,
     sack: SackSolid,
+    lasso: LassoSolid,
+    horse: HorseSolid,
   },
   light: {
     eye: EyeLight,

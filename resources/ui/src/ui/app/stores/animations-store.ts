@@ -1,4 +1,5 @@
 import { Socket } from 'socket.io-client';
+
 import { LoadResourceJson, emitClient, onClient, onClientCall } from '@lib/ui';
 
 // Store state interface matching the component's state
@@ -191,7 +192,7 @@ class AnimationsStore {
   // Get flags as formatted string
   getFlagsString(): string {
     const flagStrings: string[] = [];
-    
+
     if ((this.state.flags & AnimationFlag.REPEAT) !== 0) {
       flagStrings.push('AnimFlag.REPEAT');
     }
@@ -240,7 +241,7 @@ class AnimationsStore {
     if ((this.state.flags & AnimationFlag.UNK_IS_ENTITY) !== 0) {
       flagStrings.push('AnimFlag.UNK_IS_ENTITY');
     }
-    
+
     return flagStrings.join(' + ');
   }
 
@@ -267,14 +268,14 @@ class AnimationsStore {
   // Update state and notify listeners
   private updateState(newState: AnimationsState): void {
     this.state = newState;
-    this.listeners.forEach(listener => listener(this.state));
+    this.listeners.forEach((listener) => listener(this.state));
   }
 
   // Subscribe to state changes
   subscribe(listener: StateListener): () => void {
     this.listeners.add(listener);
     listener(this.state); // Call immediately with current state
-    
+
     return () => {
       this.listeners.delete(listener);
     };

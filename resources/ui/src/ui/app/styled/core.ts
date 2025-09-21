@@ -1,5 +1,7 @@
 import styled from 'styled-components';
+
 import { uiSize } from '@uiLib/helpers';
+
 import theme, { themeColor } from './theme';
 
 export const Headline = styled.h1`
@@ -88,6 +90,33 @@ export const DisabledLayers = styled.div`
   position: fixed;
   bottom: ${uiSize(10)};
   left: ${uiSize(10)};
+  //left: 50%;
+  //transform: translateX(-50%);
+  font-size: ${uiSize(10)};
+  font-weight: bold;
+  color: ${theme.colors.red.hex};
+  display: flex;
+  gap: ${uiSize(8)};
+  align-items: center;
+  text-shadow:
+    -1px -1px 0 #000,
+    -1px 0 0 #000,
+    -1px 1px 0 #000,
+    0 -1px 0 #000,
+    0 1px 0 #000,
+    -1px 1px 0 #000,
+    1px 0 0 #000,
+    1px 1px 0 #000;
+
+  svg {
+    filter: drop-shadow(0 0 1px #000) drop-shadow(0 0 1px #000);
+  }
+`;
+
+export const DisconnectedSocket = styled.div`
+  position: fixed;
+  bottom: ${uiSize(30)};
+  left: ${uiSize(6)};
   //left: 50%;
   //transform: translateX(-50%);
   font-size: ${uiSize(10)};

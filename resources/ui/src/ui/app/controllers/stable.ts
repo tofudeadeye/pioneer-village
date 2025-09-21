@@ -19,4 +19,12 @@ export default (socket: Socket<SocketIO.Events, SocketIn.FromClient & SocketOut.
       });
     });
   });
+
+  onClientCall('stable.breed-horses', (horseId1, horseId2) => {
+    return new Promise((resolve) => {
+      socket.emit('stable.breed-horses', horseId1, horseId2, (data) => {
+        resolve(data);
+      });
+    });
+  });
 };

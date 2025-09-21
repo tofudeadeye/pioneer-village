@@ -1,8 +1,8 @@
-import { Vector3 } from '@lib/math/vector3';
-import { AnimFlag } from '@lib/flags';
-import { Delay } from '@lib/functions';
 import { awaitServer } from '@lib/client';
 import { Log } from '@lib/client/comms/ui';
+import { AnimFlag } from '@lib/flags';
+import { Delay } from '@lib/functions';
+import { Vector3 } from '@lib/math/vector3';
 
 class GameManager {
   protected static instance: GameManager;
@@ -268,7 +268,7 @@ class GameManager {
   }
 
   async createPed(
-    model: string,
+    model: string | number,
     x: number,
     y: number,
     z: number,

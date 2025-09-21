@@ -54,6 +54,43 @@ const registerTargets = async () => {
     },
   });
 
+  PVTarget.AddTarget({
+    id: 'stable::horse_birth',
+    type: 'flag',
+    group: ['isHorse'],
+    data: [
+      {
+        id: 'horse_birth',
+        label: 'Birth Foal',
+        icon: 'horse',
+        event: 'stable:client:birth_foal',
+        parameters: {},
+      },
+    ],
+    options: {
+      distance: 3.0,
+      throttle: 1_000,
+      isEnabled(data) {
+        const horseId = Entity(data.entity).state.horseId;
+        // Log('Horse ID:', horseId);
+        if (!horseId) {
+          return false;
+        }
+        // Log('Is horse stabled?', stableController.isStabled(horseId));
+        if (stableController.isStabled(horseId)) {
+          return false;
+        }
+
+        const progress = stableController.pregnancyProgress(horseId);
+        if (progress === null || progress < 1) {
+          return false;
+        }
+
+        return true;
+      },
+    },
+  });
+
   // Actions for horses in a stable zone.
   PVTarget.AddTarget({
     id: 'stable::stable_horse',
@@ -114,16 +151,13 @@ const registerTargets = async () => {
       distance: 5.0,
       throttle: 1_000,
       isEnabled(data) {
-        Log('stableController.currentStable', stableController.currentStable);
         if (!stableController.currentStable) {
           return false;
         }
         const horseId = DecorGetInt(data.entity, 'horseId');
-        Log('Horse ID:', horseId);
         if (!horseId) {
           return false;
         }
-        Log('Is horse stabled?', stableController.isStabled(horseId));
         return stableController.isStabled(horseId);
       },
     },

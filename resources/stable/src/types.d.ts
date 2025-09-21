@@ -70,6 +70,17 @@ declare namespace Horse {
     createdAt: string;
   }
 
+  type PregnancyStatus = 'ACTIVE' | 'BIRTHED' | 'LOST';
+
+  interface Pregnancy {
+    id: number;
+    motherId: number;
+    fatherId: number;
+    foalId: number;
+    conceivedAt: string;
+    status: PregnancyStatus;
+  }
+
   type DirtyData = Partial<Omit<Data, 'id' | 'createdAt'>> & { id: number };
 
   interface StatRange {
@@ -85,34 +96,39 @@ declare namespace Horse {
     scale?: number;
     local?: boolean;
     overrideCoord?: Vector4Format;
+    force?: boolean;
+    heading?: number;
   }
 
   type Breed =
     | 'UNKNOWN'
-    | 'AMERICAN_PAINT'
-    | 'AMERICAN_STANDARDBRED'
+    | 'AMERICANPAINT'
+    | 'AMERICANSTANDARDBRED'
     | 'ANDALUSIAN'
     | 'APPALOOSA'
     | 'ARABIAN'
     | 'ARDENNES'
     | 'BELGIAN'
     | 'BRETON'
-    | 'BUELL'
     | 'CRIOLLO'
-    | 'DUTCH_WARMBLOOD'
-    | 'HUNGARIAN_HALFBRED'
-    | 'KENTUCKY_SADDLE'
+    | 'DUTCHWARMBLOOD'
+    | 'GYPSYCOB'
+    | 'HUNGARIANHALFBRED'
+    | 'KENTUCKYSADDLE'
     | 'KLADRUBER'
-    | 'MISSOURI_FOX_TROTTER'
+    | 'MANGY'
+    | 'MISSOURIFOXTROTTER'
     | 'MORGAN'
+    | 'MULE'
+    | 'MURFREEBROOD'
     | 'MUSTANG'
     | 'NOKOTA'
+    | 'NORFOLKROADSTER'
     | 'SHIRE'
-    | 'SUFFOLK_PUNCH'
-    | 'TENNESSEE_WALKER'
+    | 'SUFFOLKPUNCH'
+    | 'TENNESSEEWALKER'
     | 'THOROUGHBRED'
-    | 'TURKOMAN'
-    | 'MULE';
+    | 'TURKOMAN';
 
   type BreedRecord = Map<Breed, number>;
 }

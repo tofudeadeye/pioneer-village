@@ -46,6 +46,14 @@ local horseSpeed = 0
 
 local lastStamina = 100
 local lastHorseSpeed = 0
+local horseSpeedLimits = {}
+
+AddEventHandler('health:client:horseSpeedLimit', function(ped, limit)
+    print('Setting horse speed limit for ped ' .. tostring(ped) .. ' to ' .. tostring(limit))
+    if limit >= 0 and limit < 3 then
+        horseSpeedLimits[ped] = limit
+    end
+end)
 
 Citizen.CreateThread(function()
     while true do
@@ -184,6 +192,17 @@ Citizen.CreateThread(function()
         elseif stamina < 100 then
             stamina = clamp(stamina + 0.025, 0, 100)
             -- InvokeNative(0xC6258F41D86676E0, playerPed, 1, stamina) -- _SET_ATTRIBUTE_CORE_VALUE
+        end
+
+        -----------------------------
+        -- Horse MoveSpeed Limiter --
+        -----------------------------
+        for horsePed, maxSpeed in pairs(horseSpeedLimits) do
+            if DoesEntityExist(horsePed) and maxSpeed < 3.0 then
+                SetPedMaxMoveBlendRatio(horsePed, maxSpeed * 1.0)
+            else
+                horseSpeedLimits[horsePed] = nil
+            end
         end
 
         ---------------------

@@ -53,10 +53,34 @@ export default () => {
         };
         horses.push(horse);
 
-        logInfoC('stable.load-character-horses', horse.id, horse.name);
+        logInfoC('loaded horse:', horse.id, horse.name);
       }
 
-      cb(horses);
+      const pregnancies: Horse.Pregnancy[] = [];
+      for (const drizzlePregnany of await Stables.loadCharacterHorsePregnancies(horses.map((h) => h.id))) {
+        const pregnancy: Horse.Pregnancy = {
+          id: drizzlePregnany.id,
+          motherId: drizzlePregnany.motherHorseId,
+          fatherId: drizzlePregnany.fatherHorseId,
+          foalId: drizzlePregnany.foalHorseId,
+          conceivedAt: drizzlePregnany.conceivedAt?.toISOString() || new Date().toISOString(),
+          status: drizzlePregnany.status,
+        };
+        pregnancies.push(pregnancy);
+
+        logInfoC(
+          'loaded pregnancy:',
+          pregnancy.id,
+          'mother:',
+          pregnancy.motherId,
+          'father:',
+          pregnancy.fatherId,
+          'foal:',
+          pregnancy.foalId,
+        );
+      }
+
+      cb([horses, pregnancies]);
     });
 
     socket.on('stable.save-horse', async (horseData: Horse.DirtyData, cb) => {
@@ -72,6 +96,14 @@ export default () => {
       }
 
       cb(false);
+    });
+
+    socket.on('stable.breed-horses', async (horseId1: number, horseId2: number, cb) => {
+      logInfoC('stable.breed-horses', horseId1, horseId2);
+
+      const newHorses = await Stables.breedHorses(horseId1, horseId2);
+
+      cb(newHorses);
     });
   });
 };

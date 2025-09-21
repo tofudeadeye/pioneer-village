@@ -3,8 +3,9 @@ declare namespace Stable {}
 // Client perspective - RPC calls to various destinations
 declare namespace ClientRPC {
   interface Socket {
-    ['stable.load-character-horses']: (characterId: number) => Horse.Data[];
+    ['stable.load-character-horses']: (characterId: number) => [Horse.Data[], Horse.Pregnancy[]];
     ['stable.save-horse']: (horseData: Horse.DirtyData) => boolean;
+    ['stable.breed-horses']: (horseId1: number, horseId2: number) => number | void;
   }
 }
 

@@ -1,7 +1,7 @@
 import { Log, awaitUI } from '@lib/client/comms/ui';
 import { Vector3 } from '@lib/math';
 
-import { DNA, type Gene } from './dna';
+import { DNA, type Gene } from '../../shared/dna';
 
 export default class Horse {
   _id: number;

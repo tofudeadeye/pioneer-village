@@ -5,8 +5,12 @@ declare namespace SocketIn {
   }
 
   interface FromClient {
-    ['stable.load-character-horses']: (characterId: number, callback: (data: Horse.Data[]) => void) => void;
+    ['stable.load-character-horses']: (
+      characterId: number,
+      callback: (data: [Horse.Data[], Horse.Pregnancy[]]) => void,
+    ) => void;
     ['stable.save-horse']: (horseData: Horse.DirtyData, callback: (result: boolean) => void) => void;
+    ['stable.breed-horses']: (horseId1: number, horseId2: number, callback: (result: number | void) => void) => void;
   }
 }
 

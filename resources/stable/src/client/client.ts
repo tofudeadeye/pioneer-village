@@ -1,4 +1,138 @@
+import { PVCustomization, PVGame, awaitUI } from '@lib/client';
+import { Log, emitSocket } from '@lib/client/comms/ui';
+import { lerp } from '@lib/math';
+
+import HorseExpressions from '../shared/data/horse-expressions';
+import { DNA } from '../shared/dna';
 import './classes/horse-genetics';
+import stableController from './controllers/stable-controller';
 import './events';
 import './targets';
 import './zones';
+
+async function spawnChildHorse(child: DNA, model: string | number) {
+  // const model = model1;
+  const coords = PVGame.playerCoords();
+  // const offsety = Math.random() * 10 - 5;
+  const horsePed = await PVGame.createPed(model, coords.x + 3, coords.y, coords.z - 1, 180, true, true);
+
+  for (const [name, id] of Object.entries(HorseExpressions)) {
+    const gene = child.getGene<number>(name);
+    if (gene) {
+      SetPedFaceFeature(horsePed, id, gene.value);
+    }
+  }
+
+  // 0 = -1 | 1000 = 0 | 2000 = 1
+  // 8147 | Health | Handling | Speed
+  // 3015 | OffRoad | Endurance | Acceleration
+  const HealthHandlingSpeed =
+    (child.getGene<number>('Health')?.value || 0) +
+    (child.getGene<number>('Handling')?.value || 0) +
+    (child.getGene<number>('Speed')?.value || 0);
+  SetPedFaceFeature(horsePed, 8147, lerp(-1, 1, HealthHandlingSpeed / 6000));
+  const OffRoadEnduranceAcceleration =
+    (child.getGene<number>('OffRoad')?.value || 0) +
+    (child.getGene<number>('Endurance')?.value || 0) +
+    (child.getGene<number>('Acceleration')?.value || 0);
+  SetPedFaceFeature(horsePed, 3015, lerp(-1, 1, OffRoadEnduranceAcceleration / 6000));
+
+  await PVGame.pedIsReadyToRender(horsePed);
+
+  SetPedScale(horsePed, child.getGene<number>('Scale')?.value || 1.0);
+  // Log('Scale', child.getGene<number>('Scale')?.value || 1.0);
+
+  for (const part of ['head', 'hand']) {
+    PVCustomization.setTintByHorsePart(
+      horsePed,
+      // @ts-ignore
+      part,
+      'metaped_tint_horse',
+      Math.floor(child.getGene<number>('BodyTint0')?.value || 0),
+      Math.floor(child.getGene<number>('BodyTint1')?.value || 0),
+      Math.floor(child.getGene<number>('BodyTint2')?.value || 0),
+    );
+
+    // Log(
+    //   `Set ${part} tint to`,
+    //   Math.floor(child.getGene<number>('BodyTint0')?.value || 0),
+    //   Math.floor(child.getGene<number>('BodyTint1')?.value || 0),
+    //   Math.floor(child.getGene<number>('BodyTint2')?.value || 0),
+    // );
+  }
+
+  for (const part of ['hair', 'mane']) {
+    PVCustomization.setTintByHorsePart(
+      horsePed,
+      // @ts-ignore
+      part,
+      'metaped_tint_horse',
+      Math.floor(child.getGene<number>('HairTint0')?.value || 0),
+      Math.floor(child.getGene<number>('HairTint1')?.value || 0),
+      Math.floor(child.getGene<number>('HairTint2')?.value || 0),
+    );
+    // Log(
+    //   `Set ${part} tint to`,
+    //   Math.floor(child.getGene<number>('HairTint0')?.value || 0),
+    //   Math.floor(child.getGene<number>('HairTint1')?.value || 0),
+    //   Math.floor(child.getGene<number>('HairTint2')?.value || 0),
+    // );
+  }
+
+  PVGame.finalizePedOutfit(horsePed);
+
+  console.log('horsePed', horsePed);
+
+  return horsePed;
+}
+
+RegisterCommand(
+  'breedHorses',
+  async (source: number, args: any[], rawCommand: string) => {
+    // Log({ source, args, rawCommand });
+    const horses = await awaitUI('stable.breed-horses', Number(args[0]), Number(args[1]));
+
+    // if (args.length < 2 || args[0] === args[1]) {
+    //   Log('Usage: /breedHorses [horseId1] [horseId2]');
+    //   return;
+    // }
+    //
+    // const horseId1 = Number(args[0]);
+    // const horseId2 = Number(args[1]);
+    //
+    // const horse1 = stableController.getHorseById(horseId1);
+    // const horse2 = stableController.getHorseById(horseId2);
+    //
+    // if (!horse1 || !horse2 || horse1.gender === horse2.gender || horse1.neuteredFixed || horse2.neuteredFixed) {
+    //   return;
+    // }
+    //
+    // Log('awaitUI', horseId1, horseId2);
+    // const horses = await awaitUI('stable.breed-horses', horseId1, horseId2);
+    //
+    // if (!horses) {
+    //   return;
+    // }
+    //
+    // const [Mother, Foal] = horses;
+
+    //
+
+    // Log('Breeding horses', horse1.name, '<->', horse2.name);
+    // Log(horse1.dna);
+    //
+    // const child = DNA.crossover(horse1.dna, horse2.dna, {
+    //   inheritanceMode: 'random',
+    // });
+    //
+    // Log('Child:', child.toString());
+    //
+    // child.metadata.generation = horse1.dna.metadata.generation + 1;
+    // // Log('Child Metadata:', child.metadata);
+    //
+    // const horsePed = await spawnChildHorse(child, Math.random() < 0.5 ? horse1.model : horse2.model);
+    //
+    // Log('horsePed', horsePed);
+  },
+  false,
+);

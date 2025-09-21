@@ -77,6 +77,21 @@ on('stable:client:unstable-horse', async (pEntity: number, pArgs: Record<string,
   }
 });
 
+on('stable:client:birth_foal', async (pEntity: number, pArgs: Record<string, any>) => {
+  Log('stable:client:birth_foal', pEntity, pArgs);
+  const horseId = DecorGetInt(pEntity, 'horseId');
+  if (!horseId) {
+    return;
+  }
+  // TODO: Make the socket check work.
+  // awaitSocket('can-birth-foal', horseId, (canBirth: boolean) => {
+  //   if (canBirth) {
+  //     stableController.birthFoal(pEntity, horseId);
+  //   }
+  // })
+  stableController.birthFoal(pEntity, horseId);
+});
+
 on('stable:client:detach', async (pEntity: number, pArgs: Record<string, any>) => {
   Log('stable:client:detach', pEntity, pArgs);
 

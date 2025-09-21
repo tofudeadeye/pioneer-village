@@ -30,6 +30,7 @@ export const taskStatusEnum = pgEnum('TaskStatus', [
 ]);
 export const permissionTypeEnum = pgEnum('PermissionType', ['JOB', 'TASK']);
 export const repeatTypeEnum = pgEnum('RepeatType', ['COOLDOWN', 'BURST', 'WINDOW', 'UNLIMITED']);
+export const pregnantEnum = pgEnum('PregnantStatus', ['ACTIVE', 'BIRTHED', 'LOST']);
 
 // Tables
 export const AccountsSchema = pgTable('Accounts', {
@@ -135,7 +136,7 @@ export const HorsesSchema = pgTable('Horses', {
   ownerId: integer('ownerId').notNull(),
   stable: varchar('stable'),
   brandId: integer('brandId'),
-  breeds: json('breeds').notNull(),
+  breeds: json('breeds').notNull().$type<Record<string, number>>(),
   components: json('components').default('[]'),
   model: integer('model').notNull(),
   gender: genderEnum('gender').notNull(),
@@ -146,7 +147,7 @@ export const HorsesSchema = pgTable('Horses', {
   health: decimal('health').default('100.0'),
   cleanliness: decimal('cleanliness').default('100.0'),
   neuteredFixed: boolean('neuteredFixed').default(false),
-  dna: json('dna'),
+  dna: json('dna').notNull().$type<Record<string, any>>(),
   statBonding: json('statBonding'),
   hooves: decimal('hooves').notNull(),
   horseshoes: decimal('horseshoes').default('0.0'),
@@ -155,6 +156,16 @@ export const HorsesSchema = pgTable('Horses', {
   lastY: decimal('lastY').notNull(),
   lastZ: decimal('lastZ').notNull(),
   createdAt: timestamp('createdAt').defaultNow(),
+  // actively pregnant | pregnant ID
+});
+
+export const HorsePregnancySchema = pgTable('HorsePregnancy', {
+  id: serial('id').primaryKey(),
+  motherHorseId: integer('motherHorseId').notNull(),
+  fatherHorseId: integer('fatherHorseId').notNull(),
+  foalHorseId: integer('foalHorseId').notNull(),
+  conceivedAt: timestamp('conceivedAt').defaultNow(),
+  status: pregnantEnum('status').default('ACTIVE').notNull(),
 });
 
 export const LivestockSchema = pgTable('Livestock', {
@@ -454,6 +465,8 @@ export type BrandSchemaType = typeof BrandsSchema.$inferSelect;
 export type NewBrandSchemaType = typeof BrandsSchema.$inferInsert;
 export type HorseSchemaType = typeof HorsesSchema.$inferSelect;
 export type NewHorseSchemaType = typeof HorsesSchema.$inferInsert;
+export type HorsePregnancySchemaType = typeof HorsePregnancySchema.$inferSelect;
+export type NewHorsePregnancySchemaType = typeof HorsePregnancySchema.$inferInsert;
 export type LivestockSchemaType = typeof LivestockSchema.$inferSelect;
 export type NewLivestockSchemaType = typeof LivestockSchema.$inferInsert;
 export type InventorySchemaType = typeof InventorySchema.$inferSelect;

@@ -6,7 +6,7 @@ import { Vector3, lerp } from '@lib/math';
 
 import HorseExpressions from '../../shared/data/horse-expressions';
 import StableData from '../../shared/data/stableData';
-import type { DNA } from '../classes/dna';
+import type { DNA } from '../../shared/dna';
 import Horse from '../classes/horse';
 import Stable from '../classes/stable';
 
@@ -24,6 +24,7 @@ class StableController {
   protected static instance: StableController;
 
   protected _horses: Map<Horse.Id, Horse> = new Map();
+  protected _pregnancies: Horse.Pregnancy[] = [];
 
   protected _stables: Map<Stable.Id, Stable> = new Map();
   protected _stabledHorses: Map<Horse.Id, Stable.Id> = new Map();
@@ -60,6 +61,18 @@ class StableController {
     on('events_manager:mount', (onMount: number, mount: number, currentSeat: number) => {
       if (this._unstabledHorsePedsTemp.has(mount)) {
         this.horseMakeNetworked(mount);
+      }
+    });
+    on('events_manager:onRoad', (onRoad: boolean) => {
+      Log('onRoad', onRoad);
+      if (onRoad) {
+        // Rescale Handling | Speed | Acceleration based on horseshoes by about 1/3 each
+      } else {
+        // Rescale Handling | Speed | Acceleration based on OffRoad stat by about 1/3 each
+        // const horsePed = GetSaddleHorseForPlayer(PlayerId());
+        // SetAttributePoints(horse, 4, newHandling);
+        // SetAttributePoints(horse, 5, newSpeed);
+        // SetAttributePoints(horse, 6, newAcceleration);
       }
     });
 
@@ -109,14 +122,98 @@ class StableController {
   async loadHorses(characterId: number) {
     Log('Load Horses Started');
     PVInit.register('stable::load-hoses', { reset: true });
-    const horses = await awaitUI('stable.load-character-horses', characterId);
+    const [horses, pregnancies] = await awaitUI('stable.load-character-horses', characterId);
+    // Log('horses', horses);
+    // Log('pregnancies', pregnancies);
     for (const horse of horses) {
       // Log('horse', horse);
       this._horses.set(horse.id, new Horse(horse));
       this._stabledHorses.set(horse.id, horse.stable || '');
     }
+    this._pregnancies.push(...pregnancies);
     PVInit.resolve('stable::load-hoses');
     Log('Load Horses Finished');
+  }
+
+  isHorsePregnant(horseId: Horse.Id): boolean {
+    return this._pregnancies.some((pregnancy) => pregnancy.motherId === horseId && pregnancy.status === 'ACTIVE');
+  }
+
+  getHorsePregnancy(horseId: Horse.Id, status?: Horse.PregnancyStatus): Horse.Pregnancy | undefined {
+    return this._pregnancies.find(
+      (pregnancy) => pregnancy.motherId === horseId && (!status || pregnancy.status === status),
+    );
+  }
+
+  pregnancyProgress(horseId: Horse.Id): number | null {
+    const pregnancy = this.getHorsePregnancy(horseId, 'ACTIVE');
+    if (!pregnancy) {
+      return null;
+    }
+    const now = Date.now();
+    const conceivedAt = new Date(pregnancy.conceivedAt).getTime();
+    const daysPregnant = (now - conceivedAt) / (1000 * 60 * 60 * 24);
+    return Math.min(daysPregnant / 6, 1.0);
+  }
+
+  async birthFoal(motherPed: number, motherId: Horse.Id) {
+    const pregnancy = this.getHorsePregnancy(motherId, 'ACTIVE');
+    if (!pregnancy) {
+      Log('No active pregnancy found for horse', motherId);
+      return;
+    }
+    pregnancy.status = 'BIRTHED';
+
+    const motherHorse = this._horses.get(motherId);
+    if (!motherHorse) {
+      Log('Mother horse not found', motherId);
+      return;
+    }
+
+    const coords = Vector3.fromArray(GetEntityCoords(motherPed, true, false));
+    const forward = Vector3.fromArray(GetEntityForwardVector(motherPed));
+    const heading = GetEntityHeading(motherPed);
+
+    coords.sub(forward.multiplyScalar(1.5));
+
+    const foalHorse = this._horses.get(pregnancy.foalId);
+    if (!foalHorse) {
+      Log('Foal horse not found', pregnancy.foalId);
+      return;
+    }
+
+    foalHorse.lastX = coords.x;
+    foalHorse.lastY = coords.y;
+    foalHorse.lastZ = coords.z;
+
+    SetEntityCollision(motherPed, false, true);
+    const foalPed = await this.spawnHorse(foalHorse, { heading: heading + 180 });
+    this.horsePedLoadDNA(motherPed, motherHorse.dna, motherHorse.age);
+    SetEntityCollision(motherPed, true, true);
+
+    PVGame.taskPlayAnim({
+      entity: foalPed,
+      dict: 'amb_creature_mammal@world_horse_injured_on_ground@fidget',
+      anim: 'fidget_a',
+      blendInSpeed: 8,
+      blendOutSpeed: -1,
+      duration: 500,
+    });
+    await Delay(500);
+    SetPedToRagdoll(foalPed, 1000, 3000, 0, false, false, false);
+
+    // foalHorse.save();
+    Log('Foal born', foalHorse);
+  }
+
+  canHorseSpawn(horseId: Horse.Id): boolean {
+    const foalPregnancy = this._pregnancies.find((pregnancy) => pregnancy.foalId === horseId);
+
+    if (foalPregnancy && foalPregnancy.status !== 'BIRTHED') {
+      return false;
+    }
+
+    return true;
   }
 
   addStable(data: Stable.Data): void {
@@ -182,6 +279,9 @@ class StableController {
             w: stall.w,
           },
         });
+        if (horsePed === 0) {
+          continue;
+        }
         stableHorsePeds.add(horsePed);
         SetPedConfigFlag(horsePed, PedConfigFlag.CannotBeMounted, true);
         this._horsePedsStalls.set(horsePed, usedStalls);
@@ -410,6 +510,10 @@ class StableController {
 
     const horseId = DecorGetInt(horsePed, 'horseId');
     Entity(horsePed).state.set('horseId', horseId, true);
+
+    if (this.isHorsePregnant(horseId)) {
+      Entity(horsePed).state.set('pregnant', true, true);
+    }
   }
 
   setHorseBlip(horsePed: number, horse: Horse): void {
@@ -419,10 +523,10 @@ class StableController {
   }
 
   async spawnHorse(horse: Horse, options: Horse.SpawnOptions = {}): Promise<number> {
-    // if (this._spawningHorse.get(horse.id)) {
-    //   return;
-    // }
-    // this._spawningHorse.set(horse.id, true);
+    if (!this.canHorseSpawn(horse.id) && !options.force) {
+      Log('Horse cannot spawn yet', horse.id);
+      return 0;
+    }
 
     Log('spawning horse', horse.name);
     // Log('horse dna', horse.dna);
@@ -456,13 +560,15 @@ class StableController {
       horse.model,
       spawnCoord.x,
       spawnCoord.y,
-      spawnCoord.z,
+      spawnCoord.z - 10,
       spawnCoord.w,
       false,
       false,
       false,
       false,
     );
+
+    SetEntityCoords(horsePed, spawnCoord.x, spawnCoord.y, spawnCoord.z, false, false, false, true);
 
     if (horse.statBonding[characterId]) {
       SetAttributePoints(horsePed, 7, horse.statBonding[characterId]);
@@ -473,11 +579,15 @@ class StableController {
     await Delay(1);
     await PVGame.pedIsReadyToRender(horsePed);
 
+    if (options.heading) {
+      SetEntityHeading(horsePed, options.heading);
+    }
+
     SetPedConfigFlag(horsePed, PedConfigFlag.BlockHorsePromptsForTargetPed, true);
 
-    SetEntityVisible(horsePed, true);
     SetEntityAlpha(horsePed, 255, false);
     SetRandomOutfitVariation(horsePed, true);
+    SetEntityVisible(horsePed, false);
 
     if (options.scale) {
       SetPedScale(horsePed, options.scale);
@@ -504,7 +614,7 @@ class StableController {
     Citizen.invokeNative('0xaab86462966168ce', horsePed, true);
     await Delay(1);
 
-    await this.horsePedLoadDNA(horsePed, horse.dna);
+    await this.horsePedLoadDNA(horsePed, horse.dna, horse.age);
     if (horse.gender === 'MALE') {
       Log('Set Horse Face Features to Male');
       PVGame.setPedFaceFeature(horsePed, 0xa28b, 0.0); // Default
@@ -512,6 +622,20 @@ class StableController {
       Log('Set Horse Face Features to Female');
       PVGame.setPedFaceFeature(horsePed, 0xa28b, 1.0);
     }
+
+    const pregnancyProgress = this.pregnancyProgress(horse.id);
+    if (pregnancyProgress) {
+      Log('Set Pregnant Horse Face Features');
+      const bellyHeight = GetPedFaceFeature(horsePed, 63348);
+      const bellyWidth = GetPedFaceFeature(horsePed, 57577);
+
+      SetPedFaceFeature(horsePed, 63348, bellyHeight - pregnancyProgress * 1.5);
+      SetPedFaceFeature(horsePed, 57577, bellyWidth + pregnancyProgress * 1.5);
+
+      const maxSpeed = lerp(1.0, 3.0, 1.0 - pregnancyProgress);
+      emit('health:client:horseSpeedLimit', horsePed, maxSpeed);
+    }
+
     // UpdatePedVariation(horsePed, false, true, true, true, false);
     UpdatePedVariation(horsePed, false, true, true, true, false);
 
@@ -546,12 +670,14 @@ class StableController {
     Entity(horsePed).state.set('horseId', horse.id, true);
     DecorSetInt(horsePed, 'horseId', horse.id);
 
+    SetEntityVisible(horsePed, true);
+
     this.setHorseBlip(horsePed, horse);
 
     return horsePed;
   }
 
-  async horsePedLoadDNA(horsePed: number, dna: DNA): Promise<void> {
+  async horsePedLoadDNA(horsePed: number, dna: DNA, age: number): Promise<void> {
     const health = dna.getGene<number>('Health');
     if (health !== undefined) {
       SetAttributePoints(horsePed, 0, health.value);
@@ -607,12 +733,19 @@ class StableController {
     await Delay(1);
     // Log('OffRoadEnduranceAcceleration', lerp(-1, 1, OffRoadEnduranceAcceleration / 6000), OffRoadEnduranceAcceleration);
 
-    const scale = dna.getGene<number>('Scale');
-    if (scale) {
-      SetPedScale(horsePed, scale.value);
-      await Delay(1);
-      // Log('Set Scale', scale.value);
+    const scaleGene = dna.getGene<number>('Scale');
+    let scale = 1.0;
+    if (scaleGene) {
+      scale = scaleGene.value;
     }
+
+    if (age < 5) {
+      scale *= lerp(0.5, 1.0, age / 5);
+    }
+
+    SetPedScale(horsePed, scale);
+    await Delay(1);
+    // Log('Set Scale', scale.value);
 
     if (dna.getGene<number>('BodyTint0') || dna.getGene<number>('BodyTint1') || dna.getGene<number>('BodyTint2')) {
       for (const part of ['head', 'hand']) {
@@ -655,6 +788,10 @@ class StableController {
         // });
       }
     }
+  }
+
+  getHorseById(id: Horse.Id): Horse | undefined {
+    return this._horses.get(id);
   }
 }
 

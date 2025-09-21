@@ -11,7 +11,7 @@ declare namespace Game {
     network?: boolean,
   ) => Promise<number>;
   type createPed = (
-    model: string,
+    model: string | number,
     x: number,
     y: number,
     z: number,

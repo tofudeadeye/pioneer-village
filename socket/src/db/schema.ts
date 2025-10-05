@@ -141,6 +141,8 @@ export const HorsesSchema = pgTable('Horses', {
   model: integer('model').notNull(),
   gender: genderEnum('gender').notNull(),
   age: integer('age').notNull(),
+  agingPaused: boolean('agingPaused').default(false),
+  agingLastUpdate: timestamp('agingLastUpdate').defaultNow().notNull(),
   weight: decimal('weight').notNull(),
   food: decimal('food').default('100.0'),
   water: decimal('water').default('100.0'),
@@ -156,7 +158,6 @@ export const HorsesSchema = pgTable('Horses', {
   lastY: decimal('lastY').notNull(),
   lastZ: decimal('lastZ').notNull(),
   createdAt: timestamp('createdAt').defaultNow(),
-  // actively pregnant | pregnant ID
 });
 
 export const HorsePregnancySchema = pgTable('HorsePregnancy', {
@@ -164,7 +165,7 @@ export const HorsePregnancySchema = pgTable('HorsePregnancy', {
   motherHorseId: integer('motherHorseId').notNull(),
   fatherHorseId: integer('fatherHorseId').notNull(),
   foalHorseId: integer('foalHorseId').notNull(),
-  conceivedAt: timestamp('conceivedAt').defaultNow(),
+  conceivedAt: timestamp('conceivedAt').defaultNow().notNull(),
   status: pregnantEnum('status').default('ACTIVE').notNull(),
 });
 

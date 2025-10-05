@@ -2,7 +2,8 @@ import { PVBase, PVCustomization, PVGame, PVInit, PVZone, onResourceInit } from 
 import { Log, awaitUI } from '@lib/client/comms/ui';
 import { PedConfigFlag } from '@lib/flags';
 import { Delay } from '@lib/functions';
-import { Vector3, lerp } from '@lib/math';
+import { Vector3, clamp, lerp } from '@lib/math';
+import { GetDays } from '@lib/shared/time';
 
 import HorseExpressions from '../../shared/data/horse-expressions';
 import StableData from '../../shared/data/stableData';
@@ -58,10 +59,18 @@ class StableController {
     onNet('game:character-selected', async (characterId: number) => {
       this.loadHorses(characterId);
     });
-    on('events_manager:mount', (onMount: number, mount: number, currentSeat: number) => {
+    const handleUnstabledHorse = (mount: number) => {
       if (this._unstabledHorsePedsTemp.has(mount)) {
         this.horseMakeNetworked(mount);
       }
+    };
+    on('events_manager:mount', (onMount: number, horse: number, currentSeat: number) => {
+      // Log('events_manager:mount', onMount, horse, currentSeat);
+      handleUnstabledHorse(horse);
+    });
+    on('events_manager:leading', (isLeading: number, horse: number) => {
+      // Log('isLeading', isLeading, horse);
+      handleUnstabledHorse(horse);
     });
     on('events_manager:onRoad', (onRoad: boolean) => {
       Log('onRoad', onRoad);
@@ -152,7 +161,7 @@ class StableController {
     }
     const now = Date.now();
     const conceivedAt = new Date(pregnancy.conceivedAt).getTime();
-    const daysPregnant = (now - conceivedAt) / (1000 * 60 * 60 * 24);
+    const daysPregnant = GetDays(now - conceivedAt);
     return Math.min(daysPregnant / 6, 1.0);
   }
 
@@ -396,8 +405,6 @@ class StableController {
     } else {
       this._unstabledHorsePedsTemp.add(horsePed);
     }
-    SetPedConfigFlag(horsePed, PedConfigFlag.Unridable, false);
-    this.makeHorseActiveMount(horsePed);
 
     if (stable.horses.includes(horseId)) {
       const horses = [...stable.horses];
@@ -409,7 +416,13 @@ class StableController {
     if (horse) {
       horse.stable = null;
       horse.save();
+
+      if (horse.age > 3) {
+        SetPedConfigFlag(horsePed, PedConfigFlag.Unridable, false);
+      }
     }
+
+    this.makeHorseActiveMount(horsePed);
   }
 
   makeHorseActiveMount(horsePed: number): void {
@@ -417,8 +430,8 @@ class StableController {
     // SetPedActivePlayerHorse(PlayerId(), horsePed);
     SetPedAsSaddleHorseForPlayer(PlayerId(), horsePed);
     SetAttributePoints(horsePed, 7, 2450);
-    CompendiumHorseBonding(GetSaddleHorseForPlayer(PlayerId()), 4);
-    SetMountBondingLevel(GetSaddleHorseForPlayer(PlayerId()), 4);
+    CompendiumHorseBonding(horsePed, 4);
+    SetMountBondingLevel(horsePed, 4);
   }
 
   whistleHorsePed(horsePed: number, whistleEventType: number): boolean {
@@ -636,6 +649,29 @@ class StableController {
       emit('health:client:horseSpeedLimit', horsePed, maxSpeed);
     }
 
+    const bellyHeight = GetPedFaceFeature(horsePed, 63348);
+    const bellyWidth = GetPedFaceFeature(horsePed, 57577);
+
+    const weightFactor = (horse.weight - 30) / 70;
+
+    if (weightFactor !== 0) {
+      SetPedFaceFeature(horsePed, 63348, bellyHeight - weightFactor * 1.5);
+      SetPedFaceFeature(horsePed, 57577, bellyWidth + weightFactor * 1.5);
+
+      if (horse.weight > 50) {
+        const maxSpeed = lerp(3.0, 1.0, (horse.weight - 50) / 50);
+        emit('health:client:horseSpeedLimit', horsePed, maxSpeed);
+      }
+    }
+
+    if (horse.age > 20) {
+      const maxSpeed = lerp(1.0, 3.0, (30 - horse.age) / 10);
+      emit('health:client:horseSpeedLimit', horsePed, maxSpeed);
+    }
+    if (horse.age > 30) {
+      SetEntityHealth(horsePed, 0, horsePed);
+    }
+
     // UpdatePedVariation(horsePed, false, true, true, true, false);
     UpdatePedVariation(horsePed, false, true, true, true, false);
 
@@ -745,7 +781,7 @@ class StableController {
 
     SetPedScale(horsePed, scale);
     await Delay(1);
-    // Log('Set Scale', scale.value);
+    Log('Set Scale', scale);
 
     if (dna.getGene<number>('BodyTint0') || dna.getGene<number>('BodyTint1') || dna.getGene<number>('BodyTint2')) {
       for (const part of ['head', 'hand']) {

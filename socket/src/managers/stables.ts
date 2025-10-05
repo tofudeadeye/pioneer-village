@@ -1,5 +1,6 @@
 import { eq, or } from 'drizzle-orm';
 
+import { Days, GetDays } from '../../../lib/shared/time';
 import HorseBreedModels from '../../../resources/stable/src/shared/data/horse-breed-models';
 import { DNA } from '../../../resources/stable/src/shared/dna';
 import { db } from '../db/connection';
@@ -7,6 +8,13 @@ import { BrandsSchema, HorsePregnancySchema, type HorseSchemaType, HorsesSchema 
 import { logInfo } from '../helpers';
 
 type HorseWithBrand = HorseSchemaType & { brand?: typeof BrandsSchema.$inferSelect | null };
+
+const Config = {
+  allowPausing: false,
+  autoPauseAging: true,
+  daysPerAgeFoal: 1,
+  daysPerAge: 3,
+};
 
 class Stables {
   static readonly instance: Stables = new Stables();
@@ -23,6 +31,65 @@ class Stables {
       .from(HorsesSchema)
       .leftJoin(BrandsSchema, eq(HorsesSchema.brandId, BrandsSchema.id))
       .where(eq(HorsesSchema.ownerId, characterId));
+
+    for (const row of result) {
+      logInfo(
+        `Horse: ${row.Horses.id}`,
+        row.Horses.name || 'UNNAMED',
+        row.Horses.age,
+        row.Horses.agingPaused,
+        row.Horses.agingLastUpdate,
+      );
+
+      if (row.Horses.agingPaused) {
+        continue;
+      }
+
+      const date = new Date();
+      const year = date.getFullYear();
+      const month = date.getMonth();
+      const day = date.getDate();
+
+      const lastUpdate = row.Horses.agingLastUpdate;
+      const lastYear = lastUpdate.getFullYear();
+      const lastMonth = lastUpdate.getMonth();
+      const lastDay = lastUpdate.getDate();
+
+      if (year === lastYear && month === lastMonth && day === lastDay) {
+        continue;
+      }
+
+      let age = row.Horses.age || 0;
+
+      const daysPerAge = age < 5 ? Config.daysPerAgeFoal : Config.daysPerAge;
+
+      // Days since last updated Rounded up
+      const ageChange = Math.floor(GetDays(date.getTime() - lastUpdate.getTime()) / daysPerAge);
+
+      if (ageChange <= 0) {
+        continue;
+      }
+
+      age += ageChange;
+
+      let agingPaused = false;
+
+      if (Config.autoPauseAging && age >= 15) {
+        agingPaused = true;
+
+        if (row.Horses.age < 15) {
+          age = 15;
+        }
+      }
+
+      row.Horses.age = age;
+      row.Horses.agingLastUpdate = lastUpdate;
+
+      await db
+        .update(HorsesSchema)
+        .set({ age, agingPaused, agingLastUpdate: lastUpdate })
+        .where(eq(HorsesSchema.id, row.Horses.id));
+    }
 
     return result.map((row) => ({
       ...row.Horses,
@@ -45,6 +112,32 @@ class Stables {
       .where(or(...equalsHorseId));
 
     return result;
+  }
+
+  async canBirthFoal(horseId: number): Promise<boolean> {
+    const pregnancies = await db
+      .select()
+      .from(HorsePregnancySchema)
+      .where(eq(HorsePregnancySchema.motherHorseId, horseId))
+      .limit(1);
+
+    if (pregnancies.length === 0) {
+      return false;
+    }
+
+    const pregnancy = pregnancies[0];
+
+    if (pregnancy.status !== 'ACTIVE') {
+      return false;
+    }
+
+    if (Date.now() - pregnancy.conceivedAt.getTime() < Days(6)) {
+      return false;
+    }
+
+    await db.update(HorsePregnancySchema).set({ status: 'BIRTHED' }).where(eq(HorsePregnancySchema.id, pregnancy.id));
+
+    return true;
   }
 
   async saveHorse(horseId: number, dirtyData: Partial<HorseSchemaType>): Promise<boolean> {

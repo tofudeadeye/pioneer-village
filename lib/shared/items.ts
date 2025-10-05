@@ -1,3 +1,5 @@
+import { Days } from './time';
+
 const GetHashKey = (text: string): number => {
   const keyLowered = text.toLowerCase();
   const length = keyLowered.length;
@@ -14,26 +16,6 @@ const GetHashKey = (text: string): number => {
   hash = (hash + (hash << 15)) | 0;
 
   return hash;
-};
-
-const Minutes = (minutes: number): number => {
-  return 60 * minutes;
-};
-
-const Hours = (hours: number): number => {
-  return Minutes(60 * hours);
-};
-
-const Days = (days: number): number => {
-  return Hours(24 * days);
-};
-
-const Weeks = (weeks: number): number => {
-  return Days(7 * weeks);
-};
-
-const Months = (months: number): number => {
-  return Weeks(4 * months);
 };
 
 // Inventory.ItemFlags

@@ -200,6 +200,9 @@ Citizen.CreateThread(function()
         for horsePed, maxSpeed in pairs(horseSpeedLimits) do
             if DoesEntityExist(horsePed) and maxSpeed < 3.0 then
                 SetPedMaxMoveBlendRatio(horsePed, maxSpeed * 1.0)
+                --if maxSpeed < 1.5 and GetRiderOfMount(horsePed) == PlayerPedId() then
+                --    Disable Jump ?
+                --end
             else
                 horseSpeedLimits[horsePed] = nil
             end

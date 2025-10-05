@@ -263,6 +263,9 @@ function Events:Thread()
                 self.mount = GetMount(self.cache.ped)
                 self.onMount = self.mount ~= 0
 
+                self.leading = GetLastLedMount(self.cache.ped)
+                self.isLeading = IsPedLeadingHorse(self.cache.ped) ~= 0
+
                 self.interaction = InvokeNative(0x6AA3DCA2C6F5EB6D, self.cache.ped) -- GET_ITEM_INTERACTION_STATE
 
                 if (self.hasRightHandWeapon and self.currentRightHandWeapon ~= self.rightHandWeapon) or (self.hasLeftHandWeapon and self.currentLeftHandWeapon ~= self.leftHandWeapon) then
@@ -329,6 +332,14 @@ function Events:Thread()
 
                     self.lastSeat = nil
                     self.lastMount = nil
+                end
+
+                if not self.wasLeading and self.isLeading then
+                    self.wasLeading = true
+                    TriggerEvent(("%s:leading"):format(self.name), self.isLeading, self.leading)
+                elseif self.wasLeading and not self.isLeading then
+                    self.wasLeading = false
+                    TriggerEvent(("%s:leading"):format(self.name), self.isLeading, self.leading)
                 end
 
                 if not self.wasInVehicle and self.inVehicle then

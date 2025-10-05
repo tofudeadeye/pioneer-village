@@ -1,4 +1,5 @@
 import { PVEvents, PVGame, PVZone } from '@lib/client';
+import { awaitUI } from '@lib/client';
 import { Log } from '@lib/client/comms/ui';
 import { PedConfigFlag } from '@lib/flags';
 import { Delay } from '@lib/functions';
@@ -10,6 +11,7 @@ import stableController from './controllers/stable-controller';
 
 on('stable:client:lead', (pEntity: number, pArgs: Record<string, any>) => {
   Log('stable:client:lead', pEntity, pArgs);
+  ClearPedTasks(pEntity, false, false);
   TaskLeadHorse(PVGame.playerPed(), pEntity);
 });
 
@@ -59,7 +61,7 @@ on('stable:client:unstable-horse', async (pEntity: number, pArgs: Record<string,
       0,
       0,
       2.5,
-      -1,
+      20_000,
       0.5,
       true,
       true,
@@ -83,12 +85,11 @@ on('stable:client:birth_foal', async (pEntity: number, pArgs: Record<string, any
   if (!horseId) {
     return;
   }
-  // TODO: Make the socket check work.
-  // awaitSocket('can-birth-foal', horseId, (canBirth: boolean) => {
-  //   if (canBirth) {
-  //     stableController.birthFoal(pEntity, horseId);
-  //   }
-  // })
+  const canBirth = await awaitUI('stable.can-birth-foal', horseId);
+  Log('Can birth:', canBirth);
+  if (!canBirth) {
+    return;
+  }
   stableController.birthFoal(pEntity, horseId);
 });
 

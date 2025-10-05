@@ -83,7 +83,7 @@ export default () => {
       cb([horses, pregnancies]);
     });
 
-    socket.on('stable.save-horse', async (horseData: Horse.DirtyData, cb) => {
+    socket.on('stable.save-horse', async (horseData, cb) => {
       const { id: horseId, ...dirtyData } = horseData;
       logInfoC('stable.save-horse', horseId, dirtyData);
 
@@ -98,12 +98,19 @@ export default () => {
       cb(false);
     });
 
-    socket.on('stable.breed-horses', async (horseId1: number, horseId2: number, cb) => {
+    socket.on('stable.breed-horses', async (horseId1, horseId2, cb) => {
       logInfoC('stable.breed-horses', horseId1, horseId2);
 
       const newHorses = await Stables.breedHorses(horseId1, horseId2);
 
       cb(newHorses);
+    });
+
+    socket.on('stable.can-birth-foal', async (horseId, cb) => {
+      logInfoC('stable.can-birth-foal', horseId);
+      let canBirth = await Stables.canBirthFoal(horseId);
+
+      cb(canBirth);
     });
   });
 };

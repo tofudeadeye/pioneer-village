@@ -41,6 +41,13 @@ declare namespace UI {
 
 declare interface ClientForwardEvents {}
 
+// Client perspective - RPC calls to various destinations
+declare namespace ClientRPC {
+  interface Socket {
+    chatSend: (chatMessage: UI.Chat.Send) => void;
+  }
+}
+
 // SocketForwardEvents should include all events that can be forwarded from client to socket
 declare interface SocketForwardEvents extends ClientOut.ToSocket {
   ['character-select.choose']: (characterId: number, steam: Game.playerSteamId) => void;

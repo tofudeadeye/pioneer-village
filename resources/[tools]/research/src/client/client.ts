@@ -10,6 +10,7 @@ import './stuff/gold-panning';
 import './stuff/hats';
 import './stuff/instruments';
 import './stuff/police';
+// import './stuff/side-saddle';
 import './targets';
 
 RegisterCommand(

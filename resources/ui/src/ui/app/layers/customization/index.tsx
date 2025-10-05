@@ -92,7 +92,6 @@ const componentFiles = [
   'vests',
 ];
 
-
 const pedComponentCategories = [
   'hats',
   'eyewear',
@@ -619,23 +618,9 @@ export default function Customization() {
             {state.state === 'info' && (
               <>
                 <div className={styles.modalContents}>
-                  <input
-                    type="text"
-                    placeholder="First Name"
-                    onChange={updateFirstName}
-                    value={state.firstName}
-                  />
-                  <input
-                    type="text"
-                    placeholder="Last Name"
-                    onChange={updateLastName}
-                    value={state.lastName}
-                  />
-                  <input
-                    type="date"
-                    onChange={updateDateOfBirth}
-                    value={state.dateOfBirth}
-                  />
+                  <input type="text" placeholder="First Name" onChange={updateFirstName} value={state.firstName} />
+                  <input type="text" placeholder="Last Name" onChange={updateLastName} value={state.lastName} />
+                  <input type="date" onChange={updateDateOfBirth} value={state.dateOfBirth} />
                   <XYSlider
                     label="Test XY Grid"
                     xMin={-1}
@@ -651,7 +636,11 @@ export default function Customization() {
             {state.state === 'head' && (
               <>
                 <div className={styles.modalContents}>
-                  <OverlaySelector onChange={changeLayers} overlays={customizationStore.getOverlaysData()} layers={state.currentLayers} />
+                  <OverlaySelector
+                    onChange={changeLayers}
+                    overlays={customizationStore.getOverlaysData()}
+                    layers={state.currentLayers}
+                  />
                   <RangeSlider
                     label="Head"
                     min={0}
@@ -673,13 +662,13 @@ export default function Customization() {
                   <StyleColorSelector
                     label="hair"
                     onChange={(style, option) => setComponent('hair', style, option)}
-                    components={(customizationStore.getComponentsData()['hair'] || []).map(item => ({
+                    components={(customizationStore.getComponentsData()['hair'] || []).map((item) => ({
                       name: item.name,
-                      components: item.components.map(comp => ({
+                      components: item.components.map((comp) => ({
                         name: comp.name || '',
                         type: comp.type,
-                        component: comp.component
-                      }))
+                        component: comp.component,
+                      })),
                     }))}
                     style={state.currentComponents['hair']?.style || -1}
                     option={state.currentComponents['hair']?.option || 0}
@@ -781,13 +770,13 @@ export default function Customization() {
                       key={category}
                       label={category}
                       onChange={(style, option) => setComponent(category, style, option)}
-                      components={(customizationStore.getComponentsData()[category] || []).map(item => ({
+                      components={(customizationStore.getComponentsData()[category] || []).map((item) => ({
                         name: item.name,
-                        components: item.components.map(comp => ({
+                        components: item.components.map((comp) => ({
                           name: comp.name || '',
                           type: comp.type,
-                          component: comp.component
-                        }))
+                          component: comp.component,
+                        })),
                       }))}
                       style={state.currentComponents[category]?.style || -1}
                       option={state.currentComponents[category]?.option || 0}
@@ -848,23 +837,23 @@ export default function Customization() {
           <div className={styles.modalLeft}>
             <div className={styles.modalContents}>
               <TintSelector
-                label="Hat Tint"
+                label="Head"
                 onChange={setTintByCategory}
-                identifier="hats"
-                palette={state.tints.hats.palette}
-                tint0={state.tints.hats.tint0}
-                tint1={state.tints.hats.tint1}
-                tint2={state.tints.hats.tint2}
+                identifier="hand"
+                palette={state.tints.hand.palette}
+                tint0={state.tints.hand.tint0}
+                tint1={state.tints.hand.tint1}
+                tint2={state.tints.hand.tint2}
               />
-              <TintSelector
-                label="Coat Tint"
-                onChange={setTintByCategory}
-                identifier="coats"
-                palette={state.tints.coats.palette}
-                tint0={state.tints.coats.tint0}
-                tint1={state.tints.coats.tint1}
-                tint2={state.tints.coats.tint2}
-              />
+              {/*<TintSelector*/}
+              {/*  label="Coat Tint"*/}
+              {/*  onChange={setTintByCategory}*/}
+              {/*  identifier="coats"*/}
+              {/*  palette={state.tints.coats.palette}*/}
+              {/*  tint0={state.tints.coats.tint0}*/}
+              {/*  tint1={state.tints.coats.tint1}*/}
+              {/*  tint2={state.tints.coats.tint2}*/}
+              {/*/>*/}
             </div>
           </div>
         </>

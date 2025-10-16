@@ -1,7 +1,8 @@
-import { DrawTxt, emitUI, focusUI, PVBase, PVGame, PVPlaceObject, PVPrompt } from '@lib/client';
-import saloonController from './controllers/saloon-controller';
-import { Delay } from '@lib/functions';
+import { DrawTxt, PVBase, PVGame, PVPlaceObject, PVPrompt, emitUI, focusUI } from '@lib/client';
 import { Log } from '@lib/client/comms/ui';
+import { Delay } from '@lib/functions';
+
+import saloonController from './controllers/saloon-controller';
 
 RegisterCommand(
   'saloonTest',
@@ -208,13 +209,14 @@ const playerPed = PVGame.playerPed();
 RegisterCommand(
   'bb_bool',
   async (src: number, args: string[]) => {
-    const playerPed = PVGame.playerPed();
+    const playerPed = args.length > 2 ? Number(args[2]) : PVGame.playerPed();
     const name = args[0];
     const value = args[1] === 'true';
     SetPedBlackboardBool(playerPed, name, value, -1);
+    Log(`set ${name} to ${value}`);
     await Delay(5000);
     RemovePedBlackboardBool(playerPed, name);
-    Log('removed');
+    Log(`removed ${name}`);
   },
   false,
 );
@@ -222,13 +224,14 @@ RegisterCommand(
 RegisterCommand(
   'bb_float',
   async (src: number, args: string[]) => {
-    const playerPed = PVGame.playerPed();
+    const playerPed = args.length > 2 ? Number(args[2]) : PVGame.playerPed();
     const name = args[0];
     const value = Number(args[1]);
     SetPedBlackboardFloat(playerPed, name, value, -1);
+    Log(`set ${name} to ${value}`);
     await Delay(5000);
     RemovePedBlackboardFloat(playerPed, name);
-    Log('removed');
+    Log(`removed ${name}`);
   },
   false,
 );
@@ -236,13 +239,14 @@ RegisterCommand(
 RegisterCommand(
   'bb_int',
   async (src: number, args: string[]) => {
-    const playerPed = PVGame.playerPed();
+    const playerPed = args.length > 2 ? Number(args[2]) : PVGame.playerPed();
     const name = args[0];
     const value = Number(args[1]);
     SetPedBlackboardInt(playerPed, name, value, -1);
+    Log(`set ${name} to ${value}`);
     await Delay(5000);
     RemovePedBlackboardInt(playerPed, name);
-    Log('removed');
+    Log(`removed ${name}`);
   },
   false,
 );
@@ -250,13 +254,14 @@ RegisterCommand(
 RegisterCommand(
   'bb_hash',
   async (src: number, args: string[]) => {
-    const playerPed = PVGame.playerPed();
+    const playerPed = args.length > 2 ? Number(args[2]) : PVGame.playerPed();
     const name = args[0];
     const value = args[1];
     SetPedBlackboardHash(playerPed, name, value, -1);
+    Log(`set ${name} to ${value}`);
     await Delay(5000);
     RemovePedBlackboardHash(playerPed, name);
-    Log('removed');
+    Log(`removed ${name}`);
   },
   false,
 );

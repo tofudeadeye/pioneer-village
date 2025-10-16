@@ -18,7 +18,7 @@ const registerStableZones = async () => {
       _type: 'poly',
       name: `${ZonePrefix}${stable.identifier}`,
       coords: stable.zones.interior,
-      minZ: 0,
+      minZ: -50,
       maxZ: 999,
       options: { debug: false, delayExit: 5000 },
       onEnter() {

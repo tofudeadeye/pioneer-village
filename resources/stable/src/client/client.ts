@@ -1,5 +1,6 @@
-import { PVCustomization, PVGame, awaitUI } from '@lib/client';
+import { PVCustomization, PVDoors, PVGame, TxtAtWorldCoord, awaitUI } from '@lib/client';
 import { Log, emitSocket } from '@lib/client/comms/ui';
+import { Delay } from '@lib/functions';
 import { lerp } from '@lib/math';
 
 import HorseExpressions from '../shared/data/horse-expressions';
@@ -133,6 +134,47 @@ RegisterCommand(
     // const horsePed = await spawnChildHorse(child, Math.random() < 0.5 ? horse1.model : horse2.model);
     //
     // Log('horsePed', horsePed);
+  },
+  false,
+);
+
+RegisterCommand(
+  'debugStalls',
+  async (source: number, args: any[], rawCommand: string) => {
+    // Log({ source, args, rawCommand });
+
+    const start = Date.now();
+    while (true) {
+      await Delay(0);
+
+      const stableData = stableController.currentStableData();
+
+      if (!stableData) {
+        Log('No stable data');
+        break;
+      }
+
+      let doors = [];
+      let n = 0;
+      for (const stall of stableData.stalls) {
+        TxtAtWorldCoord(stall.x, stall.y, stall.z, `${n}`, 0.25);
+        const door = PVDoors.getClosestDoorToCoords({
+          x: stall.x,
+          y: stall.y,
+          z: stall.z,
+        });
+
+        if (door) {
+          doors.push(door);
+        }
+        n++;
+      }
+
+      if (Date.now() - start > 2_000) {
+        Log('Stall Doors', `${doors.length}/${stableData.stalls.length}`, `stallDoors: [${doors.join(',')}]`);
+        break;
+      }
+    }
   },
   false,
 );

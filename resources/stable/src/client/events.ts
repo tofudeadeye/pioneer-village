@@ -27,6 +27,12 @@ on('stable:client:stable-horse', (pEntity: number, pArgs: Record<string, any>) =
   if (inZone) {
     stableController.stableHorse(pEntity, horseId, inZone.replace(ZonePrefix, ''));
   }
+
+  if (IsPedLeadingHorse(PVGame.playerPed())) {
+    ClearPedTasks(PVGame.playerPed(), false, false);
+  }
+
+  SetPedConfigFlag(pEntity, PedConfigFlag.Unridable, true);
 });
 
 on('stable:client:unstable-horse', async (pEntity: number, pArgs: Record<string, any>) => {

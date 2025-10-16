@@ -109,20 +109,20 @@ const registerTargets = async () => {
       distance: 3.0,
       throttle: 1_000,
       isEnabled(data) {
-        // Log('stableController.currentStable', stableController.currentStable);
+        Log('stableController.currentStable', stableController.currentStable);
         if (!stableController.currentStable) {
           return false;
         }
         const horseId = Entity(data.entity).state.horseId;
-        // Log('Horse ID:', horseId);
+        Log('Horse ID:', horseId);
         if (!horseId) {
           return false;
         }
-        // Log('Is horse stabled?', stableController.isStabled(horseId));
+        Log('Is horse stabled?', stableController.isStabled(horseId));
         if (stableController.isStabled(horseId)) {
           return false;
         }
-        // Log('Checking zones for entity:', data.entity);
+        Log('Checking zones for entity:', data.entity);
         for (const stable of StableData) {
           if (PVZone.IsEntityInZone(`${ZonePrefix}${stable.identifier}`, data.entity)) {
             return true;

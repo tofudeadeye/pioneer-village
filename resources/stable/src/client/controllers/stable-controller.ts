@@ -523,6 +523,7 @@ class StableController {
 
     const horseId = DecorGetInt(horsePed, 'horseId');
     Entity(horsePed).state.set('horseId', horseId, true);
+    Log(`Entity(${horsePed}).state.set('horseId', ${horseId}, true);`);
 
     if (this.isHorsePregnant(horseId)) {
       Entity(horsePed).state.set('pregnant', true, true);

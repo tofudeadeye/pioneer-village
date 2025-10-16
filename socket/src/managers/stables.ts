@@ -118,24 +118,23 @@ class Stables {
     const pregnancies = await db
       .select()
       .from(HorsePregnancySchema)
-      .where(eq(HorsePregnancySchema.motherHorseId, horseId))
+      .where(or(eq(HorsePregnancySchema.motherHorseId, horseId), eq(HorsePregnancySchema.status, 'ACTIVE')))
       .limit(1);
 
     if (pregnancies.length === 0) {
+      // logInfo('No pregnancy found for horse', horseId);
       return false;
     }
 
     const pregnancy = pregnancies[0];
 
-    if (pregnancy.status !== 'ACTIVE') {
-      return false;
-    }
-
     if (Date.now() - pregnancy.conceivedAt.getTime() < Days(6)) {
+      // logInfo('Pregnancy is not old enough to birth', horseId);
       return false;
     }
 
     await db.update(HorsePregnancySchema).set({ status: 'BIRTHED' }).where(eq(HorsePregnancySchema.id, pregnancy.id));
+    await db.update(HorsesSchema).set({ agingPaused: false }).where(eq(HorsesSchema.id, pregnancy.foalHorseId));
 
     return true;
   }
@@ -187,7 +186,7 @@ class Stables {
       .insert(HorsesSchema)
       .values({
         name: '',
-        ownerId: 1,
+        ownerId: 1, // TODO: Replace with actual owner ID
         stable: null,
         brandId: null,
         breeds,
@@ -209,6 +208,7 @@ class Stables {
         lastX: '0.0',
         lastY: '0.0',
         lastZ: '0.0',
+        agingPaused: true,
       })
       .returning({ id: HorsesSchema.id });
 

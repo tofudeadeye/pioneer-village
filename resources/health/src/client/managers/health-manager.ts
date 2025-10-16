@@ -410,6 +410,7 @@ export class HealthManager {
     }
 
     emitUI('hud.state', { health: clamp(this.health, 0, 100) });
+    emit('health:client:setOverallHealth', this.health);
   }
 
   checkPlayerStatus(): void {

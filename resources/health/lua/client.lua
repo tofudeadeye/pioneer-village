@@ -1,4 +1,5 @@
 local playerPed = PlayerPedId()
+local health = 100
 local stamina = 100
 local isOnFoot = true
 local isRagdolling = false
@@ -33,6 +34,10 @@ function clamp(value, min, max)
 end
 
 function lerp(a, b, t) return a * (1 - t) + b * t end
+
+AddEventHandler('health:client:setOverallHealth', function(newHealth)
+    health = clamp(newHealth, 0, 100)
+end)
 
 AddEventHandler('health:client:boneSpeedLimit', function(limit)
     boneSpeedLimit = limit
@@ -220,6 +225,23 @@ Citizen.CreateThread(function()
             elseif not ragdollKeyDown and not canRagdollWithKey then
                 canRagdollWithKey = true
             end
+        end
+
+        ------------------
+        -- Facial Moods --
+        ------------------
+        if health < 25 then
+            RequestPedFacialMoodThisFrame(playerPed, `MoodInjuredExtreme`, 6);
+        elseif health < 50 then
+            RequestPedFacialMoodThisFrame(playerPed, `MoodInjuredMedium`, 6);
+        elseif health < 75 then
+            RequestPedFacialMoodThisFrame(playerPed, `MoodInjuredMild`, 6);
+        elseif stamina < 25  then
+            RequestPedFacialMoodThisFrame(playerPed, `MoodExertionExtreme`, 6);
+        elseif stamina < 50 then
+            RequestPedFacialMoodThisFrame(playerPed, `MoodExertionMedium`, 6);
+        elseif stamina < 75 then
+            RequestPedFacialMoodThisFrame(playerPed, `MoodExertionMild`, 6);
         end
     end
 end)

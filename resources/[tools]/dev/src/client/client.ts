@@ -1,7 +1,7 @@
-import { Vector3 } from '@lib/math';
-import { Delay } from '@lib/functions';
 import { PVGame } from '@lib/client';
 import { Log } from '@lib/client/comms/ui';
+import { Delay } from '@lib/functions';
+import { Vector3 } from '@lib/math';
 
 const teleport = async (x: number, y: number, z: number) => {
   DoScreenFadeOut(500);
@@ -97,7 +97,7 @@ RegisterCommand(
 RegisterCommand(
   'tp_tumbleweed',
   () => {
-    teleport(-3735.9, -2611.4, -13.8);
+    teleport(-5495.5, -2950.2, -1.5);
   },
   false,
 );

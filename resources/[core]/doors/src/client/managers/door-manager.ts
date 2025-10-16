@@ -87,7 +87,7 @@ class DoorManager {
 
   getDoorCoords(doorHash: number): Vector3Format | null {
     const data = this.getDoor(doorHash);
-    Log('getDoorCoords', doorHash, data);
+    // Log('getDoorCoords', doorHash, data);
     if (data && data.coords.z !== -69) {
       return data.coords;
     }
@@ -110,11 +110,11 @@ class DoorManager {
     return null;
   }
 
-  getDoorDistance(doorHash: number): number {
-    const coords = this.getDoorCoords(doorHash);
-    Log('getDoorDistance', doorHash, coords);
-    if (coords) {
-      return Vector3.fromObject(coords).getDistance(PVGame.playerCoords(true));
+  getDoorDistance(doorHash: number, coords?: Vector3Format): number {
+    const doorCoords = this.getDoorCoords(doorHash);
+    // Log('getDoorDistance', doorHash, doorCoords);
+    if (doorCoords) {
+      return Vector3.fromObject(doorCoords).getDistance(coords || PVGame.playerCoords(true));
     }
     return Infinity;
   }
@@ -125,6 +125,21 @@ class DoorManager {
 
     for (const [doorHash, data] of this.doors) {
       const distance = this.getDoorDistance(doorHash);
+      if (distance < closestDistance) {
+        closestDoor = doorHash;
+        closestDistance = distance;
+      }
+    }
+
+    return closestDoor;
+  }
+
+  getClosestDoorToCoords(coords: Vector3Format): number | null {
+    let closestDoor: number | null = null;
+    let closestDistance = Infinity;
+
+    for (const [doorHash, data] of this.doors) {
+      const distance = this.getDoorDistance(doorHash, coords);
       if (distance < closestDistance) {
         closestDoor = doorHash;
         closestDistance = distance;

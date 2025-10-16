@@ -1,4 +1,5 @@
 import { exports } from '@lib/client';
+
 import doorManager from './managers/door-manager';
 
 const lockDoor: Doors.LockDoor = (doorHash) => {
@@ -17,6 +18,10 @@ const getClosestDoor: Doors.GetClosestDoor = () => {
   return doorManager.getClosestDoor();
 };
 
+const getClosestDoorToCoords: Doors.GetClosestDoorToCoords = (coords: Vector3Format) => {
+  return doorManager.getClosestDoorToCoords(coords);
+};
+
 const closeDoor: Doors.CloseDoor = (doorHash: number, durationMultiplier = 1.0) => {
   doorManager.closeDoor(doorHash, durationMultiplier);
 };
@@ -25,4 +30,5 @@ exports<'doors'>('lockDoor', lockDoor);
 exports<'doors'>('unlockDoor', unlockDoor);
 exports<'doors'>('setDoorState', setDoorState);
 exports<'doors'>('getClosestDoor', getClosestDoor);
+exports<'doors'>('getClosestDoorToCoords', getClosestDoorToCoords);
 exports<'doors'>('closeDoor', closeDoor);

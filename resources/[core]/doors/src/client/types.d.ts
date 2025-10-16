@@ -7,6 +7,7 @@ declare namespace Doors {
   type UnlockDoor = (doorHash: number) => void;
   type SetDoorState = (doorHash: number, state: number) => void;
   type GetClosestDoor = () => number | null;
+  type GetClosestDoorToCoords = (coords: Vector3Format) => number | null;
   type CloseDoor = (doorHash: number, durationMultiplier?: number) => void;
 
   interface ClientExports {
@@ -14,6 +15,7 @@ declare namespace Doors {
     unlockDoor: UnlockDoor;
     setDoorState: SetDoorState;
     getClosestDoor: GetClosestDoor;
+    getClosestDoorToCoords: GetClosestDoorToCoords;
     closeDoor: CloseDoor;
   }
 }
@@ -41,5 +43,3 @@ declare namespace ClientOut {
 
 // Raw Socket.io events for UI layer typing - DEDUPLICATED
 // Note: SocketIO.Events eliminated - use ClientRPC.Socket for RPC calls and ClientIn/ClientOut for events
-
-

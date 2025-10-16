@@ -53,7 +53,12 @@ export default () => {
       if (hasKey || currentDoorState === undefined) {
         DoorState.set(doorHash << 0, state);
         userNamespace.emit('__client__', 'doors.set-door-state', doorHash, state);
-        // TODO: Update DB
+        await db
+          .update(DoorSchema)
+          .set({
+            state,
+          })
+          .where(eq(DoorSchema.hash, doorHash << 0));
       } else {
         userNamespace.emit('__client__', 'doors.set-door-state', doorHash, currentDoorState);
       }

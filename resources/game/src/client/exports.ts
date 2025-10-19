@@ -1,7 +1,7 @@
-import { exports, PVCustomization } from '@lib/client';
-import { VegModifierFlag } from '@lib/flags/veg-modifiers';
-import { Vector3 } from '@lib/math/vector3';
+import { PVCustomization, exports } from '@lib/client';
+import { Log } from '@lib/client/comms/ui';
 import { Delay } from '@lib/functions';
+import { Vector3 } from '@lib/math/vector3';
 
 import componentManager from './managers/component-manager';
 import gameManager from './managers/game-manager';
@@ -46,6 +46,14 @@ const setPedOutfit = async (ped: number, components: number[]) => {
 export const skinPed = async (ped: number, character: Game.Character) => {
   await setPedOutfit(ped, character.components);
   await PVCustomization.equipItems(ped, character.clothing);
+
+  await gameManager.pedIsReadyToRender(ped);
+  for (const [feature, value] of Object.entries(character.features)) {
+    const featureIndex = Number(feature);
+    SetPedFaceFeature(ped, featureIndex, value);
+    await Delay(1);
+  }
+  gameManager.finalizePedOutfit(ped);
 };
 
 const playerPed = (): number => gameManager.playerPed;

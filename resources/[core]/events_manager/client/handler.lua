@@ -242,10 +242,18 @@ function Events:Thread()
             baseEventsPromise:resolve(threadId)
 
             while true do
+                ::continue::
+                Wait(self.baseEventSleep)
+
                 local size = GetNumberOfEvents(0)
 
                 if size > 0 then
                     self:NumberOfEvents(size)
+                end
+
+                if not DoesEntityExist(self.cache.ped) then
+                    Wait(50)
+                    goto continue
                 end
 
                 self.meleCombat = IsPedInMeleeCombat(self.cache.ped)
@@ -378,8 +386,6 @@ function Events:Thread()
                     self.cache.onRoad = false
                     TriggerEvent(("%s:onRoad"):format(self.name), false)
                 end
-
-                Wait(self.baseEventSleep)
             end
         end)
 

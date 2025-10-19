@@ -1,3 +1,4 @@
+import { debounce } from 'lodash';
 import { Component, MouseEvent as ReactMouseEvent } from 'react';
 
 import styles from './styles.module.scss';
@@ -14,6 +15,7 @@ type Props = {
   className?: string;
   vertical?: boolean;
   onChange: (value: number) => void;
+  debounce?: number;
 };
 
 interface State {
@@ -23,6 +25,8 @@ interface State {
 }
 
 export default class RangeSlider extends Component<Props, State> {
+  private readonly onChange: ReturnType<typeof debounce<Props['onChange']>> | Props['onChange'];
+
   constructor(props: Props) {
     super(props);
 
@@ -31,12 +35,15 @@ export default class RangeSlider extends Component<Props, State> {
       active: false,
       value: props.defaultValue || 0,
     };
+
+    this.onChange =
+      this.props.debounce === 0 ? this.props.onChange : debounce(this.props.onChange, this.props.debounce || 150);
   }
 
   updateValue(e: React.ChangeEvent<HTMLInputElement>) {
     const value = Number(e.target.value);
     this.setState({ value });
-    this.props.onChange(value);
+    this.onChange(value);
   }
 
   onMouseDown = (e: ReactMouseEvent<HTMLInputElement>) => {
@@ -44,7 +51,7 @@ export default class RangeSlider extends Component<Props, State> {
       const value = this.props.resetTo ?? this.props.defaultValue ?? 0;
       console.log('value', value);
       this.setState({ value });
-      this.props.onChange(value);
+      this.onChange(value);
       return;
     }
     if (e.button !== 0) return;

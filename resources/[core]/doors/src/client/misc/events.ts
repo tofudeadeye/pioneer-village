@@ -38,6 +38,8 @@ on('doors:client:toggle_door', async (item: Inventory.ItemBase, itemData: UI.Inv
       }
     }
 
+    Log('distance', distance);
+
     if (distance < 2.5) {
       await toggleDoor(closestDoorHash);
     }

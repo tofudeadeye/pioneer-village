@@ -179,292 +179,316 @@ const faceFeatures = [
     max: 3,
   },
   {
-    id: 47547,
-    label: 'Jaw Height',
-    min: -2,
-    max: 3,
-  },
-  {
-    id: 47548,
-    label: 'Jaw Width',
-    min: -3,
-    max: 3,
-  },
-  {
-    id: 47549,
-    label: 'Jaw Depth',
-    min: -2,
-    max: 3,
-  },
-  {
-    id: 31718,
-    label: 'Chin Height',
+    id: 41396,
+    label: 'Face Width',
     min: -2,
     max: 2,
   },
   {
-    id: 31719,
-    label: 'Chin Width',
-    min: -3,
-    max: 3,
+    id: 13059,
+    label: 'Eyebrow Height',
+    min: -1.5,
+    max: 1.5,
   },
   {
-    id: 31720,
-    label: 'Chin Depth',
-    min: -3,
-    max: 3,
+    id: 12281,
+    label: 'Eyebrow Width',
+    min: -1.5,
+    max: 1.5,
   },
   {
-    id: 43829,
-    label: 'Cheek Bone Height',
+    id: 19153,
+    label: 'Eyebrow Depth',
+    min: -1.5,
+    max: 1.5,
+  },
+  {
+    id: 49231,
+    label: 'Ears Depth',
+    min: -1.5,
+    max: 1.5,
+  },
+  {
+    id: 46798,
+    label: 'Ears Angle',
+    min: -1.5,
+    max: 1.5,
+  },
+  {
+    id: 10308,
+    label: 'Ears Height',
+    min: -1.5,
+    max: 1.5,
+  },
+  {
+    id: 60720,
+    label: 'Earlobes',
+    min: -1.5,
+    max: 1.5,
+  },
+  {
+    id: 27147,
+    label: 'Cheekbones Height',
     min: -2.5,
     max: 2.5,
   },
   {
-    id: 43828,
-    label: 'Cheek Bone Width',
+    id: 43983,
+    label: 'Cheekbones Width',
     min: -4,
     max: 3.5,
   },
   {
-    id: 43830,
-    label: 'Cheek Bone Depth',
+    id: 13709,
+    label: 'Cheekbones Depth',
     min: -2.5,
     max: 2.5,
   },
   {
-    id: 47550,
-    label: 'Eye Socket Height',
-    min: -3,
-    max: 3,
+    id: 15375,
+    label: 'Chin Height',
+    min: -1.5,
+    max: 1.5,
   },
   {
-    id: 47551,
-    label: 'Eye Socket Width',
-    min: -3,
-    max: 3,
+    id: 50098,
+    label: 'Chin Width',
+    min: -1.5,
+    max: 1.5,
   },
   {
-    id: 47552,
-    label: 'Eye Socket Depth',
-    min: -3,
-    max: 3,
+    id: 58147,
+    label: 'Chin Depth',
+    min: -1.5,
+    max: 1.5,
   },
   {
-    id: 31725,
-    label: 'Eyes Height',
-    min: -2,
-    max: 2,
+    id: 35627,
+    label: 'Eyelid Height',
+    min: -1.5,
+    max: 1.5,
   },
   {
-    id: 31726,
-    label: 'Eyes Width',
-    min: -3,
-    max: 3,
+    id: 7019,
+    label: 'Eyelid Width',
+    min: -1.5,
+    max: 1.5,
   },
   {
-    id: 31727,
+    id: 60996,
     label: 'Eyes Depth',
-    min: -3,
-    max: 3,
+    min: -1.5,
+    max: 1.5,
   },
   {
-    id: 31728,
+    id: 53862,
     label: 'Eyes Angle',
-    min: -3,
-    max: 3,
+    min: -1.5,
+    max: 1.5,
   },
   {
-    id: 31729,
+    id: 42318,
     label: 'Eyes Distance',
-    min: -3,
-    max: 3,
+    min: -1.5,
+    max: 1.5,
   },
   {
-    id: 47553,
-    label: 'Eye Lid Height',
-    min: -3,
-    max: 3,
+    id: 56827,
+    label: 'Eyes Height',
+    min: -1.5,
+    max: 1.5,
   },
   {
-    id: 47554,
-    label: 'Eye Lid Width',
-    min: -3,
-    max: 3,
-  },
-  {
-    id: 31730,
-    label: 'Brow Height',
-    min: -3,
-    max: 3,
-  },
-  {
-    id: 31731,
-    label: 'Brow Width',
-    min: -3,
-    max: 3,
-  },
-  {
-    id: 31732,
-    label: 'Brow Depth',
-    min: -3,
-    max: 3,
-  },
-  {
-    id: 31747,
-    label: 'Nose Height',
-    min: -3,
-    max: 3,
-  },
-  {
-    id: 31748,
+    id: 28287,
     label: 'Nose Width',
-    min: -3,
-    max: 3,
+    min: -1.5,
+    max: 1.5,
   },
   {
-    id: 31749,
-    label: 'Nose Size',
-    min: -3,
-    max: 3,
+    id: 13425,
+    label: 'Nose Depth',
+    min: -1.5,
+    max: 1.5,
   },
   {
-    id: 31750,
+    id: 1013,
+    label: 'Nose Height',
+    min: -1.5,
+    max: 1.5,
+  },
+  {
+    id: 13489,
     label: 'Nose Angle',
-    min: -3,
-    max: 3,
+    min: -1.5,
+    max: 1.5,
   },
   {
-    id: 31751,
-    label: 'Nose Curve',
-    min: -3,
-    max: 3,
+    id: 61782,
+    label: 'Nose Curvature',
+    min: -1.5,
+    max: 1.5,
   },
   {
-    id: 31752,
-    label: 'Nostril Distance',
-    min: -3,
-    max: 3,
+    id: 22046,
+    label: 'Nostrils Distance',
+    min: -1.5,
+    max: 1.5,
   },
   {
-    id: 31753,
-    label: 'Nostril Height',
-    min: -3,
-    max: 3,
-  },
-  {
-    id: 31754,
-    label: 'Nostril Width',
-    min: -3,
-    max: 3,
-  },
-  {
-    id: 31755,
-    label: 'Lips Height',
-    min: -3,
-    max: 3,
-  },
-  {
-    id: 31756,
-    label: 'Lips Width',
-    min: -3,
-    max: 3,
-  },
-  {
-    id: 31757,
-    label: 'Lips Depth',
-    min: -3,
-    max: 3,
-  },
-  {
-    id: 31758,
-    label: 'Upper Lip Height',
-    min: -3,
-    max: 3,
-  },
-  {
-    id: 31759,
-    label: 'Upper Lip Width',
-    min: -3,
-    max: 3,
-  },
-  {
-    id: 31760,
-    label: 'Upper Lip Depth',
-    min: -3,
-    max: 3,
-  },
-  {
-    id: 31761,
-    label: 'Lower Lip Height',
-    min: -3,
-    max: 3,
-  },
-  {
-    id: 31762,
-    label: 'Lower Lip Width',
-    min: -3,
-    max: 3,
-  },
-  {
-    id: 31763,
-    label: 'Lower Lip Depth',
-    min: -3,
-    max: 3,
-  },
-  {
-    id: 31764,
-    label: 'Mouth Height',
-    min: -3,
-    max: 3,
-  },
-  {
-    id: 31765,
+    id: 61541,
     label: 'Mouth Width',
-    min: -3,
-    max: 3,
+    min: -1.5,
+    max: 1.5,
   },
   {
-    id: 31766,
+    id: 43625,
     label: 'Mouth Depth',
-    min: -3,
-    max: 3,
+    min: -1.5,
+    max: 1.5,
   },
   {
-    id: 31767,
-    label: 'Ears Height',
+    id: 31427,
+    label: 'Mouth X Position',
+    min: -1,
+    max: 1,
+  },
+  {
+    id: 16653,
+    label: 'Mouth Y Position',
+    min: -1,
+    max: 1,
+  },
+  {
+    id: 6656,
+    label: 'Upper Lip Height',
+    min: -1.5,
+    max: 1.5,
+  },
+  {
+    id: 37313,
+    label: 'Upper Lip Width',
+    min: -1.5,
+    max: 1.5,
+  },
+  {
+    id: 50037,
+    label: 'Upper Lip Depth',
+    min: -1.5,
+    max: 1.5,
+  },
+  {
+    id: 47949,
+    label: 'Lower Lip Height',
+    min: -1.5,
+    max: 1.5,
+  },
+  {
+    id: 45232,
+    label: 'Lower Lip Width',
+    min: -1.5,
+    max: 1.5,
+  },
+  {
+    id: 23830,
+    label: 'Lower Lip Depth',
+    min: -1.5,
+    max: 1.5,
+  },
+  {
+    id: 36106,
+    label: 'Jaw Height',
+    min: -2.5,
+    max: 1.5,
+  },
+  {
+    id: 60334,
+    label: 'Jaw Width',
     min: -2,
-    max: 2,
+    max: 2.5,
   },
   {
-    id: 31768,
-    label: 'Ears Width',
-    min: -3,
-    max: 3,
+    id: 7670,
+    label: 'Jaw Depth',
+    min: -2.5,
+    max: 2.5,
   },
   {
-    id: 31769,
-    label: 'Ears Depth',
-    min: -3,
-    max: 3,
+    id: 55182,
+    label: 'Jaw Y Position',
+    min: -1,
+    max: 1,
   },
   {
-    id: 31770,
-    label: 'Ears Angle',
-    min: -3,
-    max: 3,
+    id: 57350,
+    label: 'Mouth Corner Left Width',
+    min: 0,
+    max: 1.5,
   },
   {
-    id: 31771,
-    label: 'Ears Size',
-    min: -3,
-    max: 3,
+    id: 40950,
+    label: 'Mouth Corner Left Depth',
+    min: 0,
+    max: 1.5,
   },
   {
-    id: 31772,
-    label: 'Earlobe Size',
-    min: -3,
-    max: 3,
+    id: 46661,
+    label: 'Mouth Corner Left Height',
+    min: 0,
+    max: 1.5,
+  },
+  {
+    id: 22344,
+    label: 'Mouth Corner Left Upper Lip Distance',
+    min: 0,
+    max: 1.5,
+  },
+  {
+    id: 60292,
+    label: 'Mouth Corner Right Upper Lip Distance',
+    min: 0,
+    max: 1.5,
+  },
+  {
+    id: 49299,
+    label: 'Mouth Corner Right Height',
+    min: 0,
+    max: 1.5,
+  },
+  {
+    id: 9423,
+    label: 'Mouth Corner Right Depth',
+    min: 0,
+    max: 1.5,
+  },
+  {
+    id: 55718,
+    label: 'Mouth Corner Right Width',
+    min: 0,
+    max: 1.5,
+  },
+  {
+    id: 22421,
+    label: 'Right Eyelid Open/Close',
+    min: -1,
+    max: 1,
+  },
+  {
+    id: 52902,
+    label: 'Left Eyelid Open/Close',
+    min: -1,
+    max: 1,
+  },
+  {
+    id: 36277,
+    label: 'Neck Width',
+    min: -1.5,
+    max: 1.5,
+  },
+  {
+    id: 60890,
+    label: 'Neck Depth',
+    min: -1,
+    max: 1,
   },
 ];
 
@@ -648,6 +672,7 @@ export default function Customization() {
                     defaultValue={state.head}
                     resetTo={0}
                     onChange={handleChangeHead}
+                    debounce={250}
                   />
                   <RangeSlider
                     label="Teeth"
@@ -685,6 +710,7 @@ export default function Customization() {
                       defaultValue={state.currentFaceFeatures[`${feature.id}`] || 0}
                       resetTo={0}
                       onChange={(value) => handleChangeFaceFeature(feature.id, value)}
+                      debounce={0}
                     />
                   ))}
                 </div>
@@ -700,6 +726,7 @@ export default function Customization() {
                     defaultValue={state.skinTone}
                     resetTo={0}
                     onChange={handleChangeSkinTone}
+                    debounce={250}
                   />
                   <RangeSlider
                     label="Body Type"
@@ -708,6 +735,7 @@ export default function Customization() {
                     resetTo={0}
                     max={4}
                     onChange={handleChangeBodyType}
+                    debounce={25}
                   />
                   <RangeSlider
                     label="Bodyweight"
@@ -717,6 +745,7 @@ export default function Customization() {
                     defaultValue={state.currentFaceFeatures['2007'] || 0}
                     resetTo={0}
                     onChange={(value) => handleChangeFaceFeature(2007, value)}
+                    debounce={0}
                   />
                   <RangeSlider
                     label="Muscles"
@@ -726,6 +755,7 @@ export default function Customization() {
                     defaultValue={state.currentFaceFeatures['65374'] || 0}
                     resetTo={0}
                     onChange={(value) => handleChangeFaceFeature(65374, value)}
+                    debounce={0}
                   />
                   <RangeSlider
                     label="Anterior Trapezius"
@@ -735,6 +765,7 @@ export default function Customization() {
                     defaultValue={state.currentFaceFeatures['33485'] || 0}
                     resetTo={0}
                     onChange={(value) => handleChangeFaceFeature(33485, value)}
+                    debounce={0}
                   />
 
                   {state.gender === 'female' && (
@@ -747,6 +778,7 @@ export default function Customization() {
                         defaultValue={state.currentFaceFeatures[46240] || 0}
                         resetTo={0}
                         onChange={(value) => handleChangeFaceFeature(46240, value)}
+                        debounce={0}
                       />
                       <RangeSlider
                         label="Butt/Hip Size"
@@ -756,6 +788,7 @@ export default function Customization() {
                         defaultValue={state.currentFaceFeatures[8991] || 0}
                         resetTo={0}
                         onChange={(value) => handleChangeFaceFeature(8991, value)}
+                        debounce={0}
                       />
                     </>
                   )}

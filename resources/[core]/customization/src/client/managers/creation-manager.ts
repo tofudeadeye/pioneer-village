@@ -458,12 +458,15 @@ class CreationManager {
     await PVCamera.interpolate('CreationTransition', 1500);
     await PVCamera.interpolate('CreationDressing', 750);
     // Filter out undefined values to match Record<string, number> type
-    const definedComponents = Object.entries(this.chosenComponents).reduce((acc, [key, value]) => {
-      if (value !== undefined) {
-        acc[key] = value;
-      }
-      return acc;
-    }, {} as Record<string, number>);
+    const definedComponents = Object.entries(this.chosenComponents).reduce(
+      (acc, [key, value]) => {
+        if (value !== undefined) {
+          acc[key] = value;
+        }
+        return acc;
+      },
+      {} as Record<string, number>,
+    );
     emitUI('customization.state', { state: 'info', components: definedComponents });
     this.currentState = CreationState.NameSelection;
   }
@@ -606,12 +609,15 @@ class CreationManager {
 
   setUIComponents() {
     // Filter out undefined values to match Record<string, number> type
-    const definedComponents = Object.entries(this.chosenComponents).reduce((acc, [key, value]) => {
-      if (value !== undefined) {
-        acc[key] = value;
-      }
-      return acc;
-    }, {} as Record<string, number>);
+    const definedComponents = Object.entries(this.chosenComponents).reduce(
+      (acc, [key, value]) => {
+        if (value !== undefined) {
+          acc[key] = value;
+        }
+        return acc;
+      },
+      {} as Record<string, number>,
+    );
     emitUI('customization.state', { components: definedComponents });
   }
 
@@ -642,6 +648,7 @@ class CreationManager {
   }
 
   async setHead(headIndex: number, updatePed = true) {
+    const start = Date.now();
     if (this.currentState !== CreationState.NameSelection) {
       return;
     }
@@ -656,13 +663,17 @@ class CreationManager {
       this.chosenComponents.head = head;
 
       await PVGame.setPedComponentsMp(this.chosen, [head]);
+      Log('ready to render', IsPedReadyToRender(this.chosen));
 
       if (updatePed) {
+        await Delay(1);
         await PVGame.pedIsReadyToRender(this.chosen);
         PVGame.finalizePedOutfit(this.chosen);
         this.setUIComponents();
       }
     }
+
+    Log('setHead duration', Date.now() - start);
   }
 
   setIdleFaceAnim() {
@@ -751,9 +762,11 @@ class CreationManager {
     if (this.currentState !== CreationState.NameSelection) {
       return;
     }
-    Log('setFaceFeature', feature, value);
+    Log('setFaceFeature', this.chosen, feature, value);
     SetPedFaceFeature(this.chosen, feature, value);
-    UpdatePedVariation(this.chosen, false, true, true, true, false);
+    await Delay(1);
+    // UpdatePedVariation(this.chosen, false, true, true, true, false);
+    PVGame.finalizePedOutfit(this.chosen);
   }
 
   async setComponents(components: number[]) {

@@ -1,6 +1,7 @@
-import { Socket } from 'socket.io-client';
 import { debounce } from 'lodash';
-import { emitClient, onClient, LoadResourceJson } from '@lib/ui';
+import { Socket } from 'socket.io-client';
+
+import { LoadResourceJson, emitClient, onClient } from '@lib/ui';
 
 // Store state interface matching the component's state
 interface CustomizationState {
@@ -145,7 +146,6 @@ class CustomizationStore {
   private sendClientData: ReturnType<typeof debounce>;
 
   private constructor() {
-    
     this.state = {
       show: false,
       state: 'gender',
@@ -295,7 +295,6 @@ class CustomizationStore {
     this.resetComponents();
     this.loadComponents();
   }
-
 
   // Get component array for current selection
   private getComponentArray(currentComponents?: Record<string, { style: number; option: number }>): number[] {
@@ -539,18 +538,17 @@ class CustomizationStore {
     this.changeLayers(layers);
   }
 
-
   // Update state and notify listeners
   updateState(newState: Partial<CustomizationState>): void {
     this.state = { ...this.state, ...newState };
-    this.listeners.forEach(listener => listener(this.state));
+    this.listeners.forEach((listener) => listener(this.state));
   }
 
   // Subscribe to state changes
   subscribe(listener: StateListener): () => void {
     this.listeners.add(listener);
     listener(this.state); // Call immediately with current state
-    
+
     return () => {
       this.listeners.delete(listener);
     };

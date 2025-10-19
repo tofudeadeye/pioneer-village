@@ -95,6 +95,7 @@ export default (userAccessKey: string) => {
           model: data.model || data.gender === 'female' ? 'MP_FEMALE' : 'MP_MALE',
           components: Object.values(data.components), // [],
           clothing: data.clothing,
+          features: data.features,
         },
         data.currentFaceOptions,
         data.currentFaceFeatures,
@@ -136,6 +137,7 @@ export default (userAccessKey: string) => {
             face,
             components: character.components as number[],
             clothing: Object.values(clothingInventory?.items || []),
+            features: character.features as Record<string, number>,
           });
         }
 

@@ -97,7 +97,7 @@ export default class StyleColorSelector extends Component<Props, State> {
             </div>
             <div className={styles.scsOptions}>
               {this.props.components[this.state.currentStyle]?.components.map((component, index) => {
-                if (!component.name?.includes('BLACK')) {
+                if (this.props.label === 'hair' && !component.name?.includes('BLACK')) {
                   return;
                 }
                 if (

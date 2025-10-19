@@ -40,6 +40,7 @@ declare namespace Game {
     face: Face;
     components: number[];
     clothing: ClothingItemData[];
+    features: Record<string, number>;
   }
 
   interface Face {

@@ -1,6 +1,7 @@
-import { creationManager } from '../managers/creation-manager';
 import { onUI } from '@lib/client';
 import { Log } from '@lib/client/comms/ui';
+
+import { creationManager } from '../managers/creation-manager';
 
 on('customization:client:character_creation', () => {
   creationManager.start();

@@ -324,6 +324,7 @@ class GameManager {
     }
     await this.loadModel(model);
     SetPlayerModel(this.playerId, model, true);
+    await Delay(5);
     this.playerPed = PlayerPedId();
     SetPedConfigFlag(this.playerPed, 409, true);
     return this.playerPed;

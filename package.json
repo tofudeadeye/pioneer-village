@@ -2,7 +2,7 @@
   "name": "pioneer-village",
   "version": "1.0.0",
   "main": "index.js",
-  "license": "MIT",
+  "license": "CC-BY-NC-SA-4.0"
   "data": {
     "serverVersion": "20944"
   },

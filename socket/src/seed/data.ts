@@ -1,8 +1,7 @@
 export const developers: string[] = [
+  // Steam3 Hex
   '1100001000ff5af', // spAnser
   '1100001411d6f9e', // spAnser2
-  '110000100062ac9', // Spectral
-  '110000106bab7b0', // Plouffe
 ];
 
 export const datas: Record<string, any> = {

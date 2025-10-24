@@ -12,6 +12,7 @@ A RedM Framework.
 * Copy `.env.example` to `.env` and update any necessary values.
 * Copy `resources-local.cfg.example` to `resources-local.cfg` these are just some dev focused scripts.
 * Copy `local.cfg.example` to `local.cfg` and set your `sv_licenseKey` & `steam_webApiKey`.
+* Inside `./resources/[system]/sessionmanager-rdr3/` run `yarn install` to install dependencies.
 * Run `yarn install` to install dependencies.
 * Run `yarn run download-server` to download the fx server version from `package.json`.
 * Run `yarn run watch` to build and watch resources for development.

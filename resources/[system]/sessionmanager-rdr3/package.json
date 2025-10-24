@@ -1,6 +1,6 @@
 {
   "private": true,
   "dependencies": {
-	"@citizenfx/protobufjs": "6.8.8"
+    "@citizenfx/protobufjs": "6.8.8"
   }
 }

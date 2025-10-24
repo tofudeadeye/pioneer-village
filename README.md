@@ -15,6 +15,7 @@ A RedM Framework.
 * Inside `./resources/[system]/sessionmanager-rdr3/` run `yarn install` to install dependencies.
 * Run `yarn install` to install dependencies.
 * Run `yarn run download-server` to download the fx server version from `package.json`.
+* Run `yarn run db:push` to create the database tables.
 * Run `yarn run watch` to build and watch resources for development.
 * Run `yarn run start` to start the fx server.
 

@@ -13,7 +13,7 @@ const findResourceName = (filePath) => {
 };
 
 class HotReloadPlugin {
-  constructor(source, address = '127.0.0.1', port = 30110, password = 'qwerty') {
+  constructor(source, address = '127.0.0.1', port = 30120, password = 'qwerty') {
     this.source = source;
     this.chunkVersions = {};
     this.restartQueue = [];

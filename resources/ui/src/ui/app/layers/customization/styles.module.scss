@@ -86,8 +86,8 @@
   left: mixins.uiSize(30);
   transform: translateY(50%);
   display: flex;
-  gap: mixins.uiSize(30);
   justify-content: space-between;
+  font-size: mixins.uiSize(18);
 }
 
 .modalButton {
@@ -106,10 +106,92 @@
   }
 }
 
+.modalButtonDisabled {
+  opacity: 0.1;
+  pointer-events: none;
+}
+
+.confirmButtons {
+  position: absolute;
+  bottom: mixins.uiSize(9);
+  right: mixins.uiSize(19);
+  transform: translateX(38%);
+  display: flex;
+  gap: mixins.uiSize(20);
+}
+
+.confirmButton {
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  color: var(--theme-white);
+
+  &:hover,
+  &.active {
+    color: var(--theme-red);
+
+    &:nth-child(2) {
+      color: var(--theme-green);
+    }
+  }
+
+  svg {
+    width: mixins.uiSize(26);
+    height: mixins.uiSize(26);
+  }
+}
+
 .bottomControls {
   position: absolute;
   bottom: mixins.uiSize(16);
   width: 25vw;
   left: 50%;
   transform: translateX(-50%);
+}
+
+.exitModal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: mixins.uiSize(24);
+  padding: mixins.uiSize(24) mixins.uiSize(32);
+  font-family: 'Caveat', cursive;
+
+  background-color: rgba(0,0,0,0.75);
+  color: var(--theme-white);
+
+  opacity: 0;
+  transition: opacity var(--theme-transition-normal);
+  will-change: opacity;
+
+  &:not(.show) {
+    pointer-events: none;
+  }
+
+  &.show {
+    opacity: 1;
+  }
+}
+
+.exitModalButtons {
+  display: flex;
+  justify-content: center;
+  gap: mixins.uiSize(32);
+  margin-top: mixins.uiSize(16);
+
+  button {
+    background: transparent;
+    border: none;
+    color: var(--theme-white);
+
+    &:hover {
+      color: var(--theme-red);
+    }
+  }
+
+  svg {
+    width: mixins.uiSize(24);
+    height: mixins.uiSize(24);
+  }
 }

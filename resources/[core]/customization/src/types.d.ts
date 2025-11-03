@@ -13,7 +13,7 @@ declare namespace Customization {
     ClothingSelection = 2,
   }
 
-  type State = 'transition' | 'gender' | 'info' | 'head' | 'body' | 'clothing' | 'finalize';
+  type State = 'transition' | 'gender' | 'info' | 'head' | 'body' | 'clothing' | 'finalize' | 'exit';
 
   type Guids = {
     drawable: number;

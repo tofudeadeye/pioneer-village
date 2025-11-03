@@ -1,14 +1,13 @@
+import Check from '@fa/5/duotone/check.svg';
 import Child from '@fa/5/duotone/child.svg';
 import HeadSide from '@fa/5/duotone/head-side.svg';
 import InfoSquare from '@fa/5/duotone/info-square.svg';
 import Save from '@fa/5/duotone/save.svg';
+import Times from '@fa/5/duotone/times.svg';
 import Tshirt from '@fa/5/duotone/tshirt.svg';
+import UserSlash from '@fa/5/duotone/user-slash.svg';
 import VenusMars from '@fa/5/duotone/venus-mars.svg';
-import { debounce } from 'lodash';
-import { useEffect, useState } from 'react';
-import { Socket } from 'socket.io-client';
-
-import { LoadResourceJson } from '@lib/ui';
+import { type ChangeEvent, type MouseEvent, useEffect, useState } from 'react';
 
 import customizationStore from '../../stores/customization-store';
 import OverlaySelector from './components/OverlaySelector';
@@ -184,18 +183,20 @@ const faceFeatures = [
     min: -2,
     max: 2,
   },
-  {
-    id: 13059,
-    label: 'Eyebrow Height',
-    min: -1.5,
-    max: 1.5,
-  },
-  {
-    id: 12281,
-    label: 'Eyebrow Width',
-    min: -1.5,
-    max: 1.5,
-  },
+  [
+    {
+      id: 12281,
+      label: 'Eyebrow Width',
+      min: -1.5,
+      max: 1.5,
+    },
+    {
+      id: 13059,
+      label: 'Eyebrow Height',
+      min: -1.5,
+      max: 1.5,
+    },
+  ],
   {
     id: 19153,
     label: 'Eyebrow Depth',
@@ -226,54 +227,60 @@ const faceFeatures = [
     min: -1.5,
     max: 1.5,
   },
-  {
-    id: 27147,
-    label: 'Cheekbones Height',
-    min: -2.5,
-    max: 2.5,
-  },
-  {
-    id: 43983,
-    label: 'Cheekbones Width',
-    min: -4,
-    max: 3.5,
-  },
+  [
+    {
+      id: 43983,
+      label: 'Cheekbones Width',
+      min: -4,
+      max: 3.5,
+    },
+    {
+      id: 27147,
+      label: 'Cheekbones Height',
+      min: 2.5,
+      max: -2.5,
+    },
+  ],
   {
     id: 13709,
     label: 'Cheekbones Depth',
     min: -2.5,
     max: 2.5,
   },
-  {
-    id: 15375,
-    label: 'Chin Height',
-    min: -1.5,
-    max: 1.5,
-  },
-  {
-    id: 50098,
-    label: 'Chin Width',
-    min: -1.5,
-    max: 1.5,
-  },
+  [
+    {
+      id: 50098,
+      label: 'Chin Width',
+      min: -1.5,
+      max: 1.5,
+    },
+    {
+      id: 15375,
+      label: 'Chin Height',
+      min: 1.5,
+      max: -1.5,
+    },
+  ],
   {
     id: 58147,
     label: 'Chin Depth',
     min: -1.5,
     max: 1.5,
   },
-  {
-    id: 35627,
-    label: 'Eyelid Height',
-    min: -1.5,
-    max: 1.5,
-  },
-  {
-    id: 7019,
-    label: 'Eyelid Width',
-    min: -1.5,
-    max: 1.5,
-  },
+  [
+    {
+      id: 7019,
+      label: 'Eyelid Width',
+      min: -1.5,
+      max: 1.5,
+    },
+    {
+      id: 35627,
+      label: 'Eyelid Height',
+      min: 1.5,
+      max: -1.5,
+    },
+  ],
   {
     id: 60996,
     label: 'Eyes Depth',
@@ -286,33 +293,37 @@ const faceFeatures = [
     min: -1.5,
     max: 1.5,
   },
-  {
-    id: 42318,
-    label: 'Eyes Distance',
-    min: -1.5,
-    max: 1.5,
-  },
-  {
-    id: 56827,
-    label: 'Eyes Height',
-    min: -1.5,
-    max: 1.5,
-  },
-  {
-    id: 28287,
-    label: 'Nose Width',
-    min: -1.5,
-    max: 1.5,
-  },
+  [
+    {
+      id: 42318,
+      label: 'Eyes Distance',
+      min: -1.5,
+      max: 1.5,
+    },
+    {
+      id: 56827,
+      label: 'Eyes Height',
+      min: 1.5,
+      max: -1.5,
+    },
+  ],
+  [
+    {
+      id: 28287,
+      label: 'Nose Width',
+      min: -1.5,
+      max: 1.5,
+    },
+    {
+      id: 1013,
+      label: 'Nose Height',
+      min: -1.5,
+      max: 1.5,
+    },
+  ],
   {
     id: 13425,
     label: 'Nose Depth',
-    min: -1.5,
-    max: 1.5,
-  },
-  {
-    id: 1013,
-    label: 'Nose Height',
     min: -1.5,
     max: 1.5,
   },
@@ -346,66 +357,74 @@ const faceFeatures = [
     min: -1.5,
     max: 1.5,
   },
-  {
-    id: 31427,
-    label: 'Mouth X Position',
-    min: -1,
-    max: 1,
-  },
-  {
-    id: 16653,
-    label: 'Mouth Y Position',
-    min: -1,
-    max: 1,
-  },
-  {
-    id: 6656,
-    label: 'Upper Lip Height',
-    min: -1.5,
-    max: 1.5,
-  },
-  {
-    id: 37313,
-    label: 'Upper Lip Width',
-    min: -1.5,
-    max: 1.5,
-  },
+  [
+    {
+      id: 31427,
+      label: 'Mouth X Position',
+      min: -1,
+      max: 1,
+    },
+    {
+      id: 16653,
+      label: 'Mouth Y Position',
+      min: 1,
+      max: -1,
+    },
+  ],
+  [
+    {
+      id: 37313,
+      label: 'Upper Lip Width',
+      min: -1.5,
+      max: 1.5,
+    },
+    {
+      id: 6656,
+      label: 'Upper Lip Height',
+      min: 1.5,
+      max: -1.5,
+    },
+  ],
   {
     id: 50037,
     label: 'Upper Lip Depth',
     min: -1.5,
     max: 1.5,
   },
-  {
-    id: 47949,
-    label: 'Lower Lip Height',
-    min: -1.5,
-    max: 1.5,
-  },
-  {
-    id: 45232,
-    label: 'Lower Lip Width',
-    min: -1.5,
-    max: 1.5,
-  },
+  [
+    {
+      id: 45232,
+      label: 'Lower Lip Width',
+      min: -1.5,
+      max: 1.5,
+    },
+    {
+      id: 47949,
+      label: 'Lower Lip Height',
+      min: -1.5,
+      max: 1.5,
+    },
+  ],
   {
     id: 23830,
     label: 'Lower Lip Depth',
     min: -1.5,
     max: 1.5,
   },
-  {
-    id: 36106,
-    label: 'Jaw Height',
-    min: -2.5,
-    max: 1.5,
-  },
-  {
-    id: 60334,
-    label: 'Jaw Width',
-    min: -2,
-    max: 2.5,
-  },
+  [
+    {
+      id: 60334,
+      label: 'Jaw Width',
+      min: -2,
+      max: 2.5,
+    },
+    {
+      id: 36106,
+      label: 'Jaw Height',
+      min: 1.5,
+      max: -2.5,
+    },
+  ],
   {
     id: 7670,
     label: 'Jaw Depth',
@@ -418,21 +437,23 @@ const faceFeatures = [
     min: -1,
     max: 1,
   },
-  {
-    id: 57350,
-    label: 'Mouth Corner Left Width',
-    min: 0,
-    max: 1.5,
-  },
+  [
+    {
+      id: 57350,
+      label: 'Mouth Corner Left Width',
+      min: 0,
+      max: 1.5,
+    },
+    {
+      id: 46661,
+      label: 'Mouth Corner Left Height',
+      min: 1.5,
+      max: 0,
+    },
+  ],
   {
     id: 40950,
     label: 'Mouth Corner Left Depth',
-    min: 0,
-    max: 1.5,
-  },
-  {
-    id: 46661,
-    label: 'Mouth Corner Left Height',
     min: 0,
     max: 1.5,
   },
@@ -448,21 +469,23 @@ const faceFeatures = [
     min: 0,
     max: 1.5,
   },
-  {
-    id: 49299,
-    label: 'Mouth Corner Right Height',
-    min: 0,
-    max: 1.5,
-  },
+  [
+    {
+      id: 55718,
+      label: 'Mouth Corner Right Width',
+      min: 1.5,
+      max: 0,
+    },
+    {
+      id: 49299,
+      label: 'Mouth Corner Right Height',
+      min: 1.5,
+      max: 0,
+    },
+  ],
   {
     id: 9423,
     label: 'Mouth Corner Right Depth',
-    min: 0,
-    max: 1.5,
-  },
-  {
-    id: 55718,
-    label: 'Mouth Corner Right Width',
     min: 0,
     max: 1.5,
   },
@@ -532,11 +555,11 @@ export default function Customization() {
     customizationStore.setComponent(componentType, style, option);
   };
 
-  const handleHighlightGender = (gender: 'male' | 'female', e: React.MouseEvent<HTMLDivElement>) => {
+  const handleHighlightGender = (gender: 'male' | 'female', e: MouseEvent<HTMLDivElement>) => {
     customizationStore.highlightGender(gender);
   };
 
-  const handleChooseGender = (e: React.MouseEvent<HTMLDivElement>) => {
+  const handleChooseGender = (e: MouseEvent<HTMLDivElement>) => {
     console.log('handleChooseGender');
     customizationStore.chooseGender();
   };
@@ -548,6 +571,36 @@ export default function Customization() {
   const handleSetState = (newState: Customization.State) => {
     console.log('handleSetState', newState);
     customizationStore.setState(newState);
+    if (newState === 'finalize') {
+      handleEndConfirm();
+    } else if (newState === 'exit') {
+      handleEndExit();
+    }
+  };
+
+  const handleStartConfirm = () => {
+    if (!state.firstName || !state.lastName || !state.dateOfBirth) return;
+    customizationStore.updateState({
+      confirming: true,
+    });
+  };
+
+  const handleEndConfirm = () => {
+    customizationStore.updateState({
+      confirming: false,
+    });
+  };
+
+  const handleStartExit = () => {
+    customizationStore.updateState({
+      exiting: true,
+    });
+  };
+
+  const handleEndExit = () => {
+    customizationStore.updateState({
+      exiting: false,
+    });
   };
 
   const handleChangeSkinTone = (value: number) => {
@@ -580,17 +633,17 @@ export default function Customization() {
     customizationStore.setFaceFeature(feature, value);
   };
 
-  const updateFirstName = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const updateFirstName = (e: ChangeEvent<HTMLInputElement>) => {
     console.log('updateFirstName', e.target.value);
     customizationStore.setFirstName(e.target.value);
   };
 
-  const updateLastName = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const updateLastName = (e: ChangeEvent<HTMLInputElement>) => {
     console.log('updateLastName', e.target.value);
     customizationStore.setLastName(e.target.value);
   };
 
-  const updateDateOfBirth = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const updateDateOfBirth = (e: ChangeEvent<HTMLInputElement>) => {
     console.log('updateDateOfBirth', e.target.value);
     customizationStore.setDateOfBirth(e.target.value);
   };
@@ -612,6 +665,19 @@ export default function Customization() {
 
   return (
     <>
+      {state.show && state.exiting && (
+        <div className={`${styles.exitModal} ${state.exiting ? styles.show : ''}`}>
+          <p>Exit character creation?</p>
+          <div className={styles.exitModalButtons}>
+            <button onClick={() => handleEndExit()}>
+              <Times />
+            </button>
+            <button onClick={() => handleSetState('exit')}>
+              <Check />
+            </button>
+          </div>
+        </div>
+      )}
       {state.show && state.state === 'gender' && (
         <>
           <div
@@ -646,7 +712,8 @@ export default function Customization() {
                   <input type="text" placeholder="Last Name" onChange={updateLastName} value={state.lastName} />
                   <input type="date" onChange={updateDateOfBirth} value={state.dateOfBirth} />
                   <XYSlider
-                    label="Test XY Grid"
+                    xLabel="Test X"
+                    yLabel="Y"
                     xMin={-1}
                     xMax={1}
                     yMin={-1}
@@ -700,19 +767,36 @@ export default function Customization() {
                     gender={state.gender}
                   />
 
-                  {faceFeatures.map((feature) => (
-                    <RangeSlider
-                      key={feature.id}
-                      label={feature.label}
-                      min={feature.min}
-                      max={feature.max}
-                      step={0.1}
-                      defaultValue={state.currentFaceFeatures[`${feature.id}`] || 0}
-                      resetTo={0}
-                      onChange={(value) => handleChangeFaceFeature(feature.id, value)}
-                      debounce={0}
-                    />
-                  ))}
+                  {faceFeatures.map((feature) =>
+                    Array.isArray(feature) ? (
+                      <XYSlider
+                        key={feature[0].id}
+                        xLabel={feature[0].label}
+                        yLabel={feature[1].label}
+                        xMin={feature[0].min}
+                        xMax={feature[0].max}
+                        yMin={feature[1].min}
+                        yMax={feature[1].max}
+                        step={0.1}
+                        onChange={(xValue, yValue) => {
+                          handleChangeFaceFeature(feature[0].id, xValue);
+                          handleChangeFaceFeature(feature[1].id, yValue);
+                        }}
+                      />
+                    ) : (
+                      <RangeSlider
+                        key={feature.id}
+                        label={feature.label}
+                        min={feature.min}
+                        max={feature.max}
+                        step={0.1}
+                        defaultValue={state.currentFaceFeatures[`${feature.id}`] || 0}
+                        resetTo={0}
+                        onChange={(value) => handleChangeFaceFeature(feature.id, value)}
+                        debounce={0}
+                      />
+                    ),
+                  )}
                 </div>
               </>
             )}
@@ -820,6 +904,9 @@ export default function Customization() {
               </>
             )}
             <div className={styles.modalButtons}>
+              <button className={styles.modalButton} onClick={() => handleStartExit()}>
+                <UserSlash />
+              </button>
               <button className={styles.modalButton} onClick={() => handleSetState('gender')}>
                 <VenusMars />
               </button>
@@ -847,9 +934,22 @@ export default function Customization() {
               >
                 <Tshirt />
               </button>
-              <button className={styles.modalButton} onClick={() => handleSetState('finalize')}>
+              <button
+                className={`${styles.modalButton} ${!state.firstName || !state.lastName || !state.dateOfBirth || state.confirming ? styles.modalButtonDisabled : ''}`}
+                onClick={() => handleStartConfirm()}
+              >
                 <Save />
               </button>
+              {state.confirming && (
+                <div className={styles.confirmButtons}>
+                  <button className={styles.confirmButton} onClick={() => handleEndConfirm()}>
+                    <Times />
+                  </button>
+                  <button className={styles.confirmButton} onClick={() => handleSetState('finalize')}>
+                    <Check />
+                  </button>
+                </div>
+              )}
             </div>
           </div>
           <div className={styles.bottomControls}>

@@ -1,5 +1,6 @@
 import { onUI } from '@lib/client';
 import { Log } from '@lib/client/comms/ui';
+import { Delay } from '@lib/functions';
 
 import { creationManager } from '../managers/creation-manager';
 
@@ -63,6 +64,11 @@ onUI('customization.set-layers', (layers: UI.Customization.LayerData[]) => {
 
 onUI('customization.rotate-chosen', (rotation) => {
   creationManager.rotateChosen(rotation);
+});
+
+onUI('customization.finalized', async () => {
+  await Delay(250);
+  creationManager.destroy();
 });
 
 RegisterCommand(

@@ -7,6 +7,8 @@ import { LoadResourceJson, emitClient, onClient } from '@lib/ui';
 interface CustomizationState {
   show: boolean;
   state: Customization.State;
+  exiting: boolean;
+  confirming: boolean;
   components: Record<string, number>; // Component values from the event
   model: string | number;
   gender: 'male' | 'female';
@@ -149,6 +151,8 @@ class CustomizationStore {
     this.state = {
       show: false,
       state: 'gender',
+      exiting: false,
+      confirming: false,
       components: {},
       model: '',
       gender: 'male',
@@ -268,6 +272,7 @@ class CustomizationStore {
         show: false,
       });
       this.resetComponents();
+      emitClient('customization.finalized');
     });
   }
 
@@ -383,6 +388,10 @@ class CustomizationStore {
   // Set customization state
   setState(newState: Customization.State): void {
     if (newState === 'finalize') {
+      if (!this.state.firstName || !this.state.lastName || !this.state.dateOfBirth) {
+        // TODO Show error message
+        return;
+      }
       const finalState = {
         ...this.state,
         currentComponents: this.getComponentDataArray(),
@@ -392,6 +401,8 @@ class CustomizationStore {
       if (this.socket) {
         this.socket.emit('customization.finalize', JSON.stringify(finalState));
       }
+    } else if (newState === 'exit') {
+      emitClient('customization.finalized');
     } else {
       emitClient('customization.set-state', newState);
     }

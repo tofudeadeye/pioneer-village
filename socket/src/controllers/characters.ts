@@ -110,6 +110,8 @@ export default (userAccessKey: string) => {
             await Inventories.addItem(clothingInv.identifier, -1007727220, 1, item);
           }
         }
+
+        socket.emit('customization.finalized');
       }
     });
 
@@ -117,6 +119,7 @@ export default (userAccessKey: string) => {
       try {
         const characters: Game.Character[] = [];
         const prismaCharacters = await Characters.getCharacters(socket.data.user.userId);
+        logInfoC('[Characters]', 'getCharacters', `Found ${prismaCharacters.length} characters`);
 
         for (const character of prismaCharacters) {
           const clothingInventory = await Inventories.getInventoryForUI(`clothing:${character.id}`);
@@ -178,6 +181,14 @@ export default (userAccessKey: string) => {
         socket.data.user.userId,
       );
       logInfoC('character-select.choose', characterId);
+    });
+
+    socket.on('character-select.delete', async (characterId, cb) => {
+      logInfoC('socket.data', socket.data, characterId, cb);
+
+      await Characters.deleteCharacter(characterId);
+
+      cb();
     });
 
     socket.on('character-update.food-drink', async (food, drink) => {

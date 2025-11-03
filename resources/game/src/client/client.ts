@@ -105,12 +105,10 @@ onUI('socket.connected', async () => {
   }
 });
 
-on('game:client:new_character', async (characterData: Game.Character, faceData: Game.Face) => {
-  DoScreenFadeOut(500);
-  Log(characterData);
-  await awaitUI('createCharacter', characterData, faceData);
+onUI('customization.finalized', async () => {
+  DoScreenFadeOut(250);
+  await Delay(250);
   characterSelection();
-  // TODO: This step will be unnecessary when custimization UI is ported to new UI system.
 });
 
 RegisterNuiCallbackType('loadscreen-shutdown-check');

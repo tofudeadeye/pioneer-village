@@ -92,6 +92,7 @@ declare namespace ClientIn {
     ['character-select.state']: (state: UI.CharacterSelect.Event) => void;
     ['character-select.create']: () => void;
     ['character-select.choose']: (characterId: number) => void;
+    ['character-select.delete']: (characterId: number) => void;
     ['customization.state']: (event: UI.Customization.Event) => void;
     ['customization.set-components']: (components: number[]) => void;
     ['customization.highlight']: (gender: 'male' | 'female') => void;
@@ -108,6 +109,8 @@ declare namespace ClientIn {
 
     ['customization.set-tint-by-category']: (category: string, tint: Customization.Palette) => void;
     ['customization.remove-tint-by-category']: (category: string) => void;
+
+    ['customization.finalized']: () => void;
 
     ['log.state']: (event: UI.Log.Event) => void;
     ['log.message']: (data: UI.Log.Data, overrideSource?: 'client' | 'server') => void;

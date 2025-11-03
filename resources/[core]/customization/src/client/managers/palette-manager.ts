@@ -105,6 +105,8 @@ class PaletteManager {
   getTintForCategory: Customization.GetTintForCategory = (entity, category) => {
     if (typeof category === 'string') {
       category = GetHashKey(category);
+    } else {
+      category = category << 0;
     }
 
     const index = this.getIndexForCategory(entity, category);

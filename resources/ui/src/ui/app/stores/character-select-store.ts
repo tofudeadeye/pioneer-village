@@ -1,4 +1,5 @@
 import { Socket } from 'socket.io-client';
+
 import { emitClient, onClient, onClientCall } from '@lib/ui';
 
 // Store state interface
@@ -22,7 +23,6 @@ class CharacterSelectStore {
   private socket: Socket<UISocketEvents, SocketServer.Client & SocketServer.ClientEvents> | null = null;
 
   private constructor() {
-    
     this.state = {
       show: false,
       characters: [],
@@ -78,7 +78,7 @@ class CharacterSelectStore {
 
     // Handle character deletion response
     this.socket.on('character-select.deleted', (characterId: number) => {
-      const characters = this.state.characters.filter(c => c.id !== characterId);
+      const characters = this.state.characters.filter((c) => c.id !== characterId);
       this.updateState({
         ...this.state,
         characters,
@@ -147,6 +147,13 @@ class CharacterSelectStore {
     emitClient('character-select.choose', characterId);
   }
 
+  setState(newState: Partial<CharacterSelectState>): void {
+    this.updateState({
+      ...this.state,
+      ...newState,
+    });
+  }
+
   // Create a new character
   createCharacter(): void {
     this.updateState({
@@ -159,60 +166,35 @@ class CharacterSelectStore {
 
   // Delete a character
   deleteCharacter(characterId: number): void {
-    if (this.state.deleteConfirmId === characterId) {
-      // Second click - actually delete
-      if (this.socket) {
-        this.updateState({
-          ...this.state,
-          isDeleting: true,
-        });
-        this.socket.emit('character-select.delete', characterId, () => {
-          const characters = this.state.characters.filter(c => c.id !== characterId);
-          this.updateState({
-            ...this.state,
-            characters,
-            isDeleting: false,
-            deleteConfirmId: null,
-          });
-        });
-      }
-    } else {
-      // First click - set for confirmation
+    if (this.socket) {
       this.updateState({
         ...this.state,
-        deleteConfirmId: characterId,
+        isDeleting: true,
       });
-      // Clear confirmation after 3 seconds
-      setTimeout(() => {
-        if (this.state.deleteConfirmId === characterId) {
-          this.updateState({
-            ...this.state,
-            deleteConfirmId: null,
-          });
-        }
-      }, 3000);
-    }
-  }
+      this.socket.emit('character-select.delete', characterId, () => {
+        const characters = this.state.characters.filter((c) => c.id !== characterId);
+        this.updateState({
+          ...this.state,
+          characters,
+          isDeleting: false,
+        });
+      });
 
-  // Cancel delete confirmation
-  cancelDeleteConfirm(): void {
-    this.updateState({
-      ...this.state,
-      deleteConfirmId: null,
-    });
+      emitClient('character-select.delete', characterId);
+    }
   }
 
   // Update state and notify listeners
   private updateState(newState: CharacterSelectState): void {
     this.state = newState;
-    this.listeners.forEach(listener => listener(this.state));
+    this.listeners.forEach((listener) => listener(this.state));
   }
 
   // Subscribe to state changes
   subscribe(listener: StateListener): () => void {
     this.listeners.add(listener);
     listener(this.state); // Call immediately with current state
-    
+
     return () => {
       this.listeners.delete(listener);
     };

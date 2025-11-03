@@ -1,15 +1,17 @@
 import { shuffle } from 'lodash';
 
-import { PVGame, PVCustomization } from '@lib/client';
+import { PVCustomization, PVGame } from '@lib/client';
 import { PVBase, PVCamera } from '@lib/client';
-import { Vector3 } from '@lib/math/vector3';
-import { AnimFlag } from '@lib/flags';
 import { emitUI, onUI } from '@lib/client';
-import { emitSocket, focusUI, Log } from '@lib/client/comms/ui';
+import { Log, emitSocket, focusUI } from '@lib/client/comms/ui';
+import { AnimFlag } from '@lib/flags';
 import { Delay } from '@lib/functions';
+import { Vector3 } from '@lib/math/vector3';
 
-import gameManager from '../managers/game-manager';
+// Import skinPed from exports - it's now centralized there
+import { setCurrentCharacter, skinPed } from '../exports';
 import characterSpawn from '../managers/character-spawn-manager';
+import gameManager from '../managers/game-manager';
 
 const characterSpots: Game.CharacterSpot[] = [
   {
@@ -113,7 +115,7 @@ const characterSpots: Game.CharacterSpot[] = [
 const cameraPosition = new Vector3(2948.62, 2386.09, 198.45);
 const cameraRotation = new Vector3(-26.56, 0, 161.97);
 
-const spawnedPeds: Set<number> = new Set();
+const spawnedPeds: Map<number, number[]> = new Map();
 
 const cleanupCharacters = () => {
   emitUI('character-select.state', {
@@ -122,13 +124,11 @@ const cleanupCharacters = () => {
   });
   focusUI(false, false);
   PVCamera.setInactive('character-select', 0);
-  Log([...spawnedPeds.values()]);
-  PVBase.deleteEntities([...spawnedPeds.values()]);
+  const allEntities = [...spawnedPeds.values()].flat();
+  Log('Cleaning character select', allEntities);
+  PVBase.deleteEntities(allEntities);
   spawnedPeds.clear();
 };
-
-// Import skinPed from exports - it's now centralized there
-import { skinPed, setCurrentCharacter } from '../exports';
 
 const spawnCharacter = async (
   character: Game.Character,
@@ -191,15 +191,17 @@ export const spawnCharacters = async (characters: Game.Character[]): Promise<UI.
     }
     const { position, rotation, animation, objects, screenOffset } = spot;
     const characterPed = await spawnCharacter(character, position.x, position.y, position.z, rotation.z);
-    spawnedPeds.add(characterPed);
+    const entities = [characterPed];
     if (objects) {
       for (const object of objects) {
         const { model, attach } = object;
         const objectId = await gameManager.createObject(model);
         await gameManager.attachEntityToBoneName(objectId, attach, characterPed);
-        spawnedPeds.add(objectId);
+        entities.push(objectId);
       }
     }
+
+    spawnedPeds.set(character.id, entities);
 
     gameManager.taskPlayAnimAdvArray(
       Vector3.fromObject(position),
@@ -223,6 +225,15 @@ export const spawnCharacters = async (characters: Game.Character[]): Promise<UI.
   return uiCharacters;
 };
 
+onUI('character-select.delete', (characterId) => {
+  Log('character-select.delete', characterId);
+
+  const entities = spawnedPeds.get(characterId);
+  if (entities) {
+    PVBase.deleteEntities(entities);
+    spawnedPeds.delete(characterId);
+  }
+});
 
 onUI('character-select.choose', async (characterId) => {
   Log('character-select.choose', characterId);
@@ -280,4 +291,3 @@ RegisterCommand(
   },
   false,
 );
-

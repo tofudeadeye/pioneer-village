@@ -1,10 +1,11 @@
 import { clamp } from 'lodash';
-import { Component, createRef, MouseEvent as ReactMouseEvent } from 'react';
+import { Component, MouseEvent as ReactMouseEvent, createRef } from 'react';
 
 import styles from './styles.module.scss';
 
 interface Props {
-  label: string;
+  xLabel: string;
+  yLabel: string;
   onChange: (xValue: number, yValue: number) => void;
   xMin: number;
   xMax: number;
@@ -18,10 +19,20 @@ interface Props {
 
 interface State {
   isDragging: boolean;
-  active: boolean;
   xValue: number;
   yValue: number;
 }
+
+const findCommonPrefix = (str1: string, str2: string) => {
+  let i = 0;
+  while (i < str1.length && i < str2.length && str1[i] === str2[i]) {
+    i++;
+  }
+  const common = str1.slice(0, i).trim();
+  const diff1 = str1.slice(common.length).trim();
+  const diff2 = str2.slice(common.length).trim();
+  return [common, diff1, diff2];
+};
 
 export default class XYSlider extends Component<Props, State> {
   refContent = createRef<HTMLDivElement>();
@@ -35,7 +46,6 @@ export default class XYSlider extends Component<Props, State> {
 
     this.state = {
       isDragging: false,
-      active: false,
       xValue: props.xDefaultValue || 0,
       yValue: props.yDefaultValue || 0,
     };
@@ -51,12 +61,9 @@ export default class XYSlider extends Component<Props, State> {
     document.removeEventListener('mousemove', this.mousemoveBinding);
   }
 
-  toggleContent() {
-    this.setState({ active: !this.state.active });
-  }
-
   onmousedown(e: ReactMouseEvent<HTMLDivElement>) {
     if (e.button === 2) {
+      console.log('Reset XYSlider to default values');
       this.setState({
         xValue: this.props.xDefaultValue || 0,
         yValue: this.props.yDefaultValue || 0,
@@ -90,8 +97,8 @@ export default class XYSlider extends Component<Props, State> {
     xValue = Math.round(xValue / step) * step;
     yValue = Math.round(yValue / step) * step;
 
-    xValue = clamp(xValue, this.props.xMin, this.props.xMax);
-    yValue = clamp(yValue, this.props.yMin, this.props.yMax);
+    xValue = clamp(xValue, Math.min(this.props.xMin, this.props.xMax), Math.max(this.props.xMin, this.props.xMax));
+    yValue = clamp(yValue, Math.min(this.props.yMin, this.props.yMax), Math.max(this.props.yMin, this.props.yMax));
 
     if (this.state.xValue !== xValue || this.state.yValue !== yValue) {
       this.setState({ xValue, yValue });
@@ -107,11 +114,19 @@ export default class XYSlider extends Component<Props, State> {
   top() {
     let value = (this.state.yValue - this.props.yMin) / (this.props.yMax - this.props.yMin);
 
+    if (value < 0) {
+      value = 1 + value;
+    }
+
     return `${value * 100}%`;
   }
 
   left() {
     let value = (this.state.xValue - this.props.xMin) / (this.props.xMax - this.props.xMin);
+
+    if (value < 0) {
+      value = 1 + value;
+    }
 
     return `${value * 100}%`;
   }
@@ -120,15 +135,14 @@ export default class XYSlider extends Component<Props, State> {
     const containerClass =
       this.props.className === 'cheek-bone' ? `${styles.xyContainer} ${styles.cheekBone}` : styles.xyContainer;
 
+    const [label, xLabel, yLabel] = findCommonPrefix(this.props.xLabel, this.props.yLabel);
+
     return (
       <div className={containerClass}>
-        <div className={styles.xyTitle} onClick={this.toggleContent.bind(this)}>
-          {this.props.label}
-        </div>
-        <div
-          ref={this.refContent}
-          className={this.state.active ? `${styles.xyContents} ${styles.active}` : styles.xyContents}
-        >
+        <div className={styles.xyTitle}>{label}</div>
+        <div className={styles.xTitle}>{xLabel}</div>
+        <div className={styles.yTitle}>{yLabel}</div>
+        <div ref={this.refContent} className={styles.xyContents}>
           <div ref={this.refGrid} className={styles.xyGrid} onMouseDown={this.onmousedown.bind(this)}>
             <div className={styles.xyKnob} style={{ top: this.top(), left: this.left() }} />
           </div>

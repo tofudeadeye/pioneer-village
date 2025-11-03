@@ -7,6 +7,10 @@
   right: mixins.uiSize(64);
   bottom: mixins.uiSize(96);
   left: mixins.uiSize(64);
+  display: flex;
+  flex-wrap: wrap;
+  gap: mixins.uiSize(16);
+    justify-content: center;
 }
 
 .createCharacter {
@@ -40,13 +44,15 @@
 
 .characterLabel {
   display: inline-block;
+  gap: mixins.uiSize(16);
   margin-left: mixins.uiSize(16);
   margin-right: mixins.uiSize(16);
   font-family: 'Caveat', cursive;
   color: var(--theme-white);
   font-size: mixins.uiSize(24);
+  text-align: center;
   // Text shadow effect since drop-shadow with opacity not supported with oklch colors
-  text-shadow: 
+  text-shadow:
     0 #{mixins.uiSize(1)} #{mixins.uiSize(1)} var(--theme-gray12),
     0 calc(-1 * #{mixins.uiSize(1)}) #{mixins.uiSize(1)} var(--theme-gray12),
     #{mixins.uiSize(1)} 0 #{mixins.uiSize(1)} var(--theme-gray12),
@@ -56,13 +62,41 @@
 
   &.positioned {
     margin: 0;
-    padding: mixins.uiSize(72) mixins.uiSize(32);
     transform: translateX(-50%) translateY(-50%);
     opacity: 0;
+
+    .characterName {
+      padding: mixins.uiSize(72) mixins.uiSize(32);
+    }
+  }
+
+  &.unpositioned {
+    .deleteCharacter {
+      margin-top: mixins.uiSize(8);
+    }
   }
 
   &:hover {
     opacity: 1;
+
+    .deleteCharacter {
+      opacity: 0.5;
+    }
+  }
+
+  .deleteCharacter {
+    opacity: 0;
+
+    transition: var(--theme-transition-normal);
+
+    svg {
+      height: mixins.uiSize(16);
+    }
+
+    &:hover {
+      color: var(--theme-red);
+      opacity: 1;
+    }
   }
 
   //&:nth-child(1) {
@@ -101,4 +135,51 @@
   //    content: 'Waiting for the Sunrise : ';
   //  }
   //}
+}
+
+.deleteCharacterModal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: mixins.uiSize(24);
+  padding: mixins.uiSize(24) mixins.uiSize(32);
+  font-family: 'Caveat', cursive;
+
+  background-color: rgba(0,0,0,0.75);
+  color: var(--theme-white);
+
+  opacity: 0;
+  transition: opacity var(--theme-transition-normal);
+  will-change: opacity;
+
+  &:not(.show) {
+    pointer-events: none;
+  }
+
+  &.show {
+    opacity: 1;
+  }
+}
+
+.modalButtons {
+  display: flex;
+  justify-content: center;
+  gap: mixins.uiSize(32);
+  margin-top: mixins.uiSize(16);
+
+  button {
+    background: transparent;
+    border: none;
+    color: var(--theme-white);
+
+    &:hover {
+      color: var(--theme-red);
+    }
+  }
+
+  svg {
+    width: mixins.uiSize(24);
+    height: mixins.uiSize(24);
+  }
 }

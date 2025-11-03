@@ -84,10 +84,12 @@ class Characters {
       .leftJoin(FacesSchema, eq(CharactersSchema.id, FacesSchema.characterId))
       .where(eq(CharactersSchema.accountId, accountId));
 
-    return result.map((row) => ({
-      ...row.Characters,
-      face: row.Faces,
-    }));
+    return result
+      .map((row) => ({
+        ...row.Characters,
+        face: row.Faces,
+      }))
+      .filter((char) => !char.deletedAt);
   }
 
   private async getCharacter(charId: number): Promise<PVCharacterData | undefined> {
@@ -598,6 +600,20 @@ export type Prisma.CharactersCreateInput = {
       .limit(1);
 
     return charactersResult.length > 0;
+  }
+
+  async deleteCharacter(characterId: number): Promise<boolean> {
+    const result = await db
+      .update(CharactersSchema)
+      .set({
+        deletedAt: new Date(),
+      })
+      .where(eq(CharactersSchema.id, characterId))
+      .returning();
+
+    logInfoC('Deleted character', characterId, 'result:', result);
+
+    return result.length > 0;
   }
 
   startIntervals() {

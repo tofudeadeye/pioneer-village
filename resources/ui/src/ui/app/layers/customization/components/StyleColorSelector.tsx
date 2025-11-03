@@ -20,6 +20,29 @@ interface State {
   erroredImages: Set<number>;
 }
 
+const itsThumbScale = 1;
+const renderTint = (palette: string, tint0: number, tint1: number, tint2: number): React.ReactNode => {
+  // const tints = [tint0, tint0, tint0, tint0, tint1, tint1, tint2];
+  const tints = [tint0, tint1, tint2];
+
+  return (
+    <div className={styles.itsThumbs}>
+      {tints.map((tint, i) => (
+        <div
+          className={styles.itsThumb}
+          key={i}
+          style={{
+            backgroundImage: `url(https://p--v.b-cdn.net/customization/palettes/${palette}_thumbs.png)`,
+            backgroundPosition: `-${uiSize((tint % 8) * 8 * itsThumbScale)} -${uiSize(
+              Math.floor(tint / 8) * 8 * itsThumbScale,
+            )}`,
+          }}
+        />
+      ))}
+    </div>
+  );
+};
+
 export default class StyleColorSelector extends Component<Props, State> {
   refContent = createRef<HTMLDivElement>();
 
@@ -109,21 +132,30 @@ export default class StyleColorSelector extends Component<Props, State> {
                 return (
                   <div
                     key={index}
-                    className={styles.scsOption}
+                    className={`${styles.scsOption} ${index === this.state.currentOption ? styles.selected : ''}`}
                     onClick={() => {
                       this.setState({ currentOption: index });
                       this.props.onChange(this.state.currentStyle, index);
                     }}
                   >
-                    {this.state.erroredImages.has(component.component) ? (
-                      <span className={index === this.state.currentOption ? styles.selected : ''}>{index + 1}</span>
-                    ) : (
-                      <img
-                        className={index === this.state.currentOption ? styles.selected : ''}
-                        src={`https://p--v.b-cdn.net/swatches/components/${component.component}.png`}
-                        onError={() => this.optionError(component.component)}
-                      />
+                    {renderTint(
+                      'metaped_tint_hat',
+                      Math.floor(Math.random() * 127),
+                      Math.floor(Math.random() * 127),
+                      Math.floor(Math.random() * 127),
+                      // Math.floor(248 + Math.random() * 6),
+                      // Math.floor(248 + Math.random() * 6),
+                      // Math.floor(248 + Math.random() * 6),
                     )}
+                    {/*{this.state.erroredImages.has(component.component) ? (*/}
+                    {/*  <span className={index === this.state.currentOption ? styles.selected : ''}>{index + 1}</span>*/}
+                    {/*) : (*/}
+                    {/*  <img*/}
+                    {/*    className={index === this.state.currentOption ? styles.selected : ''}*/}
+                    {/*    src={`https://p--v.b-cdn.net/swatches/components/${component.component}.png`}*/}
+                    {/*    onError={() => this.optionError(component.component)}*/}
+                    {/*  />*/}
+                    {/*)}*/}
                   </div>
                 );
               })}

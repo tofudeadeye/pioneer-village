@@ -330,7 +330,28 @@ class CreationManager {
 
     DoScreenFadeIn(500);
 
-    emitUI('customization.state', { show: true, state: 'gender', gender: 'male' });
+    emitUI('customization.state', {
+      show: true,
+      state: 'gender',
+      components: {},
+      model: '',
+      gender: 'male',
+      currentComponents: {},
+      hiddenComponents: {},
+      currentFaceOptions: {},
+      currentFaceFeatures: {},
+      currentBodyOptions: {},
+      currentLayers: [],
+      currentWhistle: {},
+      firstName: '',
+      lastName: '',
+      dateOfBirth: '',
+      tints: {},
+      head: 0,
+      teeth: 0,
+      skinTone: 0,
+      bodyType: 2,
+    });
     focusUI(true, true);
 
     PVCamera.lightTurnOn('CreationLight');

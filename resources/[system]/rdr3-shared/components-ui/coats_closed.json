@@ -2157,141 +2157,6 @@
     ]
   },
   {
-    "name": "Charro Jacket",
-    "components": [
-      {
-        "component": 111310695,
-        "category": 107129908,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "6a27767",
-        "name": "CLOTHING_ITEM_M_CLOSECOAT_003_TINT_001",
-        "itemType": "coats_closed",
-        "id": 3,
-        "tint": 0,
-        "friendlyName": "Charro Jacket"
-      },
-      {
-        "component": 3720684901,
-        "category": 107129908,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "ddc52565",
-        "name": "CLOTHING_ITEM_M_CLOSECOAT_003_TINT_002",
-        "itemType": "coats_closed",
-        "id": 3,
-        "tint": 1,
-        "friendlyName": "Charro Jacket"
-      },
-      {
-        "component": 3482257657,
-        "category": 107129908,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "cf8f08f9",
-        "name": "CLOTHING_ITEM_M_CLOSECOAT_003_TINT_003",
-        "itemType": "coats_closed",
-        "id": 3,
-        "tint": 2,
-        "friendlyName": "Charro Jacket"
-      },
-      {
-        "component": 2571246688,
-        "category": 107129908,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "99421c60",
-        "name": "CLOTHING_ITEM_M_CLOSECOAT_003_TINT_004",
-        "itemType": "coats_closed",
-        "id": 3,
-        "tint": 3,
-        "friendlyName": "Charro Jacket"
-      },
-      {
-        "component": 177569541,
-        "category": 107129908,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "a957f05",
-        "name": "CLOTHING_ITEM_M_CLOSECOAT_003_TINT_005",
-        "itemType": "coats_closed",
-        "id": 3,
-        "tint": 4,
-        "friendlyName": "Charro Jacket"
-      },
-      {
-        "component": 3075528829,
-        "category": 107129908,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "b750d87d",
-        "name": "CLOTHING_ITEM_M_CLOSECOAT_003_TINT_006",
-        "itemType": "coats_closed",
-        "id": 3,
-        "tint": 5,
-        "friendlyName": "Charro Jacket"
-      },
-      {
-        "component": 2843622616,
-        "category": 107129908,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "a97e3cd8",
-        "name": "CLOTHING_ITEM_M_CLOSECOAT_003_TINT_007",
-        "itemType": "coats_closed",
-        "id": 3,
-        "tint": 6,
-        "friendlyName": "Charro Jacket"
-      },
-      {
-        "component": 1406046582,
-        "category": 107129908,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "53ce9176",
-        "name": "CLOTHING_ITEM_M_CLOSECOAT_003_TINT_008",
-        "itemType": "coats_closed",
-        "id": 3,
-        "tint": 7,
-        "friendlyName": "Charro Jacket"
-      },
-      {
-        "component": 3320051107,
-        "category": 107129908,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "c5e3f5a3",
-        "name": "CLOTHING_ITEM_M_CLOSECOAT_003_TINT_009",
-        "itemType": "coats_closed",
-        "id": 3,
-        "tint": 8,
-        "friendlyName": "Charro Jacket"
-      },
-      {
-        "component": 2910406150,
-        "category": 107129908,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "ad794606",
-        "name": "CLOTHING_ITEM_M_CLOSECOAT_003_TINT_010",
-        "itemType": "coats_closed",
-        "id": 3,
-        "tint": 9,
-        "friendlyName": "Charro Jacket"
-      }
-    ]
-  },
-  {
     "name": "Cinched Jacket",
     "components": [
       {
@@ -5173,6 +5038,141 @@
         "id": 313,
         "tint": 9,
         "friendlyName": "Rowberrow Jacket"
+      }
+    ]
+  },
+  {
+    "name": "Charro Jacket",
+    "components": [
+      {
+        "component": 111310695,
+        "category": 107129908,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "6a27767",
+        "name": "CLOTHING_ITEM_M_CLOSECOAT_003_TINT_001",
+        "itemType": "coats_closed",
+        "id": 3,
+        "tint": 0,
+        "friendlyName": "Charro Jacket"
+      },
+      {
+        "component": 3720684901,
+        "category": 107129908,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "ddc52565",
+        "name": "CLOTHING_ITEM_M_CLOSECOAT_003_TINT_002",
+        "itemType": "coats_closed",
+        "id": 3,
+        "tint": 1,
+        "friendlyName": "Charro Jacket"
+      },
+      {
+        "component": 3482257657,
+        "category": 107129908,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "cf8f08f9",
+        "name": "CLOTHING_ITEM_M_CLOSECOAT_003_TINT_003",
+        "itemType": "coats_closed",
+        "id": 3,
+        "tint": 2,
+        "friendlyName": "Charro Jacket"
+      },
+      {
+        "component": 2571246688,
+        "category": 107129908,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "99421c60",
+        "name": "CLOTHING_ITEM_M_CLOSECOAT_003_TINT_004",
+        "itemType": "coats_closed",
+        "id": 3,
+        "tint": 3,
+        "friendlyName": "Charro Jacket"
+      },
+      {
+        "component": 177569541,
+        "category": 107129908,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "a957f05",
+        "name": "CLOTHING_ITEM_M_CLOSECOAT_003_TINT_005",
+        "itemType": "coats_closed",
+        "id": 3,
+        "tint": 4,
+        "friendlyName": "Charro Jacket"
+      },
+      {
+        "component": 3075528829,
+        "category": 107129908,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "b750d87d",
+        "name": "CLOTHING_ITEM_M_CLOSECOAT_003_TINT_006",
+        "itemType": "coats_closed",
+        "id": 3,
+        "tint": 5,
+        "friendlyName": "Charro Jacket"
+      },
+      {
+        "component": 2843622616,
+        "category": 107129908,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "a97e3cd8",
+        "name": "CLOTHING_ITEM_M_CLOSECOAT_003_TINT_007",
+        "itemType": "coats_closed",
+        "id": 3,
+        "tint": 6,
+        "friendlyName": "Charro Jacket"
+      },
+      {
+        "component": 1406046582,
+        "category": 107129908,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "53ce9176",
+        "name": "CLOTHING_ITEM_M_CLOSECOAT_003_TINT_008",
+        "itemType": "coats_closed",
+        "id": 3,
+        "tint": 7,
+        "friendlyName": "Charro Jacket"
+      },
+      {
+        "component": 3320051107,
+        "category": 107129908,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "c5e3f5a3",
+        "name": "CLOTHING_ITEM_M_CLOSECOAT_003_TINT_009",
+        "itemType": "coats_closed",
+        "id": 3,
+        "tint": 8,
+        "friendlyName": "Charro Jacket"
+      },
+      {
+        "component": 2910406150,
+        "category": 107129908,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "ad794606",
+        "name": "CLOTHING_ITEM_M_CLOSECOAT_003_TINT_010",
+        "itemType": "coats_closed",
+        "id": 3,
+        "tint": 9,
+        "friendlyName": "Charro Jacket"
       }
     ]
   }

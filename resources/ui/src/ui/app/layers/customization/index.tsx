@@ -515,6 +515,26 @@ const faceFeatures = [
   },
 ];
 
+function convertComponent(comp: UI.Customization.ComponentJsonData | UI.Customization.ComponentJsonDataPalette) {
+  const data: UI.Customization.StyleColorComponentData = {
+    name: comp.name || '',
+    type: comp.type,
+    component: comp.component,
+  };
+
+  if ('palette' in comp) {
+    return {
+      ...data,
+      palette: comp.palette,
+      tint0: comp.tint0,
+      tint1: comp.tint1,
+      tint2: comp.tint2,
+    };
+  }
+
+  return data;
+}
+
 export default function Customization() {
   const [state, setState] = useState(customizationStore.getState());
 
@@ -756,11 +776,7 @@ export default function Customization() {
                     onChange={(style, option) => setComponent('hair', style, option)}
                     components={(customizationStore.getComponentsData()['hair'] || []).map((item) => ({
                       name: item.name,
-                      components: item.components.map((comp) => ({
-                        name: comp.name || '',
-                        type: comp.type,
-                        component: comp.component,
-                      })),
+                      components: item.components.map((comp) => convertComponent(comp)),
                     }))}
                     style={state.currentComponents['hair']?.style || -1}
                     option={state.currentComponents['hair']?.option || 0}
@@ -889,11 +905,7 @@ export default function Customization() {
                       onChange={(style, option) => setComponent(category, style, option)}
                       components={(customizationStore.getComponentsData()[category] || []).map((item) => ({
                         name: item.name,
-                        components: item.components.map((comp) => ({
-                          name: comp.name || '',
-                          type: comp.type,
-                          component: comp.component,
-                        })),
+                        components: item.components.map((comp) => convertComponent(comp)),
                       }))}
                       style={state.currentComponents[category]?.style || -1}
                       option={state.currentComponents[category]?.option || 0}

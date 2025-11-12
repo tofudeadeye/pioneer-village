@@ -1446,6 +1446,24 @@
         "friendlyName": "Goldwing Spurs"
       },
       {
+        "component": 4092425435,
+        "category": 410165049,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "f3ed74db",
+        "name": "CLOTHING_ITEM_M_SEASON_SPURS_000_TINT_001",
+        "itemType": "boot_accessories",
+        "id": 0,
+        "tint": 0,
+        "friendlyName": "Goldwing Spurs"
+      }
+    ]
+  },
+  {
+    "name": "Gerden Copper Spurs",
+    "components": [
+      {
         "component": 3227299499,
         "category": 410165049,
         "type": "1",
@@ -1574,19 +1592,6 @@
         "id": 0,
         "tint": 9,
         "friendlyName": "Gerden Copper Spurs"
-      },
-      {
-        "component": 4092425435,
-        "category": 410165049,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "f3ed74db",
-        "name": "CLOTHING_ITEM_M_SEASON_SPURS_000_TINT_001",
-        "itemType": "boot_accessories",
-        "id": 0,
-        "tint": 0,
-        "friendlyName": "Goldwing Spurs"
       },
       {
         "component": 3647510571,

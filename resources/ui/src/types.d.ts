@@ -105,10 +105,29 @@ declare namespace UI.Customization {
     friendlyName?: string;
   }
 
+  type ComponentJsonDataPalette = ComponentJsonData & {
+    palette: string | number;
+    tint0: number;
+    tint1: number;
+    tint2: number;
+  };
+
   interface ComponentJson {
     name: string;
-    components: ComponentJsonData[];
+    components: (ComponentJsonData | ComponentJsonDataPalette)[];
   }
+
+  type StyleColorComponentData =
+    | { name: string; type: string; component: number }
+    | {
+        name: string;
+        type: string;
+        component: number;
+        palette: string | number;
+        tint0: number;
+        tint1: number;
+        tint2: number;
+      };
 
   interface OverlayJsonData {
     id: number | string;

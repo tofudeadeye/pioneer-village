@@ -189,37 +189,6 @@
     ]
   },
   {
-    "name": "Leather Gauntlets",
-    "components": [
-      {
-        "component": 1842250006,
-        "category": 2446236448,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "6dce8116",
-        "name": "CLOTHING_ITEM_F_SEASON_GAUNTLETS_000_TINT_001",
-        "itemType": "gauntlets",
-        "id": 0,
-        "tint": 0,
-        "friendlyName": "Leather Gauntlets"
-      },
-      {
-        "component": 376060699,
-        "category": 2446236448,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "166a3b1b",
-        "name": "CLOTHING_ITEM_M_SEASON_GAUNTLETS_000_TINT_001",
-        "itemType": "gauntlets",
-        "id": 0,
-        "tint": 0,
-        "friendlyName": "Leather Gauntlets"
-      }
-    ]
-  },
-  {
     "name": "Harshaw Gauntlets",
     "components": [
       {
@@ -356,6 +325,37 @@
         "id": 2,
         "tint": 3,
         "friendlyName": "Tierney Gauntlets"
+      }
+    ]
+  },
+  {
+    "name": "Leather Gauntlets",
+    "components": [
+      {
+        "component": 1842250006,
+        "category": 2446236448,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "6dce8116",
+        "name": "CLOTHING_ITEM_F_SEASON_GAUNTLETS_000_TINT_001",
+        "itemType": "gauntlets",
+        "id": 0,
+        "tint": 0,
+        "friendlyName": "Leather Gauntlets"
+      },
+      {
+        "component": 376060699,
+        "category": 2446236448,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "166a3b1b",
+        "name": "CLOTHING_ITEM_M_SEASON_GAUNTLETS_000_TINT_001",
+        "itemType": "gauntlets",
+        "id": 0,
+        "tint": 0,
+        "friendlyName": "Leather Gauntlets"
       }
     ]
   }

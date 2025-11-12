@@ -2,9 +2,9 @@ import { PVCustomization, PVGame, emitUI, focusUI, onUI } from '@lib/client';
 import { Log } from '@lib/client/comms/ui';
 import { ColorPalettes } from '@lib/shared/color-palettes';
 
-import PaletteOptions from '../../shared/palette-options';
-import BaseOverlay from '../data/base-overlay';
-import OverlayInfo from '../data/overlay-info';
+// import PaletteOptions from '../../shared/palette-options';
+// import BaseOverlay from '../data/base-overlay';
+// import OverlayInfo from '../data/overlay-info';
 import { creationManager } from '../managers/creation-manager';
 import { paletteManager } from '../managers/palette-manager';
 

@@ -250,6 +250,10 @@ interface Component {
   name?: string;
   itemType?: string;
   friendlyName?: string;
+  palette?: string | number;
+  tint0?: number;
+  tint1?: number;
+  tint2?: number;
 }
 
 interface CameraData {

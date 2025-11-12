@@ -1732,228 +1732,6 @@
         "tint": 5
       },
       {
-        "component": 178498951,
-        "category": 4209578111,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "aa3ad87",
-        "name": "CLOTHING_F_R2_BUCKLE_000_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 0,
-        "tint": 0
-      },
-      {
-        "component": 484561411,
-        "category": 4209578111,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "1ce1d203",
-        "name": "CLOTHING_F_R2_BUCKLE_000_TINT_002",
-        "itemType": "belt_buckles",
-        "id": 0,
-        "tint": 1
-      },
-      {
-        "component": 794785534,
-        "category": 4209578111,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "2f5f76fe",
-        "name": "CLOTHING_F_R2_BUCKLE_000_TINT_003",
-        "itemType": "belt_buckles",
-        "id": 0,
-        "tint": 2
-      },
-      {
-        "component": 2941122265,
-        "category": 4209578111,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "af4df6d9",
-        "name": "CLOTHING_F_R2_BUCKLE_000_TINT_004",
-        "itemType": "belt_buckles",
-        "id": 0,
-        "tint": 3
-      },
-      {
-        "component": 1100421997,
-        "category": 4209578111,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "41971b6d",
-        "name": "CLOTHING_F_R2_BUCKLE_000_TINT_005",
-        "itemType": "belt_buckles",
-        "id": 0,
-        "tint": 4
-      },
-      {
-        "component": 1406779378,
-        "category": 4209578111,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "53d9bff2",
-        "name": "CLOTHING_F_R2_BUCKLE_000_TINT_006",
-        "itemType": "belt_buckles",
-        "id": 0,
-        "tint": 5
-      },
-      {
-        "component": 2847717799,
-        "category": 4209578111,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "a9bcb9a7",
-        "name": "CLOTHING_F_R3_BUCKLE_000_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 0,
-        "tint": 0
-      },
-      {
-        "component": 3806833660,
-        "category": 4209578111,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "e2e7abfc",
-        "name": "CLOTHING_F_R3_BUCKLE_000_TINT_002",
-        "itemType": "belt_buckles",
-        "id": 0,
-        "tint": 1
-      },
-      {
-        "component": 4027893334,
-        "category": 4209578111,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "f014c656",
-        "name": "CLOTHING_F_R3_BUCKLE_000_TINT_003",
-        "itemType": "belt_buckles",
-        "id": 0,
-        "tint": 2
-      },
-      {
-        "component": 1167257945,
-        "category": 4209578111,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "4592f159",
-        "name": "CLOTHING_F_R3_BUCKLE_000_TINT_004",
-        "itemType": "belt_buckles",
-        "id": 0,
-        "tint": 3
-      },
-      {
-        "component": 3566210893,
-        "category": 4209578111,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "d4900f4d",
-        "name": "CLOTHING_F_R3_BUCKLE_000_TINT_005",
-        "itemType": "belt_buckles",
-        "id": 0,
-        "tint": 4
-      },
-      {
-        "component": 1887651645,
-        "category": 4209578111,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "7083473d",
-        "name": "CLOTHING_F_R3_BUCKLE_000_TINT_006",
-        "itemType": "belt_buckles",
-        "id": 0,
-        "tint": 5
-      },
-      {
-        "component": 3033158264,
-        "category": 4209578111,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "b4ca5278",
-        "name": "CLOTHING_F_R4_BUCKLE_000_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 0,
-        "tint": 0,
-        "friendlyName": "Darrow Buckle"
-      },
-      {
-        "component": 2802628349,
-        "category": 4209578111,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "a70cb6fd",
-        "name": "CLOTHING_F_R4_BUCKLE_000_TINT_002",
-        "itemType": "belt_buckles",
-        "id": 0,
-        "tint": 1,
-        "friendlyName": "Darrow Buckle"
-      },
-      {
-        "component": 3493398869,
-        "category": 4209578111,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "d0390955",
-        "name": "CLOTHING_F_R4_BUCKLE_000_TINT_003",
-        "itemType": "belt_buckles",
-        "id": 0,
-        "tint": 2,
-        "friendlyName": "Darrow Buckle"
-      },
-      {
-        "component": 1086417440,
-        "category": 4209578111,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "40c16a20",
-        "name": "CLOTHING_F_R4_BUCKLE_000_TINT_004",
-        "itemType": "belt_buckles",
-        "id": 0,
-        "tint": 3,
-        "friendlyName": "Darrow Buckle"
-      },
-      {
-        "component": 3954557006,
-        "category": 4209578111,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "ebb5c04e",
-        "name": "CLOTHING_F_R4_BUCKLE_000_TINT_005",
-        "itemType": "belt_buckles",
-        "id": 0,
-        "tint": 4,
-        "friendlyName": "Darrow Buckle"
-      },
-      {
-        "component": 3723764939,
-        "category": 4209578111,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "ddf424cb",
-        "name": "CLOTHING_F_R4_BUCKLE_000_TINT_006",
-        "itemType": "belt_buckles",
-        "id": 0,
-        "tint": 5,
-        "friendlyName": "Darrow Buckle"
-      },
-      {
         "component": 624990943,
         "category": 4209578111,
         "type": "0",
@@ -2024,228 +1802,6 @@
         "itemType": "belt_buckles",
         "id": 0,
         "tint": 5
-      },
-      {
-        "component": 417021619,
-        "category": 4209578111,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "18db3eb3",
-        "name": "CLOTHING_M_R2_BUCKLE_000_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 0,
-        "tint": 0
-      },
-      {
-        "component": 3859568918,
-        "category": 4209578111,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "e60c5916",
-        "name": "CLOTHING_M_R2_BUCKLE_000_TINT_002",
-        "itemType": "belt_buckles",
-        "id": 0,
-        "tint": 1
-      },
-      {
-        "component": 4113528668,
-        "category": 4209578111,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "f52f775c",
-        "name": "CLOTHING_M_R2_BUCKLE_000_TINT_003",
-        "itemType": "belt_buckles",
-        "id": 0,
-        "tint": 2
-      },
-      {
-        "component": 3278214089,
-        "category": 4209578111,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "c36593c9",
-        "name": "CLOTHING_M_R2_BUCKLE_000_TINT_004",
-        "itemType": "belt_buckles",
-        "id": 0,
-        "tint": 3
-      },
-      {
-        "component": 806907165,
-        "category": 4209578111,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "30186d1d",
-        "name": "CLOTHING_M_R2_BUCKLE_000_TINT_005",
-        "itemType": "belt_buckles",
-        "id": 0,
-        "tint": 4
-      },
-      {
-        "component": 4269640168,
-        "category": 4209578111,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "fe7d89e8",
-        "name": "CLOTHING_M_R2_BUCKLE_000_TINT_006",
-        "itemType": "belt_buckles",
-        "id": 0,
-        "tint": 5
-      },
-      {
-        "component": 1672711659,
-        "category": 4209578111,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "63b38deb",
-        "name": "CLOTHING_M_R3_BUCKLE_000_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 0,
-        "tint": 0
-      },
-      {
-        "component": 3439222911,
-        "category": 4209578111,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "ccfe607f",
-        "name": "CLOTHING_M_R3_BUCKLE_000_TINT_002",
-        "itemType": "belt_buckles",
-        "id": 0,
-        "tint": 1
-      },
-      {
-        "component": 2512876050,
-        "category": 4209578111,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "95c77212",
-        "name": "CLOTHING_M_R3_BUCKLE_000_TINT_003",
-        "itemType": "belt_buckles",
-        "id": 0,
-        "tint": 2
-      },
-      {
-        "component": 2282608287,
-        "category": 4209578111,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "880dd69f",
-        "name": "CLOTHING_M_R3_BUCKLE_000_TINT_004",
-        "itemType": "belt_buckles",
-        "id": 0,
-        "tint": 3
-      },
-      {
-        "component": 981089145,
-        "category": 4209578111,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "3a7a3b79",
-        "name": "CLOTHING_M_R3_BUCKLE_000_TINT_005",
-        "itemType": "belt_buckles",
-        "id": 0,
-        "tint": 4
-      },
-      {
-        "component": 750231540,
-        "category": 4209578111,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "2cb79ff4",
-        "name": "CLOTHING_M_R3_BUCKLE_000_TINT_006",
-        "itemType": "belt_buckles",
-        "id": 0,
-        "tint": 5
-      },
-      {
-        "component": 1635771202,
-        "category": 4209578111,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "617fe342",
-        "name": "CLOTHING_M_R4_BUCKLE_000_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 0,
-        "tint": 0,
-        "friendlyName": "Darrow Buckle"
-      },
-      {
-        "component": 4274331098,
-        "category": 4209578111,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "fec51dda",
-        "name": "CLOTHING_M_R4_BUCKLE_000_TINT_002",
-        "itemType": "belt_buckles",
-        "id": 0,
-        "tint": 1,
-        "friendlyName": "Darrow Buckle"
-      },
-      {
-        "component": 202094695,
-        "category": 4209578111,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "c0bb867",
-        "name": "CLOTHING_M_R4_BUCKLE_000_TINT_003",
-        "itemType": "belt_buckles",
-        "id": 0,
-        "tint": 2,
-        "friendlyName": "Darrow Buckle"
-      },
-      {
-        "component": 3662959857,
-        "category": 4209578111,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "da5454f1",
-        "name": "CLOTHING_M_R4_BUCKLE_000_TINT_004",
-        "itemType": "belt_buckles",
-        "id": 0,
-        "tint": 3,
-        "friendlyName": "Darrow Buckle"
-      },
-      {
-        "component": 4019355501,
-        "category": 4209578111,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "ef927f6d",
-        "name": "CLOTHING_M_R4_BUCKLE_000_TINT_005",
-        "itemType": "belt_buckles",
-        "id": 0,
-        "tint": 4,
-        "friendlyName": "Darrow Buckle"
-      },
-      {
-        "component": 3078721356,
-        "category": 4209578111,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "b7818f4c",
-        "name": "CLOTHING_M_R4_BUCKLE_000_TINT_006",
-        "itemType": "belt_buckles",
-        "id": 0,
-        "tint": 5,
-        "friendlyName": "Darrow Buckle"
       }
     ]
   },
@@ -2331,292 +1887,6 @@
         "friendlyName": "Sharp Buckle"
       },
       {
-        "component": 3580177223,
-        "category": 4209578111,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "d5652b47",
-        "name": "CLOTHING_ITEM_F_BUCKLE_COMBAT_001_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 1,
-        "tint": 0,
-        "friendlyName": "Enemy Kills Buckle"
-      },
-      {
-        "component": 3186641775,
-        "category": 4209578111,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "bdf04b6f",
-        "name": "CLOTHING_ITEM_F_BUCKLE_COMPETITIVE_001_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 1,
-        "tint": 0,
-        "friendlyName": "Posse Feud Buckle"
-      },
-      {
-        "component": 3217524268,
-        "category": 4209578111,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "bfc7862c",
-        "name": "CLOTHING_ITEM_F_BUCKLE_CRIMES_001_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 1,
-        "tint": 0,
-        "friendlyName": "Lassoed Buckle"
-      },
-      {
-        "component": 3862171459,
-        "category": 4209578111,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "e6340f43",
-        "name": "CLOTHING_ITEM_F_BUCKLE_FREEMODE_001_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 1,
-        "tint": 0,
-        "friendlyName": "Jobseeker Buckle"
-      },
-      {
-        "component": 715947527,
-        "category": 4209578111,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "2aac7e07",
-        "name": "CLOTHING_ITEM_F_BUCKLE_HORSE_001_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 1,
-        "tint": 0,
-        "friendlyName": "Horse Whisper Buckle"
-      },
-      {
-        "component": 2554578875,
-        "category": 4209578111,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "9843c7bb",
-        "name": "CLOTHING_ITEM_F_BUCKLE_HUNTING_001_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 1,
-        "tint": 0,
-        "friendlyName": "Animal Hunt Buckle"
-      },
-      {
-        "component": 1687317308,
-        "category": 4209578111,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "64926b3c",
-        "name": "CLOTHING_ITEM_F_BUCKLE_POSSE_001_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 1,
-        "tint": 0,
-        "friendlyName": "Leader Buckle"
-      },
-      {
-        "component": 2814703116,
-        "category": 4209578111,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "a7c4f60c",
-        "name": "CLOTHING_ITEM_F_BUCKLE_SHARPSHOOTER_001_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 1,
-        "tint": 0,
-        "friendlyName": "Pistol Buckle"
-      },
-      {
-        "component": 1909700942,
-        "category": 4209578111,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "71d3b94e",
-        "name": "CLOTHING_ITEM_F_BUCKLE_SURVIVAL_001_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 1,
-        "tint": 0,
-        "friendlyName": "Herbalist Buckle"
-      },
-      {
-        "component": 1199132064,
-        "category": 4209578111,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "47794da0",
-        "name": "CLOTHING_ITEM_F_BUCKLE_TRADE_001_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 1,
-        "tint": 0,
-        "friendlyName": "Shopper Buckle"
-      },
-      {
-        "component": 1021574475,
-        "category": 4209578111,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "3ce3fd4b",
-        "name": "CLOTHING_ITEM_F_BUCKLE_TRAVEL_001_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 1,
-        "tint": 0,
-        "friendlyName": "Train Buckle"
-      },
-      {
-        "component": 161147647,
-        "category": 4209578111,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "99aeaff",
-        "name": "CLOTHING_ITEM_M_BUCKLE_COMBAT_001_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 1,
-        "tint": 0,
-        "friendlyName": "Enemy Kills Buckle"
-      },
-      {
-        "component": 3388824012,
-        "category": 4209578111,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "c9fd59cc",
-        "name": "CLOTHING_ITEM_M_BUCKLE_COMPETITIVE_001_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 1,
-        "tint": 0,
-        "friendlyName": "Posse Feud Buckle"
-      },
-      {
-        "component": 3250866636,
-        "category": 4209578111,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "c1c449cc",
-        "name": "CLOTHING_ITEM_M_BUCKLE_CRIMES_001_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 1,
-        "tint": 0,
-        "friendlyName": "Lassoed Buckle"
-      },
-      {
-        "component": 3383868319,
-        "category": 4209578111,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "c9b1bb9f",
-        "name": "CLOTHING_ITEM_M_BUCKLE_FREEMODE_001_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 1,
-        "tint": 0,
-        "friendlyName": "Jobseeker Buckle"
-      },
-      {
-        "component": 147815842,
-        "category": 4209578111,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "8cf7da2",
-        "name": "CLOTHING_ITEM_M_BUCKLE_HORSE_001_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 1,
-        "tint": 0,
-        "friendlyName": "Horse Whisper Buckle"
-      },
-      {
-        "component": 3148859206,
-        "category": 4209578111,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "bbafc746",
-        "name": "CLOTHING_ITEM_M_BUCKLE_HUNTING_001_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 1,
-        "tint": 0,
-        "friendlyName": "Animal Hunt Buckle"
-      },
-      {
-        "component": 2850171066,
-        "category": 4209578111,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "a9e228ba",
-        "name": "CLOTHING_ITEM_M_BUCKLE_POSSE_001_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 1,
-        "tint": 0,
-        "friendlyName": "Leader Buckle"
-      },
-      {
-        "component": 2995508234,
-        "category": 4209578111,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "b28bd40a",
-        "name": "CLOTHING_ITEM_M_BUCKLE_SHARPSHOOTER_001_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 1,
-        "tint": 0,
-        "friendlyName": "Pistol Buckle"
-      },
-      {
-        "component": 1370510965,
-        "category": 4209578111,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "51b05675",
-        "name": "CLOTHING_ITEM_M_BUCKLE_SURVIVAL_001_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 1,
-        "tint": 0,
-        "friendlyName": "Herbalist Buckle"
-      },
-      {
-        "component": 878044387,
-        "category": 4209578111,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "3455e4e3",
-        "name": "CLOTHING_ITEM_M_BUCKLE_TRADE_001_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 1,
-        "tint": 0,
-        "friendlyName": "Shopper Buckle"
-      },
-      {
-        "component": 1365633803,
-        "category": 4209578111,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "5165eb0b",
-        "name": "CLOTHING_ITEM_M_BUCKLE_TRAVEL_001_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 1,
-        "tint": 0,
-        "friendlyName": "Train Buckle"
-      },
-      {
         "component": 548744781,
         "category": 4209578111,
         "type": "0",
@@ -2691,6 +1961,496 @@
     ]
   },
   {
+    "name": 0,
+    "components": [
+      {
+        "component": 178498951,
+        "category": 4209578111,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "aa3ad87",
+        "name": "CLOTHING_F_R2_BUCKLE_000_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 0,
+        "tint": 0
+      },
+      {
+        "component": 484561411,
+        "category": 4209578111,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "1ce1d203",
+        "name": "CLOTHING_F_R2_BUCKLE_000_TINT_002",
+        "itemType": "belt_buckles",
+        "id": 0,
+        "tint": 1
+      },
+      {
+        "component": 794785534,
+        "category": 4209578111,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "2f5f76fe",
+        "name": "CLOTHING_F_R2_BUCKLE_000_TINT_003",
+        "itemType": "belt_buckles",
+        "id": 0,
+        "tint": 2
+      },
+      {
+        "component": 2941122265,
+        "category": 4209578111,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "af4df6d9",
+        "name": "CLOTHING_F_R2_BUCKLE_000_TINT_004",
+        "itemType": "belt_buckles",
+        "id": 0,
+        "tint": 3
+      },
+      {
+        "component": 1100421997,
+        "category": 4209578111,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "41971b6d",
+        "name": "CLOTHING_F_R2_BUCKLE_000_TINT_005",
+        "itemType": "belt_buckles",
+        "id": 0,
+        "tint": 4
+      },
+      {
+        "component": 1406779378,
+        "category": 4209578111,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "53d9bff2",
+        "name": "CLOTHING_F_R2_BUCKLE_000_TINT_006",
+        "itemType": "belt_buckles",
+        "id": 0,
+        "tint": 5
+      },
+      {
+        "component": 417021619,
+        "category": 4209578111,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "18db3eb3",
+        "name": "CLOTHING_M_R2_BUCKLE_000_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 0,
+        "tint": 0
+      },
+      {
+        "component": 3859568918,
+        "category": 4209578111,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "e60c5916",
+        "name": "CLOTHING_M_R2_BUCKLE_000_TINT_002",
+        "itemType": "belt_buckles",
+        "id": 0,
+        "tint": 1
+      },
+      {
+        "component": 4113528668,
+        "category": 4209578111,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "f52f775c",
+        "name": "CLOTHING_M_R2_BUCKLE_000_TINT_003",
+        "itemType": "belt_buckles",
+        "id": 0,
+        "tint": 2
+      },
+      {
+        "component": 3278214089,
+        "category": 4209578111,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "c36593c9",
+        "name": "CLOTHING_M_R2_BUCKLE_000_TINT_004",
+        "itemType": "belt_buckles",
+        "id": 0,
+        "tint": 3
+      },
+      {
+        "component": 806907165,
+        "category": 4209578111,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "30186d1d",
+        "name": "CLOTHING_M_R2_BUCKLE_000_TINT_005",
+        "itemType": "belt_buckles",
+        "id": 0,
+        "tint": 4
+      },
+      {
+        "component": 4269640168,
+        "category": 4209578111,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "fe7d89e8",
+        "name": "CLOTHING_M_R2_BUCKLE_000_TINT_006",
+        "itemType": "belt_buckles",
+        "id": 0,
+        "tint": 5
+      }
+    ]
+  },
+  {
+    "name": 0,
+    "components": [
+      {
+        "component": 2847717799,
+        "category": 4209578111,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "a9bcb9a7",
+        "name": "CLOTHING_F_R3_BUCKLE_000_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 0,
+        "tint": 0
+      },
+      {
+        "component": 3806833660,
+        "category": 4209578111,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "e2e7abfc",
+        "name": "CLOTHING_F_R3_BUCKLE_000_TINT_002",
+        "itemType": "belt_buckles",
+        "id": 0,
+        "tint": 1
+      },
+      {
+        "component": 4027893334,
+        "category": 4209578111,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "f014c656",
+        "name": "CLOTHING_F_R3_BUCKLE_000_TINT_003",
+        "itemType": "belt_buckles",
+        "id": 0,
+        "tint": 2
+      },
+      {
+        "component": 1167257945,
+        "category": 4209578111,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "4592f159",
+        "name": "CLOTHING_F_R3_BUCKLE_000_TINT_004",
+        "itemType": "belt_buckles",
+        "id": 0,
+        "tint": 3
+      },
+      {
+        "component": 3566210893,
+        "category": 4209578111,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "d4900f4d",
+        "name": "CLOTHING_F_R3_BUCKLE_000_TINT_005",
+        "itemType": "belt_buckles",
+        "id": 0,
+        "tint": 4
+      },
+      {
+        "component": 1887651645,
+        "category": 4209578111,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "7083473d",
+        "name": "CLOTHING_F_R3_BUCKLE_000_TINT_006",
+        "itemType": "belt_buckles",
+        "id": 0,
+        "tint": 5
+      },
+      {
+        "component": 1672711659,
+        "category": 4209578111,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "63b38deb",
+        "name": "CLOTHING_M_R3_BUCKLE_000_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 0,
+        "tint": 0
+      },
+      {
+        "component": 3439222911,
+        "category": 4209578111,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "ccfe607f",
+        "name": "CLOTHING_M_R3_BUCKLE_000_TINT_002",
+        "itemType": "belt_buckles",
+        "id": 0,
+        "tint": 1
+      },
+      {
+        "component": 2512876050,
+        "category": 4209578111,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "95c77212",
+        "name": "CLOTHING_M_R3_BUCKLE_000_TINT_003",
+        "itemType": "belt_buckles",
+        "id": 0,
+        "tint": 2
+      },
+      {
+        "component": 2282608287,
+        "category": 4209578111,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "880dd69f",
+        "name": "CLOTHING_M_R3_BUCKLE_000_TINT_004",
+        "itemType": "belt_buckles",
+        "id": 0,
+        "tint": 3
+      },
+      {
+        "component": 981089145,
+        "category": 4209578111,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "3a7a3b79",
+        "name": "CLOTHING_M_R3_BUCKLE_000_TINT_005",
+        "itemType": "belt_buckles",
+        "id": 0,
+        "tint": 4
+      },
+      {
+        "component": 750231540,
+        "category": 4209578111,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "2cb79ff4",
+        "name": "CLOTHING_M_R3_BUCKLE_000_TINT_006",
+        "itemType": "belt_buckles",
+        "id": 0,
+        "tint": 5
+      }
+    ]
+  },
+  {
+    "name": "Darrow Buckle",
+    "components": [
+      {
+        "component": 3033158264,
+        "category": 4209578111,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "b4ca5278",
+        "name": "CLOTHING_F_R4_BUCKLE_000_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 0,
+        "tint": 0,
+        "friendlyName": "Darrow Buckle"
+      },
+      {
+        "component": 2802628349,
+        "category": 4209578111,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "a70cb6fd",
+        "name": "CLOTHING_F_R4_BUCKLE_000_TINT_002",
+        "itemType": "belt_buckles",
+        "id": 0,
+        "tint": 1,
+        "friendlyName": "Darrow Buckle"
+      },
+      {
+        "component": 3493398869,
+        "category": 4209578111,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "d0390955",
+        "name": "CLOTHING_F_R4_BUCKLE_000_TINT_003",
+        "itemType": "belt_buckles",
+        "id": 0,
+        "tint": 2,
+        "friendlyName": "Darrow Buckle"
+      },
+      {
+        "component": 1086417440,
+        "category": 4209578111,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "40c16a20",
+        "name": "CLOTHING_F_R4_BUCKLE_000_TINT_004",
+        "itemType": "belt_buckles",
+        "id": 0,
+        "tint": 3,
+        "friendlyName": "Darrow Buckle"
+      },
+      {
+        "component": 3954557006,
+        "category": 4209578111,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "ebb5c04e",
+        "name": "CLOTHING_F_R4_BUCKLE_000_TINT_005",
+        "itemType": "belt_buckles",
+        "id": 0,
+        "tint": 4,
+        "friendlyName": "Darrow Buckle"
+      },
+      {
+        "component": 3723764939,
+        "category": 4209578111,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "ddf424cb",
+        "name": "CLOTHING_F_R4_BUCKLE_000_TINT_006",
+        "itemType": "belt_buckles",
+        "id": 0,
+        "tint": 5,
+        "friendlyName": "Darrow Buckle"
+      },
+      {
+        "component": 1635771202,
+        "category": 4209578111,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "617fe342",
+        "name": "CLOTHING_M_R4_BUCKLE_000_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 0,
+        "tint": 0,
+        "friendlyName": "Darrow Buckle"
+      },
+      {
+        "component": 4274331098,
+        "category": 4209578111,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "fec51dda",
+        "name": "CLOTHING_M_R4_BUCKLE_000_TINT_002",
+        "itemType": "belt_buckles",
+        "id": 0,
+        "tint": 1,
+        "friendlyName": "Darrow Buckle"
+      },
+      {
+        "component": 202094695,
+        "category": 4209578111,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "c0bb867",
+        "name": "CLOTHING_M_R4_BUCKLE_000_TINT_003",
+        "itemType": "belt_buckles",
+        "id": 0,
+        "tint": 2,
+        "friendlyName": "Darrow Buckle"
+      },
+      {
+        "component": 3662959857,
+        "category": 4209578111,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "da5454f1",
+        "name": "CLOTHING_M_R4_BUCKLE_000_TINT_004",
+        "itemType": "belt_buckles",
+        "id": 0,
+        "tint": 3,
+        "friendlyName": "Darrow Buckle"
+      },
+      {
+        "component": 4019355501,
+        "category": 4209578111,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "ef927f6d",
+        "name": "CLOTHING_M_R4_BUCKLE_000_TINT_005",
+        "itemType": "belt_buckles",
+        "id": 0,
+        "tint": 4,
+        "friendlyName": "Darrow Buckle"
+      },
+      {
+        "component": 3078721356,
+        "category": 4209578111,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "b7818f4c",
+        "name": "CLOTHING_M_R4_BUCKLE_000_TINT_006",
+        "itemType": "belt_buckles",
+        "id": 0,
+        "tint": 5,
+        "friendlyName": "Darrow Buckle"
+      }
+    ]
+  },
+  {
+    "name": "Enemy Kills Buckle",
+    "components": [
+      {
+        "component": 3580177223,
+        "category": 4209578111,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "d5652b47",
+        "name": "CLOTHING_ITEM_F_BUCKLE_COMBAT_001_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 1,
+        "tint": 0,
+        "friendlyName": "Enemy Kills Buckle"
+      },
+      {
+        "component": 161147647,
+        "category": 4209578111,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "99aeaff",
+        "name": "CLOTHING_ITEM_M_BUCKLE_COMBAT_001_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 1,
+        "tint": 0,
+        "friendlyName": "Enemy Kills Buckle"
+      }
+    ]
+  },
+  {
     "name": "Hip Fire Buckle",
     "components": [
       {
@@ -2707,123 +2467,6 @@
         "friendlyName": "Hip Fire Buckle"
       },
       {
-        "component": 1247569710,
-        "category": 4209578111,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "4a5c672e",
-        "name": "CLOTHING_ITEM_F_BUCKLE_CRIMES_002_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 2,
-        "tint": 0,
-        "friendlyName": "Drag Buckle"
-      },
-      {
-        "component": 2734912479,
-        "category": 4209578111,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "a30373df",
-        "name": "CLOTHING_ITEM_F_BUCKLE_FREEMODE_002_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 2,
-        "tint": 0,
-        "friendlyName": "Gun for Hire Buckle"
-      },
-      {
-        "component": 1011499272,
-        "category": 4209578111,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "3c4a4108",
-        "name": "CLOTHING_ITEM_F_BUCKLE_HORSE_002_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 2,
-        "tint": 0,
-        "friendlyName": "Horse Breeds Buckle"
-      },
-      {
-        "component": 3565399107,
-        "category": 4209578111,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "d483ac43",
-        "name": "CLOTHING_ITEM_F_BUCKLE_HUNTING_002_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 2,
-        "tint": 0,
-        "friendlyName": "Bird Hunt Buckle"
-      },
-      {
-        "component": 2593529312,
-        "category": 4209578111,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "9a961de0",
-        "name": "CLOTHING_ITEM_F_BUCKLE_POSSE_002_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 2,
-        "tint": 0,
-        "friendlyName": "Member Buckle"
-      },
-      {
-        "component": 1312895143,
-        "category": 4209578111,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "4e4130a7",
-        "name": "CLOTHING_ITEM_F_BUCKLE_SHARPSHOOTER_002_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 2,
-        "tint": 0,
-        "friendlyName": "Revolver Buckle"
-      },
-      {
-        "component": 3380854205,
-        "category": 4209578111,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "c983bdbd",
-        "name": "CLOTHING_ITEM_F_BUCKLE_SURVIVAL_002_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 2,
-        "tint": 0,
-        "friendlyName": "Taste Test Buckle"
-      },
-      {
-        "component": 2269682022,
-        "category": 4209578111,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "87489966",
-        "name": "CLOTHING_ITEM_F_BUCKLE_TRADE_002_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 2,
-        "tint": 0,
-        "friendlyName": "Consumer Buckle"
-      },
-      {
-        "component": 3772030019,
-        "category": 4209578111,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "e0d49c43",
-        "name": "CLOTHING_ITEM_F_BUCKLE_TRAVEL_002_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 2,
-        "tint": 0,
-        "friendlyName": "Nomad Buckle"
-      },
-      {
         "component": 418760919,
         "category": 4209578111,
         "type": "0",
@@ -2835,679 +2478,6 @@
         "id": 2,
         "tint": 0,
         "friendlyName": "Hip Fire Buckle"
-      },
-      {
-        "component": 236295871,
-        "category": 4209578111,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "e1596bf",
-        "name": "CLOTHING_ITEM_M_BUCKLE_CRIMES_002_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 2,
-        "tint": 0,
-        "friendlyName": "Drag Buckle"
-      },
-      {
-        "component": 1477097256,
-        "category": 4209578111,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "580ab728",
-        "name": "CLOTHING_ITEM_M_BUCKLE_FREEMODE_002_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 2,
-        "tint": 0,
-        "friendlyName": "Gun for Hire Buckle"
-      },
-      {
-        "component": 1224938018,
-        "category": 4209578111,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "49031222",
-        "name": "CLOTHING_ITEM_M_BUCKLE_HORSE_002_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 2,
-        "tint": 0,
-        "friendlyName": "Horse Breeds Buckle"
-      },
-      {
-        "component": 1103647487,
-        "category": 4209578111,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "41c852ff",
-        "name": "CLOTHING_ITEM_M_BUCKLE_HUNTING_002_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 2,
-        "tint": 0,
-        "friendlyName": "Bird Hunt Buckle"
-      },
-      {
-        "component": 1609132761,
-        "category": 4209578111,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "5fe96ad9",
-        "name": "CLOTHING_ITEM_M_BUCKLE_POSSE_002_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 2,
-        "tint": 0,
-        "friendlyName": "Member Buckle"
-      },
-      {
-        "component": 2648944913,
-        "category": 4209578111,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "9de3b111",
-        "name": "CLOTHING_ITEM_M_BUCKLE_SHARPSHOOTER_002_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 2,
-        "tint": 0,
-        "friendlyName": "Revolver Buckle"
-      },
-      {
-        "component": 1817941974,
-        "category": 4209578111,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "6c5b97d6",
-        "name": "CLOTHING_ITEM_M_BUCKLE_SURVIVAL_002_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 2,
-        "tint": 0,
-        "friendlyName": "Taste Test Buckle"
-      },
-      {
-        "component": 934953512,
-        "category": 4209578111,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "37ba4228",
-        "name": "CLOTHING_ITEM_M_BUCKLE_TRADE_002_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 2,
-        "tint": 0,
-        "friendlyName": "Consumer Buckle"
-      },
-      {
-        "component": 1605136459,
-        "category": 4209578111,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "5fac704b",
-        "name": "CLOTHING_ITEM_M_BUCKLE_TRAVEL_002_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 2,
-        "tint": 0,
-        "friendlyName": "Nomad Buckle"
-      }
-    ]
-  },
-  {
-    "name": "Racer Buckle",
-    "components": [
-      {
-        "component": 4249566610,
-        "category": 4209578111,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "fd4b3d92",
-        "name": "CLOTHING_ITEM_F_BUCKLE_COMPETITIVE_003_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 3,
-        "tint": 0,
-        "friendlyName": "Racer Buckle"
-      },
-      {
-        "component": 1586287962,
-        "category": 4209578111,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "5e8cd55a",
-        "name": "CLOTHING_ITEM_F_BUCKLE_CRIMES_003_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 3,
-        "tint": 0,
-        "friendlyName": "Wanted Buckle"
-      },
-      {
-        "component": 3279424835,
-        "category": 4209578111,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "c3780d43",
-        "name": "CLOTHING_ITEM_F_BUCKLE_FREEMODE_003_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 3,
-        "tint": 0,
-        "friendlyName": "Workaholic Buckle"
-      },
-      {
-        "component": 3004315728,
-        "category": 4209578111,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "b3123850",
-        "name": "CLOTHING_ITEM_F_BUCKLE_GENERAL_003_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 3,
-        "tint": 0,
-        "friendlyName": "Dishonorable Buckle"
-      },
-      {
-        "component": 1398058136,
-        "category": 4209578111,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "5354ac98",
-        "name": "CLOTHING_ITEM_F_BUCKLE_HORSE_003_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 3,
-        "tint": 0,
-        "friendlyName": "Falling Buckle"
-      },
-      {
-        "component": 3054159399,
-        "category": 4209578111,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "b60ac627",
-        "name": "CLOTHING_ITEM_F_BUCKLE_HUNTING_003_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 3,
-        "tint": 0,
-        "friendlyName": "Airborne Buckle"
-      },
-      {
-        "component": 3471217438,
-        "category": 4209578111,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "cee6931e",
-        "name": "CLOTHING_ITEM_F_BUCKLE_POSSE_003_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 3,
-        "tint": 0,
-        "friendlyName": "Reviver Buckle"
-      },
-      {
-        "component": 2766704372,
-        "category": 4209578111,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "a4e88ef4",
-        "name": "CLOTHING_ITEM_F_BUCKLE_SHARPSHOOTER_003_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 3,
-        "tint": 0,
-        "friendlyName": "Repeater Buckle"
-      },
-      {
-        "component": 198975914,
-        "category": 4209578111,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "bdc21aa",
-        "name": "CLOTHING_ITEM_F_BUCKLE_SURVIVAL_003_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 3,
-        "tint": 0,
-        "friendlyName": "Crafter Buckle"
-      },
-      {
-        "component": 4063745224,
-        "category": 4209578111,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "f237d4c8",
-        "name": "CLOTHING_ITEM_F_BUCKLE_TRADE_003_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 3,
-        "tint": 0,
-        "friendlyName": "Fashion Buckle"
-      },
-      {
-        "component": 107605801,
-        "category": 4209578111,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "669ef29",
-        "name": "CLOTHING_ITEM_F_BUCKLE_TRAVEL_003_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 3,
-        "tint": 0,
-        "friendlyName": "Canoer Buckle"
-      },
-      {
-        "component": 272906767,
-        "category": 4209578111,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "10443a0f",
-        "name": "CLOTHING_ITEM_M_BUCKLE_COMPETITIVE_003_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 3,
-        "tint": 0,
-        "friendlyName": "Racer Buckle"
-      },
-      {
-        "component": 2778133358,
-        "category": 4209578111,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "a596f36e",
-        "name": "CLOTHING_ITEM_M_BUCKLE_CRIMES_003_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 3,
-        "tint": 0,
-        "friendlyName": "Wanted Buckle"
-      },
-      {
-        "component": 3883984949,
-        "category": 4209578111,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "e780e835",
-        "name": "CLOTHING_ITEM_M_BUCKLE_FREEMODE_003_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 3,
-        "tint": 0,
-        "friendlyName": "Workaholic Buckle"
-      },
-      {
-        "component": 3236824733,
-        "category": 4209578111,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "c0ee069d",
-        "name": "CLOTHING_ITEM_M_BUCKLE_GENERAL_003_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 3,
-        "tint": 0,
-        "friendlyName": "Dishonorable Buckle"
-      },
-      {
-        "component": 3391527703,
-        "category": 4209578111,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "ca269b17",
-        "name": "CLOTHING_ITEM_M_BUCKLE_HORSE_003_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 3,
-        "tint": 0,
-        "friendlyName": "Falling Buckle"
-      },
-      {
-        "component": 184264279,
-        "category": 4209578111,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "afba657",
-        "name": "CLOTHING_ITEM_M_BUCKLE_HUNTING_003_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 3,
-        "tint": 0,
-        "friendlyName": "Airborne Buckle"
-      },
-      {
-        "component": 1414781489,
-        "category": 4209578111,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "5453da31",
-        "name": "CLOTHING_ITEM_M_BUCKLE_POSSE_003_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 3,
-        "tint": 0,
-        "friendlyName": "Reviver Buckle"
-      },
-      {
-        "component": 2858913315,
-        "category": 4209578111,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "aa678e23",
-        "name": "CLOTHING_ITEM_M_BUCKLE_SHARPSHOOTER_003_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 3,
-        "tint": 0,
-        "friendlyName": "Repeater Buckle"
-      },
-      {
-        "component": 3434755258,
-        "category": 4209578111,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "ccba34ba",
-        "name": "CLOTHING_ITEM_M_BUCKLE_SURVIVAL_003_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 3,
-        "tint": 0,
-        "friendlyName": "Crafter Buckle"
-      },
-      {
-        "component": 3094778069,
-        "category": 4209578111,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "b87690d5",
-        "name": "CLOTHING_ITEM_M_BUCKLE_TRADE_003_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 3,
-        "tint": 0,
-        "friendlyName": "Fashion Buckle"
-      },
-      {
-        "component": 2390068254,
-        "category": 4209578111,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "8e758c1e",
-        "name": "CLOTHING_ITEM_M_BUCKLE_TRAVEL_003_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 3,
-        "tint": 0,
-        "friendlyName": "Canoer Buckle"
-      }
-    ]
-  },
-  {
-    "name": "Showdown Buckle",
-    "components": [
-      {
-        "component": 2443729106,
-        "category": 4209578111,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "91a858d2",
-        "name": "CLOTHING_ITEM_F_BUCKLE_COMPETITIVE_004_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 4,
-        "tint": 0,
-        "friendlyName": "Showdown Buckle"
-      },
-      {
-        "component": 1524292245,
-        "category": 4209578111,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "5adada95",
-        "name": "CLOTHING_ITEM_F_BUCKLE_CRIMES_004_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 4,
-        "tint": 0,
-        "friendlyName": "Law Escape Buckle"
-      },
-      {
-        "component": 2852813587,
-        "category": 4209578111,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "aa0a7b13",
-        "name": "CLOTHING_ITEM_F_BUCKLE_FREEMODE_004_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 4,
-        "tint": 0,
-        "friendlyName": "Clear Out Buckle"
-      },
-      {
-        "component": 2556317892,
-        "category": 4209578111,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "985e50c4",
-        "name": "CLOTHING_ITEM_F_BUCKLE_GENERAL_004_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 4,
-        "tint": 0,
-        "friendlyName": "Honorable Buckle"
-      },
-      {
-        "component": 2430773657,
-        "category": 4209578111,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "90e2a999",
-        "name": "CLOTHING_ITEM_F_BUCKLE_HUNTING_004_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 4,
-        "tint": 0,
-        "friendlyName": "Blast Radius Buckle"
-      },
-      {
-        "component": 1676120918,
-        "category": 4209578111,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "63e79356",
-        "name": "CLOTHING_ITEM_F_BUCKLE_POSSE_004_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 4,
-        "tint": 0,
-        "friendlyName": "Assisting Buckle"
-      },
-      {
-        "component": 3912716186,
-        "category": 4209578111,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "e9374f9a",
-        "name": "CLOTHING_ITEM_F_BUCKLE_SHARPSHOOTER_004_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 4,
-        "tint": 0,
-        "friendlyName": "Rifle Buckle"
-      },
-      {
-        "component": 1134435597,
-        "category": 4209578111,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "439e1d0d",
-        "name": "CLOTHING_ITEM_F_BUCKLE_SURVIVAL_004_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 4,
-        "tint": 0,
-        "friendlyName": "Recipe Buckle"
-      },
-      {
-        "component": 58562878,
-        "category": 4209578111,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "37d993e",
-        "name": "CLOTHING_ITEM_F_BUCKLE_TRADE_004_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 4,
-        "tint": 0,
-        "friendlyName": "Big Spender Buckle"
-      },
-      {
-        "component": 2840821519,
-        "category": 4209578111,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "a9537f0f",
-        "name": "CLOTHING_ITEM_F_BUCKLE_TRAVEL_004_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 4,
-        "tint": 0,
-        "friendlyName": "Horseback Buckle"
-      },
-      {
-        "component": 3744229579,
-        "category": 4209578111,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "df2c68cb",
-        "name": "CLOTHING_ITEM_M_BUCKLE_COMPETITIVE_004_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 4,
-        "tint": 0,
-        "friendlyName": "Showdown Buckle"
-      },
-      {
-        "component": 684263097,
-        "category": 4209578111,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "28c906b9",
-        "name": "CLOTHING_ITEM_M_BUCKLE_CRIMES_004_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 4,
-        "tint": 0,
-        "friendlyName": "Law Escape Buckle"
-      },
-      {
-        "component": 3290865015,
-        "category": 4209578111,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "c4269d77",
-        "name": "CLOTHING_ITEM_M_BUCKLE_FREEMODE_004_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 4,
-        "tint": 0,
-        "friendlyName": "Clear Out Buckle"
-      },
-      {
-        "component": 3895192312,
-        "category": 4209578111,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "e82beaf8",
-        "name": "CLOTHING_ITEM_M_BUCKLE_GENERAL_004_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 4,
-        "tint": 0,
-        "friendlyName": "Honorable Buckle"
-      },
-      {
-        "component": 2665529719,
-        "category": 4209578111,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "9ee0c177",
-        "name": "CLOTHING_ITEM_M_BUCKLE_HUNTING_004_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 4,
-        "tint": 0,
-        "friendlyName": "Blast Radius Buckle"
-      },
-      {
-        "component": 613501905,
-        "category": 4209578111,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "24914bd1",
-        "name": "CLOTHING_ITEM_M_BUCKLE_POSSE_004_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 4,
-        "tint": 0,
-        "friendlyName": "Assisting Buckle"
-      },
-      {
-        "component": 1026349198,
-        "category": 4209578111,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "3d2cd88e",
-        "name": "CLOTHING_ITEM_M_BUCKLE_SHARPSHOOTER_004_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 4,
-        "tint": 0,
-        "friendlyName": "Rifle Buckle"
-      },
-      {
-        "component": 329239577,
-        "category": 4209578111,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "139fcc19",
-        "name": "CLOTHING_ITEM_M_BUCKLE_SURVIVAL_004_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 4,
-        "tint": 0,
-        "friendlyName": "Recipe Buckle"
-      },
-      {
-        "component": 1144524070,
-        "category": 4209578111,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "44380d26",
-        "name": "CLOTHING_ITEM_M_BUCKLE_TRADE_004_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 4,
-        "tint": 0,
-        "friendlyName": "Big Spender Buckle"
-      },
-      {
-        "component": 829076046,
-        "category": 4209578111,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "316ab24e",
-        "name": "CLOTHING_ITEM_M_BUCKLE_TRAVEL_004_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 4,
-        "tint": 0,
-        "friendlyName": "Horseback Buckle"
       }
     ]
   },
@@ -3528,123 +2498,6 @@
         "friendlyName": "Hit and Run Buckle"
       },
       {
-        "component": 3071064315,
-        "category": 4209578111,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "b70cb8fb",
-        "name": "CLOTHING_ITEM_F_BUCKLE_COMPETITIVE_005_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 5,
-        "tint": 0,
-        "friendlyName": "Posse Race Buckle"
-      },
-      {
-        "component": 3067990308,
-        "category": 4209578111,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "b6ddd124",
-        "name": "CLOTHING_ITEM_F_BUCKLE_FREEMODE_005_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 5,
-        "tint": 0,
-        "friendlyName": "Can't Hide Buckle"
-      },
-      {
-        "component": 2192633412,
-        "category": 4209578111,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "82b0ee44",
-        "name": "CLOTHING_ITEM_F_BUCKLE_GENERAL_005_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 5,
-        "tint": 0,
-        "friendlyName": "Treasure Hunter Buckle"
-      },
-      {
-        "component": 2656685192,
-        "category": 4209578111,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "9e59cc88",
-        "name": "CLOTHING_ITEM_F_BUCKLE_HUNTING_005_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 5,
-        "tint": 0,
-        "friendlyName": "Small Game Buckle"
-      },
-      {
-        "component": 307171564,
-        "category": 4209578111,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "124f10ec",
-        "name": "CLOTHING_ITEM_F_BUCKLE_POSSE_005_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 5,
-        "tint": 0,
-        "friendlyName": "Challenger Buckle"
-      },
-      {
-        "component": 2412169612,
-        "category": 4209578111,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "8fc6c98c",
-        "name": "CLOTHING_ITEM_F_BUCKLE_SHARPSHOOTER_005_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 5,
-        "tint": 0,
-        "friendlyName": "Sniper Buckle"
-      },
-      {
-        "component": 73896424,
-        "category": 4209578111,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "46791e8",
-        "name": "CLOTHING_ITEM_F_BUCKLE_SURVIVAL_005_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 5,
-        "tint": 0,
-        "friendlyName": "Chef Buckle"
-      },
-      {
-        "component": 2159514093,
-        "category": 4209578111,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "80b791ed",
-        "name": "CLOTHING_ITEM_F_BUCKLE_TRADE_005_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 5,
-        "tint": 0,
-        "friendlyName": "Trader Buckle"
-      },
-      {
-        "component": 2145956586,
-        "category": 4209578111,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "7fe8b2ea",
-        "name": "CLOTHING_ITEM_F_BUCKLE_TRAVEL_005_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 5,
-        "tint": 0,
-        "friendlyName": "Frontier Buckle"
-      },
-      {
         "component": 1130595647,
         "category": 4209578111,
         "type": "0",
@@ -3656,123 +2509,6 @@
         "id": 5,
         "tint": 0,
         "friendlyName": "Hit and Run Buckle"
-      },
-      {
-        "component": 1344790074,
-        "category": 4209578111,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "5027de3a",
-        "name": "CLOTHING_ITEM_M_BUCKLE_COMPETITIVE_005_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 5,
-        "tint": 0,
-        "friendlyName": "Posse Race Buckle"
-      },
-      {
-        "component": 4057939868,
-        "category": 4209578111,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "f1df3f9c",
-        "name": "CLOTHING_ITEM_M_BUCKLE_FREEMODE_005_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 5,
-        "tint": 0,
-        "friendlyName": "Can't Hide Buckle"
-      },
-      {
-        "component": 3277178087,
-        "category": 4209578111,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "c355c4e7",
-        "name": "CLOTHING_ITEM_M_BUCKLE_GENERAL_005_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 5,
-        "tint": 0,
-        "friendlyName": "Treasure Hunter Buckle"
-      },
-      {
-        "component": 2675065361,
-        "category": 4209578111,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "9f724211",
-        "name": "CLOTHING_ITEM_M_BUCKLE_HUNTING_005_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 5,
-        "tint": 0,
-        "friendlyName": "Small Game Buckle"
-      },
-      {
-        "component": 1307011429,
-        "category": 4209578111,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "4de76965",
-        "name": "CLOTHING_ITEM_M_BUCKLE_POSSE_005_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 5,
-        "tint": 0,
-        "friendlyName": "Challenger Buckle"
-      },
-      {
-        "component": 3708748020,
-        "category": 4209578111,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "dd0f00f4",
-        "name": "CLOTHING_ITEM_M_BUCKLE_SHARPSHOOTER_005_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 5,
-        "tint": 0,
-        "friendlyName": "Sniper Buckle"
-      },
-      {
-        "component": 769230540,
-        "category": 4209578111,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "2dd986cc",
-        "name": "CLOTHING_ITEM_M_BUCKLE_SURVIVAL_005_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 5,
-        "tint": 0,
-        "friendlyName": "Chef Buckle"
-      },
-      {
-        "component": 3846032914,
-        "category": 4209578111,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "e53dce12",
-        "name": "CLOTHING_ITEM_M_BUCKLE_TRADE_005_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 5,
-        "tint": 0,
-        "friendlyName": "Trader Buckle"
-      },
-      {
-        "component": 1894911867,
-        "category": 4209578111,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "70f20f7b",
-        "name": "CLOTHING_ITEM_M_BUCKLE_TRAVEL_005_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 5,
-        "tint": 0,
-        "friendlyName": "Frontier Buckle"
       }
     ]
   },
@@ -3793,71 +2529,6 @@
         "friendlyName": "Trampled Buckle"
       },
       {
-        "component": 1786002603,
-        "category": 4209578111,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "6a743cab",
-        "name": "CLOTHING_ITEM_F_BUCKLE_COMPETITIVE_006_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 6,
-        "tint": 0,
-        "friendlyName": "Feud Buckle"
-      },
-      {
-        "component": 2825459513,
-        "category": 4209578111,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "a8691739",
-        "name": "CLOTHING_ITEM_F_BUCKLE_GENERAL_006_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 6,
-        "tint": 0,
-        "friendlyName": "Looter Buckle"
-      },
-      {
-        "component": 612134528,
-        "category": 4209578111,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "247c6e80",
-        "name": "CLOTHING_ITEM_F_BUCKLE_HUNTING_006_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 6,
-        "tint": 0,
-        "friendlyName": "Hunting Knife Buckle"
-      },
-      {
-        "component": 700176809,
-        "category": 4209578111,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "29bbd9a9",
-        "name": "CLOTHING_ITEM_F_BUCKLE_SHARPSHOOTER_006_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 6,
-        "tint": 0,
-        "friendlyName": "Shotgun Buckle"
-      },
-      {
-        "component": 1951056004,
-        "category": 4209578111,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "744ac084",
-        "name": "CLOTHING_ITEM_F_BUCKLE_TRAVEL_006_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 6,
-        "tint": 0,
-        "friendlyName": "No Ticket Buckle"
-      },
-      {
         "component": 2505632747,
         "category": 4209578111,
         "type": "0",
@@ -3869,71 +2540,6 @@
         "id": 6,
         "tint": 0,
         "friendlyName": "Trampled Buckle"
-      },
-      {
-        "component": 2776119985,
-        "category": 4209578111,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "a5783ab1",
-        "name": "CLOTHING_ITEM_M_BUCKLE_COMPETITIVE_006_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 6,
-        "tint": 0,
-        "friendlyName": "Feud Buckle"
-      },
-      {
-        "component": 999975950,
-        "category": 4209578111,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "3b9a6c0e",
-        "name": "CLOTHING_ITEM_M_BUCKLE_GENERAL_006_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 6,
-        "tint": 0,
-        "friendlyName": "Looter Buckle"
-      },
-      {
-        "component": 2755040615,
-        "category": 4209578111,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "a4369567",
-        "name": "CLOTHING_ITEM_M_BUCKLE_HUNTING_006_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 6,
-        "tint": 0,
-        "friendlyName": "Hunting Knife Buckle"
-      },
-      {
-        "component": 4283384565,
-        "category": 4209578111,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "ff4f42f5",
-        "name": "CLOTHING_ITEM_M_BUCKLE_SHARPSHOOTER_006_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 6,
-        "tint": 0,
-        "friendlyName": "Shotgun Buckle"
-      },
-      {
-        "component": 503820011,
-        "category": 4209578111,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "1e07aeeb",
-        "name": "CLOTHING_ITEM_M_BUCKLE_TRAVEL_006_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 6,
-        "tint": 0,
-        "friendlyName": "No Ticket Buckle"
       }
     ]
   },
@@ -3954,84 +2560,6 @@
         "friendlyName": "Burned Buckle"
       },
       {
-        "component": 2445674021,
-        "category": 4209578111,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "91c60625",
-        "name": "CLOTHING_ITEM_F_BUCKLE_COMPETITIVE_007_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 7,
-        "tint": 0,
-        "friendlyName": "Versus Buckle"
-      },
-      {
-        "component": 1179744246,
-        "category": 4209578111,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "465177f6",
-        "name": "CLOTHING_ITEM_F_BUCKLE_CRIMES_007_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 7,
-        "tint": 0,
-        "friendlyName": "Hard Time Buckle"
-      },
-      {
-        "component": 1285213894,
-        "category": 4209578111,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "4c9acec6",
-        "name": "CLOTHING_ITEM_F_BUCKLE_GENERAL_007_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 7,
-        "tint": 0,
-        "friendlyName": "Card Shark Buckle"
-      },
-      {
-        "component": 3100564199,
-        "category": 4209578111,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "b8cedae7",
-        "name": "CLOTHING_ITEM_F_BUCKLE_SHARPSHOOTER_007_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 7,
-        "tint": 0,
-        "friendlyName": "Melee Buckle"
-      },
-      {
-        "component": 1398844423,
-        "category": 4209578111,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "5360ac07",
-        "name": "CLOTHING_ITEM_F_BUCKLE_TRADE_007_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 7,
-        "tint": 0,
-        "friendlyName": "Remedy Buckle"
-      },
-      {
-        "component": 1707669679,
-        "category": 4209578111,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "65c8f8af",
-        "name": "CLOTHING_ITEM_F_BUCKLE_TRAVEL_007_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 7,
-        "tint": 0,
-        "friendlyName": "Hell for Leather 1 Buckle"
-      },
-      {
         "component": 962052640,
         "category": 4209578111,
         "type": "0",
@@ -4043,84 +2571,6 @@
         "id": 7,
         "tint": 0,
         "friendlyName": "Burned Buckle"
-      },
-      {
-        "component": 4111536185,
-        "category": 4209578111,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "f5111039",
-        "name": "CLOTHING_ITEM_M_BUCKLE_COMPETITIVE_007_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 7,
-        "tint": 0,
-        "friendlyName": "Versus Buckle"
-      },
-      {
-        "component": 1177975034,
-        "category": 4209578111,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "463678fa",
-        "name": "CLOTHING_ITEM_M_BUCKLE_CRIMES_007_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 7,
-        "tint": 0,
-        "friendlyName": "Hard Time Buckle"
-      },
-      {
-        "component": 384183497,
-        "category": 4209578111,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "16e62cc9",
-        "name": "CLOTHING_ITEM_M_BUCKLE_GENERAL_007_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 7,
-        "tint": 0,
-        "friendlyName": "Card Shark Buckle"
-      },
-      {
-        "component": 3215970056,
-        "category": 4209578111,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "bfafcf08",
-        "name": "CLOTHING_ITEM_M_BUCKLE_SHARPSHOOTER_007_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 7,
-        "tint": 0,
-        "friendlyName": "Melee Buckle"
-      },
-      {
-        "component": 1079777357,
-        "category": 4209578111,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "405c184d",
-        "name": "CLOTHING_ITEM_M_BUCKLE_TRADE_007_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 7,
-        "tint": 0,
-        "friendlyName": "Remedy Buckle"
-      },
-      {
-        "component": 810127714,
-        "category": 4209578111,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "30499162",
-        "name": "CLOTHING_ITEM_M_BUCKLE_TRAVEL_007_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 7,
-        "tint": 0,
-        "friendlyName": "Hell for Leather 1 Buckle"
       }
     ]
   },
@@ -4141,71 +2591,6 @@
         "friendlyName": "Brawling Buckle"
       },
       {
-        "component": 654590692,
-        "category": 4209578111,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "270442e4",
-        "name": "CLOTHING_ITEM_F_BUCKLE_COMPETITIVE_008_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 8,
-        "tint": 0,
-        "friendlyName": "Podium Buckle"
-      },
-      {
-        "component": 3934874394,
-        "category": 4209578111,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "ea896b1a",
-        "name": "CLOTHING_ITEM_F_BUCKLE_CRIMES_008_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 8,
-        "tint": 0,
-        "friendlyName": "Prisoner Buckle"
-      },
-      {
-        "component": 2968147610,
-        "category": 4209578111,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "b0ea569a",
-        "name": "CLOTHING_ITEM_F_BUCKLE_HUNTING_008_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 8,
-        "tint": 0,
-        "friendlyName": "Collector Buckle"
-      },
-      {
-        "component": 1732623661,
-        "category": 4209578111,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "6745bd2d",
-        "name": "CLOTHING_ITEM_F_BUCKLE_SHARPSHOOTER_008_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 8,
-        "tint": 0,
-        "friendlyName": "Throwing Weapon Buckle"
-      },
-      {
-        "component": 4163640057,
-        "category": 4209578111,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "f82c1af9",
-        "name": "CLOTHING_ITEM_F_BUCKLE_TRAVEL_008_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 8,
-        "tint": 0,
-        "friendlyName": "Hell for Leather 2 Buckle"
-      },
-      {
         "component": 846166997,
         "category": 4209578111,
         "type": "0",
@@ -4217,71 +2602,6 @@
         "id": 8,
         "tint": 0,
         "friendlyName": "Brawling Buckle"
-      },
-      {
-        "component": 1176432153,
-        "category": 4209578111,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "461eee19",
-        "name": "CLOTHING_ITEM_M_BUCKLE_COMPETITIVE_008_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 8,
-        "tint": 0,
-        "friendlyName": "Podium Buckle"
-      },
-      {
-        "component": 1407414432,
-        "category": 4209578111,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "53e370a0",
-        "name": "CLOTHING_ITEM_M_BUCKLE_CRIMES_008_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 8,
-        "tint": 0,
-        "friendlyName": "Prisoner Buckle"
-      },
-      {
-        "component": 2646026767,
-        "category": 4209578111,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "9db72a0f",
-        "name": "CLOTHING_ITEM_M_BUCKLE_HUNTING_008_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 8,
-        "tint": 0,
-        "friendlyName": "Collector Buckle"
-      },
-      {
-        "component": 3134580965,
-        "category": 4209578111,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "bad5e8e5",
-        "name": "CLOTHING_ITEM_M_BUCKLE_SHARPSHOOTER_008_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 8,
-        "tint": 0,
-        "friendlyName": "Throwing Weapon Buckle"
-      },
-      {
-        "component": 1996371515,
-        "category": 4209578111,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "76fe363b",
-        "name": "CLOTHING_ITEM_M_BUCKLE_TRAVEL_008_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 8,
-        "tint": 0,
-        "friendlyName": "Hell for Leather 2 Buckle"
       }
     ]
   },
@@ -4302,84 +2622,6 @@
         "friendlyName": "After Life Buckle"
       },
       {
-        "component": 3126551545,
-        "category": 4209578111,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "ba5b63f9",
-        "name": "CLOTHING_ITEM_F_BUCKLE_COMPETITIVE_009_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 9,
-        "tint": 0,
-        "friendlyName": "Event Winner Buckle"
-      },
-      {
-        "component": 4214362750,
-        "category": 4209578111,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "fb32127e",
-        "name": "CLOTHING_ITEM_F_BUCKLE_CRIMES_009_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 9,
-        "tint": 0,
-        "friendlyName": "Escapist Buckle"
-      },
-      {
-        "component": 2997215478,
-        "category": 4209578111,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "b2a5e0f6",
-        "name": "CLOTHING_ITEM_F_BUCKLE_HUNTING_009_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 9,
-        "tint": 0,
-        "friendlyName": "On the Move Buckle"
-      },
-      {
-        "component": 251307644,
-        "category": 4209578111,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "efaa67c",
-        "name": "CLOTHING_ITEM_F_BUCKLE_SHARPSHOOTER_009_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 9,
-        "tint": 0,
-        "friendlyName": "Bow Buckle"
-      },
-      {
-        "component": 2989392111,
-        "category": 4209578111,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "b22e80ef",
-        "name": "CLOTHING_ITEM_F_BUCKLE_TRADE_009_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 9,
-        "tint": 0,
-        "friendlyName": "Nugget Buckle"
-      },
-      {
-        "component": 4190678885,
-        "category": 4209578111,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "f9c8af65",
-        "name": "CLOTHING_ITEM_F_BUCKLE_TRAVEL_009_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 9,
-        "tint": 0,
-        "friendlyName": "Hell for Leather 3 Buckle"
-      },
-      {
         "component": 3689314162,
         "category": 4209578111,
         "type": "0",
@@ -4391,84 +2633,6 @@
         "id": 9,
         "tint": 0,
         "friendlyName": "After Life Buckle"
-      },
-      {
-        "component": 3851987888,
-        "category": 4209578111,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "e598abb0",
-        "name": "CLOTHING_ITEM_M_BUCKLE_COMPETITIVE_009_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 9,
-        "tint": 0,
-        "friendlyName": "Event Winner Buckle"
-      },
-      {
-        "component": 1919286675,
-        "category": 4209578111,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "7265fd93",
-        "name": "CLOTHING_ITEM_M_BUCKLE_CRIMES_009_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 9,
-        "tint": 0,
-        "friendlyName": "Escapist Buckle"
-      },
-      {
-        "component": 3669435472,
-        "category": 4209578111,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "dab72450",
-        "name": "CLOTHING_ITEM_M_BUCKLE_HUNTING_009_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 9,
-        "tint": 0,
-        "friendlyName": "On the Move Buckle"
-      },
-      {
-        "component": 1299602772,
-        "category": 4209578111,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "4d765d54",
-        "name": "CLOTHING_ITEM_M_BUCKLE_SHARPSHOOTER_009_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 9,
-        "tint": 0,
-        "friendlyName": "Bow Buckle"
-      },
-      {
-        "component": 1446665429,
-        "category": 4209578111,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "563a5cd5",
-        "name": "CLOTHING_ITEM_M_BUCKLE_TRADE_009_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 9,
-        "tint": 0,
-        "friendlyName": "Nugget Buckle"
-      },
-      {
-        "component": 2955778418,
-        "category": 4209578111,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "b02d9972",
-        "name": "CLOTHING_ITEM_M_BUCKLE_TRAVEL_009_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 9,
-        "tint": 0,
-        "friendlyName": "Hell for Leather 3 Buckle"
       }
     ]
   },
@@ -4489,71 +2653,6 @@
         "friendlyName": "Heavy Fire Buckle"
       },
       {
-        "component": 2479382296,
-        "category": 4209578111,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "93c85f18",
-        "name": "CLOTHING_ITEM_F_BUCKLE_COMPETITIVE_010_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 10,
-        "tint": 0,
-        "friendlyName": "Events Buckle"
-      },
-      {
-        "component": 3943089983,
-        "category": 4209578111,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "eb06c73f",
-        "name": "CLOTHING_ITEM_F_BUCKLE_HUNTING_010_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 10,
-        "tint": 0,
-        "friendlyName": "Hunter Buckle"
-      },
-      {
-        "component": 3067094219,
-        "category": 4209578111,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "b6d024cb",
-        "name": "CLOTHING_ITEM_F_BUCKLE_SHARPSHOOTER_010_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 10,
-        "tint": 0,
-        "friendlyName": "Pistol Headshot Buckle"
-      },
-      {
-        "component": 3020218604,
-        "category": 4209578111,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "b404e0ec",
-        "name": "CLOTHING_ITEM_F_BUCKLE_TRADE_010_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 10,
-        "tint": 0,
-        "friendlyName": "Orders Buckle"
-      },
-      {
-        "component": 1013717721,
-        "category": 4209578111,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "3c6c1ad9",
-        "name": "CLOTHING_ITEM_F_BUCKLE_TRAVEL_010_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 10,
-        "tint": 0,
-        "friendlyName": "Coach Buckle"
-      },
-      {
         "component": 2664193533,
         "category": 4209578111,
         "type": "0",
@@ -4565,71 +2664,6 @@
         "id": 10,
         "tint": 0,
         "friendlyName": "Heavy Fire Buckle"
-      },
-      {
-        "component": 3145703409,
-        "category": 4209578111,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "bb7f9ff1",
-        "name": "CLOTHING_ITEM_M_BUCKLE_COMPETITIVE_010_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 10,
-        "tint": 0,
-        "friendlyName": "Events Buckle"
-      },
-      {
-        "component": 2307332169,
-        "category": 4209578111,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "89871849",
-        "name": "CLOTHING_ITEM_M_BUCKLE_HUNTING_010_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 10,
-        "tint": 0,
-        "friendlyName": "Hunter Buckle"
-      },
-      {
-        "component": 1537539003,
-        "category": 4209578111,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "5ba4fbbb",
-        "name": "CLOTHING_ITEM_M_BUCKLE_SHARPSHOOTER_010_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 10,
-        "tint": 0,
-        "friendlyName": "Pistol Headshot Buckle"
-      },
-      {
-        "component": 2458458243,
-        "category": 4209578111,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "92891883",
-        "name": "CLOTHING_ITEM_M_BUCKLE_TRADE_010_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 10,
-        "tint": 0,
-        "friendlyName": "Orders Buckle"
-      },
-      {
-        "component": 3328663566,
-        "category": 4209578111,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "c667600e",
-        "name": "CLOTHING_ITEM_M_BUCKLE_TRAVEL_010_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 10,
-        "tint": 0,
-        "friendlyName": "Coach Buckle"
       }
     ]
   },
@@ -4650,84 +2684,6 @@
         "friendlyName": "Drunk Buckle"
       },
       {
-        "component": 1769661839,
-        "category": 4209578111,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "697ae58f",
-        "name": "CLOTHING_ITEM_F_BUCKLE_COMPETITIVE_011_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 11,
-        "tint": 0,
-        "friendlyName": "Rival Buckle"
-      },
-      {
-        "component": 2112658068,
-        "category": 4209578111,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "7dec9a94",
-        "name": "CLOTHING_ITEM_F_BUCKLE_FREEMODE_011_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 11,
-        "tint": 0,
-        "friendlyName": "Defender Buckle"
-      },
-      {
-        "component": 739258290,
-        "category": 4209578111,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "2c102fb2",
-        "name": "CLOTHING_ITEM_F_BUCKLE_HUNTING_011_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 11,
-        "tint": 0,
-        "friendlyName": "Wild Revenge Buckle"
-      },
-      {
-        "component": 413877452,
-        "category": 4209578111,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "18ab44cc",
-        "name": "CLOTHING_ITEM_F_BUCKLE_SHARPSHOOTER_011_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 11,
-        "tint": 0,
-        "friendlyName": "Revolver Headshot Buckle"
-      },
-      {
-        "component": 2286735519,
-        "category": 4209578111,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "884cd09f",
-        "name": "CLOTHING_ITEM_F_BUCKLE_TRADE_011_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 11,
-        "tint": 0,
-        "friendlyName": "Butcher Buckle"
-      },
-      {
-        "component": 200683969,
-        "category": 4209578111,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "bf631c1",
-        "name": "CLOTHING_ITEM_F_BUCKLE_TRAVEL_011_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 11,
-        "tint": 0,
-        "friendlyName": "Passenger Buckle"
-      },
-      {
         "component": 4009812634,
         "category": 4209578111,
         "type": "0",
@@ -4739,84 +2695,6 @@
         "id": 11,
         "tint": 0,
         "friendlyName": "Drunk Buckle"
-      },
-      {
-        "component": 456134997,
-        "category": 4209578111,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "1b301155",
-        "name": "CLOTHING_ITEM_M_BUCKLE_COMPETITIVE_011_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 11,
-        "tint": 0,
-        "friendlyName": "Rival Buckle"
-      },
-      {
-        "component": 2819411206,
-        "category": 4209578111,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "a80ccd06",
-        "name": "CLOTHING_ITEM_M_BUCKLE_FREEMODE_011_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 11,
-        "tint": 0,
-        "friendlyName": "Defender Buckle"
-      },
-      {
-        "component": 906922156,
-        "category": 4209578111,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "360e88ac",
-        "name": "CLOTHING_ITEM_M_BUCKLE_HUNTING_011_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 11,
-        "tint": 0,
-        "friendlyName": "Wild Revenge Buckle"
-      },
-      {
-        "component": 1688312492,
-        "category": 4209578111,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "64a19aac",
-        "name": "CLOTHING_ITEM_M_BUCKLE_SHARPSHOOTER_011_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 11,
-        "tint": 0,
-        "friendlyName": "Revolver Headshot Buckle"
-      },
-      {
-        "component": 3691662622,
-        "category": 4209578111,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "dc0a4d1e",
-        "name": "CLOTHING_ITEM_M_BUCKLE_TRADE_011_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 11,
-        "tint": 0,
-        "friendlyName": "Butcher Buckle"
-      },
-      {
-        "component": 1166732951,
-        "category": 4209578111,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "458aee97",
-        "name": "CLOTHING_ITEM_M_BUCKLE_TRAVEL_011_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 11,
-        "tint": 0,
-        "friendlyName": "Passenger Buckle"
       }
     ]
   },
@@ -4837,84 +2715,6 @@
         "friendlyName": "Revenge Buckle"
       },
       {
-        "component": 3171383335,
-        "category": 4209578111,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "bd077827",
-        "name": "CLOTHING_ITEM_F_BUCKLE_COMPETITIVE_012_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 12,
-        "tint": 0,
-        "friendlyName": "First Kill Buckle"
-      },
-      {
-        "component": 2241055506,
-        "category": 4209578111,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "8593cb12",
-        "name": "CLOTHING_ITEM_F_BUCKLE_FREEMODE_012_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 12,
-        "tint": 0,
-        "friendlyName": "Ambush Buckle"
-      },
-      {
-        "component": 972465011,
-        "category": 4209578111,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "39f6a373",
-        "name": "CLOTHING_ITEM_F_BUCKLE_GENERAL_012_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 12,
-        "tint": 0,
-        "friendlyName": "Daily Challenge Buckle"
-      },
-      {
-        "component": 1853673202,
-        "category": 4209578111,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "6e7ccef2",
-        "name": "CLOTHING_ITEM_F_BUCKLE_SHARPSHOOTER_012_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 12,
-        "tint": 0,
-        "friendlyName": "Repeater Headshot Buckle"
-      },
-      {
-        "component": 3152144474,
-        "category": 4209578111,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "bbe1e85a",
-        "name": "CLOTHING_ITEM_F_BUCKLE_TRADE_012_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 12,
-        "tint": 0,
-        "friendlyName": "Shady Buckle"
-      },
-      {
-        "component": 1292302437,
-        "category": 4209578111,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "4d06f865",
-        "name": "CLOTHING_ITEM_F_BUCKLE_TRAVEL_012_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 12,
-        "tint": 0,
-        "friendlyName": "Town Traveler Buckle"
-      },
-      {
         "component": 2907631863,
         "category": 4209578111,
         "type": "0",
@@ -4926,380 +2726,6 @@
         "id": 12,
         "tint": 0,
         "friendlyName": "Revenge Buckle"
-      },
-      {
-        "component": 3388531773,
-        "category": 4209578111,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "c9f8e43d",
-        "name": "CLOTHING_ITEM_M_BUCKLE_COMPETITIVE_012_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 12,
-        "tint": 0,
-        "friendlyName": "First Kill Buckle"
-      },
-      {
-        "component": 1101883488,
-        "category": 4209578111,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "41ad6860",
-        "name": "CLOTHING_ITEM_M_BUCKLE_FREEMODE_012_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 12,
-        "tint": 0,
-        "friendlyName": "Ambush Buckle"
-      },
-      {
-        "component": 3315191560,
-        "category": 4209578111,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "c599cf08",
-        "name": "CLOTHING_ITEM_M_BUCKLE_GENERAL_012_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 12,
-        "tint": 0,
-        "friendlyName": "Daily Challenge Buckle"
-      },
-      {
-        "component": 1828373931,
-        "category": 4209578111,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "6cfac5ab",
-        "name": "CLOTHING_ITEM_M_BUCKLE_SHARPSHOOTER_012_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 12,
-        "tint": 0,
-        "friendlyName": "Repeater Headshot Buckle"
-      },
-      {
-        "component": 1476129947,
-        "category": 4209578111,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "57fbf49b",
-        "name": "CLOTHING_ITEM_M_BUCKLE_TRADE_012_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 12,
-        "tint": 0,
-        "friendlyName": "Shady Buckle"
-      },
-      {
-        "component": 3295085091,
-        "category": 4209578111,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "c4670223",
-        "name": "CLOTHING_ITEM_M_BUCKLE_TRAVEL_012_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 12,
-        "tint": 0,
-        "friendlyName": "Town Traveler Buckle"
-      }
-    ]
-  },
-  {
-    "name": "Final Kill Buckle",
-    "components": [
-      {
-        "component": 4147572690,
-        "category": 4209578111,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "f736efd2",
-        "name": "CLOTHING_ITEM_F_BUCKLE_COMPETITIVE_013_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 13,
-        "tint": 0,
-        "friendlyName": "Final Kill Buckle"
-      },
-      {
-        "component": 1988474451,
-        "category": 4209578111,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "7685b653",
-        "name": "CLOTHING_ITEM_F_BUCKLE_FREEMODE_013_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 13,
-        "tint": 0,
-        "friendlyName": "Selfless Buckle"
-      },
-      {
-        "component": 1881371797,
-        "category": 4209578111,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "70237495",
-        "name": "CLOTHING_ITEM_F_BUCKLE_GENERAL_013_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 13,
-        "tint": 0,
-        "friendlyName": "Day's Work Buckle"
-      },
-      {
-        "component": 3080107109,
-        "category": 4209578111,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "b796b465",
-        "name": "CLOTHING_ITEM_F_BUCKLE_HUNTING_013_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 13,
-        "tint": 0,
-        "friendlyName": "Fishing Buckle"
-      },
-      {
-        "component": 3893546207,
-        "category": 4209578111,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "e812ccdf",
-        "name": "CLOTHING_ITEM_F_BUCKLE_SHARPSHOOTER_013_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 13,
-        "tint": 0,
-        "friendlyName": "Rifle Headshot Buckle"
-      },
-      {
-        "component": 2216268847,
-        "category": 4209578111,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "8419942f",
-        "name": "CLOTHING_ITEM_F_BUCKLE_TRADE_013_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 13,
-        "tint": 0,
-        "friendlyName": "Bar Crawl Buckle"
-      },
-      {
-        "component": 2384031700,
-        "category": 4209578111,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "8e196fd4",
-        "name": "CLOTHING_ITEM_F_BUCKLE_TRAVEL_013_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 13,
-        "tint": 0,
-        "friendlyName": "Station Traveler Buckle"
-      },
-      {
-        "component": 2534537052,
-        "category": 4209578111,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "9711f75c",
-        "name": "CLOTHING_ITEM_M_BUCKLE_COMPETITIVE_013_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 13,
-        "tint": 0,
-        "friendlyName": "Final Kill Buckle"
-      },
-      {
-        "component": 2778397325,
-        "category": 4209578111,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "a59afa8d",
-        "name": "CLOTHING_ITEM_M_BUCKLE_FREEMODE_013_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 13,
-        "tint": 0,
-        "friendlyName": "Selfless Buckle"
-      },
-      {
-        "component": 2874247191,
-        "category": 4209578111,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "ab518817",
-        "name": "CLOTHING_ITEM_M_BUCKLE_GENERAL_013_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 13,
-        "tint": 0,
-        "friendlyName": "Day's Work Buckle"
-      },
-      {
-        "component": 1936151422,
-        "category": 4209578111,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "7367537e",
-        "name": "CLOTHING_ITEM_M_BUCKLE_HUNTING_013_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 13,
-        "tint": 0,
-        "friendlyName": "Fishing Buckle"
-      },
-      {
-        "component": 1348825328,
-        "category": 4209578111,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "506570f0",
-        "name": "CLOTHING_ITEM_M_BUCKLE_SHARPSHOOTER_013_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 13,
-        "tint": 0,
-        "friendlyName": "Rifle Headshot Buckle"
-      },
-      {
-        "component": 2115650153,
-        "category": 4209578111,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "7e1a4269",
-        "name": "CLOTHING_ITEM_M_BUCKLE_TRADE_013_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 13,
-        "tint": 0,
-        "friendlyName": "Bar Crawl Buckle"
-      },
-      {
-        "component": 3387851899,
-        "category": 4209578111,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "c9ee847b",
-        "name": "CLOTHING_ITEM_M_BUCKLE_TRAVEL_013_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 13,
-        "tint": 0,
-        "friendlyName": "Station Traveler Buckle"
-      }
-    ]
-  },
-  {
-    "name": "Weekly Streak Buckle",
-    "components": [
-      {
-        "component": 839889935,
-        "category": 4209578111,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "320fb40f",
-        "name": "CLOTHING_ITEM_F_BUCKLE_GENERAL_014_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 14,
-        "tint": 0,
-        "friendlyName": "Weekly Streak Buckle"
-      },
-      {
-        "component": 529421873,
-        "category": 4209578111,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "1f8e5631",
-        "name": "CLOTHING_ITEM_F_BUCKLE_HUNTING_014_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 14,
-        "tint": 0,
-        "friendlyName": "Poacher Buckle"
-      },
-      {
-        "component": 3714224828,
-        "category": 4209578111,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "dd6292bc",
-        "name": "CLOTHING_ITEM_F_BUCKLE_SHARPSHOOTER_014_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 14,
-        "tint": 0,
-        "friendlyName": "Sniper Headshot Buckle"
-      },
-      {
-        "component": 540824655,
-        "category": 4209578111,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "203c544f",
-        "name": "CLOTHING_ITEM_F_BUCKLE_TRADE_014_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 14,
-        "tint": 0,
-        "friendlyName": "Trapper Buckle"
-      },
-      {
-        "component": 3558788294,
-        "category": 4209578111,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "d41eccc6",
-        "name": "CLOTHING_ITEM_M_BUCKLE_GENERAL_014_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 14,
-        "tint": 0,
-        "friendlyName": "Weekly Streak Buckle"
-      },
-      {
-        "component": 1687881155,
-        "category": 4209578111,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "649b05c3",
-        "name": "CLOTHING_ITEM_M_BUCKLE_HUNTING_014_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 14,
-        "tint": 0,
-        "friendlyName": "Poacher Buckle"
-      },
-      {
-        "component": 3816596356,
-        "category": 4209578111,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "e37ca384",
-        "name": "CLOTHING_ITEM_M_BUCKLE_SHARPSHOOTER_014_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 14,
-        "tint": 0,
-        "friendlyName": "Sniper Headshot Buckle"
-      },
-      {
-        "component": 2124579565,
-        "category": 4209578111,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "7ea282ed",
-        "name": "CLOTHING_ITEM_M_BUCKLE_TRADE_014_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 14,
-        "tint": 0,
-        "friendlyName": "Trapper Buckle"
       }
     ]
   },
@@ -5320,6 +2746,1140 @@
         "friendlyName": "Ride Along Buckle"
       },
       {
+        "component": 3163243513,
+        "category": 4209578111,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "bc8b43f9",
+        "name": "CLOTHING_ITEM_M_BUCKLE_COMBAT_015_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 15,
+        "tint": 0,
+        "friendlyName": "Ride Along Buckle"
+      }
+    ]
+  },
+  {
+    "name": "Posse Feud Buckle",
+    "components": [
+      {
+        "component": 3186641775,
+        "category": 4209578111,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "bdf04b6f",
+        "name": "CLOTHING_ITEM_F_BUCKLE_COMPETITIVE_001_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 1,
+        "tint": 0,
+        "friendlyName": "Posse Feud Buckle"
+      },
+      {
+        "component": 3388824012,
+        "category": 4209578111,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "c9fd59cc",
+        "name": "CLOTHING_ITEM_M_BUCKLE_COMPETITIVE_001_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 1,
+        "tint": 0,
+        "friendlyName": "Posse Feud Buckle"
+      }
+    ]
+  },
+  {
+    "name": "Racer Buckle",
+    "components": [
+      {
+        "component": 4249566610,
+        "category": 4209578111,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "fd4b3d92",
+        "name": "CLOTHING_ITEM_F_BUCKLE_COMPETITIVE_003_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 3,
+        "tint": 0,
+        "friendlyName": "Racer Buckle"
+      },
+      {
+        "component": 272906767,
+        "category": 4209578111,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "10443a0f",
+        "name": "CLOTHING_ITEM_M_BUCKLE_COMPETITIVE_003_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 3,
+        "tint": 0,
+        "friendlyName": "Racer Buckle"
+      }
+    ]
+  },
+  {
+    "name": "Showdown Buckle",
+    "components": [
+      {
+        "component": 2443729106,
+        "category": 4209578111,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "91a858d2",
+        "name": "CLOTHING_ITEM_F_BUCKLE_COMPETITIVE_004_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 4,
+        "tint": 0,
+        "friendlyName": "Showdown Buckle"
+      },
+      {
+        "component": 3744229579,
+        "category": 4209578111,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "df2c68cb",
+        "name": "CLOTHING_ITEM_M_BUCKLE_COMPETITIVE_004_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 4,
+        "tint": 0,
+        "friendlyName": "Showdown Buckle"
+      }
+    ]
+  },
+  {
+    "name": "Posse Race Buckle",
+    "components": [
+      {
+        "component": 3071064315,
+        "category": 4209578111,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "b70cb8fb",
+        "name": "CLOTHING_ITEM_F_BUCKLE_COMPETITIVE_005_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 5,
+        "tint": 0,
+        "friendlyName": "Posse Race Buckle"
+      },
+      {
+        "component": 1344790074,
+        "category": 4209578111,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "5027de3a",
+        "name": "CLOTHING_ITEM_M_BUCKLE_COMPETITIVE_005_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 5,
+        "tint": 0,
+        "friendlyName": "Posse Race Buckle"
+      }
+    ]
+  },
+  {
+    "name": "Feud Buckle",
+    "components": [
+      {
+        "component": 1786002603,
+        "category": 4209578111,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "6a743cab",
+        "name": "CLOTHING_ITEM_F_BUCKLE_COMPETITIVE_006_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 6,
+        "tint": 0,
+        "friendlyName": "Feud Buckle"
+      },
+      {
+        "component": 2776119985,
+        "category": 4209578111,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "a5783ab1",
+        "name": "CLOTHING_ITEM_M_BUCKLE_COMPETITIVE_006_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 6,
+        "tint": 0,
+        "friendlyName": "Feud Buckle"
+      }
+    ]
+  },
+  {
+    "name": "Versus Buckle",
+    "components": [
+      {
+        "component": 2445674021,
+        "category": 4209578111,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "91c60625",
+        "name": "CLOTHING_ITEM_F_BUCKLE_COMPETITIVE_007_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 7,
+        "tint": 0,
+        "friendlyName": "Versus Buckle"
+      },
+      {
+        "component": 4111536185,
+        "category": 4209578111,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "f5111039",
+        "name": "CLOTHING_ITEM_M_BUCKLE_COMPETITIVE_007_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 7,
+        "tint": 0,
+        "friendlyName": "Versus Buckle"
+      }
+    ]
+  },
+  {
+    "name": "Podium Buckle",
+    "components": [
+      {
+        "component": 654590692,
+        "category": 4209578111,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "270442e4",
+        "name": "CLOTHING_ITEM_F_BUCKLE_COMPETITIVE_008_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 8,
+        "tint": 0,
+        "friendlyName": "Podium Buckle"
+      },
+      {
+        "component": 1176432153,
+        "category": 4209578111,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "461eee19",
+        "name": "CLOTHING_ITEM_M_BUCKLE_COMPETITIVE_008_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 8,
+        "tint": 0,
+        "friendlyName": "Podium Buckle"
+      }
+    ]
+  },
+  {
+    "name": "Event Winner Buckle",
+    "components": [
+      {
+        "component": 3126551545,
+        "category": 4209578111,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "ba5b63f9",
+        "name": "CLOTHING_ITEM_F_BUCKLE_COMPETITIVE_009_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 9,
+        "tint": 0,
+        "friendlyName": "Event Winner Buckle"
+      },
+      {
+        "component": 3851987888,
+        "category": 4209578111,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "e598abb0",
+        "name": "CLOTHING_ITEM_M_BUCKLE_COMPETITIVE_009_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 9,
+        "tint": 0,
+        "friendlyName": "Event Winner Buckle"
+      }
+    ]
+  },
+  {
+    "name": "Events Buckle",
+    "components": [
+      {
+        "component": 2479382296,
+        "category": 4209578111,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "93c85f18",
+        "name": "CLOTHING_ITEM_F_BUCKLE_COMPETITIVE_010_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 10,
+        "tint": 0,
+        "friendlyName": "Events Buckle"
+      },
+      {
+        "component": 3145703409,
+        "category": 4209578111,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "bb7f9ff1",
+        "name": "CLOTHING_ITEM_M_BUCKLE_COMPETITIVE_010_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 10,
+        "tint": 0,
+        "friendlyName": "Events Buckle"
+      }
+    ]
+  },
+  {
+    "name": "Rival Buckle",
+    "components": [
+      {
+        "component": 1769661839,
+        "category": 4209578111,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "697ae58f",
+        "name": "CLOTHING_ITEM_F_BUCKLE_COMPETITIVE_011_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 11,
+        "tint": 0,
+        "friendlyName": "Rival Buckle"
+      },
+      {
+        "component": 456134997,
+        "category": 4209578111,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "1b301155",
+        "name": "CLOTHING_ITEM_M_BUCKLE_COMPETITIVE_011_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 11,
+        "tint": 0,
+        "friendlyName": "Rival Buckle"
+      }
+    ]
+  },
+  {
+    "name": "First Kill Buckle",
+    "components": [
+      {
+        "component": 3171383335,
+        "category": 4209578111,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "bd077827",
+        "name": "CLOTHING_ITEM_F_BUCKLE_COMPETITIVE_012_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 12,
+        "tint": 0,
+        "friendlyName": "First Kill Buckle"
+      },
+      {
+        "component": 3388531773,
+        "category": 4209578111,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "c9f8e43d",
+        "name": "CLOTHING_ITEM_M_BUCKLE_COMPETITIVE_012_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 12,
+        "tint": 0,
+        "friendlyName": "First Kill Buckle"
+      }
+    ]
+  },
+  {
+    "name": "Final Kill Buckle",
+    "components": [
+      {
+        "component": 4147572690,
+        "category": 4209578111,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "f736efd2",
+        "name": "CLOTHING_ITEM_F_BUCKLE_COMPETITIVE_013_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 13,
+        "tint": 0,
+        "friendlyName": "Final Kill Buckle"
+      },
+      {
+        "component": 2534537052,
+        "category": 4209578111,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "9711f75c",
+        "name": "CLOTHING_ITEM_M_BUCKLE_COMPETITIVE_013_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 13,
+        "tint": 0,
+        "friendlyName": "Final Kill Buckle"
+      }
+    ]
+  },
+  {
+    "name": "Victor Buckle",
+    "components": [
+      {
+        "component": 2859184032,
+        "category": 4209578111,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "aa6bafa0",
+        "name": "CLOTHING_ITEM_F_BUCKLE_COMPETITIVE_017_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 17,
+        "tint": 0,
+        "friendlyName": "Victor Buckle"
+      },
+      {
+        "component": 3092403775,
+        "category": 4209578111,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "b852563f",
+        "name": "CLOTHING_ITEM_M_BUCKLE_COMPETITIVE_017_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 17,
+        "tint": 0,
+        "friendlyName": "Victor Buckle"
+      }
+    ]
+  },
+  {
+    "name": "Lassoed Buckle",
+    "components": [
+      {
+        "component": 3217524268,
+        "category": 4209578111,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "bfc7862c",
+        "name": "CLOTHING_ITEM_F_BUCKLE_CRIMES_001_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 1,
+        "tint": 0,
+        "friendlyName": "Lassoed Buckle"
+      },
+      {
+        "component": 3250866636,
+        "category": 4209578111,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "c1c449cc",
+        "name": "CLOTHING_ITEM_M_BUCKLE_CRIMES_001_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 1,
+        "tint": 0,
+        "friendlyName": "Lassoed Buckle"
+      }
+    ]
+  },
+  {
+    "name": "Drag Buckle",
+    "components": [
+      {
+        "component": 1247569710,
+        "category": 4209578111,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "4a5c672e",
+        "name": "CLOTHING_ITEM_F_BUCKLE_CRIMES_002_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 2,
+        "tint": 0,
+        "friendlyName": "Drag Buckle"
+      },
+      {
+        "component": 236295871,
+        "category": 4209578111,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "e1596bf",
+        "name": "CLOTHING_ITEM_M_BUCKLE_CRIMES_002_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 2,
+        "tint": 0,
+        "friendlyName": "Drag Buckle"
+      }
+    ]
+  },
+  {
+    "name": "Wanted Buckle",
+    "components": [
+      {
+        "component": 1586287962,
+        "category": 4209578111,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "5e8cd55a",
+        "name": "CLOTHING_ITEM_F_BUCKLE_CRIMES_003_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 3,
+        "tint": 0,
+        "friendlyName": "Wanted Buckle"
+      },
+      {
+        "component": 2778133358,
+        "category": 4209578111,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "a596f36e",
+        "name": "CLOTHING_ITEM_M_BUCKLE_CRIMES_003_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 3,
+        "tint": 0,
+        "friendlyName": "Wanted Buckle"
+      }
+    ]
+  },
+  {
+    "name": "Law Escape Buckle",
+    "components": [
+      {
+        "component": 1524292245,
+        "category": 4209578111,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "5adada95",
+        "name": "CLOTHING_ITEM_F_BUCKLE_CRIMES_004_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 4,
+        "tint": 0,
+        "friendlyName": "Law Escape Buckle"
+      },
+      {
+        "component": 684263097,
+        "category": 4209578111,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "28c906b9",
+        "name": "CLOTHING_ITEM_M_BUCKLE_CRIMES_004_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 4,
+        "tint": 0,
+        "friendlyName": "Law Escape Buckle"
+      }
+    ]
+  },
+  {
+    "name": "Hard Time Buckle",
+    "components": [
+      {
+        "component": 1179744246,
+        "category": 4209578111,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "465177f6",
+        "name": "CLOTHING_ITEM_F_BUCKLE_CRIMES_007_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 7,
+        "tint": 0,
+        "friendlyName": "Hard Time Buckle"
+      },
+      {
+        "component": 1177975034,
+        "category": 4209578111,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "463678fa",
+        "name": "CLOTHING_ITEM_M_BUCKLE_CRIMES_007_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 7,
+        "tint": 0,
+        "friendlyName": "Hard Time Buckle"
+      }
+    ]
+  },
+  {
+    "name": "Prisoner Buckle",
+    "components": [
+      {
+        "component": 3934874394,
+        "category": 4209578111,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "ea896b1a",
+        "name": "CLOTHING_ITEM_F_BUCKLE_CRIMES_008_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 8,
+        "tint": 0,
+        "friendlyName": "Prisoner Buckle"
+      },
+      {
+        "component": 1407414432,
+        "category": 4209578111,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "53e370a0",
+        "name": "CLOTHING_ITEM_M_BUCKLE_CRIMES_008_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 8,
+        "tint": 0,
+        "friendlyName": "Prisoner Buckle"
+      }
+    ]
+  },
+  {
+    "name": "Escapist Buckle",
+    "components": [
+      {
+        "component": 4214362750,
+        "category": 4209578111,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "fb32127e",
+        "name": "CLOTHING_ITEM_F_BUCKLE_CRIMES_009_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 9,
+        "tint": 0,
+        "friendlyName": "Escapist Buckle"
+      },
+      {
+        "component": 1919286675,
+        "category": 4209578111,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "7265fd93",
+        "name": "CLOTHING_ITEM_M_BUCKLE_CRIMES_009_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 9,
+        "tint": 0,
+        "friendlyName": "Escapist Buckle"
+      }
+    ]
+  },
+  {
+    "name": "Jobseeker Buckle",
+    "components": [
+      {
+        "component": 3862171459,
+        "category": 4209578111,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "e6340f43",
+        "name": "CLOTHING_ITEM_F_BUCKLE_FREEMODE_001_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 1,
+        "tint": 0,
+        "friendlyName": "Jobseeker Buckle"
+      },
+      {
+        "component": 3383868319,
+        "category": 4209578111,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "c9b1bb9f",
+        "name": "CLOTHING_ITEM_M_BUCKLE_FREEMODE_001_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 1,
+        "tint": 0,
+        "friendlyName": "Jobseeker Buckle"
+      }
+    ]
+  },
+  {
+    "name": "Gun for Hire Buckle",
+    "components": [
+      {
+        "component": 2734912479,
+        "category": 4209578111,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "a30373df",
+        "name": "CLOTHING_ITEM_F_BUCKLE_FREEMODE_002_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 2,
+        "tint": 0,
+        "friendlyName": "Gun for Hire Buckle"
+      },
+      {
+        "component": 1477097256,
+        "category": 4209578111,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "580ab728",
+        "name": "CLOTHING_ITEM_M_BUCKLE_FREEMODE_002_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 2,
+        "tint": 0,
+        "friendlyName": "Gun for Hire Buckle"
+      }
+    ]
+  },
+  {
+    "name": "Workaholic Buckle",
+    "components": [
+      {
+        "component": 3279424835,
+        "category": 4209578111,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "c3780d43",
+        "name": "CLOTHING_ITEM_F_BUCKLE_FREEMODE_003_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 3,
+        "tint": 0,
+        "friendlyName": "Workaholic Buckle"
+      },
+      {
+        "component": 3883984949,
+        "category": 4209578111,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "e780e835",
+        "name": "CLOTHING_ITEM_M_BUCKLE_FREEMODE_003_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 3,
+        "tint": 0,
+        "friendlyName": "Workaholic Buckle"
+      }
+    ]
+  },
+  {
+    "name": "Clear Out Buckle",
+    "components": [
+      {
+        "component": 2852813587,
+        "category": 4209578111,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "aa0a7b13",
+        "name": "CLOTHING_ITEM_F_BUCKLE_FREEMODE_004_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 4,
+        "tint": 0,
+        "friendlyName": "Clear Out Buckle"
+      },
+      {
+        "component": 3290865015,
+        "category": 4209578111,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "c4269d77",
+        "name": "CLOTHING_ITEM_M_BUCKLE_FREEMODE_004_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 4,
+        "tint": 0,
+        "friendlyName": "Clear Out Buckle"
+      }
+    ]
+  },
+  {
+    "name": "Can't Hide Buckle",
+    "components": [
+      {
+        "component": 3067990308,
+        "category": 4209578111,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "b6ddd124",
+        "name": "CLOTHING_ITEM_F_BUCKLE_FREEMODE_005_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 5,
+        "tint": 0,
+        "friendlyName": "Can't Hide Buckle"
+      },
+      {
+        "component": 4057939868,
+        "category": 4209578111,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "f1df3f9c",
+        "name": "CLOTHING_ITEM_M_BUCKLE_FREEMODE_005_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 5,
+        "tint": 0,
+        "friendlyName": "Can't Hide Buckle"
+      }
+    ]
+  },
+  {
+    "name": "Defender Buckle",
+    "components": [
+      {
+        "component": 2112658068,
+        "category": 4209578111,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "7dec9a94",
+        "name": "CLOTHING_ITEM_F_BUCKLE_FREEMODE_011_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 11,
+        "tint": 0,
+        "friendlyName": "Defender Buckle"
+      },
+      {
+        "component": 2819411206,
+        "category": 4209578111,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "a80ccd06",
+        "name": "CLOTHING_ITEM_M_BUCKLE_FREEMODE_011_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 11,
+        "tint": 0,
+        "friendlyName": "Defender Buckle"
+      }
+    ]
+  },
+  {
+    "name": "Ambush Buckle",
+    "components": [
+      {
+        "component": 2241055506,
+        "category": 4209578111,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "8593cb12",
+        "name": "CLOTHING_ITEM_F_BUCKLE_FREEMODE_012_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 12,
+        "tint": 0,
+        "friendlyName": "Ambush Buckle"
+      },
+      {
+        "component": 1101883488,
+        "category": 4209578111,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "41ad6860",
+        "name": "CLOTHING_ITEM_M_BUCKLE_FREEMODE_012_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 12,
+        "tint": 0,
+        "friendlyName": "Ambush Buckle"
+      }
+    ]
+  },
+  {
+    "name": "Selfless Buckle",
+    "components": [
+      {
+        "component": 1988474451,
+        "category": 4209578111,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "7685b653",
+        "name": "CLOTHING_ITEM_F_BUCKLE_FREEMODE_013_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 13,
+        "tint": 0,
+        "friendlyName": "Selfless Buckle"
+      },
+      {
+        "component": 2778397325,
+        "category": 4209578111,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "a59afa8d",
+        "name": "CLOTHING_ITEM_M_BUCKLE_FREEMODE_013_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 13,
+        "tint": 0,
+        "friendlyName": "Selfless Buckle"
+      }
+    ]
+  },
+  {
+    "name": "Dishonorable Buckle",
+    "components": [
+      {
+        "component": 3004315728,
+        "category": 4209578111,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "b3123850",
+        "name": "CLOTHING_ITEM_F_BUCKLE_GENERAL_003_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 3,
+        "tint": 0,
+        "friendlyName": "Dishonorable Buckle"
+      },
+      {
+        "component": 3236824733,
+        "category": 4209578111,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "c0ee069d",
+        "name": "CLOTHING_ITEM_M_BUCKLE_GENERAL_003_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 3,
+        "tint": 0,
+        "friendlyName": "Dishonorable Buckle"
+      }
+    ]
+  },
+  {
+    "name": "Honorable Buckle",
+    "components": [
+      {
+        "component": 2556317892,
+        "category": 4209578111,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "985e50c4",
+        "name": "CLOTHING_ITEM_F_BUCKLE_GENERAL_004_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 4,
+        "tint": 0,
+        "friendlyName": "Honorable Buckle"
+      },
+      {
+        "component": 3895192312,
+        "category": 4209578111,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "e82beaf8",
+        "name": "CLOTHING_ITEM_M_BUCKLE_GENERAL_004_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 4,
+        "tint": 0,
+        "friendlyName": "Honorable Buckle"
+      }
+    ]
+  },
+  {
+    "name": "Treasure Hunter Buckle",
+    "components": [
+      {
+        "component": 2192633412,
+        "category": 4209578111,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "82b0ee44",
+        "name": "CLOTHING_ITEM_F_BUCKLE_GENERAL_005_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 5,
+        "tint": 0,
+        "friendlyName": "Treasure Hunter Buckle"
+      },
+      {
+        "component": 3277178087,
+        "category": 4209578111,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "c355c4e7",
+        "name": "CLOTHING_ITEM_M_BUCKLE_GENERAL_005_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 5,
+        "tint": 0,
+        "friendlyName": "Treasure Hunter Buckle"
+      }
+    ]
+  },
+  {
+    "name": "Looter Buckle",
+    "components": [
+      {
+        "component": 2825459513,
+        "category": 4209578111,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "a8691739",
+        "name": "CLOTHING_ITEM_F_BUCKLE_GENERAL_006_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 6,
+        "tint": 0,
+        "friendlyName": "Looter Buckle"
+      },
+      {
+        "component": 999975950,
+        "category": 4209578111,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "3b9a6c0e",
+        "name": "CLOTHING_ITEM_M_BUCKLE_GENERAL_006_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 6,
+        "tint": 0,
+        "friendlyName": "Looter Buckle"
+      }
+    ]
+  },
+  {
+    "name": "Card Shark Buckle",
+    "components": [
+      {
+        "component": 1285213894,
+        "category": 4209578111,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "4c9acec6",
+        "name": "CLOTHING_ITEM_F_BUCKLE_GENERAL_007_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 7,
+        "tint": 0,
+        "friendlyName": "Card Shark Buckle"
+      },
+      {
+        "component": 384183497,
+        "category": 4209578111,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "16e62cc9",
+        "name": "CLOTHING_ITEM_M_BUCKLE_GENERAL_007_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 7,
+        "tint": 0,
+        "friendlyName": "Card Shark Buckle"
+      }
+    ]
+  },
+  {
+    "name": "Daily Challenge Buckle",
+    "components": [
+      {
+        "component": 972465011,
+        "category": 4209578111,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "39f6a373",
+        "name": "CLOTHING_ITEM_F_BUCKLE_GENERAL_012_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 12,
+        "tint": 0,
+        "friendlyName": "Daily Challenge Buckle"
+      },
+      {
+        "component": 3315191560,
+        "category": 4209578111,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "c599cf08",
+        "name": "CLOTHING_ITEM_M_BUCKLE_GENERAL_012_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 12,
+        "tint": 0,
+        "friendlyName": "Daily Challenge Buckle"
+      }
+    ]
+  },
+  {
+    "name": "Day's Work Buckle",
+    "components": [
+      {
+        "component": 1881371797,
+        "category": 4209578111,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "70237495",
+        "name": "CLOTHING_ITEM_F_BUCKLE_GENERAL_013_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 13,
+        "tint": 0,
+        "friendlyName": "Day's Work Buckle"
+      },
+      {
+        "component": 2874247191,
+        "category": 4209578111,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "ab518817",
+        "name": "CLOTHING_ITEM_M_BUCKLE_GENERAL_013_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 13,
+        "tint": 0,
+        "friendlyName": "Day's Work Buckle"
+      }
+    ]
+  },
+  {
+    "name": "Weekly Streak Buckle",
+    "components": [
+      {
+        "component": 839889935,
+        "category": 4209578111,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "320fb40f",
+        "name": "CLOTHING_ITEM_F_BUCKLE_GENERAL_014_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 14,
+        "tint": 0,
+        "friendlyName": "Weekly Streak Buckle"
+      },
+      {
+        "component": 3558788294,
+        "category": 4209578111,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "d41eccc6",
+        "name": "CLOTHING_ITEM_M_BUCKLE_GENERAL_014_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 14,
+        "tint": 0,
+        "friendlyName": "Weekly Streak Buckle"
+      }
+    ]
+  },
+  {
+    "name": "Monthly Streak Buckle",
+    "components": [
+      {
         "component": 2584823413,
         "category": 4209578111,
         "type": "1",
@@ -5333,32 +3893,6 @@
         "friendlyName": "Monthly Streak Buckle"
       },
       {
-        "component": 3546977196,
-        "category": 4209578111,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "d36a93ac",
-        "name": "CLOTHING_ITEM_F_BUCKLE_SHARPSHOOTER_015_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 15,
-        "tint": 0,
-        "friendlyName": "Shotgun Headshot Buckle"
-      },
-      {
-        "component": 3163243513,
-        "category": 4209578111,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "bc8b43f9",
-        "name": "CLOTHING_ITEM_M_BUCKLE_COMBAT_015_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 15,
-        "tint": 0,
-        "friendlyName": "Ride Along Buckle"
-      },
-      {
         "component": 196919272,
         "category": 4209578111,
         "type": "0",
@@ -5370,6 +3904,1078 @@
         "id": 15,
         "tint": 0,
         "friendlyName": "Monthly Streak Buckle"
+      }
+    ]
+  },
+  {
+    "name": "Horse Whisper Buckle",
+    "components": [
+      {
+        "component": 715947527,
+        "category": 4209578111,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "2aac7e07",
+        "name": "CLOTHING_ITEM_F_BUCKLE_HORSE_001_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 1,
+        "tint": 0,
+        "friendlyName": "Horse Whisper Buckle"
+      },
+      {
+        "component": 147815842,
+        "category": 4209578111,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "8cf7da2",
+        "name": "CLOTHING_ITEM_M_BUCKLE_HORSE_001_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 1,
+        "tint": 0,
+        "friendlyName": "Horse Whisper Buckle"
+      }
+    ]
+  },
+  {
+    "name": "Horse Breeds Buckle",
+    "components": [
+      {
+        "component": 1011499272,
+        "category": 4209578111,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "3c4a4108",
+        "name": "CLOTHING_ITEM_F_BUCKLE_HORSE_002_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 2,
+        "tint": 0,
+        "friendlyName": "Horse Breeds Buckle"
+      },
+      {
+        "component": 1224938018,
+        "category": 4209578111,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "49031222",
+        "name": "CLOTHING_ITEM_M_BUCKLE_HORSE_002_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 2,
+        "tint": 0,
+        "friendlyName": "Horse Breeds Buckle"
+      }
+    ]
+  },
+  {
+    "name": "Falling Buckle",
+    "components": [
+      {
+        "component": 1398058136,
+        "category": 4209578111,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "5354ac98",
+        "name": "CLOTHING_ITEM_F_BUCKLE_HORSE_003_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 3,
+        "tint": 0,
+        "friendlyName": "Falling Buckle"
+      },
+      {
+        "component": 3391527703,
+        "category": 4209578111,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "ca269b17",
+        "name": "CLOTHING_ITEM_M_BUCKLE_HORSE_003_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 3,
+        "tint": 0,
+        "friendlyName": "Falling Buckle"
+      }
+    ]
+  },
+  {
+    "name": "Animal Hunt Buckle",
+    "components": [
+      {
+        "component": 2554578875,
+        "category": 4209578111,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "9843c7bb",
+        "name": "CLOTHING_ITEM_F_BUCKLE_HUNTING_001_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 1,
+        "tint": 0,
+        "friendlyName": "Animal Hunt Buckle"
+      },
+      {
+        "component": 3148859206,
+        "category": 4209578111,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "bbafc746",
+        "name": "CLOTHING_ITEM_M_BUCKLE_HUNTING_001_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 1,
+        "tint": 0,
+        "friendlyName": "Animal Hunt Buckle"
+      }
+    ]
+  },
+  {
+    "name": "Bird Hunt Buckle",
+    "components": [
+      {
+        "component": 3565399107,
+        "category": 4209578111,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "d483ac43",
+        "name": "CLOTHING_ITEM_F_BUCKLE_HUNTING_002_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 2,
+        "tint": 0,
+        "friendlyName": "Bird Hunt Buckle"
+      },
+      {
+        "component": 1103647487,
+        "category": 4209578111,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "41c852ff",
+        "name": "CLOTHING_ITEM_M_BUCKLE_HUNTING_002_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 2,
+        "tint": 0,
+        "friendlyName": "Bird Hunt Buckle"
+      }
+    ]
+  },
+  {
+    "name": "Airborne Buckle",
+    "components": [
+      {
+        "component": 3054159399,
+        "category": 4209578111,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "b60ac627",
+        "name": "CLOTHING_ITEM_F_BUCKLE_HUNTING_003_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 3,
+        "tint": 0,
+        "friendlyName": "Airborne Buckle"
+      },
+      {
+        "component": 184264279,
+        "category": 4209578111,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "afba657",
+        "name": "CLOTHING_ITEM_M_BUCKLE_HUNTING_003_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 3,
+        "tint": 0,
+        "friendlyName": "Airborne Buckle"
+      }
+    ]
+  },
+  {
+    "name": "Blast Radius Buckle",
+    "components": [
+      {
+        "component": 2430773657,
+        "category": 4209578111,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "90e2a999",
+        "name": "CLOTHING_ITEM_F_BUCKLE_HUNTING_004_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 4,
+        "tint": 0,
+        "friendlyName": "Blast Radius Buckle"
+      },
+      {
+        "component": 2665529719,
+        "category": 4209578111,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "9ee0c177",
+        "name": "CLOTHING_ITEM_M_BUCKLE_HUNTING_004_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 4,
+        "tint": 0,
+        "friendlyName": "Blast Radius Buckle"
+      }
+    ]
+  },
+  {
+    "name": "Small Game Buckle",
+    "components": [
+      {
+        "component": 2656685192,
+        "category": 4209578111,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "9e59cc88",
+        "name": "CLOTHING_ITEM_F_BUCKLE_HUNTING_005_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 5,
+        "tint": 0,
+        "friendlyName": "Small Game Buckle"
+      },
+      {
+        "component": 2675065361,
+        "category": 4209578111,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "9f724211",
+        "name": "CLOTHING_ITEM_M_BUCKLE_HUNTING_005_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 5,
+        "tint": 0,
+        "friendlyName": "Small Game Buckle"
+      }
+    ]
+  },
+  {
+    "name": "Hunting Knife Buckle",
+    "components": [
+      {
+        "component": 612134528,
+        "category": 4209578111,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "247c6e80",
+        "name": "CLOTHING_ITEM_F_BUCKLE_HUNTING_006_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 6,
+        "tint": 0,
+        "friendlyName": "Hunting Knife Buckle"
+      },
+      {
+        "component": 2755040615,
+        "category": 4209578111,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "a4369567",
+        "name": "CLOTHING_ITEM_M_BUCKLE_HUNTING_006_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 6,
+        "tint": 0,
+        "friendlyName": "Hunting Knife Buckle"
+      }
+    ]
+  },
+  {
+    "name": "Collector Buckle",
+    "components": [
+      {
+        "component": 2968147610,
+        "category": 4209578111,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "b0ea569a",
+        "name": "CLOTHING_ITEM_F_BUCKLE_HUNTING_008_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 8,
+        "tint": 0,
+        "friendlyName": "Collector Buckle"
+      },
+      {
+        "component": 2646026767,
+        "category": 4209578111,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "9db72a0f",
+        "name": "CLOTHING_ITEM_M_BUCKLE_HUNTING_008_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 8,
+        "tint": 0,
+        "friendlyName": "Collector Buckle"
+      }
+    ]
+  },
+  {
+    "name": "On the Move Buckle",
+    "components": [
+      {
+        "component": 2997215478,
+        "category": 4209578111,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "b2a5e0f6",
+        "name": "CLOTHING_ITEM_F_BUCKLE_HUNTING_009_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 9,
+        "tint": 0,
+        "friendlyName": "On the Move Buckle"
+      },
+      {
+        "component": 3669435472,
+        "category": 4209578111,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "dab72450",
+        "name": "CLOTHING_ITEM_M_BUCKLE_HUNTING_009_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 9,
+        "tint": 0,
+        "friendlyName": "On the Move Buckle"
+      }
+    ]
+  },
+  {
+    "name": "Hunter Buckle",
+    "components": [
+      {
+        "component": 3943089983,
+        "category": 4209578111,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "eb06c73f",
+        "name": "CLOTHING_ITEM_F_BUCKLE_HUNTING_010_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 10,
+        "tint": 0,
+        "friendlyName": "Hunter Buckle"
+      },
+      {
+        "component": 2307332169,
+        "category": 4209578111,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "89871849",
+        "name": "CLOTHING_ITEM_M_BUCKLE_HUNTING_010_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 10,
+        "tint": 0,
+        "friendlyName": "Hunter Buckle"
+      }
+    ]
+  },
+  {
+    "name": "Wild Revenge Buckle",
+    "components": [
+      {
+        "component": 739258290,
+        "category": 4209578111,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "2c102fb2",
+        "name": "CLOTHING_ITEM_F_BUCKLE_HUNTING_011_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 11,
+        "tint": 0,
+        "friendlyName": "Wild Revenge Buckle"
+      },
+      {
+        "component": 906922156,
+        "category": 4209578111,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "360e88ac",
+        "name": "CLOTHING_ITEM_M_BUCKLE_HUNTING_011_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 11,
+        "tint": 0,
+        "friendlyName": "Wild Revenge Buckle"
+      }
+    ]
+  },
+  {
+    "name": "Fishing Buckle",
+    "components": [
+      {
+        "component": 3080107109,
+        "category": 4209578111,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "b796b465",
+        "name": "CLOTHING_ITEM_F_BUCKLE_HUNTING_013_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 13,
+        "tint": 0,
+        "friendlyName": "Fishing Buckle"
+      },
+      {
+        "component": 1936151422,
+        "category": 4209578111,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "7367537e",
+        "name": "CLOTHING_ITEM_M_BUCKLE_HUNTING_013_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 13,
+        "tint": 0,
+        "friendlyName": "Fishing Buckle"
+      }
+    ]
+  },
+  {
+    "name": "Poacher Buckle",
+    "components": [
+      {
+        "component": 529421873,
+        "category": 4209578111,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "1f8e5631",
+        "name": "CLOTHING_ITEM_F_BUCKLE_HUNTING_014_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 14,
+        "tint": 0,
+        "friendlyName": "Poacher Buckle"
+      },
+      {
+        "component": 1687881155,
+        "category": 4209578111,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "649b05c3",
+        "name": "CLOTHING_ITEM_M_BUCKLE_HUNTING_014_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 14,
+        "tint": 0,
+        "friendlyName": "Poacher Buckle"
+      }
+    ]
+  },
+  {
+    "name": "Leader Buckle",
+    "components": [
+      {
+        "component": 1687317308,
+        "category": 4209578111,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "64926b3c",
+        "name": "CLOTHING_ITEM_F_BUCKLE_POSSE_001_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 1,
+        "tint": 0,
+        "friendlyName": "Leader Buckle"
+      },
+      {
+        "component": 2850171066,
+        "category": 4209578111,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "a9e228ba",
+        "name": "CLOTHING_ITEM_M_BUCKLE_POSSE_001_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 1,
+        "tint": 0,
+        "friendlyName": "Leader Buckle"
+      }
+    ]
+  },
+  {
+    "name": "Member Buckle",
+    "components": [
+      {
+        "component": 2593529312,
+        "category": 4209578111,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "9a961de0",
+        "name": "CLOTHING_ITEM_F_BUCKLE_POSSE_002_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 2,
+        "tint": 0,
+        "friendlyName": "Member Buckle"
+      },
+      {
+        "component": 1609132761,
+        "category": 4209578111,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "5fe96ad9",
+        "name": "CLOTHING_ITEM_M_BUCKLE_POSSE_002_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 2,
+        "tint": 0,
+        "friendlyName": "Member Buckle"
+      }
+    ]
+  },
+  {
+    "name": "Reviver Buckle",
+    "components": [
+      {
+        "component": 3471217438,
+        "category": 4209578111,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "cee6931e",
+        "name": "CLOTHING_ITEM_F_BUCKLE_POSSE_003_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 3,
+        "tint": 0,
+        "friendlyName": "Reviver Buckle"
+      },
+      {
+        "component": 1414781489,
+        "category": 4209578111,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "5453da31",
+        "name": "CLOTHING_ITEM_M_BUCKLE_POSSE_003_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 3,
+        "tint": 0,
+        "friendlyName": "Reviver Buckle"
+      }
+    ]
+  },
+  {
+    "name": "Assisting Buckle",
+    "components": [
+      {
+        "component": 1676120918,
+        "category": 4209578111,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "63e79356",
+        "name": "CLOTHING_ITEM_F_BUCKLE_POSSE_004_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 4,
+        "tint": 0,
+        "friendlyName": "Assisting Buckle"
+      },
+      {
+        "component": 613501905,
+        "category": 4209578111,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "24914bd1",
+        "name": "CLOTHING_ITEM_M_BUCKLE_POSSE_004_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 4,
+        "tint": 0,
+        "friendlyName": "Assisting Buckle"
+      }
+    ]
+  },
+  {
+    "name": "Challenger Buckle",
+    "components": [
+      {
+        "component": 307171564,
+        "category": 4209578111,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "124f10ec",
+        "name": "CLOTHING_ITEM_F_BUCKLE_POSSE_005_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 5,
+        "tint": 0,
+        "friendlyName": "Challenger Buckle"
+      },
+      {
+        "component": 1307011429,
+        "category": 4209578111,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "4de76965",
+        "name": "CLOTHING_ITEM_M_BUCKLE_POSSE_005_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 5,
+        "tint": 0,
+        "friendlyName": "Challenger Buckle"
+      }
+    ]
+  },
+  {
+    "name": "Pistol Buckle",
+    "components": [
+      {
+        "component": 2814703116,
+        "category": 4209578111,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "a7c4f60c",
+        "name": "CLOTHING_ITEM_F_BUCKLE_SHARPSHOOTER_001_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 1,
+        "tint": 0,
+        "friendlyName": "Pistol Buckle"
+      },
+      {
+        "component": 2995508234,
+        "category": 4209578111,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "b28bd40a",
+        "name": "CLOTHING_ITEM_M_BUCKLE_SHARPSHOOTER_001_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 1,
+        "tint": 0,
+        "friendlyName": "Pistol Buckle"
+      }
+    ]
+  },
+  {
+    "name": "Revolver Buckle",
+    "components": [
+      {
+        "component": 1312895143,
+        "category": 4209578111,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "4e4130a7",
+        "name": "CLOTHING_ITEM_F_BUCKLE_SHARPSHOOTER_002_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 2,
+        "tint": 0,
+        "friendlyName": "Revolver Buckle"
+      },
+      {
+        "component": 2648944913,
+        "category": 4209578111,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "9de3b111",
+        "name": "CLOTHING_ITEM_M_BUCKLE_SHARPSHOOTER_002_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 2,
+        "tint": 0,
+        "friendlyName": "Revolver Buckle"
+      }
+    ]
+  },
+  {
+    "name": "Repeater Buckle",
+    "components": [
+      {
+        "component": 2766704372,
+        "category": 4209578111,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "a4e88ef4",
+        "name": "CLOTHING_ITEM_F_BUCKLE_SHARPSHOOTER_003_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 3,
+        "tint": 0,
+        "friendlyName": "Repeater Buckle"
+      },
+      {
+        "component": 2858913315,
+        "category": 4209578111,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "aa678e23",
+        "name": "CLOTHING_ITEM_M_BUCKLE_SHARPSHOOTER_003_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 3,
+        "tint": 0,
+        "friendlyName": "Repeater Buckle"
+      }
+    ]
+  },
+  {
+    "name": "Rifle Buckle",
+    "components": [
+      {
+        "component": 3912716186,
+        "category": 4209578111,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "e9374f9a",
+        "name": "CLOTHING_ITEM_F_BUCKLE_SHARPSHOOTER_004_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 4,
+        "tint": 0,
+        "friendlyName": "Rifle Buckle"
+      },
+      {
+        "component": 1026349198,
+        "category": 4209578111,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "3d2cd88e",
+        "name": "CLOTHING_ITEM_M_BUCKLE_SHARPSHOOTER_004_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 4,
+        "tint": 0,
+        "friendlyName": "Rifle Buckle"
+      }
+    ]
+  },
+  {
+    "name": "Sniper Buckle",
+    "components": [
+      {
+        "component": 2412169612,
+        "category": 4209578111,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "8fc6c98c",
+        "name": "CLOTHING_ITEM_F_BUCKLE_SHARPSHOOTER_005_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 5,
+        "tint": 0,
+        "friendlyName": "Sniper Buckle"
+      },
+      {
+        "component": 3708748020,
+        "category": 4209578111,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "dd0f00f4",
+        "name": "CLOTHING_ITEM_M_BUCKLE_SHARPSHOOTER_005_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 5,
+        "tint": 0,
+        "friendlyName": "Sniper Buckle"
+      }
+    ]
+  },
+  {
+    "name": "Shotgun Buckle",
+    "components": [
+      {
+        "component": 700176809,
+        "category": 4209578111,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "29bbd9a9",
+        "name": "CLOTHING_ITEM_F_BUCKLE_SHARPSHOOTER_006_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 6,
+        "tint": 0,
+        "friendlyName": "Shotgun Buckle"
+      },
+      {
+        "component": 4283384565,
+        "category": 4209578111,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "ff4f42f5",
+        "name": "CLOTHING_ITEM_M_BUCKLE_SHARPSHOOTER_006_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 6,
+        "tint": 0,
+        "friendlyName": "Shotgun Buckle"
+      }
+    ]
+  },
+  {
+    "name": "Melee Buckle",
+    "components": [
+      {
+        "component": 3100564199,
+        "category": 4209578111,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "b8cedae7",
+        "name": "CLOTHING_ITEM_F_BUCKLE_SHARPSHOOTER_007_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 7,
+        "tint": 0,
+        "friendlyName": "Melee Buckle"
+      },
+      {
+        "component": 3215970056,
+        "category": 4209578111,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "bfafcf08",
+        "name": "CLOTHING_ITEM_M_BUCKLE_SHARPSHOOTER_007_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 7,
+        "tint": 0,
+        "friendlyName": "Melee Buckle"
+      }
+    ]
+  },
+  {
+    "name": "Throwing Weapon Buckle",
+    "components": [
+      {
+        "component": 1732623661,
+        "category": 4209578111,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "6745bd2d",
+        "name": "CLOTHING_ITEM_F_BUCKLE_SHARPSHOOTER_008_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 8,
+        "tint": 0,
+        "friendlyName": "Throwing Weapon Buckle"
+      },
+      {
+        "component": 3134580965,
+        "category": 4209578111,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "bad5e8e5",
+        "name": "CLOTHING_ITEM_M_BUCKLE_SHARPSHOOTER_008_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 8,
+        "tint": 0,
+        "friendlyName": "Throwing Weapon Buckle"
+      }
+    ]
+  },
+  {
+    "name": "Bow Buckle",
+    "components": [
+      {
+        "component": 251307644,
+        "category": 4209578111,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "efaa67c",
+        "name": "CLOTHING_ITEM_F_BUCKLE_SHARPSHOOTER_009_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 9,
+        "tint": 0,
+        "friendlyName": "Bow Buckle"
+      },
+      {
+        "component": 1299602772,
+        "category": 4209578111,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "4d765d54",
+        "name": "CLOTHING_ITEM_M_BUCKLE_SHARPSHOOTER_009_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 9,
+        "tint": 0,
+        "friendlyName": "Bow Buckle"
+      }
+    ]
+  },
+  {
+    "name": "Pistol Headshot Buckle",
+    "components": [
+      {
+        "component": 3067094219,
+        "category": 4209578111,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "b6d024cb",
+        "name": "CLOTHING_ITEM_F_BUCKLE_SHARPSHOOTER_010_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 10,
+        "tint": 0,
+        "friendlyName": "Pistol Headshot Buckle"
+      },
+      {
+        "component": 1537539003,
+        "category": 4209578111,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "5ba4fbbb",
+        "name": "CLOTHING_ITEM_M_BUCKLE_SHARPSHOOTER_010_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 10,
+        "tint": 0,
+        "friendlyName": "Pistol Headshot Buckle"
+      }
+    ]
+  },
+  {
+    "name": "Revolver Headshot Buckle",
+    "components": [
+      {
+        "component": 413877452,
+        "category": 4209578111,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "18ab44cc",
+        "name": "CLOTHING_ITEM_F_BUCKLE_SHARPSHOOTER_011_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 11,
+        "tint": 0,
+        "friendlyName": "Revolver Headshot Buckle"
+      },
+      {
+        "component": 1688312492,
+        "category": 4209578111,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "64a19aac",
+        "name": "CLOTHING_ITEM_M_BUCKLE_SHARPSHOOTER_011_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 11,
+        "tint": 0,
+        "friendlyName": "Revolver Headshot Buckle"
+      }
+    ]
+  },
+  {
+    "name": "Repeater Headshot Buckle",
+    "components": [
+      {
+        "component": 1853673202,
+        "category": 4209578111,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "6e7ccef2",
+        "name": "CLOTHING_ITEM_F_BUCKLE_SHARPSHOOTER_012_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 12,
+        "tint": 0,
+        "friendlyName": "Repeater Headshot Buckle"
+      },
+      {
+        "component": 1828373931,
+        "category": 4209578111,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "6cfac5ab",
+        "name": "CLOTHING_ITEM_M_BUCKLE_SHARPSHOOTER_012_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 12,
+        "tint": 0,
+        "friendlyName": "Repeater Headshot Buckle"
+      }
+    ]
+  },
+  {
+    "name": "Rifle Headshot Buckle",
+    "components": [
+      {
+        "component": 3893546207,
+        "category": 4209578111,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "e812ccdf",
+        "name": "CLOTHING_ITEM_F_BUCKLE_SHARPSHOOTER_013_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 13,
+        "tint": 0,
+        "friendlyName": "Rifle Headshot Buckle"
+      },
+      {
+        "component": 1348825328,
+        "category": 4209578111,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "506570f0",
+        "name": "CLOTHING_ITEM_M_BUCKLE_SHARPSHOOTER_013_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 13,
+        "tint": 0,
+        "friendlyName": "Rifle Headshot Buckle"
+      }
+    ]
+  },
+  {
+    "name": "Sniper Headshot Buckle",
+    "components": [
+      {
+        "component": 3714224828,
+        "category": 4209578111,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "dd6292bc",
+        "name": "CLOTHING_ITEM_F_BUCKLE_SHARPSHOOTER_014_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 14,
+        "tint": 0,
+        "friendlyName": "Sniper Headshot Buckle"
+      },
+      {
+        "component": 3816596356,
+        "category": 4209578111,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "e37ca384",
+        "name": "CLOTHING_ITEM_M_BUCKLE_SHARPSHOOTER_014_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 14,
+        "tint": 0,
+        "friendlyName": "Sniper Headshot Buckle"
+      }
+    ]
+  },
+  {
+    "name": "Shotgun Headshot Buckle",
+    "components": [
+      {
+        "component": 3546977196,
+        "category": 4209578111,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "d36a93ac",
+        "name": "CLOTHING_ITEM_F_BUCKLE_SHARPSHOOTER_015_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 15,
+        "tint": 0,
+        "friendlyName": "Shotgun Headshot Buckle"
       },
       {
         "component": 1320479151,
@@ -5418,21 +5024,8 @@
     ]
   },
   {
-    "name": "Victor Buckle",
+    "name": "Deathrider Buckle",
     "components": [
-      {
-        "component": 2859184032,
-        "category": 4209578111,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "aa6bafa0",
-        "name": "CLOTHING_ITEM_F_BUCKLE_COMPETITIVE_017_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 17,
-        "tint": 0,
-        "friendlyName": "Victor Buckle"
-      },
       {
         "component": 422249095,
         "category": 4209578111,
@@ -5445,19 +5038,6 @@
         "id": 17,
         "tint": 0,
         "friendlyName": "Deathrider Buckle"
-      },
-      {
-        "component": 3092403775,
-        "category": 4209578111,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "b852563f",
-        "name": "CLOTHING_ITEM_M_BUCKLE_COMPETITIVE_017_TINT_001",
-        "itemType": "belt_buckles",
-        "id": 17,
-        "tint": 0,
-        "friendlyName": "Victor Buckle"
       },
       {
         "component": 2155131090,
@@ -5843,6 +5423,936 @@
         "id": 29,
         "tint": 0,
         "friendlyName": "Acquired Guns Buckle"
+      }
+    ]
+  },
+  {
+    "name": "Herbalist Buckle",
+    "components": [
+      {
+        "component": 1909700942,
+        "category": 4209578111,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "71d3b94e",
+        "name": "CLOTHING_ITEM_F_BUCKLE_SURVIVAL_001_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 1,
+        "tint": 0,
+        "friendlyName": "Herbalist Buckle"
+      },
+      {
+        "component": 1370510965,
+        "category": 4209578111,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "51b05675",
+        "name": "CLOTHING_ITEM_M_BUCKLE_SURVIVAL_001_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 1,
+        "tint": 0,
+        "friendlyName": "Herbalist Buckle"
+      }
+    ]
+  },
+  {
+    "name": "Taste Test Buckle",
+    "components": [
+      {
+        "component": 3380854205,
+        "category": 4209578111,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "c983bdbd",
+        "name": "CLOTHING_ITEM_F_BUCKLE_SURVIVAL_002_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 2,
+        "tint": 0,
+        "friendlyName": "Taste Test Buckle"
+      },
+      {
+        "component": 1817941974,
+        "category": 4209578111,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "6c5b97d6",
+        "name": "CLOTHING_ITEM_M_BUCKLE_SURVIVAL_002_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 2,
+        "tint": 0,
+        "friendlyName": "Taste Test Buckle"
+      }
+    ]
+  },
+  {
+    "name": "Crafter Buckle",
+    "components": [
+      {
+        "component": 198975914,
+        "category": 4209578111,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "bdc21aa",
+        "name": "CLOTHING_ITEM_F_BUCKLE_SURVIVAL_003_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 3,
+        "tint": 0,
+        "friendlyName": "Crafter Buckle"
+      },
+      {
+        "component": 3434755258,
+        "category": 4209578111,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "ccba34ba",
+        "name": "CLOTHING_ITEM_M_BUCKLE_SURVIVAL_003_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 3,
+        "tint": 0,
+        "friendlyName": "Crafter Buckle"
+      }
+    ]
+  },
+  {
+    "name": "Recipe Buckle",
+    "components": [
+      {
+        "component": 1134435597,
+        "category": 4209578111,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "439e1d0d",
+        "name": "CLOTHING_ITEM_F_BUCKLE_SURVIVAL_004_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 4,
+        "tint": 0,
+        "friendlyName": "Recipe Buckle"
+      },
+      {
+        "component": 329239577,
+        "category": 4209578111,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "139fcc19",
+        "name": "CLOTHING_ITEM_M_BUCKLE_SURVIVAL_004_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 4,
+        "tint": 0,
+        "friendlyName": "Recipe Buckle"
+      }
+    ]
+  },
+  {
+    "name": "Chef Buckle",
+    "components": [
+      {
+        "component": 73896424,
+        "category": 4209578111,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "46791e8",
+        "name": "CLOTHING_ITEM_F_BUCKLE_SURVIVAL_005_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 5,
+        "tint": 0,
+        "friendlyName": "Chef Buckle"
+      },
+      {
+        "component": 769230540,
+        "category": 4209578111,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "2dd986cc",
+        "name": "CLOTHING_ITEM_M_BUCKLE_SURVIVAL_005_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 5,
+        "tint": 0,
+        "friendlyName": "Chef Buckle"
+      }
+    ]
+  },
+  {
+    "name": "Shopper Buckle",
+    "components": [
+      {
+        "component": 1199132064,
+        "category": 4209578111,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "47794da0",
+        "name": "CLOTHING_ITEM_F_BUCKLE_TRADE_001_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 1,
+        "tint": 0,
+        "friendlyName": "Shopper Buckle"
+      },
+      {
+        "component": 878044387,
+        "category": 4209578111,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "3455e4e3",
+        "name": "CLOTHING_ITEM_M_BUCKLE_TRADE_001_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 1,
+        "tint": 0,
+        "friendlyName": "Shopper Buckle"
+      }
+    ]
+  },
+  {
+    "name": "Consumer Buckle",
+    "components": [
+      {
+        "component": 2269682022,
+        "category": 4209578111,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "87489966",
+        "name": "CLOTHING_ITEM_F_BUCKLE_TRADE_002_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 2,
+        "tint": 0,
+        "friendlyName": "Consumer Buckle"
+      },
+      {
+        "component": 934953512,
+        "category": 4209578111,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "37ba4228",
+        "name": "CLOTHING_ITEM_M_BUCKLE_TRADE_002_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 2,
+        "tint": 0,
+        "friendlyName": "Consumer Buckle"
+      }
+    ]
+  },
+  {
+    "name": "Fashion Buckle",
+    "components": [
+      {
+        "component": 4063745224,
+        "category": 4209578111,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "f237d4c8",
+        "name": "CLOTHING_ITEM_F_BUCKLE_TRADE_003_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 3,
+        "tint": 0,
+        "friendlyName": "Fashion Buckle"
+      },
+      {
+        "component": 3094778069,
+        "category": 4209578111,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "b87690d5",
+        "name": "CLOTHING_ITEM_M_BUCKLE_TRADE_003_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 3,
+        "tint": 0,
+        "friendlyName": "Fashion Buckle"
+      }
+    ]
+  },
+  {
+    "name": "Big Spender Buckle",
+    "components": [
+      {
+        "component": 58562878,
+        "category": 4209578111,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "37d993e",
+        "name": "CLOTHING_ITEM_F_BUCKLE_TRADE_004_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 4,
+        "tint": 0,
+        "friendlyName": "Big Spender Buckle"
+      },
+      {
+        "component": 1144524070,
+        "category": 4209578111,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "44380d26",
+        "name": "CLOTHING_ITEM_M_BUCKLE_TRADE_004_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 4,
+        "tint": 0,
+        "friendlyName": "Big Spender Buckle"
+      }
+    ]
+  },
+  {
+    "name": "Trader Buckle",
+    "components": [
+      {
+        "component": 2159514093,
+        "category": 4209578111,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "80b791ed",
+        "name": "CLOTHING_ITEM_F_BUCKLE_TRADE_005_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 5,
+        "tint": 0,
+        "friendlyName": "Trader Buckle"
+      },
+      {
+        "component": 3846032914,
+        "category": 4209578111,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "e53dce12",
+        "name": "CLOTHING_ITEM_M_BUCKLE_TRADE_005_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 5,
+        "tint": 0,
+        "friendlyName": "Trader Buckle"
+      }
+    ]
+  },
+  {
+    "name": "Remedy Buckle",
+    "components": [
+      {
+        "component": 1398844423,
+        "category": 4209578111,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "5360ac07",
+        "name": "CLOTHING_ITEM_F_BUCKLE_TRADE_007_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 7,
+        "tint": 0,
+        "friendlyName": "Remedy Buckle"
+      },
+      {
+        "component": 1079777357,
+        "category": 4209578111,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "405c184d",
+        "name": "CLOTHING_ITEM_M_BUCKLE_TRADE_007_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 7,
+        "tint": 0,
+        "friendlyName": "Remedy Buckle"
+      }
+    ]
+  },
+  {
+    "name": "Nugget Buckle",
+    "components": [
+      {
+        "component": 2989392111,
+        "category": 4209578111,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "b22e80ef",
+        "name": "CLOTHING_ITEM_F_BUCKLE_TRADE_009_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 9,
+        "tint": 0,
+        "friendlyName": "Nugget Buckle"
+      },
+      {
+        "component": 1446665429,
+        "category": 4209578111,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "563a5cd5",
+        "name": "CLOTHING_ITEM_M_BUCKLE_TRADE_009_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 9,
+        "tint": 0,
+        "friendlyName": "Nugget Buckle"
+      }
+    ]
+  },
+  {
+    "name": "Orders Buckle",
+    "components": [
+      {
+        "component": 3020218604,
+        "category": 4209578111,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "b404e0ec",
+        "name": "CLOTHING_ITEM_F_BUCKLE_TRADE_010_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 10,
+        "tint": 0,
+        "friendlyName": "Orders Buckle"
+      },
+      {
+        "component": 2458458243,
+        "category": 4209578111,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "92891883",
+        "name": "CLOTHING_ITEM_M_BUCKLE_TRADE_010_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 10,
+        "tint": 0,
+        "friendlyName": "Orders Buckle"
+      }
+    ]
+  },
+  {
+    "name": "Butcher Buckle",
+    "components": [
+      {
+        "component": 2286735519,
+        "category": 4209578111,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "884cd09f",
+        "name": "CLOTHING_ITEM_F_BUCKLE_TRADE_011_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 11,
+        "tint": 0,
+        "friendlyName": "Butcher Buckle"
+      },
+      {
+        "component": 3691662622,
+        "category": 4209578111,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "dc0a4d1e",
+        "name": "CLOTHING_ITEM_M_BUCKLE_TRADE_011_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 11,
+        "tint": 0,
+        "friendlyName": "Butcher Buckle"
+      }
+    ]
+  },
+  {
+    "name": "Shady Buckle",
+    "components": [
+      {
+        "component": 3152144474,
+        "category": 4209578111,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "bbe1e85a",
+        "name": "CLOTHING_ITEM_F_BUCKLE_TRADE_012_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 12,
+        "tint": 0,
+        "friendlyName": "Shady Buckle"
+      },
+      {
+        "component": 1476129947,
+        "category": 4209578111,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "57fbf49b",
+        "name": "CLOTHING_ITEM_M_BUCKLE_TRADE_012_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 12,
+        "tint": 0,
+        "friendlyName": "Shady Buckle"
+      }
+    ]
+  },
+  {
+    "name": "Bar Crawl Buckle",
+    "components": [
+      {
+        "component": 2216268847,
+        "category": 4209578111,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "8419942f",
+        "name": "CLOTHING_ITEM_F_BUCKLE_TRADE_013_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 13,
+        "tint": 0,
+        "friendlyName": "Bar Crawl Buckle"
+      },
+      {
+        "component": 2115650153,
+        "category": 4209578111,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "7e1a4269",
+        "name": "CLOTHING_ITEM_M_BUCKLE_TRADE_013_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 13,
+        "tint": 0,
+        "friendlyName": "Bar Crawl Buckle"
+      }
+    ]
+  },
+  {
+    "name": "Trapper Buckle",
+    "components": [
+      {
+        "component": 540824655,
+        "category": 4209578111,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "203c544f",
+        "name": "CLOTHING_ITEM_F_BUCKLE_TRADE_014_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 14,
+        "tint": 0,
+        "friendlyName": "Trapper Buckle"
+      },
+      {
+        "component": 2124579565,
+        "category": 4209578111,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "7ea282ed",
+        "name": "CLOTHING_ITEM_M_BUCKLE_TRADE_014_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 14,
+        "tint": 0,
+        "friendlyName": "Trapper Buckle"
+      }
+    ]
+  },
+  {
+    "name": "Train Buckle",
+    "components": [
+      {
+        "component": 1021574475,
+        "category": 4209578111,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "3ce3fd4b",
+        "name": "CLOTHING_ITEM_F_BUCKLE_TRAVEL_001_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 1,
+        "tint": 0,
+        "friendlyName": "Train Buckle"
+      },
+      {
+        "component": 1365633803,
+        "category": 4209578111,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "5165eb0b",
+        "name": "CLOTHING_ITEM_M_BUCKLE_TRAVEL_001_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 1,
+        "tint": 0,
+        "friendlyName": "Train Buckle"
+      }
+    ]
+  },
+  {
+    "name": "Nomad Buckle",
+    "components": [
+      {
+        "component": 3772030019,
+        "category": 4209578111,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "e0d49c43",
+        "name": "CLOTHING_ITEM_F_BUCKLE_TRAVEL_002_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 2,
+        "tint": 0,
+        "friendlyName": "Nomad Buckle"
+      },
+      {
+        "component": 1605136459,
+        "category": 4209578111,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "5fac704b",
+        "name": "CLOTHING_ITEM_M_BUCKLE_TRAVEL_002_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 2,
+        "tint": 0,
+        "friendlyName": "Nomad Buckle"
+      }
+    ]
+  },
+  {
+    "name": "Canoer Buckle",
+    "components": [
+      {
+        "component": 107605801,
+        "category": 4209578111,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "669ef29",
+        "name": "CLOTHING_ITEM_F_BUCKLE_TRAVEL_003_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 3,
+        "tint": 0,
+        "friendlyName": "Canoer Buckle"
+      },
+      {
+        "component": 2390068254,
+        "category": 4209578111,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "8e758c1e",
+        "name": "CLOTHING_ITEM_M_BUCKLE_TRAVEL_003_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 3,
+        "tint": 0,
+        "friendlyName": "Canoer Buckle"
+      }
+    ]
+  },
+  {
+    "name": "Horseback Buckle",
+    "components": [
+      {
+        "component": 2840821519,
+        "category": 4209578111,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "a9537f0f",
+        "name": "CLOTHING_ITEM_F_BUCKLE_TRAVEL_004_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 4,
+        "tint": 0,
+        "friendlyName": "Horseback Buckle"
+      },
+      {
+        "component": 829076046,
+        "category": 4209578111,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "316ab24e",
+        "name": "CLOTHING_ITEM_M_BUCKLE_TRAVEL_004_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 4,
+        "tint": 0,
+        "friendlyName": "Horseback Buckle"
+      }
+    ]
+  },
+  {
+    "name": "Frontier Buckle",
+    "components": [
+      {
+        "component": 2145956586,
+        "category": 4209578111,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "7fe8b2ea",
+        "name": "CLOTHING_ITEM_F_BUCKLE_TRAVEL_005_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 5,
+        "tint": 0,
+        "friendlyName": "Frontier Buckle"
+      },
+      {
+        "component": 1894911867,
+        "category": 4209578111,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "70f20f7b",
+        "name": "CLOTHING_ITEM_M_BUCKLE_TRAVEL_005_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 5,
+        "tint": 0,
+        "friendlyName": "Frontier Buckle"
+      }
+    ]
+  },
+  {
+    "name": "No Ticket Buckle",
+    "components": [
+      {
+        "component": 1951056004,
+        "category": 4209578111,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "744ac084",
+        "name": "CLOTHING_ITEM_F_BUCKLE_TRAVEL_006_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 6,
+        "tint": 0,
+        "friendlyName": "No Ticket Buckle"
+      },
+      {
+        "component": 503820011,
+        "category": 4209578111,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "1e07aeeb",
+        "name": "CLOTHING_ITEM_M_BUCKLE_TRAVEL_006_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 6,
+        "tint": 0,
+        "friendlyName": "No Ticket Buckle"
+      }
+    ]
+  },
+  {
+    "name": "Hell for Leather 1 Buckle",
+    "components": [
+      {
+        "component": 1707669679,
+        "category": 4209578111,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "65c8f8af",
+        "name": "CLOTHING_ITEM_F_BUCKLE_TRAVEL_007_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 7,
+        "tint": 0,
+        "friendlyName": "Hell for Leather 1 Buckle"
+      },
+      {
+        "component": 810127714,
+        "category": 4209578111,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "30499162",
+        "name": "CLOTHING_ITEM_M_BUCKLE_TRAVEL_007_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 7,
+        "tint": 0,
+        "friendlyName": "Hell for Leather 1 Buckle"
+      }
+    ]
+  },
+  {
+    "name": "Hell for Leather 2 Buckle",
+    "components": [
+      {
+        "component": 4163640057,
+        "category": 4209578111,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "f82c1af9",
+        "name": "CLOTHING_ITEM_F_BUCKLE_TRAVEL_008_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 8,
+        "tint": 0,
+        "friendlyName": "Hell for Leather 2 Buckle"
+      },
+      {
+        "component": 1996371515,
+        "category": 4209578111,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "76fe363b",
+        "name": "CLOTHING_ITEM_M_BUCKLE_TRAVEL_008_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 8,
+        "tint": 0,
+        "friendlyName": "Hell for Leather 2 Buckle"
+      }
+    ]
+  },
+  {
+    "name": "Hell for Leather 3 Buckle",
+    "components": [
+      {
+        "component": 4190678885,
+        "category": 4209578111,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "f9c8af65",
+        "name": "CLOTHING_ITEM_F_BUCKLE_TRAVEL_009_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 9,
+        "tint": 0,
+        "friendlyName": "Hell for Leather 3 Buckle"
+      },
+      {
+        "component": 2955778418,
+        "category": 4209578111,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "b02d9972",
+        "name": "CLOTHING_ITEM_M_BUCKLE_TRAVEL_009_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 9,
+        "tint": 0,
+        "friendlyName": "Hell for Leather 3 Buckle"
+      }
+    ]
+  },
+  {
+    "name": "Coach Buckle",
+    "components": [
+      {
+        "component": 1013717721,
+        "category": 4209578111,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "3c6c1ad9",
+        "name": "CLOTHING_ITEM_F_BUCKLE_TRAVEL_010_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 10,
+        "tint": 0,
+        "friendlyName": "Coach Buckle"
+      },
+      {
+        "component": 3328663566,
+        "category": 4209578111,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "c667600e",
+        "name": "CLOTHING_ITEM_M_BUCKLE_TRAVEL_010_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 10,
+        "tint": 0,
+        "friendlyName": "Coach Buckle"
+      }
+    ]
+  },
+  {
+    "name": "Passenger Buckle",
+    "components": [
+      {
+        "component": 200683969,
+        "category": 4209578111,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "bf631c1",
+        "name": "CLOTHING_ITEM_F_BUCKLE_TRAVEL_011_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 11,
+        "tint": 0,
+        "friendlyName": "Passenger Buckle"
+      },
+      {
+        "component": 1166732951,
+        "category": 4209578111,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "458aee97",
+        "name": "CLOTHING_ITEM_M_BUCKLE_TRAVEL_011_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 11,
+        "tint": 0,
+        "friendlyName": "Passenger Buckle"
+      }
+    ]
+  },
+  {
+    "name": "Town Traveler Buckle",
+    "components": [
+      {
+        "component": 1292302437,
+        "category": 4209578111,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "4d06f865",
+        "name": "CLOTHING_ITEM_F_BUCKLE_TRAVEL_012_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 12,
+        "tint": 0,
+        "friendlyName": "Town Traveler Buckle"
+      },
+      {
+        "component": 3295085091,
+        "category": 4209578111,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "c4670223",
+        "name": "CLOTHING_ITEM_M_BUCKLE_TRAVEL_012_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 12,
+        "tint": 0,
+        "friendlyName": "Town Traveler Buckle"
+      }
+    ]
+  },
+  {
+    "name": "Station Traveler Buckle",
+    "components": [
+      {
+        "component": 2384031700,
+        "category": 4209578111,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "8e196fd4",
+        "name": "CLOTHING_ITEM_F_BUCKLE_TRAVEL_013_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 13,
+        "tint": 0,
+        "friendlyName": "Station Traveler Buckle"
+      },
+      {
+        "component": 3387851899,
+        "category": 4209578111,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "c9ee847b",
+        "name": "CLOTHING_ITEM_M_BUCKLE_TRAVEL_013_TINT_001",
+        "itemType": "belt_buckles",
+        "id": 13,
+        "tint": 0,
+        "friendlyName": "Station Traveler Buckle"
       }
     ]
   }

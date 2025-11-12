@@ -1,5 +1,4 @@
 import { ColorPaletteNames, ColorPalettes } from '@lib/shared/color-palettes';
-import { emitClient } from '@lib/ui';
 
 import { uiSize } from '@uiLib/helpers';
 

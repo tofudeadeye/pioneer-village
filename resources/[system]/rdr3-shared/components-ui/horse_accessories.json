@@ -3,6 +3,136 @@
     "name": "Misc",
     "components": [
       {
+        "component": 3607917546,
+        "category": 3545239133,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "d70c73ea",
+        "name": "HORSE_EQUIPMENT_MASK_NEW_000_TINT_001",
+        "itemType": "horse_accessories"
+      },
+      {
+        "component": 4051118279,
+        "category": 3545239133,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "f17728c7",
+        "name": "HORSE_EQUIPMENT_MASK_NEW_000_TINT_007",
+        "itemType": "horse_accessories"
+      },
+      {
+        "component": 1759203245,
+        "category": 3545239133,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "68db4fad",
+        "name": "HORSE_EQUIPMENT_MASK_NEW_001_TINT_001",
+        "itemType": "horse_accessories"
+      },
+      {
+        "component": 1657122858,
+        "category": 3545239133,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "62c5b02a",
+        "name": "HORSE_EQUIPMENT_MASK_NEW_002_TINT_001",
+        "itemType": "horse_accessories"
+      },
+      {
+        "component": 4042089215,
+        "category": 3545239133,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "f0ed62ff",
+        "name": "HORSE_EQUIPMENT_MASK_NEW_003_TINT_001",
+        "itemType": "horse_accessories"
+      },
+      {
+        "component": 779579110,
+        "category": 3545239133,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "2e776ee6",
+        "name": "HORSE_EQUIPMENT_MASK_NEW_004_TINT_001",
+        "itemType": "horse_accessories"
+      },
+      {
+        "component": 1969454269,
+        "category": 3545239133,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "75637cbd",
+        "name": "HORSE_EQUIPMENT_MASK_NEW_004_TINT_002",
+        "itemType": "horse_accessories"
+      },
+      {
+        "component": 1251551017,
+        "category": 3545239133,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "4a992729",
+        "name": "HORSE_EQUIPMENT_MASK_NEW_004_TINT_003",
+        "itemType": "horse_accessories"
+      },
+      {
+        "component": 1311845985,
+        "category": 3545239133,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "4e312e61",
+        "name": "HORSE_EQUIPMENT_MASK_NEW_004_TINT_004",
+        "itemType": "horse_accessories"
+      },
+      {
+        "component": 1208587318,
+        "category": 3545239133,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "48099436",
+        "name": "HORSE_EQUIPMENT_MASK_NEW_005_TINT_001",
+        "itemType": "horse_accessories"
+      },
+      {
+        "component": 2006479699,
+        "category": 3545239133,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "77987353",
+        "name": "HORSE_EQUIPMENT_MASK_NEW_005_TINT_002",
+        "itemType": "horse_accessories"
+      },
+      {
+        "component": 2909658877,
+        "category": 3545239133,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "ad6ddefd",
+        "name": "HORSE_EQUIPMENT_MASK_NEW_005_TINT_003",
+        "itemType": "horse_accessories"
+      },
+      {
+        "component": 1529002600,
+        "category": 3545239133,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "5b22ba68",
+        "name": "HORSE_EQUIPMENT_MASK_NEW_005_TINT_004",
+        "itemType": "horse_accessories"
+      },
+      {
         "component": 145198931,
         "category": 3545239133,
         "type": "1",
@@ -346,205 +476,6 @@
         "isSp": false,
         "componentHex": "fa5b72bb",
         "itemType": "horse_accessories"
-      }
-    ]
-  },
-  {
-    "name": "Natural Buckskin",
-    "components": [
-      {
-        "component": 3607917546,
-        "category": 3545239133,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "d70c73ea",
-        "name": "HORSE_EQUIPMENT_MASK_NEW_000_TINT_001",
-        "itemType": "horse_accessories",
-        "id": 0,
-        "tint": 0,
-        "friendlyName": "Natural Buckskin"
-      },
-      {
-        "component": 4051118279,
-        "category": 3545239133,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "f17728c7",
-        "name": "HORSE_EQUIPMENT_MASK_NEW_000_TINT_007",
-        "itemType": "horse_accessories",
-        "id": 0,
-        "tint": 6,
-        "friendlyName": "Charcoal Buckskin"
-      }
-    ]
-  },
-  {
-    "name": "Brown Hide",
-    "components": [
-      {
-        "component": 1759203245,
-        "category": 3545239133,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "68db4fad",
-        "name": "HORSE_EQUIPMENT_MASK_NEW_001_TINT_001",
-        "itemType": "horse_accessories",
-        "id": 1,
-        "tint": 0,
-        "friendlyName": "Brown Hide"
-      }
-    ]
-  },
-  {
-    "name": "Leather & Bone",
-    "components": [
-      {
-        "component": 1657122858,
-        "category": 3545239133,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "62c5b02a",
-        "name": "HORSE_EQUIPMENT_MASK_NEW_002_TINT_001",
-        "itemType": "horse_accessories",
-        "id": 2,
-        "tint": 0,
-        "friendlyName": "Leather & Bone"
-      }
-    ]
-  },
-  {
-    "name": "Snakeskin & Leather",
-    "components": [
-      {
-        "component": 4042089215,
-        "category": 3545239133,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "f0ed62ff",
-        "name": "HORSE_EQUIPMENT_MASK_NEW_003_TINT_001",
-        "itemType": "horse_accessories",
-        "id": 3,
-        "tint": 0,
-        "friendlyName": "Snakeskin & Leather"
-      }
-    ]
-  },
-  {
-    "name": "Charcoal",
-    "components": [
-      {
-        "component": 779579110,
-        "category": 3545239133,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "2e776ee6",
-        "name": "HORSE_EQUIPMENT_MASK_NEW_004_TINT_001",
-        "itemType": "horse_accessories",
-        "id": 4,
-        "tint": 0,
-        "friendlyName": "Charcoal"
-      },
-      {
-        "component": 1969454269,
-        "category": 3545239133,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "75637cbd",
-        "name": "HORSE_EQUIPMENT_MASK_NEW_004_TINT_002",
-        "itemType": "horse_accessories",
-        "id": 4,
-        "tint": 1,
-        "friendlyName": "Bronze & Crimson"
-      },
-      {
-        "component": 1251551017,
-        "category": 3545239133,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "4a992729",
-        "name": "HORSE_EQUIPMENT_MASK_NEW_004_TINT_003",
-        "itemType": "horse_accessories",
-        "id": 4,
-        "tint": 2,
-        "friendlyName": "Crimson & Tan"
-      },
-      {
-        "component": 1311845985,
-        "category": 3545239133,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "4e312e61",
-        "name": "HORSE_EQUIPMENT_MASK_NEW_004_TINT_004",
-        "itemType": "horse_accessories",
-        "id": 4,
-        "tint": 3,
-        "friendlyName": "Charcoal & Crimson"
-      }
-    ]
-  },
-  {
-    "name": "Natural & Charcoal",
-    "components": [
-      {
-        "component": 1208587318,
-        "category": 3545239133,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "48099436",
-        "name": "HORSE_EQUIPMENT_MASK_NEW_005_TINT_001",
-        "itemType": "horse_accessories",
-        "id": 5,
-        "tint": 0,
-        "friendlyName": "Natural & Charcoal"
-      },
-      {
-        "component": 2006479699,
-        "category": 3545239133,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "77987353",
-        "name": "HORSE_EQUIPMENT_MASK_NEW_005_TINT_002",
-        "itemType": "horse_accessories",
-        "id": 5,
-        "tint": 1,
-        "friendlyName": "Walnut & Charcoal"
-      },
-      {
-        "component": 2909658877,
-        "category": 3545239133,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "ad6ddefd",
-        "name": "HORSE_EQUIPMENT_MASK_NEW_005_TINT_003",
-        "itemType": "horse_accessories",
-        "id": 5,
-        "tint": 2,
-        "friendlyName": "Smoke & Chestnut"
-      },
-      {
-        "component": 1529002600,
-        "category": 3545239133,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "5b22ba68",
-        "name": "HORSE_EQUIPMENT_MASK_NEW_005_TINT_004",
-        "itemType": "horse_accessories",
-        "id": 5,
-        "tint": 3,
-        "friendlyName": "Ash & Hickory"
       }
     ]
   }

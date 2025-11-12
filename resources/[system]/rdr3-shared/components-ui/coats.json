@@ -2979,6 +2979,50 @@
     ]
   },
   {
+    "name": "Emerald Coat",
+    "components": [
+      {
+        "component": 1578729681,
+        "category": 3765252302,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "5e1980d1",
+        "name": "CLOTHING_F_SEASON3_NECKERCHIEF_012_TINT_016",
+        "itemType": "coats",
+        "id": 12,
+        "tint": 15,
+        "friendlyName": "Emerald Coat"
+      },
+      {
+        "component": 1879581870,
+        "category": 3765252302,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "700824ae",
+        "name": "CLOTHING_F_SEASON3_NECKERCHIEF_012_TINT_017",
+        "itemType": "coats",
+        "id": 12,
+        "tint": 16,
+        "friendlyName": "Onyx Coat"
+      },
+      {
+        "component": 948647349,
+        "category": 3765252302,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "388b35b5",
+        "name": "CLOTHING_F_SEASON3_NECKERCHIEF_012_TINT_018",
+        "itemType": "coats",
+        "id": 12,
+        "tint": 17,
+        "friendlyName": "Moonstone Coat"
+      }
+    ]
+  },
+  {
     "name": "Leather Duster",
     "components": [
       {
@@ -5655,141 +5699,6 @@
     ]
   },
   {
-    "name": "Bison Duster Coat",
-    "components": [
-      {
-        "component": 2699862759,
-        "category": 3765252302,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "a0eca2e7",
-        "name": "CLOTHING_ITEM_M_COAT_010_TINT_001",
-        "itemType": "coats",
-        "id": 10,
-        "tint": 0,
-        "friendlyName": "Bison Duster Coat"
-      },
-      {
-        "component": 2042680464,
-        "category": 3765252302,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "79c0d490",
-        "name": "CLOTHING_ITEM_M_COAT_010_TINT_002",
-        "itemType": "coats",
-        "id": 10,
-        "tint": 1,
-        "friendlyName": "Bison Duster Coat"
-      },
-      {
-        "component": 2354969034,
-        "category": 3765252302,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "8c5df9ca",
-        "name": "CLOTHING_ITEM_M_COAT_010_TINT_003",
-        "itemType": "coats",
-        "id": 10,
-        "tint": 2,
-        "friendlyName": "Bison Duster Coat"
-      },
-      {
-        "component": 1161882513,
-        "category": 3765252302,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "4540eb91",
-        "name": "CLOTHING_ITEM_M_COAT_010_TINT_004",
-        "itemType": "coats",
-        "id": 10,
-        "tint": 3,
-        "friendlyName": "Bison Duster Coat"
-      },
-      {
-        "component": 1460899638,
-        "category": 3765252302,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "57138f36",
-        "name": "CLOTHING_ITEM_M_COAT_010_TINT_005",
-        "itemType": "coats",
-        "id": 10,
-        "tint": 4,
-        "friendlyName": "Bison Duster Coat"
-      },
-      {
-        "component": 552411882,
-        "category": 3765252302,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "20ed22ea",
-        "name": "CLOTHING_ITEM_M_COAT_010_TINT_006",
-        "itemType": "coats",
-        "id": 10,
-        "tint": 5,
-        "friendlyName": "Bison Duster Coat"
-      },
-      {
-        "component": 848348721,
-        "category": 3765252302,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "3290c631",
-        "name": "CLOTHING_ITEM_M_COAT_010_TINT_007",
-        "itemType": "coats",
-        "id": 10,
-        "tint": 6,
-        "friendlyName": "Bison Duster Coat"
-      },
-      {
-        "component": 613984837,
-        "category": 3765252302,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "2498aa45",
-        "name": "CLOTHING_ITEM_M_COAT_010_TINT_008",
-        "itemType": "coats",
-        "id": 10,
-        "tint": 7,
-        "friendlyName": "Bison Duster Coat"
-      },
-      {
-        "component": 920080066,
-        "category": 3765252302,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "36d74ec2",
-        "name": "CLOTHING_ITEM_M_COAT_010_TINT_009",
-        "itemType": "coats",
-        "id": 10,
-        "tint": 8,
-        "friendlyName": "Bison Duster Coat"
-      },
-      {
-        "component": 2240572163,
-        "category": 3765252302,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "858c6b03",
-        "name": "CLOTHING_ITEM_M_COAT_010_TINT_010",
-        "itemType": "coats",
-        "id": 10,
-        "tint": 9,
-        "friendlyName": "Bison Duster Coat"
-      }
-    ]
-  },
-  {
     "name": "Shotgun Coat",
     "components": [
       {
@@ -6055,47 +5964,8 @@
     ]
   },
   {
-    "name": "Emerald Coat",
+    "name": "Military Jacket",
     "components": [
-      {
-        "component": 1578729681,
-        "category": 3765252302,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "5e1980d1",
-        "name": "CLOTHING_F_SEASON3_NECKERCHIEF_012_TINT_016",
-        "itemType": "coats",
-        "id": 12,
-        "tint": 15,
-        "friendlyName": "Emerald Coat"
-      },
-      {
-        "component": 1879581870,
-        "category": 3765252302,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "700824ae",
-        "name": "CLOTHING_F_SEASON3_NECKERCHIEF_012_TINT_017",
-        "itemType": "coats",
-        "id": 12,
-        "tint": 16,
-        "friendlyName": "Onyx Coat"
-      },
-      {
-        "component": 948647349,
-        "category": 3765252302,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "388b35b5",
-        "name": "CLOTHING_F_SEASON3_NECKERCHIEF_012_TINT_018",
-        "itemType": "coats",
-        "id": 12,
-        "tint": 17,
-        "friendlyName": "Moonstone Coat"
-      },
       {
         "component": 1183836872,
         "category": 3765252302,
@@ -10819,141 +10689,6 @@
     ]
   },
   {
-    "name": "Fulbright Coat",
-    "components": [
-      {
-        "component": 1634627757,
-        "category": 3765252302,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "616e70ad",
-        "name": "CLOTHING_ITEM_M_COAT_203_TINT_001",
-        "itemType": "coats",
-        "id": 203,
-        "tint": 0,
-        "friendlyName": "Fulbright Coat"
-      },
-      {
-        "component": 762120363,
-        "category": 3765252302,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "2d6d08ab",
-        "name": "CLOTHING_ITEM_M_COAT_203_TINT_002",
-        "itemType": "coats",
-        "id": 203,
-        "tint": 1,
-        "friendlyName": "Fulbright Coat"
-      },
-      {
-        "component": 1051700016,
-        "category": 3765252302,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "3eafab30",
-        "name": "CLOTHING_ITEM_M_COAT_203_TINT_003",
-        "itemType": "coats",
-        "id": 203,
-        "tint": 2,
-        "friendlyName": "Fulbright Coat"
-      },
-      {
-        "component": 216614820,
-        "category": 3765252302,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "ce947a4",
-        "name": "CLOTHING_ITEM_M_COAT_203_TINT_004",
-        "itemType": "coats",
-        "id": 203,
-        "tint": 3,
-        "friendlyName": "Fulbright Coat"
-      },
-      {
-        "component": 444916443,
-        "category": 3765252302,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "1a84e2db",
-        "name": "CLOTHING_ITEM_M_COAT_203_TINT_005",
-        "itemType": "coats",
-        "id": 203,
-        "tint": 4,
-        "friendlyName": "Fulbright Coat"
-      },
-      {
-        "component": 580481808,
-        "category": 3765252302,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "22997310",
-        "name": "CLOTHING_ITEM_M_COAT_203_TINT_006",
-        "itemType": "coats",
-        "id": 203,
-        "tint": 5,
-        "friendlyName": "Fulbright Coat"
-      },
-      {
-        "component": 4039970680,
-        "category": 3765252302,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "f0cd0f78",
-        "name": "CLOTHING_ITEM_M_COAT_203_TINT_007",
-        "itemType": "coats",
-        "id": 203,
-        "tint": 6,
-        "friendlyName": "Fulbright Coat"
-      },
-      {
-        "component": 4262701573,
-        "category": 3765252302,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "fe13aa05",
-        "name": "CLOTHING_ITEM_M_COAT_203_TINT_008",
-        "itemType": "coats",
-        "id": 203,
-        "tint": 7,
-        "friendlyName": "Fulbright Coat"
-      },
-      {
-        "component": 3418375507,
-        "category": 3765252302,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "cbc04553",
-        "name": "CLOTHING_ITEM_M_COAT_203_TINT_009",
-        "itemType": "coats",
-        "id": 203,
-        "tint": 8,
-        "friendlyName": "Fulbright Coat"
-      },
-      {
-        "component": 1437784618,
-        "category": 3765252302,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "55b2da2a",
-        "name": "CLOTHING_ITEM_M_COAT_203_TINT_010",
-        "itemType": "coats",
-        "id": 203,
-        "tint": 9,
-        "friendlyName": "Fulbright Coat"
-      }
-    ]
-  },
-  {
     "name": "Ballard Jacket",
     "components": [
       {
@@ -13993,6 +13728,276 @@
         "id": 404,
         "tint": 9,
         "friendlyName": "Huntingdock Coat"
+      }
+    ]
+  },
+  {
+    "name": "Bison Duster Coat",
+    "components": [
+      {
+        "component": 2699862759,
+        "category": 3765252302,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "a0eca2e7",
+        "name": "CLOTHING_ITEM_M_COAT_010_TINT_001",
+        "itemType": "coats",
+        "id": 10,
+        "tint": 0,
+        "friendlyName": "Bison Duster Coat"
+      },
+      {
+        "component": 2042680464,
+        "category": 3765252302,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "79c0d490",
+        "name": "CLOTHING_ITEM_M_COAT_010_TINT_002",
+        "itemType": "coats",
+        "id": 10,
+        "tint": 1,
+        "friendlyName": "Bison Duster Coat"
+      },
+      {
+        "component": 2354969034,
+        "category": 3765252302,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "8c5df9ca",
+        "name": "CLOTHING_ITEM_M_COAT_010_TINT_003",
+        "itemType": "coats",
+        "id": 10,
+        "tint": 2,
+        "friendlyName": "Bison Duster Coat"
+      },
+      {
+        "component": 1161882513,
+        "category": 3765252302,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "4540eb91",
+        "name": "CLOTHING_ITEM_M_COAT_010_TINT_004",
+        "itemType": "coats",
+        "id": 10,
+        "tint": 3,
+        "friendlyName": "Bison Duster Coat"
+      },
+      {
+        "component": 1460899638,
+        "category": 3765252302,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "57138f36",
+        "name": "CLOTHING_ITEM_M_COAT_010_TINT_005",
+        "itemType": "coats",
+        "id": 10,
+        "tint": 4,
+        "friendlyName": "Bison Duster Coat"
+      },
+      {
+        "component": 552411882,
+        "category": 3765252302,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "20ed22ea",
+        "name": "CLOTHING_ITEM_M_COAT_010_TINT_006",
+        "itemType": "coats",
+        "id": 10,
+        "tint": 5,
+        "friendlyName": "Bison Duster Coat"
+      },
+      {
+        "component": 848348721,
+        "category": 3765252302,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "3290c631",
+        "name": "CLOTHING_ITEM_M_COAT_010_TINT_007",
+        "itemType": "coats",
+        "id": 10,
+        "tint": 6,
+        "friendlyName": "Bison Duster Coat"
+      },
+      {
+        "component": 613984837,
+        "category": 3765252302,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "2498aa45",
+        "name": "CLOTHING_ITEM_M_COAT_010_TINT_008",
+        "itemType": "coats",
+        "id": 10,
+        "tint": 7,
+        "friendlyName": "Bison Duster Coat"
+      },
+      {
+        "component": 920080066,
+        "category": 3765252302,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "36d74ec2",
+        "name": "CLOTHING_ITEM_M_COAT_010_TINT_009",
+        "itemType": "coats",
+        "id": 10,
+        "tint": 8,
+        "friendlyName": "Bison Duster Coat"
+      },
+      {
+        "component": 2240572163,
+        "category": 3765252302,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "858c6b03",
+        "name": "CLOTHING_ITEM_M_COAT_010_TINT_010",
+        "itemType": "coats",
+        "id": 10,
+        "tint": 9,
+        "friendlyName": "Bison Duster Coat"
+      }
+    ]
+  },
+  {
+    "name": "Fulbright Coat",
+    "components": [
+      {
+        "component": 1634627757,
+        "category": 3765252302,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "616e70ad",
+        "name": "CLOTHING_ITEM_M_COAT_203_TINT_001",
+        "itemType": "coats",
+        "id": 203,
+        "tint": 0,
+        "friendlyName": "Fulbright Coat"
+      },
+      {
+        "component": 762120363,
+        "category": 3765252302,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "2d6d08ab",
+        "name": "CLOTHING_ITEM_M_COAT_203_TINT_002",
+        "itemType": "coats",
+        "id": 203,
+        "tint": 1,
+        "friendlyName": "Fulbright Coat"
+      },
+      {
+        "component": 1051700016,
+        "category": 3765252302,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "3eafab30",
+        "name": "CLOTHING_ITEM_M_COAT_203_TINT_003",
+        "itemType": "coats",
+        "id": 203,
+        "tint": 2,
+        "friendlyName": "Fulbright Coat"
+      },
+      {
+        "component": 216614820,
+        "category": 3765252302,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "ce947a4",
+        "name": "CLOTHING_ITEM_M_COAT_203_TINT_004",
+        "itemType": "coats",
+        "id": 203,
+        "tint": 3,
+        "friendlyName": "Fulbright Coat"
+      },
+      {
+        "component": 444916443,
+        "category": 3765252302,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "1a84e2db",
+        "name": "CLOTHING_ITEM_M_COAT_203_TINT_005",
+        "itemType": "coats",
+        "id": 203,
+        "tint": 4,
+        "friendlyName": "Fulbright Coat"
+      },
+      {
+        "component": 580481808,
+        "category": 3765252302,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "22997310",
+        "name": "CLOTHING_ITEM_M_COAT_203_TINT_006",
+        "itemType": "coats",
+        "id": 203,
+        "tint": 5,
+        "friendlyName": "Fulbright Coat"
+      },
+      {
+        "component": 4039970680,
+        "category": 3765252302,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "f0cd0f78",
+        "name": "CLOTHING_ITEM_M_COAT_203_TINT_007",
+        "itemType": "coats",
+        "id": 203,
+        "tint": 6,
+        "friendlyName": "Fulbright Coat"
+      },
+      {
+        "component": 4262701573,
+        "category": 3765252302,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "fe13aa05",
+        "name": "CLOTHING_ITEM_M_COAT_203_TINT_008",
+        "itemType": "coats",
+        "id": 203,
+        "tint": 7,
+        "friendlyName": "Fulbright Coat"
+      },
+      {
+        "component": 3418375507,
+        "category": 3765252302,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "cbc04553",
+        "name": "CLOTHING_ITEM_M_COAT_203_TINT_009",
+        "itemType": "coats",
+        "id": 203,
+        "tint": 8,
+        "friendlyName": "Fulbright Coat"
+      },
+      {
+        "component": 1437784618,
+        "category": 3765252302,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "55b2da2a",
+        "name": "CLOTHING_ITEM_M_COAT_203_TINT_010",
+        "itemType": "coats",
+        "id": 203,
+        "tint": 9,
+        "friendlyName": "Fulbright Coat"
       }
     ]
   }

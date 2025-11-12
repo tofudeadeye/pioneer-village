@@ -1,6 +1,5 @@
-import fs from 'fs';
-
-const { loadImage, createCanvas } = require('canvas');
+const fs = require('fs');
+const { createCanvas, loadImage } = require('canvas');
 
 const files = fs.readdirSync('./palettes');
 

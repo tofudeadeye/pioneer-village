@@ -401,6 +401,24 @@
     ]
   },
   {
+    "name": "Abbington Nightgown",
+    "components": [
+      {
+        "component": 3640319598,
+        "category": 2699275135,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "d8fade6e",
+        "name": "CLOTHING_F_SEASON3_NIGHTGOWN_001_TINT_001",
+        "itemType": "skirts",
+        "id": 1,
+        "tint": 0,
+        "friendlyName": "Abbington Nightgown"
+      }
+    ]
+  },
+  {
     "name": "Prairie Skirt",
     "components": [
       {
@@ -536,21 +554,8 @@
     ]
   },
   {
-    "name": "Abbington Nightgown",
+    "name": "Wash Skirt",
     "components": [
-      {
-        "component": 3640319598,
-        "category": 2699275135,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "d8fade6e",
-        "name": "CLOTHING_F_SEASON3_NIGHTGOWN_001_TINT_001",
-        "itemType": "skirts",
-        "id": 1,
-        "tint": 0,
-        "friendlyName": "Abbington Nightgown"
-      },
       {
         "component": 3970989452,
         "category": 2699275135,

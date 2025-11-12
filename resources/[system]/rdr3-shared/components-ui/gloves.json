@@ -1092,6 +1092,37 @@
     ]
   },
   {
+    "name": "Hand Wraps",
+    "components": [
+      {
+        "component": 1076559944,
+        "category": 3938320434,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "402b0048",
+        "name": "CLOTHING_F_HALLOWEEN_HANDWRAPS_001_TINT_001",
+        "itemType": "gloves",
+        "id": 1,
+        "tint": 0,
+        "friendlyName": "Hand Wraps"
+      },
+      {
+        "component": 1059300709,
+        "category": 3938320434,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "3f23a565",
+        "name": "CLOTHING_M_HALLOWEEN_HANDWRAPS_001_TINT_001",
+        "itemType": "gloves",
+        "id": 1,
+        "tint": 0,
+        "friendlyName": "Hand Wraps"
+      }
+    ]
+  },
+  {
     "name": "Minstead Gloves",
     "components": [
       {
@@ -1173,6 +1204,89 @@
         "friendlyName": "Minstead Gloves"
       },
       {
+        "component": 3240063243,
+        "category": 3938320434,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "c11f710b",
+        "name": "CLOTHING_M_R05_GLOVES_000_TINT_001",
+        "itemType": "gloves",
+        "id": 0,
+        "tint": 0,
+        "friendlyName": "Minstead Gloves"
+      },
+      {
+        "component": 3536262238,
+        "category": 3938320434,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "d2c7145e",
+        "name": "CLOTHING_M_R05_GLOVES_000_TINT_002",
+        "itemType": "gloves",
+        "id": 0,
+        "tint": 1,
+        "friendlyName": "Minstead Gloves"
+      },
+      {
+        "component": 2358904833,
+        "category": 3938320434,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "8c9a0801",
+        "name": "CLOTHING_M_R05_GLOVES_000_TINT_003",
+        "itemType": "gloves",
+        "id": 0,
+        "tint": 2,
+        "friendlyName": "Minstead Gloves"
+      },
+      {
+        "component": 2667031740,
+        "category": 3938320434,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "9ef7acbc",
+        "name": "CLOTHING_M_R05_GLOVES_000_TINT_004",
+        "itemType": "gloves",
+        "id": 0,
+        "tint": 3,
+        "friendlyName": "Minstead Gloves"
+      },
+      {
+        "component": 1764639018,
+        "category": 3938320434,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "692e412a",
+        "name": "CLOTHING_M_R05_GLOVES_000_TINT_005",
+        "itemType": "gloves",
+        "id": 0,
+        "tint": 4,
+        "friendlyName": "Minstead Gloves"
+      },
+      {
+        "component": 2071258551,
+        "category": 3938320434,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "7b74e5b7",
+        "name": "CLOTHING_M_R05_GLOVES_000_TINT_006",
+        "itemType": "gloves",
+        "id": 0,
+        "tint": 5,
+        "friendlyName": "Minstead Gloves"
+      }
+    ]
+  },
+  {
+    "name": "Bullseye Gloves",
+    "components": [
+      {
         "component": 3705264290,
         "category": 3938320434,
         "type": "1",
@@ -1250,6 +1364,89 @@
         "tint": 5,
         "friendlyName": "Bullseye Gloves"
       },
+      {
+        "component": 3629156983,
+        "category": 3938320434,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "d8508a77",
+        "name": "CLOTHING_M_R1_GLOVES_000_TINT_001",
+        "itemType": "gloves",
+        "id": 0,
+        "tint": 0,
+        "friendlyName": "Bullseye Gloves"
+      },
+      {
+        "component": 3858343369,
+        "category": 3938320434,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "e5f9a5c9",
+        "name": "CLOTHING_M_R1_GLOVES_000_TINT_002",
+        "itemType": "gloves",
+        "id": 0,
+        "tint": 1,
+        "friendlyName": "Bullseye Gloves"
+      },
+      {
+        "component": 4089135436,
+        "category": 3938320434,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "f3bb414c",
+        "name": "CLOTHING_M_R1_GLOVES_000_TINT_003",
+        "itemType": "gloves",
+        "id": 0,
+        "tint": 2,
+        "friendlyName": "Bullseye Gloves"
+      },
+      {
+        "component": 2712968512,
+        "category": 3938320434,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "a1b49d40",
+        "name": "CLOTHING_M_R1_GLOVES_000_TINT_004",
+        "itemType": "gloves",
+        "id": 0,
+        "tint": 3,
+        "friendlyName": "Bullseye Gloves"
+      },
+      {
+        "component": 489788472,
+        "category": 3938320434,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "1d319438",
+        "name": "CLOTHING_M_R1_GLOVES_000_TINT_005",
+        "itemType": "gloves",
+        "id": 0,
+        "tint": 4,
+        "friendlyName": "Bullseye Gloves"
+      },
+      {
+        "component": 729886935,
+        "category": 3938320434,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "2b8130d7",
+        "name": "CLOTHING_M_R1_GLOVES_000_TINT_006",
+        "itemType": "gloves",
+        "id": 0,
+        "tint": 5,
+        "friendlyName": "Bullseye Gloves"
+      }
+    ]
+  },
+  {
+    "name": "Londonderry Gloves",
+    "components": [
       {
         "component": 1224132558,
         "category": 3938320434,
@@ -1329,6 +1526,89 @@
         "friendlyName": "Londonderry Gloves"
       },
       {
+        "component": 1266290862,
+        "category": 3938320434,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "4b7a10ae",
+        "name": "CLOTHING_M_R2_O4_GLOVES_000_TINT_001",
+        "itemType": "gloves",
+        "id": 0,
+        "tint": 0,
+        "friendlyName": "Londonderry Gloves"
+      },
+      {
+        "component": 1546433043,
+        "category": 3938320434,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "5c2cb213",
+        "name": "CLOTHING_M_R2_O4_GLOVES_000_TINT_002",
+        "itemType": "gloves",
+        "id": 0,
+        "tint": 1,
+        "friendlyName": "Londonderry Gloves"
+      },
+      {
+        "component": 1861703592,
+        "category": 3938320434,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "6ef757a8",
+        "name": "CLOTHING_M_R2_O4_GLOVES_000_TINT_003",
+        "itemType": "gloves",
+        "id": 0,
+        "tint": 2,
+        "friendlyName": "Londonderry Gloves"
+      },
+      {
+        "component": 1946608071,
+        "category": 3938320434,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "7406e1c7",
+        "name": "CLOTHING_M_R2_O4_GLOVES_000_TINT_004",
+        "itemType": "gloves",
+        "id": 0,
+        "tint": 3,
+        "friendlyName": "Londonderry Gloves"
+      },
+      {
+        "component": 88245312,
+        "category": 3938320434,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "5428440",
+        "name": "CLOTHING_M_R2_O4_GLOVES_000_TINT_005",
+        "itemType": "gloves",
+        "id": 0,
+        "tint": 4,
+        "friendlyName": "Londonderry Gloves"
+      },
+      {
+        "component": 808704546,
+        "category": 3938320434,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "3033da22",
+        "name": "CLOTHING_M_R2_O4_GLOVES_000_TINT_006",
+        "itemType": "gloves",
+        "id": 0,
+        "tint": 5,
+        "friendlyName": "Londonderry Gloves"
+      }
+    ]
+  },
+  {
+    "name": "Tapscott Gloves",
+    "components": [
+      {
         "component": 732570378,
         "category": 3938320434,
         "type": "1",
@@ -1406,6 +1686,89 @@
         "tint": 5,
         "friendlyName": "Tapscott Gloves"
       },
+      {
+        "component": 2063337391,
+        "category": 3938320434,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "7afc07af",
+        "name": "CLOTHING_M_R3_GLOVES_000_TINT_001",
+        "itemType": "gloves",
+        "id": 0,
+        "tint": 0,
+        "friendlyName": "Tapscott Gloves"
+      },
+      {
+        "component": 2304943228,
+        "category": 3938320434,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "8962a47c",
+        "name": "CLOTHING_M_R3_GLOVES_000_TINT_002",
+        "itemType": "gloves",
+        "id": 0,
+        "tint": 1,
+        "friendlyName": "Tapscott Gloves"
+      },
+      {
+        "component": 1534085272,
+        "category": 3938320434,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "5b704898",
+        "name": "CLOTHING_M_R3_GLOVES_000_TINT_003",
+        "itemType": "gloves",
+        "id": 0,
+        "tint": 2,
+        "friendlyName": "Tapscott Gloves"
+      },
+      {
+        "component": 1841294647,
+        "category": 3938320434,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "6dbfed37",
+        "name": "CLOTHING_M_R3_GLOVES_000_TINT_004",
+        "itemType": "gloves",
+        "id": 0,
+        "tint": 3,
+        "friendlyName": "Tapscott Gloves"
+      },
+      {
+        "component": 1072992673,
+        "category": 3938320434,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "3ff491a1",
+        "name": "CLOTHING_M_R3_GLOVES_000_TINT_005",
+        "itemType": "gloves",
+        "id": 0,
+        "tint": 4,
+        "friendlyName": "Tapscott Gloves"
+      },
+      {
+        "component": 1378432522,
+        "category": 3938320434,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "5229360a",
+        "name": "CLOTHING_M_R3_GLOVES_000_TINT_006",
+        "itemType": "gloves",
+        "id": 0,
+        "tint": 5,
+        "friendlyName": "Tapscott Gloves"
+      }
+    ]
+  },
+  {
+    "name": "Leather Gloves",
+    "components": [
       {
         "component": 590067755,
         "category": 3938320434,
@@ -1537,19 +1900,6 @@
         "friendlyName": "Leather Gloves"
       },
       {
-        "component": 1968553862,
-        "category": 3938320434,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "7555bf86",
-        "name": "CLOTHING_ITEM_F_SEASON_GLOVES_000_TINT_001",
-        "itemType": "gloves",
-        "id": 0,
-        "tint": 0,
-        "friendlyName": "Larkin Gloves"
-      },
-      {
         "component": 745251899,
         "category": 3938320434,
         "type": "0",
@@ -1678,350 +2028,12 @@
         "id": 0,
         "tint": 9,
         "friendlyName": "Leather Gloves"
-      },
-      {
-        "component": 1588372919,
-        "category": 3938320434,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "5eaca5b7",
-        "name": "CLOTHING_ITEM_M_SEASON_GLOVES_000_TINT_001",
-        "itemType": "gloves",
-        "id": 0,
-        "tint": 0,
-        "friendlyName": "Larkin Gloves"
-      },
-      {
-        "component": 3240063243,
-        "category": 3938320434,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "c11f710b",
-        "name": "CLOTHING_M_R05_GLOVES_000_TINT_001",
-        "itemType": "gloves",
-        "id": 0,
-        "tint": 0,
-        "friendlyName": "Minstead Gloves"
-      },
-      {
-        "component": 3536262238,
-        "category": 3938320434,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "d2c7145e",
-        "name": "CLOTHING_M_R05_GLOVES_000_TINT_002",
-        "itemType": "gloves",
-        "id": 0,
-        "tint": 1,
-        "friendlyName": "Minstead Gloves"
-      },
-      {
-        "component": 2358904833,
-        "category": 3938320434,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "8c9a0801",
-        "name": "CLOTHING_M_R05_GLOVES_000_TINT_003",
-        "itemType": "gloves",
-        "id": 0,
-        "tint": 2,
-        "friendlyName": "Minstead Gloves"
-      },
-      {
-        "component": 2667031740,
-        "category": 3938320434,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "9ef7acbc",
-        "name": "CLOTHING_M_R05_GLOVES_000_TINT_004",
-        "itemType": "gloves",
-        "id": 0,
-        "tint": 3,
-        "friendlyName": "Minstead Gloves"
-      },
-      {
-        "component": 1764639018,
-        "category": 3938320434,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "692e412a",
-        "name": "CLOTHING_M_R05_GLOVES_000_TINT_005",
-        "itemType": "gloves",
-        "id": 0,
-        "tint": 4,
-        "friendlyName": "Minstead Gloves"
-      },
-      {
-        "component": 2071258551,
-        "category": 3938320434,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "7b74e5b7",
-        "name": "CLOTHING_M_R05_GLOVES_000_TINT_006",
-        "itemType": "gloves",
-        "id": 0,
-        "tint": 5,
-        "friendlyName": "Minstead Gloves"
-      },
-      {
-        "component": 3629156983,
-        "category": 3938320434,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "d8508a77",
-        "name": "CLOTHING_M_R1_GLOVES_000_TINT_001",
-        "itemType": "gloves",
-        "id": 0,
-        "tint": 0,
-        "friendlyName": "Bullseye Gloves"
-      },
-      {
-        "component": 3858343369,
-        "category": 3938320434,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "e5f9a5c9",
-        "name": "CLOTHING_M_R1_GLOVES_000_TINT_002",
-        "itemType": "gloves",
-        "id": 0,
-        "tint": 1,
-        "friendlyName": "Bullseye Gloves"
-      },
-      {
-        "component": 4089135436,
-        "category": 3938320434,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "f3bb414c",
-        "name": "CLOTHING_M_R1_GLOVES_000_TINT_003",
-        "itemType": "gloves",
-        "id": 0,
-        "tint": 2,
-        "friendlyName": "Bullseye Gloves"
-      },
-      {
-        "component": 2712968512,
-        "category": 3938320434,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "a1b49d40",
-        "name": "CLOTHING_M_R1_GLOVES_000_TINT_004",
-        "itemType": "gloves",
-        "id": 0,
-        "tint": 3,
-        "friendlyName": "Bullseye Gloves"
-      },
-      {
-        "component": 489788472,
-        "category": 3938320434,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "1d319438",
-        "name": "CLOTHING_M_R1_GLOVES_000_TINT_005",
-        "itemType": "gloves",
-        "id": 0,
-        "tint": 4,
-        "friendlyName": "Bullseye Gloves"
-      },
-      {
-        "component": 729886935,
-        "category": 3938320434,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "2b8130d7",
-        "name": "CLOTHING_M_R1_GLOVES_000_TINT_006",
-        "itemType": "gloves",
-        "id": 0,
-        "tint": 5,
-        "friendlyName": "Bullseye Gloves"
-      },
-      {
-        "component": 1266290862,
-        "category": 3938320434,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "4b7a10ae",
-        "name": "CLOTHING_M_R2_O4_GLOVES_000_TINT_001",
-        "itemType": "gloves",
-        "id": 0,
-        "tint": 0,
-        "friendlyName": "Londonderry Gloves"
-      },
-      {
-        "component": 1546433043,
-        "category": 3938320434,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "5c2cb213",
-        "name": "CLOTHING_M_R2_O4_GLOVES_000_TINT_002",
-        "itemType": "gloves",
-        "id": 0,
-        "tint": 1,
-        "friendlyName": "Londonderry Gloves"
-      },
-      {
-        "component": 1861703592,
-        "category": 3938320434,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "6ef757a8",
-        "name": "CLOTHING_M_R2_O4_GLOVES_000_TINT_003",
-        "itemType": "gloves",
-        "id": 0,
-        "tint": 2,
-        "friendlyName": "Londonderry Gloves"
-      },
-      {
-        "component": 1946608071,
-        "category": 3938320434,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "7406e1c7",
-        "name": "CLOTHING_M_R2_O4_GLOVES_000_TINT_004",
-        "itemType": "gloves",
-        "id": 0,
-        "tint": 3,
-        "friendlyName": "Londonderry Gloves"
-      },
-      {
-        "component": 88245312,
-        "category": 3938320434,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "5428440",
-        "name": "CLOTHING_M_R2_O4_GLOVES_000_TINT_005",
-        "itemType": "gloves",
-        "id": 0,
-        "tint": 4,
-        "friendlyName": "Londonderry Gloves"
-      },
-      {
-        "component": 808704546,
-        "category": 3938320434,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "3033da22",
-        "name": "CLOTHING_M_R2_O4_GLOVES_000_TINT_006",
-        "itemType": "gloves",
-        "id": 0,
-        "tint": 5,
-        "friendlyName": "Londonderry Gloves"
-      },
-      {
-        "component": 2063337391,
-        "category": 3938320434,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "7afc07af",
-        "name": "CLOTHING_M_R3_GLOVES_000_TINT_001",
-        "itemType": "gloves",
-        "id": 0,
-        "tint": 0,
-        "friendlyName": "Tapscott Gloves"
-      },
-      {
-        "component": 2304943228,
-        "category": 3938320434,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "8962a47c",
-        "name": "CLOTHING_M_R3_GLOVES_000_TINT_002",
-        "itemType": "gloves",
-        "id": 0,
-        "tint": 1,
-        "friendlyName": "Tapscott Gloves"
-      },
-      {
-        "component": 1534085272,
-        "category": 3938320434,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "5b704898",
-        "name": "CLOTHING_M_R3_GLOVES_000_TINT_003",
-        "itemType": "gloves",
-        "id": 0,
-        "tint": 2,
-        "friendlyName": "Tapscott Gloves"
-      },
-      {
-        "component": 1841294647,
-        "category": 3938320434,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "6dbfed37",
-        "name": "CLOTHING_M_R3_GLOVES_000_TINT_004",
-        "itemType": "gloves",
-        "id": 0,
-        "tint": 3,
-        "friendlyName": "Tapscott Gloves"
-      },
-      {
-        "component": 1072992673,
-        "category": 3938320434,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "3ff491a1",
-        "name": "CLOTHING_M_R3_GLOVES_000_TINT_005",
-        "itemType": "gloves",
-        "id": 0,
-        "tint": 4,
-        "friendlyName": "Tapscott Gloves"
-      },
-      {
-        "component": 1378432522,
-        "category": 3938320434,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "5229360a",
-        "name": "CLOTHING_M_R3_GLOVES_000_TINT_006",
-        "itemType": "gloves",
-        "id": 0,
-        "tint": 5,
-        "friendlyName": "Tapscott Gloves"
       }
     ]
   },
   {
-    "name": "Hand Wraps",
+    "name": "Rifleman Gloves",
     "components": [
-      {
-        "component": 1076559944,
-        "category": 3938320434,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "402b0048",
-        "name": "CLOTHING_F_HALLOWEEN_HANDWRAPS_001_TINT_001",
-        "itemType": "gloves",
-        "id": 1,
-        "tint": 0,
-        "friendlyName": "Hand Wraps"
-      },
       {
         "component": 3682376111,
         "category": 3938320434,
@@ -2333,19 +2345,6 @@
         "id": 1,
         "tint": 11,
         "friendlyName": "Rifleman Gloves"
-      },
-      {
-        "component": 1059300709,
-        "category": 3938320434,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "3f23a565",
-        "name": "CLOTHING_M_HALLOWEEN_HANDWRAPS_001_TINT_001",
-        "itemType": "gloves",
-        "id": 1,
-        "tint": 0,
-        "friendlyName": "Hand Wraps"
       }
     ]
   },
@@ -5915,6 +5914,37 @@
         "id": 306,
         "tint": 9,
         "friendlyName": "Galleywood Wraps"
+      }
+    ]
+  },
+  {
+    "name": "Larkin Gloves",
+    "components": [
+      {
+        "component": 1968553862,
+        "category": 3938320434,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "7555bf86",
+        "name": "CLOTHING_ITEM_F_SEASON_GLOVES_000_TINT_001",
+        "itemType": "gloves",
+        "id": 0,
+        "tint": 0,
+        "friendlyName": "Larkin Gloves"
+      },
+      {
+        "component": 1588372919,
+        "category": 3938320434,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "5eaca5b7",
+        "name": "CLOTHING_ITEM_M_SEASON_GLOVES_000_TINT_001",
+        "itemType": "gloves",
+        "id": 0,
+        "tint": 0,
+        "friendlyName": "Larkin Gloves"
       }
     ]
   }

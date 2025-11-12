@@ -677,6 +677,92 @@
         "friendlyName": "Guerrero Holster"
       },
       {
+        "component": 918258437,
+        "category": 3065385517,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "36bb8305",
+        "name": "CLOTHING_M_R1_OFFHAND_000_TINT_001",
+        "itemType": "holsters_left",
+        "id": 0,
+        "tint": 0,
+        "friendlyName": "Guerrero Holster"
+      },
+      {
+        "component": 1169203439,
+        "category": 3065385517,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "45b0a0ef",
+        "name": "CLOTHING_M_R1_OFFHAND_000_TINT_002",
+        "itemType": "holsters_left",
+        "id": 0,
+        "tint": 1,
+        "friendlyName": "Guerrero Holster"
+      }
+    ]
+  },
+  {
+    "name": "Regent Holster",
+    "components": [
+      {
+        "component": 1525976567,
+        "category": 3065385517,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "5af48df7",
+        "name": "CLOTHING_F_R1_OFFHAND_001_TINT_001",
+        "itemType": "holsters_left",
+        "id": 1,
+        "tint": 0,
+        "friendlyName": "Regent Holster"
+      },
+      {
+        "component": 2135971502,
+        "category": 3065385517,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "7f5056ae",
+        "name": "CLOTHING_F_R1_OFFHAND_001_TINT_003",
+        "itemType": "holsters_left",
+        "id": 1,
+        "tint": 2,
+        "friendlyName": "Regent Holster"
+      },
+      {
+        "component": 1858275734,
+        "category": 3065385517,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "6ec30996",
+        "name": "CLOTHING_M_R1_OFFHAND_001_TINT_001",
+        "itemType": "holsters_left",
+        "id": 1,
+        "tint": 0
+      },
+      {
+        "component": 1382502619,
+        "category": 3065385517,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "526750db",
+        "name": "CLOTHING_M_R1_OFFHAND_001_TINT_003",
+        "itemType": "holsters_left",
+        "id": 1,
+        "tint": 2
+      }
+    ]
+  },
+  {
+    "name": "Webster Holster",
+    "components": [
+      {
         "component": 512996699,
         "category": 3065385517,
         "type": "1",
@@ -690,6 +776,37 @@
         "friendlyName": "Webster Holster"
       },
       {
+        "component": 637343178,
+        "category": 3065385517,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "25fd15ca",
+        "name": "CLOTHING_M_R2_OFFHAND_000_TINT_002",
+        "itemType": "holsters_left",
+        "id": 0,
+        "tint": 1,
+        "friendlyName": "Webster Holster"
+      },
+      {
+        "component": 1595344893,
+        "category": 3065385517,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "5f1707fd",
+        "name": "CLOTHING_M_R2_OFFHAND_000_TINT_005",
+        "itemType": "holsters_left",
+        "id": 0,
+        "tint": 4,
+        "friendlyName": "Webster Holster"
+      }
+    ]
+  },
+  {
+    "name": "Goodman Holster",
+    "components": [
+      {
         "component": 45914674,
         "category": 3065385517,
         "type": "1",
@@ -702,6 +819,76 @@
         "tint": 4,
         "friendlyName": "Goodman Holster"
       },
+      {
+        "component": 2086466425,
+        "category": 3065385517,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "7c5cf379",
+        "name": "CLOTHING_M_R3_OFFHAND_000_TINT_001",
+        "itemType": "holsters_left",
+        "id": 0,
+        "tint": 0,
+        "friendlyName": "Goodman Holster"
+      },
+      {
+        "component": 1829328082,
+        "category": 3065385517,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "6d0954d2",
+        "name": "CLOTHING_M_R3_OFFHAND_000_TINT_002",
+        "itemType": "holsters_left",
+        "id": 0,
+        "tint": 1,
+        "friendlyName": "Goodman Holster"
+      },
+      {
+        "component": 147295280,
+        "category": 3065385517,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "8c78c30",
+        "name": "CLOTHING_M_R3_OFFHAND_000_TINT_003",
+        "itemType": "holsters_left",
+        "id": 0,
+        "tint": 2,
+        "friendlyName": "Goodman Holster"
+      },
+      {
+        "component": 857399510,
+        "category": 3065385517,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "331ae0d6",
+        "name": "CLOTHING_M_R3_OFFHAND_000_TINT_004",
+        "itemType": "holsters_left",
+        "id": 0,
+        "tint": 3,
+        "friendlyName": "Goodman Holster"
+      },
+      {
+        "component": 811850600,
+        "category": 3065385517,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "3063db68",
+        "name": "CLOTHING_M_R3_OFFHAND_000_TINT_005",
+        "itemType": "holsters_left",
+        "id": 0,
+        "tint": 4,
+        "friendlyName": "Goodman Holster"
+      }
+    ]
+  },
+  {
+    "name": "Levens Holster",
+    "components": [
       {
         "component": 1564617196,
         "category": 3065385517,
@@ -780,6 +967,89 @@
         "tint": 5,
         "friendlyName": "Levens Holster"
       },
+      {
+        "component": 3562240621,
+        "category": 3065385517,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "d4537a6d",
+        "name": "CLOTHING_M_R4_OFFHAND_000_TINT_001",
+        "itemType": "holsters_left",
+        "id": 0,
+        "tint": 0,
+        "friendlyName": "Levens Holster"
+      },
+      {
+        "component": 3331120864,
+        "category": 3065385517,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "c68cdee0",
+        "name": "CLOTHING_M_R4_OFFHAND_000_TINT_002",
+        "itemType": "holsters_left",
+        "id": 0,
+        "tint": 1,
+        "friendlyName": "Levens Holster"
+      },
+      {
+        "component": 3052944823,
+        "category": 3065385517,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "b5f83db7",
+        "name": "CLOTHING_M_R4_OFFHAND_000_TINT_003",
+        "itemType": "holsters_left",
+        "id": 0,
+        "tint": 2,
+        "friendlyName": "Levens Holster"
+      },
+      {
+        "component": 2267996197,
+        "category": 3065385517,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "872ee025",
+        "name": "CLOTHING_M_R4_OFFHAND_000_TINT_004",
+        "itemType": "holsters_left",
+        "id": 0,
+        "tint": 3,
+        "friendlyName": "Levens Holster"
+      },
+      {
+        "component": 2066466847,
+        "category": 3065385517,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "7b2bc81f",
+        "name": "CLOTHING_M_R4_OFFHAND_000_TINT_005",
+        "itemType": "holsters_left",
+        "id": 0,
+        "tint": 4,
+        "friendlyName": "Levens Holster"
+      },
+      {
+        "component": 1835609242,
+        "category": 3065385517,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "6d692c9a",
+        "name": "CLOTHING_M_R4_OFFHAND_000_TINT_006",
+        "itemType": "holsters_left",
+        "id": 0,
+        "tint": 5,
+        "friendlyName": "Levens Holster"
+      }
+    ]
+  },
+  {
+    "name": "Gunslinger Holster",
+    "components": [
       {
         "component": 3752496070,
         "category": 3065385517,
@@ -883,233 +1153,12 @@
         "id": 0,
         "tint": 3,
         "friendlyName": "Gunslinger Holster"
-      },
-      {
-        "component": 918258437,
-        "category": 3065385517,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "36bb8305",
-        "name": "CLOTHING_M_R1_OFFHAND_000_TINT_001",
-        "itemType": "holsters_left",
-        "id": 0,
-        "tint": 0,
-        "friendlyName": "Guerrero Holster"
-      },
-      {
-        "component": 1169203439,
-        "category": 3065385517,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "45b0a0ef",
-        "name": "CLOTHING_M_R1_OFFHAND_000_TINT_002",
-        "itemType": "holsters_left",
-        "id": 0,
-        "tint": 1,
-        "friendlyName": "Guerrero Holster"
-      },
-      {
-        "component": 637343178,
-        "category": 3065385517,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "25fd15ca",
-        "name": "CLOTHING_M_R2_OFFHAND_000_TINT_002",
-        "itemType": "holsters_left",
-        "id": 0,
-        "tint": 1,
-        "friendlyName": "Webster Holster"
-      },
-      {
-        "component": 1595344893,
-        "category": 3065385517,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "5f1707fd",
-        "name": "CLOTHING_M_R2_OFFHAND_000_TINT_005",
-        "itemType": "holsters_left",
-        "id": 0,
-        "tint": 4,
-        "friendlyName": "Webster Holster"
-      },
-      {
-        "component": 2086466425,
-        "category": 3065385517,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "7c5cf379",
-        "name": "CLOTHING_M_R3_OFFHAND_000_TINT_001",
-        "itemType": "holsters_left",
-        "id": 0,
-        "tint": 0,
-        "friendlyName": "Goodman Holster"
-      },
-      {
-        "component": 1829328082,
-        "category": 3065385517,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "6d0954d2",
-        "name": "CLOTHING_M_R3_OFFHAND_000_TINT_002",
-        "itemType": "holsters_left",
-        "id": 0,
-        "tint": 1,
-        "friendlyName": "Goodman Holster"
-      },
-      {
-        "component": 147295280,
-        "category": 3065385517,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "8c78c30",
-        "name": "CLOTHING_M_R3_OFFHAND_000_TINT_003",
-        "itemType": "holsters_left",
-        "id": 0,
-        "tint": 2,
-        "friendlyName": "Goodman Holster"
-      },
-      {
-        "component": 857399510,
-        "category": 3065385517,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "331ae0d6",
-        "name": "CLOTHING_M_R3_OFFHAND_000_TINT_004",
-        "itemType": "holsters_left",
-        "id": 0,
-        "tint": 3,
-        "friendlyName": "Goodman Holster"
-      },
-      {
-        "component": 811850600,
-        "category": 3065385517,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "3063db68",
-        "name": "CLOTHING_M_R3_OFFHAND_000_TINT_005",
-        "itemType": "holsters_left",
-        "id": 0,
-        "tint": 4,
-        "friendlyName": "Goodman Holster"
-      },
-      {
-        "component": 3562240621,
-        "category": 3065385517,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "d4537a6d",
-        "name": "CLOTHING_M_R4_OFFHAND_000_TINT_001",
-        "itemType": "holsters_left",
-        "id": 0,
-        "tint": 0,
-        "friendlyName": "Levens Holster"
-      },
-      {
-        "component": 3331120864,
-        "category": 3065385517,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "c68cdee0",
-        "name": "CLOTHING_M_R4_OFFHAND_000_TINT_002",
-        "itemType": "holsters_left",
-        "id": 0,
-        "tint": 1,
-        "friendlyName": "Levens Holster"
-      },
-      {
-        "component": 3052944823,
-        "category": 3065385517,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "b5f83db7",
-        "name": "CLOTHING_M_R4_OFFHAND_000_TINT_003",
-        "itemType": "holsters_left",
-        "id": 0,
-        "tint": 2,
-        "friendlyName": "Levens Holster"
-      },
-      {
-        "component": 2267996197,
-        "category": 3065385517,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "872ee025",
-        "name": "CLOTHING_M_R4_OFFHAND_000_TINT_004",
-        "itemType": "holsters_left",
-        "id": 0,
-        "tint": 3,
-        "friendlyName": "Levens Holster"
-      },
-      {
-        "component": 2066466847,
-        "category": 3065385517,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "7b2bc81f",
-        "name": "CLOTHING_M_R4_OFFHAND_000_TINT_005",
-        "itemType": "holsters_left",
-        "id": 0,
-        "tint": 4,
-        "friendlyName": "Levens Holster"
-      },
-      {
-        "component": 1835609242,
-        "category": 3065385517,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "6d692c9a",
-        "name": "CLOTHING_M_R4_OFFHAND_000_TINT_006",
-        "itemType": "holsters_left",
-        "id": 0,
-        "tint": 5,
-        "friendlyName": "Levens Holster"
       }
     ]
   },
   {
-    "name": "Regent Holster",
+    "name": "Embossed Gunslinger Holster",
     "components": [
-      {
-        "component": 1525976567,
-        "category": 3065385517,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "5af48df7",
-        "name": "CLOTHING_F_R1_OFFHAND_001_TINT_001",
-        "itemType": "holsters_left",
-        "id": 1,
-        "tint": 0,
-        "friendlyName": "Regent Holster"
-      },
-      {
-        "component": 2135971502,
-        "category": 3065385517,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "7f5056ae",
-        "name": "CLOTHING_F_R1_OFFHAND_001_TINT_003",
-        "itemType": "holsters_left",
-        "id": 1,
-        "tint": 2,
-        "friendlyName": "Regent Holster"
-      },
       {
         "component": 1382597333,
         "category": 3065385517,
@@ -1213,30 +1262,6 @@
         "id": 1,
         "tint": 3,
         "friendlyName": "Embossed Gunslinger Holster"
-      },
-      {
-        "component": 1858275734,
-        "category": 3065385517,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "6ec30996",
-        "name": "CLOTHING_M_R1_OFFHAND_001_TINT_001",
-        "itemType": "holsters_left",
-        "id": 1,
-        "tint": 0
-      },
-      {
-        "component": 1382502619,
-        "category": 3065385517,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "526750db",
-        "name": "CLOTHING_M_R1_OFFHAND_001_TINT_003",
-        "itemType": "holsters_left",
-        "id": 1,
-        "tint": 2
       }
     ]
   },

@@ -7,7 +7,7 @@ import styles from './styles.module.scss';
 interface Props {
   label: string;
   onChange: (style: number, option: number) => void;
-  components: { name: string; components: { name: string; type: string; component: number }[] }[];
+  components: { name: string; components: UI.Customization.StyleColorComponentData[] }[];
   gender: 'male' | 'female';
   style?: number;
   option?: number;
@@ -21,7 +21,7 @@ interface State {
 }
 
 const itsThumbScale = 1;
-const renderTint = (palette: string, tint0: number, tint1: number, tint2: number): React.ReactNode => {
+const renderTint = (palette: string | number, tint0: number, tint1: number, tint2: number): React.ReactNode => {
   // const tints = [tint0, tint0, tint0, tint0, tint1, tint1, tint2];
   const tints = [tint0, tint1, tint2];
 
@@ -138,14 +138,10 @@ export default class StyleColorSelector extends Component<Props, State> {
                       this.props.onChange(this.state.currentStyle, index);
                     }}
                   >
-                    {renderTint(
-                      'metaped_tint_hat',
-                      Math.floor(Math.random() * 127),
-                      Math.floor(Math.random() * 127),
-                      Math.floor(Math.random() * 127),
-                      // Math.floor(248 + Math.random() * 6),
-                      // Math.floor(248 + Math.random() * 6),
-                      // Math.floor(248 + Math.random() * 6),
+                    {'palette' in component && typeof component.palette === 'string' ? (
+                      renderTint(component.palette, component.tint0, component.tint1, component.tint2)
+                    ) : (
+                      <span className={index === this.state.currentOption ? styles.selected : ''}>{index + 1}</span>
                     )}
                     {/*{this.state.erroredImages.has(component.component) ? (*/}
                     {/*  <span className={index === this.state.currentOption ? styles.selected : ''}>{index + 1}</span>*/}

@@ -734,37 +734,6 @@
     ]
   },
   {
-    "name": "Steel Spectacles",
-    "components": [
-      {
-        "component": 4101185819,
-        "category": 98860198,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "f473211b",
-        "name": "CLOTHING_ITEM_F_SEASON_EYEWEAR_000_TINT_001",
-        "itemType": "eyewear",
-        "id": 0,
-        "tint": 0,
-        "friendlyName": "Steel Spectacles"
-      },
-      {
-        "component": 633673784,
-        "category": 98860198,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "25c51838",
-        "name": "CLOTHING_ITEM_M_SEASON_EYEWEAR_000_TINT_001",
-        "itemType": "eyewear",
-        "id": 0,
-        "tint": 0,
-        "friendlyName": "Steel Spectacles"
-      }
-    ]
-  },
-  {
     "name": "Gallows Blindfold",
     "components": [
       {
@@ -780,6 +749,24 @@
         "tint": 0,
         "friendlyName": "Gallows Blindfold"
       },
+      {
+        "component": 273042443,
+        "category": 98860198,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "10464c0b",
+        "name": "CLOTHING_M_HALLOWEEN_BLINDFOLD_001_TINT_001",
+        "itemType": "eyewear",
+        "id": 1,
+        "tint": 0,
+        "friendlyName": "Gallows Blindfold"
+      }
+    ]
+  },
+  {
+    "name": 1,
+    "components": [
       {
         "component": 3604429719,
         "category": 98860198,
@@ -853,19 +840,6 @@
         "tint": 5
       },
       {
-        "component": 648925612,
-        "category": 98860198,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "26add1ac",
-        "name": "CLOTHING_ITEM_F_SEASON_EYEWEAR_001_TINT_001",
-        "itemType": "eyewear",
-        "id": 1,
-        "tint": 0,
-        "friendlyName": "Rafferty Eyepatch"
-      },
-      {
         "component": 1735180074,
         "category": 98860198,
         "type": "0",
@@ -936,32 +910,6 @@
         "itemType": "eyewear",
         "id": 1,
         "tint": 5
-      },
-      {
-        "component": 3127964802,
-        "category": 98860198,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "ba70f482",
-        "name": "CLOTHING_ITEM_M_SEASON_EYEWEAR_001_TINT_001",
-        "itemType": "eyewear",
-        "id": 1,
-        "tint": 0,
-        "friendlyName": "Rafferty Eyepatch"
-      },
-      {
-        "component": 273042443,
-        "category": 98860198,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "10464c0b",
-        "name": "CLOTHING_M_HALLOWEEN_BLINDFOLD_001_TINT_001",
-        "itemType": "eyewear",
-        "id": 1,
-        "tint": 0,
-        "friendlyName": "Gallows Blindfold"
       }
     ]
   },
@@ -1909,6 +1857,68 @@
         "itemType": "eyewear",
         "id": 402,
         "tint": 9
+      }
+    ]
+  },
+  {
+    "name": "Steel Spectacles",
+    "components": [
+      {
+        "component": 4101185819,
+        "category": 98860198,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "f473211b",
+        "name": "CLOTHING_ITEM_F_SEASON_EYEWEAR_000_TINT_001",
+        "itemType": "eyewear",
+        "id": 0,
+        "tint": 0,
+        "friendlyName": "Steel Spectacles"
+      },
+      {
+        "component": 633673784,
+        "category": 98860198,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "25c51838",
+        "name": "CLOTHING_ITEM_M_SEASON_EYEWEAR_000_TINT_001",
+        "itemType": "eyewear",
+        "id": 0,
+        "tint": 0,
+        "friendlyName": "Steel Spectacles"
+      }
+    ]
+  },
+  {
+    "name": "Rafferty Eyepatch",
+    "components": [
+      {
+        "component": 648925612,
+        "category": 98860198,
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "26add1ac",
+        "name": "CLOTHING_ITEM_F_SEASON_EYEWEAR_001_TINT_001",
+        "itemType": "eyewear",
+        "id": 1,
+        "tint": 0,
+        "friendlyName": "Rafferty Eyepatch"
+      },
+      {
+        "component": 3127964802,
+        "category": 98860198,
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "componentHex": "ba70f482",
+        "name": "CLOTHING_ITEM_M_SEASON_EYEWEAR_001_TINT_001",
+        "itemType": "eyewear",
+        "id": 1,
+        "tint": 0,
+        "friendlyName": "Rafferty Eyepatch"
       }
     ]
   }

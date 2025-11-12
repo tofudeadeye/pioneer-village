@@ -1,7 +1,7 @@
 const fs = require('fs');
 const fse = require('fs-extra');
 
-const idTintRE = /.*?_(\d+)_TINT_(\d+)/;
+const idTintRE = /.*?(_[MF]_)(.*?)_(\d+)_TINT_(\d+)/;
 
 const files = fs.readdirSync('./components');
 
@@ -16,8 +16,11 @@ for (const file of files) {
     if (component.name?.includes('_TINT_')) {
       const matches = idTintRE.exec(component.name);
       if (matches) {
-        const id = Number(matches[1]);
-        const tint = id >= 400 ? Number(matches[2]) : Number(matches[2]) - 1;
+        // if (component.name.includes('SEASON3_NIGHTCAP') || component.name.includes('_HAT_001_TINT_')) {
+        //   console.log(matches);
+        // }
+        const id = Number(matches[3]);
+        const tint = id >= 400 ? Number(matches[4]) : Number(matches[4]) - 1;
         component.id = id;
         component.tint = tint;
 
@@ -25,14 +28,16 @@ for (const file of files) {
           component.friendlyName = friendlyName;
         }
 
-        if (!newComponents[id]) {
-          newComponents[id] = {
+        const idNew = `${matches[2]}_${id}`;
+
+        if (!newComponents[idNew]) {
+          newComponents[idNew] = {
             name: friendlyName || component.id,
             components: [],
           };
         }
 
-        newComponents[id].components.push(component);
+        newComponents[idNew].components.push(component);
       } else {
         miscComponents.push(component);
       }

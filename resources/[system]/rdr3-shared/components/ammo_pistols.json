@@ -1,11 +1,21 @@
 [
   {
+    "componentHex": "23D0ECD0",
     "component": 600894672,
+    "name": "",
+    "categoryHex": "3F1F01E5",
     "category": 1058996709,
+    "categoryName": "ammo_pistols",
     "type": "0",
     "isMp": false,
     "isSp": true,
-    "componentHex": "23d0ecd0",
-    "itemType": "ammo_pistols"
+    "friendlyName": "",
+    "palette": "",
+    "tint0": 255,
+    "tint1": 255,
+    "tint2": 255,
+    "drawable": "player_zero_ammo_pistol_006",
+    "albedo": 75031915,
+    "normal": 828001065
   }
 ]

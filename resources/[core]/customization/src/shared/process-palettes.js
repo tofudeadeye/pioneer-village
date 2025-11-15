@@ -1,14 +1,14 @@
 const fs = require('fs');
 const { createCanvas, loadImage } = require('canvas');
 
-const files = fs.readdirSync('./palettes');
+const files = fs.readdirSync('./palettes_raw/');
 
 (async () => {
   for (const file of files) {
     if (!file.endsWith('.png') || file.includes('thumbs')) continue;
     const filename = file.split('.').shift();
 
-    const image = await loadImage(`./palettes/${file}`);
+    const image = await loadImage(`./palettes_raw/${file}`);
     processPalette(image);
 
     function processPalette(image) {

@@ -138,7 +138,7 @@ export default class StyleColorSelector extends Component<Props, State> {
                       this.props.onChange(this.state.currentStyle, index);
                     }}
                   >
-                    {'palette' in component && typeof component.palette === 'string' ? (
+                    {'palette' in component && typeof component.palette === 'string' && component.palette !== '' ? (
                       renderTint(component.palette, component.tint0, component.tint1, component.tint2)
                     ) : (
                       <span className={index === this.state.currentOption ? styles.selected : ''}>{index + 1}</span>

@@ -31,11 +31,12 @@ const HashLookUp = {};
 const clothingStrings = fs.readFileSync('./temp/clothing_hashes.txt', 'utf-8');
 const clothingLines = clothingStrings.split('\n');
 
-for (const line of clothingLines) {
-  const hash = line.trim().GetHashKey();
+for (let line of clothingLines) {
+  line = line.trim().toLowerCase();
+  const hash = line.GetHashKey();
 
   // HashLookUp[(hash >>> 0).toString(16).toUpperCase()] = line;
-  HashLookUp[hash >>> 0] = line.trim();
+  HashLookUp[hash >>> 0] = line;
   // HashLookUp[hash << 0] = line.trim();
 }
 
@@ -74,15 +75,20 @@ const lookupHash = (value, numFallback = false) => {
   return '';
 };
 
-let GlobalStrings = {};
+let GlobalStrings;
 if (GENERATE_GLOBALS) {
-  const GlobalXmlData = fs.readFileSync('./temp/global.yldb.xml', 'utf-8');
+  GlobalStrings = require('../../../../[system]/rdr3-shared/component-names');
+
+  const GlobalXmlData = fs.readFileSync('./temp/_global.yldb.xml', 'utf-8');
   const jObj = parser.parse(GlobalXmlData);
 
-  // _0x
-  const GlobalStrings = {};
+  const GlobalXmlData2 = fs.readFileSync('./temp/global.yldb.xml', 'utf-8');
+  const jObj2 = parser.parse(GlobalXmlData2);
 
-  for (const entry of jObj.RDR2LanguageDatabase.Entries.Item) {
+  // _0x
+  // const GlobalStrings = {};
+
+  for (const entry of [...jObj.RDR2LanguageDatabase.Entries.Item, ...jObj2.RDR2LanguageDatabase.Entries.Item]) {
     let key = entry['@_hash'];
     if (!key) continue;
     if (key.includes('_0x')) {
@@ -100,6 +106,7 @@ if (GENERATE_GLOBALS) {
 } else {
   GlobalStrings = JSON.parse(fs.readFileSync('./temp/global-strings.json', 'utf-8'));
 }
+console.log(`Loaded ${Object.keys(GlobalStrings).length} global strings.`);
 // </editor-fold>
 
 const ColorPaletteNames = {
@@ -153,9 +160,7 @@ const jObj = parser.parse(XMLdata);
 
 const ShopItems = [];
 
-const datas = {
-  unknown: [],
-};
+const datas = {};
 
 const processMetaPedDef = (metaPedDef) => {
   let drawable = metaPedDef.drawable;
@@ -312,14 +317,12 @@ for (const [ItemListName, ItemList] of Object.entries(jObj.MetaPedShopItemList))
       //   console.log(lookupHash(data.component));
       // }
 
-      if (data.categoryName) {
-        if (!datas[data.categoryName]) {
-          datas[data.categoryName] = [];
-        }
-        datas[data.categoryName].push(data);
-      } else {
-        datas.unknown.push(data);
+      let fileName = data.categoryName || `${data.category}`;
+
+      if (!datas[fileName]) {
+        datas[fileName] = [];
       }
+      datas[fileName].push(data);
     } catch (e) {
       console.log(e);
       console.log(Item);
@@ -332,5 +335,5 @@ for (const [ItemListName, ItemList] of Object.entries(jObj.MetaPedShopItemList))
 // fs.writeFileSync('./temp/shop-items.json', JSON.stringify(datas, null, 2));
 
 for (const [category, items] of Object.entries(datas)) {
-  fs.writeFileSync(`./shop-items/${category}.json`, JSON.stringify(items, null, 2));
+  fs.writeFileSync(`../../../../[system]/rdr3-shared/components/${category}.json`, JSON.stringify(items, null, 2));
 }

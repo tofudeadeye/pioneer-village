@@ -1,20 +1,40 @@
 [
   {
-    "component": 495489215,
+    "componentHex": "32D4CCC5",
+    "component": 852806853,
+    "name": "",
+    "categoryHex": "DA0E2C55",
     "category": 3658361941,
+    "categoryName": "ammo_rifles",
     "type": "0",
     "isMp": false,
     "isSp": true,
-    "componentHex": "1d8890bf",
-    "itemType": "ammo_rifles"
+    "friendlyName": "",
+    "palette": "",
+    "tint0": 255,
+    "tint1": 255,
+    "tint2": 255,
+    "drawable": "player_zero_ammo_rifle_005_shirt_standardised",
+    "albedo": 75031915,
+    "normal": 828001065
   },
   {
-    "component": 852806853,
+    "componentHex": "1D8890BF",
+    "component": 495489215,
+    "name": "",
+    "categoryHex": "DA0E2C55",
     "category": 3658361941,
+    "categoryName": "ammo_rifles",
     "type": "0",
     "isMp": false,
     "isSp": true,
-    "componentHex": "32d4ccc5",
-    "itemType": "ammo_rifles"
+    "friendlyName": "",
+    "palette": "",
+    "tint0": 255,
+    "tint1": 255,
+    "tint2": 255,
+    "drawable": "player_zero_ammo_shotgun_005_shirt_standardised",
+    "albedo": 75031915,
+    "normal": 828001065
   }
 ]

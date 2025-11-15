@@ -241,19 +241,24 @@ declare namespace Anim {
 }
 
 interface Component {
+  componentHex: string;
   component: number;
+  name?: string;
+  categoryHex: string;
   category: number;
+  categoryName: string;
   type: '0' | '1';
   isMp: boolean;
   isSp: boolean;
-  componentHex: string;
-  name?: string;
-  itemType?: string;
+  id: number;
   friendlyName?: string;
-  palette?: string | number;
+  palette?: string;
   tint0?: number;
   tint1?: number;
   tint2?: number;
+  drawable: string;
+  albedo: number;
+  normal: number;
 }
 
 interface CameraData {

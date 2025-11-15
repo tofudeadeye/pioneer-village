@@ -92,17 +92,24 @@ declare namespace UI.Customization {
   type Event = Partial<State>;
 
   interface ComponentJsonData {
+    componentHex: string;
     component: number;
+    name?: string;
+    categoryHex: string;
     category: number;
+    categoryName: string;
     type: '0' | '1';
     isMp: boolean;
     isSp: boolean;
-    componentHex: string;
-    name?: string;
-    itemType: string;
-    id?: number;
-    tint?: number;
+    id: number;
     friendlyName?: string;
+    palette?: string;
+    tint0?: number;
+    tint1?: number;
+    tint2?: number;
+    drawable: string;
+    albedo: number;
+    normal: number;
   }
 
   type ComponentJsonDataPalette = ComponentJsonData & {

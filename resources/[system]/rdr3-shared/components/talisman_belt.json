@@ -1,13 +1,21 @@
 [
   {
+    "componentHex": "CE5DB540",
     "component": 3462247744,
+    "name": "provision_talisman_bear_claw",
+    "categoryHex": "1AECF7DC",
     "category": 451737564,
+    "categoryName": "talisman_belt",
     "type": "0",
     "isMp": false,
     "isSp": true,
-    "componentHex": "ce5db540",
-    "name": "PROVISION_TALISMAN_BEAR_CLAW",
-    "itemType": "talisman_belt",
-    "friendlyName": "Bear Claw Talisman"
+    "friendlyName": "Bear Claw Talisman",
+    "palette": "",
+    "tint0": 255,
+    "tint1": 255,
+    "tint2": 255,
+    "drawable": "player_zero_tal_bear_claw_000",
+    "albedo": 1810567470,
+    "normal": 1926150225
   }
 ]

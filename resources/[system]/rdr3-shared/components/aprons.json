@@ -1,11 +1,21 @@
 [
   {
+    "componentHex": "36A54F06",
     "component": 916803334,
+    "name": "",
+    "categoryHex": "76f0e272",
     "category": 1995498098,
+    "categoryName": "aprons",
     "type": "0",
     "isMp": false,
     "isSp": true,
-    "componentHex": "36a54f06",
-    "itemType": "aprons"
+    "friendlyName": "",
+    "palette": "",
+    "tint0": 255,
+    "tint1": 255,
+    "tint2": 255,
+    "drawable": "player_three_ms1_apron_000",
+    "albedo": 167072435,
+    "normal": 2860028015
   }
 ]

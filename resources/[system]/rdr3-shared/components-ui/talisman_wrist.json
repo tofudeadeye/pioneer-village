@@ -3,15 +3,23 @@
     "name": "Misc",
     "components": [
       {
+        "componentHex": "FC449089",
         "component": 4232351881,
+        "name": "provision_talisman_alligator_tooth",
+        "categoryHex": "DB64A390",
         "category": 3680805776,
+        "categoryName": "talisman_wrist",
         "type": "0",
         "isMp": false,
         "isSp": true,
-        "componentHex": "fc449089",
-        "name": "PROVISION_TALISMAN_ALLIGATOR_TOOTH",
-        "itemType": "talisman_wrist",
-        "friendlyName": "Alligator Tooth Talisman"
+        "friendlyName": "Alligator Tooth Talisman",
+        "palette": "",
+        "tint0": 255,
+        "tint1": 255,
+        "tint2": 255,
+        "drawable": "player_zero_tal_alligator_tooth_000",
+        "albedo": 1584311325,
+        "normal": 4201347972
       }
     ]
   }

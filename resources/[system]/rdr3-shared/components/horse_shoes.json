@@ -1,12 +1,21 @@
 [
   {
+    "componentHex": "0865A270",
     "component": 140878448,
+    "name": "",
+    "categoryHex": "FACFC3C0",
     "category": 4207920064,
+    "categoryName": "horse_shoes",
     "type": "1",
     "isMp": true,
     "isSp": false,
-    "componentHex": "865a270",
-    "name": "horse_shoes",
-    "itemType": "horse_shoes"
+    "friendlyName": "",
+    "palette": "",
+    "tint0": 255,
+    "tint1": 255,
+    "tint2": 255,
+    "drawable": "p_c_horse_01_feet_001",
+    "albedo": 1623349210,
+    "normal": 319460215
   }
 ]

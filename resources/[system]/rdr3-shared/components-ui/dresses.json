@@ -3,13 +3,23 @@
     "name": "Misc",
     "components": [
       {
+        "componentHex": "B8A78F00",
         "component": 3097988864,
+        "name": "",
+        "categoryHex": "a2926f9b",
         "category": 2727505819,
+        "categoryName": "dresses",
         "type": "0",
         "isMp": true,
         "isSp": false,
-        "componentHex": "b8a78f00",
-        "itemType": "dresses"
+        "friendlyName": "",
+        "palette": "metaped_tint_si_template",
+        "tint0": 90,
+        "tint1": 90,
+        "tint2": 90,
+        "drawable": "mp_season_nightgown_mr1_001",
+        "albedo": "mp_season_nightgown_mr1_001_c1_999_ab",
+        "normal": "mp_season_nightgown_mr1_001_c1_999_nm"
       }
     ]
   },
@@ -17,17 +27,25 @@
     "name": "Abbington Nightgown",
     "components": [
       {
+        "componentHex": "c1b7d659",
         "component": 3250050649,
+        "name": "clothing_m_season3_nightgown_001_tint_001",
+        "categoryHex": "a2926f9b",
         "category": 2727505819,
+        "categoryName": "dresses",
         "type": "0",
         "isMp": true,
         "isSp": false,
-        "componentHex": "c1b7d659",
-        "name": "CLOTHING_M_SEASON3_NIGHTGOWN_001_TINT_001",
-        "itemType": "dresses",
         "id": 1,
-        "tint": 0,
-        "friendlyName": "Abbington Nightgown"
+        "tint": 1,
+        "friendlyName": "Abbington Nightgown",
+        "palette": "metaped_tint_generic_worn",
+        "tint0": 150,
+        "tint1": 152,
+        "tint2": 153,
+        "drawable": "mp_season_nightgown_mr1_001",
+        "albedo": "mp_season_nightgown_mr1_001_c1_999_ab",
+        "normal": "mp_season_nightgown_mr1_001_c1_999_nm"
       }
     ]
   }

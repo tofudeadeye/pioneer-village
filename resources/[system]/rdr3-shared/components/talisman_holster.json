@@ -1,13 +1,21 @@
 [
   {
+    "componentHex": "F8C014B9",
     "component": 4173337785,
+    "name": "provision_talisman_raven_claw",
+    "categoryHex": "7C00A8F0",
     "category": 2080418032,
+    "categoryName": "talisman_holster",
     "type": "0",
     "isMp": false,
     "isSp": true,
-    "componentHex": "f8c014b9",
-    "name": "PROVISION_TALISMAN_RAVEN_CLAW",
-    "itemType": "talisman_holster",
-    "friendlyName": "Raven Claw Talisman"
+    "friendlyName": "Raven Claw Talisman",
+    "palette": "",
+    "tint0": 255,
+    "tint1": 255,
+    "tint2": 255,
+    "drawable": "player_zero_tal_raven_claw_000",
+    "albedo": 843618495,
+    "normal": 87907961
   }
 ]

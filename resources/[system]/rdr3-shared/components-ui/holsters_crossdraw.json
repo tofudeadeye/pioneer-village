@@ -3,13 +3,23 @@
     "name": "Misc",
     "components": [
       {
+        "componentHex": "015B5D51",
         "component": 22764881,
+        "name": "",
+        "categoryHex": "49C89D9B",
         "category": 1237884315,
+        "categoryName": "holsters_crossdraw",
         "type": "0",
         "isMp": false,
         "isSp": true,
-        "componentHex": "15b5d51",
-        "itemType": "holsters_crossdraw"
+        "friendlyName": "",
+        "palette": "",
+        "tint0": 255,
+        "tint1": 255,
+        "tint2": 255,
+        "drawable": 3483291380,
+        "albedo": 3852016129,
+        "normal": 2506190042
       }
     ]
   }

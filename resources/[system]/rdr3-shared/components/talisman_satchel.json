@@ -1,13 +1,21 @@
 [
   {
+    "componentHex": "8C4CF7A2",
     "component": 2353854370,
+    "name": "provision_talisman_buffalo_horn",
+    "categoryHex": "8EFB276A",
     "category": 2398824298,
+    "categoryName": "talisman_satchel",
     "type": "0",
     "isMp": false,
     "isSp": true,
-    "componentHex": "8c4cf7a2",
-    "name": "PROVISION_TALISMAN_BUFFALO_HORN",
-    "itemType": "talisman_satchel",
-    "friendlyName": "Bison Horn Talisman"
+    "friendlyName": "Bison Horn Talisman",
+    "palette": "",
+    "tint0": 255,
+    "tint1": 255,
+    "tint2": 255,
+    "drawable": "player_zero_tal_buffalo_horn_000",
+    "albedo": 3627966942,
+    "normal": 536473196
   }
 ]

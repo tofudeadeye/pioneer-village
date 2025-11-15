@@ -3,170 +3,526 @@
     "name": "Misc",
     "components": [
       {
-        "component": 2062571572,
-        "category": 2488290598,
-        "type": "0",
-        "isMp": false,
-        "isSp": true,
-        "componentHex": "7af05834",
-        "itemType": "satchels",
-        "friendlyName": "John's Satchel"
-      },
-      {
+        "componentHex": "AB430AE8",
         "component": 2873297640,
+        "name": "clothing_hl_player_satchel_002_1",
+        "categoryHex": "94504d26",
         "category": 2488290598,
+        "categoryName": "satchels",
         "type": "0",
         "isMp": false,
         "isSp": true,
-        "componentHex": "ab430ae8",
-        "name": "CLOTHING_HL_PLAYER_SATCHEL_002_1",
-        "itemType": "satchels",
-        "friendlyName": "Tonics Satchel"
+        "id": 2,
+        "friendlyName": "Tonics Satchel",
+        "palette": [
+          "metaped_tint_si_template",
+          "metaped_tint_si_template"
+        ],
+        "tint0": [
+          6,
+          6
+        ],
+        "tint1": [
+          0,
+          0
+        ],
+        "tint2": [
+          0,
+          0
+        ],
+        "drawable": [
+          "player_zero_satchel_002",
+          "player_zero_satchel_strap_000_shirt_standardised"
+        ],
+        "albedo": [
+          3049515839,
+          3971122570
+        ],
+        "normal": [
+          2953809507,
+          1030271885
+        ]
       },
       {
+        "componentHex": "CE847162",
         "component": 3464786274,
+        "name": "clothing_hl_player_satchel_003_1",
+        "categoryHex": "94504d26",
         "category": 2488290598,
+        "categoryName": "satchels",
         "type": "0",
         "isMp": false,
         "isSp": true,
-        "componentHex": "ce847162",
-        "name": "CLOTHING_HL_PLAYER_SATCHEL_003_1",
-        "itemType": "satchels",
-        "friendlyName": "Ingredients Satchel"
+        "id": 3,
+        "friendlyName": "Ingredients Satchel",
+        "palette": [
+          "metaped_tint_si_template",
+          "metaped_tint_si_template"
+        ],
+        "tint0": [
+          5,
+          5
+        ],
+        "tint1": [
+          0,
+          0
+        ],
+        "tint2": [
+          0,
+          0
+        ],
+        "drawable": [
+          "player_zero_satchel_003",
+          "player_zero_satchel_strap_000_shirt_standardised"
+        ],
+        "albedo": [
+          4106648065,
+          3971122570
+        ],
+        "normal": [
+          2222729670,
+          1030271885
+        ]
       },
       {
+        "componentHex": "36B2ED97",
         "component": 917695895,
+        "name": "clothing_hl_player_satchel_004_1",
+        "categoryHex": "94504d26",
         "category": 2488290598,
+        "categoryName": "satchels",
         "type": "0",
         "isMp": false,
         "isSp": true,
-        "componentHex": "36b2ed97",
-        "name": "CLOTHING_HL_PLAYER_SATCHEL_004_1",
-        "itemType": "satchels",
-        "friendlyName": "Kit Satchel"
+        "id": 4,
+        "friendlyName": "Kit Satchel",
+        "palette": [
+          "metaped_tint_si_template",
+          "metaped_tint_si_template"
+        ],
+        "tint0": [
+          4,
+          4
+        ],
+        "tint1": [
+          0,
+          0
+        ],
+        "tint2": [
+          0,
+          0
+        ],
+        "drawable": [
+          "player_zero_satchel_004",
+          "player_zero_satchel_strap_000_shirt_standardised"
+        ],
+        "albedo": [
+          3980638323,
+          3971122570
+        ],
+        "normal": [
+          3565842101,
+          1030271885
+        ]
       },
       {
+        "componentHex": "A1CA0708",
         "component": 2714371848,
+        "name": "clothing_hl_player_satchel_005_1",
+        "categoryHex": "94504d26",
         "category": 2488290598,
+        "categoryName": "satchels",
         "type": "0",
         "isMp": false,
         "isSp": true,
-        "componentHex": "a1ca0708",
-        "name": "CLOTHING_HL_PLAYER_SATCHEL_005_1",
-        "itemType": "satchels",
-        "friendlyName": "Provisions Satchel"
+        "id": 5,
+        "friendlyName": "Provisions Satchel",
+        "palette": [
+          "metaped_tint_si_template",
+          "metaped_tint_si_template"
+        ],
+        "tint0": [
+          3,
+          3
+        ],
+        "tint1": [
+          0,
+          0
+        ],
+        "tint2": [
+          0,
+          0
+        ],
+        "drawable": [
+          "player_zero_satchel_005",
+          "player_zero_satchel_strap_000_shirt_standardised"
+        ],
+        "albedo": [
+          3156568602,
+          3971122570
+        ],
+        "normal": [
+          2934194260,
+          1030271885
+        ]
       },
       {
+        "componentHex": "4E14E705",
         "component": 1309992709,
+        "name": "clothing_hl_player_satchel_006_1",
+        "categoryHex": "94504d26",
         "category": 2488290598,
+        "categoryName": "satchels",
         "type": "0",
         "isMp": false,
         "isSp": true,
-        "componentHex": "4e14e705",
-        "name": "CLOTHING_HL_PLAYER_SATCHEL_006_1",
-        "itemType": "satchels",
-        "friendlyName": "Materials Satchel"
+        "id": 6,
+        "friendlyName": "Materials Satchel",
+        "palette": [
+          "",
+          ""
+        ],
+        "tint0": [
+          255,
+          255
+        ],
+        "tint1": [
+          255,
+          255
+        ],
+        "tint2": [
+          255,
+          255
+        ],
+        "drawable": [
+          "player_zero_satchel_006",
+          "player_zero_satchel_strap_000_shirt_standardised"
+        ],
+        "albedo": [
+          3685609754,
+          3971122570
+        ],
+        "normal": [
+          2092209173,
+          1030271885
+        ]
       },
       {
+        "componentHex": "5BE33D1D",
         "component": 1541618973,
+        "name": "clothing_hl_player_satchel_007_1",
+        "categoryHex": "94504d26",
         "category": 2488290598,
+        "categoryName": "satchels",
         "type": "0",
         "isMp": false,
         "isSp": true,
-        "componentHex": "5be33d1d",
-        "name": "CLOTHING_HL_PLAYER_SATCHEL_007_1",
-        "itemType": "satchels",
-        "friendlyName": "Valuables Satchel"
+        "id": 7,
+        "friendlyName": "Valuables Satchel",
+        "palette": [
+          "",
+          ""
+        ],
+        "tint0": [
+          255,
+          255
+        ],
+        "tint1": [
+          255,
+          255
+        ],
+        "tint2": [
+          255,
+          255
+        ],
+        "drawable": [
+          "player_zero_satchel_007",
+          "player_zero_satchel_strap_000_shirt_standardised"
+        ],
+        "albedo": [
+          2976448146,
+          3971122570
+        ],
+        "normal": [
+          3849151793,
+          1030271885
+        ]
       },
       {
+        "componentHex": "DC99106D",
         "component": 3701018733,
+        "name": "clothing_hl_player_satchel_008_1",
+        "categoryHex": "94504d26",
         "category": 2488290598,
+        "categoryName": "satchels",
         "type": "0",
         "isMp": false,
         "isSp": true,
-        "componentHex": "dc99106d",
-        "name": "CLOTHING_HL_PLAYER_SATCHEL_008_1",
-        "itemType": "satchels",
-        "friendlyName": "Legend of the East Satchel"
+        "id": 8,
+        "friendlyName": "Legend of the East Satchel",
+        "palette": [
+          "metaped_tint_si_template",
+          "metaped_tint_si_template"
+        ],
+        "tint0": [
+          2,
+          2
+        ],
+        "tint1": [
+          0,
+          0
+        ],
+        "tint2": [
+          0,
+          0
+        ],
+        "drawable": [
+          "player_zero_satchel_008",
+          "player_zero_satchel_strap_000_shirt_standardised"
+        ],
+        "albedo": [
+          1686194178,
+          3971122570
+        ],
+        "normal": [
+          2492288070,
+          1030271885
+        ]
       },
       {
+        "componentHex": "A8D83213",
         "component": 2832740883,
+        "name": "clothing_hl_player_satchel_009_1",
+        "categoryHex": "94504d26",
         "category": 2488290598,
+        "categoryName": "satchels",
         "type": "0",
         "isMp": false,
         "isSp": true,
-        "componentHex": "a8d83213",
-        "name": "CLOTHING_HL_PLAYER_SATCHEL_009_1",
-        "itemType": "satchels"
+        "id": 9,
+        "friendlyName": "",
+        "palette": [
+          "metaped_tint_si_template",
+          "metaped_tint_si_template"
+        ],
+        "tint0": [
+          1,
+          1
+        ],
+        "tint1": [
+          0,
+          0
+        ],
+        "tint2": [
+          0,
+          0
+        ],
+        "drawable": [
+          "player_zero_satchel_009",
+          "player_zero_satchel_strap_000_shirt_standardised"
+        ],
+        "albedo": [
+          1430366110,
+          3971122570
+        ],
+        "normal": [
+          3480278922,
+          1030271885
+        ]
       },
       {
-        "component": 1109685657,
-        "category": 2488290598,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "42247599",
-        "name": "CLOTHING_ITEM_F_SATCHEL_001",
-        "itemType": "satchels"
-      },
-      {
-        "component": 4239336475,
-        "category": 2488290598,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "fcaf241b",
-        "name": "CLOTHING_ITEM_F_SATCHEL_001",
-        "itemType": "satchels"
-      },
-      {
-        "component": 2105864149,
-        "category": 2488290598,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "7d84efd5",
-        "name": "CLOTHING_ITEM_M_SATCHEL_001",
-        "itemType": "satchels"
-      },
-      {
-        "component": 3997825462,
-        "category": 2488290598,
-        "type": "0",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "ee49f9b6",
-        "name": "CLOTHING_ITEM_M_SATCHEL_001",
-        "itemType": "satchels"
-      },
-      {
+        "componentHex": "3EC38679",
         "component": 1053001337,
+        "name": "clothing_item_satchel_pz_000",
+        "categoryHex": "94504d26",
         "category": 2488290598,
+        "categoryName": "satchels",
         "type": "0",
         "isMp": false,
         "isSp": true,
-        "componentHex": "3ec38679",
-        "name": "CLOTHING_ITEM_SATCHEL_PZ_000",
-        "itemType": "satchels",
-        "friendlyName": "Arthur's Satchel"
+        "friendlyName": "Arthur's Satchel",
+        "palette": [
+          "metaped_tint_si_template",
+          "metaped_tint_si_template"
+        ],
+        "tint0": [
+          0,
+          0
+        ],
+        "tint1": [
+          0,
+          0
+        ],
+        "tint2": [
+          0,
+          0
+        ],
+        "drawable": [
+          "player_zero_satchel_000",
+          "player_zero_satchel_strap_000_shirt_standardised"
+        ],
+        "albedo": [
+          4202799238,
+          3971122570
+        ],
+        "normal": [
+          1976827857,
+          1030271885
+        ]
       },
       {
-        "component": 2116878699,
+        "componentHex": "7AF05834",
+        "component": 2062571572,
+        "name": "",
+        "categoryHex": "94504d26",
         "category": 2488290598,
-        "type": "1",
-        "isMp": true,
-        "isSp": false,
-        "componentHex": "7e2d016b",
-        "itemType": "satchels"
+        "categoryName": "satchels",
+        "type": "0",
+        "isMp": false,
+        "isSp": true,
+        "friendlyName": "John's Satchel",
+        "palette": [
+          "",
+          ""
+        ],
+        "tint0": [
+          255,
+          255
+        ],
+        "tint1": [
+          255,
+          255
+        ],
+        "tint2": [
+          255,
+          255
+        ],
+        "drawable": [
+          "player_three_ms1_satchel_000",
+          1593819023
+        ],
+        "albedo": [
+          2622119815,
+          3654455657
+        ],
+        "normal": [
+          521384631,
+          3025004989
+        ]
       },
       {
+        "componentHex": "EA272E11",
         "component": 3928436241,
+        "name": "",
+        "categoryHex": "94504d26",
         "category": 2488290598,
+        "categoryName": "satchels",
         "type": "0",
         "isMp": true,
         "isSp": false,
-        "componentHex": "ea272e11",
-        "itemType": "satchels"
+        "friendlyName": "",
+        "palette": "metaped_tint_si_template",
+        "tint0": 87,
+        "tint1": 87,
+        "tint2": 87,
+        "drawable": "mp_moneybags_mr1_000_shirt",
+        "albedo": 3558327793,
+        "normal": 2118603501
+      },
+      {
+        "componentHex": "7D84EFD5",
+        "component": 2105864149,
+        "name": "",
+        "categoryHex": "94504d26",
+        "category": 2488290598,
+        "categoryName": "satchels",
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "friendlyName": "",
+        "palette": "",
+        "tint0": 255,
+        "tint1": 255,
+        "tint2": 255,
+        "drawable": "mp_predatorbag_mr1_001_shirt",
+        "albedo": "mp_predatorbag_mr1_001_c1_000_ab",
+        "normal": "mp_predatorbag_mr1_001_c1_000_nm"
+      },
+      {
+        "componentHex": "EE49F9B6",
+        "component": 3997825462,
+        "name": "clothing_item_m_satchel_001",
+        "categoryHex": "94504d26",
+        "category": 2488290598,
+        "categoryName": "satchels",
+        "type": "0",
+        "isMp": true,
+        "isSp": false,
+        "friendlyName": "",
+        "palette": "",
+        "tint0": 255,
+        "tint1": 255,
+        "tint2": 255,
+        "drawable": "mp_moneybags_mr1_000_shirt",
+        "albedo": 3558327793,
+        "normal": 2118603501
+      },
+      {
+        "componentHex": "42247599",
+        "component": 1109685657,
+        "name": "",
+        "categoryHex": "94504d26",
+        "category": 2488290598,
+        "categoryName": "satchels",
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "friendlyName": "",
+        "palette": "metaped_tint_si_template",
+        "tint0": 13,
+        "tint1": 13,
+        "tint2": 13,
+        "drawable": "mp_moneybags_fr1_000_shirt",
+        "albedo": 3558327793,
+        "normal": 2118603501
+      },
+      {
+        "componentHex": "7E2D016B",
+        "component": 2116878699,
+        "name": "",
+        "categoryHex": "94504d26",
+        "category": 2488290598,
+        "categoryName": "satchels",
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "friendlyName": "",
+        "palette": "",
+        "tint0": 255,
+        "tint1": 255,
+        "tint2": 255,
+        "drawable": "mp_predatorbag_fr1_001_shirt",
+        "albedo": "mp_predatorbag_mr1_001_c1_000_ab",
+        "normal": "mp_predatorbag_mr1_001_c1_000_nm"
+      },
+      {
+        "componentHex": "FCAF241B",
+        "component": 4239336475,
+        "name": "clothing_item_f_satchel_001",
+        "categoryHex": "94504d26",
+        "category": 2488290598,
+        "categoryName": "satchels",
+        "type": "1",
+        "isMp": true,
+        "isSp": false,
+        "friendlyName": "",
+        "palette": "",
+        "tint0": 255,
+        "tint1": 255,
+        "tint2": 255,
+        "drawable": "mp_moneybags_fr1_000_shirt",
+        "albedo": 3558327793,
+        "normal": 2118603501
       }
     ]
   }

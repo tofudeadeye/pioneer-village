@@ -3,15 +3,44 @@
     "name": "Misc",
     "components": [
       {
+        "componentHex": "635e387c",
         "component": 1667119228,
+        "name": "horse_equipment_saddle_lantern_basic",
+        "categoryHex": "1530BE1C",
         "category": 355515932,
+        "categoryName": "saddle_lanterns",
         "type": "1",
         "isMp": true,
         "isSp": false,
-        "componentHex": "635e387c",
-        "name": "HORSE_EQUIPMENT_SADDLE_LANTERN_BASIC",
-        "itemType": "saddle_lanterns",
-        "friendlyName": "Lantern"
+        "friendlyName": "Lantern",
+        "palette": [
+          "metaped_tint_combined_leather",
+          "metaped_tint_generic"
+        ],
+        "tint0": [
+          13,
+          0
+        ],
+        "tint1": [
+          103,
+          0
+        ],
+        "tint2": [
+          101,
+          0
+        ],
+        "drawable": [
+          "mp_horselantern_harness_001",
+          "mp_horselantern_lantern_001"
+        ],
+        "albedo": [
+          "mp_horselantern_harness_001_ab",
+          "mp_horselantern_lantern_001_ab"
+        ],
+        "normal": [
+          "mp_horselantern_harness_001_nm",
+          "mp_horselantern_lantern_001_nm"
+        ]
       }
     ]
   }

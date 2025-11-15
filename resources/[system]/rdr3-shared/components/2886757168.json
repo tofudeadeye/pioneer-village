@@ -1,10 +1,21 @@
 [
   {
+    "componentHex": "F772CED6",
     "component": 4151496406,
+    "name": "",
+    "categoryHex": "AC106B30",
     "category": 2886757168,
+    "categoryName": "",
     "type": "1",
     "isMp": true,
     "isSp": false,
-    "componentHex": "f772ced6"
+    "friendlyName": "",
+    "palette": "metaped_tint_leather",
+    "tint0": 32,
+    "tint1": 100,
+    "tint2": 100,
+    "drawable": 1016210257,
+    "albedo": 1613666652,
+    "normal": 2778625447
   }
 ]

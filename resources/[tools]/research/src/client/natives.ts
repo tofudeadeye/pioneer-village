@@ -27,7 +27,7 @@ const testNatives = (category: string, parameterCount: number, nativeArgs: any[]
       if (restrictUnnamed && !data.name.startsWith('_0x')) {
         continue;
       }
-      if (data.params.length !== parameterCount || data.return_type === 'void') {
+      if ((parameterCount !== -1 && data.params.length !== parameterCount) || data.return_type === 'void') {
         continue;
       }
       Log('--------------');

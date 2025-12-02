@@ -257,6 +257,7 @@ function Events:Thread()
                 end
 
                 self.meleCombat = IsPedInMeleeCombat(self.cache.ped)
+                self.firstPerson = IsFirstPersonCameraActive(false, false, false) == 1
 
                 self.hasRightHandWeapon, self.rightHandWeapon = GetCurrentPedWeapon(self.cache.ped, true, 0, false)
                 self.hasLeftHandWeapon, self.leftHandWeapon = GetCurrentPedWeapon(self.cache.ped, true, 1, false)
@@ -302,6 +303,20 @@ function Events:Thread()
                 elseif not self.meleCombat and self.isInMeleCombat and self.cache.gameTimer - self.meleCombatTimer > 250 then
                     self.isInMeleCombat = false
                     TriggerEvent(("%s:meleCombat"):format(self.name), self.isInMeleCombat)
+                end
+
+                if self.firstPerson and not self.isInFirstPerson then
+                    self.isInFirstPerson = true
+                    print('First person')
+                    TriggerEvent(("%s:firstPerson"):format(self.name), self.isInFirstPerson)
+                elseif not self.firstPerson and self.isInFirstPerson then
+                    self.isInFirstPerson = false
+                    print('Third person')
+                    TriggerEvent(("%s:firstPerson"):format(self.name), self.isInFirstPerson)
+                end
+
+                if HaveControlsChanged(0) then
+                    TriggerEvent(("%s:controlsChanged"):format(self.name))
                 end
 
                 if self.currentlyAiming and not self.aiming then

@@ -10,7 +10,6 @@ declare namespace SocketIn {
       callback?: (success: boolean) => void,
     ) => void;
     'inventory.item-wear': (itemId: number) => void;
-    'inventory.pickup-hat': (source: number, itemId: number) => void;
   }
 
   interface FromClient {
@@ -34,6 +33,7 @@ declare namespace SocketIn {
     'inventory.item-drop': (requestId: number, identifier: string, slot: number) => void;
     'inventory.item-wear': (itemId: number) => void;
     'inventory.lost-hat': (hatNetId: number, coords: Vector3) => void;
+    'inventory.pickup-hat': (itemId: number) => void;
     'inventory.check-world': () => void;
     'inventory.get-world-inventories': () => void;
   }
@@ -43,6 +43,7 @@ declare namespace SocketIn {
 declare namespace SocketOut {
   interface ToGameServer {
     'inventory.set-hat-item-id': (hatNetId: number, itemId: number) => void;
+    'inventory.delete-hat-by-item-id': (itemId: number) => void;
   }
 
   interface ToClient {

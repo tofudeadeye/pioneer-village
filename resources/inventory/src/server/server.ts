@@ -1,5 +1,7 @@
 import { emitSocket, onClient, onSocket } from '@lib/server';
 
+import hatManager from './managers/hat-manager';
+
 RegisterCommand(
   'giveItem',
   (source: number, args: string[], rawCommand: string) => {
@@ -37,19 +39,12 @@ RegisterCommand(
   false,
 );
 
-onClient('inventory.pickup-hat', (hatNetId) => {
-  const hatEntity = NetworkGetEntityFromNetworkId(hatNetId);
-  const hat = Entity(hatEntity);
-
-  const itemId = hat.state.hatItemId;
-
-  emitSocket('inventory.pickup-hat', source, itemId);
+onSocket('inventory.set-hat-item-id', (hatNetworkId, itemId) => {
+  console.log('inventory.set-hat-item-id', hatNetworkId, itemId);
+  hatManager.registerHatByNetId(itemId, hatNetworkId);
 });
 
-onSocket('inventory.set-hat-item-id', (hatNetworkId, itemId) => {
-  const hatEntity = NetworkGetEntityFromNetworkId(hatNetworkId);
-
-  const coords = GetEntityCoords(hatEntity);
-
-  Entity(hatEntity).state.set('hatItemId', itemId, true);
+onSocket('inventory.delete-hat-by-item-id', (itemId) => {
+  console.log('inventory.delete-hat-by-item-id', itemId);
+  hatManager.deleteHatByItemId(itemId);
 });

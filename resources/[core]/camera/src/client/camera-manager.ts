@@ -154,6 +154,30 @@ class CameraManager {
     this.activeCam = cam;
     await Delay(duration);
   }
+
+  attachCamToEntity(id: string, entity: number, offset: Vector3, isRelative = true) {
+    if (!this.has(id)) {
+      return;
+    }
+    const cam = this.get(id);
+    AttachCamToEntity(cam, entity, offset.x, offset.y, offset.z, isRelative);
+  }
+
+  attachCamToPedBone(id: string, ped: number, boneIndex: number, offset: Vector3, heading = false) {
+    if (!this.has(id)) {
+      return;
+    }
+    const cam = this.get(id);
+    AttachCamToPedBone(cam, ped, boneIndex, offset.x, offset.y, offset.z, heading);
+  }
+
+  detachCam(id: string) {
+    if (!this.has(id)) {
+      return;
+    }
+    const cam = this.get(id);
+    DetachCam(cam);
+  }
 }
 
 const cameraManager = CameraManager.getInstance();

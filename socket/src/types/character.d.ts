@@ -5,7 +5,6 @@ declare namespace SocketIn {
     ['character-event.disconnected']: (serverId: number) => void;
     ['character-get.food-drink']: (charId: number, cb: (food: number, drink: number) => void) => void;
     ['character-get.health-metadata']: (charId: number, cb: (metadata: CharacterHealthMetadata) => void) => void;
-    ['inventory.pickup-hat']: (source: number, hatNetId: number) => void;
   }
 
   interface FromClient {

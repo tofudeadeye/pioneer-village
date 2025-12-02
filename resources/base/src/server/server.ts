@@ -37,7 +37,7 @@ setInterval(async () => {
 
 on('playerDropped', () => {
   const src = global.source;
-  const coords = new Vector3().setFromArray(GetEntityCoords(GetPlayerPed(String(src))));
+  const coords = Vector3.fromArray(GetEntityCoords(GetPlayerPed(String(src))));
   emitSocket('character-update.last-position', src, coords);
   emitSocket('character-event.disconnected', src);
 });

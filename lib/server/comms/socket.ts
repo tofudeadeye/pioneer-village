@@ -1,4 +1,4 @@
-const listenerRegistry: Set<[string, any]> = new Set();
+const listenerRegistry: Set<[string, string, any]> = new Set();
 const emitBuffer: Set<any[]> = new Set();
 const awaitBuffer: Map<any[], any> = new Map();
 
@@ -23,10 +23,11 @@ export const awaitSocket: Base.awaitSocket = (...args) => {
 
 //@ts-ignore
 export const onSocket: Base.onSocket = (...args) => {
+  const resource = GetCurrentResourceName();
   if (GetResourceState('base') === 'started') {
-    setImmediate(() => exports['base'].onSocket(...args));
+    setImmediate(() => exports['base'].onSocket(resource, ...args));
   }
-  listenerRegistry.add(args);
+  listenerRegistry.add([resource, ...args]);
 };
 
 on('onResourceStart', (resource: string) => {
@@ -35,7 +36,7 @@ on('onResourceStart', (resource: string) => {
   }
 
   setImmediate(() => {
-    // These dont really need to be typed. they're internal buffers and typing these would make me suicidal
+    // These don't really need to be typed. they're internal buffers and typing these would make me suicidal
 
     //@ts-ignore
     listenerRegistry.forEach((params) => exports['base'].onSocket(...params));

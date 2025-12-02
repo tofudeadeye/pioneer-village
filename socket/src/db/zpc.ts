@@ -54,6 +54,7 @@ class ZPC {
 
     logInfo('[ZPC]', '.awaitServer emit', receiverEvent, senderEvent, ...senderParams);
 
+    console.log(`serverNamespace.emit('${senderEvent}', ${senderParams.join(', ')});`);
     serverNamespace.emit(senderEvent, ...senderParams);
 
     return rtn;

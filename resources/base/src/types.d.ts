@@ -3,13 +3,13 @@ declare namespace UI {}
 // Extend ClientIn.FromServer and ClientOut.ToServer with base events
 declare namespace ClientIn {
   interface FromServer {
-    myEvent: (blah: string) => void;
+    //
   }
 }
 
 declare namespace ClientOut {
   interface ToServer {
-    myEvent: (blah: string) => void;
+    //
   }
 }
 

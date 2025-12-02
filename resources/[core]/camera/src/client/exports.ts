@@ -1,5 +1,6 @@
 import { exports } from '@lib/client';
 import { Vector3 } from '@lib/math';
+
 import cameraManager from './camera-manager';
 
 const create: Camera.create = (data) => {
@@ -38,6 +39,24 @@ const interpolate: Camera.interpolate = async (id, duration, easeLocation, easeR
   await cameraManager.interpolate(id, duration, easeLocation, easeRotation);
 };
 
+const attachCamToEntity: Camera.attachCamToEntity = (id, entity, offset = { x: 0, y: 0, z: 0 }, isRelative = true) => {
+  cameraManager.attachCamToEntity(id, entity, Vector3.fromObject(offset), isRelative);
+};
+
+const attachCamToPedBone: Camera.attachCamToPedBone = (
+  id,
+  ped,
+  boneIndex,
+  offset = { x: 0, y: 0, z: 0 },
+  heading = false,
+) => {
+  cameraManager.attachCamToPedBone(id, ped, boneIndex, Vector3.fromObject(offset), heading);
+};
+
+const detachCam: Camera.detachCam = (id) => {
+  cameraManager.detachCam(id);
+};
+
 exports<'camera'>('create', create);
 exports<'camera'>('setCoord', setCoord);
 exports<'camera'>('setRot', setRot);
@@ -47,3 +66,6 @@ exports<'camera'>('destroy', destroy);
 exports<'camera'>('setActive', setActive);
 exports<'camera'>('setInactive', setInactive);
 exports<'camera'>('interpolate', interpolate);
+exports<'camera'>('attachCamToEntity', attachCamToEntity);
+exports<'camera'>('attachCamToPedBone', attachCamToPedBone);
+exports<'camera'>('detachCam', detachCam);

@@ -2,6 +2,7 @@ import type { Socket } from 'socket.io';
 import type { SocketReservedEventsMap } from 'socket.io/dist/socket-types';
 import type { DefaultEventsMap, ReservedOrUserEventNames } from 'socket.io/dist/typed-events';
 
+import { Vector3 } from '../../../lib/math';
 import { logInfoC, logInfoS } from '../helpers';
 import Characters from '../managers/characters';
 import Inventories from '../managers/inventories';
@@ -34,6 +35,7 @@ export default () => {
       logInfoC(`inventory:${event.identifier}`, 'inventory.fail', event);
     } else {
       socket.emit('inventory.success', { identifier: event.identifier, requestId, requestType });
+      // logInfoC(`inventory:${event.identifier}`, 'inventory.item-move', event);
       userNamespace.to(`inventory:${event.identifier}`).emit('inventory.item-move', event);
     }
   };
@@ -50,6 +52,7 @@ export default () => {
       'inventory.item-wear',
       'inventory.item-drop',
       'inventory.lost-hat',
+      'inventory.pickup-hat',
       'inventory.check-world',
       'inventory.get-world-inventories',
     ];
@@ -79,7 +82,7 @@ export default () => {
     };
 
     ['inventory.unsubscribe']: SocketIn.FromClient['inventory.unsubscribe'] = (identifier) => {
-      logInfoC('Unsubscribing to inventory', identifier);
+      logInfoC('Unsubscribing from inventory', identifier);
       this.socket.leave(`inventory:${identifier}`);
     };
 
@@ -122,6 +125,15 @@ export default () => {
       logInfoC('inventory.item-move', requestId, oldIdentifier, oldSlot, newIdentifier, newSlot);
       if (!this.socket.data.character?.id) {
         return;
+      }
+
+      if (oldIdentifier.includes('_WORLD_:') && !newIdentifier.includes('_WORLD_:')) {
+        const item = await Inventories.getItemInSlot(oldIdentifier, oldSlot);
+
+        // @ts-ignore
+        if (item?.metadata?.category === 'HATS') {
+          serverNamespace.emit('inventory.delete-hat-by-item-id', item.id);
+        }
       }
 
       const [eventSource, eventDestination] = await Inventories.moveItem(
@@ -168,11 +180,61 @@ export default () => {
       for (const item of inventory.container.items) {
         // @ts-ignore
         if (item?.metadata?.category === 'HATS') {
-          console.log(item);
-          await Inventories.moveItemToWorld(this.socket.data.character.id, 0, identifier, item.slot || 0, { x, y, z });
+          const [eventSource, eventDesination] = await Inventories.moveItemToWorld(
+            this.socket.data.character.id,
+            -1,
+            identifier,
+            item.slot || 0,
+            { x, y, z },
+          );
+          sendMoveOrFailData(this.socket, -1, 'move', eventSource);
+          sendMoveOrFailData(this.socket, -1, 'move', eventDesination);
+          console.log('Emitting hat item ID to hat entity', hatNetId, item.id);
           serverNamespace.emit('inventory.set-hat-item-id', hatNetId, item.id);
         }
       }
+    };
+
+    ['inventory.pickup-hat']: SocketIn.FromClient['inventory.pickup-hat'] = async (itemId) => {
+      logInfoC('inventory.pickup-hat', 'Player picked up a hat', itemId);
+      if (!this.socket.data.character?.id) {
+        logInfoC('inventory.pickup-hat', 'No character ID found on socket');
+        return;
+      }
+
+      const inventory = await Inventories.getInventoryForItem(itemId);
+
+      logInfoC('inventory', inventory);
+
+      if (inventory?.slot === null || !inventory?.identifier.startsWith('_WORLD_:')) {
+        logInfoC('inventory.pickup-hat', 'No world inventory found for hat item', itemId);
+        return;
+      }
+
+      const inventoryCoords = Vector3.fromArray(inventory.identifier.replace('_WORLD_:', '').split('_').map(Number));
+
+      const characterId = this.socket.data.character.id;
+      const coords = await Characters.getLastCoords(characterId, 250);
+      const playerCoords = Vector3.fromObject(coords);
+
+      const distance = playerCoords.getDistance(inventoryCoords);
+
+      logInfoC('inventory.pickup-hat', `Distance to hat inventory: ${distance} units`);
+      if (distance > 5) {
+        logInfoC('inventory.pickup-hat', 'Hat is too far away to pick up');
+        return;
+      }
+
+      const [eventSource, eventDestination] = await Inventories.moveItemToInventory(
+        characterId,
+        -1,
+        inventory.identifier,
+        inventory.slot,
+        `clothing:${characterId}`,
+      );
+
+      sendMoveOrFailData(this.socket, -1, 'move', eventSource);
+      sendMoveOrFailData(this.socket, -1, 'move', eventDestination);
     };
 
     ['inventory.item-drop']: SocketIn.FromClient['inventory.item-drop'] = async (requestId, identifier, slot) => {
@@ -273,10 +335,6 @@ export default () => {
 
     socket.on('inventory.item-wear', async (itemId: number) => {
       const success = await Inventories.changeDurability(itemId);
-    });
-
-    socket.on('inventory.pickup-hat', async (source, itemId) => {
-      logInfoC('inventory.pickup-hat', 'Player picked up a hat', source, itemId);
     });
   });
 

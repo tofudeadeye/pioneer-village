@@ -20,6 +20,15 @@ declare namespace Camera {
   type setActive = (id: string, easeTime?: number) => void;
   type setInactive = (id: string, easeTime?: number) => void;
   type interpolate = (id: string, duration: number, easeLocation?: boolean, easeRotation?: boolean) => Promise<void>;
+  type attachCamToEntity = (id: string, entity: number, offset: Vector3Format, isRelative?: boolean) => void;
+  type attachCamToPedBone = (
+    id: string,
+    ped: number,
+    boneIndex: number,
+    offset: Vector3Format,
+    heading?: boolean,
+  ) => void;
+  type detachCam = (id: string) => void;
 
   // Light Management Types
   interface LightData {
@@ -82,7 +91,10 @@ declare namespace Camera {
     setActive: setActive;
     setInactive: setInactive;
     interpolate: interpolate;
-    
+    attachCamToEntity: attachCamToEntity;
+    attachCamToPedBone: attachCamToPedBone;
+    detachCam: detachCam;
+
     // Light exports
     lightCreate: lightCreate;
     lightUpdate: lightUpdate;

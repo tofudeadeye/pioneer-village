@@ -211,6 +211,59 @@ class Inventories {
     return this.convertToUIInventory(dbInventory);
   }
 
+  async getItem(itemId: number) {
+    const itemResult = await db.select().from(ItemSchema).where(eq(ItemSchema.id, itemId)).limit(1);
+
+    if (itemResult.length === 0) {
+      return;
+    }
+
+    return itemResult[0];
+  }
+
+  async getItemInSlot(identifier: string, slot: number): Promise<ItemSchemaType | undefined> {
+    const inventory = await this.getInventory(identifier);
+
+    if (!inventory) {
+      return;
+    }
+
+    const itemsInSlot = inventory.container.items.filter((item) => item.slot === slot && item.deletedAt === null);
+
+    if (itemsInSlot.length === 0) {
+      return;
+    }
+
+    return itemsInSlot[0];
+  }
+
+  async getInventoryForItem(itemId: number): Promise<{ identifier: string; slot: number | null } | undefined> {
+    console.log('getInventoryForItem', itemId);
+    const itemResult = await db.select().from(ItemSchema).where(eq(ItemSchema.id, itemId)).limit(1);
+
+    if (itemResult.length === 0) {
+      return;
+    }
+
+    const item = itemResult[0];
+    console.log('item', item);
+
+    const inventoryResult = await db
+      .select({ identifier: InventorySchema.identifier })
+      .from(InventorySchema)
+      .where(eq(InventorySchema.containerId, item.containerId))
+      .limit(1);
+
+    if (inventoryResult.length === 0) {
+      return;
+    }
+
+    return {
+      identifier: inventoryResult[0].identifier,
+      slot: item.slot,
+    };
+  }
+
   findSlotForItem(inventory: InventoryWithContainerAndItems, itemIdentifier: number) {
     const inventoryType = this.getInventoryType(inventory.identifier);
 

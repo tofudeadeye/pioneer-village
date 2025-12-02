@@ -1,6 +1,7 @@
 import 'dotenv/config';
+import { Socket, io } from 'socket.io-client';
+
 import { exports } from '@lib/server';
-import { io, Socket } from 'socket.io-client';
 
 const socketListeners: Map<string, Map<string, any>> = new Map();
 
@@ -29,18 +30,17 @@ setImmediate(() => {
 });
 
 export const emitSocket: Base.emitSocket = (evtName, ...params) => {
-  //@ts-ignore fuck u of course its tuple, it's PARAMETERS
+  //@ts-ignore
   client.emit(evtName, ...params);
 };
 
 export const awaitSocket: Base.awaitSocket = (evtName, ...params) =>
   new Promise((res) => {
-    //@ts-ignore - fuck it. I'm too thick and it doesn't matter
+    //@ts-ignore
     client.emit(evtName, ...params, res);
   });
 
-export const onSocket: Base.onSocket = (evtName, callback) => {
-  const resource = GetInvokingResource();
+export const onSocket: Base.onSocketBase = (resource, evtName, callback) => {
   if (!socketListeners.has(resource)) {
     socketListeners.set(resource, new Map());
   }

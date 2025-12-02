@@ -221,6 +221,7 @@ class InventoryStore {
 
   // Handle item move from socket
   private handleItemMove = (data: UI.Inventory.MoveOrFailData): void => {
+    console.log('handleItemMove', data); // Required for actually working.
     if ('charRequestId' in data) {
       const moveData = data as UI.Inventory.MoveData;
       const [requestCharId] = moveData.charRequestId.split(':');

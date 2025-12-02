@@ -30,7 +30,10 @@ declare namespace ClientOut {
   interface ToSocket {
     ['inventory.item-wear']: (itemId: number) => void;
     ['inventory.lost-hat']: (hatNetId: number, coords: Vector3) => void;
-    ['inventory.pickup-hat']: (hatNetId: number) => void;
+    ['inventory.pickup-hat']: (itemId: number) => void;
     ['inventory.get-world-inventories']: () => void;
+  }
+  interface ToServer {
+    ['inventory.pickup-hat']: (hatNetId: number) => void;
   }
 }

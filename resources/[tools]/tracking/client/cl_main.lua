@@ -52,7 +52,7 @@ end)
 --    while true do
 --        Wait(0)
 --        local playerPed = PlayerPedId()
---        DrawTxt('Config Flags | Reset Flags', 0.0, 0.02, 0.3, true, 255, 255, 255, 255, false, 9)
+--        DrawTxt('Config Flags                                          Reset Flags', 0.0, 0.02, 0.3, true, 255, 255, 255, 255, false, 9)
 --        local configPrefix = ''
 --        local resetPrefix = ''
 --        for n=0,512 do
@@ -96,9 +96,9 @@ end)
 --                    seenResetFlags[n] = seenResetFlags[n] + 1
 --                end
 --                if seenResetFlags[n] > 500 then
---                    DrawTxt(resetPrefix .. tostring(n) .. extra, 0.051, 0.02, 0.25, true, 255, 255, 255, 255, false, 9)
+--                    DrawTxt(resetPrefix .. tostring(n) .. extra, 0.151, 0.02, 0.25, true, 255, 255, 255, 255, false, 9)
 --                else
---                    DrawTxt(resetPrefix .. tostring(n) .. extra, 0.051, 0.02, 0.25, true, 0, 255, 0, 255, false, 9)
+--                    DrawTxt(resetPrefix .. tostring(n) .. extra, 0.151, 0.02, 0.25, true, 0, 255, 0, 255, false, 9)
 --                end
 --            else
 --                if seenResetFlags[n] > 0 then
@@ -108,7 +108,7 @@ end)
 --                end
 --                if seenResetFlags[n] > -500 then
 --                    resetPrefix = resetPrefix .. '\n'
---                    DrawTxt(resetPrefix .. tostring(n) .. extra, 0.051, 0.02, 0.25, true, 255, 0, 0, 255, false, 9)
+--                    DrawTxt(resetPrefix .. tostring(n) .. extra, 0.151, 0.02, 0.25, true, 255, 0, 0, 255, false, 9)
 --                end
 --            end
 --        end

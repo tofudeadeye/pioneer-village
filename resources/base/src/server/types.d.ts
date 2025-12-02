@@ -10,7 +10,7 @@ declare namespace Base {
   type ServerExports = {
     emitSocket: emitSocket;
     awaitSocket: awaitSocket;
-    onSocket: onSocket;
+    onSocket: onSocketBase;
   };
 
   type emitSocket = <T extends keyof SocketServer.ServerEvents>(
@@ -25,9 +25,15 @@ declare namespace Base {
   >(
     evtName: T,
     ...params: DropLastParam<SocketServer.Server[T]>
-  ) => Promise<Parameters<LastParam<SocketServer.Server[T]>>[0]>;
+  ) => Promise<LastParam<SocketServer.Server[T]>>;
 
   type onSocket = <T extends keyof SocketServer.SocketEvents>(
+    evtName: T,
+    callback: SocketServer.SocketEvents[T],
+  ) => void;
+
+  type onSocketBase = <T extends keyof SocketServer.SocketEvents>(
+    resourceName: string,
     evtName: T,
     callback: SocketServer.SocketEvents[T],
   ) => void;
@@ -55,7 +61,6 @@ declare namespace ServerIn {
     ['base.force-coords-update']: SocketOut.ToGameServer['base.force-coords-update'];
   }
   interface FromClient {
-    myEvent: (blah: string) => void;
     ['base.entity-deleted']: (entity: number) => void;
     ['base.entities-deleted']: (entities: number[]) => void;
   }

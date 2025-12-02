@@ -32,7 +32,7 @@
 //
 //     const hatNetId = NetworkGetNetworkIdFromEntity(hat);
 //
-//     emitServer('inventory.pickup-hat', hatNetId);
+//     emitServer('inventory.pickup-hat', hatNetId)
 //   });
 // };
 //

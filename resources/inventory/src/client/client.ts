@@ -4,6 +4,7 @@ import { Delay } from '@lib/functions';
 import PVItems from '@lib/shared/items';
 
 import './events';
+import './hats';
 import './keybinds';
 import './targets';
 import './weapons';

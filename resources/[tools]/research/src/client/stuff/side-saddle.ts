@@ -1,7 +1,7 @@
-import { AnimFlag } from '@lib/flags';
 import { PVGame } from '@lib/client';
-import { Vector3 } from '@lib/math';
 import { Log } from '@lib/client/comms/ui';
+import { AnimFlag } from '@lib/flags';
+import { Vector3 } from '@lib/math';
 
 // veh_horseback@seat_saddle@female@normal@additive@idle
 // veh_horseback@seat_saddle@female@normal@idle

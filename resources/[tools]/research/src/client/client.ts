@@ -1,6 +1,5 @@
-import { PVGame, emitUI, focusUI, onUI } from '@lib/client';
+import { PVGame, onUI } from '@lib/client';
 import { Log } from '@lib/client/comms/ui';
-import { AnimFlag } from '@lib/flags';
 
 import './commands';
 import './natives';
@@ -12,15 +11,6 @@ import './stuff/instruments';
 import './stuff/police';
 // import './stuff/side-saddle';
 import './targets';
-
-RegisterCommand(
-  'anim_menu',
-  () => {
-    emitUI('animations.state', { show: true });
-    focusUI(true, true);
-  },
-  false,
-);
 
 onUI('animations.play-anim', (data) => {
   let isPed = true;
@@ -62,40 +52,6 @@ onUI('animations.play-anim', (data) => {
 onUI('animations.stop-anim', (data) => {
   ClearPedTasks(data.entity || PVGame.playerPed(), false, false);
 });
-
-RegisterCommand(
-  'washhands',
-  () => {
-    const playerPed = PVGame.playerPed();
-    if (IsEntityInWater(playerPed) && !IsPedSwimming(playerPed)) {
-      PVGame.taskPlayAnimArrayNew([
-        {
-          dict: 'amb_misc@world_human_wash_kneel_river@female_a@stand_enter',
-          anim: 'enter_back',
-          flags: AnimFlag.STOP_LAST_FRAME,
-        },
-        {
-          dict: 'amb_misc@world_human_wash_kneel_river@male_b@idle_b',
-          anim: 'idle_e',
-          flags: AnimFlag.STOP_LAST_FRAME,
-        },
-        {
-          dict: 'amb_misc@world_human_wash_kneel_river@male_b@idle_c',
-          anim: 'idle_g',
-        },
-      ]);
-    }
-  },
-  false,
-);
-
-RegisterCommand(
-  'daytime',
-  () => {
-    NetworkClockTimeOverride(12, 0, 0, 60000, false);
-  },
-  false,
-);
 
 // @ts-ignore
 global.Log = Log;

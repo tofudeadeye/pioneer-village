@@ -236,6 +236,7 @@ RegisterCommand(
   false,
 );
 
+/*
 const ped = 166404;
 // PVCustomization.setTint(ped, 'metaped_tint_horse', 0, 0, 0);
 // PVCustomization.removeTint(ped);
@@ -272,6 +273,7 @@ PVCustomization.setTintByHorsePart(
   Math.floor(Math.random() * 255),
 );
 PVGame.finalizePedOutfit(ped);
+*/
 
 function getComponents(entity: number) {
   const metaPedType = GetMetaPedType(entity);

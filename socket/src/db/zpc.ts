@@ -32,17 +32,26 @@ class ZPC {
   async awaitServer<S extends Sender, R extends Receiver>(
     receiverEvent: R,
     senderEvent: S,
+    options: { timeout?: number } = {},
     ...senderParams: SenderParams<S>
   ): Promise<ReceiverParams<R>> {
     if (!this.socket) {
       throw new Error('Socket not initialized');
     }
 
+    const timeout = options.timeout ?? 5000;
+
     const rtn = new Promise<ReceiverParams<R>>((resolve, reject) => {
+      const timeoutId = setTimeout(() => {
+        this.socket!.off(receiverEvent, callback);
+        reject(new Error(`ZPC timeout after ${timeout}ms: ${senderEvent} → ${receiverEvent}`));
+      }, timeout);
+
       const callback = (...receiverParams: ReceiverParams<R>) => {
         logInfo('[ZPC]', '.awaitServer callback', senderEvent, receiverEvent, ...receiverParams);
         // TODO: This wont work going forward because it wont work for all events but we only have 1 right now.
         if (senderParams[0] === receiverParams[0]) {
+          clearTimeout(timeoutId);
           resolve(receiverParams);
           this.socket!.off(receiverEvent, callback);
         }

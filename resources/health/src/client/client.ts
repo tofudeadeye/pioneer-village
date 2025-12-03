@@ -1,14 +1,12 @@
 import { PVGame, awaitServer, emitUI, onResourceInit } from '@lib/client';
-
 import { DrawTxt, TxtAtWorldCoord } from '@lib/client';
+import { Log, emitSocket } from '@lib/client/comms/ui';
 import { Vector3 } from '@lib/math';
 
-import './misc/events';
 import './exports';
-import './misc/commands';
-
 import healthManager from './managers/health-manager';
-import { emitSocket, Log } from '@lib/client/comms/ui';
+import './misc/commands';
+import './misc/events';
 
 const DEBUG = false;
 let characterSelected = false;
@@ -72,9 +70,11 @@ const handleCharacterSelected = async (charId: number) => {
   }
 };
 
-if (PVGame.getCurrentCharacter()) {
-  const charId = PVGame.getCurrentCharacter().id;
-  handleCharacterSelected(charId);
+if (GetResourceState('game') === 'started') {
+  if (PVGame.getCurrentCharacter()) {
+    const charId = PVGame.getCurrentCharacter().id;
+    handleCharacterSelected(charId);
+  }
 }
 
 onNet('game:character-selected', handleCharacterSelected);

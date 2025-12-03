@@ -268,8 +268,18 @@ class CreationManager {
         this.wasRunning = false;
         this.start();
       }
+
+      if (resourceName === 'camera') {
+        this.initLight();
+      }
     });
 
+    if (GetResourceState('camera') === 'started') {
+      this.initLight();
+    }
+  }
+
+  async initLight() {
     PVCamera.lightCreateOrUpdate({
       id: 'CreationLight',
       x: this.cameraFaceMalePos.x,

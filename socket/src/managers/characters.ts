@@ -17,6 +17,7 @@ import { logInfoC, logInfoS } from '../helpers';
 type CharacterWithFace = CharacterSchemaType & { face: FaceSchemaType | null };
 
 const COORDS_ZERO = { x: 0, y: 0, z: 0 };
+const COORD_THRESHOLD = 0.001;
 
 export const GetFaceDataFromDatabase = (result: CharacterWithFace): Game.Face => {
   // NOTE: There are defaults just in case, but they should never really not exist in the DB
@@ -338,7 +339,7 @@ export type Prisma.CharactersCreateInput = {
       return;
     }
 
-    const [, coords] = await zpc.awaitServer('character-update.last-position', 'base.force-coords-update', serverId);
+    const [, coords] = await zpc.awaitServer('character-update.last-position', 'base.force-coords-update', {}, serverId);
 
     logInfoS('coords', coords);
 
@@ -346,18 +347,34 @@ export type Prisma.CharactersCreateInput = {
   }
 
   async setLastCoords(characterId: number, coords: Vector3Format) {
-    await db
-      .update(CharactersSchema)
-      .set({
-        lastX: coords.x.toFixed(3), // Limit the coords to 3 decimal places because more are useless
-        lastY: coords.y.toFixed(3),
-        lastZ: coords.z.toFixed(3),
-      })
-      .where(eq(CharactersSchema.id, characterId));
+    const currentX = this.getLocalCharacterAtributeWithCharId(characterId, 'lastX') ?? 0;
+    const currentY = this.getLocalCharacterAtributeWithCharId(characterId, 'lastY') ?? 0;
+    const currentZ = this.getLocalCharacterAtributeWithCharId(characterId, 'lastZ') ?? 0;
 
-    this.updateLocalCharacterAtributeWithCharId(characterId, 'lastX', coords.x.toFixed(3));
-    this.updateLocalCharacterAtributeWithCharId(characterId, 'lastY', coords.y.toFixed(3));
-    this.updateLocalCharacterAtributeWithCharId(characterId, 'lastZ', coords.z.toFixed(3));
+    const hasChanged =
+      Math.abs(coords.x - currentX) > COORD_THRESHOLD ||
+      Math.abs(coords.y - currentY) > COORD_THRESHOLD ||
+      Math.abs(coords.z - currentZ) > COORD_THRESHOLD;
+
+    if (hasChanged) {
+      const newX = Number(coords.x.toFixed(3));
+      const newY = Number(coords.y.toFixed(3));
+      const newZ = Number(coords.z.toFixed(3));
+
+      await db
+        .update(CharactersSchema)
+        .set({
+          lastX: newX.toFixed(3), // DB expects string for decimal type
+          lastY: newY.toFixed(3),
+          lastZ: newZ.toFixed(3),
+        })
+        .where(eq(CharactersSchema.id, characterId));
+
+      this.updateLocalCharacterAtributeWithCharId(characterId, 'lastX', newX);
+      this.updateLocalCharacterAtributeWithCharId(characterId, 'lastY', newY);
+      this.updateLocalCharacterAtributeWithCharId(characterId, 'lastZ', newZ);
+    }
+
     this.updateLocalCharacterAtributeWithCharId(characterId, 'lastNow', Date.now());
   }
 
@@ -397,11 +414,16 @@ export type Prisma.CharactersCreateInput = {
       return COORDS_ZERO;
     }
 
-    return {
-      x: parseFloat(lastX),
-      y: parseFloat(lastY),
-      z: parseFloat(lastZ),
-    };
+    const x = Number(lastX);
+    const y = Number(lastY);
+    const z = Number(lastZ);
+
+    if (isNaN(x) || isNaN(y) || isNaN(z)) {
+      logInfoS('[Characters]', 'Last coords for character', characterId, 'contain NaN values. Returning default coords');
+      return COORDS_ZERO;
+    }
+
+    return { x, y, z };
   }
 
   private async updateCharacterFoodAndDrink(characterId: number, food: number, drink: number) {

@@ -1,9 +1,9 @@
-import './helpers';
-import './exports';
-
 import { PVInit, PVPrompt } from '@lib/client';
-import PlacementManager from './managers/placement-manager';
 import { Log } from '@lib/client/comms/ui';
+
+import './exports';
+import './helpers';
+import PlacementManager from './managers/placement-manager';
 
 const placementManager = PlacementManager.getInstance();
 
@@ -41,15 +41,19 @@ const registerPrompts = async () => {
 };
 
 on('onResourceStart', (resource: string) => {
-  if (resource === 'prompts') {
-    registerPrompts();
+  if (resource !== 'prompts') {
+    return;
   }
-});
-
-on('onResourceStop', (resource: string) => {
-  placementManager.cleanup();
+  registerPrompts();
 });
 
 if (GetResourceState('prompts') === 'started') {
   registerPrompts();
 }
+
+on('onResourceStop', (resource: string) => {
+  if (resource !== GetCurrentResourceName()) {
+    return;
+  }
+  placementManager.cleanup();
+});

@@ -186,6 +186,14 @@ RegisterCommand(
   false,
 );
 
+RegisterCommand(
+  'tp_geyser',
+  () => {
+    teleport(216.6, 1918.4, 205.5);
+  },
+  false,
+);
+
 /**
  * Misc Commands
  */

@@ -1,3 +1,5 @@
+import { Log } from '@lib/client/comms/ui';
+
 type PtfxInfo = {
   id: number;
   looped: boolean;
@@ -55,6 +57,7 @@ export class PtfxManager {
     if (this.ptfxs.has(id)) {
       return this.ptfxs.get(id)!.id;
     }
+    Log('Starting PTFX', id, dict, name, coords, rot, scale, looped);
 
     let ptfxId = 0;
     UseParticleFxAsset(dict);
@@ -100,6 +103,7 @@ export class PtfxManager {
       return;
     }
     if (ptfx.looped && DoesParticleFxLoopedExist(ptfx.id)) {
+      Log('Stopping PTFX', id, ptfx.id);
       StopParticleFxLooped(ptfx.id, false);
     }
     this.ptfxs.delete(id);
@@ -110,6 +114,7 @@ export class PtfxManager {
     if (!ptfx || !DoesParticleFxLoopedExist(ptfx.id)) {
       return;
     }
+    Log('Setting PTFX evolution', id, name, value);
     SetParticleFxLoopedEvolution(ptfx.id, name, value, false);
   }
 
@@ -119,6 +124,7 @@ export class PtfxManager {
       return;
     }
     for (const [name, value] of Object.entries(evolutions)) {
+      Log('Setting PTFX evolution', id, name, value);
       SetParticleFxLoopedEvolution(ptfx.id, name, value, false);
     }
   }

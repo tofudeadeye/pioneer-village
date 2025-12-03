@@ -1,4 +1,4 @@
-import { PVWorld, addZone } from '@lib/client';
+import { PVGame, PVWorld, addZone } from '@lib/client';
 import { Log } from '@lib/client/comms/ui';
 import { Delay } from '@lib/functions';
 import { Vector3 } from '@lib/math';
@@ -39,11 +39,19 @@ const geyserEject = async (coords: Vector3Format, force: number) => {
   await Delay(2_000);
   PVWorld.setFxEvolutions('geyser', {
     erupt: 0.0,
-    steam: 0.5,
+    steam: 1.0,
   });
 
   await Delay(5_000);
+  PVWorld.setFxEvolution('geyser', 'steam', 0.75);
 
+  await Delay(5_000);
+  PVWorld.setFxEvolution('geyser', 'steam', 0.5);
+
+  await Delay(5_000);
+  PVWorld.setFxEvolution('geyser', 'steam', 0.25);
+
+  await Delay(5_000);
   PVWorld.stopFx('geyser');
 };
 
@@ -88,3 +96,64 @@ addZone({
     Log('Exited geyser zone 3');
   },
 });
+
+RegisterCommand(
+  'meteor_shower',
+  async (source: number, args: any[], rawCommand: string) => {
+    // Log({ source, args, rawCommand });
+
+    await PVWorld.startPtfxAtCoords(
+      'meteor_shower',
+      true,
+      'scr_discoverables',
+      'scr_disc_meteor_shower',
+      { x: 2895.893, y: 1650.213, z: 1000.863 },
+      { x: 0, y: 0, z: 0 },
+      2.0,
+    );
+
+    await Delay(60);
+
+    PVWorld.stopFx('meteor_shower');
+  },
+  false,
+);
+
+RegisterCommand(
+  'fog_test',
+  async () => {
+    PVWorld.stopFx('fog_test');
+
+    const coords = PVGame.playerCoords(true);
+    // coords.x -= 1;
+
+    await PVWorld.startPtfxAtCoords(
+      'fog_test',
+      true,
+      'core',
+      'ped_horse_mouth_froth',
+      coords,
+      { x: 0, y: 0, z: 0 },
+      1.0,
+    );
+    // PVWorld.setFxEvolution('fog_test', 'scrub', 1.0);
+    // PVWorld.setFxEvolution('fog_test', 'density', 1.0);
+    // PVWorld.setFxEvolution('fog_test', 'strength', 1.0);
+    // PVWorld.setFxEvolution('fog_test', 'intensity', 1.0);
+
+    await Delay(60_000);
+
+    PVWorld.stopFx('fog_test');
+  },
+  false,
+);
+
+RegisterCommand(
+  'fog_test_stop',
+  async (source: number, args: any[], rawCommand: string) => {
+    // Log({ source, args, rawCommand });
+
+    PVWorld.stopFx('fog_test');
+  },
+  false,
+);

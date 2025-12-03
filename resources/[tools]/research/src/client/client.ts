@@ -5,6 +5,7 @@ import './commands';
 import './natives';
 import './stuff/animal';
 import './stuff/apple';
+import './stuff/geyser';
 import './stuff/gold-panning';
 import './stuff/hats';
 import './stuff/instruments';

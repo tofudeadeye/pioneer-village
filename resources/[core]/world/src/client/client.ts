@@ -1,3 +1,4 @@
+import './exports';
 import './test';
 
 // import worldController from './controllers/world-controller';

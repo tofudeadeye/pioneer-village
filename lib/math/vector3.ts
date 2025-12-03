@@ -41,14 +41,14 @@ export class Vector3 {
     return this;
   }
 
-  sub(vectors: Vector3): this {
+  sub(vectors: Vector3Format): this {
     this.x -= vectors.x;
     this.y -= vectors.y;
     this.z -= vectors.z;
     return this;
   }
 
-  cross(vectors: Vector3): this {
+  cross(vectors: Vector3Format): this {
     const ax = this.x,
       ay = this.y,
       az = this.z;
@@ -62,7 +62,7 @@ export class Vector3 {
     return this;
   }
 
-  equals(vectors: Vector3): boolean {
+  equals(vectors: Vector3Format): boolean {
     return this.x === vectors.x && this.y === vectors.y && this.z === vectors.z;
   }
 
@@ -73,7 +73,7 @@ export class Vector3 {
     return this;
   }
 
-  multiply(vectors: Vector3): this {
+  multiply(vectors: Vector3Format): this {
     this.x *= vectors.x;
     this.y *= vectors.y;
     this.z *= vectors.z;

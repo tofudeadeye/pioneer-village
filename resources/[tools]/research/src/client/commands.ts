@@ -63,7 +63,7 @@ RegisterCommand(
   (source: number, args: string[]) => {
     const currentHour = GetClockHours();
 
-    const transitionTime = lerp(1_000, 60_000, Math.abs(currentHour - 12) / 12);
+    const transitionTime = lerp(1_000, 20_000, Math.abs(currentHour - 12) / 12);
 
     console.log(currentHour, transitionTime);
 

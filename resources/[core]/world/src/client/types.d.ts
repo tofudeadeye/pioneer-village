@@ -1,4 +1,28 @@
-declare namespace World {}
+declare interface ClientExports {
+  world: World.ClientExports;
+}
+
+declare namespace World {
+  type StartPtfxAtCoords = (
+    id: string,
+    looped: boolean,
+    dict: string,
+    name: string,
+    coords: Vector3Format,
+    rot?: Vector3Format,
+    scale?: number,
+  ) => Promise<number>;
+  type StopPtfx = (id: string) => void;
+  type SetFxEvolution = (id: string, name: string, value: number) => void;
+  type SetFxEvolutions = (id: string, evolutions: Record<string, number>) => void;
+
+  type ClientExports = {
+    startPtfxAtCoords: StartPtfxAtCoords;
+    stopFx: StopPtfx;
+    setFxEvolution: SetFxEvolution;
+    setFxEvolutions: SetFxEvolutions;
+  };
+}
 
 // Client perspective - RPC calls to various destinations
 declare namespace ClientRPC {
@@ -25,4 +49,3 @@ declare namespace ClientIn {
 
 // Raw Socket.io events for UI layer typing - DEDUPLICATED
 // Note: SocketIO.Events eliminated - use ClientIn.FromSocket directly
-

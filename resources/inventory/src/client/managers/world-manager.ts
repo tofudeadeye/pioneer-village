@@ -98,7 +98,7 @@ export class WorldManager {
       PlaceObjectOnGroundProperly(objectId, true);
       SetEntityHeading(objectId, 0.0);
       FreezeEntityPosition(objectId, true);
-      SetPickupLight(objectId, true);
+      // SetPickupLight(objectId, true);
       DecorSetBool(objectId, 'isInventory', true);
       Log('isInventory', typeof objectId, objectId, DecorGetBool(objectId, 'isInventory'));
 

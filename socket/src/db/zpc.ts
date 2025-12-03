@@ -42,16 +42,16 @@ class ZPC {
     const timeout = options.timeout ?? 5000;
 
     const rtn = new Promise<ReceiverParams<R>>((resolve, reject) => {
-      const timeoutId = setTimeout(() => {
-        this.socket!.off(receiverEvent, callback);
-        reject(new Error(`ZPC timeout after ${timeout}ms: ${senderEvent} → ${receiverEvent}`));
-      }, timeout);
+      // const timeoutId = setTimeout(() => {
+      //   this.socket!.off(receiverEvent, callback);
+      // reject(new Error(`ZPC timeout after ${timeout}ms: ${senderEvent} → ${receiverEvent}`));
+      // }, timeout);
 
       const callback = (...receiverParams: ReceiverParams<R>) => {
         logInfo('[ZPC]', '.awaitServer callback', senderEvent, receiverEvent, ...receiverParams);
         // TODO: This wont work going forward because it wont work for all events but we only have 1 right now.
         if (senderParams[0] === receiverParams[0]) {
-          clearTimeout(timeoutId);
+          // clearTimeout(timeoutId);
           resolve(receiverParams);
           this.socket!.off(receiverEvent, callback);
         }

@@ -46,8 +46,8 @@ export const onSocket: Base.onSocketBase = (resource, evtName, callback) => {
   }
   const listeners = socketListeners.get(resource)!;
   if (listeners.has(evtName)) {
-    // already registed event. lets ignore.
-    return;
+    const previousCallback = listeners.get(evtName);
+    client.off(evtName as keyof SocketServer.SocketEvents, previousCallback);
   }
   listeners.set(evtName, callback);
   client.on(evtName as keyof SocketServer.SocketEvents, callback);

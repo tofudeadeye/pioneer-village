@@ -29,8 +29,7 @@ const onUICall: UI.onUICall = (evtName, callback) => {
   }
   const listeners = callListeners.get(resource)!;
   if (listeners.has(evtName)) {
-    // already registed event. lets ignore.
-    return;
+    listeners.delete(evtName);
   }
   Log(`registering listener ${resource}/${evtName}`);
   listeners.set(evtName, callback as (...args: any[]) => any);
@@ -43,8 +42,7 @@ const onUI: UI.onUI = (evtName, callback) => {
   }
   const listeners = eventListeners.get(resource)!;
   if (listeners.has(evtName)) {
-    // already registered event. lets ignore.
-    return;
+    listeners.delete(evtName);
   }
   listeners.set(evtName, callback as (...args: any[]) => void);
 };

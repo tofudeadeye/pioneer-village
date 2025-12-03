@@ -10,6 +10,8 @@ const registerEvents = () => {
       return;
     }
 
+    BlockPickupObjectLight(hat, true);
+
     Log(`EVENT_PLAYER_HAT_KNOCKED_OFF: Hat ${hat} knocked off by ${data.causePed} on player ${originPed}`);
 
     setTimeout(() => {
@@ -37,16 +39,6 @@ const registerEvents = () => {
     emitSocket('inventory.pickup-hat', itemId);
   });
 };
-
-RegisterCommand(
-  'pickup_hat',
-  async (source: number, args: any[], rawCommand: string) => {
-    // Log({ source, args, rawCommand });
-    emitSocket('inventory.pickup-hat', 121);
-  },
-  false,
-);
-// emitSocket('inventory.lost-hat', 63, [13, 42, 69]);
 
 on('onResourceStart', (resourceName: string) => {
   // Events Resource Starts

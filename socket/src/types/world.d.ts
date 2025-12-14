@@ -6,7 +6,7 @@ declare namespace SocketIn {
     'world.unregister-object': (name: string) => void;
     'world.net-id-exists': (id: number) => void;
   }
-  
+
   interface FromClient {
     'world.registered-objects': (callback: (objects: Record<string, number>) => void) => void;
     'world.request-creation': (name: string, callback: (success: boolean) => void) => void;
@@ -21,10 +21,14 @@ declare namespace SocketOut {
     ['world.register-object']: (name: string, netId: number) => void;
     ['world.unregister-object']: (name: string) => void;
   }
-  
+
   interface ToClient {
     'world.register-object': (name: string, id: number) => void;
     'world.unregister-object': (name: string) => void;
+
+    // Cron Events
+    'world.geyser-show': (data: World.GeyserShowSteps) => void;
+    'world.meteor-shower': () => void;
   }
 }
 

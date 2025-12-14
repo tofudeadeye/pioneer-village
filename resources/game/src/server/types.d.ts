@@ -14,6 +14,6 @@ declare namespace ServerRPC {
 // Server perspective - events received from socket
 declare namespace ServerIn {
   interface FromSocket {
-    ['player-management.kick']: (serverId: number, reason: string) => void;
+    ['player-management.kick']: SocketInternal.Events['player-management.kick'];
   }
 }

@@ -1,16 +1,19 @@
 import CharacterController from './controllers/characters';
 import ChatController from './controllers/chat';
+import CronController from './controllers/cron';
 import DoorController from './controllers/doors';
 import InventoryController from './controllers/inventory';
 import JobsController from './controllers/jobs';
 import StableController from './controllers/stables';
 import UserController from './controllers/user';
 import WorldController from './controllers/world';
+import './events';
 import { seedDB } from './seed';
 import server, { userAccessKey } from './server';
 
 seedDB();
 
+CronController();
 UserController(userAccessKey);
 CharacterController(userAccessKey);
 ChatController();

@@ -23,6 +23,7 @@ client.on('disconnect', () => {
 
 client.on('connect', () => {
   console.log('Connected to socket server');
+  emit('socket.connected');
 });
 
 setImmediate(() => {
@@ -65,3 +66,4 @@ on('onResourceStop', (resource: string) => {
 exports<'base'>('emitSocket', emitSocket);
 exports<'base'>('awaitSocket', awaitSocket);
 exports<'base'>('onSocket', onSocket);
+exports<'base'>('socketConnected', () => client.connected);

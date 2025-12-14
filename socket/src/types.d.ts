@@ -14,7 +14,7 @@ declare namespace SocketIn {
     getAccount: (identifiers: Record<string, string>, callback: (whitelist: {}) => void) => void;
     generateJWT: (serverId: number, identifiers: Record<string, string>, callback: (jwt: string) => void) => void;
   }
-  
+
   interface FromClient {
     chatSend: (chatMessage: UI.Chat.Send) => void;
   }
@@ -23,14 +23,16 @@ declare namespace SocketIn {
 declare namespace SocketOut {
   interface ToGameServer {
     // Core server events - resource-specific events are in their respective files
-    'player-management.kick': (serverId: number, reason: string) => void;
+    'player-management.kick': SocketInternal.Events['player-management.kick'];
+    __server__: (eventName: string, ...args: any[]) => void;
+    'world.geyser-show': () => void;
   }
-  
+
   interface ToClient {
     chatSend: (chatSend: UI.Chat.Send) => void;
     chatMessage: (chatMessage: UI.Chat.Message) => void;
     ['notification.notify']: (notification: UI.Notification.Notification) => void;
-    ['__client__']: (eventName: string, ...args: any[]) => void;
+    __client__: (eventName: string, ...args: any[]) => void;
   }
 }
 
@@ -38,8 +40,9 @@ declare namespace SocketOut {
 declare namespace SocketInternal {
   interface Events {
     'player-management.kick': (serverId: number, reason: string) => void;
+    'world.geyser-show': () => void;
   }
-  
+
   interface Data {
     user: {
       serverId: number;
@@ -52,7 +55,6 @@ declare namespace SocketInternal {
     };
   }
 }
-
 
 // type onClient = <T extends keyof NetEvents>(evtName: T, callback: (...args: Parameters<NetEvents[T]>) => void) => void;
 

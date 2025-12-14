@@ -1,5 +1,6 @@
 import './exports';
 import './test';
+import './world-events';
 
 // import worldController from './controllers/world-controller';
 // import { Vector3 } from '@lib/math';

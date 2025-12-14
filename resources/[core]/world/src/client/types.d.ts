@@ -3,7 +3,7 @@ declare interface ClientExports {
 }
 
 declare namespace World {
-  type StartPtfxAtCoords = (
+  type StartFxAtCoords = (
     id: string,
     looped: boolean,
     dict: string,
@@ -17,7 +17,7 @@ declare namespace World {
   type SetFxEvolutions = (id: string, evolutions: Record<string, number>) => void;
 
   type ClientExports = {
-    startPtfxAtCoords: StartPtfxAtCoords;
+    startFxAtCoords: StartFxAtCoords;
     stopFx: StopPtfx;
     setFxEvolution: SetFxEvolution;
     setFxEvolutions: SetFxEvolutions;
@@ -43,7 +43,9 @@ declare namespace ClientOut {
 // Client perspective - events received from various sources
 declare namespace ClientIn {
   interface FromSocket {
-    // Add any events the client receives from socket here
+    // Cron Events
+    'world.geyser-show': (data: World.GeyserShowSteps) => void;
+    'world.meteor-shower': () => void;
   }
 }
 

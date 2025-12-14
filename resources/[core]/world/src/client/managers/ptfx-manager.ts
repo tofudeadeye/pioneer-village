@@ -57,7 +57,7 @@ export class PtfxManager {
     if (this.ptfxs.has(id)) {
       return this.ptfxs.get(id)!.id;
     }
-    Log('Starting PTFX', id, dict, name, coords, rot, scale, looped);
+    // Log('Starting PTFX', id, dict, name, coords, rot, scale, looped);
 
     let ptfxId = 0;
     UseParticleFxAsset(dict);

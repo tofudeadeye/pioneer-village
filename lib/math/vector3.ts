@@ -27,7 +27,7 @@ export class Vector3 {
     return [this.x, this.y, this.z];
   }
 
-  add(vectors: Vector3): this {
+  add(vectors: Vector3Format): this {
     this.x += vectors.x;
     this.y += vectors.y;
     this.z += vectors.z;

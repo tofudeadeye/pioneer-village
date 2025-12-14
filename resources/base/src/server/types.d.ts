@@ -11,6 +11,7 @@ declare namespace Base {
     emitSocket: emitSocket;
     awaitSocket: awaitSocket;
     onSocket: onSocketBase;
+    socketConnected: () => boolean;
   };
 
   type emitSocket = <T extends keyof SocketServer.ServerEvents>(

@@ -4,7 +4,14 @@ declare namespace World {}
 declare namespace ServerOut {
   interface ToSocket {
     ['world.net-id-exists']: (id: number) => void;
+
+    // Cron
+    ['cron.register-event']: (id: string, data: CronData) => void;
   }
+}
+
+declare namespace ServerIn {
+  interface FromSocket {}
 }
 
 // Keep backward compatibility during migration

@@ -2,7 +2,7 @@ import { exports } from '@lib/client';
 
 import ptfxManager from './managers/ptfx-manager';
 
-export const startPtfxAtCoords: World.StartPtfxAtCoords = async (id, looped, dict, name, coords, rot, scale) => {
+export const startFxAtCoords: World.StartFxAtCoords = async (id, looped, dict, name, coords, rot, scale) => {
   return ptfxManager.startFxAtCoords(id, looped, dict, name, coords, rot, scale);
 };
 
@@ -18,7 +18,7 @@ export const setFxEvolutions: World.SetFxEvolutions = (id, evolutions) => {
   ptfxManager.setFxEvolutions(id, evolutions);
 };
 
-exports<'world'>('startPtfxAtCoords', startPtfxAtCoords);
+exports<'world'>('startFxAtCoords', startFxAtCoords);
 exports<'world'>('stopFx', stopFx);
 exports<'world'>('setFxEvolution', setFxEvolution);
 exports<'world'>('setFxEvolutions', setFxEvolutions);

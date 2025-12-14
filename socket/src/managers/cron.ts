@@ -10,7 +10,7 @@ import { logInfo } from '../helpers';
 import { serverNamespace, userNamespace } from '../server';
 import Events from './events';
 
-const INTERVAL = 1e3; // 60e3 = 1 Minute
+const INTERVAL = 60e3; // 60e3 = 1 Minute
 
 class Cron {
   static readonly instance: Cron = new Cron();

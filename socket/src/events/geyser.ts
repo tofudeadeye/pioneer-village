@@ -7,8 +7,8 @@ import { userNamespace } from '../server';
 Cron.registerEvent('geyser-show', {
   type: 'socket',
   eventName: 'world.geyser-show',
-  interval: 5, //60,
-  intervalRange: 0, //15,
+  interval: 60,
+  intervalRange: 15,
 });
 
 Events.register('world.geyser-show', () => {
@@ -16,7 +16,7 @@ Events.register('world.geyser-show', () => {
 
   const steps: World.GeyserShowSteps = [];
 
-  const geyserIds: World.GeyserShowStep['id'][] = ['geyser_1', 'geyser_1', 'geyser_1'];
+  const geyserIds: World.GeyserShowStep['id'][] = ['geyser_1', 'geyser_2', 'geyser_3'];
 
   // Start all geysers
   steps.push({ _type: 'start', id: 'geyser_1' });

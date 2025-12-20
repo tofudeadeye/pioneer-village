@@ -1,0 +1,4519 @@
+{
+  "amb_lights": {
+    "amb_bulb_g_01": {
+      "looped": true,
+      "evolutions": ["camTopView"]
+    },
+    "amb_miner_hat_flame_emit": {
+      "looped": true,
+      "evolutions": ["intensity", "rain"]
+    },
+    "amb_bulb_g_01_skin": {
+      "looped": true,
+      "evolutions": ["LOD", "camTopView"]
+    },
+    "amb_arc_lamp_emit": {
+      "looped": true,
+      "evolutions": ["LOD", "intensity"]
+    },
+    "amb_candle_flame_emit": {
+      "looped": true,
+      "evolutions": ["intensity", "rain"]
+    },
+    "amb_bulb_g_01_sign": {
+      "looped": true,
+      "evolutions": ["camForwardView", "camSideView", "camTopView", "dim"]
+    },
+    "amb_gas_flame_emit": {
+      "looped": true,
+      "evolutions": ["intensity", "rain"]
+    },
+    "amb_bulb_g_01_xmas_sign_frosted": {
+      "looped": true,
+      "evolutions": ["camForwardView", "camSideView", "camTopView"]
+    },
+    "amb_bulb_g_01_xmas_sign": {
+      "looped": true,
+      "evolutions": ["camForwardView", "camSideView", "camTopView", "dim"]
+    },
+    "amb_lantern_flame_emit": {
+      "looped": true,
+      "evolutions": ["intensity", "rain"]
+    },
+    "amb_bulb_g_01_frosted": {
+      "looped": true,
+      "evolutions": ["camTopView"]
+    },
+    "amb_bulb_g_01_frosted_skin": {
+      "looped": true,
+      "evolutions": ["LOD", "camTopView"]
+    },
+    "amb_gas_flame_emit_narrow": {
+      "looped": true,
+      "evolutions": ["intensity", "rain"]
+    },
+    "amb_bulb_g_01_sign_frosted": {
+      "looped": true,
+      "evolutions": ["camForwardView", "camSideView", "camTopView"]
+    },
+    "amb_bulb_g_01_lantern": {
+      "looped": true,
+      "evolutions": ["camTopView"]
+    }
+  },
+  "anm_animals": {
+    "ent_anim_hen_peck": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_horse_graze_chew": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_feeding_horse_crumbs": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_slide_dust": {
+      "looped": true,
+      "evolutions": []
+    },
+    "ent_anim_dog_water_drink_drips": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_bull_kick": {
+      "looped": false,
+      "evolutions": ["LOD", "wetness"]
+    },
+    "ent_anim_dog_roll_dust": {
+      "looped": true,
+      "evolutions": ["LOD", "wetness"]
+    },
+    "ent_anim_bear_dig_dirt": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_horse_water_drink_drips": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_horse_dust_spread_preload": {
+      "looped": true,
+      "evolutions": ["speed", "wetness"]
+    },
+    "ent_anim_buffalo_fight_dust": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_drink_drip_trail": {
+      "looped": true,
+      "evolutions": ["pour"]
+    },
+    "ent_anim_dog_poo": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_animal_bite_carcass": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_animal_water_drink_drips": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_buffalo_roll_dust": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_horse_peeing": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_beaver_eat_tree_splinters": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "liquid_splash_pee": {
+      "looped": false,
+      "evolutions": []
+    },
+    "ent_anim_horse_graze_bite": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_boar_spray": {
+      "looped": true,
+      "evolutions": ["LOD", "speed", "temp", "wet"]
+    },
+    "ent_anim_animal_impact_dust": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_ped_beaver_ripple": {
+      "looped": true,
+      "evolutions": ["LOD", "camTopView", "effectspeed", "rain", "size", "wind"]
+    },
+    "ent_anim_bird_water_drink_drips": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_horse_dust_spread": {
+      "looped": true,
+      "evolutions": ["speed", "wetness"]
+    },
+    "ent_anim_horse_water_drink": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_dog_dig_dirt": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_animal_graze": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_squirrel_pounce_dust": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_pig_graze": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_bear_dig_dirt_looped": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_sparrow_bath_splash": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_bull_hit": {
+      "looped": false,
+      "evolutions": ["LOD", "wetness"]
+    },
+    "ent_anim_hen_flee": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_animal_shit": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_deer_graze": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_deer_graze_grass": {
+      "looped": false,
+      "evolutions": ["LOD", "wet"]
+    },
+    "ent_anim_animal_water_drink": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_dog_water_drink": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_animal_graze_berries": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_feathers_float": {
+      "looped": false,
+      "evolutions": ["LOD", "wet"]
+    },
+    "ent_anim_dog_peeing": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_bird_water_drink": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_eat_leaves": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_beaver_eat_tree_chunk": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_fish_flee_bubbles": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_animal_breath": {
+      "looped": false,
+      "evolutions": ["LOD", "rate", "speed", "temp", "wind"]
+    },
+    "ent_anim_fish_breath_bubbles": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_animal_foot_dust": {
+      "looped": true,
+      "evolutions": []
+    }
+  },
+  "anm_blood": {
+    "ent_anim_blood_head_shot": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_blood_rdown": {
+      "looped": false,
+      "evolutions": []
+    },
+    "ent_anim_throat_slit_bear": {
+      "looped": true,
+      "evolutions": []
+    },
+    "ent_anim_throat_slit": {
+      "looped": false,
+      "evolutions": []
+    },
+    "ent_anim_blood_maul_dir_100m": {
+      "looped": false,
+      "evolutions": ["LOD", "angle", "camTopView", "effectspeed"]
+    },
+    "ent_anim_cough_blood": {
+      "looped": false,
+      "evolutions": []
+    },
+    "ent_anim_mouth_blood": {
+      "looped": true,
+      "evolutions": ["effectspeed", "froth"]
+    },
+    "ent_anim_blood_skin_pull": {
+      "looped": false,
+      "evolutions": ["LOD", "camTopView"]
+    },
+    "ent_anim_stab_blood": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_blood_spurt_small": {
+      "looped": false,
+      "evolutions": []
+    },
+    "ent_anim_blood_knife_pull": {
+      "looped": false,
+      "evolutions": ["LOD", "camTopView"]
+    },
+    "ent_anim_blood_splash": {
+      "looped": false,
+      "evolutions": []
+    },
+    "ent_anim_blood_drips": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_suicide_blood_headshot": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_blood_pig_eat_carcass_dir": {
+      "looped": false,
+      "evolutions": ["LOD", "angle", "camTopView", "effectspeed"]
+    },
+    "ent_anim_blood_maul_dir": {
+      "looped": false,
+      "evolutions": ["LOD", "angle", "camTopView", "effectspeed"]
+    },
+    "ent_anim_blood_knife_five_finger": {
+      "looped": false,
+      "evolutions": ["LOD", "camTopView"]
+    },
+    "ent_anim_stab_blood_drip_splash_sp": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_bloody_mouth_animal": {
+      "looped": false,
+      "evolutions": ["LOD", "effectspeed"]
+    },
+    "ent_anim_bloody_mouth_wolf": {
+      "looped": false,
+      "evolutions": ["LOD", "effectspeed"]
+    },
+    "ent_anim_bloody_mouth_wolf_sml": {
+      "looped": false,
+      "evolutions": ["LOD", "effectspeed"]
+    },
+    "ent_anim_blood_gen_eat_carcass": {
+      "looped": false,
+      "evolutions": ["LOD", "angle", "camTopView", "effectspeed"]
+    },
+    "ent_anim_blood_head_grab_deer": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_blood_spurt_cougar": {
+      "looped": true,
+      "evolutions": ["FADE", "LOD", "angle"]
+    },
+    "ent_anim_blood_spit": {
+      "looped": false,
+      "evolutions": ["LOD", "thickness"]
+    },
+    "ent_anim_throat_blood_deer": {
+      "looped": true,
+      "evolutions": []
+    },
+    "ent_anim_blood_pig_eat_carcass": {
+      "looped": false,
+      "evolutions": ["LOD", "angle", "camTopView", "effectspeed"]
+    },
+    "ent_anim_blood_splash_beak": {
+      "looped": false,
+      "evolutions": []
+    },
+    "ent_anim_wolf_blood_drip": {
+      "looped": true,
+      "evolutions": []
+    },
+    "ent_anim_blood_cough": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_stab_blood_drips": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_mouth_hit_blood": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_blood_arrow": {
+      "looped": false,
+      "evolutions": ["LOD", "camTopView"]
+    },
+    "ent_anim_bloody_mouth_wolf_med": {
+      "looped": false,
+      "evolutions": ["LOD", "effectspeed"]
+    },
+    "ent_anim_blood_spurt": {
+      "looped": true,
+      "evolutions": ["FADE", "LOD", "angle"]
+    }
+  },
+  "anm_brt": {
+    "cs_mud2_mud_splash_body": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "cs_mud2_mud_splash_hand": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_cheers_splash": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_moonshine_pour": {
+      "looped": true,
+      "evolutions": ["LOD", "pressure"]
+    },
+    "ent_anim_moonshine_splash": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "liquid_splash_water": {
+      "looped": false,
+      "evolutions": []
+    }
+  },
+  "anm_chamberpot": {
+    "ent_anim_chamberpot_toss": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_chamberpot_splash_spawned": {
+      "looped": false,
+      "evolutions": []
+    },
+    "ent_anim_chamberpot_toss_short": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_chamberpot_toss_ped_splash_back": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_chamberpot_toss_ped_splash_front": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_chamberpot_toss_tap": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    }
+  },
+  "anm_climbing": {
+    "ent_anim_ped_foot_gravel_debris": {
+      "looped": false,
+      "evolutions": ["LOD", "force"]
+    },
+    "ent_anim_debris_falling": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_foot_climb_dust": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_climbing_debris": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    }
+  },
+  "anm_coffee": {
+    "ent_anim_tea_toss": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_coffee_discard": {
+      "looped": false,
+      "evolutions": ["LOD", "speed"]
+    },
+    "ent_anim_coffee_pour": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_coffee_steam": {
+      "looped": true,
+      "evolutions": ["LOD", "effectspeed", "pour", "temp"]
+    },
+    "ent_anim_coffee_drips": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_coffee_steam_cold": {
+      "looped": true,
+      "evolutions": ["LOD", "temp"]
+    },
+    "ent_anim_coffee_toss": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_liquid_drips": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_coffee_spit": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    }
+  },
+  "anm_collision": {
+    "ent_anim_scrape_dust_limb": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_roll_gravel": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_roll_dust": {
+      "looped": true,
+      "evolutions": ["LOD", "wetness"]
+    },
+    "ent_anim_bang_mud_joint": {
+      "looped": false,
+      "evolutions": ["LOD", "force"]
+    },
+    "ent_anim_dust_mud": {
+      "looped": false,
+      "evolutions": ["LOD", "wetness"]
+    },
+    "ent_anim_scrape_mud_joint": {
+      "looped": true,
+      "evolutions": []
+    },
+    "ent_anim_scrape_mud_soft_limb": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_scrape_mud_limb": {
+      "looped": true,
+      "evolutions": []
+    },
+    "ent_anim_bang_mud_soft_limb": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_bang_mud_limb": {
+      "looped": false,
+      "evolutions": ["LOD", "force"]
+    },
+    "ent_anim_bang_dust_limb": {
+      "looped": false,
+      "evolutions": ["LOD", "impulse"]
+    },
+    "ent_anim_brk_door_lock": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_foot_gravel_stomp": {
+      "looped": false,
+      "evolutions": ["LOD", "wet"]
+    },
+    "ent_anim_bang_dust_joint": {
+      "looped": false,
+      "evolutions": ["LOD", "impulse"]
+    },
+    "ent_anim_scrape_dust_joint": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    }
+  },
+  "anm_core": {
+    "ent_anim_vial_revive": {
+      "looped": true,
+      "evolutions": ["LOD", "pressure"]
+    },
+    "ent_anim_campfire_stomp": {
+      "looped": true,
+      "evolutions": ["flame"]
+    },
+    "ent_anim_train_exhaust_smoke": {
+      "looped": true,
+      "evolutions": ["fade"]
+    },
+    "ent_anim_muz_smoking_barrel": {
+      "looped": true,
+      "evolutions": ["LOD", "effectspeed", "smoke"]
+    },
+    "ent_anim_boat_smoke": {
+      "looped": true,
+      "evolutions": []
+    },
+    "ent_anim_ped_wade_snow": {
+      "looped": true,
+      "evolutions": ["LOD", "depth", "direction", "speed"]
+    },
+    "ent_anim_sht_fabric": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_stomp_embers": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    }
+  },
+  "anm_crafting": {
+    "ent_anim_pluck_feathers": {
+      "looped": false,
+      "evolutions": ["LOD", "wet"]
+    },
+    "ent_anim_nat_pheromone": {
+      "looped": false,
+      "evolutions": []
+    },
+    "ent_anim_flower_yarrow": {
+      "looped": false,
+      "evolutions": ["DESTROY", "LOD"]
+    },
+    "ent_anim_flower_gold_currant": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_crafting_drop_bits": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_crafting_root_bits": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_flower_dust_leaves": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_cauldron_drugs": {
+      "looped": true,
+      "evolutions": ["LOD", "user"]
+    },
+    "ent_anim_craft_pour_powder": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_craft_root_chips": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_spirit_ped_herb_drop": {
+      "looped": false,
+      "evolutions": []
+    },
+    "ent_anim_moonshine_brew_steam": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_spirit_ped_herb_drop_squat": {
+      "looped": false,
+      "evolutions": []
+    },
+    "ent_anim_crafting_animal_ctrl_herbs": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_bottle_pour_medicine": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_nat_skunk_spray": {
+      "looped": false,
+      "evolutions": []
+    },
+    "ent_anim_flower_yarrow_red": {
+      "looped": false,
+      "evolutions": ["DESTROY", "LOD"]
+    },
+    "ent_anim_bait_drop_herbs": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_dig_root_break": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_spirit_ped_herb_drop_seated": {
+      "looped": false,
+      "evolutions": []
+    },
+    "ent_anim_craft_pestle_grind": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    }
+  },
+  "anm_dishwash": {
+    "ent_anim_dish_wash_arm_wade": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_dish_wash_spoon_drips": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_dish_wash_plate_drips": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_dish_wash_splashes": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_dish_wash_bowl_drips": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    }
+  },
+  "anm_explosion": {
+    "exp_smoke_trail": {
+      "looped": false,
+      "evolutions": ["LOD", "camTopView"]
+    },
+    "ent_anim_jbo1_int_exp": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_cannonball_exp": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    }
+  },
+  "anm_fin": {
+    "ent_anim_train_roll_dust": {
+      "looped": true,
+      "evolutions": ["wetness"]
+    },
+    "ent_anim_fin_horse_fall_dust": {
+      "looped": false,
+      "evolutions": ["LOD", "wetness"]
+    },
+    "ent_anim_fin_roll_dust": {
+      "looped": false,
+      "evolutions": ["wetness"]
+    },
+    "ent_anim_fin_tackle_gravel": {
+      "looped": true,
+      "evolutions": []
+    },
+    "ent_anim_fin_dislodged_gravel": {
+      "looped": true,
+      "evolutions": []
+    },
+    "ent_anim_fin_tackle_dust": {
+      "looped": true,
+      "evolutions": ["wetness"]
+    }
+  },
+  "anm_fire": {
+    "ent_anim_gua1_boat_fire": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_throw_embers": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_rslvc_burn_book_haze": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_candle_smoke": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_lantern_fire": {
+      "looped": true,
+      "evolutions": ["dist", "fadein", "size", "strength"]
+    },
+    "ent_anim_fire_generic_win": {
+      "looped": true,
+      "evolutions": ["LOD", "camForwardView", "camSideView", "intensity", "size"]
+    },
+    "ent_anim_fire_logs": {
+      "looped": true,
+      "evolutions": ["Flame", "LOD", "strength"]
+    },
+    "ent_anim_ped_fire": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_stove_heat_haze": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_stove_fire": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_campfire_dynamic": {
+      "looped": true,
+      "evolutions": ["Flames", "Smoke", "camTopView", "embers", "light", "smolder", "under"]
+    },
+    "ent_anim_candle_flame": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_fire_tend_embers": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_sklr_lighter_flame": {
+      "looped": true,
+      "evolutions": ["blow", "intensity", "rain"]
+    },
+    "ent_anim_fire_fuel_burst": {
+      "looped": false,
+      "evolutions": []
+    },
+    "ent_anim_generic_fire_smoke_plume": {
+      "looped": true,
+      "evolutions": ["LOD", "strength"]
+    },
+    "ent_anim_exp_grd_lantern": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_rslvc_burn_book": {
+      "looped": true,
+      "evolutions": ["LOD", "flame", "wind"]
+    },
+    "ent_anim_fire_spread_generic": {
+      "looped": true,
+      "evolutions": ["LOD", "burn", "size", "strength"]
+    },
+    "ent_anim_moon1_roof_collapse_embers": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_lantern_fire_trn4": {
+      "looped": true,
+      "evolutions": ["dist", "fadein", "size", "strength"]
+    }
+  },
+  "anm_fire_dancers": {
+    "ent_anim_fire_dancer_belt": {
+      "looped": true,
+      "evolutions": ["LOD", "effectspeed", "fade"]
+    },
+    "ent_anim_fire_breathe": {
+      "looped": false,
+      "evolutions": []
+    },
+    "ent_anim_fire_breathe_loop": {
+      "looped": true,
+      "evolutions": []
+    },
+    "ent_anim_fire_dancer_trail": {
+      "looped": true,
+      "evolutions": ["LOD", "effectspeed", "fade"]
+    }
+  },
+  "anm_foodprep": {
+    "ent_anim_ladle_steam_int": {
+      "looped": true,
+      "evolutions": ["LOD", "temp", "wind"]
+    },
+    "ent_anim_gut_blood_spurt": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_apple_bite_juice": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_ladle_drip_trail": {
+      "looped": true,
+      "evolutions": ["pour"]
+    },
+    "ent_anim_ladle_drips": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_gut_blood_saw": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "sp_blood_drip_splash": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_gut_blood_drain": {
+      "looped": true,
+      "evolutions": ["LOD", "bleedHigh", "bleedLow"]
+    },
+    "ent_anim_food_seasoning_shake_into_hand": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_gut_blood_flick": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_food_plate": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_ladle_steam": {
+      "looped": true,
+      "evolutions": ["LOD", "temp", "wind"]
+    },
+    "ent_anim_milk_pour": {
+      "looped": true,
+      "evolutions": ["LOD", "length"]
+    },
+    "ent_anim_gut_dried_meat_saw": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_plate_steam": {
+      "looped": true,
+      "evolutions": ["LOD", "temp", "wind"]
+    },
+    "ent_anim_fly_swarm": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_food_seasoning_sprinkle": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_ladle_food_pour": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_gut_dried_meat_spurt": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_pan_steam": {
+      "looped": true,
+      "evolutions": ["LOD", "temp", "wind"]
+    },
+    "ent_anim_food_seasoning_shake": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_bbq": {
+      "looped": true,
+      "evolutions": []
+    },
+    "ent_anim_foodprep_bits": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_ladle_food_splash": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    }
+  },
+  "anm_gang2": {
+    "ent_anim_gng2_balloon_mud_scrape": {
+      "looped": true,
+      "evolutions": ["LOD", "intensity", "muddy"]
+    },
+    "ent_anim_gng2_balloon_leaves": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_gng2_balloon_crash_spl": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_gng2_balloon_wtr_spl": {
+      "looped": true,
+      "evolutions": ["LOD", "intensity"]
+    }
+  },
+  "anm_gator": {
+    "ent_anim_gator_bubbles_underwater": {
+      "looped": true,
+      "evolutions": ["Intensity", "LOD"]
+    },
+    "ent_anim_gator_ambush": {
+      "looped": true,
+      "evolutions": ["LOD", "fear"]
+    },
+    "ent_anim_gator_attack_ripple": {
+      "looped": true,
+      "evolutions": ["LOD", "camTopView", "effectspeed", "rain", "size", "wind"]
+    },
+    "ent_anim_gator_sink": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_gator_grapple": {
+      "looped": true,
+      "evolutions": ["LOD", "fear"]
+    },
+    "ent_anim_gator_kill": {
+      "looped": false,
+      "evolutions": []
+    },
+    "ent_anim_gator_blood_underwater": {
+      "looped": false,
+      "evolutions": []
+    },
+    "ent_anim_gator_ripples": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_gator_splash": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "scr_beat_corpse_water_bubble_spawn": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_gator_blood": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_mob5_gator_blood_underwater": {
+      "looped": false,
+      "evolutions": []
+    },
+    "ent_anim_gator_splash_triggered": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_gator_grapple_end": {
+      "looped": false,
+      "evolutions": ["LOD", "fear"]
+    }
+  },
+  "anm_homerobbery": {
+    "ent_anim_grain_sift": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_wood_splinter_dir": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_chimney_disturb_soot": {
+      "looped": true,
+      "evolutions": []
+    },
+    "ent_anim_aberdeen_bottle_pour": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_corpse_mud_splash": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    }
+  },
+  "anm_human_sick_pee": {
+    "ent_anim_cough_spray": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_snot_blow": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_human_puke": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "liquid_splash_pee": {
+      "looped": false,
+      "evolutions": []
+    },
+    "ent_anim_shit_rain": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_shit_decal": {
+      "looped": false,
+      "evolutions": []
+    },
+    "ent_anim_peeing": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    }
+  },
+  "anm_impacts": {
+    "ent_anim_impact_dust": {
+      "looped": false,
+      "evolutions": []
+    },
+    "ent_anim_gen_linger_smoke": {
+      "looped": false,
+      "evolutions": []
+    },
+    "exp_smoke_trail": {
+      "looped": false,
+      "evolutions": ["LOD", "camTopView"]
+    },
+    "ent_anim_bale_impact_dust": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_metal_impact_dust": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_dynamite_cave": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_glass_smash": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_impact_dustcloud": {
+      "looped": false,
+      "evolutions": []
+    },
+    "ent_anim_bottle_smash": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_impact_train_cart_preload": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_dust_cloud": {
+      "looped": false,
+      "evolutions": []
+    },
+    "ent_anim_gua2_beach_collapse": {
+      "looped": false,
+      "evolutions": ["LOD", "speed", "temp", "wet"]
+    },
+    "ent_anim_wheel_sand_mud": {
+      "looped": true,
+      "evolutions": ["wetness"]
+    },
+    "ent_anim_falling_dust": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_window_smash_sma": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_wood_impact_dust": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_snow_dive": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_bul_hole_metal": {
+      "looped": false,
+      "evolutions": ["LOD", "strength", "wet"]
+    },
+    "ent_anim_steam_linger_smoke": {
+      "looped": true,
+      "evolutions": []
+    },
+    "ent_anim_foot_sand_mud": {
+      "looped": false,
+      "evolutions": ["wetness"]
+    },
+    "ent_anim_impact_dustcloud_preload": {
+      "looped": false,
+      "evolutions": []
+    }
+  },
+  "anm_ind": {
+    "ent_anim_ind_firework_lights_bright": {
+      "looped": true,
+      "evolutions": []
+    },
+    "scr_ind1_firework_trail_long": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "scr_ind1_firework_trail": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_ind_firework_lights": {
+      "looped": true,
+      "evolutions": ["strength"]
+    },
+    "ent_anim_ind_firework": {
+      "looped": true,
+      "evolutions": []
+    },
+    "scr_ind1_firework_ribbon_lead": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "scr_ind1_firework_burst_lead": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "scr_ind1_firework_points_lead": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_ind_firework_light_flash_bright": {
+      "looped": false,
+      "evolutions": []
+    },
+    "scr_ind1_firework_ribbon": {
+      "looped": false,
+      "evolutions": []
+    },
+    "scr_ind1_firework_points": {
+      "looped": false,
+      "evolutions": []
+    },
+    "scr_ind1_firework_burst_long_lead": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "scr_ind1_firework_burst": {
+      "looped": false,
+      "evolutions": []
+    },
+    "scr_ind1_firework_trail_short": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_ind_firework_light_flash": {
+      "looped": false,
+      "evolutions": []
+    },
+    "scr_ind1_firework_burst_short_lead": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "scr_ind1_firework_trail_ribbon": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "scr_ind1_firework_burst_long": {
+      "looped": false,
+      "evolutions": []
+    },
+    "scr_ind1_firework_burst_short": {
+      "looped": false,
+      "evolutions": []
+    }
+  },
+  "anm_injuredrider": {
+    "ent_anim_arm_blood_saw": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    }
+  },
+  "anm_kieran": {
+    "ent_anim_food_plate_flip": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    }
+  },
+  "anm_lom": {
+    "ent_anim_lom_throat_slit": {
+      "looped": true,
+      "evolutions": []
+    },
+    "ent_anim_lom_blood_burst": {
+      "looped": false,
+      "evolutions": ["LOD", "angle", "camTopView", "deadeye", "effectspeed", "fade"]
+    },
+    "ent_anim_lom_pipe_smoke": {
+      "looped": true,
+      "evolutions": ["LOD", "cigar", "effectspeed", "inhale", "moving"]
+    },
+    "ent_anim_lom_cig_smoke_cigar": {
+      "looped": true,
+      "evolutions": ["LOD", "cigar", "effectspeed", "inhale", "moving"]
+    },
+    "ent_anim_lom_train_steam_ambient": {
+      "looped": true,
+      "evolutions": ["LOD", "temp", "wind"]
+    },
+    "ent_anim_lom_blood_exit": {
+      "looped": false,
+      "evolutions": ["LOD", "camTopView", "deadeye", "effectspeed", "fade"]
+    },
+    "ent_anim_lom_cig_exhale_mth": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_lom_train_pipe_smoke": {
+      "looped": true,
+      "evolutions": ["LOD", "wind"]
+    },
+    "ent_anim_lom_impact_dustcloud": {
+      "looped": false,
+      "evolutions": []
+    },
+    "ent_anim_lom_train_piston_gland_steam": {
+      "looped": true,
+      "evolutions": ["LOD", "speed", "temp", "wind"]
+    }
+  },
+  "anm_mud": {
+    "ent_anim_shaking_dust": {
+      "looped": true,
+      "evolutions": ["EMIT", "LOD"]
+    },
+    "cs_mud2_mud_splash_body": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "cs_mud2_mud_splash_hand": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_shaking_gravel": {
+      "looped": true,
+      "evolutions": []
+    }
+  },
+  "anm_nbd": {
+    "ent_anim_nbd_guama_steam": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_nbd_guama_bow": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_nbd_guama_prop": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_nbd_guama_bow_left": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_nbd_guama_wash_left": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_nbd_guama_wash_right": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    }
+  },
+  "anm_oddf": {
+    "ent_anim_oddf_campfire": {
+      "looped": true,
+      "evolutions": ["blue", "camForwardView", "camTopView", "green", "rain", "red", "wind"]
+    },
+    "ent_anim_oddf_powder_flash": {
+      "looped": false,
+      "evolutions": []
+    },
+    "ent_anim_oddf_firework_burst": {
+      "looped": false,
+      "evolutions": []
+    },
+    "ent_anim_oddf_powder_flash_show": {
+      "looped": false,
+      "evolutions": []
+    },
+    "ent_anim_oddf_firework_trail": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_firework_fuse": {
+      "looped": true,
+      "evolutions": ["LOD", "effectspeed"]
+    },
+    "scr_ind1_firework_trail_short": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    }
+  },
+  "anm_odr": {
+    "ent_anim_kick_dust": {
+      "looped": false,
+      "evolutions": []
+    },
+    "ent_anim_odr_knife_meat": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    }
+  },
+  "anm_peepingtom": {
+    "ent_anim_opium_pipe_exhale": {
+      "looped": true,
+      "evolutions": ["LOD", "inhale"]
+    },
+    "ent_anim_opium_pipe_smoke": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    }
+  },
+  "anm_rally": {
+    "ent_anim_rally_cross_fire_loop": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_rally_cross_dust": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_rally_cross_fire": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    }
+  },
+  "anm_rmllr": {
+    "ent_anim_dusty_interior": {
+      "looped": true,
+      "evolutions": []
+    },
+    "ent_amb_insect_fly_swarm": {
+      "looped": true,
+      "evolutions": ["LOD", "rain", "wind"]
+    }
+  },
+  "anm_sal": {
+    "ent_anim_sal1_drown_splash_exit": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_sal1_drown_splash_enter": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_sal1_drown_splash_loop": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    }
+  },
+  "anm_script_re": {
+    "ent_anim_moths_swarm_night": {
+      "looped": true,
+      "evolutions": ["quantity"]
+    },
+    "ent_anim_snow_drifts": {
+      "looped": true,
+      "evolutions": ["LOD", "strength", "wind"]
+    }
+  },
+  "anm_shaving": {
+    "ent_anim_ped_razor_fling": {
+      "looped": true,
+      "evolutions": []
+    },
+    "ent_anim_ped_shave_face": {
+      "looped": true,
+      "evolutions": ["Fling"]
+    },
+    "ent_anim_ped_shave_brush": {
+      "looped": true,
+      "evolutions": []
+    }
+  },
+  "anm_shows": {
+    "ent_anim_magician_smoke": {
+      "looped": false,
+      "evolutions": []
+    }
+  },
+  "anm_skinning": {
+    "ent_anim_skinning_knife_slice": {
+      "looped": false,
+      "evolutions": ["LOD", "camTopView"]
+    },
+    "ent_anim_skinning_knife_cut": {
+      "looped": false,
+      "evolutions": ["LOD", "camTopView"]
+    },
+    "ent_anim_skinning_skin_pull": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_skinning_skin_pull_snake": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_skinning_bird_breast_break": {
+      "looped": false,
+      "evolutions": ["LOD", "camTopView"]
+    },
+    "ent_anim_skinning_knife_stab": {
+      "looped": false,
+      "evolutions": ["LOD", "camTopView"]
+    },
+    "ent_anim_skinning_bird_meat_pull": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    }
+  },
+  "anm_smoking": {
+    "ent_anim_cig_exhale_mth_car": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_matchstick_flame": {
+      "looped": true,
+      "evolutions": ["FadeOut", "LOD"]
+    },
+    "ent_anim_cig_smoke_cigar_ember": {
+      "looped": true,
+      "evolutions": ["LOD", "cigar", "effectspeed", "inhale", "moving"]
+    },
+    "ent_anim_cig_exhale_nse": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_cig_smoke_preload": {
+      "looped": true,
+      "evolutions": ["LOD", "effectspeed", "inhale", "litsize", "moving"]
+    },
+    "ent_anim_cig_smoke": {
+      "looped": true,
+      "evolutions": ["LOD", "cigar", "effectspeed", "inhale", "moving"]
+    },
+    "ent_anim_rccig_linger_smoke": {
+      "looped": true,
+      "evolutions": ["density"]
+    },
+    "ent_anim_elec_sparks": {
+      "looped": false,
+      "evolutions": ["angle", "intensity", "life", "smoke", "velocity"]
+    },
+    "ent_anim_matchstick_spark": {
+      "looped": false,
+      "evolutions": []
+    },
+    "cs_cig_smoke_inhale": {
+      "looped": true,
+      "evolutions": ["LOD", "inhale"]
+    },
+    "cs_cig_smoke": {
+      "looped": true,
+      "evolutions": ["LOD", "fade"]
+    },
+    "ent_anim_cig_exhale_mth_short": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_cig_smoke_ember": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_cig_smoke_walking": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_cig_smoke_trail": {
+      "looped": true,
+      "evolutions": []
+    },
+    "cs_matchstick_spark": {
+      "looped": false,
+      "evolutions": []
+    },
+    "ent_anim_cig_exhale_mth": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_cig_smoke_cigar": {
+      "looped": true,
+      "evolutions": ["LOD", "cigar", "effectspeed", "inhale", "moving"]
+    },
+    "ent_anim_cig_exhale_nse_car": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_cig_sparks": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    }
+  },
+  "anm_spit": {
+    "ent_anim_spit": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_spit_venom": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_spit_kill_cam_sp": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_spit_cigar_end": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_saliva_spit": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_spit_kill_cam": {
+      "looped": false,
+      "evolutions": ["LOD", "camTopView", "effectspeed"]
+    },
+    "ent_anim_saliva_tobacco_spit": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_spit_phlegm": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_spit_blood_lip": {
+      "looped": false,
+      "evolutions": ["LOD", "camTopView", "effectspeed"]
+    },
+    "ent_anim_squirt_syringe": {
+      "looped": false,
+      "evolutions": []
+    }
+  },
+  "anm_water": {
+    "ent_anim_ped_water_exit_splash": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_amb_water_drips_spawned": {
+      "looped": false,
+      "evolutions": []
+    },
+    "ent_anim_water_bucket_splash": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_mob5_face_drips": {
+      "looped": true,
+      "evolutions": ["pour"]
+    },
+    "ent_anim_steam_horseboat_ripple": {
+      "looped": true,
+      "evolutions": ["LOD", "camTopView", "effectspeed", "rain", "size", "wind"]
+    },
+    "ent_anim_gua1_boat_splash": {
+      "looped": false,
+      "evolutions": ["rain", "speed"]
+    },
+    "ent_anim_water_duck_eat_splash": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_water_bucket_fill": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_water_torture": {
+      "looped": true,
+      "evolutions": ["Intensity", "LOD"]
+    },
+    "ent_anim_water_kettle_splash_looped": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_water_dive_splash": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_bottle_pour_whisky": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_ped_water_shake": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_ped_water_drink_splash": {
+      "looped": false,
+      "evolutions": ["LOD", "speed"]
+    },
+    "ent_anim_bm_water_scp": {
+      "looped": false,
+      "evolutions": ["size", "speed_d", "speed_l"]
+    },
+    "ent_anim_bottle_pour_water": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_sht_steam_thick": {
+      "looped": true,
+      "evolutions": ["LOD", "radius"]
+    },
+    "ent_anim_steam_horseboat_splash": {
+      "looped": true,
+      "evolutions": ["Speed"]
+    },
+    "ent_anim_waterbucket_splash_spawned": {
+      "looped": false,
+      "evolutions": []
+    },
+    "ent_anim_ped_hand_splash": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_water_bucket_dump": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_whiskey_pour_shot": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_water_kettle_splash": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_ped_water_entry_splash": {
+      "looped": false,
+      "evolutions": ["LOD", "size"]
+    },
+    "ent_anim_bm_water_mist": {
+      "looped": false,
+      "evolutions": []
+    },
+    "ent_anim_bubble_stream_ped": {
+      "looped": true,
+      "evolutions": []
+    },
+    "ent_anim_water_pan_submerge": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_water_shakeoff": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_ped_ind3_water_drips": {
+      "looped": true,
+      "evolutions": []
+    },
+    "ent_anim_water_gold_pan_fling": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_bubble_stream": {
+      "looped": true,
+      "evolutions": []
+    },
+    "ent_anim_mob5_dump_body_splash": {
+      "looped": false,
+      "evolutions": ["LOD", "strength"]
+    },
+    "ent_anim_water_gold_pan_splash": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_ped_finger_drips": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_bucket_pour_through": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_water_bucket_drips": {
+      "looped": true,
+      "evolutions": ["LOD", "inwater"]
+    },
+    "ent_anim_ntv3_steam_leak": {
+      "looped": true,
+      "evolutions": ["LOD", "radius"]
+    },
+    "ent_anim_water_gold_pan_loop": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_ped_water_disturb": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_ped_wash_face": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "liquid_splash_water": {
+      "looped": false,
+      "evolutions": []
+    },
+    "ent_anim_water_pump_pour": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "ent_amb_oil_drips_spawned": {
+      "looped": false,
+      "evolutions": []
+    },
+    "ent_anim_ped_water_wade_ripples": {
+      "looped": true,
+      "evolutions": []
+    },
+    "ent_anim_water_drown_splash": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_water_bucket_pour": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_water_washing": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_sht_steam": {
+      "looped": true,
+      "evolutions": ["LOD", "radius"]
+    },
+    "ent_anim_moonshine_pour_shot": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_nts2_dive_water": {
+      "looped": false,
+      "evolutions": ["LOD", "strength"]
+    },
+    "ent_anim_ped_water_drips": {
+      "looped": true,
+      "evolutions": ["LOD", "intensity"]
+    },
+    "ent_amb_water_drips_edge": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_boat_splash": {
+      "looped": false,
+      "evolutions": []
+    },
+    "ent_anim_oil_drips": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    }
+  },
+  "anm_water_panning": {
+    "ent_anim_water_panning_nugget_drips": {
+      "looped": true,
+      "evolutions": ["LOD", "trickle"]
+    },
+    "ent_anim_water_panning_slam": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_water_panning_bucket_pour": {
+      "looped": true,
+      "evolutions": ["LOD", "pour"]
+    },
+    "ent_anim_water_panning_put_down": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_water_panning_bucket_drips": {
+      "looped": true,
+      "evolutions": ["LOD", "trickle"]
+    },
+    "ent_anim_water_panning": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_water_panning_drop": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    }
+  },
+  "anm_weapons": {
+    "ent_anim_muzzle_flash_light": {
+      "looped": false,
+      "evolutions": []
+    },
+    "ent_anim_gun_linger": {
+      "looped": true,
+      "evolutions": ["LOD", "fade"]
+    },
+    "ent_anim_proj_key_trail": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_molotov_flame": {
+      "looped": true,
+      "evolutions": ["LOD", "effectspeed", "speed"]
+    },
+    "ent_anim_muz_pistol": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_dynamite_fuse": {
+      "looped": true,
+      "evolutions": ["LOD", "intensity", "off"]
+    },
+    "ent_anim_muz_gatling_close": {
+      "looped": true,
+      "evolutions": ["LOD", "camForwardView", "degradation", "smoke", "smokeless", "speed"]
+    },
+    "ent_anim_muz_rifle": {
+      "looped": false,
+      "evolutions": ["camForwardView"]
+    },
+    "ent_anim_muz_gatling": {
+      "looped": true,
+      "evolutions": ["LOD", "camForwardView", "degradation", "smoke", "smokeless", "speed"]
+    }
+  },
+  "anm_wnt": {
+    "ent_anim_winter1_fireplace_start": {
+      "looped": true,
+      "evolutions": ["LOD", "intensity"]
+    },
+    "ent_anim_train_sparks": {
+      "looped": true,
+      "evolutions": ["LOD", "brake"]
+    },
+    "ent_anim_snow_climb": {
+      "looped": false,
+      "evolutions": []
+    },
+    "ent_anim_ped_breath_warm_hands": {
+      "looped": false,
+      "evolutions": ["LOD", "effectspeed", "rate", "speed", "temp"]
+    },
+    "ent_anim_lantern_fire_win1": {
+      "looped": true,
+      "evolutions": ["dist", "fadein", "size", "strength"]
+    },
+    "ent_anim_foot_stomp_snow": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_snow_landing": {
+      "looped": false,
+      "evolutions": []
+    },
+    "ent_anim_door_snow_drifts": {
+      "looped": true,
+      "evolutions": ["LOD", "blast", "door", "fade", "intensity"]
+    }
+  },
+  "anm_work": {
+    "ent_anim_work_hammer": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_cotton_dump": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_dig_treasure_pickup_snow": {
+      "looped": false,
+      "evolutions": ["LOD", "wetness"]
+    },
+    "ent_anim_dig_treasure_pickup_hay": {
+      "looped": false,
+      "evolutions": ["LOD", "wet"]
+    },
+    "ent_anim_brush_drip_trail": {
+      "looped": true,
+      "evolutions": ["pour"]
+    },
+    "ent_anim_hay_pitchfork_work": {
+      "looped": false,
+      "evolutions": ["LOD", "camTopView", "strength", "wet"]
+    },
+    "ent_anim_hay_pitchfork_pour": {
+      "looped": false,
+      "evolutions": ["LOD", "camTopView", "strength", "wet"]
+    },
+    "ent_anim_cottonbale_leak": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_dig_dirt_surface": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_dig_dirt_grave": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_scrape_ground_debris": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_dusty_hands": {
+      "looped": false,
+      "evolutions": []
+    },
+    "ent_anim_haybale_pick_up": {
+      "looped": false,
+      "evolutions": ["LOD", "camTopView", "strength", "wet"]
+    },
+    "ent_anim_steam_horsegelding": {
+      "looped": true,
+      "evolutions": ["smoke"]
+    },
+    "ent_anim_grab_dirt": {
+      "looped": false,
+      "evolutions": ["LOD", "wetness"]
+    },
+    "ent_anim_broom_dust": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_constant_sparks": {
+      "looped": true,
+      "evolutions": ["GPos", "angle", "intensity", "life", "smoke", "velocity"]
+    },
+    "ent_anim_throw_chicken_feed": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_dig_dirt_grave_trail": {
+      "looped": false,
+      "evolutions": ["LOD", "wetness"]
+    },
+    "ent_anim_dig_snow_treasure_trail": {
+      "looped": false,
+      "evolutions": ["LOD", "size"]
+    },
+    "ent_anim_dig_snow_treasure": {
+      "looped": false,
+      "evolutions": ["LOD", "size"]
+    },
+    "ent_anim_cotton_dump_loop": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_work_pick_out": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_whittle_wood": {
+      "looped": false,
+      "evolutions": []
+    },
+    "ent_anim_hay_pitchfork_work_fast": {
+      "looped": false,
+      "evolutions": ["LOD", "camTopView", "strength", "wet"]
+    },
+    "ent_anim_dig_dirt_treasure": {
+      "looped": false,
+      "evolutions": ["LOD", "size"]
+    },
+    "ent_anim_hand_saw_wood": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_work_dust_large": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_dig_treasure_pickup_dirt": {
+      "looped": false,
+      "evolutions": ["LOD", "wetness"]
+    },
+    "ent_anim_bucket_fill_splash": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_water_cloth_squeeze": {
+      "looped": true,
+      "evolutions": ["LOD", "inwater"]
+    },
+    "ent_anim_gardener_plant": {
+      "looped": false,
+      "evolutions": []
+    },
+    "ent_anim_dig_dirt_treasure_trail": {
+      "looped": false,
+      "evolutions": ["LOD", "size"]
+    },
+    "ent_anim_disp_dust_waved": {
+      "looped": false,
+      "evolutions": []
+    },
+    "ent_anim_hand_saw_wood_dir": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_hay_pitchfork_lift_fork_hay": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_saw_wood": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_brush_dust": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_sharp_weapon": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_dig_treasure_pickup_mud": {
+      "looped": false,
+      "evolutions": ["LOD", "wetness"]
+    },
+    "ent_anim_chop_wood": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_feed_looping": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_hay_pitchfork_toss": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_hay_pitchfork_work_finish": {
+      "looped": false,
+      "evolutions": ["LOD", "camTopView", "strength", "wet"]
+    },
+    "ent_anim_hay_pitchfork_lift": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_hogtie_rope_brk": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_dig_dirt": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_water_cloth_squeeze_splash_spawned": {
+      "looped": false,
+      "evolutions": []
+    },
+    "ent_anim_table_wipe": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_bale_debris_trail": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_ann_coal_leak": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_plane_wood": {
+      "looped": false,
+      "evolutions": []
+    },
+    "ent_anim_work_rake": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_pick_axe_rock_impact": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_dig_mud_treasure": {
+      "looped": false,
+      "evolutions": ["LOD", "size"]
+    },
+    "ent_anim_plane_wood_rot": {
+      "looped": false,
+      "evolutions": []
+    },
+    "ent_anim_hay_pitchfork_spear": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    }
+  },
+  "cut_fud1": {
+    "CS_Fud1_Boat_scrape_sand_wet": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    }
+  },
+  "cut_mud": {
+    "cs_mud2_des_bottle": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    }
+  },
+  "cut_rdopn": {
+    "cs_rdopn_exhale_mouth_pipe": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "cs_rdopn_faucet_pour": {
+      "looped": true,
+      "evolutions": []
+    }
+  },
+  "cut_rdown": {
+    "cs_rdown_blood_cough": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    }
+  },
+  "cut_rprsn": {
+    "cs_ped_breath_winter": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    }
+  },
+  "cut_rrtl": {
+    "cs_rrtl_sparks": {
+      "looped": false,
+      "evolutions": []
+    },
+    "cs_rrtl_lightning": {
+      "looped": true,
+      "evolutions": []
+    },
+    "cs_rrtl_smoulder_smoke": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "cs_rrtl_exp_smoke": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "cs_rrtl_electric_arcs": {
+      "looped": true,
+      "evolutions": []
+    }
+  },
+  "cut_utopia2": {
+    "cs_utopia2_water_splash_loop": {
+      "looped": true,
+      "evolutions": ["LOD", "spread"]
+    },
+    "cs_utopia2_water_splash_sm_003": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "cs_utopia2_water_splash_sm_004": {
+      "looped": false,
+      "evolutions": []
+    },
+    "cs_utopia2_water_splash_sm_001": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "cs_utopia2_water_splash_lrg_001": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "cs_utopia2_water_splash_ped": {
+      "looped": false,
+      "evolutions": ["LOD", "speed", "spine"]
+    },
+    "cs_utopia2_water_splash_lrg_002": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "cs_utopia2_water_splash_sm_002": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "cs_utopia2_water_drips": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "cs_utopia2_water_splash_lrg_003": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    }
+  },
+  "cut_winter": {
+    "cs_cig_smoke": {
+      "looped": true,
+      "evolutions": ["LOD", "fade"]
+    },
+    "cs_ped_wade_snow": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "cs_ped_breath_winter": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    }
+  },
+  "des_alchemist": {
+    "exp_smoke_trail": {
+      "looped": false,
+      "evolutions": ["LOD", "camTopView"]
+    },
+    "ent_amb_alchemist_post_fire_plume": {
+      "looped": false,
+      "evolutions": ["LOD", "fade"]
+    },
+    "ent_amb_alchemist_post_cloud_smk": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "ent_exp_dis_alchemist": {
+      "looped": false,
+      "evolutions": []
+    },
+    "ent_amb_alchemist_post_fire": {
+      "looped": false,
+      "evolutions": ["LOD", "fade"]
+    }
+  },
+  "des_bnk_safe_exp": {
+    "ent_ray_bnk_safe_exp_debris": {
+      "looped": false,
+      "evolutions": ["LOD", "camForwardView"]
+    },
+    "ent_ray_bnk_safe_exp_end": {
+      "looped": false,
+      "evolutions": []
+    },
+    "ent_ray_bnk_safe_exp_start": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    }
+  },
+  "des_grh_outhouse": {
+    "ent_ray_grh_poop_exp": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_ray_grh_poop_decal_spawner_sp": {
+      "looped": false,
+      "evolutions": []
+    }
+  },
+  "des_gry1_mnshine_exp": {
+    "ent_ray_gry1_water_splash": {
+      "looped": true,
+      "evolutions": []
+    }
+  },
+  "des_guama3_cannon_exp": {
+    "exp_smoke_trail": {
+      "looped": false,
+      "evolutions": ["LOD", "camTopView"]
+    },
+    "exp_gua3_cannon_exp": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    }
+  },
+  "des_guama3_tower_exp": {
+    "ent_ray_guama3_tower_exp": {
+      "looped": false,
+      "evolutions": []
+    },
+    "exp_smoke_trail": {
+      "looped": false,
+      "evolutions": ["LOD", "camTopView"]
+    },
+    "ent_ray_guama3_tower_trail": {
+      "looped": true,
+      "evolutions": []
+    }
+  },
+  "des_mob3": {
+    "ent_ray_mob3_wood_splinters": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "scr_mob3_proj_dynamite_trail": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "ent_ray_mob3_trolley_sparks": {
+      "looped": true,
+      "evolutions": []
+    },
+    "exp_smoke_trail": {
+      "looped": false,
+      "evolutions": ["LOD", "camTopView"]
+    },
+    "ent_ray_mob3_crash_exp": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_ray_mob3_smoke_trail": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "ent_ray_mob3_wood_planks": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_ray_mob3_smoke_post": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "ent_ray_mob3_wagon_exp": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    }
+  },
+  "des_moon1": {
+    "ent_anm_generic_fire_field": {
+      "looped": true,
+      "evolutions": ["LOD", "camForwardView", "camSideView", "script", "spread", "strength"]
+    },
+    "ent_ray_moon1_roof_fire": {
+      "looped": true,
+      "evolutions": ["LOD", "fade", "size"]
+    }
+  },
+  "des_mud2": {
+    "ent_dst_wood_splinter": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_ray_mud2_window_smash": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    }
+  },
+  "des_native3": {
+    "ent_ray_native3_fence_break": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "scr_ntvs3_exp_fortwall": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    }
+  },
+  "des_rho_jail": {
+    "exp_smoke_trail": {
+      "looped": false,
+      "evolutions": ["LOD", "camTopView"]
+    },
+    "ent_ray_rho_jailwall_exp": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_rho_jailwall_linger_smoke": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    }
+  },
+  "des_tree_fall": {
+    "ent_ray_tree_fall_dust": {
+      "looped": false,
+      "evolutions": []
+    },
+    "ent_ray_tree_fall_leaves": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    }
+  },
+  "des_utopia1": {
+    "ent_ray_utopia1_col_dust": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_amb_falling_debris": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_ray_utopia1_debtrail": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    }
+  },
+  "des_utopia2": {
+    "exp_smoke_trail": {
+      "looped": false,
+      "evolutions": ["LOD", "camTopView"]
+    },
+    "ent_ray_utopia2_tree_fall_needles": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "ent_ray_utopia2_tree_fall_dust": {
+      "looped": false,
+      "evolutions": []
+    },
+    "ent_ray_utopia2_uw_silt": {
+      "looped": true,
+      "evolutions": []
+    },
+    "ent_ray_utp2_riverbed_exp": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_ray_utopia2_rock_dirt": {
+      "looped": true,
+      "evolutions": []
+    }
+  },
+  "des_val_jail": {
+    "exp_smoke_trail": {
+      "looped": false,
+      "evolutions": ["LOD", "camTopView"]
+    },
+    "ent_ray_val_jailwall_exp": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_ray_val_jailwall_linger": {
+      "looped": false,
+      "evolutions": []
+    }
+  },
+  "eagle_eye": {
+    "eagle_eye_wind_balloon": {
+      "looped": true,
+      "evolutions": ["LOD", "camForwardView", "eagleeye", "speed", "wind"]
+    },
+    "eagle_eye_wind": {
+      "looped": true,
+      "evolutions": ["LOD", "blocker", "camForwardView", "eagleeye", "speed", "wind"]
+    },
+    "eagle_eye_clue": {
+      "looped": true,
+      "evolutions": ["LOD", "shrink"]
+    },
+    "eagle_eye_trail": {
+      "looped": true,
+      "evolutions": ["size"]
+    },
+    "eagle_eye_clue_animal_transform": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "eagle_eye_bait": {
+      "looped": true,
+      "evolutions": ["LOD", "user"]
+    },
+    "eagle_eye_entity": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "eagle_eye_lootable_plant": {
+      "looped": true,
+      "evolutions": ["LOD", "height", "radius", "user"]
+    }
+  },
+  "markers_core": {
+    "ent_amb_net_race_smoke_target": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "scr_net_race_arrow": {
+      "looped": true,
+      "evolutions": ["LOD", "brightness"]
+    },
+    "ent_amb_net_race_fire": {
+      "looped": true,
+      "evolutions": ["LOD", "wind"]
+    },
+    "ent_amb_net_race_smoke": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    }
+  },
+  "scr_adv_hp": {
+    "scr_adv_hp_helmet_fire": {
+      "looped": true,
+      "evolutions": ["LOD", "wind"]
+    }
+  },
+  "scr_adv_ova_hunter": {
+    "scr_hunter_cloak_haze_head": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "scr_hunter_cloak_haze_torso": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "scr_hunter_cloak_haze_limb": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    }
+  },
+  "scr_adv_ph": {
+    "scr_adv_ph_glow_torso": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "scr_adv_ph_glow_limb": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "scr_adv_ph_glow_bag": {
+      "looped": true,
+      "evolutions": ["LOD", "intensity"]
+    },
+    "scr_adv_ph_glow_head": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "scr_adv_ph_glow_bag_rear": {
+      "looped": true,
+      "evolutions": ["LOD", "intensity"]
+    },
+    "scr_adv_ph_glow_plinth": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    }
+  },
+  "scr_adv_sok": {
+    "scr_adv_sok_torch_horseback": {
+      "looped": true,
+      "evolutions": ["LOD", "effectspeed", "rain", "wind"]
+    },
+    "scr_adv_sok_torchsmoke": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "scr_adv_sok_checkpoint": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "scr_adv_sok_torch": {
+      "looped": true,
+      "evolutions": ["LOD", "effectspeed", "rain", "wind"]
+    }
+  },
+  "scr_agnesdowd_ghost": {
+    "scr_ped_ghost_haze_stage1": {
+      "looped": true,
+      "evolutions": ["LOD", "fade", "intensity", "rain", "wind"]
+    }
+  },
+  "scr_annesburg": {
+    "blood_stone_crusher_exp": {
+      "looped": false,
+      "evolutions": ["LOD", "camTopView"]
+    },
+    "blood_stone_crusher_stream": {
+      "looped": true,
+      "evolutions": ["LOD", "camTopView"]
+    }
+  },
+  "scr_arch_jameson2": {
+    "fire_gunpowder_two": {
+      "looped": true,
+      "evolutions": ["dist", "strength"]
+    },
+    "fire_gunpowder_half": {
+      "looped": true,
+      "evolutions": ["dist", "strength"]
+    },
+    "fire_gunpowder_pool": {
+      "looped": true,
+      "evolutions": ["dist", "strength"]
+    },
+    "fire_gunpowder_one": {
+      "looped": true,
+      "evolutions": ["dist", "strength"]
+    }
+  },
+  "scr_arch_jameson3": {
+    "blood_stone_crusher_exp": {
+      "looped": false,
+      "evolutions": ["LOD", "camTopView"]
+    },
+    "blood_stone_crusher_stream": {
+      "looped": true,
+      "evolutions": ["LOD", "camTopView"]
+    }
+  },
+  "scr_beat_animal_mauling": {
+    "scr_beat_anml_blood": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "scr_beat_anml_blood_spray": {
+      "looped": true,
+      "evolutions": ["LOD", "angle"]
+    }
+  },
+  "scr_beat_bear_trap": {
+    "scr_beat_bear_blood_spray": {
+      "looped": true,
+      "evolutions": ["LOD", "angle"]
+    },
+    "scr_beat_bear_blood": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    }
+  },
+  "scr_beat_bloated_corpse": {
+    "scr_beat_corpse_water_bubble": {
+      "looped": true,
+      "evolutions": ["Intensity", "LOD"]
+    },
+    "scr_beat_corpse_water_bubble_spawn": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    }
+  },
+  "scr_beat_burning_bodies": {
+    "scr_beat_burning_body_smk_start": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "scr_beat_burning_body_fire": {
+      "looped": true,
+      "evolutions": ["LOD", "size", "smoke", "spread", "strength"]
+    },
+    "scr_beat_burning_body_smk": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    }
+  },
+  "scr_beat_campfire_ambush": {
+    "scr_campfire_ambush_fire_extinguish": {
+      "looped": true,
+      "evolutions": ["LOD", "strength"]
+    }
+  },
+  "scr_beat_drown_murder": {
+    "scr_beat_drown_splash": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    }
+  },
+  "scr_beat_gator_hunters": {
+    "scr_beat_gator_blood_water": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "scr_beat_gator_splash": {
+      "looped": true,
+      "evolutions": []
+    },
+    "scr_beat_gator_blood": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    }
+  },
+  "scr_beat_grave_robbers": {
+    "scr_beat_grave_dust": {
+      "looped": false,
+      "evolutions": ["velocity"]
+    }
+  },
+  "scr_beat_horse_race": {
+    "scr_beat_horse_race_bridge_smk": {
+      "looped": false,
+      "evolutions": ["LOD", "temp", "throttle"]
+    }
+  },
+  "scr_beat_mountain_men": {},
+  "scr_beat_murder_for_hire": {
+    "scr_beat_murder_blood": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "scr_beat_mur_blood_spray": {
+      "looped": true,
+      "evolutions": ["LOD", "angle"]
+    }
+  },
+  "scr_beat_on_the_run": {
+    "ent_ray_grh_poop_decal_spawner_sp": {
+      "looped": false,
+      "evolutions": []
+    },
+    "scr_beat_otr_fallin": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    }
+  },
+  "scr_beat_rally": {
+    "scr_beat_rally_cross_fire": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "scr_beat_rally_cross_fire_loop": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    }
+  },
+  "scr_beat_skipping_stones": {
+    "ent_amb_water_splash_sm": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    }
+  },
+  "scr_beat_street_fight": {
+    "scr_beat_str_fght_win_smh": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    }
+  },
+  "scr_beat_stuck_wagon": {},
+  "scr_beat_train_tracks": {
+    "scr_beat_train_blood": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "scr_beat_train_sparks": {
+      "looped": true,
+      "evolutions": ["LOD", "squeal"]
+    }
+  },
+  "scr_beat_treasure_hunter": {
+    "scr_event_glint": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    }
+  },
+  "scr_beat_voodoo_ritual": {
+    "sp_blood_drip_splash": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "scr_beat_voodoo_blood": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "scr_beat_voodoo_blood_drips": {
+      "looped": true,
+      "evolutions": ["LOD", "bleedHigh", "bleedLow"]
+    }
+  },
+  "scr_beechers": {
+    "ent_brk_wood_splinter": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_brk_wood_planks": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_dst_dust": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    }
+  },
+  "scr_bou1": {
+    "scr_bou1_climb_dust_loop": {
+      "looped": true,
+      "evolutions": ["speed"]
+    },
+    "scr_bou1_ped_water_splash": {
+      "looped": true,
+      "evolutions": ["LOD", "intensity"]
+    }
+  },
+  "scr_braithwaites1": {
+    "scr_brt1_bar_mg_liq_pour_splash": {
+      "looped": true,
+      "evolutions": ["pour"]
+    },
+    "scr_brt1_bar_mg_liq_up_splash": {
+      "looped": false,
+      "evolutions": []
+    },
+    "scr_brt1_bar_mg_liq_splash": {
+      "looped": false,
+      "evolutions": []
+    },
+    "scr_braithwaites1_des_bottles": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "scr_brt1_bar_mg_glass_smash": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_amb_cig_smoke_linger": {
+      "looped": true,
+      "evolutions": []
+    },
+    "scr_brt1_bar_mg_liq_pour": {
+      "looped": true,
+      "evolutions": ["height", "pour"]
+    }
+  },
+  "scr_braithwaites2": {
+    "scr_brt2_fire_roof": {
+      "looped": true,
+      "evolutions": ["LOD", "strength"]
+    },
+    "scr_brt2_firesmoke_field": {
+      "looped": true,
+      "evolutions": ["LOD", "size", "strength"]
+    },
+    "scr_brt2_fire_win": {
+      "looped": true,
+      "evolutions": ["LOD", "camForwardView", "camSideView", "strength"]
+    },
+    "ent_amb_falling_embers": {
+      "looped": true,
+      "evolutions": ["LOD", "size"]
+    },
+    "ent_amb_generic_fire_field_glow": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "ent_amb_generic_fire_up": {
+      "looped": true,
+      "evolutions": ["LOD", "strength"]
+    },
+    "scr_brt2_firesmoke_barn": {
+      "looped": true,
+      "evolutions": ["strength"]
+    },
+    "scr_brt2_firesmoke": {
+      "looped": true,
+      "evolutions": ["strength"]
+    },
+    "env_embers": {
+      "looped": true,
+      "evolutions": ["LOD", "size", "strength"]
+    },
+    "ent_amb_generic_fire_field": {
+      "looped": true,
+      "evolutions": ["LOD", "camForwardView", "camSideView", "script", "spread", "strength"]
+    },
+    "ent_amb_generic_fire_field_nosmoke": {
+      "looped": true,
+      "evolutions": ["LOD", "camForwardView", "camSideView", "spread", "strength"]
+    },
+    "ent_amb_generic_fire_field_smoke": {
+      "looped": true,
+      "evolutions": ["LOD", "strength"]
+    }
+  },
+  "scr_braithwaites3": {
+    "scr_braithw3_room_ash": {
+      "looped": true,
+      "evolutions": []
+    },
+    "scr_braithw3_room_embers": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "scr_brt3_window_smash": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "scr_braithw3_hall_smoke": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "scr_braithw3_room_smoke_01": {
+      "looped": true,
+      "evolutions": []
+    },
+    "scr_braithw3_mansion_fire_win1": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "scr_braithw3_mansion_fire_under": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "scr_braithw3_mansion_fire_crawling": {
+      "looped": true,
+      "evolutions": []
+    },
+    "scr_braithw3_mansion_fire_win2": {
+      "looped": true,
+      "evolutions": ["LOD", "fade"]
+    },
+    "scr_braithw3_curtain_fire_01": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    }
+  },
+  "scr_campfires": {
+    "ent_amb_campfire_smoke_distance_gang": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "ent_amb_campfire_smoke_distance": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    }
+  },
+  "scr_colon1": {
+    "cs_cig_exhale_mouth": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    }
+  },
+  "scr_cornwall1": {
+    "scr_crn1_lantern_fire": {
+      "looped": true,
+      "evolutions": ["dist", "fadein", "size", "strength"]
+    }
+  },
+  "scr_crackpot": {
+    "scr_crackpot_rc_lightening": {
+      "looped": false,
+      "evolutions": []
+    },
+    "scr_crackpot_sink_bubbles": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_elec_sparks": {
+      "looped": false,
+      "evolutions": ["angle", "intensity", "life", "smoke", "velocity"]
+    },
+    "scr_crackpot_torpedo_spray": {
+      "looped": true,
+      "evolutions": []
+    },
+    "scr_crackpot_rc_sparks": {
+      "looped": true,
+      "evolutions": ["LOD", "power"]
+    },
+    "scr_crackpot_elec_flow": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "scr_crackpot_rc_lightening_exp": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "scr_crackpot_tesla_coil": {
+      "looped": true,
+      "evolutions": []
+    },
+    "scr_crackpot_tesla_fail": {
+      "looped": false,
+      "evolutions": []
+    },
+    "scr_crackpot_tesla_spark": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    }
+  },
+  "scr_crafting": {
+    "scr_crafting_animal_potions": {
+      "looped": true,
+      "evolutions": ["LOD", "brightness"]
+    }
+  },
+  "scr_deadeye": {
+    "scr_de_slippery_haze_torso": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "scr_de_slippery_haze_head": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "scr_de_conviction_weapon_glow": {
+      "looped": true,
+      "evolutions": ["LOD", "bow", "intensity", "longarm"]
+    },
+    "scr_de_watch_wisps": {
+      "looped": true,
+      "evolutions": ["camForwardView"]
+    },
+    "scr_de_focus_tracer": {
+      "looped": true,
+      "evolutions": ["LOD", "deadeye", "fade"]
+    },
+    "scr_de_steady_smoke_torso": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "scr_de_slippery_haze_limb": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "scr_de_recuperate_wisps": {
+      "looped": true,
+      "evolutions": ["camForwardView"]
+    }
+  },
+  "scr_demo1": {
+    "scr_mud5_safe_exp_post": {
+      "looped": false,
+      "evolutions": []
+    },
+    "proj_dynamite_trail": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    }
+  },
+  "scr_discoverables": {
+    "scr_disc_whispering_trees": {
+      "looped": true,
+      "evolutions": ["density"]
+    },
+    "scr_disc_cave_explosion": {
+      "looped": false,
+      "evolutions": []
+    },
+    "ent_amb_steam_geyser": {
+      "looped": true,
+      "evolutions": ["Erupt", "Steam"]
+    },
+    "ent_amb_witch_cauldron_steam": {
+      "looped": true,
+      "evolutions": ["LOD", "temp", "wind"]
+    },
+    "scr_disc_meteor_shower_streak": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_amb_witch_cauldron_bubble": {
+      "looped": true,
+      "evolutions": []
+    },
+    "scr_disc_meteor_shower": {
+      "looped": true,
+      "evolutions": []
+    }
+  },
+  "scr_distance_smoke": {
+    "scr_campfire_distance_smoke_lod": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "scr_campfire_distance_smoke_sma": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "scr_campfire_distance_smoke_script": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "scr_campfire_distance_light": {
+      "looped": true,
+      "evolutions": ["LOD", "size"]
+    }
+  },
+  "scr_dis_ligtn_trees": {
+    "scr_crackpot_rc_lightening": {
+      "looped": false,
+      "evolutions": []
+    },
+    "scr_crackpot_rc_lightening_exp": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    }
+  },
+  "scr_dm_ftb": {
+    "scr_mp_chest_spawn_smoke": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    }
+  },
+  "scr_dm_ht": {
+    "scr_mp_item_pickup_smoke": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "scr_dm_ht_swap_smoke": {
+      "looped": false,
+      "evolutions": ["crouch"]
+    }
+  },
+  "scr_dusters1": {
+    "scr_dusters1_camp_smoke": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    }
+  },
+  "scr_dzoavitsclaim": {
+    "scr_dzoav_coal_dump": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "scr_dzoav_coal_dump_col": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "scr_dzoav_waste_dump": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "scr_dzoav_waste_dump_col": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "scr_dzoav_fire_window": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "scr_dzoav_fire_roof": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "scr_dzoav_mine_haze": {
+      "looped": true,
+      "evolutions": ["smoke"]
+    }
+  },
+  "scr_evelyn_miller5": {},
+  "scr_finale2": {
+    "scr_fin2_cleet_drag_dust": {
+      "looped": true,
+      "evolutions": []
+    }
+  },
+  "scr_fire_manager": {
+    "ent_anim_fire_tend_embers": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "ent_amb_insect_water_flies": {
+      "looped": true,
+      "evolutions": ["LOD", "density", "rain", "size", "wind"]
+    },
+    "ent_amb_campfire_dynamic": {
+      "looped": true,
+      "evolutions": ["Flames", "LOD", "Smoke", "camTopView", "embers", "fuel", "smolder", "under"]
+    }
+  },
+  "scr_fme_spawn_effects": {
+    "scr_net_fetch_smoke_puff": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "scr_animal_poop_flies": {
+      "looped": true,
+      "evolutions": ["LOD", "rain", "wind"]
+    },
+    "scr_fme_smoke_puff_tint": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    }
+  },
+  "scr_fm_mission_controller": {},
+  "scr_fm_mission_creator": {
+    "scr_mp_splash": {
+      "looped": false,
+      "evolutions": []
+    },
+    "scr_mp_dust_cloud": {
+      "looped": false,
+      "evolutions": []
+    }
+  },
+  "scr_fussar1": {
+    "trail_splash_oil": {
+      "looped": true,
+      "evolutions": ["LOD", "pressure"]
+    },
+    "scr_fussar1_sb_long_br": {
+      "looped": false,
+      "evolutions": []
+    },
+    "scr_fussar1_leak_oil": {
+      "looped": false,
+      "evolutions": ["LOD", "pressure"]
+    },
+    "liquid_splash_oil": {
+      "looped": false,
+      "evolutions": []
+    },
+    "scr_fussar1_dust_cloud": {
+      "looped": true,
+      "evolutions": []
+    },
+    "scr_fussar1_sb_long": {
+      "looped": false,
+      "evolutions": []
+    },
+    "scr_fussar1_cave_steam": {
+      "looped": true,
+      "evolutions": ["LOD", "temp", "wind"]
+    },
+    "scr_fussar1_exp": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "scr_fussar1_dust_fog": {
+      "looped": true,
+      "evolutions": ["LOD", "density"]
+    },
+    "scr_fussar1_exp_roof": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "scr_fussar1_sb_dutch_02": {
+      "looped": false,
+      "evolutions": []
+    },
+    "scr_fussar1_sb_dutch_01": {
+      "looped": false,
+      "evolutions": []
+    },
+    "scr_fussar1_dusty_interior": {
+      "looped": true,
+      "evolutions": []
+    },
+    "scr_fussar1_impact_smoke": {
+      "looped": false,
+      "evolutions": []
+    },
+    "scr_fus1_lantern_fire": {
+      "looped": true,
+      "evolutions": ["dist", "fadein", "size", "strength"]
+    },
+    "scr_fussar1_exp_smaller": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "scr_fussar1_sb_short": {
+      "looped": true,
+      "evolutions": []
+    }
+  },
+  "scr_fussar2": {
+    "scr_fus2_trap_rope_dust": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "scr_sht_bear_trap": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "scr_fus2_climbing_debris": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    }
+  },
+  "scr_gang2": {
+    "scr_gang2_air_balloon_smoke": {
+      "looped": true,
+      "evolutions": ["LOD", "effectspeed"]
+    }
+  },
+  "scr_generic": {
+    "ent_amb_insect_fly_swarm": {
+      "looped": true,
+      "evolutions": ["LOD", "rain", "wind"]
+    },
+    "env_smoke": {
+      "looped": true,
+      "evolutions": ["LOD", "size", "strength"]
+    },
+    "scr_leaves_descend": {
+      "looped": false,
+      "evolutions": ["EMIT", "LOD"]
+    },
+    "scr_event_glint": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "scr_gen_shiny_bling": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    }
+  },
+  "scr_grays1": {
+    "exp_smoke_trail": {
+      "looped": false,
+      "evolutions": ["LOD", "camTopView"]
+    },
+    "scr_gry1_exp_ground": {
+      "looped": false,
+      "evolutions": ["camTopView"]
+    },
+    "scr_gry1_exp": {
+      "looped": false,
+      "evolutions": []
+    },
+    "bul_decal_water": {
+      "looped": false,
+      "evolutions": ["LOD", "strength"]
+    },
+    "scr_gry1_exp_jugs": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    }
+  },
+  "scr_grays3": {
+    "scr_grays_blood_headshot": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    }
+  },
+  "scr_guama1": {
+    "scr_guama1_ship_leaking": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    }
+  },
+  "scr_guama3": {
+    "scr_gua3_window_smash": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    }
+  },
+  "scr_happyfam": {
+    "scr_happyfam_door_smk": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "scr_happyfam_pipe_smk": {
+      "looped": true,
+      "evolutions": ["LOD", "temp", "wind"]
+    },
+    "scr_happyfam_room_smk": {
+      "looped": true,
+      "evolutions": []
+    }
+  },
+  "scr_hideout_ironcloud": {
+    "scr_ironcloud_fire_extinguish": {
+      "looped": true,
+      "evolutions": ["LOD", "strength"]
+    },
+    "scr_ironcloud_fire_object": {
+      "looped": true,
+      "evolutions": ["LOD", "fuel", "strength"]
+    }
+  },
+  "scr_hideout_shadybelle": {
+    "scr_hideout_sb_fuse": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    }
+  },
+  "scr_impromptu_race": {
+    "scr_imp_race_smoke": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    }
+  },
+  "scr_ind1": {
+    "scr_ind1_firework_trail_long": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "scr_ind1_firework_trail": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "scr_ind1_firework": {
+      "looped": true,
+      "evolutions": []
+    },
+    "scr_ind1_firework_lights": {
+      "looped": true,
+      "evolutions": []
+    },
+    "scr_ind1_firework_ribbon_lead": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "scr_ind1_firework_burst_lead": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "scr_ind1_firework_points_lead": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "scr_ind1_firework_ribbon": {
+      "looped": false,
+      "evolutions": []
+    },
+    "scr_ind1_firework_points": {
+      "looped": false,
+      "evolutions": []
+    },
+    "scr_ind1_firework_burst_long_lead": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "scr_ind1_firework_burst": {
+      "looped": false,
+      "evolutions": []
+    },
+    "scr_ind1_firework_trail_short": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_ind_firework_light_flash": {
+      "looped": false,
+      "evolutions": []
+    },
+    "scr_ind1_firework_burst_short_lead": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "scr_ind1_firework_trail_ribbon": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "scr_ind1_firework_burst_long": {
+      "looped": false,
+      "evolutions": []
+    },
+    "scr_ind1_firework_burst_short": {
+      "looped": false,
+      "evolutions": []
+    }
+  },
+  "scr_jack2": {
+    "ent_anim_spit_venom": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    }
+  },
+  "scr_loanshark_hunter2": {
+    "scr_loanshark_hunter2_smoke": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    }
+  },
+  "scr_lom_train": {
+    "scr_ind1_firework_trail_long": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "scr_ind1_firework_trail": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "scr_lom_train_firework_burst_short_lead": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "scr_lom_train_firework_points_lead": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "scr_lom_train_firework": {
+      "looped": false,
+      "evolutions": []
+    },
+    "scr_ind1_firework_ribbon_lead": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "scr_ind1_firework_burst_lead": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "scr_lom_train_firework_ribbon_lead": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "scr_ind1_firework_points_lead": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "scr_ind1_firework_ribbon": {
+      "looped": false,
+      "evolutions": []
+    },
+    "scr_lom_train_firework_burst_lead": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "scr_lom_train_firework_burst_long_lead": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "scr_ind1_firework_points": {
+      "looped": false,
+      "evolutions": []
+    },
+    "scr_ind1_firework_burst_long_lead": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "scr_ind1_firework_burst": {
+      "looped": false,
+      "evolutions": []
+    },
+    "scr_ind1_firework_trail_short": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "scr_ind1_firework_burst_short_lead": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "scr_ind1_firework_trail_ribbon": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "scr_ind1_firework_burst_long": {
+      "looped": false,
+      "evolutions": []
+    },
+    "scr_ind1_firework_burst_short": {
+      "looped": false,
+      "evolutions": []
+    }
+  },
+  "scr_marston": {
+    "ent_amb_milk_bubbles": {
+      "looped": true,
+      "evolutions": ["effectspeed"]
+    },
+    "scr_mg_milking": {
+      "looped": true,
+      "evolutions": ["intensity"]
+    }
+  },
+  "scr_mason": {
+    "scr_mason_camera_flash": {
+      "looped": false,
+      "evolutions": []
+    }
+  },
+  "scr_metal_detector": {
+    "scr_mp_metal_detector_sparks": {
+      "looped": true,
+      "evolutions": ["intensity"]
+    }
+  },
+  "scr_mg_bathing": {
+    "scr_mg_bathing_foam_forearm": {
+      "looped": true,
+      "evolutions": ["scrub"]
+    },
+    "scr_mg_bathing_foam_upperarm": {
+      "looped": true,
+      "evolutions": ["scrub"]
+    },
+    "scr_mg_bathing_tub_steam": {
+      "looped": true,
+      "evolutions": []
+    },
+    "scr_mg_bathing_foam_torso": {
+      "looped": true,
+      "evolutions": ["scrub"]
+    },
+    "scr_mg_bathing_foam_head": {
+      "looped": true,
+      "evolutions": ["scrub"]
+    }
+  },
+  "scr_mg_cleaning_stalls": {
+    "scr_mg_stalls_manure_flies": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    }
+  },
+  "scr_mg_fishing": {
+    "scr_mg_fish_struggle": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "scr_mg_fishing_drips": {
+      "looped": true,
+      "evolutions": ["LOD", "fade"]
+    },
+    "scr_mg_fish_splash": {
+      "looped": false,
+      "evolutions": ["LOD", "strength"]
+    }
+  },
+  "scr_mob2": {
+    "scr_mob2_fog_cem": {
+      "looped": true,
+      "evolutions": ["fog"]
+    }
+  },
+  "scr_mob3": {
+    "scr_mob3_proj_dynamite_trail": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "scr_mob3_tram_sparks_sp": {
+      "looped": false,
+      "evolutions": []
+    },
+    "scr_mob3_tram_panel_sparks": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    }
+  },
+  "scr_mob4": {
+    "scr_mob4_ped_water_splash": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "scr_blood_pool_water_trail": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "scr_mob4_gator_ripple": {
+      "looped": true,
+      "evolutions": ["LOD", "camTopView", "effectspeed", "rain", "size", "wind"]
+    },
+    "scr_mob4_leg_blood": {
+      "looped": true,
+      "evolutions": ["fade"]
+    }
+  },
+  "scr_mudtown5": {
+    "scr_mud5_safe_exp_post": {
+      "looped": false,
+      "evolutions": []
+    },
+    "proj_dynamite_trail": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    }
+  },
+  "scr_murderbeat": {
+    "scr_murder_bleeding": {
+      "looped": true,
+      "evolutions": ["Holding", "Intensity", "LOD", "Range"]
+    }
+  },
+  "scr_native1": {
+    "scr_native1_campfire_smoke": {
+      "looped": true,
+      "evolutions": ["Fade", "LOD"]
+    }
+  },
+  "scr_native3": {
+    "scr_natv3_fire_oil_field": {
+      "looped": true,
+      "evolutions": ["LOD", "fade"]
+    },
+    "scr_natv3_fire_oil_plume": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "scr_natv3_generic_fire": {
+      "looped": true,
+      "evolutions": ["LOD", "Wind", "camForwardView", "camSideView", "volume"]
+    }
+  },
+  "scr_native_son1": {
+    "scr_ntvs1_water_rush": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    }
+  },
+  "scr_native_son3": {
+    "scr_ntvs3_noexp_fortwall": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "scr_ntvs3_exp_fortwall": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    }
+  },
+  "scr_net_adversary_team_border": {
+    "scr_net_team_border": {
+      "looped": true,
+      "evolutions": ["LOD", "brightness", "height", "tint"]
+    }
+  },
+  "scr_net_beat_bear_trap": {},
+  "scr_net_beat_egg_protector": {
+    "scr_egg_break": {
+      "looped": false,
+      "evolutions": []
+    }
+  },
+  "scr_net_beat_gator_hunters": {
+    "scr_net_beat_gator_splash": {
+      "looped": true,
+      "evolutions": []
+    },
+    "scr_net_beat_gator_blood": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "scr_net_beat_gator_blood_water": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    }
+  },
+  "scr_net_beat_wagon_lift": {
+    "scr_net_beat_wagon_blood": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "scr_net_beat_wagon_dust": {
+      "looped": false,
+      "evolutions": []
+    }
+  },
+  "scr_net_camp": {
+    "scr_net_spirit_animal_fade": {
+      "looped": true,
+      "evolutions": ["speed"]
+    },
+    "scr_net_spirit_animal_fade_out": {
+      "looped": false,
+      "evolutions": ["LOD", "intensity"]
+    },
+    "scr_net_animal_ghost_boar": {
+      "looped": true,
+      "evolutions": ["speed"]
+    },
+    "scr_net_animal_ghost": {
+      "looped": true,
+      "evolutions": ["speed"]
+    },
+    "scr_net_animal_ghost_head": {
+      "looped": true,
+      "evolutions": ["speed"]
+    },
+    "scr_net_animal_ghost_sma": {
+      "looped": true,
+      "evolutions": ["speed"]
+    },
+    "scr_net_animal_ghost_limb": {
+      "looped": true,
+      "evolutions": ["speed"]
+    },
+    "eagle_eye_clue_animal_transform": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "scr_net_spirit_animal_fire_react": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "scr_net_spirit_animal_fade_in": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    }
+  },
+  "scr_net_dust": {
+    "scr_mp_evil_target_spawn": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "scr_flow_camp_mp": {
+      "looped": true,
+      "evolutions": ["density", "size"]
+    },
+    "scr_amb_bridge_disturb_dust": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "scr_mp_evil_pentagram_spawn": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "scr_mp_target_spawn": {
+      "looped": false,
+      "evolutions": []
+    }
+  },
+  "scr_net_dynamite": {
+    "proj_dynamite_trail": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    }
+  },
+  "scr_net_fire_smoke": {
+    "scr_mp_item_pickup_spawn": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "scr_brt2_firesmoke_field": {
+      "looped": true,
+      "evolutions": ["LOD", "size", "strength"]
+    },
+    "env_smoke": {
+      "looped": true,
+      "evolutions": ["LOD", "size", "strength"]
+    },
+    "env_embers": {
+      "looped": true,
+      "evolutions": ["LOD", "size", "strength"]
+    },
+    "ent_amb_generic_fire_field": {
+      "looped": true,
+      "evolutions": ["LOD", "camForwardView", "camSideView", "script", "spread", "strength"]
+    },
+    "scr_mp_collect_pickup_highlight": {
+      "looped": true,
+      "evolutions": ["LOD", "intensity"]
+    },
+    "scr_mp_collect_campfire_smoke": {
+      "looped": true,
+      "evolutions": ["LOD", "fade", "rain", "smoke", "wind"]
+    },
+    "scr_mp_item_pickup_highlight": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "ent_amb_generic_fire_smoke_plume": {
+      "looped": true,
+      "evolutions": ["LOD", "strength"]
+    },
+    "scr_adv_terr_flag_blast": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "scr_campfire_smoke_blast": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "scr_mp_collect_pickup_smoke": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_amb_moo_crop_fire": {
+      "looped": true,
+      "evolutions": ["LOD", "spread", "strength"]
+    },
+    "ent_amb_generic_fire_field_nosmoke": {
+      "looped": true,
+      "evolutions": ["LOD", "camForwardView", "camSideView", "spread", "strength"]
+    },
+    "ent_amb_generic_fire_field_smoke": {
+      "looped": true,
+      "evolutions": ["LOD", "strength"]
+    }
+  },
+  "scr_net_fme": {
+    "scr_fme_corpse_fly_swarm": {
+      "looped": true,
+      "evolutions": ["LOD", "rain", "wind"]
+    }
+  },
+  "scr_net_gangbounty": {
+    "scr_net_gangbounty_smoke": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    }
+  },
+  "scr_net_gunslinger": {
+    "scr_sht_moneybag_coins": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    }
+  },
+  "scr_net_impromptu_race": {
+    "scr_net_imp_race_smoke": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    }
+  },
+  "scr_net_koth": {
+    "scr_net_koth_smoke_factory": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    }
+  },
+  "scr_net_moon5": {
+    "scr_net_moon2_still_fire": {
+      "looped": true,
+      "evolutions": ["LOD", "spread"]
+    },
+    "scr_net_moon5_player_smoke": {
+      "looped": true,
+      "evolutions": ["LOD", "size"]
+    }
+  },
+  "scr_net_moon_bartending": {
+    "scr_net_moonshine_pour_bar": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    }
+  },
+  "scr_net_player_signal": {
+    "scr_net_player_signal": {
+      "looped": true,
+      "evolutions": ["LOD", "brightness"]
+    }
+  },
+  "scr_net_pony_express": {
+    "scr_net_race_smoke": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    }
+  },
+  "scr_net_race_checkpoints": {
+    "scr_ind1_firework_trail": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "scr_net_race_starting_flare_lead": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "scr_mp_item_pickup_spawn": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "scr_net_race_finish_firework_burst": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "scr_net_race_slipstream": {
+      "looped": true,
+      "evolutions": ["slipstream"]
+    },
+    "scr_net_race_box_break": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "scr_net_race_finish_firework_burst_trail": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "scr_mp_item_pickup_highlight": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "scr_net_race_finish_firework_sparks": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "scr_ind1_firework_burst": {
+      "looped": false,
+      "evolutions": []
+    },
+    "scr_net_race_starting_flare": {
+      "looped": false,
+      "evolutions": []
+    },
+    "scr_net_race_checkpoint": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "scr_net_race_barrel_break": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    }
+  },
+  "scr_net_target_races": {
+    "scr_net_target_destroy_burst": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "scr_net_target_fire_ring_mp": {
+      "looped": true,
+      "evolutions": ["LOD", "b", "base", "fade", "g", "r", "rain", "wind"]
+    },
+    "scr_net_target_fire_ring_burst_mp": {
+      "looped": false,
+      "evolutions": ["LOD", "b", "base", "fade", "g", "r", "rain", "wind"]
+    }
+  },
+  "scr_odd_fellows": {
+    "scr_river5_magician_smoke_loop": {
+      "looped": true,
+      "evolutions": ["FadeOut"]
+    },
+    "scr_river5_magician_smoke": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    }
+  },
+  "scr_odr1": {
+    "scr_od1_camp_smoke": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    }
+  },
+  "scr_odr3": {
+    "scr_odr3_pour_gunpowder": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "scr_odr3_blood_spurt": {
+      "looped": true,
+      "evolutions": ["FADE", "LOD", "angle"]
+    },
+    "scr_odr3_surgery_gunpowder": {
+      "looped": false,
+      "evolutions": ["Intensity", "LOD"]
+    },
+    "scr_odr3_surgery_heat": {
+      "looped": true,
+      "evolutions": []
+    }
+  },
+  "scr_player_camp": {
+    "ent_amb_campfire_dynamic": {
+      "looped": true,
+      "evolutions": ["Flames", "LOD", "Smoke", "camTopView", "embers", "fuel", "smolder", "under"]
+    },
+    "scr_camp_shooting_stars": {
+      "looped": false,
+      "evolutions": []
+    },
+    "scr_camp_shooting_stars_sp": {
+      "looped": false,
+      "evolutions": []
+    }
+  },
+  "scr_poisoned_well": {
+    "exp_smoke_trail": {
+      "looped": false,
+      "evolutions": ["LOD", "camTopView"]
+    },
+    "scr_poisoned_well_exp": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "scr_poisoned_well_fog": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "scr_poisoned_well_fog_anim": {
+      "looped": true,
+      "evolutions": ["bgDensity", "fgDensity"]
+    }
+  },
+  "scr_proc_homerobberies": {
+    "scr_homerob_chez_barn_fire": {
+      "looped": true,
+      "evolutions": ["LOD", "camForwardView", "camSideView", "fade"]
+    }
+  },
+  "scr_rcm_kitty": {
+    "scr_rcm_kitty_hayloft_dust": {
+      "looped": false,
+      "evolutions": []
+    }
+  },
+  "scr_rcm_native2": {
+    "exp_smoke_trail": {
+      "looped": false,
+      "evolutions": ["LOD", "camTopView"]
+    },
+    "scr_natv3_fire_oil_field": {
+      "looped": true,
+      "evolutions": ["LOD", "fade"]
+    },
+    "scr_natv3_fire_oil_plume": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "scr_natv2_derrick_exp": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "scr_natv3_generic_fire": {
+      "looped": true,
+      "evolutions": ["LOD", "Wind", "camForwardView", "camSideView", "volume"]
+    }
+  },
+  "scr_reverend1": {
+    "scr_rev_puke": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    }
+  },
+  "scr_rhodes": {
+    "exp_smoke_trail": {
+      "looped": false,
+      "evolutions": ["LOD", "camTopView"]
+    },
+    "scr_rho_bankwall_exp": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_amb_following_dust": {
+      "looped": false,
+      "evolutions": []
+    },
+    "scr_rho_bankwall_dust_cloud": {
+      "looped": false,
+      "evolutions": []
+    },
+    "ent_anim_falling_dust": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "exp_grd_smoke_post_small": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    }
+  },
+  "scr_sadie2": {
+    "scr_sad2_logwagon_dust": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_brk_door_lock": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "scr_sad2_liq_splash": {
+      "looped": false,
+      "evolutions": []
+    },
+    "scr_sad2_liq_pour": {
+      "looped": true,
+      "evolutions": ["height", "pour"]
+    }
+  },
+  "scr_short_update": {
+    "scr_campfire_smoke_distance": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    }
+  },
+  "scr_shows_fire_dancer": {
+    "scr_fire_dancer_disturb": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    }
+  },
+  "scr_smuggler1": {
+    "scr_smug_fog": {
+      "looped": true,
+      "evolutions": ["LOD", "fog"]
+    }
+  },
+  "scr_smuggler2": {
+    "exp_smoke_trail": {
+      "looped": false,
+      "evolutions": ["LOD", "camTopView"]
+    },
+    "scr_smg2_fort_exp_cannon": {
+      "looped": false,
+      "evolutions": []
+    },
+    "proj_cannon_trail": {
+      "looped": true,
+      "evolutions": ["LOD", "deadeye", "fade", "size"]
+    },
+    "muz_cannon_warship": {
+      "looped": false,
+      "evolutions": ["LOD", "camForwardView"]
+    },
+    "scr_smg2_fort_exp": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "scr_smg2_fort_exp_debris": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "scr_smg2_boat_impact": {
+      "looped": false,
+      "evolutions": []
+    },
+    "ent_amb_falling_debris": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "scr_smg2_boat_exp": {
+      "looped": false,
+      "evolutions": []
+    },
+    "exp_grd_smoke_post_small": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    }
+  },
+  "scr_std1": {
+    "scr_nbd1_exp_roof": {
+      "looped": false,
+      "evolutions": []
+    },
+    "scr_nbd1_exp_bankwall": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "exp_smoke_trail": {
+      "looped": false,
+      "evolutions": ["LOD", "camTopView"]
+    },
+    "scr_nbd1_smoke_02": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "scr_nbd1_exp_bankwall_impact": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "scr_nbd1_bankwall_fire_linger": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "scr_nbd1_smoke_01": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "scr_nbd1_smoke_chimney_rect": {
+      "looped": true,
+      "evolutions": []
+    },
+    "scr_nbd1_smoke_chimney": {
+      "looped": true,
+      "evolutions": ["LOD", "wind"]
+    },
+    "exp_grd_moonshine_trails_spawn": {
+      "looped": false,
+      "evolutions": []
+    },
+    "scr_nbd1_exp_bankwall_linger": {
+      "looped": true,
+      "evolutions": []
+    },
+    "scr_nbd1_smoke_pipe_main": {
+      "looped": true,
+      "evolutions": ["LOD", "Wind"]
+    },
+    "scr_nbd1_smoke_pipe_sub": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "scr_nbd1_smoke_chimney_split": {
+      "looped": true,
+      "evolutions": ["LOD", "Wind"]
+    },
+    "scr_nbd1_bankwall_smolder": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "scr_nbd1_exp_bankwall_fall_dust": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    }
+  },
+  "scr_train_robbery3": {
+    "scr_trn_exp_bridge": {
+      "looped": false,
+      "evolutions": []
+    },
+    "scr_trn_exp_bridge_landing": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "scr_trn3_water_splash_surface": {
+      "looped": true,
+      "evolutions": ["Depth", "LOD", "River"]
+    },
+    "scr_trn3_water_splashes": {
+      "looped": false,
+      "evolutions": ["Depth", "LOD", "River"]
+    }
+  },
+  "scr_train_robbery4": {
+    "ent_anim_trn4_train_coal": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "scr_trn4_train_slide": {
+      "looped": true,
+      "evolutions": []
+    },
+    "exp_smoke_trail": {
+      "looped": false,
+      "evolutions": ["LOD", "camTopView"]
+    },
+    "scr_trn4_train_smoke": {
+      "looped": false,
+      "evolutions": []
+    },
+    "scr_trn4_wall_dynamite": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_anim_trn4_train_impact": {
+      "looped": false,
+      "evolutions": ["LOD", "Sparks"]
+    },
+    "scr_trn4_ground_plume": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "scr_trn4_train_const_smoke": {
+      "looped": true,
+      "evolutions": []
+    },
+    "scr_trn4_train_exp": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "scr_trn4_train_smoke_loop": {
+      "looped": true,
+      "evolutions": []
+    },
+    "ent_exp_trn4_carriage_exp": {
+      "looped": false,
+      "evolutions": []
+    },
+    "exp_grd_smoke_post_small": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "scr_trainrob4_train_carriage_fire": {
+      "looped": true,
+      "evolutions": []
+    }
+  },
+  "scr_trelawny1": {
+    "scr_trelawny1_smoke": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    }
+  },
+  "scr_trelawny2": {
+    "scr_trl2_train_steam": {
+      "looped": true,
+      "evolutions": []
+    }
+  },
+  "scr_utopia1": {
+    "scr_utopia1_donkey_smoke": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    }
+  },
+  "scr_utopia2": {
+    "scr_utopia2_exp_ground": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "scr_utopia2_explosion_post": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "bul_decal_water": {
+      "looped": false,
+      "evolutions": ["LOD", "strength"]
+    },
+    "scr_utopia2_uw_silt": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "scr_utopia2_exp_post_splash": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "scr_utopia2_exp_decal_sp": {
+      "looped": false,
+      "evolutions": []
+    }
+  },
+  "scr_vantage_point": {
+    "scr_event_glint": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    }
+  },
+  "scr_vignette_javier_5": {
+    "ent_amb_rainbow_lg": {
+      "looped": true,
+      "evolutions": ["FadeIn", "FadeOut", "Loop"]
+    }
+  },
+  "scr_winter1": {
+    "scr_win1_cabin_roof_fall_embers": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "scr_winter1_cabin_fire_roof_fall": {
+      "looped": true,
+      "evolutions": ["LOD", "fade", "smoke dir", "smoke intensity"]
+    },
+    "scr_winter1_fog_cover": {
+      "looped": true,
+      "evolutions": ["fade"]
+    },
+    "scr_winter1_cabin_fire_roof": {
+      "looped": true,
+      "evolutions": ["LOD", "fade", "smoke dir", "smoke intensity"]
+    },
+    "ent_anim_falling_dust": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "scr_winter1_barn_snow": {
+      "looped": true,
+      "evolutions": ["LOD", "door"]
+    },
+    "ent_amb_falling_debris": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "ent_ray_snow_impact": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    },
+    "scr_winter1_cloud_density_anim": {
+      "looped": true,
+      "evolutions": ["fgDensity"]
+    },
+    "scr_winter1_cabin_fire": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "exp_grd_smoke_post_small": {
+      "looped": false,
+      "evolutions": ["LOD"]
+    }
+  },
+  "scr_winter2": {
+    "scr_winter2_snow_grab": {
+      "looped": false,
+      "evolutions": []
+    },
+    "scr_winter2_smoke": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "scr_blood_drips": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "scr_winter2_dislodged_ice": {
+      "looped": false,
+      "evolutions": []
+    }
+  },
+  "scr_winter4": {
+    "scr_wnt4_private_car_breach": {
+      "looped": false,
+      "evolutions": []
+    },
+    "proj_dynamite_trail": {
+      "looped": true,
+      "evolutions": ["LOD"]
+    },
+    "scr_winter4_horse_disturb_dust": {
+      "looped": true,
+      "evolutions": ["LOD", "speed", "temp", "wet"]
+    }
+  }
+}

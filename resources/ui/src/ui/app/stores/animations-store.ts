@@ -2,7 +2,6 @@ import { Socket } from 'socket.io-client';
 
 import { LoadResourceJson, emitClient, onClient, onClientCall } from '@lib/ui';
 
-// Store state interface matching the component's state
 interface AnimationsState {
   show: boolean;
   animations: Record<string, string[]>;
@@ -15,7 +14,6 @@ interface AnimationsState {
   blendOutSpeed: number;
 }
 
-// Animation flags enum for better type safety
 export enum AnimationFlag {
   REPEAT = 1,
   STOP_LAST_FRAME = 2,
@@ -35,7 +33,7 @@ export enum AnimationFlag {
   UNK_IS_ENTITY = 32768,
 }
 
-type StateListener = (state: AnimationsState) => void;
+type StateListener = () => void;
 
 class AnimationsStore {
   private static instance: AnimationsStore;
@@ -65,7 +63,6 @@ class AnimationsStore {
     return AnimationsStore.instance;
   }
 
-  // Initialize the store with socket connection
   initialize(socket: Socket<SocketOut.ToClient, SocketIn.FromClient>): void {
     if (this.initialized) {
       this.cleanup();
@@ -73,35 +70,28 @@ class AnimationsStore {
 
     this.socket = socket;
     this.initialized = true;
-
-    // Set up client event handlers
     this.setupClientHandlers();
-
-    // Load animations data
     this.loadAnimations();
   }
 
   private async loadAnimations(): Promise<void> {
     try {
       const animations = await LoadResourceJson('rdr3-shared', 'resources/animations.json');
-      this.updateState({ ...this.state, animations });
+      this.updateState({ animations });
     } catch (error) {
       console.error('Failed to load animations:', error);
     }
   }
 
   private setupClientHandlers(): void {
-    // Handle animations state updates from client
     onClient('animations.state', this.handleAnimationsState);
   }
 
-  // Handle animations state update from client
   private handleAnimationsState = (event: UI.Animations.Event): void => {
     if (!event) return;
-    this.updateState({ ...this.state, ...event });
+    this.updateState(event);
   };
 
-  // Play animation
   playAnimation(): void {
     emitClient('animations.play-anim', {
       dict: this.state.dict,
@@ -113,32 +103,26 @@ class AnimationsStore {
     });
   }
 
-  // Stop animation
   stopAnimation(): void {
     emitClient('animations.stop-anim', { entity: this.state.entity });
   }
 
-  // Set query for filtering animations
   setQuery(query: string): void {
-    this.updateState({ ...this.state, query });
+    this.updateState({ query });
   }
 
-  // Set animation dictionary
   setDict(dict: string): void {
-    this.updateState({ ...this.state, dict, clip: '' }); // Reset clip when dict changes
+    this.updateState({ dict, clip: '' });
   }
 
-  // Set animation clip
   setClip(clip: string): void {
-    this.updateState({ ...this.state, clip });
+    this.updateState({ clip });
   }
 
-  // Set animation flags
   setFlags(flags: number): void {
-    this.updateState({ ...this.state, flags });
+    this.updateState({ flags });
   }
 
-  // Update a specific flag
   updateFlag(flagValue: number, checked: boolean): void {
     let newFlags = this.state.flags;
     if (checked) {
@@ -149,22 +133,18 @@ class AnimationsStore {
     this.setFlags(newFlags);
   }
 
-  // Set entity
   setEntity(entity: number): void {
-    this.updateState({ ...this.state, entity });
+    this.updateState({ entity });
   }
 
-  // Set blend in speed
   setBlendInSpeed(speed: number): void {
-    this.updateState({ ...this.state, blendInSpeed: speed });
+    this.updateState({ blendInSpeed: speed });
   }
 
-  // Set blend out speed
   setBlendOutSpeed(speed: number): void {
-    this.updateState({ ...this.state, blendOutSpeed: speed });
+    this.updateState({ blendOutSpeed: speed });
   }
 
-  // Get filtered animations based on query
   getFilteredDictionaries(): string[] {
     if (!this.state.query) {
       return Object.keys(this.state.animations);
@@ -181,7 +161,6 @@ class AnimationsStore {
     });
   }
 
-  // Get clips for current dictionary
   getClips(): string[] {
     if (!this.state.dict || !this.state.animations[this.state.dict]) {
       return [];
@@ -189,7 +168,6 @@ class AnimationsStore {
     return this.state.animations[this.state.dict];
   }
 
-  // Get flags as formatted string
   getFlagsString(): string {
     const flagStrings: string[] = [];
 
@@ -245,7 +223,6 @@ class AnimationsStore {
     return flagStrings.join(' + ');
   }
 
-  // Get animation config as formatted string (for display)
   getAnimationConfigString(): string {
     return `{
     dict: '${this.state.dict}',
@@ -260,38 +237,30 @@ class AnimationsStore {
 }`;
   }
 
-  // Close animations UI
   close(): void {
-    this.updateState({ ...this.state, show: false });
+    this.updateState({ show: false });
   }
 
-  // Update state and notify listeners
-  private updateState(newState: AnimationsState): void {
-    this.state = newState;
-    this.listeners.forEach((listener) => listener(this.state));
+  private updateState(partial: Partial<AnimationsState>): void {
+    this.state = { ...this.state, ...partial };
+    this.listeners.forEach((listener) => listener());
   }
 
-  // Subscribe to state changes
-  subscribe(listener: StateListener): () => void {
+  subscribe = (listener: StateListener): (() => void) => {
     this.listeners.add(listener);
-    listener(this.state); // Call immediately with current state
-
     return () => {
       this.listeners.delete(listener);
     };
-  }
+  };
 
-  // Get current state
-  getState(): AnimationsState {
+  getState = (): AnimationsState => {
     return this.state;
-  }
+  };
 
-  // Check if a flag is set
   hasFlag(flag: AnimationFlag): boolean {
     return (this.state.flags & flag) !== 0;
   }
 
-  // Cleanup when store is destroyed
   cleanup(): void {
     this.listeners.clear();
     this.initialized = false;

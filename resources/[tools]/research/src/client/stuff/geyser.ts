@@ -2,6 +2,7 @@ import { PVGame, PVPrompt, PVTarget, PVWorld, addZone } from '@lib/client';
 import { Log } from '@lib/client/comms/ui';
 import { AnimFlag } from '@lib/flags';
 import { Delay } from '@lib/functions';
+import { Vector3 } from '@lib/math';
 
 let soundId: number;
 
@@ -23,6 +24,15 @@ on('onResourceStop', (resourceName: string) => {
       StopSound(crackpotSoundId);
       ReleaseSoundId(crackpotSoundId);
       PVWorld.stopFx('ptfx_crackpot');
+      PVWorld.stopFx('ptfx_test');
+      PVWorld.stopFx('ptfx_test_alt');
+      PVWorld.stopFx('bathing_foam_head');
+      PVWorld.stopFx('bathing_foam_torso');
+      PVWorld.stopFx('bathing_foam_l_upperarm');
+      PVWorld.stopFx('bathing_foam_l_forearm');
+      PVWorld.stopFx('bathing_foam_r_upperarm');
+      PVWorld.stopFx('bathing_foam_r_forearm');
+      PVWorld.stopFx('ptfx_test_all');
     }
 
     if (engineOneActive) {
@@ -330,19 +340,89 @@ RegisterCommand(
     PVWorld.stopFx('ptfx_test');
 
     const coords = PVGame.playerCoords(true);
-    // coords.x -= 1;
+    // cosnt coords = { x: 2520.91, y: 2301.47, z: 196.82 }
+    coords.x -= 1;
 
-    await PVWorld.startFxAtCoords(
+    const id = await PVWorld.startFxAtCoords(
       'ptfx_test',
-      false,
-      'scr_crackpot',
-      'scr_crackpot_rc_lightening',
-      // coords,
-      { x: 2520.91, y: 2301.47, z: 196.82 },
+      true,
+      'scr_winter1',
+      'scr_winter1_fog_cover',
+      coords,
       { x: 0, y: 0, z: 0 },
       1.0,
     );
+    Log('id', id);
+
+    /*
+    await PVWorld.startFxOnEntityBoneByName(
+      'bathing_foam_head',
+      true,
+      'scr_mg_bathing',
+      'scr_mg_bathing_foam_head',
+      PVGame.playerPed(),
+      'SKEL_HEAD',
+      { x: 0, y: 0, z: 0 },
+      { x: 0, y: 0, z: 0 },
+      0.4,
+    );
+    await PVWorld.startFxOnEntityBoneByName(
+      'bathing_foam_torso',
+      true,
+      'scr_mg_bathing',
+      'scr_mg_bathing_foam_torso',
+      PVGame.playerPed(),
+      'SKEL_SPINE2',
+      { x: 0, y: 0, z: 0 },
+      { x: 0, y: 0, z: 0 },
+      0.4,
+    );
+    await PVWorld.startFxOnEntityBoneByName(
+      'bathing_foam_l_upperarm',
+      true,
+      'scr_mg_bathing',
+      'scr_mg_bathing_foam_upperarm',
+      PVGame.playerPed(),
+      'SKEL_L_UPPERARM',
+      { x: 0, y: 0, z: 0 },
+      { x: 0, y: 0, z: 0 },
+      0.6,
+    );
+    await PVWorld.startFxOnEntityBoneByName(
+      'bathing_foam_l_forearm',
+      true,
+      'scr_mg_bathing',
+      'scr_mg_bathing_foam_forearm',
+      PVGame.playerPed(),
+      'SKEL_L_FOREARM',
+      { x: 0, y: 0, z: 0 },
+      { x: 0, y: 0, z: 0 },
+      0.5,
+    );
+    await PVWorld.startFxOnEntityBoneByName(
+      'bathing_foam_r_upperarm',
+      true,
+      'scr_mg_bathing',
+      'scr_mg_bathing_foam_upperarm',
+      PVGame.playerPed(),
+      'SKEL_R_UPPERARM',
+      { x: 0, y: 0, z: 0 },
+      { x: 0, y: 0, z: 0 },
+      0.6,
+    );
+    await PVWorld.startFxOnEntityBoneByName(
+      'bathing_foam_r_forearm',
+      true,
+      'scr_mg_bathing',
+      'scr_mg_bathing_foam_forearm',
+      PVGame.playerPed(),
+      'SKEL_R_FOREARM',
+      { x: 0, y: 0, z: 0 },
+      { x: 0, y: 0, z: 0 },
+      0.5,
+    );
     await Delay(250);
+    */
 
     // for (const loc of locs) {
     //   Log('Spawning at', loc);
@@ -362,7 +442,14 @@ RegisterCommand(
     //   await Delay(250);
     // }
 
-    // PVWorld.setFxEvolution('ptfx_test', 'scrub', 1.0);
+    // PVWorld.setFxEvolution('bathing_foam_head', 'scrub', 1);
+    // PVWorld.setFxEvolution('bathing_foam_torso', 'scrub', 1);
+    // PVWorld.setFxEvolution('bathing_foam_l_upperarm', 'scrub', 1);
+    // PVWorld.setFxEvolution('bathing_foam_l_forearm', 'scrub', 1);
+    // PVWorld.setFxEvolution('bathing_foam_r_upperarm', 'scrub', 1);
+    // PVWorld.setFxEvolution('bathing_foam_r_forearm', 'scrub', 1);
+
+    PVWorld.setFxEvolution('ptfx_test', 'fade', 0.25);
     // PVWorld.setFxEvolution('ptfx_test', 'density', 1.0);
     // PVWorld.setFxEvolution('ptfx_test', 'strength', 1.0);
     // PVWorld.setFxEvolution('ptfx_test', 'intensity', 1.0);
@@ -370,6 +457,13 @@ RegisterCommand(
     await Delay(60_000);
 
     PVWorld.stopFx('ptfx_test');
+    PVWorld.stopFx('ptfx_test_alt');
+    PVWorld.stopFx('bathing_foam_head');
+    PVWorld.stopFx('bathing_foam_torso');
+    PVWorld.stopFx('bathing_foam_l_upperarm');
+    PVWorld.stopFx('bathing_foam_l_forearm');
+    PVWorld.stopFx('bathing_foam_r_upperarm');
+    PVWorld.stopFx('bathing_foam_r_forearm');
   },
   false,
 );
@@ -401,3 +495,79 @@ RegisterCommand(
   },
   false,
 );
+
+/*
+
+type PtfxData = {
+  looped: boolean;
+  evolutions?: string[];
+};
+
+type PtfxJson = Record<string, Record<string, PtfxData>>;
+
+*/
+
+const startLoopedFx = async (dict: string, fxName: string, coords: Vector3) => {
+  await PVWorld.startFxAtCoords('ptfx_test_all', true, dict, fxName, coords, { x: 0, y: 0, z: 0 }, 1.0);
+};
+
+const startFx = async (dict: string, fxName: string, coords: Vector3) => {
+  await PVWorld.startFxAtCoords('ptfx_test_all', false, dict, fxName, coords, { x: 0, y: 0, z: 0 }, 1.0);
+};
+
+const stopLoopedFx = async () => {
+  PVWorld.stopFx('ptfx_test_all');
+};
+
+let ptfxAllActive = false;
+RegisterCommand(
+  'ptfx_test_all',
+  async (source: number, args: any[], rawCommand: string) => {
+    // Log({ source, args, rawCommand });
+
+    if (ptfxAllActive) return;
+    ptfxAllActive = true;
+
+    const coords = Vector3.fromObject(PVGame.playerCoords(true));
+    // const coords = Vector3.fromArray([225.375092, 1889.395142, 205.78125]);
+    const forward = Vector3.fromArray(GetEntityForwardVector(PVGame.playerPed())).multiplyScalar(2);
+    coords.add(forward);
+
+    const ptfxJson = LoadResourceFile('rdr3-shared', `resources/particle-fx.json`);
+    const ptfx = JSON.parse(ptfxJson) as PtfxJson;
+    for (const [dict, fxs] of Object.entries(ptfx)) {
+      if (!dict.startsWith('scr_winter1')) continue;
+      for (const [fxName, fxData] of Object.entries(fxs)) {
+        Log(`Starting FX: ${dict} - ${fxName}`);
+
+        if (fxData.looped) {
+          await startLoopedFx(dict, fxName, coords);
+        } else {
+          await startFx(dict, fxName, coords);
+        }
+        await Delay(1_000);
+        // Set all evolutions to max with a delay and reducing back to 0
+        if (fxData.evolutions) {
+          for (const evolution of fxData.evolutions) {
+            if (evolution === 'LOD') continue;
+            Log(` - Setting evolution: ${evolution} to 1.0`);
+            PVWorld.setFxEvolution('ptfx_looped_test', evolution, 1.0);
+            await Delay(5_000);
+            Log(` - Setting evolution: ${evolution} to 0.0`);
+            PVWorld.setFxEvolution('ptfx_looped_test', evolution, 0.0);
+            await Delay(1_000);
+          }
+        }
+        await Delay(2_000);
+        await stopLoopedFx();
+        await Delay(1_000);
+      }
+    }
+
+    Log('Done');
+    ptfxAllActive = false;
+  },
+  false,
+);
+
+// ExecuteCommand('ptfx_test_all');

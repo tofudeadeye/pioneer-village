@@ -77,7 +77,7 @@ export class PtfxManager {
         false,
       );
     } else {
-      ptfxId = StartParticleFxNonLoopedAtCoord(
+      StartParticleFxNonLoopedAtCoord(
         name,
         coords.x,
         coords.y,
@@ -92,18 +92,246 @@ export class PtfxManager {
       );
     }
 
-    this.ptfxs.set(id, { id: ptfxId, looped });
+    if (ptfxId) {
+      this.ptfxs.set(id, { id: ptfxId, looped });
+    }
 
     return ptfxId;
   }
 
-  stopFx(id: string) {
+  // int StartParticleFxLoopedOnEntity(string effectName, Entity entity, float xOffset, float yOffset, float zOffset, float xRot, float yRot, float zRot, float scale, bool xAxis, bool yAxis, bool zAxis);
+  // GRAPHICS::START_PARTICLE_FX_LOOPED_ON_ENTITY("scr_gen_shiny_bling", sLocal_56[1 /*12*/].f_8, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, true, false, false);
+  // BOOL StartParticleFxNonLoopedOnEntity(string effectName, Entity entity, float offsetX, float offsetY, float offsetZ, float rotX, float rotY, float rotZ, float scale, bool axisX, bool axisY, bool axisZ);
+  // GRAPHICS::START_PARTICLE_FX_NON_LOOPED_ON_ENTITY("scr_sad2_logwagon_dust", bLocal_2402, vLocal_2613, 0.0f, 0.0f, 0.0f, 1.0f, false, false, false);
+
+  async startFxOnEntity(
+    id: string,
+    looped: boolean,
+    dict: string,
+    name: string,
+    entity: number,
+    offset: Vector3Format = { x: 0, y: 0, z: 0 },
+    rot: Vector3Format = { x: 0, y: 0, z: 0 },
+    scale: number = 1.0,
+  ): Promise<number> {
+    if (this.ptfxs.has(id)) {
+      return this.ptfxs.get(id)!.id;
+    }
+    // Log('Starting PTFX on entity', id, dict, name, entity, offset, rot, scale, looped);
+
+    let ptfxId = 0;
+    UseParticleFxAsset(dict);
+    if (looped) {
+      ptfxId = StartParticleFxLoopedOnEntity(
+        name,
+        entity,
+        offset.x,
+        offset.y,
+        offset.z,
+        rot.x,
+        rot.y,
+        rot.z,
+        scale,
+        false,
+        false,
+        false,
+      );
+    } else {
+      StartParticleFxNonLoopedOnEntity(
+        name,
+        entity,
+        offset.x,
+        offset.y,
+        offset.z,
+        rot.x,
+        rot.y,
+        rot.z,
+        scale,
+        false,
+        false,
+        false,
+      );
+
+      Log('ptfxId', ptfxId);
+    }
+
+    if (ptfxId) {
+      this.ptfxs.set(id, { id: ptfxId, looped });
+    }
+
+    return ptfxId;
+  }
+
+  async startFxOnEntityBone(
+    id: string,
+    looped: boolean,
+    dict: string,
+    name: string,
+    entity: number,
+    boneIndex: number,
+    offset: Vector3Format = { x: 0, y: 0, z: 0 },
+    rot: Vector3Format = { x: 0, y: 0, z: 0 },
+    scale: number = 1.0,
+  ): Promise<number> {
+    if (this.ptfxs.has(id)) {
+      return this.ptfxs.get(id)!.id;
+    }
+    // Log('Starting PTFX on entity bone', id, dict, name, entity, offset, rot, boneIndex, scale, looped);
+
+    let ptfxId = 0;
+    UseParticleFxAsset(dict);
+    if (looped) {
+      ptfxId = StartParticleFxLoopedOnEntityBone(
+        name,
+        entity,
+        offset.x,
+        offset.y,
+        offset.z,
+        rot.x,
+        rot.y,
+        rot.z,
+        boneIndex,
+        scale,
+        false,
+        false,
+        false,
+      );
+    } else {
+      StartParticleFxNonLoopedOnPedBone(
+        name,
+        entity,
+        offset.x,
+        offset.y,
+        offset.z,
+        rot.x,
+        rot.y,
+        rot.z,
+        boneIndex,
+        scale,
+        false,
+        false,
+        false,
+      );
+
+      Log('ptfxId', ptfxId);
+    }
+
+    if (ptfxId) {
+      this.ptfxs.set(id, { id: ptfxId, looped });
+    }
+
+    return ptfxId;
+  }
+
+  async startFxOnEntityBoneByName(
+    id: string,
+    looped: boolean,
+    dict: string,
+    name: string,
+    entity: number,
+    boneName: string,
+    offset: Vector3Format = { x: 0, y: 0, z: 0 },
+    rot: Vector3Format = { x: 0, y: 0, z: 0 },
+    scale: number = 1.0,
+  ): Promise<number> {
+    const boneIndex = GetEntityBoneIndexByName(entity, boneName);
+    Log('boneIndex', boneIndex);
+    if (boneIndex === -1) {
+      return 0;
+    }
+    return this.startFxOnEntityBone(id, looped, dict, name, entity, boneIndex, offset, rot, scale);
+  }
+
+  async startFxOnPedBone(
+    id: string,
+    looped: boolean,
+    dict: string,
+    name: string,
+    ped: number,
+    boneIndex: number,
+    offset: Vector3Format = { x: 0, y: 0, z: 0 },
+    rot: Vector3Format = { x: 0, y: 0, z: 0 },
+    scale: number = 1.0,
+  ): Promise<number> {
+    if (this.ptfxs.has(id)) {
+      return this.ptfxs.get(id)!.id;
+    }
+    // Log('Starting PTFX on ped bone', id, dict, name, ped, offset, rot, boneIndex, scale, looped);
+
+    let ptfxId = 0;
+    UseParticleFxAsset(dict);
+    if (looped) {
+      ptfxId = StartParticleFxLoopedOnPedBone(
+        name,
+        ped,
+        offset.x,
+        offset.y,
+        offset.z,
+        rot.x,
+        rot.y,
+        rot.z,
+        boneIndex,
+        scale,
+        false,
+        false,
+        false,
+      );
+    } else {
+      // _START_PARTICLE_FX_NON_LOOPED_ON_PED_BONE_2
+      Citizen.invokeNative(
+        '0xC695870B8A149B96',
+        name,
+        ped,
+        offset.x,
+        offset.y,
+        offset.z,
+        rot.x,
+        rot.y,
+        rot.z,
+        boneIndex,
+        scale,
+        false,
+        false,
+        false,
+      );
+
+      Log('ptfxId', ptfxId);
+    }
+
+    if (ptfxId) {
+      this.ptfxs.set(id, { id: ptfxId, looped });
+    }
+
+    return ptfxId;
+  }
+
+  async startFxOnPedBoneByName(
+    id: string,
+    looped: boolean,
+    dict: string,
+    name: string,
+    ped: number,
+    boneName: string,
+    offset: Vector3Format = { x: 0, y: 0, z: 0 },
+    rot: Vector3Format = { x: 0, y: 0, z: 0 },
+    scale: number = 1.0,
+  ): Promise<number> {
+    const boneIndex = GetEntityBoneIndexByName(ped, boneName);
+    Log('boneIndex', boneIndex);
+    if (boneIndex === -1) {
+      return 0;
+    }
+    return this.startFxOnPedBone(id, looped, dict, name, ped, boneIndex, offset, rot, scale);
+  }
+
+  stopFx(id: string, removeNow: boolean = true) {
     const ptfx = this.ptfxs.get(id);
     if (!ptfx) {
       return;
     }
     if (ptfx.looped && DoesParticleFxLoopedExist(ptfx.id)) {
       Log('Stopping PTFX', id, ptfx.id);
+      if (removeNow) RemoveParticleFx(ptfx.id, false);
       StopParticleFxLooped(ptfx.id, false);
     }
     this.ptfxs.delete(id);

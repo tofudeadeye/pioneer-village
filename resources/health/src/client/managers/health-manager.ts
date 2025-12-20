@@ -298,6 +298,11 @@ export class HealthManager {
       this.internalTemperature = this.internalTemperature - warmthDelta * TempChangPerSecond * delta;
     }
 
+    if (isHot) {
+      const sweatLevel = clamp((this.internalTemperature - 37) / 5.0, 0, 1);
+      SetPedSweat(PlayerPedId(), sweatLevel);
+    }
+
     if (!this.isCold && isCold) {
       emit('health:client:warmthSpeedLimit', 2);
     } else if (this.isCold && !isCold) {

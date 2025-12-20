@@ -1,21 +1,12 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useMemo, useSyncExternalStore } from 'react';
 
 import { useEscapeKey } from '../../hooks/use-game-events';
 import animationsStore from '../../stores/animations-store';
 import styles from './styles.module.scss';
 
 export default function Animations() {
-  const [state, setState] = useState(animationsStore.getState());
+  const state = useSyncExternalStore(animationsStore.subscribe, animationsStore.getState);
 
-  useEffect(() => {
-    const unsubscribe = animationsStore.subscribe(setState);
-
-    return () => {
-      unsubscribe();
-    };
-  }, []);
-
-  // Handle escape key
   const onEscape = useCallback(() => {
     animationsStore.close();
   }, []);
@@ -59,10 +50,62 @@ export default function Animations() {
     animationsStore.stopAnimation();
   };
 
-  const filteredDictionaries = animationsStore.getFilteredDictionaries();
-  const clips = animationsStore.getClips();
-  const flagsString = animationsStore.getFlagsString();
-  const animationConfigString = animationsStore.getAnimationConfigString();
+  // Derive from state, not store methods
+  const hasFlag = (flag: number) => (state.flags & flag) !== 0;
+
+  const filteredDictionaries = useMemo(() => {
+    if (!state.query) {
+      return Object.keys(state.animations);
+    }
+    const terms = state.query.toLowerCase().split(' ');
+    return Object.keys(state.animations).filter((animationDict) => {
+      return terms.every((term) => {
+        if (term.startsWith('!')) {
+          return !animationDict.toLowerCase().includes(term.substring(1));
+        }
+        return animationDict.toLowerCase().includes(term);
+      });
+    });
+  }, [state.query, state.animations]);
+
+  const clips = useMemo(() => {
+    if (!state.dict || !state.animations[state.dict]) {
+      return [];
+    }
+    return state.animations[state.dict];
+  }, [state.dict, state.animations]);
+
+  const animationConfigString = useMemo(() => {
+    const flagStrings: string[] = [];
+    if (state.flags & 1) flagStrings.push('AnimFlag.REPEAT');
+    if (state.flags & 2) flagStrings.push('AnimFlag.STOP_LAST_FRAME');
+    if (state.flags & 4) flagStrings.push('AnimFlag.UNK_4');
+    if (state.flags & 8) flagStrings.push('AnimFlag.UPPERBODY');
+    if (state.flags & 16) flagStrings.push('AnimFlag.ENABLE_PLAYER_CONTROL');
+    if (state.flags & 32) flagStrings.push('AnimFlag.CANCELABLE');
+    if (state.flags & 64) flagStrings.push('AnimFlag.UNK_64');
+    if (state.flags & 128) flagStrings.push('AnimFlag.OFFSET_POSITION');
+    if (state.flags & 256) flagStrings.push('AnimFlag.OFFSET_POSITION_ENTITY');
+    if (state.flags & 512) flagStrings.push('AnimFlag.UNK_512');
+    if (state.flags & 1024) flagStrings.push('AnimFlag.UNK_1024');
+    if (state.flags & 2048) flagStrings.push('AnimFlag.UNK_2048');
+    if (state.flags & 4096) flagStrings.push('AnimFlag.UNK_4096');
+    if (state.flags & 8192) flagStrings.push('AnimFlag.UNK_8192');
+    if (state.flags & 16384) flagStrings.push('AnimFlag.UNK_16384');
+    if (state.flags & 32768) flagStrings.push('AnimFlag.UNK_IS_ENTITY');
+
+    return `{
+    dict: '${state.dict}',
+    anim: '${state.clip}',${
+      state.flags !== 0
+        ? `
+    flags: ${flagStrings.join(' + ')},`
+        : ''
+    }
+    blendInSpeed: ${state.blendInSpeed},
+    blendOutSpeed: ${state.blendOutSpeed},
+}`;
+  }, [state.dict, state.clip, state.flags, state.blendInSpeed, state.blendOutSpeed]);
 
   return (
     state.show && (
@@ -102,25 +145,25 @@ export default function Animations() {
                 </td>
                 <td>
                   <label>
-                    <input type="checkbox" value={1} checked={animationsStore.hasFlag(1)} onChange={updateFlag} />
+                    <input type="checkbox" value={1} checked={hasFlag(1)} onChange={updateFlag} />
                     <span>Repeat</span>
                   </label>
                 </td>
                 <td>
                   <label>
-                    <input type="checkbox" value={2} checked={animationsStore.hasFlag(2)} onChange={updateFlag} />
+                    <input type="checkbox" value={2} checked={hasFlag(2)} onChange={updateFlag} />
                     <span>Stop Last Frame</span>
                   </label>
                 </td>
                 <td>
                   <label>
-                    <input type="checkbox" value={4} checked={animationsStore.hasFlag(4)} onChange={updateFlag} />
+                    <input type="checkbox" value={4} checked={hasFlag(4)} onChange={updateFlag} />
                     <span>Unknown 4</span>
                   </label>
                 </td>
                 <td>
                   <label>
-                    <input type="checkbox" value={8} checked={animationsStore.hasFlag(8)} onChange={updateFlag} />
+                    <input type="checkbox" value={8} checked={hasFlag(8)} onChange={updateFlag} />
                     <span>UpperBody</span>
                   </label>
                 </td>
@@ -128,31 +171,31 @@ export default function Animations() {
               <tr>
                 <td>
                   <label>
-                    <input type="checkbox" value={16} checked={animationsStore.hasFlag(16)} onChange={updateFlag} />
+                    <input type="checkbox" value={16} checked={hasFlag(16)} onChange={updateFlag} />
                     <span>Enable Player Control</span>
                   </label>
                 </td>
                 <td>
                   <label>
-                    <input type="checkbox" value={32} checked={animationsStore.hasFlag(32)} onChange={updateFlag} />
+                    <input type="checkbox" value={32} checked={hasFlag(32)} onChange={updateFlag} />
                     <span>Cancelable</span>
                   </label>
                 </td>
                 <td>
                   <label>
-                    <input type="checkbox" value={64} checked={animationsStore.hasFlag(64)} onChange={updateFlag} />
+                    <input type="checkbox" value={64} checked={hasFlag(64)} onChange={updateFlag} />
                     <span>Unknown 64</span>
                   </label>
                 </td>
                 <td>
                   <label>
-                    <input type="checkbox" value={128} checked={animationsStore.hasFlag(128)} onChange={updateFlag} />
+                    <input type="checkbox" value={128} checked={hasFlag(128)} onChange={updateFlag} />
                     <span>Offset Position</span>
                   </label>
                 </td>
                 <td>
                   <label>
-                    <input type="checkbox" value={256} checked={animationsStore.hasFlag(256)} onChange={updateFlag} />
+                    <input type="checkbox" value={256} checked={hasFlag(256)} onChange={updateFlag} />
                     <span>Offset Position Entity</span>
                   </label>
                 </td>
@@ -160,31 +203,31 @@ export default function Animations() {
               <tr>
                 <td>
                   <label>
-                    <input type="checkbox" value={512} checked={animationsStore.hasFlag(512)} onChange={updateFlag} />
+                    <input type="checkbox" value={512} checked={hasFlag(512)} onChange={updateFlag} />
                     <span>Unk 512</span>
                   </label>
                 </td>
                 <td>
                   <label>
-                    <input type="checkbox" value={1024} checked={animationsStore.hasFlag(1024)} onChange={updateFlag} />
+                    <input type="checkbox" value={1024} checked={hasFlag(1024)} onChange={updateFlag} />
                     <span>Unk 1024</span>
                   </label>
                 </td>
                 <td>
                   <label>
-                    <input type="checkbox" value={2048} checked={animationsStore.hasFlag(2048)} onChange={updateFlag} />
+                    <input type="checkbox" value={2048} checked={hasFlag(2048)} onChange={updateFlag} />
                     <span>Unk 2048</span>
                   </label>
                 </td>
                 <td>
                   <label>
-                    <input type="checkbox" value={4096} checked={animationsStore.hasFlag(4096)} onChange={updateFlag} />
+                    <input type="checkbox" value={4096} checked={hasFlag(4096)} onChange={updateFlag} />
                     <span>Unk 4096</span>
                   </label>
                 </td>
                 <td>
                   <label>
-                    <input type="checkbox" value={8192} checked={animationsStore.hasFlag(8192)} onChange={updateFlag} />
+                    <input type="checkbox" value={8192} checked={hasFlag(8192)} onChange={updateFlag} />
                     <span>Unk 8192</span>
                   </label>
                 </td>
@@ -192,23 +235,13 @@ export default function Animations() {
               <tr>
                 <td>
                   <label>
-                    <input
-                      type="checkbox"
-                      value={16384}
-                      checked={animationsStore.hasFlag(16384)}
-                      onChange={updateFlag}
-                    />
+                    <input type="checkbox" value={16384} checked={hasFlag(16384)} onChange={updateFlag} />
                     <span>Unk 16384</span>
                   </label>
                 </td>
                 <td>
                   <label>
-                    <input
-                      type="checkbox"
-                      value={32768}
-                      checked={animationsStore.hasFlag(32768)}
-                      onChange={updateFlag}
-                    />
+                    <input type="checkbox" value={32768} checked={hasFlag(32768)} onChange={updateFlag} />
                     <span>Unknown Is Entity</span>
                   </label>
                 </td>

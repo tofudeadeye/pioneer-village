@@ -32,6 +32,7 @@ const registerTargets = async () => {
       },
     },
   });
+
   PVTarget.AddTarget({
     id: 'stable::horse_drink',
     type: 'flag',
@@ -50,6 +51,31 @@ const registerTargets = async () => {
       throttle: 1_000,
       isEnabled(data) {
         return GetVehicleDraftHorseIsAttachedTo(data.entity) === 0 && IsEntityInWater(data.entity);
+      },
+    },
+  });
+
+  PVTarget.AddTarget({
+    id: 'stable::pelt_remove',
+    type: 'flag',
+    group: ['isHorse'],
+    data: [
+      {
+        id: 'pelt_remove',
+        label: 'Remove Pelt',
+        icon: 'paw',
+        event: 'stable:client:remove-pelt',
+        parameters: {},
+      },
+    ],
+    options: {
+      distance: 3.0,
+      throttle: 1_000,
+      isEnabled(data) {
+        const horseState = Entity(data.entity).state;
+        const horsePelts = horseState.pelts || [];
+
+        return horsePelts.length > 0;
       },
     },
   });

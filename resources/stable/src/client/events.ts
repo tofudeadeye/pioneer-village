@@ -7,12 +7,18 @@ import { Vector3 } from '@lib/math';
 
 import StableData from '../shared/data/stableData';
 import { ZonePrefix } from './config';
+import peltController from './controllers/pelt-controller';
 import stableController from './controllers/stable-controller';
 
 on('stable:client:lead', (pEntity: number, pArgs: Record<string, any>) => {
   Log('stable:client:lead', pEntity, pArgs);
   ClearPedTasks(pEntity, false, false);
   TaskLeadHorse(PVGame.playerPed(), pEntity);
+});
+
+on('stable:client:remove-pelt', (pEntity: number, pArgs: Record<string, any>) => {
+  Log('stable:client:remove-pelt', pEntity, pArgs);
+  peltController.removePelt(pEntity);
 });
 
 on('stable:client:stable-horse', (pEntity: number, pArgs: Record<string, any>) => {
@@ -128,13 +134,6 @@ on('stable:client:detach', async (pEntity: number, pArgs: Record<string, any>) =
   }
 });
 
-async function getNetworkControlOfEntity(entity: number): Promise<void> {
-  do {
-    NetworkRequestControlOfNetworkId(entity);
-    await Delay(5);
-  } while (!NetworkHasControlOfNetworkId(entity));
-}
-
 on('stable:client:attach', async (pEntity: number, pArgs: Record<string, any>) => {
   Log('stable:client:attach', pEntity, pArgs);
 
@@ -164,8 +163,8 @@ on('stable:client:attach', async (pEntity: number, pArgs: Record<string, any>) =
       const horseNetId = NetworkGetNetworkIdFromEntity(pEntity);
       const wagonNetId = NetworkGetNetworkIdFromEntity(wagon);
       Log(`Requesting network control of horse ${pEntity} (${horseNetId}) and wagon ${wagon} (${wagonNetId})`);
-      await getNetworkControlOfEntity(horseNetId);
-      await getNetworkControlOfEntity(wagonNetId);
+      await PVGame.getNetworkControlOfEntity(horseNetId);
+      await PVGame.getNetworkControlOfEntity(wagonNetId);
       Log(`Got network control of horse ${pEntity} and wagon ${wagon}`);
       SetPedConfigFlag(pEntity, PedConfigFlag.CanActivateRagdollWhenVehicleUpsideDown, false);
       SetPedConfigFlag(pEntity, PedConfigFlag.CantWitnessCrimes, true);
@@ -180,6 +179,7 @@ on('stable:client:attach', async (pEntity: number, pArgs: Record<string, any>) =
 });
 
 PVEvents.register('EVENT_PED_WHISTLE', (data) => {
+  Log('EVENT_PED_WHISTLE', data);
   const playerPed = PlayerPedId();
 
   if (data._0 !== playerPed) {

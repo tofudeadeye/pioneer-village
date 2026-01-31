@@ -6,10 +6,13 @@ import { lerp } from '@lib/math';
 import HorseExpressions from '../shared/data/horse-expressions';
 import { DNA } from '../shared/dna';
 import './classes/horse-genetics';
+import peltController from './controllers/pelt-controller';
 import stableController from './controllers/stable-controller';
 import './events';
 import './targets';
 import './zones';
+
+peltController;
 
 async function spawnChildHorse(child: DNA, model: string | number) {
   // const model = model1;

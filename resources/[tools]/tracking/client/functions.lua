@@ -185,7 +185,8 @@ end
 function lerp(a,b,t) return a * (1-t) + b * t end
 
 function DrawItemInfo(entity)
-    local pCoords = GetEntityCoords(PlayerPedId())
+    local playerPed = PlayerPedId()
+    local pCoords = GetEntityCoords(playerPed)
     local eCoords = GetEntityCoords(entity)
     local eHeading = GetEntityHeading(entity)
     local eDistance = #(pCoords - eCoords)
@@ -200,7 +201,12 @@ function DrawItemInfo(entity)
     else
         str = str .. " | Model: " .. tostring(model_hash) .. "\n"
         str = str .. model_name .. "\n"
+
+        if model_name:match("^W_") or model_name:match("^S_INTERACT_LANTERN") then
+            return
+        end
     end
+
     str = str .. "Visible: " .. tostring(Citizen.InvokeNative(0xC8CCDB712FBCBA92, entity)) .. "\n"
     str = str .. "Networked: " .. tostring(NetworkGetEntityIsNetworked(entity))
     if NetworkGetEntityIsNetworked(entity) then
@@ -240,7 +246,21 @@ function DrawItemInfo(entity)
          str = str .. "\n" .. HASH_PROVISIONS[provision_hash]
      end
 
+    local attachedTo = GetEntityAttachedTo(entity)
+    if attachedTo then
+        if model_name then
+            if model_name:match("^W_") or model_name:match("^S_INTERACT_LANTERN") then
+                return
+            end
+        end
+        str = str .. "\nAttached To: " .. tostring(attachedTo)
+    end
+
     str = str .. "\n" .. "Mission Entity: " ..tostring(Citizen.InvokeNative(0x88AD6CC10D8D35B2, entity))
+
+    local unknown_value = Citizen.InvokeNative(0xB16C780C51E51E2B, entity, Citizen.ReturnResultAnyway(), Citizen.ResultAsInteger())
+
+    str = str .. "\n" .. "Unknown Value: " ..tostring(unknown_value)
 
     local textSize = lerp(MinTextSize, MaxTextSize, (DrawDistance - eDistance) / DrawDistance)
     local textAlpha = lerp(MinTextAlpha, MaxTextAlpha, (DrawDistance - eDistance) / DrawDistance)

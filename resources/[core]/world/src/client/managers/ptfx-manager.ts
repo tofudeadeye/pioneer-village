@@ -1,4 +1,6 @@
+import { PVGame } from '@lib/client';
 import { Log } from '@lib/client/comms/ui';
+import { Vector3 } from '@lib/math';
 
 type PtfxInfo = {
   id: number;
@@ -58,6 +60,13 @@ export class PtfxManager {
       return this.ptfxs.get(id)!.id;
     }
     // Log('Starting PTFX', id, dict, name, coords, rot, scale, looped);
+
+    const playerCoords = PVGame.playerCoords();
+    const distance = Vector3.fromObject(coords).getDistance(playerCoords);
+    if (distance > 500) {
+      Log('PTFX too far away, not starting', id, distance);
+      return 0;
+    }
 
     let ptfxId = 0;
     UseParticleFxAsset(dict);

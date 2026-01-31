@@ -211,7 +211,7 @@ class StableController {
     await Delay(500);
     SetPedToRagdoll(foalPed, 1000, 3000, 0, false, false, false);
 
-    // foalHorse.save();
+    foalHorse.save();
     Log('Foal born', foalHorse);
   }
 
@@ -418,7 +418,7 @@ class StableController {
       horse.save();
 
       if (horse.age > 3) {
-        SetPedConfigFlag(horsePed, PedConfigFlag.Unridable, false);
+        SetPedConfigFlag(horsePed, PedConfigFlag.CannotBeMounted, false);
       }
     }
 
@@ -426,6 +426,8 @@ class StableController {
   }
 
   makeHorseActiveMount(horsePed: number): void {
+    SetPedRelationshipGroupHash(horsePed, GetPedRelationshipGroupHash(horsePed));
+    SetPedOwnsAnimal(PlayerPedId(), horsePed, false);
     SetPlayerOwnsMount(PlayerPedId(), horsePed);
     // SetPedActivePlayerHorse(PlayerId(), horsePed);
     SetPedAsSaddleHorseForPlayer(PlayerId(), horsePed);
@@ -480,6 +482,7 @@ class StableController {
 
     // Log('Horses', this._horses.size);
 
+    // TODO: Guide player towards closest horse if not in range.
     for (const horse of this._horses.values()) {
       if (!horse.stable) {
         const horseCoords = new Vector3(horse.lastX, horse.lastY, horse.lastZ);
@@ -522,12 +525,22 @@ class StableController {
     this._unstabledHorsePeds.add(horsePed);
 
     const horseId = DecorGetInt(horsePed, 'horseId');
-    Entity(horsePed).state.set('horseId', horseId, true);
+    if (!horseId) return;
+    const horseState = Entity(horsePed).state;
+    horseState.set('horseId', horseId, true);
     Log(`Entity(${horsePed}).state.set('horseId', ${horseId}, true);`);
+
+    const horse = this.getHorseById(horseId);
+    if (horse) {
+      horseState.set('pelts', horse.pelts, true);
+      this.setupHorsePelts(horsePed);
+    }
 
     if (this.isHorsePregnant(horseId)) {
       Entity(horsePed).state.set('pregnant', true, true);
     }
+
+    this.makeHorseActiveMount(horsePed);
   }
 
   setHorseBlip(horsePed: number, horse: Horse): void {
@@ -608,8 +621,6 @@ class StableController {
     }
 
     await Delay(50);
-    // HORSE_EQUIPMENT_MALE_GENITALS
-    // HORSE_EQUIPMENT_FEMALE_GENITALS
     await Delay(1);
     Citizen.invokeNative('0x704c908e9c405136', horsePed); // FIX_OUTFIT
 
@@ -684,8 +695,8 @@ class StableController {
     // Citizen.invokeNative('0xD2CB0FB0FDCB473D', gameManager.playerId, horsePed) // SetPedAsSaddleHorseForPlayer
     // Citizen.invokeNative('0xE6D4E435B56D5BD0', gameManager.playerId, horsePed) // SetPlayerOwnsMount
     SetPedRelationshipGroupHash(horsePed, GetPedRelationshipGroupHash(horsePed));
-    //SetPedOwnsAnimal
-    Citizen.invokeNative('0x931B241409216C1F', playerPed, horsePed);
+    SetPedOwnsAnimal(playerPed, horsePed, false);
+    SetPlayerOwnsMount(PlayerId(), horsePed);
 
     if (options.local) {
       NetworkSetEntityOnlyExistsForParticipants(horsePed, true);
@@ -703,15 +714,55 @@ class StableController {
 
     // this.entitySetHorse(horsePed, horse);
 
+    const horseState = Entity(horsePed).state;
+
     Log(`Entity(${horsePed}).state.set('horseId', ${horse.id}, true);`);
-    Entity(horsePed).state.set('horseId', horse.id, true);
+    horseState.set('horseId', horse.id, true);
     DecorSetInt(horsePed, 'horseId', horse.id);
 
     SetEntityVisible(horsePed, true);
 
     this.setHorseBlip(horsePed, horse);
 
+    horseState.set('pelts', horse.pelts, true);
+    if (options.local) {
+      this.setupHorsePeltsAlt(horsePed, horse.pelts);
+    } else {
+      this.setupHorsePelts(horsePed);
+    }
+
     return horsePed;
+  }
+
+  setupHorsePelts(horsePed: number) {
+    const horseState = Entity(horsePed).state;
+    if (!horseState.pelts) {
+      Log('No pelts found for horsePed', horsePed);
+      return;
+    }
+    for (let n = 3; n--; ) {
+      const pelt = GetPeltFromHorse(horsePed, n);
+      if (pelt) {
+        ClearPeltFromHorse(horsePed, pelt);
+      }
+    }
+
+    for (const [provision, texture] of horseState.pelts.slice(-3)) {
+      Citizen.invokeNative('0xc412aa1c73111fe0', horsePed, provision, texture, 0, 0);
+    }
+  }
+
+  setupHorsePeltsAlt(horsePed: number, pelts: [number, number][]) {
+    for (let n = 3; n--; ) {
+      const pelt = GetPeltFromHorse(horsePed, n);
+      if (pelt) {
+        ClearPeltFromHorse(horsePed, pelt);
+      }
+    }
+
+    for (const [provision, texture] of pelts.slice(-3)) {
+      Citizen.invokeNative('0xc412aa1c73111fe0', horsePed, provision, texture, 0, 0);
+    }
   }
 
   async horsePedLoadDNA(horsePed: number, dna: DNA, age: number): Promise<void> {
@@ -832,4 +883,6 @@ class StableController {
   }
 }
 
-export default StableController.getInstance();
+const stableController = StableController.getInstance();
+
+export default stableController;

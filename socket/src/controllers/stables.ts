@@ -28,6 +28,7 @@ export default () => {
           model: drizzleHorse.model,
           gender: drizzleHorse.gender,
           age: drizzleHorse.age,
+          pelts: JSON.parse(JSON.stringify(drizzleHorse.pelts || [])),
           weight: Number(drizzleHorse.weight || '0'),
           food: Number(drizzleHorse.food || '0'),
           water: Number(drizzleHorse.water || '0'),

@@ -14,6 +14,7 @@ export default class Horse {
   _model: number;
   _gender: 'MALE' | 'FEMALE' | 'OTHER';
   _age: number;
+  _pelts: [number, number][];
   _weight: number;
   _food: number;
   _water: number;
@@ -43,6 +44,7 @@ export default class Horse {
     this._model = data.model;
     this._gender = data.gender;
     this._age = data.age;
+    this._pelts = data.pelts;
     this._weight = data.weight;
     this._food = data.food;
     this._water = data.water;
@@ -138,6 +140,14 @@ export default class Horse {
   set age(age: number) {
     this._age = age;
     this._dirtyFields.add('age');
+  }
+
+  get pelts() {
+    return this._pelts;
+  }
+  set pelts(pelts) {
+    this._pelts = pelts;
+    this._dirtyFields.add('pelts');
   }
 
   get weight(): number {
@@ -357,6 +367,7 @@ export default class Horse {
       model: () => this._model,
       gender: () => this._gender,
       age: () => this._age,
+      pelts: () => this._pelts,
       weight: () => this._weight,
       food: () => this._food,
       water: () => this._water,

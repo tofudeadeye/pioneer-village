@@ -8,6 +8,7 @@ import './stuff/apple';
 import './stuff/geyser';
 import './stuff/gold-panning';
 import './stuff/hats';
+import './stuff/horses';
 import './stuff/instruments';
 import './stuff/police';
 import './stuff/ptfx';

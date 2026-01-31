@@ -22,27 +22,103 @@ const HexToFloat32 = (str: string) => {
   } else return 0;
 };
 
+const convertArgs = (nativeArgs: any[]): any[] => {
+  const newArgs = [];
+  for (const arg of nativeArgs) {
+    if (typeof arg !== 'string') {
+      newArgs.push(arg);
+      continue;
+    }
+
+    if (arg.startsWith('DV:')) {
+      const size = Number(arg.replace('DV:', ''));
+      newArgs.push(new DataView(new ArrayBuffer(size || 64)));
+      continue;
+    }
+
+    switch (arg) {
+      case '_i':
+        newArgs.push(Citizen.pointerValueInt());
+        break;
+      case '_f':
+        newArgs.push(Citizen.pointerValueFloat());
+        break;
+      case '_v':
+        newArgs.push(Citizen.pointerValueVector());
+        break;
+      case '_r':
+        newArgs.push(Citizen.returnResultAnyway());
+        break;
+      case '_ri':
+        newArgs.push(Citizen.resultAsInteger());
+        break;
+      case '_rf':
+        newArgs.push(Citizen.resultAsFloat());
+        break;
+      case '_rl':
+        newArgs.push(Citizen.resultAsLong());
+        break;
+      case '_s':
+        newArgs.push(Citizen.resultAsString());
+        break;
+      case '_rv':
+        newArgs.push(Citizen.resultAsVector());
+        break;
+      case '_ii':
+        newArgs.push(Citizen.pointerValueIntInitialized);
+        break;
+      case '_fi':
+        newArgs.push(Citizen.pointerValueFloatInitialized);
+        break;
+      default:
+        newArgs.push(arg);
+    }
+  }
+  return newArgs;
+};
+// txdAlbedoDV.getInt32(0, true);
+
 const testNatives = (category: string, parameterCount: number, nativeArgs: any[], restrictUnnamed = true) => {
   Log('==============');
-  Log(`Testing ${category} natives with ${parameterCount} parameters`);
+  Log(`Testing ${category} natives with ${parameterCount >= 5 ? '5+' : parameterCount} parameters`);
   Log(`Args`, nativeArgs);
   for (const [native, data] of Object.entries<any>(Natives[category])) {
     try {
       if (restrictUnnamed && !data.name.startsWith('_0x')) {
         continue;
       }
-      if ((parameterCount !== -1 && data.params.length !== parameterCount) || data.return_type === 'void') {
+      if (
+        (parameterCount !== -1 &&
+          ((parameterCount < 5 && data.params.length !== parameterCount) ||
+            (parameterCount >= 5 && data.params.length >= 5))) ||
+        data.return_type === 'void'
+      ) {
         continue;
       }
+      const newNativeArgs = convertArgs(nativeArgs);
+      const rtn = Citizen.invokeNative(native, ...newNativeArgs) as any;
+      if (rtn === nativeArgs[0] || rtn === false) continue;
       Log('--------------');
       Log('run', data.name);
-      const rtn = Citizen.invokeNative(native, ...nativeArgs) as any;
-      if (rtn === nativeArgs[0] || rtn === false) continue;
       if (data.return_type === 'float') {
         Log('rtn', HexToFloat32(rtn.toString(16)));
       } else {
         Log('rtn', rtn);
-        Log('rtn', HexToFloat32(rtn.toString(16)));
+        if (typeof rtn === 'number' && rtn > 255) {
+          Log('rtn', HexToFloat32(rtn.toString(16)));
+        }
+      }
+
+      for (const arg of newNativeArgs) {
+        if (typeof arg === 'object' && arg instanceof DataView) {
+          // Log('DataView Arg:', arg);
+          const ints = [];
+          for (let o = 0; o < arg.byteLength; o += 4) {
+            ints.push(arg.getInt32(0, true));
+          }
+          if (ints.filter(Boolean).length === 0) continue;
+          Log('DataView Ints:', ints);
+        }
       }
     } catch {}
   }

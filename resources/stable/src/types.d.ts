@@ -53,6 +53,7 @@ declare namespace Horse {
     model: number;
     gender: 'MALE' | 'FEMALE' | 'OTHER';
     age: number;
+    pelts: [number, number][];
     weight: number;
     food: number;
     water: number;

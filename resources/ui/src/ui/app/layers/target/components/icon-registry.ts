@@ -18,6 +18,7 @@ import HorseSaddleSolid from '@fa/5/solid/horse-saddle.svg';
 import HorseSolid from '@fa/5/solid/horse.svg';
 import LassoSolid from '@fa/5/solid/lasso.svg';
 import MaleSolid from '@fa/5/solid/male.svg';
+import PawSolid from '@fa/5/solid/paw.svg';
 import RecycleSolid from '@fa/5/solid/recycle.svg';
 import SackSolid from '@fa/5/solid/sack.svg';
 import WagonCoveredSolid from '@fa/5/solid/wagon-covered.svg';
@@ -40,6 +41,7 @@ export const iconRegistry: Record<string, Record<string, ComponentType<any>>> = 
     sack: SackSolid,
     lasso: LassoSolid,
     horse: HorseSolid,
+    paw: PawSolid,
   },
   light: {
     eye: EyeLight,

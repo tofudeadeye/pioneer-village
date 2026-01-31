@@ -339,7 +339,12 @@ export type Prisma.CharactersCreateInput = {
       return;
     }
 
-    const [, coords] = await zpc.awaitServer('character-update.last-position', 'base.force-coords-update', {}, serverId);
+    const [, coords] = await zpc.awaitServer(
+      'character-update.last-position',
+      'base.force-coords-update',
+      {},
+      serverId,
+    );
 
     logInfoS('coords', coords);
 
@@ -419,7 +424,12 @@ export type Prisma.CharactersCreateInput = {
     const z = Number(lastZ);
 
     if (isNaN(x) || isNaN(y) || isNaN(z)) {
-      logInfoS('[Characters]', 'Last coords for character', characterId, 'contain NaN values. Returning default coords');
+      logInfoS(
+        '[Characters]',
+        'Last coords for character',
+        characterId,
+        'contain NaN values. Returning default coords',
+      );
       return COORDS_ZERO;
     }
 
@@ -641,6 +651,8 @@ export type Prisma.CharactersCreateInput = {
   startIntervals() {
     setInterval(
       async () => {
+        const characterCount = this.characters.filter(Boolean).length;
+        if (characterCount === 0) return;
         const nowTime = Date.now();
         let saved = 0;
         let failed = 0;
@@ -656,8 +668,8 @@ export type Prisma.CharactersCreateInput = {
         logInfoS(
           '[Characters]',
           'Information of',
-          this.characters.filter(Boolean).length,
-          'character(s) has been saved. It took:',
+          characterCount,
+          `character${characterCount > 1 ? 's' : ''} has been saved. It took:`,
           Date.now() - nowTime,
           'ms',
           `Saved: ${saved}, Failed: ${failed}`,

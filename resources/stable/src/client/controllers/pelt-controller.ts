@@ -1,6 +1,7 @@
 import { type EventData, PVEvents, PVGame, awaitUI } from '@lib/client';
 import { Log } from '@lib/client/comms/ui';
 import { Delay } from '@lib/functions';
+import { Vector3 } from '@lib/math';
 
 import { PELTS_HASHED, PROVISION_HASHES } from '../../shared/data/pelts';
 import stableController from './stable-controller';
@@ -68,6 +69,28 @@ export class PeltController {
     if (pelts.length === 0) {
       return false;
     }
+
+    const player = PVGame.playerPed();
+    const horseHeading = GetEntityHeading(horsePed);
+
+    const playerPosition = Vector3.fromObject(PVGame.playerCoords(true));
+    const left = Vector3.fromArray(GetOffsetFromEntityInWorldCoords(horsePed, -0.7, -0.45, 0));
+    const right = Vector3.fromArray(GetOffsetFromEntityInWorldCoords(horsePed, 0.7, -0.45, 0));
+
+    const leftDistance = playerPosition.getDistance(left);
+    const rightDistance = playerPosition.getDistance(right);
+
+    if (leftDistance < rightDistance) {
+      TaskGoToCoordAnyMeans(player, left.x, left.y, left.z, 1.5, 0, false, 0, 0);
+      await PVGame.reachedCoords(left, 1.0, 5_000);
+      SetPedDesiredHeading(player, horseHeading - 90);
+    } else {
+      TaskGoToCoordAnyMeans(player, right.x, right.y, right.z, 1.5, 0, false, 0, 0);
+      await PVGame.reachedCoords(right, 1.0, 5_000);
+      SetPedDesiredHeading(player, horseHeading + 90);
+    }
+
+    await Delay(1_000);
 
     const pelt = pelts.pop();
     if (!pelt) {

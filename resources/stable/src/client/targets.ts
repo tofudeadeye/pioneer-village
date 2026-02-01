@@ -75,7 +75,15 @@ const registerTargets = async () => {
         const horseState = Entity(data.entity).state;
         const horsePelts = horseState.pelts || [];
 
-        return horsePelts.length > 0;
+        if (horsePelts.length === 0) {
+          return false;
+        }
+
+        if (GetFirstEntityPedIsCarrying(data.playerPed) || !IsPedOnFoot(data.playerPed)) {
+          return false;
+        }
+
+        return true;
       },
     },
   });

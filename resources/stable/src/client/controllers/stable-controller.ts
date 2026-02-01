@@ -692,12 +692,6 @@ class StableController {
     SetModelAsNoLongerNeeded(horse.model);
     await Delay(50);
 
-    // Citizen.invokeNative('0xD2CB0FB0FDCB473D', gameManager.playerId, horsePed) // SetPedAsSaddleHorseForPlayer
-    // Citizen.invokeNative('0xE6D4E435B56D5BD0', gameManager.playerId, horsePed) // SetPlayerOwnsMount
-    SetPedRelationshipGroupHash(horsePed, GetPedRelationshipGroupHash(horsePed));
-    SetPedOwnsAnimal(playerPed, horsePed, false);
-    SetPlayerOwnsMount(PlayerId(), horsePed);
-
     if (options.local) {
       NetworkSetEntityOnlyExistsForParticipants(horsePed, true);
     } else {
@@ -709,6 +703,12 @@ class StableController {
       // }
       // Citizen.invokeNative('0x06D26A96CA1BCA75', horsePed, 0, 0.8, gameManager.playerPed);
     }
+
+    // Citizen.invokeNative('0xD2CB0FB0FDCB473D', gameManager.playerId, horsePed) // SetPedAsSaddleHorseForPlayer
+    // Citizen.invokeNative('0xE6D4E435B56D5BD0', gameManager.playerId, horsePed) // SetPlayerOwnsMount
+    SetPedRelationshipGroupHash(horsePed, GetPedRelationshipGroupHash(horsePed));
+    SetPedOwnsAnimal(playerPed, horsePed, false);
+    SetPlayerOwnsMount(PlayerId(), horsePed);
 
     // this._spawningHorse.set(horse.id, false);
 

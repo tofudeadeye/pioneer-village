@@ -1,5 +1,7 @@
 import { PVEvents, PVGame } from '@lib/client';
 import { Log } from '@lib/client/comms/ui';
+import { Delay } from '@lib/functions';
+import { Vector3 } from '@lib/math';
 
 import { PELTS } from './pelts';
 
@@ -794,7 +796,7 @@ RegisterCommand(
   async (source: number, args: any[], rawCommand: string) => {
     // Log({ source, args, rawCommand });
 
-    const invId = InventoryGetInventoryIdFromPed(args[0]) >>> 0;
+    const invId = InventoryGetInventoryIdFromPed(Number(args[0])) >>> 0;
     console.log('invId', invId);
 
     const struct = new DataView(new ArrayBuffer(29));
@@ -970,3 +972,30 @@ RegisterCommand(
  * local mount = GetMountOwnedByPlayer(PlayerId())
  * Citizen.InvokeNative(0xC412AA1C73111FE0, mount, `PROVISION_DEER_HIDE_POOR`, `a_c_deer_01_uppr_000_c0_001_ab`, 0, 0)
  */
+
+RegisterCommand(
+  'attached_info',
+  async (source: number, args: any[], rawCommand: string) => {
+    // Log({ source, args, rawCommand });
+    const ped = Number(args[0]);
+
+    for (let n = 0; n < 10; n++) {
+      const data = new DataView(new ArrayBuffer(32));
+      const result = GetCarriedAttachedInfoForSlot(data, ped, n, 0);
+
+      if (result) {
+        Log('--- Slot', n, '---');
+        const model = data.getInt32(0, true);
+        const carryConfig = data.getInt32(8, true);
+        const carriableSlot = data.getInt32(16, true);
+        const entityCarried = data.getInt32(24, true);
+
+        Log('Model:', model);
+        Log('Carry Config:', carryConfig);
+        Log('Carriable Slot:', carriableSlot);
+        Log('Entity Carried:', entityCarried);
+      }
+    }
+  },
+  false,
+);

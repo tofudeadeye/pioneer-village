@@ -63,8 +63,8 @@ const eventMappings = {
   EVENT_PICKUP_CARRIABLE: {
     ped: 'i',
     carriable: 'i',
-    _2: 'i',
-    _3: 'i',
+    fromEntity: 'i',
+    entity: 'i',
   },
   // {name = 'EVENT_PED_ANIMAL_INTERACTION', group = 0, size = 3},
   EVENT_PED_ANIMAL_INTERACTION: {

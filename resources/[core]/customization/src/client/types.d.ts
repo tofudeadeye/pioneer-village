@@ -65,6 +65,7 @@ declare namespace Customization {
   ) => void;
 
   type EquipItems = (ped: number, items: UI.Inventory.ItemData[]) => void;
+  type ApplyMetaPedOutfit = (ped: number, outfit: string | number) => void;
 
   interface ClientExports {
     getGuidsAtIndex: GetGuidsAtIndex;
@@ -92,6 +93,7 @@ declare namespace Customization {
     getIndexForHorsePart: GetIndexForHorsePart;
     setTintByHorsePart: SetTintByHorsePart;
     equipItems: EquipItems;
+    applyMetaPedOutfit: ApplyMetaPedOutfit;
   }
 }
 
@@ -118,4 +120,3 @@ declare namespace ClientOut {
 
 // Raw Socket.io events for UI layer typing - DEDUPLICATED
 // Note: SocketIO.Events eliminated - use ClientIn.FromSocket and ClientOut.ToSocket directly
-

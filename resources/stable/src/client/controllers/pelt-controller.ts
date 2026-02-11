@@ -1,5 +1,6 @@
 import { type EventData, PVEvents, PVGame, awaitUI } from '@lib/client';
 import { Log } from '@lib/client/comms/ui';
+import { SetPlayerControlFlags } from '@lib/flags/set-player-control';
 import { Delay } from '@lib/functions';
 import { Vector3 } from '@lib/math';
 
@@ -23,6 +24,10 @@ export class PeltController {
       this.eventPlaceCarriable(data);
     });
 
+    PVEvents.register('EVENT_PICKUP_CARRIABLE', (data) => {
+      this.eventPickupCarriable(data);
+    });
+
     this.init();
   }
 
@@ -36,38 +41,124 @@ export class PeltController {
   eventPlaceCarriable(data: EventData['EVENT_PLACE_CARRIABLE_ONTO_PARENT']) {
     // Log('EVENT_PLACE_CARRIABLE_ONTO_PARENT', data);
 
-    if (data.provision === 0 || data.ped !== PlayerPedId() || !GetIsCarriablePelt(data.carriable)) return;
-
-    const horseEntity = data.parent;
-    const horseId = Entity(horseEntity).state.horseId;
+    const horseId = Entity(data.parent).state.horseId;
     // Log('Horse ID:', horseId);
-    if (!horseId) {
-      return false;
+    if (!horseId || !stableController.isUnstabled(horseId)) {
+      return;
     }
 
-    const provision = data.provision;
+    if (data.provision === 0) {
+      this.storeCorpse(horseId, data);
+    } else {
+      this.storePelt(horseId, data);
+    }
+  }
+
+  storeCorpse(horseId: number, data: EventData['EVENT_PLACE_CARRIABLE_ONTO_PARENT']) {
+    const model = GetEntityModel(data.carriable);
+
+    const horseState = Entity(data.parent).state;
+
+    const corpses: Record<string, [number, number, number, number]> = horseState.corpses || {};
+
+    let outfit: number;
+    let quality = -1;
+    let looted = IsEntityFullyLooted(data.carriable) ? 1 : 0;
+
+    if (IsEntityAPed(data.carriable)) {
+      outfit = GetPedMetaOutfitHash(data.carriable);
+      quality = GetPedDamageCleanliness(data.carriable) || 0;
+    } else {
+      outfit = GetCarriableFromEntity(data.carriable);
+    }
+
+    corpses[data.slot] = [model, outfit, quality, looted];
+
+    horseState.set('corpses', corpses, true);
+    Log('Corpses\n', JSON.stringify(corpses, null, 2));
+
+    this.updateHorseCorpses(horseId, corpses);
+  }
+
+  storePelt(horseId: number, data: EventData['EVENT_PLACE_CARRIABLE_ONTO_PARENT']) {
+    if (!GetIsCarriablePelt(data.carriable)) return;
+
     const peltTexture = Citizen.invokeNative<number>('0x120376c23f019c6c', data.carriable, Citizen.pointerValueInt());
-    const horseState = Entity(horseEntity).state;
+    const horseState = Entity(data.parent).state;
 
     // Log('Pelt with texture placed on horse', peltTexture);
 
-    const pelts = horseState.pelts || [];
+    const pelts: [number, number][] = horseState.pelts || [];
 
     // Log(`Horse ${horseEntity} last pelts:`, pelts);
 
-    pelts.push([provision, peltTexture]);
+    pelts.push([data.provision, peltTexture]);
 
     horseState.set('pelts', pelts, true);
     Log('Pelts\n', pelts.join('\n '));
 
-    this.updateHorsePelts(pelts, horseId);
+    this.updateHorsePelts(horseId, pelts);
+  }
+
+  eventPickupCarriable(data: EventData['EVENT_PICKUP_CARRIABLE']) {
+    if (!data.fromEntity) {
+      return;
+    }
+
+    const horseState = Entity(data.entity).state;
+    const horseId = horseState.horseId;
+    // Log('Horse ID:', horseId);
+    if (!horseId || !stableController.isUnstabled(horseId)) {
+      return;
+    }
+    Log('Picked up carriable from horse', data);
+
+    const model = GetEntityModel(data.carriable);
+
+    const corpses: Record<string, [number, number, number, number]> = horseState.corpses || {};
+    const matchedSlots: string[] = [];
+    for (const [slot, corpse] of Object.entries(corpses)) {
+      if (corpse[0] === model) {
+        matchedSlots.push(slot);
+      }
+    }
+
+    if (matchedSlots.length === 0) {
+      return;
+    }
+
+    if (matchedSlots.length > 1) {
+      const isLeft = this.fromLeft(data.entity);
+      if (isLeft && matchedSlots.includes('5')) {
+        //left corpses are slot 5
+        delete corpses[5];
+      } else if (!isLeft && matchedSlots.includes('6')) {
+        //right corpses are slot 6
+        delete corpses[6];
+      }
+    } else {
+      delete corpses[matchedSlots[0]];
+    }
+
+    this.updateHorseCorpses(horseId, corpses);
+    horseState.set('corpses', corpses, true);
+    Log('Corpses\n', JSON.stringify(corpses, null, 2));
+  }
+
+  fromLeft(horsePed: number) {
+    const coords = PVGame.playerCoords(true);
+    const offset = GetOffsetFromEntityGivenWorldCoords(horsePed, coords.x, coords.y, coords.z);
+
+    if (offset[0] < 0) {
+      return true;
+    }
   }
 
   async removePelt(horsePed: number) {
     const horseState = Entity(horsePed).state;
     const pelts: [number, number][] = horseState.pelts || [];
     if (pelts.length === 0) {
-      return false;
+      return;
     }
 
     const player = PVGame.playerPed();
@@ -80,13 +171,14 @@ export class PeltController {
     const leftDistance = playerPosition.getDistance(left);
     const rightDistance = playerPosition.getDistance(right);
 
+    SetPlayerControl(PlayerId(), false, SetPlayerControlFlags.SPC_LEAVE_CAMERA_CONTROL_ON, true);
     if (leftDistance < rightDistance) {
       TaskGoToCoordAnyMeans(player, left.x, left.y, left.z, 1.5, 0, false, 0, 0);
-      await PVGame.reachedCoords(left, 1.0, 5_000);
+      await PVGame.reachedCoords(left, 1.0, 3_000);
       SetPedDesiredHeading(player, horseHeading - 90);
     } else {
       TaskGoToCoordAnyMeans(player, right.x, right.y, right.z, 1.5, 0, false, 0, 0);
-      await PVGame.reachedCoords(right, 1.0, 5_000);
+      await PVGame.reachedCoords(right, 1.0, 3_000);
       SetPedDesiredHeading(player, horseHeading + 90);
     }
 
@@ -101,15 +193,16 @@ export class PeltController {
     if (!spawned) {
       return false;
     }
+    SetPlayerControl(PlayerId(), true, 0, false);
 
-    Log('Remaining Pelts', pelts.length);
     horseState.set('pelts', pelts, true);
+    Log('Pelts\n', pelts.join('\n '));
 
     stableController.setupHorsePelts(horsePed);
 
     const horseId = horseState.horseId;
     if (horseId) {
-      this.updateHorsePelts(pelts, horseId);
+      this.updateHorsePelts(horseId, pelts);
     }
     return true;
   }
@@ -163,7 +256,16 @@ export class PeltController {
     return true;
   }
 
-  updateHorsePelts(pelts: [number, number][], horseId: number) {
+  updateHorseCorpses(horseId: number, corpses: Record<string, [number, number, number, number]>) {
+    const horse = stableController.getHorseById(horseId);
+    if (!horse) {
+      return;
+    }
+    horse.corpses = corpses;
+    horse.save();
+  }
+
+  updateHorsePelts(horseId: number, pelts: [number, number][]) {
     const horse = stableController.getHorseById(horseId);
     if (!horse) {
       return;

@@ -54,6 +54,7 @@ declare namespace Horse {
     gender: 'MALE' | 'FEMALE' | 'OTHER';
     age: number;
     pelts: [number, number][];
+    corpses: Record<string, [number, number, number, number]>;
     weight: number;
     food: number;
     water: number;

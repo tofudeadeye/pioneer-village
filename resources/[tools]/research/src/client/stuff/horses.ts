@@ -801,7 +801,7 @@ RegisterCommand(
 
     const struct = new DataView(new ArrayBuffer(29));
     const struct2 = new DataView(new ArrayBuffer(29));
-    InventoryGetFullInventoryItemData(invId, struct, struct2, 15, 1);
+    InventoryGetFullInventoryItemData(invId, struct, struct2, 29, 1);
     const ints = [];
     const ints2 = [];
     for (let n = 0; n < 29; n++) {
@@ -935,7 +935,7 @@ RegisterCommand(
   async (source: number, args: any[], rawCommand: string) => {
     // Log({ source, args, rawCommand });
     const entity = Number(args[0]);
-    const outfitHash = GetHashKey(args[1]);
+    const outfitHash = Number(args[1]) == args[1] ? Number(args[1]) : GetHashKey(args[1]);
     const model = GetEntityModel(entity);
 
     Log('Entity:', entity);
@@ -955,6 +955,7 @@ RegisterCommand(
           if (HasMetaPedOutfitLoaded(requestId)) {
             resolve();
             clearInterval(modelLoadedCheck);
+            ('meta_animal_outfit_buck_001');
           }
         }, 250);
       }
@@ -963,6 +964,79 @@ RegisterCommand(
     Log('requestId', requestId);
 
     ApplyPedMetaPedOutfit(requestId, entity, true, false);
+    ReleaseMetaPedOutfitRequest(requestId);
+  },
+  false,
+);
+
+RegisterCommand(
+  'setSkinned',
+  async (source: number, args: any[], rawCommand: string) => {
+    // Log({ source, args, rawCommand });
+    const entity = Number(args[0]);
+    const model = GetEntityModel(entity);
+
+    const outfit = GetPedMetaOutfitHash(entity);
+
+    const fieldDressings: [number, boolean][] = [
+      // [0xf9b4df25, false],
+      // [0xe364a979, false],
+      [GetHashKey('META_OUTFIT_FIELD_DRESSING_002'), false],
+      [GetHashKey('META_OUTFIT_FIELD_DRESSING_001'), false],
+      [GetHashKey('META_OUTFIT_FIELD_DRESSING_000'), true],
+    ];
+
+    for (const [fieldDressing, skipCheck] of fieldDressings) {
+      if (skipCheck || DoesMetaPedSuboutfitExistForPedModel(outfit, fieldDressing, model)) {
+        Log(`Equipping suboutfit ${fieldDressing}`);
+        EquipMetaPedSuboutfit(entity, fieldDressing, 0);
+        UpdatePedVariation(entity, false, true, true, true, false);
+        break;
+      }
+    }
+    UpdatePedVariation(entity, false, true, true, true, false);
+
+    SetLootingFlag(entity, 0, false);
+    SetEntityFullyLooted(entity, true);
+  },
+  false,
+);
+
+// NOTE: Turns it into a buck PED::_0xA274F51EF7E34B95(entity, 0)
+// NOTE: But examples are PED::_0xA274F51EF7E34B95(iParam0, "HORSE_PREVIEW_OUTFIT" | "FREEROAM_OUTFIT" | "ADVERSARIAL_OUTFIT" | "GAME_MODE_OUTFIT" | "GANG_THEME_OUTFIT");
+
+RegisterCommand(
+  'outfitsTest',
+  async (source: number, args: any[], rawCommand: string) => {
+    // Log({ source, args, rawCommand });
+
+    const entity = Number(args[0]);
+    const model = GetEntityModel(entity);
+
+    const outfitCount = GetNumMetaPedOutfits(entity);
+
+    Log(`Entity ${entity} has ${outfitCount} meta outfits:`);
+    for (let i = 0; i < outfitCount; i++) {
+      const outfitHash = Citizen.invokeNative<number>('0x62FDF4E678E40CC6', entity, i);
+      const hasFieldDressing = DoesMetaPedSuboutfitExistForPedModel(
+        outfitHash,
+        GetHashKey('META_OUTFIT_FIELD_DRESSING_002'), // META_OUTFIT_FIELD_DRESSING_001 | META_OUTFIT_FIELD_DRESSING_000
+        model,
+      );
+      if (!outfitHash) continue;
+      Log(
+        `Outfit ${i}:`,
+        outfitHash,
+        // outfitHash ? DoesMetaPedOutfitExistForPedModel(outfitHash, model) : '',
+        hasFieldDressing ? 'Has Field Dressing Suboutfit' : '',
+      );
+      await PVGame.equipMetaPedOutfit(entity, outfitHash);
+      await PVGame.pedIsReadyToRender(entity);
+      PVGame.finalizePedOutfit(entity);
+
+      await Delay(2_500);
+    }
+    Log('Done testing outfits');
   },
   false,
 );
@@ -995,6 +1069,40 @@ RegisterCommand(
         Log('Carriable Slot:', carriableSlot);
         Log('Entity Carried:', entityCarried);
       }
+    }
+  },
+  false,
+);
+
+RegisterCommand(
+  'test_pos',
+  async (source: number, args: any[], rawCommand: string) => {
+    // Log({ source, args, rawCommand });
+    const player = PlayerPedId();
+    const horse = 259074;
+
+    const horseHeading = GetEntityHeading(horse);
+
+    const playerPosition = Vector3.fromObject(PVGame.playerCoords(true));
+    // const offset = Vector3.fromArray(
+    //   GetOffsetFromEntityInWorldCoords(horse, playerPosition.x, playerPosition.y, playerPosition.z),
+    // );
+    const left = Vector3.fromArray(GetOffsetFromEntityInWorldCoords(horse, -0.65, -0.5, 0));
+    const right = Vector3.fromArray(GetOffsetFromEntityInWorldCoords(horse, 0.65, -0.5, 0));
+
+    // Log(offset);
+
+    const leftDistance = playerPosition.getDistance(left);
+    const rightDistance = playerPosition.getDistance(right);
+
+    if (leftDistance < rightDistance) {
+      TaskGoToCoordAnyMeans(player, left.x, left.y, left.z, 1.5, 0, false, 0, 0);
+      await PVGame.reachedCoords(left, 1.0, 5_000);
+      SetPedDesiredHeading(player, horseHeading - 90);
+    } else {
+      TaskGoToCoordAnyMeans(player, right.x, right.y, right.z, 1.5, 0, false, 0, 0);
+      await PVGame.reachedCoords(right, 1.0, 5_000);
+      SetPedDesiredHeading(player, horseHeading + 90);
     }
   },
   false,

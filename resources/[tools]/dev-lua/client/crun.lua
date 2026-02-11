@@ -101,6 +101,16 @@ RegisterCommand('spawn', function(source, args, rawCommand)
             SetEntityVisible(entity, true)
             SetEntityAlpha(entity, 255, false)
             SetRandomOutfitVariation(entity, true)
+
+            -- Setup Random Outfit
+            local outfitCount = GetNumMetaPedOutfits(entity)
+            print ('outfit count', outfitCount)
+            local outfitHash = Citizen.InvokeNative(0x62FDF4E678E40CC6, entity, math.random(0, outfitCount - 1), Citizen.ResultAsInteger())
+            print('outfit', outfitHash)
+            EquipMetaPedOutfit(entity, outfitHash);
+            IsPedReadyToRender(entity);
+            UpdatePedVariation(ped, false, true, true, true, false);
+
             SetModelAsNoLongerNeeded(modelHash)
             SetEntityAsNoLongerNeeded(entity)
             print('Spawned: ', entity)

@@ -1,6 +1,9 @@
 import { exports } from '@lib/client';
-import { Delay } from '@lib/functions';
 import { Log, onUI } from '@lib/client/comms/ui';
+import { Delay } from '@lib/functions';
+import { BlipStyles } from '@lib/shared/blips';
+
+import blipController from './controllers/blip-controller';
 
 // Character data management
 let character: CharacterData | null = null;
@@ -33,7 +36,7 @@ const getNetworkControlOfEntity: Base.getNetworkControlOfEntity = async (entity)
   } while (!NetworkHasControlOfEntity(entity));
 };
 
-const deleteEntity: Base.deleteEntity = async (entity: number): Promise<void> => {
+const deleteEntity: Base.deleteEntity = async (entity: number, attached?: boolean): Promise<void> => {
   if (!DoesEntityExist(entity)) {
     Log(`Entity doesn't exist ${entity}`);
     return;
@@ -46,6 +49,20 @@ const deleteEntity: Base.deleteEntity = async (entity: number): Promise<void> =>
   const attachedEntity = GetEntityAttachedTo(entity);
   if (attachedEntity) {
     DetachEntity(entity, true, false);
+  }
+
+  if (attached) {
+    const itemSet = CreateItemset(true);
+    FindAllAttachedCarriableEntities(entity, itemSet);
+    const itemSetSize = GetItemsetSize(itemSet);
+    for (let i = 0; i < itemSetSize; i++) {
+      const attachedEntity = GetIndexedItemInItemset(i, itemSet);
+      if (DoesEntityExist(attachedEntity)) {
+        DetachEntity(attachedEntity, true, false);
+        SetEntityAsMissionEntity(attachedEntity, true, true);
+        DeleteEntity(attachedEntity);
+      }
+    }
   }
 
   await Delay(5);
@@ -82,10 +99,18 @@ const deleteEntity: Base.deleteEntity = async (entity: number): Promise<void> =>
   }
 };
 
-const deleteEntities: Base.deleteEntities = (entities: number[]): void => {
+const deleteEntities: Base.deleteEntities = (entities: number[], attached = false): void => {
   for (const entity of entities) {
-    deleteEntity(entity);
+    deleteEntity(entity, attached);
   }
+};
+
+const blipRegister: Base.blipRegister = (id, data, style = BlipStyles.NEUTRAL_OBJECTIVE) => {
+  return blipController.register(id, data, style);
+};
+
+const blipUnregister: Base.blipUnregister = (id) => {
+  blipController.unregister(id);
 };
 
 // Register all exports
@@ -93,3 +118,5 @@ exports<'base'>('getCurrentCharacter', getCurrentCharacter);
 exports<'base'>('getNetworkControlOfEntity', getNetworkControlOfEntity);
 exports<'base'>('deleteEntity', deleteEntity);
 exports<'base'>('deleteEntities', deleteEntities);
+exports<'base'>('blipRegister', blipRegister);
+exports<'base'>('blipUnregister', blipUnregister);

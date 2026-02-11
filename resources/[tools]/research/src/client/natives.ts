@@ -78,7 +78,7 @@ const convertArgs = (nativeArgs: any[]): any[] => {
 };
 // txdAlbedoDV.getInt32(0, true);
 
-const testNatives = (category: string, parameterCount: number, nativeArgs: any[], restrictUnnamed = true) => {
+const testNatives = async (category: string, parameterCount: number, nativeArgs: any[], restrictUnnamed = true) => {
   Log('==============');
   Log(`Testing ${category} natives with ${parameterCount >= 5 ? '5+' : parameterCount} parameters`);
   Log(`Args`, nativeArgs);
@@ -96,10 +96,15 @@ const testNatives = (category: string, parameterCount: number, nativeArgs: any[]
         continue;
       }
       const newNativeArgs = convertArgs(nativeArgs);
+      // await Delay(2_500);
       const rtn = Citizen.invokeNative(native, ...newNativeArgs) as any;
+      if (!rtn) continue;
+      Log('-=-=-=-=-=-=-=-=-=-=-=-=-=-');
+      Log('Native: ', native);
       if (rtn === nativeArgs[0] || rtn === false) continue;
-      Log('--------------');
-      Log('run', data.name);
+      if (!data.name.startsWith('_0x')) {
+        Log('name', data.name);
+      }
       if (data.return_type === 'float') {
         Log('rtn', HexToFloat32(rtn.toString(16)));
       } else {

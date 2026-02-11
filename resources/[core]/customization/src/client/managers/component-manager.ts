@@ -1,10 +1,12 @@
 import { PVGame } from '@lib/client';
+import { Log } from '@lib/client/comms/ui';
+import { AttachPoint } from '@lib/flags';
 import { Delay } from '@lib/functions';
+import PVItems from '@lib/shared/items';
+
 import componentCategories from '../data/component-categories';
 import wearableStates from '../data/wearable-states';
 import { paletteManager } from './palette-manager';
-import { AttachPoint } from '@lib/flags';
-import PVItems from '@lib/shared/items';
 
 const BASE_HASH = GetHashKey('BASE');
 
@@ -224,6 +226,39 @@ class ComponentManager {
     }
 
     return components;
+  }
+
+  async loadMetaPedOutfit(model: number, outfit: string | number, delay = 250): Promise<number> {
+    if (typeof outfit === 'string') {
+      outfit = GetHashKey(outfit);
+    }
+    const requestId = RequestMetaPedOutfit(model, outfit);
+    if (HasMetaPedOutfitLoaded(requestId)) {
+      return requestId;
+    }
+    return new Promise((resolve) => {
+      if (HasMetaPedOutfitLoaded(requestId)) {
+        resolve(requestId);
+      } else {
+        const modelLoadedCheck = setInterval(() => {
+          if (HasMetaPedOutfitLoaded(requestId)) {
+            resolve(requestId);
+            clearInterval(modelLoadedCheck);
+          }
+        }, delay);
+      }
+    });
+  }
+
+  async applyMetaPedOutfit(ped: number, outfitHash: string | number) {
+    const model = GetEntityModel(ped);
+
+    if (!DoesMetaPedOutfitExistForPedModel(outfitHash, model)) return;
+
+    const requestId = await this.loadMetaPedOutfit(model, outfitHash);
+
+    ApplyPedMetaPedOutfit(requestId, ped, true, false);
+    ReleaseMetaPedOutfitRequest(requestId);
   }
 }
 

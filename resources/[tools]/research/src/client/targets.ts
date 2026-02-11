@@ -19,5 +19,5 @@ PVTarget.AddTarget({
 });
 
 on('research:client:delete_entity', (entity: number) => {
-  PVBase.deleteEntity(entity);
+  PVBase.deleteEntity(entity, true);
 });

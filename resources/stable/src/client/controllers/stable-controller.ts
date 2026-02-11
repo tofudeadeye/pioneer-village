@@ -843,7 +843,7 @@ class StableController {
         ];
 
         for (const [fieldDressing, skipCheck] of fieldDressings) {
-          if (skipCheck || DoesMetaPedSuboutfitExistForPedModel(outfit, fieldDressing, model)) {
+          if (outfit === 0 || skipCheck || DoesMetaPedSuboutfitExistForPedModel(outfit, fieldDressing, model)) {
             EquipMetaPedSuboutfit(corpse, fieldDressing, 0);
             UpdatePedVariation(corpse, false, true, true, true, false);
             break;

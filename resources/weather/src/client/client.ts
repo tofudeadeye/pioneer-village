@@ -1,5 +1,6 @@
 import './test'
 import weatherManager from './managers/weather';
+import { WeatherType } from '../shared/biome';
 import { Vector3 } from '@lib/math';
 
 const oldCoords = Vector3.fromArray([0, 0, 0])
@@ -22,13 +23,27 @@ setInterval(() => {
   }
 }, 1000); // Check every 1 second
 
-/**
- * Debug command to check current weather and biome
- */
-RegisterCommand(
-  'checkweather',
-  () => {
-    weatherManager.checkWeather();
-  },
-  false
-);
+// Create a checkerboard test pattern for debugging, alternating between two weather types
+// SUNNY and RAINY. Useful when running in conjunction with the 'togglegrid' command to verify grid updates and transitions.
+RegisterCommand('weather:test', () => {
+  weatherManager.generateTestPattern();
+}, false);
+
+// Show the current weather grid in the console for debugging purposes
+RegisterCommand('weather:check', () => {
+  weatherManager.checkWeather();
+}, false);
+
+// Set all grid cells to a specific weather type for testing purposes. Usage: /weather:force SUNNY
+RegisterCommand('weather:force', (args: string[]) => {
+  const weatherType = args[0]?.toUpperCase();
+  if (weatherType && Object.values(WeatherType).includes(weatherType as WeatherType)) {
+    weatherManager.setAllCellsToWeatherType(weatherType as WeatherType);
+    SetOverrideWeather(weatherType);
+  }
+}, false);
+
+// Request the current weather grid from the server.
+RegisterCommand('weather:sync', () => {
+  weatherManager.requestWeatherGrid();
+}, false);

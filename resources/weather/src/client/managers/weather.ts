@@ -1,25 +1,12 @@
 import { WeatherType, BiomeType, WeatherVariants, BiomeWeatherVariants } from "../../shared/biome";
 import { BiomeWeatherGrid } from "../../shared/grid";
 import type { GridCell } from "../../shared/grid";
-import { PVGame, awaitServer, emitUI, onResourceInit } from '@lib/client';
-import { Log, awaitUI } from '@lib/client/comms/ui';
-import { emitServer } from '@lib/client/comms/server';
-import { LogToUI } from '@lib/server/comms/client';
-
-// let currentWeather: WeatherType = WeatherType.SUNNY;
-// let neighborWeather: WeatherType | null = null;
-// let currentTransitionPercent: number = 0.1;
-// let lastTransitionPercent: number = 0.1;
-// let currentBiome: BiomeType = BiomeType.HEARTLANDS;
-
-// // UI state
-// let showWeatherHud: boolean = false;
-// let lastBiomeCheckTime: number = 0;
+import { awaitServer } from '@lib/client';
+import { Log } from '@lib/client/comms/ui';
 
 // Weather type hash mapping for RDR2
 const WeatherHashes: Record<WeatherType, number> = {
   [WeatherType.BLIZZARD]: GetHashKey('blizzard'),
-  // [WeatherType.CLEARING]: GetHashKey('clearing'), ?? does it exist??
   [WeatherType.CLOUDS]: GetHashKey('clouds'),
   [WeatherType.DRIZZLE]: GetHashKey('drizzle'),
   [WeatherType.FOG]: GetHashKey('fog'),
@@ -76,8 +63,6 @@ export class ClientWeatherManager {
   private initialized = false;
 
   private weatherGrid: BiomeWeatherGrid;
-  private updateInterval: number = 60000 * 30;
-  private transitionTime: number = 45;
 
   // Per-player weather state tracking
   private playerWeatherStates: Map<number, PlayerWeatherState> = new Map();
@@ -91,9 +76,7 @@ export class ClientWeatherManager {
   // Legacy state for compatibility
   private currentWeather: WeatherType = WeatherType.SUNNY;
   private neighborWeather: WeatherType | null = null;
-  private currentTransitionPercent: number = 0.1;
   private lastTransitionPercent: number = 0.1;
-  private currentBiome: BiomeType = BiomeType.HEARTLANDS;
 
   static getInstance(): ClientWeatherManager {
     if (!ClientWeatherManager.instance) {
@@ -105,7 +88,7 @@ export class ClientWeatherManager {
   constructor() {
     on('onResourceStop', (resourceName: string) => {
       if (resourceName === GetCurrentResourceName()) {
-        // this.cleanup();
+        // do any necessary cleanup here
       }
     });
 
@@ -123,15 +106,67 @@ export class ClientWeatherManager {
     }
 
     const g = await awaitServer('weather.request-grid');
-    // const grid = emitNet('weather.request-grid', (grid: GridCell[][]) => {
-    //   console.log('Received weather grid from server');
-    // //   console.log(grid);
-    //   return grid;
-    // });
-    // console.log(g);
-    // LogToUI(`[Weather] Received weather grid from server`);
-    // LogToUI(g);
     this.weatherGrid.setGrid(g);
+    this.forceWeatherFromGrid();
+  }
+
+  /**
+   * Force apply weather from the current grid position
+   * Called when grid is synced to immediately update weather without waiting for movement
+   */
+  private forceWeatherFromGrid(): void {
+    if (!this.weatherGrid) {
+      console.warn('Cannot force weather: grid not initialized');
+      return;
+    }
+
+    const playerPed = PlayerPedId();
+    const coords = GetEntityCoords(playerPed, false);
+    const [worldX, worldY] = coords;
+    const heading = GetEntityHeading(playerPed);
+
+    const currentGridPos = this.weatherGrid.worldToGrid(worldX, worldY);
+    const currentCell = this.weatherGrid.getCellAtPosition(worldX, worldY);
+
+    // Initialize or update player state
+    const playerState: PlayerWeatherState = {
+      currentCell: currentGridPos,
+      previousCell: null,
+      targetNeighborCell: null,
+      currentWeather: currentCell.weather,
+      targetWeather: null,
+      transitionPercent: 0.0,
+      biome: currentCell.biome,
+      lastHeading: heading,
+      transitionPhase: 'settled'
+    };
+    this.playerWeatherStates.set(playerPed, playerState);
+
+    // Update internal state
+    this.currentWeather = currentCell.weather;
+    this.neighborWeather = null;
+    this.lastTransitionPercent = 0.0;
+
+    // Apply weather immediately
+    if (WeatherHashes[currentCell.weather] !== undefined) {
+      const weatherHash = WeatherHashes[currentCell.weather];
+      const biomeName = BiomeNames[currentCell.biome] || currentCell.biome;
+
+      console.log(
+        `[Weather] Force applying grid weather: ${currentCell.weather} ` +
+        `in ${biomeName} at cell (${currentGridPos.x}, ${currentGridPos.y})`
+      );
+
+      SetWeatherOwnedByNetwork(false);
+      // Set weather to fully settled (0.9)
+      SetCurrWeatherState(weatherHash, weatherHash, 0.9, true);
+
+      // Apply variant if available
+      if (currentCell.variant) {
+        SetWeatherVariation(currentCell.weather, currentCell.variant);
+        console.log(`[Weather] Applied variant: ${currentCell.variant}`);
+      }
+    }
   }
 
   public calculateIfWeatherShouldTransition(worldX: number, worldY: number, heading: number): void {
@@ -172,10 +207,10 @@ export class ClientWeatherManager {
 
     if (cellChanged) {
       // Player crossed into a new cell
-      this.handleCellCrossing(playerState, currentGridPos, currentCell, heading);
+      this.handleCellCrossing(playerState, currentGridPos, currentCell);
     } else if (headingChanged && playerState.transitionPhase !== 'settled') {
       // Heading changed significantly during transition - reset target
-      this.resetTransitionTarget(playerState, currentGridPos, currentCell, heading);
+      this.resetTransitionTarget(playerState);
     }
 
     // Calculate current transition state
@@ -227,7 +262,6 @@ export class ClientWeatherManager {
     playerState: PlayerWeatherState,
     newGridPos: { x: number; y: number },
     newCell: GridCell,
-    heading: number
   ): void {
     // Check if we crossed into our target neighbor cell
     const crossedIntoTarget =
@@ -271,9 +305,6 @@ export class ClientWeatherManager {
    */
   private resetTransitionTarget(
     playerState: PlayerWeatherState,
-    currentGridPos: { x: number; y: number },
-    currentCell: GridCell,
-    heading: number
   ): void {
     playerState.targetNeighborCell = null;
     playerState.targetWeather = null;
@@ -557,8 +588,6 @@ export class ClientWeatherManager {
       // Update state
       this.currentWeather = newCurrent;
       this.neighborWeather = newNeighbor;
-      this.currentBiome = biome;
-      this.currentTransitionPercent = effectivePercent;
       this.lastTransitionPercent = transitionPercent;
 
       // Apply weather transition using SetCurrWeatherState
@@ -664,18 +693,32 @@ export class ClientWeatherManager {
     console.log('Move between cells to test transitions!');
     console.log('========================================');
   }
+
+  public getWeatherGrid(): BiomeWeatherGrid {
+    return this.weatherGrid;
+  }
+
+  public setAllCellsToWeatherType(weatherType: WeatherType): void {
+    if (!this.weatherGrid) {
+      console.error('Weather grid not initialized');
+      return;
+    }
+
+    if (!WeatherHashes[weatherType]) {
+      console.error(`Invalid weather type: ${weatherType}`);
+      return;
+    }
+    
+    const grid = this.weatherGrid.getGrid();
+    for (let y = 0; y < grid.length; y++) {
+      for (let x = 0; x < grid[y].length; x++) {
+        grid[y][x].weather = weatherType;
+      }
+    }
+    this.weatherGrid.setGrid(grid);
+    console.log(`All cells set to weather type: ${weatherType}`);
+  }
 }
-
-// Register client commands
-RegisterCommand('weather:test', () => {
-  const manager = ClientWeatherManager.getInstance();
-  manager.generateTestPattern();
-}, false);
-
-RegisterCommand('weather:check', () => {
-  const manager = ClientWeatherManager.getInstance();
-  manager.checkWeather();
-}, false);
 
 const weatherManager = ClientWeatherManager.getInstance();
 

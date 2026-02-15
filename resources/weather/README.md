@@ -314,50 +314,6 @@ With heading-based targeting:
 └─────┴─────┴─────┘
 ```
 
-## Usage
-
-### Initialization
-
-```typescript
-import weatherManager from './client/managers/weather';
-
-// Weather grid is automatically initialized
-// Grid data is received from server via event
-
-onNet('weather:init', (gridData) => {
-  weatherManager.init(gridData);
-});
-```
-
-### Automatic Updates
-
-The system automatically tracks weather transitions during gameplay:
-
-```typescript
-// Called each frame or on a timer
-const coords = GetEntityCoords(PlayerPedId(), false);
-const heading = GetEntityHeading(PlayerPedId());
-
-weatherManager.calculateIfWeatherShouldTransition(
-  coords[0],  // worldX
-  coords[1],  // worldY
-  heading     // player heading in degrees
-);
-```
-
-### Weather Application
-
-When transitions occur, the system calls:
-
-```typescript
-SetCurrWeatherState(
-  currentWeatherHash,   // Weather transitioning FROM
-  targetWeatherHash,    // Weather transitioning TO
-  transitionPercent,    // 0.0 - 0.9
-  true                  // Enable transition
-);
-```
-
 ## Testing
 
 ### Test Pattern Command
@@ -490,54 +446,6 @@ Each biome has its own set of appropriate weather variants:
 
 The system automatically selects biome-appropriate variants when generating or evolving weather. If no biome-specific variant exists, it falls back to the general variant pool.
 
-## Implementation Details
-
-### Per-Player State Tracking
-
-The system tracks weather state for each player independently:
-
-```typescript
-interface PlayerWeatherState {
-  currentCell: { x: number; y: number };
-  previousCell: { x: number; y: number } | null;
-  targetNeighborCell: { x: number; y: number } | null;
-  currentWeather: WeatherType;
-  targetWeather: WeatherType | null;
-  transitionPercent: number;
-  biome: BiomeType;
-  lastHeading: number;
-  transitionPhase: 'approaching' | 'crossed' | 'settled';
-}
-```
-
-### Heading Change Detection
-
-Significant heading changes (>45°) during transitions trigger a reset:
-
-```typescript
-const headingChanged = Math.abs(
-  normalizeHeadingDiff(heading - playerState.lastHeading)
-) > HEADING_CHANGE_THRESHOLD;
-
-if (headingChanged && playerState.transitionPhase !== 'settled') {
-  resetTransitionTarget(playerState);
-}
-```
-
-This prevents transitions from continuing when the player changes direction mid-transition.
-
-### Throttled Logging
-
-Debug logs are throttled to 500ms intervals to prevent console spam:
-
-```typescript
-const now = GetGameTimer();
-if (!this.lastLogTime || now - this.lastLogTime > 500) {
-  console.log(transitionInfo);
-  this.lastLogTime = now;
-}
-```
-
 ## Architecture
 
 ```
@@ -565,36 +473,6 @@ if (!this.lastLogTime || now - this.lastLogTime > 500) {
 └─────────────────────────────────────────────────────┘
 ```
 
-## Performance Considerations
-
-- **Update frequency**: Called each frame or on a timer (recommend 100-500ms)
-- **Distance calculations**: Square root operations, relatively lightweight
-- **State updates**: Only when weather or transition percent changes
-- **Logging**: Throttled to 500ms to reduce overhead
-- **Grid lookups**: O(1) array access with bounds clamping
-
-## Troubleshooting
-
-### Transitions stop at 0.5
-
-**Cause**: Early exit when current and target weather are the same
-**Fix**: Removed weather equality check - transitions now complete even for matching weather types
-
-### Weather "flapping" on diagonal movement
-
-**Cause**: System targeting intermediate cells instead of diagonal target
-**Fix**: Heading-based targeting locks onto the cell you're moving towards
-
-### Transitions don't start until at edge
-
-**Cause**: Transition zone calculation using true cell center
-**Fix**: Transition zone now starts at 50% of distance from edge to center
-
-### State machine stuck in transition phase
-
-**Cause**: currentWeather updated too early when crossing cells
-**Fix**: Weather only updates when reaching 'settled' phase at 0.9
-
 ## Future Enhancements
 
 - [ ] Dynamic transition speed based on movement velocity
@@ -602,4 +480,7 @@ if (!this.lastLogTime || now - this.lastLogTime > 500) {
 - [ ] Biome-specific transition curves (faster in some biomes, slower in others)
 - [ ] Weather intensity gradients (light rain → heavy rain)
 - [ ] Multi-layer weather (ground fog + high clouds)
-- [ ] Forecasting, time based generation of evolving weather 
+- [ ] Forecasting, time based generation of evolving weather
+- [ ] Add Rain variation
+- [ ] Add Wind aspect.
+- [ ] Add management of moon phases/cycles?

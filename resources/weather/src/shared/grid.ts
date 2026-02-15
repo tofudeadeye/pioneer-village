@@ -1,8 +1,6 @@
 import { BiomeType, WeatherType, BiomeManager, WEATHER_COMPATIBILITY, BIOME_WEATHER_RULES, WeatherVariants, BiomeWeatherVariants} from './biome'
-import { Log, awaitUI } from '@lib/client/comms/ui';
+import { Log } from '@lib/client/comms/ui';
 import { LogToUI } from '@lib/server/comms/client';
-import { RGBA_ASTC_12x12_Format } from '~';
-
 
 export interface GridCell {
   x: number;

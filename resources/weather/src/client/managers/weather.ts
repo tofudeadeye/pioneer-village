@@ -1,49 +1,9 @@
-import { WeatherType, BiomeType, WeatherVariants, BiomeWeatherVariants } from "../../shared/biome";
+import { WeatherType, BiomeType, WeatherVariants, BiomeWeatherVariants, BiomeNames } from "../../shared/biome";
 import { BiomeWeatherGrid } from "../../shared/grid";
-import type { GridCell } from "../../shared/grid";
+import type { GridCell } from "../../shared/types";
 import { awaitServer } from '@lib/client';
 import { Log } from '@lib/client/comms/ui';
-
-// Weather type hash mapping for RDR2
-const WeatherHashes: Record<WeatherType, number> = {
-  [WeatherType.BLIZZARD]: GetHashKey('blizzard'),
-  [WeatherType.CLOUDS]: GetHashKey('clouds'),
-  [WeatherType.DRIZZLE]: GetHashKey('drizzle'),
-  [WeatherType.FOG]: GetHashKey('fog'),
-  [WeatherType.GROUNDBLIZZARD]: GetHashKey('groundblizzard'),
-  [WeatherType.HAIL]: GetHashKey('hail'),
-  [WeatherType.HIGHPRESSURE]: GetHashKey('highpressure'),
-  [WeatherType.HURRICANE]: GetHashKey('hurricane'),
-  [WeatherType.MISTY]: GetHashKey('misty'),
-  [WeatherType.OVERCAST]: GetHashKey('overcast'),
-  [WeatherType.OVERCASTDARK]: GetHashKey('overcastdark'),
-  [WeatherType.RAIN]: GetHashKey('rain'),
-  [WeatherType.SANDSTORM]: GetHashKey('sandstorm'),
-  [WeatherType.SHOWER]: GetHashKey('shower'),
-  [WeatherType.SLEET]: GetHashKey('sleet'),
-  [WeatherType.SNOW]: GetHashKey('snow'),
-  [WeatherType.SNOWLIGHT]: GetHashKey('snowlight'),
-  [WeatherType.SUNNY]: GetHashKey('sunny'),
-  [WeatherType.THUNDER]: GetHashKey('thunder'),
-  [WeatherType.THUNDERSTORM]: GetHashKey('thunderstorm'),
-  [WeatherType.WHITEOUT]: GetHashKey('whiteout'),
-};
-
-// Biome display names
-const BiomeNames: Record<BiomeType, string> = {
-  [BiomeType.GRIZZLIES]: 'Grizzly Mountains',
-  [BiomeType.TALL_TREES]: 'Tall Trees',
-  [BiomeType.BIG_VALLEY]: 'Big Valley',
-  [BiomeType.HEARTLANDS]: 'The Heartlands',
-  [BiomeType.GREAT_PLAINS]: 'Great Plains',
-  [BiomeType.BAYOU]: 'Bayou Nwa',
-  [BiomeType.LEMOYNE]: 'Lemoyne',
-  [BiomeType.NEW_AUSTIN]: 'New Austin',
-  [BiomeType.RIO_BRAVO]: 'Rio Bravo',
-  [BiomeType.ROANOKE]: 'Roanoke Ridge',
-  [BiomeType.CUMBERLAND]: 'Cumberland Forest',
-  [BiomeType.SCARLETT]: 'Scarlett Meadows',
-};
+import { WeatherHashes } from '../../shared/biome';
 
 interface PlayerWeatherState {
   currentCell: { x: number; y: number };

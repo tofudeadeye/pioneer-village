@@ -26,6 +26,5 @@ onClientCall('weather.request-grid', async () => {
   }
 
   console.log(`Player ${playerId} requested weather grid`);
-  console.log(grid);
   return grid;
 });

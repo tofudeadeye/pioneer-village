@@ -1,14 +1,7 @@
 import { BiomeType, WeatherType, BiomeManager, WEATHER_COMPATIBILITY, BIOME_WEATHER_RULES, WeatherVariants, BiomeWeatherVariants} from './biome'
 import { Log } from '@lib/client/comms/ui';
 import { LogToUI } from '@lib/server/comms/client';
-
-export interface GridCell {
-  x: number;
-  y: number;
-  weather: WeatherType;
-  variant: string | null;  // Weather variant (e.g., "MISTY_guama")
-  biome: BiomeType;
-}
+import type { GridCell } from './types';
 
 interface Neighbor {
   x: number;
@@ -389,7 +382,8 @@ class BiomeWeatherGrid {
     for (let y = 0; y < this.height; y++) {
       const row = this.grid[y].map(cell => {
         const weatherShort = cell.weather.substring(0, 4).padEnd(4);
-        return weatherShort + ` (${cell.x},${cell.y})`;
+        // return weatherShort + ` (${cell.x},${cell.y})`;
+        return weatherShort;
       }).join(' | ');
       
       console.log(row);
@@ -421,7 +415,8 @@ class BiomeWeatherGrid {
           'CUMBERLAND': 'CUMB',
           'SCARLETT': 'SCAR'
         };
-        return (biomeAbbrev[cell.biome] || cell.biome.substring(0, 4)).padEnd(4) + ` (${cell.x},${cell.y})`;
+        // return (biomeAbbrev[cell.biome] || cell.biome.substring(0, 4)).padEnd(4) + ` (${cell.x},${cell.y})`;
+        return (biomeAbbrev[cell.biome] || cell.biome.substring(0, 4)).padEnd(4);
       }).join(' | ');
       
       console.log(row);

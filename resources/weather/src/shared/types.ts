@@ -14,6 +14,7 @@ export interface GridCell {
   weather: WeatherType;
   variant: string | null;
   biome: BiomeType;
+  rainRate: number; // 0.0 - 1.0, only applies to RAIN, SHOWER, DRIZZLE, THUNDERSTORM
 }
 
 /**

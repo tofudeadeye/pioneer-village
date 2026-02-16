@@ -28,3 +28,13 @@ onClientCall('weather.request-grid', async () => {
   console.log(`Player ${playerId} requested weather grid`);
   return grid;
 });
+
+/**
+ * Broadcast grid update to all clients
+ * Called when server-side grid changes need to be synced to all players
+ */
+export function broadcastGridUpdate(): void {
+  const grid = weatherManager.getBiomeWeatherGrid().getGrid();
+  console.log('Broadcasting weather grid update to all clients');
+  emitNet('weather:grid-update', -1, grid);
+}

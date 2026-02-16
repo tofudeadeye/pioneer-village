@@ -52,6 +52,13 @@ export class ClientWeatherManager {
       }
     });
 
+    // Listen for grid updates from server
+    onNet('weather:grid-update', (grid: GridCell[][]) => {
+      console.log('Received weather grid update from server');
+      this.weatherGrid.setGrid(grid);
+      this.forceWeatherFromGrid();
+    });
+
     this.weatherGrid = new BiomeWeatherGrid();
 
     if (!this.initialized) {
@@ -117,15 +124,21 @@ export class ClientWeatherManager {
         `in ${biomeName} at cell (${currentGridPos.x}, ${currentGridPos.y})`
       );
 
+      // Clear any overrides that might exist from previous forced weather or transitions
+      ClearOverrideWeather();
       SetWeatherOwnedByNetwork(false);
       // Set weather to fully settled (0.9)
       SetCurrWeatherState(weatherHash, weatherHash, 0.9, true);
 
-      // Apply variant if available
-      if (currentCell.variant) {
-        SetWeatherVariation(currentCell.weather, currentCell.variant);
-        console.log(`[Weather] Applied variant: ${currentCell.variant}`);
-      }
+      // Apply rain rate
+      SetRain(currentCell.rainRate);
+      console.log(`[Weather] Applied rain rate: ${currentCell.rainRate.toFixed(2)}`);
+
+      // // Apply variant if available
+      // if (currentCell.variant) {
+      //   SetWeatherVariation(currentCell.weather, currentCell.variant);
+      //   console.log(`[Weather] Applied variant: ${currentCell.variant}`);
+      // }
     }
   }
 
@@ -188,6 +201,8 @@ export class ClientWeatherManager {
         neighborWeather: transitionInfo.neighborWeather,
         currentVariant: transitionInfo.currentVariant,
         neighborVariant: transitionInfo.neighborVariant,
+        currentRainRate: transitionInfo.currentRainRate,
+        neighborRainRate: transitionInfo.neighborRainRate,
         transitionPercent: transitionInfo.transitionPercent,
         biome: currentCell.biome,
       });
@@ -288,6 +303,8 @@ export class ClientWeatherManager {
     neighborWeather: WeatherType | null;
     currentVariant: string | null;
     neighborVariant: string | null;
+    currentRainRate: number;
+    neighborRainRate: number;
     transitionPercent: number;
     shouldApply: boolean;
   } {
@@ -299,6 +316,8 @@ export class ClientWeatherManager {
         neighborWeather: null,
         currentVariant: currentCell.variant,
         neighborVariant: null,
+        currentRainRate: currentCell.rainRate,
+        neighborRainRate: 0.0,
         transitionPercent: 0.0,
         shouldApply: false
       };
@@ -315,6 +334,8 @@ export class ClientWeatherManager {
         neighborWeather: null,
         currentVariant: currentCell.variant,
         neighborVariant: null,
+        currentRainRate: currentCell.rainRate,
+        neighborRainRate: 0.0,
         transitionPercent: 0.0,
         shouldApply: false
       };
@@ -339,6 +360,8 @@ export class ClientWeatherManager {
         neighborWeather: null,
         currentVariant: currentCell.variant,
         neighborVariant: null,
+        currentRainRate: currentCell.rainRate,
+        neighborRainRate: 0.0,
         transitionPercent: 0.0,
         shouldApply: false
       };
@@ -431,6 +454,8 @@ export class ClientWeatherManager {
           neighborWeather: null,
           currentVariant: currentCell.variant,
           neighborVariant: null,
+          currentRainRate: currentCell.rainRate,
+          neighborRainRate: 0.0,
           transitionPercent: 0.0,
           shouldApply: false
         };
@@ -442,6 +467,8 @@ export class ClientWeatherManager {
         neighborWeather: null,
         currentVariant: currentCell.variant,
         neighborVariant: null,
+        currentRainRate: currentCell.rainRate,
+        neighborRainRate: 0.0,
         transitionPercent: 0.0,
         shouldApply: false
       };
@@ -452,6 +479,8 @@ export class ClientWeatherManager {
       neighborWeather: playerState.targetWeather,
       currentVariant: currentCell.variant,
       neighborVariant: targetNeighborCell.variant,
+      currentRainRate: currentCell.rainRate,
+      neighborRainRate: targetNeighborCell.rainRate,
       transitionPercent: transitionPercent,
       shouldApply: true
     };
@@ -518,10 +547,12 @@ export class ClientWeatherManager {
     neighborWeather: WeatherType | null;
     currentVariant: string | null;
     neighborVariant: string | null;
+    currentRainRate: number;
+    neighborRainRate: number;
     transitionPercent: number;
     biome: BiomeType;
   }): void {
-    const { currentWeather: newCurrent, neighborWeather: newNeighbor, currentVariant, neighborVariant, transitionPercent, biome } = weatherInfo;
+    const { currentWeather: newCurrent, neighborWeather: newNeighbor, currentVariant, neighborVariant, currentRainRate, neighborRainRate, transitionPercent, biome } = weatherInfo;
     
     // Check if this is a meaningful update
     const weatherChanged = newCurrent !== this.currentWeather || newNeighbor !== this.neighborWeather;
@@ -557,18 +588,29 @@ export class ClientWeatherManager {
           ? WeatherHashes[this.neighborWeather]
           : oldWeatherHash;
         
+        if (effectivePercent > 0.99) {
+          effectivePercent = 0.99; // Cap at 0.99, anything above this causes weird UI rendering bugs
+        }
+
         // Use SetCurrWeatherState for smooth transitions
-        // SetCurrWeatherState(oldWeather, newWeather, percent, useTransition)
         SetWeatherOwnedByNetwork(false);
         SetCurrWeatherState(oldWeatherHash, newWeatherHash, effectivePercent, true);
+        console.log(`derpderp: ${oldWeatherHash} -> ${newWeatherHash} at ${effectivePercent}`);
 
-        // Apply weather variants if they exist
-        if (currentVariant) {
-          SetWeatherVariation(this.currentWeather, currentVariant);
-        }
-        if (neighborVariant && this.neighborWeather) {
-          SetWeatherVariation(this.neighborWeather, neighborVariant);
-        }
+        // Interpolate rain rate based on transition percent
+        // When effectivePercent is 0.0, we're fully in current weather
+        // When effectivePercent is 1.0, we're fully in neighbor weather
+        const interpolatedRainRate = currentRainRate * (1.0 - effectivePercent) + neighborRainRate * effectivePercent;
+        SetRain(interpolatedRainRate);
+        console.log(`[Weather] Rain rate: ${interpolatedRainRate.toFixed(2)} (${currentRainRate.toFixed(2)} -> ${neighborRainRate.toFixed(2)})`);
+
+        // // Apply weather variants if they exist
+        // if (currentVariant) {
+        //   SetWeatherVariation(this.currentWeather, currentVariant);
+        // }
+        // if (neighborVariant && this.neighborWeather) {
+        //   SetWeatherVariation(this.neighborWeather, neighborVariant);
+        // }
       }
     }
   }

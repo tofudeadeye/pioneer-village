@@ -1,4 +1,101 @@
 import weatherManager from '../shared/weather';
+import { toWeatherType, toBiomeType, BiomeType, WeatherType } from '../shared/biome';
+import { broadcastGridUpdate } from './server';
+
+/**
+ * Admin command: Override weather for a specific biome
+ * Usage: /biomeweather <BIOME> <WEATHER_TYPE>
+ * Example: /biomeweather GRIZZLIES SNOW
+ */
+RegisterCommand(
+  'biomeweather',
+  (source: number, args: string[], rawCommand: string) => {
+    if (source === 0 || IsPlayerAceAllowed(source, 'weather.admin')) {
+      if (!weatherManager) {
+        console.error('Weather manager not initialized');
+        return;
+      }
+
+      if (args.length < 2) {
+        const message = 'Usage: /biomeweather <BIOME> <WEATHER_TYPE>\nExample: /biomeweather GRIZZLIES SNOW';
+        if (source !== 0) {
+          emitNet('chat:addMessage', source, {
+            args: ['Weather System', message],
+          });
+        } else {
+          console.log(message);
+        }
+        return;
+      }
+
+      const biomeStr = args[0].toUpperCase();
+      const weatherStr = args[1].toUpperCase();
+
+      // Validate biome type
+      const biome = toBiomeType(biomeStr);
+      if (!biome) {
+        const validBiomes = Object.values(BiomeType).join(', ');
+        const message = `Invalid biome: ${biomeStr}\nValid biomes: ${validBiomes}`;
+        if (source !== 0) {
+          emitNet('chat:addMessage', source, {
+            args: ['Weather System', message],
+          });
+        } else {
+          console.log(message);
+        }
+        return;
+      }
+
+      // Validate weather type
+      const weather = toWeatherType(weatherStr);
+      if (!weather) {
+        const validWeathers = Object.values(WeatherType).join(', ');
+        const message = `Invalid weather type: ${weatherStr}\nValid weather types: ${validWeathers}`;
+        if (source !== 0) {
+          emitNet('chat:addMessage', source, {
+            args: ['Weather System', message],
+          });
+        } else {
+          console.log(message);
+        }
+        return;
+      }
+
+      // Override biome weather
+      const grid = weatherManager.getBiomeWeatherGrid();
+      const updatedCount = grid.overrideBiomeWeather(biome, weather);
+
+      if (updatedCount > 0) {
+        const message = `Successfully updated ${updatedCount} cells in ${biome} to ${weather}`;
+        console.log(message);
+
+        if (source !== 0) {
+          emitNet('chat:addMessage', source, {
+            args: ['Weather System', message],
+          });
+        }
+
+        // Broadcast update to all clients
+        broadcastGridUpdate();
+      } else {
+        const message = `Failed to update biome weather. Weather ${weather} may not be allowed in ${biome}.`;
+        console.warn(message);
+
+        if (source !== 0) {
+          emitNet('chat:addMessage', source, {
+            args: ['Weather System', message],
+          });
+        }
+      }
+    } else {
+      emitNet('chat:addMessage', source, {
+        args: ['System', 'You do not have permission to use this command'],
+      });
+    }
+  },
+  false
+);
+
 /**
  * Admin command: View weather grid
  */

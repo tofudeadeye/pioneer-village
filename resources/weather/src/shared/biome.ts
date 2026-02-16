@@ -231,18 +231,23 @@ export const BIOME_WEATHER_RULES: Record<BiomeType, WeatherType[]> = {
   [BiomeType.GRIZZLIES]: [
     WeatherType.SNOW,
     WeatherType.BLIZZARD,
+    WeatherType.GROUNDBLIZZARD,
     WeatherType.SNOWLIGHT,
     WeatherType.OVERCAST,
     WeatherType.CLOUDS,
     WeatherType.FOG,
-    WeatherType.SUNNY
+    WeatherType.SUNNY,
+    WeatherType.WHITEOUT,
+    WeatherType.MISTY,
   ],
   [BiomeType.TALL_TREES]: [
     WeatherType.RAIN,
     WeatherType.DRIZZLE,
     WeatherType.OVERCAST,
+    WeatherType.OVERCASTDARK,
     WeatherType.CLOUDS,
     WeatherType.FOG,
+    WeatherType.MISTY,
   ],
   [BiomeType.BIG_VALLEY]: [
     WeatherType.SUNNY,
@@ -252,15 +257,19 @@ export const BIOME_WEATHER_RULES: Record<BiomeType, WeatherType[]> = {
     WeatherType.DRIZZLE,
     WeatherType.FOG,
     WeatherType.SNOWLIGHT, // Occasional light snow in winter
+    WeatherType.MISTY,
   ],
   [BiomeType.HEARTLANDS]: [
     WeatherType.SUNNY,
     WeatherType.HIGHPRESSURE,
     WeatherType.CLOUDS,
     WeatherType.OVERCAST,
+    WeatherType.OVERCASTDARK,
     WeatherType.RAIN,
     WeatherType.DRIZZLE,
     WeatherType.THUNDER,
+    WeatherType.MISTY,
+    WeatherType.THUNDERSTORM,
   ],
   [BiomeType.GREAT_PLAINS]: [
     WeatherType.SUNNY,
@@ -269,6 +278,8 @@ export const BIOME_WEATHER_RULES: Record<BiomeType, WeatherType[]> = {
     WeatherType.OVERCAST,
     WeatherType.RAIN,
     WeatherType.DRIZZLE,
+    WeatherType.MISTY,
+    WeatherType.THUNDERSTORM,
   ],
   [BiomeType.BAYOU]: [
     WeatherType.FOG,
@@ -277,6 +288,10 @@ export const BIOME_WEATHER_RULES: Record<BiomeType, WeatherType[]> = {
     WeatherType.RAIN,
     WeatherType.THUNDER,
     WeatherType.CLOUDS,
+    WeatherType.SHOWER,
+    WeatherType.MISTY,
+    WeatherType.HIGHPRESSURE,
+    WeatherType.HURRICANE,
   ],
   [BiomeType.LEMOYNE]: [
     WeatherType.SUNNY,
@@ -285,7 +300,11 @@ export const BIOME_WEATHER_RULES: Record<BiomeType, WeatherType[]> = {
     WeatherType.RAIN,
     WeatherType.DRIZZLE,
     WeatherType.THUNDER,
+    WeatherType.THUNDERSTORM,
     WeatherType.FOG,
+    WeatherType.MISTY,
+    WeatherType.SHOWER,
+    WeatherType.HIGHPRESSURE,
   ],
   [BiomeType.NEW_AUSTIN]: [
     WeatherType.SUNNY,
@@ -301,10 +320,12 @@ export const BIOME_WEATHER_RULES: Record<BiomeType, WeatherType[]> = {
   [BiomeType.ROANOKE]: [
     WeatherType.FOG,
     WeatherType.OVERCAST,
+    WeatherType.OVERCASTDARK,
     WeatherType.RAIN,
     WeatherType.DRIZZLE,
     WeatherType.CLOUDS,
     WeatherType.SUNNY,
+    WeatherType.MISTY,
   ],
   [BiomeType.CUMBERLAND]: [
     WeatherType.SUNNY,
@@ -313,6 +334,7 @@ export const BIOME_WEATHER_RULES: Record<BiomeType, WeatherType[]> = {
     WeatherType.RAIN,
     WeatherType.DRIZZLE,
     WeatherType.FOG,
+    WeatherType.MISTY,
   ],
   [BiomeType.SCARLETT]: [
     WeatherType.SUNNY,
@@ -320,6 +342,8 @@ export const BIOME_WEATHER_RULES: Record<BiomeType, WeatherType[]> = {
     WeatherType.OVERCAST,
     WeatherType.RAIN,
     WeatherType.DRIZZLE,
+    WeatherType.MISTY,
+    WeatherType.SHOWER,
   ]
 };
 
@@ -678,6 +702,81 @@ export class BiomeManager {
   public clearCache(): void {
     this.biomeCache.clear();
   }
+}
+
+/**
+ * Type guard to check if a string is a valid WeatherType
+ */
+export function isWeatherType(value: string): value is WeatherType {
+  return Object.values(WeatherType).includes(value as WeatherType);
+}
+
+/**
+ * Type guard to check if a string is a valid BiomeType
+ */
+export function isBiomeType(value: string): value is BiomeType {
+  return Object.values(BiomeType).includes(value as BiomeType);
+}
+
+/**
+ * Safely convert string to WeatherType, returns null if invalid
+ */
+export function toWeatherType(value: string): WeatherType | null {
+  return isWeatherType(value) ? (value as WeatherType) : null;
+}
+
+/**
+ * Safely convert string to BiomeType, returns null if invalid
+ */
+export function toBiomeType(value: string): BiomeType | null {
+  return isBiomeType(value) ? (value as BiomeType) : null;
+}
+
+/**
+ * Weather types that support rain
+ */
+const RAIN_WEATHER_TYPES = [
+  WeatherType.RAIN,
+  WeatherType.SHOWER,
+  WeatherType.DRIZZLE,
+  WeatherType.THUNDERSTORM,
+] as const;
+
+/**
+ * Get rain rate for a weather type
+ * @param weatherType The weather type
+ * @param random Optional random function for variation (defaults to Math.random)
+ * @returns Rain rate between 0.0 and 1.0
+ */
+export function getRainRate(weatherType: WeatherType, random: () => number = Math.random): number {
+  switch (weatherType) {
+    case WeatherType.DRIZZLE:
+      // Light rain: 0.2 - 0.4
+      return 0.2 + random() * 0.2;
+
+    case WeatherType.SHOWER:
+      // Moderate rain: 0.4 - 0.7
+      return 0.4 + random() * 0.3;
+
+    case WeatherType.RAIN:
+      // Heavy rain: 0.6 - 0.9
+      return 0.6 + random() * 0.3;
+
+    case WeatherType.THUNDERSTORM:
+      // Very heavy rain: 0.8 - 1.0
+      return 0.8 + random() * 0.2;
+
+    default:
+      // No rain for other weather types
+      return 0.0;
+  }
+}
+
+/**
+ * Check if a weather type supports rain
+ */
+export function isRainWeather(weatherType: WeatherType): boolean {
+  return RAIN_WEATHER_TYPES.includes(weatherType as any);
 }
 
 export default BiomeManager;

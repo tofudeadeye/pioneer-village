@@ -23,8 +23,8 @@ setInterval(() => {
   }
 }, 1000); // Check every 1 second
 
-// Create a checkerboard test pattern for debugging, alternating between two weather types
-// SUNNY and RAINY. Useful when running in conjunction with the 'togglegrid' command to verify grid updates and transitions.
+// Create a checkerboard test pattern for debugging, alternating between two weather types SUNNY & RAIN
+// Useful when running in conjunction with the 'togglegrid' command to verify grid updates and transitions.
 RegisterCommand('weather:test', () => {
   weatherManager.generateTestPattern();
 }, false);
@@ -34,16 +34,19 @@ RegisterCommand('weather:check', () => {
   weatherManager.checkWeather();
 }, false);
 
-// Set all grid cells to a specific weather type for testing purposes. Usage: /weather:force SUNNY
-RegisterCommand('weather:force', (args: string[]) => {
-  const weatherType = args[0]?.toUpperCase();
-  if (weatherType && Object.values(WeatherType).includes(weatherType as WeatherType)) {
-    weatherManager.setAllCellsToWeatherType(weatherType as WeatherType);
-    SetOverrideWeather(weatherType);
+RegisterCommand('weather:force', async (source: number, args: any[], rawCommand: string) => {
+  const wType = args[0]?.toUpperCase();
+  if (typeof wType !== 'string') {
+    console.log('Invalid weather type. Usage: /weather:force2 <WEATHER_TYPE>');
+    return;
   }
+
+  console.log(`Forcing all grid cells to weather type: ${wType}`);
+  weatherManager.setAllCellsToWeatherType(wType as WeatherType);
+  SetOverrideWeather(wType);
 }, false);
 
-// Request the current weather grid from the server.
+// Request the current weather grid from the server, resetting any forced weather
 RegisterCommand('weather:sync', () => {
   weatherManager.requestWeatherGrid();
 }, false);

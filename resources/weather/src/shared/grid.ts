@@ -1,4 +1,4 @@
-import { BiomeType, WeatherType, BiomeManager, WEATHER_COMPATIBILITY, BIOME_WEATHER_RULES, WeatherVariants, BiomeWeatherVariants} from './biome'
+import { BiomeType, WeatherType, BiomeManager, WEATHER_COMPATIBILITY, BIOME_WEATHER_RULES, WeatherVariants, BiomeWeatherVariants, getRainRate} from './biome'
 import { Log } from '@lib/client/comms/ui';
 import { LogToUI } from '@lib/server/comms/client';
 import type { GridCell } from './types';
@@ -48,7 +48,8 @@ class BiomeWeatherGrid {
           y,
           weather: WeatherType.CLOUDS, // Default, will be set during generation
           variant: null,
-          biome
+          biome,
+          rainRate: 0.0 // Default, will be set during generation
         });
       }
       
@@ -199,6 +200,7 @@ class BiomeWeatherGrid {
     
     cell.weather = weatherType;
     cell.variant = this.getRandomVariant(weatherType, cell.biome);
+    cell.rainRate = getRainRate(weatherType);
     return true;
   }
   
@@ -207,10 +209,10 @@ class BiomeWeatherGrid {
    */
   public generateBiomeAwareWeather(seed?: number): void {
     let random = seed !== undefined ? this.seededRandom(seed) : Math.random;
-    
+
     // Group cells by biome for more realistic weather patterns
     const biomeGroups = new Map<BiomeType, GridCell[]>();
-    
+
     this.grid.forEach(row => {
       row.forEach(cell => {
         if (!biomeGroups.has(cell.biome)) {
@@ -219,66 +221,147 @@ class BiomeWeatherGrid {
         biomeGroups.get(cell.biome)!.push(cell);
       });
     });
-    
-    // Set initial weather for each biome group
+
+    // Create multiple seed points per biome for better variation
+    // Use 30% of cells in each biome as seed points (or at least 1)
     biomeGroups.forEach((cells, biome) => {
       const allowedWeathers = BIOME_WEATHER_RULES[biome];
-      const initialWeather = allowedWeathers[Math.floor(random() * allowedWeathers.length)];
+      const seedCount = Math.max(1, Math.ceil(cells.length * 0.3));
 
-      // Pick a random cell in this biome as seed point
-      const seedCell = cells[Math.floor(random() * cells.length)];
-      seedCell.weather = initialWeather;
-      seedCell.variant = this.getRandomVariant(initialWeather, biome, random);
+      // Shuffle cells to get random seed positions
+      const shuffledCells = [...cells].sort(() => random() - 0.5);
+
+      let placedSeeds = 0;
+      let attemptIndex = 0;
+
+      // Try to place seeds with compatibility checking
+      while (placedSeeds < seedCount && attemptIndex < shuffledCells.length) {
+        const seedCell = shuffledCells[attemptIndex];
+        attemptIndex++;
+
+        // Try each allowed weather type for this cell, starting with random order
+        const shuffledWeathers = [...allowedWeathers].sort(() => random() - 0.5);
+
+        for (const weatherType of shuffledWeathers) {
+          // Temporarily set the weather to check compatibility
+          const originalWeather = seedCell.weather;
+          seedCell.weather = weatherType;
+
+          // Check if this weather is compatible with already-placed neighbors
+          if (this.isCompatibleWithNeighbors(seedCell.x, seedCell.y, weatherType)) {
+            // Compatible! Keep this weather and set variant and rain rate
+            seedCell.variant = this.getRandomVariant(weatherType, biome, random);
+            seedCell.rainRate = getRainRate(weatherType, random);
+            placedSeeds++;
+            break;
+          } else {
+            // Not compatible, restore original and try next weather type
+            seedCell.weather = originalWeather;
+          }
+        }
+      }
     });
-    
+
     // BFS to fill remaining cells with compatible weather
     const queue: GridCell[] = [];
     const visited = new Set<string>();
-    
+
     // Add all cells with assigned weather to queue
     this.grid.forEach(row => {
       row.forEach(cell => {
-        // console.log(`Cell (${cell.x}, ${cell.y}) in biome ${cell.biome} has initial weather ${cell.weather}`);
-        if (cell.weather !== WeatherType.CLOUDS || 
+        if (cell.weather !== WeatherType.CLOUDS ||
             this.biomeManager.isWeatherAllowedInBiome(WeatherType.CLOUDS, cell.biome)) {
-              // console.log(`Adding cell (${cell.x}, ${cell.y}) to BFS queue with weather ${cell.weather}`);
           queue.push(cell);
           visited.add(`${cell.x},${cell.y}`);
         }
       });
     });
-    
+
     while (queue.length > 0) {
       const current = queue.shift()!;
       const neighbors = this.getNeighbors(current.x, current.y);
-      
+
       for (const neighbor of neighbors) {
         const key = `${neighbor.x},${neighbor.y}`;
-        
+
         if (!visited.has(key)) {
           visited.add(key);
           const neighborCell = this.grid[neighbor.y][neighbor.x];
-          
+
           // Get compatible weather types for this position (including biome rules)
-          const compatible = this.getCompatibleWeatherTypes(neighbor.x, neighbor.y);
-          
+          let compatible = this.getCompatibleWeatherTypes(neighbor.x, neighbor.y);
+
           if (compatible.length > 0) {
-            // Prefer weather similar to current cell if same biome
-            // if (neighborCell.biome === current.biome &&
-            //     compatible.includes(current.weather)) {
-            //   neighborCell.weather = current.weather;
-            // } else {
-              // Pick random compatible weather
-              const selectedWeather = compatible[Math.floor(random() * compatible.length)];
-              neighborCell.weather = selectedWeather;
-              neighborCell.variant = this.getRandomVariant(selectedWeather, neighborCell.biome, random);
-            // }
+            // Apply diversity constraints: reduce weight of weather types that neighbors already have
+            const selectedWeather = this.selectDiverseWeather(
+              neighbor.x,
+              neighbor.y,
+              compatible,
+              random
+            );
+
+            neighborCell.weather = selectedWeather;
+            neighborCell.variant = this.getRandomVariant(selectedWeather, neighborCell.biome, random);
+            neighborCell.rainRate = getRainRate(selectedWeather, random);
           }
-          
+
           queue.push(neighborCell);
         }
       }
     }
+  }
+
+  /**
+   * Select weather type with diversity constraints to prevent uniformity
+   * Weights selection away from weather types that neighbors already have
+   */
+  private selectDiverseWeather(
+    x: number,
+    y: number,
+    compatible: WeatherType[],
+    random: () => number
+  ): WeatherType {
+    if (compatible.length === 1) {
+      return compatible[0];
+    }
+
+    // Count how many neighbors have each weather type
+    const neighbors = this.getNeighbors(x, y);
+    const neighborWeatherCounts = new Map<WeatherType, number>();
+
+    for (const neighbor of neighbors) {
+      const neighborWeather = this.grid[neighbor.y][neighbor.x].weather;
+      neighborWeatherCounts.set(
+        neighborWeather,
+        (neighborWeatherCounts.get(neighborWeather) || 0) + 1
+      );
+    }
+
+    // Create weighted selection: penalize weather types that neighbors already have
+    // Weight = 1.0 / (1 + neighborCount * 2)
+    const weights: number[] = compatible.map(weather => {
+      const neighborCount = neighborWeatherCounts.get(weather) || 0;
+      // Heavy penalty for weather types that neighbors have
+      return 1.0 / (1 + neighborCount * 3);
+    });
+
+    // Normalize weights
+    const totalWeight = weights.reduce((sum, w) => sum + w, 0);
+    const normalizedWeights = weights.map(w => w / totalWeight);
+
+    // Weighted random selection
+    const randomValue = random();
+    let cumulativeWeight = 0;
+
+    for (let i = 0; i < compatible.length; i++) {
+      cumulativeWeight += normalizedWeights[i];
+      if (randomValue <= cumulativeWeight) {
+        return compatible[i];
+      }
+    }
+
+    // Fallback (should never reach here)
+    return compatible[compatible.length - 1];
   }
   
   /**
@@ -343,7 +426,7 @@ class BiomeWeatherGrid {
    * Evolve weather system (biome-aware)
    */
   public evolveWeather(): void {
-    const changes: Array<{x: number, y: number, weather: WeatherType, variant: string | null}> = [];
+    const changes: Array<{x: number, y: number, weather: WeatherType, variant: string | null, rainRate: number}> = [];
 
     for (let y = 0; y < this.height; y++) {
       for (let x = 0; x < this.width; x++) {
@@ -358,7 +441,8 @@ class BiomeWeatherGrid {
             if (otherWeathers.length > 0) {
               const newWeather = otherWeathers[Math.floor(Math.random() * otherWeathers.length)];
               const newVariant = this.getRandomVariant(newWeather, this.grid[y][x].biome);
-              changes.push({x, y, weather: newWeather, variant: newVariant});
+              const newRainRate = getRainRate(newWeather);
+              changes.push({x, y, weather: newWeather, variant: newVariant, rainRate: newRainRate});
             }
           }
         }
@@ -369,11 +453,49 @@ class BiomeWeatherGrid {
     changes.forEach(change => {
       this.grid[change.y][change.x].weather = change.weather;
       this.grid[change.y][change.x].variant = change.variant;
+      this.grid[change.y][change.x].rainRate = change.rainRate;
     });
     
     console.log(`Weather evolved: ${changes.length} cells changed`);
   }
-  
+
+  /**
+   * Override weather for all cells in a specific biome
+   * @param biome The biome type to target
+   * @param weatherType The weather type to set
+   * @returns Number of cells updated
+   */
+  public overrideBiomeWeather(biome: BiomeType, weatherType: WeatherType): number {
+    let updatedCount = 0;
+
+    // Check if weather is allowed in this biome
+    if (!this.biomeManager.isWeatherAllowedInBiome(weatherType, biome)) {
+      console.warn(
+        `Weather type ${weatherType} is not allowed in biome ${biome}. Override aborted.`
+      );
+      return 0;
+    }
+
+    // Update all cells that match the biome
+    for (let y = 0; y < this.height; y++) {
+      for (let x = 0; x < this.width; x++) {
+        const cell = this.grid[y][x];
+
+        if (cell.biome === biome) {
+          cell.weather = weatherType;
+          cell.variant = this.getRandomVariant(weatherType, biome);
+          cell.rainRate = getRainRate(weatherType);
+          updatedCount++;
+        }
+      }
+    }
+
+    console.log(
+      `Biome weather override: ${updatedCount} cells in ${biome} set to ${weatherType}`
+    );
+    return updatedCount;
+  }
+
   /**
    * Print grid showing both weather and biome
    */

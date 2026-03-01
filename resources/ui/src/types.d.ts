@@ -356,6 +356,7 @@ declare namespace UI.Inventory {
     clothingInventory: string;
     mainInventory: string;
     targetInventory: string;
+    birdsInventory: string;
     inventories: Map<string, LoadData>;
     inventoriesWeight: Map<string, number>;
     tooltipItem: UI.Inventory.ItemData | null;

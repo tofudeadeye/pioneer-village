@@ -39,27 +39,50 @@ const pedComponentCategories = [
   'neckties',
   'neckwear',
   'shirts_full',
-  'suspenders',
   'vests',
   'coats',
   'coats_closed',
   'cloaks',
   'ponchos',
-  'gauntlets',
+  'aprons',
+  'dresses',
+  'skirts',
   'gloves',
+  'gauntlets',
   'belts',
   'belt_buckles',
   'gunbelts',
-  'skirts',
+  'gunbelt_accs',
+  'holsters_left',
+  'holsters_right',
+  'holsters_crossdraw',
+  'holsters_knife',
   'pants',
+  'chaps',
   'boots',
   'boot_accessories',
   'spats',
-  'chaps',
-  'accessories',
+  'suspenders',
+  'satchels',
   'jewelry_bracelets',
   'jewelry_rings_left',
   'jewelry_rings_right',
+  'talisman_belt',
+  'talisman_holster',
+  'talisman_satchel',
+  'talisman_wrist',
+  'hair_accessories',
+  'hair',
+  'beards_complete',
+  'beards_chin',
+  'beards_chops',
+  'beards_mustache',
+  'masks',
+  'masks_large',
+  'accessories',
+  'badges',
+  'armor',
+  'loadouts',
 ];
 
 const horseComponentCategories = ['head', 'hand', 'hair', 'mane', 'teef'];
@@ -281,7 +304,7 @@ class CustomizationStore {
     // Handle state updates from game client
     onClient('customization.state', (stateUpdate: UI.Customization.Event) => {
       this.updateState(stateUpdate);
-      if (!stateUpdate.show) {
+      if (stateUpdate.show === false) {
         this.resetComponents();
       }
     });

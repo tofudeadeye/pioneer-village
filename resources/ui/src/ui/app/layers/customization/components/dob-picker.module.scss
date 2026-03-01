@@ -1,0 +1,134 @@
+@use 'sass:math';
+@use '../../../styles/mixins.module.scss' as *;
+
+.picker {
+  position: relative;
+}
+
+.segments {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  padding: uiSize(10) uiSize(16);
+  user-select: none;
+}
+
+.segment {
+  position: relative;
+}
+
+.segmentBtn {
+  background: none;
+  border: 1px solid var(--cust-border-dark);
+  border-radius: uiSize(4);
+  padding: uiSize(4) uiSize(10);
+  cursor: pointer;
+  transition: all 0.15s;
+  font-family: var(--cust-font-title);
+  font-size: uiSize(64);
+  font-weight: 600;
+  line-height: 1;
+  color: var(--cust-brass);
+  letter-spacing: 1px;
+
+  &:hover {
+    background: rgba(201, 169, 97, 0.06);
+    border-color: var(--cust-border-mid);
+  }
+
+  &.open {
+    background: rgba(201, 169, 97, 0.1);
+    border-color: var(--cust-brass-muted);
+  }
+
+  &.muted {
+    color: var(--cust-text-muted);
+  }
+}
+
+.separator {
+  font-family: var(--cust-font-title);
+  font-size: uiSize(48);
+  color: var(--cust-border-light);
+  padding: 0 uiSize(4);
+  line-height: 1;
+  padding-bottom: uiSize(2);
+}
+
+.popover {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  margin-top: uiSize(8);
+  background: var(--cust-bg-raised);
+  border: 1px solid var(--cust-border-mid);
+  padding: uiSize(8);
+  border-radius: uiSize(6);
+  z-index: 10;
+  box-shadow: 0 uiSize(4) uiSize(16) rgba(0, 0, 0, 0.3);
+  animation: custPopIn 0.15s ease;
+}
+
+.grid {
+  display: grid;
+  gap: uiSize(4);
+}
+
+.monthGrid {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.dayGrid {
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.yearGrid {
+  grid-template-columns: repeat(6, 1fr);
+}
+
+.cell {
+  padding: uiSize(8) uiSize(4);
+  background: var(--cust-bg-surface);
+  border: 1px solid var(--cust-border-dark);
+  border-radius: uiSize(4);
+  color: var(--cust-text-secondary);
+  font-family: var(--cust-font-body);
+  font-size: uiSize(14);
+  font-weight: 500;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.12s;
+  line-height: 1.2;
+
+  &:hover {
+    background: var(--cust-bg-hover);
+    border-color: var(--cust-border-mid);
+    color: var(--cust-text-bright);
+  }
+
+  &.selected {
+    background: rgba(201, 169, 97, 0.12);
+    border-color: var(--cust-brass-muted);
+    color: var(--cust-brass);
+    font-weight: 600;
+  }
+
+  &.disabled {
+    opacity: 0.2;
+    pointer-events: none;
+  }
+}
+
+.monthCell {
+  padding: uiSize(10) uiSize(4);
+  font-size: uiSize(14);
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+.yearCell {
+  font-variant-numeric: tabular-nums;
+  font-size: uiSize(13);
+  padding: uiSize(6) uiSize(2);
+}

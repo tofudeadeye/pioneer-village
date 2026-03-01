@@ -1,0 +1,90 @@
+@use 'sass:math';
+@use '../../../styles/mixins.module.scss' as *;
+
+.container {
+  padding: uiSize(12);
+  background: var(--cust-bg-surface);
+  border: 1px solid var(--cust-border-dark);
+  border-radius: uiSize(6);
+}
+
+.layer {
+  display: flex;
+  flex-direction: column;
+  gap: uiSize(8);
+  padding: uiSize(12);
+  margin-bottom: uiSize(8);
+  background: var(--cust-bg-deep);
+  border: 1px solid var(--cust-border-dark);
+  border-radius: uiSize(4);
+
+  &:last-of-type {
+    margin-bottom: 0;
+  }
+}
+
+.select {
+  background: var(--cust-bg-deep);
+  color: var(--cust-text-primary);
+  border: 1px solid var(--cust-border-dark);
+  padding: uiSize(4) uiSize(8);
+  border-radius: uiSize(4);
+  font-size: uiSize(12);
+  font-family: var(--cust-font-body);
+  flex: 1;
+  appearance: none;
+
+  &:focus {
+    border-color: var(--cust-brass);
+    outline: none;
+  }
+}
+
+.addButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: uiSize(8);
+  margin-top: uiSize(8);
+  background: transparent;
+  border: 1px dashed var(--cust-border-mid);
+  color: var(--cust-brass-dim);
+  border-radius: uiSize(4);
+  cursor: pointer;
+  font-size: uiSize(12);
+  font-family: var(--cust-font-body);
+
+  &:hover {
+    border-color: var(--cust-brass);
+    color: var(--cust-brass);
+  }
+}
+
+.removeButton {
+  background: none;
+  border: none;
+  color: var(--cust-text-muted);
+  cursor: pointer;
+  font-size: uiSize(14);
+  padding: uiSize(4);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    color: #cc4444;
+  }
+}
+
+.opacityWrapper {
+  width: 100%;
+}
+
+.selectRow {
+  display: flex;
+  align-items: center;
+  gap: uiSize(8);
+  width: 100%;
+}

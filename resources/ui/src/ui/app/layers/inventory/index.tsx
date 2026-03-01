@@ -86,6 +86,13 @@ const Inventories: FC<UI.BaseProps> = () => {
     }
     dragItem.style.left = `${e.clientX}px`;
     dragItem.style.top = `${e.clientY}px`;
+
+    const targetEl = document.elementFromPoint(e.clientX, e.clientY);
+    if (targetEl instanceof HTMLElement && targetEl?.dataset?.inventoryIdentifier) {
+      dragItem.classList.remove(styles.willDrop);
+    } else {
+      dragItem.classList.add(styles.willDrop);
+    }
   }, []);
 
   const onmouseup = useCallback<(e: MouseEvent) => void>(
@@ -137,10 +144,8 @@ const Inventories: FC<UI.BaseProps> = () => {
             );
           }
         }
-      } else if (dragItem.dataset.inventoryIdentifier) {
+      } else if (dragItem.dataset.inventoryIdentifier && !targetEl?.dataset?.inventoryIdentifier) {
         inventoryStore.dropItem(dragItem.dataset.inventoryIdentifier, Number(dragItem.dataset.slot));
-      } else {
-        return;
       }
 
       cancelDrag();
@@ -310,6 +315,9 @@ const Inventories: FC<UI.BaseProps> = () => {
       const weight = state.inventoriesWeight.get(identifier) || 0;
       const InventoryDetails = state.targetInventory === identifier ? styles.inventoryFooter : styles.inventoryHeader;
       const InventoryStats = state.targetInventory === identifier ? styles.inventoryHeader : styles.inventoryFooter;
+      const InventoryWrapper = identifier.startsWith('birds:')
+        ? styles.inventoryWrapperOneCol
+        : styles.inventoryWrapper;
       return (
         <>
           <div className={InventoryDetails}>
@@ -326,13 +334,107 @@ const Inventories: FC<UI.BaseProps> = () => {
           <div className={InventoryStats}>
             <code>{identifier}</code>
           </div>
-          <div className={styles.inventoryWrapper}>
+          <div className={InventoryWrapper} data-inventory-identifier={identifier}>
             {new Array(inventory.slots).fill(0).map((_, i) => renderSlot(i, identifier, inventory))}
           </div>
         </>
       );
     },
     [state.inventoriesWeight, state.targetInventory, renderSlot],
+  );
+
+  const hasLetter = useCallback<(inventoryIdentifier: string) => boolean>(
+    (inventoryIdentifier) => {
+      const inventory = state.inventories.get(inventoryIdentifier);
+      if (!inventory) {
+        return false;
+      }
+
+      return Object.keys(inventory.items).length > 0;
+    },
+    [state.inventories],
+  );
+
+  const renderBirdStatus = useCallback<(inventory?: UI.Inventory.LoadData) => React.ReactNode>(
+    (inventory) => {
+      if (!inventory) {
+        return null;
+      }
+      /*
+      {
+          "identifier": "birds:1",
+          "slots": 4,
+          "maxWeight": null,
+          "container": {
+              "locked": false,
+              "sealed": "NONE"
+          },
+          "items": {
+              "0": {
+                  "identifier": -34820586,
+                  "ids": [
+                      333
+                  ],
+                  "metadatas": [
+                      {}
+                  ],
+                  "durabilities": [
+                      null
+                  ],
+                  "quantity": 1
+              }
+          }
+      }
+       */
+      return (
+        <div className={styles.birdStatus}>
+          {new Array(inventory.slots).fill(0).map((_, i) => (
+            <div className={styles.birdStatusRow} key={i}>
+              {inventory.items[i] && (
+                <>
+                  <p>Available</p>
+                  <p>
+                    <button disabled={!hasLetter(`bird:${inventory.items[i].ids[0]}`)}>Send</button>
+                  </p>
+                </>
+              )}
+            </div>
+          ))}
+        </div>
+      );
+    },
+    [state.inventories, hasLetter],
+  );
+
+  const renderBirdSlots = useCallback<(inventory?: UI.Inventory.LoadData) => React.ReactNode>(
+    (inventory) => {
+      if (!inventory) {
+        return null;
+      }
+      return (
+        <div className={styles.inventoryWrapperOneCol}>
+          {new Array(inventory.slots).fill(0).map((_, i) => {
+            if (!inventory.items[i]) {
+              return <div className={styles.inventorySlotLetterFake} key={i} />;
+            }
+            const birdId = inventory.items[i].ids[0];
+            const birdIdentifier = `bird:${birdId}`;
+            const birdInventory = state.inventories.get(birdIdentifier) || {
+              identifier: birdIdentifier,
+              slots: 1,
+              maxWeight: 0,
+              container: {
+                locked: false,
+                sealed: 'NONE',
+              },
+              items: {},
+            };
+            return renderSlot(0, birdIdentifier, birdInventory);
+          })}
+        </div>
+      );
+    },
+    [state.inventories, renderSlot],
   );
 
   const renderTooltip = useCallback<() => React.ReactNode>(() => {
@@ -381,7 +483,7 @@ const Inventories: FC<UI.BaseProps> = () => {
     }
   }, []);
 
-  const { clothingInventory, mainInventory, targetInventory } = state;
+  const { clothingInventory, mainInventory, birdsInventory, targetInventory } = state;
   const inventories = Object.fromEntries(state.inventories.entries());
 
   return (

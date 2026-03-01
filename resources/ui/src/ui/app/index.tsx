@@ -9,6 +9,7 @@ import CharacterSelectController from './controllers/character-select';
 import DoorController from './controllers/doors';
 import InteractController from './controllers/interact';
 import InventoryController from './controllers/inventory';
+import CarrierPigeonsController from './controllers/carrier-pigeons';
 import JobsController from './controllers/jobs';
 import StableController from './controllers/stable';
 import WorldController from './controllers/world';
@@ -73,6 +74,7 @@ export default (socket: Socket<UISocketEvents, SocketServer.Client & SocketServe
   InteractController(socket);
   InventoryController(socket);
   JobsController(socket);
+  CarrierPigeonsController(socket);
   StableController(socket);
   WorldController(socket);
   BaseController(socket);

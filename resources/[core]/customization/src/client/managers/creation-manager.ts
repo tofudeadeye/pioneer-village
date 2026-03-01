@@ -311,6 +311,10 @@ class CreationManager {
     PVCamera.lightTurnOff('CreationLight');
   }
 
+  get isActive() {
+    return this.currentState !== CreationState.None;
+  }
+
   getChosen() {
     return this.chosen;
   }
@@ -517,6 +521,7 @@ class CreationManager {
         PVBase.deleteEntity(this.chosen);
         break;
       case 'head':
+      case 'overlays':
         PVCamera.interpolate('CreationFace', 750);
         emitUI('customization.state', { state });
         break;
@@ -804,8 +809,8 @@ class CreationManager {
     if (this.currentState !== CreationState.NameSelection) {
       return;
     }
-    Log('setComponents', components);
     await componentManager.unequipClothing(this.chosen);
+    // await PVGame.setPedComponents(this.chosen, components);
     await PVGame.setPedComponentsMp(this.chosen, components);
     await PVGame.pedIsReadyToRender(this.chosen);
     PVGame.finalizePedOutfit(this.chosen);

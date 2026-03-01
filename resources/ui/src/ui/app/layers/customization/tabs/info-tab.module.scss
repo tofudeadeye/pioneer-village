@@ -1,0 +1,44 @@
+@use 'sass:math';
+@use '../../../styles/mixins.module.scss' as *;
+
+.nameRow {
+  display: flex;
+  gap: uiSize(12);
+  width: 100%;
+}
+
+.inputGroup {
+  flex: 1;
+  margin-bottom: uiSize(14);
+}
+
+.inputLabel {
+  font-size: uiSize(20);
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  color: var(--cust-text-secondary);
+  margin-bottom: uiSize(6);
+  display: block;
+}
+
+.input {
+  flex: 1;
+  background: var(--cust-bg-surface);
+  border: 1px solid var(--cust-border-dark);
+  color: var(--cust-text-bright);
+  padding: uiSize(10) uiSize(12);
+  border-radius: uiSize(4);
+  font-size: uiSize(23);
+  font-family: var(--cust-font-body);
+  outline: none;
+  width: 100%;
+  transition: border-color 0.2s;
+
+  &::placeholder {
+    color: var(--cust-text-muted);
+  }
+
+  &:focus {
+    border-color: var(--cust-brass-dim);
+  }
+}

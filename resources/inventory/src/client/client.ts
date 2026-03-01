@@ -44,7 +44,11 @@ const sendInventoryItems = () => {
 
 onNet('game:character-selected', (charId: number) => {
   sendInventoryItems();
-  emitUI('inventory.state', { clothingInventory: `clothing:${charId}`, mainInventory: `character:${charId}` });
+  emitUI('inventory.state', {
+    clothingInventory: `clothing:${charId}`,
+    mainInventory: `character:${charId}`,
+    birdsInventory: `birds:${charId}`,
+  });
 });
 
 const sendUIData = async () => {
@@ -55,6 +59,7 @@ const sendUIData = async () => {
     emitUI('inventory.state', {
       clothingInventory: `clothing:${character.id}`,
       mainInventory: `character:${character.id}`,
+      birdsInventory: `birds:${character.id}`,
       // targetInventory: '_WORLD_:-207_631_113',
     });
   }

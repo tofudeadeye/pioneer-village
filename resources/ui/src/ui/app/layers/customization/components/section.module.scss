@@ -1,0 +1,29 @@
+@use 'sass:math';
+@use '../../../styles/mixins.module.scss' as *;
+
+.section {
+  margin-bottom: uiSize(20);
+}
+
+.label {
+  font-size: uiSize(17);
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--cust-text-muted);
+  margin-bottom: uiSize(10);
+  display: flex;
+  align-items: center;
+  gap: uiSize(8);
+
+  &::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--cust-border-dark);
+  }
+}
+
+.content {
+  margin-top: uiSize(4);
+}

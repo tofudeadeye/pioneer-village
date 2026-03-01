@@ -3,12 +3,38 @@ import { Log } from '@lib/client/comms/ui';
 import { Delay } from '@lib/functions';
 import { Vector3 } from '@lib/math';
 
+const collisionLoaded = async function (x: number, y: number, z: number, delay = 250) {
+  if (HasCollisionLoadedAtCoord(x, y, z)) {
+    return;
+  }
+  return new Promise<void>((resolve) => {
+    RequestCollisionAtCoord(x, y, z);
+    if (HasCollisionLoadedAtCoord(x, y, z)) {
+      resolve();
+    } else {
+      const timeout = setTimeout(() => {
+        resolve();
+        clearInterval(collisionLoadCheck);
+      }, 5_000);
+      const collisionLoadCheck = setInterval(() => {
+        if (HasCollisionLoadedAtCoord(x, y, z)) {
+          resolve();
+          clearInterval(collisionLoadCheck);
+          clearTimeout(timeout);
+        }
+      }, delay);
+    }
+  });
+};
+
 const teleport = async (x: number, y: number, z: number) => {
+  FreezeEntityPosition(PVGame.mountPed() || PVGame.playerPed(), true);
   DoScreenFadeOut(500);
   await Delay(500);
   SetEntityCoords(PVGame.mountPed() || PVGame.playerPed(), x, y, z, true, false, false, true);
-  await Delay(1000);
+  await collisionLoaded(x, y, z);
   DoScreenFadeIn(500);
+  FreezeEntityPosition(PVGame.mountPed() || PVGame.playerPed(), false);
 };
 
 RegisterCommand(
@@ -21,6 +47,8 @@ RegisterCommand(
     const waypoint = Vector3.fromArray(GetWaypointCoords());
     SetEntityCoords(PVGame.mountPed() || PVGame.playerPed(), waypoint.x, waypoint.y, 250.0, false, false, false, false);
     await Delay(1000);
+
+    await collisionLoaded(waypoint.x, waypoint.y, 250.0);
 
     const [ret, groundZ] = GetGroundZAndNormalFor_3dCoord(waypoint.x, waypoint.y, 400.0);
     SetEntityCoords(

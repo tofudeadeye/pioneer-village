@@ -24,10 +24,10 @@
       <numChildren value="0"/>
       <priorityLevel>PRI_REQUIRED</priorityLevel>
       <extensions/>
-      <redm_loves_you_8afd0f494c4bf509 value="0"/>
+      <powerGridId value="0"/>
       <tintValue value="0"/>
-      <redm_loves_you_2158e9a42f04a7dc value="255"/>
-      <redm_loves_you_7dd29b0dd179bea5 value="255"/>
+      <blendAgeLayer value="255"/>
+      <blendAgeDirt value="255"/>
     </Item>
     <Item type="CEntityDef">
       <archetypeName>P_BARREL010X</archetypeName>
@@ -44,10 +44,10 @@
       <numChildren value="0"/>
       <priorityLevel>PRI_REQUIRED</priorityLevel>
       <extensions/>
-      <redm_loves_you_8afd0f494c4bf509 value="0"/>
+      <powerGridId value="0"/>
       <tintValue value="0"/>
-      <redm_loves_you_2158e9a42f04a7dc value="255"/>
-      <redm_loves_you_7dd29b0dd179bea5 value="255"/>
+      <blendAgeLayer value="255"/>
+      <blendAgeDirt value="255"/>
     </Item>
     <Item type="CEntityDef">
       <archetypeName>P_BOTTLEBEER01X</archetypeName>
@@ -64,10 +64,10 @@
       <numChildren value="0"/>
       <priorityLevel>PRI_REQUIRED</priorityLevel>
       <extensions/>
-      <redm_loves_you_8afd0f494c4bf509 value="0"/>
+      <powerGridId value="0"/>
       <tintValue value="0"/>
-      <redm_loves_you_2158e9a42f04a7dc value="255"/>
-      <redm_loves_you_7dd29b0dd179bea5 value="255"/>
+      <blendAgeLayer value="255"/>
+      <blendAgeDirt value="255"/>
     </Item>
     <Item type="CEntityDef">
       <archetypeName>P_BOTTLEBEER01A</archetypeName>
@@ -84,10 +84,10 @@
       <numChildren value="0"/>
       <priorityLevel>PRI_REQUIRED</priorityLevel>
       <extensions/>
-      <redm_loves_you_8afd0f494c4bf509 value="0"/>
+      <powerGridId value="0"/>
       <tintValue value="0"/>
-      <redm_loves_you_2158e9a42f04a7dc value="255"/>
-      <redm_loves_you_7dd29b0dd179bea5 value="255"/>
+      <blendAgeLayer value="255"/>
+      <blendAgeDirt value="255"/>
     </Item>
     <Item type="CEntityDef">
       <archetypeName>P_BOTTLECRATE01X</archetypeName>
@@ -104,10 +104,10 @@
       <numChildren value="0"/>
       <priorityLevel>PRI_REQUIRED</priorityLevel>
       <extensions/>
-      <redm_loves_you_8afd0f494c4bf509 value="0"/>
+      <powerGridId value="0"/>
       <tintValue value="0"/>
-      <redm_loves_you_2158e9a42f04a7dc value="255"/>
-      <redm_loves_you_7dd29b0dd179bea5 value="255"/>
+      <blendAgeLayer value="255"/>
+      <blendAgeDirt value="255"/>
     </Item>
     <Item type="CEntityDef">
       <archetypeName>P_TENTMOUNTAINMEN01X</archetypeName>
@@ -124,10 +124,10 @@
       <numChildren value="0"/>
       <priorityLevel>PRI_REQUIRED</priorityLevel>
       <extensions/>
-      <redm_loves_you_8afd0f494c4bf509 value="0"/>
+      <powerGridId value="0"/>
       <tintValue value="0"/>
-      <redm_loves_you_2158e9a42f04a7dc value="255"/>
-      <redm_loves_you_7dd29b0dd179bea5 value="255"/>
+      <blendAgeLayer value="255"/>
+      <blendAgeDirt value="255"/>
     </Item>
     <Item type="CEntityDef">
       <archetypeName>P_BENCH_LOG06X</archetypeName>
@@ -144,10 +144,10 @@
       <numChildren value="0"/>
       <priorityLevel>PRI_REQUIRED</priorityLevel>
       <extensions/>
-      <redm_loves_you_8afd0f494c4bf509 value="0"/>
+      <powerGridId value="0"/>
       <tintValue value="0"/>
-      <redm_loves_you_2158e9a42f04a7dc value="255"/>
-      <redm_loves_you_7dd29b0dd179bea5 value="255"/>
+      <blendAgeLayer value="255"/>
+      <blendAgeDirt value="255"/>
     </Item>
     <Item type="CEntityDef">
       <archetypeName>S_CAMPFIRE01X</archetypeName>
@@ -164,10 +164,10 @@
       <numChildren value="0"/>
       <priorityLevel>PRI_REQUIRED</priorityLevel>
       <extensions/>
-      <redm_loves_you_8afd0f494c4bf509 value="0"/>
+      <powerGridId value="0"/>
       <tintValue value="0"/>
-      <redm_loves_you_2158e9a42f04a7dc value="255"/>
-      <redm_loves_you_7dd29b0dd179bea5 value="255"/>
+      <blendAgeLayer value="255"/>
+      <blendAgeDirt value="255"/>
     </Item>
     <Item type="CEntityDef">
       <archetypeName>P_BENCH_LOG07X</archetypeName>
@@ -184,10 +184,10 @@
       <numChildren value="0"/>
       <priorityLevel>PRI_REQUIRED</priorityLevel>
       <extensions/>
-      <redm_loves_you_8afd0f494c4bf509 value="0"/>
+      <powerGridId value="0"/>
       <tintValue value="0"/>
-      <redm_loves_you_2158e9a42f04a7dc value="255"/>
-      <redm_loves_you_7dd29b0dd179bea5 value="255"/>
+      <blendAgeLayer value="255"/>
+      <blendAgeDirt value="255"/>
     </Item>
     <Item type="CEntityDef">
       <archetypeName>P_DLC_CRATEDOCK03X</archetypeName>
@@ -204,10 +204,10 @@
       <numChildren value="0"/>
       <priorityLevel>PRI_REQUIRED</priorityLevel>
       <extensions/>
-      <redm_loves_you_8afd0f494c4bf509 value="0"/>
+      <powerGridId value="0"/>
       <tintValue value="0"/>
-      <redm_loves_you_2158e9a42f04a7dc value="255"/>
-      <redm_loves_you_7dd29b0dd179bea5 value="255"/>
+      <blendAgeLayer value="255"/>
+      <blendAgeDirt value="255"/>
     </Item>
     <Item type="CEntityDef">
       <archetypeName>P_CHAIR_CRATE02X</archetypeName>
@@ -224,10 +224,10 @@
       <numChildren value="0"/>
       <priorityLevel>PRI_REQUIRED</priorityLevel>
       <extensions/>
-      <redm_loves_you_8afd0f494c4bf509 value="0"/>
+      <powerGridId value="0"/>
       <tintValue value="0"/>
-      <redm_loves_you_2158e9a42f04a7dc value="255"/>
-      <redm_loves_you_7dd29b0dd179bea5 value="255"/>
+      <blendAgeLayer value="255"/>
+      <blendAgeDirt value="255"/>
     </Item>
     <Item type="CEntityDef">
       <archetypeName>P_CHAIR_CRATE02X</archetypeName>
@@ -244,10 +244,10 @@
       <numChildren value="0"/>
       <priorityLevel>PRI_REQUIRED</priorityLevel>
       <extensions/>
-      <redm_loves_you_8afd0f494c4bf509 value="0"/>
+      <powerGridId value="0"/>
       <tintValue value="0"/>
-      <redm_loves_you_2158e9a42f04a7dc value="255"/>
-      <redm_loves_you_7dd29b0dd179bea5 value="255"/>
+      <blendAgeLayer value="255"/>
+      <blendAgeDirt value="255"/>
     </Item>
     <Item type="CEntityDef">
       <archetypeName>P_CHAIR_CRATE02X</archetypeName>
@@ -264,10 +264,10 @@
       <numChildren value="0"/>
       <priorityLevel>PRI_REQUIRED</priorityLevel>
       <extensions/>
-      <redm_loves_you_8afd0f494c4bf509 value="0"/>
+      <powerGridId value="0"/>
       <tintValue value="0"/>
-      <redm_loves_you_2158e9a42f04a7dc value="255"/>
-      <redm_loves_you_7dd29b0dd179bea5 value="255"/>
+      <blendAgeLayer value="255"/>
+      <blendAgeDirt value="255"/>
     </Item>
     <Item type="CEntityDef">
       <archetypeName>P_CHAIR_CRATE02X</archetypeName>
@@ -284,10 +284,10 @@
       <numChildren value="0"/>
       <priorityLevel>PRI_REQUIRED</priorityLevel>
       <extensions/>
-      <redm_loves_you_8afd0f494c4bf509 value="0"/>
+      <powerGridId value="0"/>
       <tintValue value="0"/>
-      <redm_loves_you_2158e9a42f04a7dc value="255"/>
-      <redm_loves_you_7dd29b0dd179bea5 value="255"/>
+      <blendAgeLayer value="255"/>
+      <blendAgeDirt value="255"/>
     </Item>
     <Item type="CEntityDef">
       <archetypeName>P_CRATETABLEMIL01X</archetypeName>
@@ -304,10 +304,10 @@
       <numChildren value="0"/>
       <priorityLevel>PRI_REQUIRED</priorityLevel>
       <extensions/>
-      <redm_loves_you_8afd0f494c4bf509 value="0"/>
+      <powerGridId value="0"/>
       <tintValue value="0"/>
-      <redm_loves_you_2158e9a42f04a7dc value="255"/>
-      <redm_loves_you_7dd29b0dd179bea5 value="255"/>
+      <blendAgeLayer value="255"/>
+      <blendAgeDirt value="255"/>
     </Item>
     <Item type="CEntityDef">
       <archetypeName>P_CS_CHESSSET01X</archetypeName>
@@ -324,10 +324,10 @@
       <numChildren value="0"/>
       <priorityLevel>PRI_REQUIRED</priorityLevel>
       <extensions/>
-      <redm_loves_you_8afd0f494c4bf509 value="0"/>
+      <powerGridId value="0"/>
       <tintValue value="0"/>
-      <redm_loves_you_2158e9a42f04a7dc value="255"/>
-      <redm_loves_you_7dd29b0dd179bea5 value="255"/>
+      <blendAgeLayer value="255"/>
+      <blendAgeDirt value="255"/>
     </Item>
   </entities>
   <containerLods/>
@@ -341,7 +341,7 @@
   </instancedData>
   <timeCycleModifiers/>
   <redm_loves_you_a1eeea498c70af98/>
-  <redm_loves_you_17e0674db883fc85/>
+  <reflectionProbeData/>
   <carGenerators/>
   <LODLightsSOA>
     <direction/>
@@ -356,11 +356,11 @@
   </LODLightsSOA>
   <DistantLODLightsSOA>
     <position/>
-    <redm_loves_you_21b4ce800ac2d569/>
+    <RGB/>
     <intensity/>
     <numStreetLights value="0"/>
     <category value="0"/>
-    <redm_loves_you_8afd0f494c4bf509/>
+    <powerGridId/>
     <hash/>
   </DistantLODLightsSOA>
   <block>

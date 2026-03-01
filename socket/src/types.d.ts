@@ -6,6 +6,7 @@
 /// <reference path="./doors.d.ts" />
 /// <reference path="./stable.d.ts" />
 /// <reference path="./character.d.ts" />
+/// <reference path="./types/pigeons.d.ts" />
 
 // Core socket communication namespaces
 // These contain events that don't belong to any specific resource

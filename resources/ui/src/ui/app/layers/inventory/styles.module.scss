@@ -60,6 +60,11 @@
   }
 }
 
+.inventorySlotLetterFake {
+  width: 100%;
+  height: calc(25% - #{mixins.uiSize(2)});
+}
+
 .inventorySlot {
   position: relative;
   width: calc(12.5% - #{mixins.uiSize(2)});
@@ -173,7 +178,9 @@
 
   &.draggedItem {
     background-color: var(--theme-redGray12);
+  }
 
+  &.willDrop {
     &:after {
       font-family: 'Caveat', monospace;
       font-size: mixins.uiSize(20);
@@ -427,16 +434,14 @@
   bottom: 0;
 }
 
-.inventoryWrapper {
+.inventoryWrapper,
+.inventoryWrapperOneCol {
   user-select: none;
   position: absolute;
   top: mixins.uiSize(16);
-  right: mixins.uiSize(7);
   bottom: mixins.uiSize(16);
-  left: mixins.uiSize(16);
   overflow-x: hidden;
   overflow-y: auto;
-  padding-right: mixins.uiSize(7);
   display: flex;
   gap: mixins.uiSize(2);
   flex-wrap: wrap;
@@ -460,12 +465,71 @@
   }
 }
 
+.inventoryWrapper {
+  left: mixins.uiSize(16);
+  right: mixins.uiSize(7);
+  padding-right: mixins.uiSize(7);
+}
+
+.inventoryWrapperOneCol {
+  width: calc(25% - #{mixins.uiSize(11)});
+
+  &:has(~ .inventoryWrapperOneCol) {
+    left: mixins.uiSize(16);
+  }
+
+  ~ .inventoryWrapperOneCol {
+    right: mixins.uiSize(16);
+  }
+}
+
+.birdStatus {
+  user-select: none;
+  position: absolute;
+  left: calc(#{mixins.uiSize(16)} + 25%);
+  right: calc(#{mixins.uiSize(16)} + 25%);
+  top: mixins.uiSize(16);
+  bottom: mixins.uiSize(16);
+}
+
+.birdStatusRow {
+  height: calc(25% - #{mixins.uiSize(2)});
+  font-family: 'Caveat', monospace;
+  font-size: mixins.uiSize(18);
+  color: var(--theme-text-primary);
+  text-align: center;
+  gap: mixins.uiSize(12);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  button {
+    background-color: #000;
+    border-radius: mixins.uiSize(4);
+    background-size: 100% 100%;
+    padding: mixins.uiSize(4) mixins.uiSize(8);
+    border: none;
+    color: var(--theme-text-primary);
+    font-family: 'Open Sans', sans-serif;
+    font-size: mixins.uiSize(12);
+
+    &:hover {
+      background-image: radialGradient(0, 123, 255, 0.85, 0.125);
+    }
+
+    &[disabled] {
+      background-image: none;
+      opacity: 0.5;
+    }
+  }
+}
+
 .inventorySlotBackground {
   position: absolute;
   inset: 0;
   z-index: -1;
 }
-
 
 .globalStyle {
   // Global styles for inventory
@@ -479,4 +543,3 @@
     }
   }
 }
-

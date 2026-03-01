@@ -173,6 +173,9 @@ export default (userAccessKey: string) => {
       logInfoC('socket.data', socket.data);
       socket.data.character = { id: characterId };
       socket.data.serverId = socket.data.user.serverId;
+
+      await Inventories.createCharacterInventories(characterId);
+
       await Characters.setActiveCharacter(
         characterId,
         socket.data.user.serverId,

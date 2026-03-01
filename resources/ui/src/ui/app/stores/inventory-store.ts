@@ -8,6 +8,7 @@ interface InventoryState {
   show: boolean;
   characterId: number;
   clothingInventory: string;
+  birdsInventory: string;
   mainInventory: string;
   targetInventory: string;
   inventories: Map<string, UI.Inventory.LoadData>;
@@ -46,6 +47,7 @@ class InventoryStore {
       show: false,
       characterId: 0,
       clothingInventory: '',
+      birdsInventory: '',
       mainInventory: '',
       targetInventory: '',
       inventories: new Map(),
@@ -130,6 +132,12 @@ class InventoryStore {
     if (event.clothingInventory && !this.subscriptions.has(event.clothingInventory)) {
       this.socket.emit('inventory.subscribe', event.clothingInventory);
       this.subscriptions.add(event.clothingInventory);
+    }
+
+    // Subscribe to birds inventory if needed
+    if (event.birdsInventory && !this.subscriptions.has(event.birdsInventory)) {
+      this.socket.emit('inventory.subscribe', event.birdsInventory);
+      this.subscriptions.add(event.birdsInventory);
     }
 
     // Subscribe to main inventory if needed

@@ -24,6 +24,8 @@ const tenDollars = new Array(10).fill({ identifier: 'PV_DOLLAR'.GetHashKey(), sl
 
 const startingInventory = [...tenDollars];
 
+const characterInventoryIdentifiers = ['character', 'clothing', 'birds'];
+
 class Inventories {
   static readonly instance: Inventories = new Inventories();
 
@@ -77,6 +79,12 @@ class Inventories {
     } catch (error) {
       console.error(error);
       return false;
+    }
+  }
+
+  async createCharacterInventories(characterId: number): Promise<void> {
+    for (const identifier of characterInventoryIdentifiers) {
+      await this.createInventory(`${identifier}:${characterId}`);
     }
   }
 
@@ -304,6 +312,7 @@ class Inventories {
   isAllowedInInventory(identifier: string, inventoryItem: Inventory.Item): boolean {
     const inventoryType = this.getInventoryType(identifier);
     let isAllowed = false;
+    logInfo('isAllowedInInventory', inventoryType.restrictions, inventoryItem.restriction);
     if (inventoryType.restrictions === 0 || inventoryType.restrictions & inventoryItem.restriction) {
       isAllowed = true;
     }

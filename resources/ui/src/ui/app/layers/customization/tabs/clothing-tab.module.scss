@@ -1,0 +1,125 @@
+@use 'sass:math';
+@use '../../../styles/mixins.module.scss' as *;
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: uiSize(4);
+  margin-bottom: uiSize(16);
+  font-size: uiSize(23);
+}
+
+.breadcrumbSegment {
+  color: var(--cust-text-muted);
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-family: var(--cust-font-body);
+  font-size: inherit;
+  padding: uiSize(6) uiSize(10);
+  border-radius: var(--cust-radius-sm);
+  transition: color 0.15s;
+
+  &:hover:not(.active) {
+    color: var(--cust-brass);
+  }
+
+  &.active {
+    color: var(--cust-text-primary);
+    cursor: default;
+  }
+}
+
+.breadcrumbSeparator {
+  color: var(--cust-border-mid);
+  margin: 0 uiSize(2);
+}
+
+.cardsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: uiSize(4);
+}
+
+.card {
+  background: var(--cust-bg-surface);
+  border: 1px solid var(--cust-border-dark);
+  border-radius: uiSize(5);
+  padding: uiSize(8) uiSize(18);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  &:hover {
+    border-color: var(--cust-border-mid);
+    background: var(--cust-bg-raised);
+  }
+}
+
+.cardName {
+  font-size: uiSize(23);
+  font-weight: 500;
+  color: var(--cust-text-primary);
+  letter-spacing: uiSize(0.3);
+}
+
+.cardCount {
+  font-size: uiSize(48);
+  font-weight: 700;
+  color: var(--cust-text-muted);
+  opacity: 0.3;
+  font-variant-numeric: tabular-nums;
+  font-family: var(--cust-font-title);
+  flex-shrink: 0;
+  line-height: 0.8;
+  transform: translateY(uiSize(-4));
+}
+
+.itemsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: uiSize(6);
+}
+
+.itemCard {
+  background: var(--cust-bg-surface);
+  border: 1px solid var(--cust-border-dark);
+  border-radius: uiSize(5);
+  padding: uiSize(12) uiSize(10);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: uiSize(8);
+
+  &:hover {
+    border-color: var(--cust-border-mid);
+    background: var(--cust-bg-raised);
+  }
+
+  &.selected {
+    border-color: var(--cust-brass);
+    box-shadow: 0 0 uiSize(6) rgba(201, 169, 97, 0.2);
+  }
+}
+
+.diamond {
+  width: uiSize(60);
+  height: uiSize(60);
+  background: var(--cust-bg-raised);
+  border: 1px solid var(--cust-border-dark);
+  transform: rotate(45deg);
+  flex-shrink: 0;
+}
+
+.itemName {
+  font-size: uiSize(19);
+  font-weight: 500;
+  color: var(--cust-text-secondary);
+  text-align: center;
+  line-height: 1.3;
+  letter-spacing: uiSize(0.3);
+}

@@ -4,11 +4,11 @@
   "main": "index.js",
   "license": "CC-BY-NC-SA-4.0",
   "data": {
-    "serverVersion": "20944"
+    "serverVersion": "25770"
   },
   "scripts": {
     "download-server": "cd artifacts && node download.js",
-    "start": "./artifacts/20944/FXServer.exe +exec server.cfg +set onesync on +set svgui_disable 1 +set sv_lan 1 +sv_enforceGameBuild 1491",
+    "start": "./artifacts/25770/FXServer.exe +exec server.cfg +set onesync on +set svgui_disable 1 +set sv_lan 1 +sv_enforceGameBuild 1491",
     "watch": "lerna run watch --stream --parallel",
     "build": "lerna run build --stream --parallel",
     "build:socket": "lerna run build --stream --parallel --scope=socket",
@@ -24,8 +24,8 @@
     "7zip": "^0.0.6",
     "@babel/plugin-syntax-jsx": "^7.27.1",
     "@babel/plugin-syntax-typescript": "^7.27.1",
-    "@citizenfx/client": "2.0.20944-1",
-    "@citizenfx/server": "2.0.20944-1",
+    "@citizenfx/client": "2.0.25770-1",
+    "@citizenfx/server": "2.0.25770-1",
     "@rspack/cli": "^1.4.11",
     "@rspack/core": "^1.4.11",
     "@svgr/cli": "^8.1.0",

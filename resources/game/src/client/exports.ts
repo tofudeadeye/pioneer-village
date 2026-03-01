@@ -205,7 +205,11 @@ const taskPlayAnimAdvArray: Game.taskPlayAnimAdvArray = (
 };
 
 const taskPlayEntityAnim: Game.taskPlayEntityAnim = (animTasks) => {
-  gameManager.taskPlayEntityAnim(animTasks);
+  return gameManager.taskPlayEntityAnim(animTasks);
+};
+
+const turnPedToFaceCoord: Game.turnPedToFaceCoord = (ped, x, y, z, duration = 1000) => {
+  return gameManager.turnPedToFaceCoord(ped, x, y, z, duration);
 };
 
 const loadStream: Game.loadStream = (streamSet, streamName, delay, maxTries) => {
@@ -290,6 +294,7 @@ exports<'game'>('taskPlayAnim', taskPlayAnim);
 exports<'game'>('taskPlayAnimArrayNew', taskPlayAnimArrayNew);
 exports<'game'>('taskPlayAnimAdvArray', taskPlayAnimAdvArray);
 exports<'game'>('taskPlayEntityAnim', taskPlayEntityAnim);
+exports<'game'>('turnPedToFaceCoord', turnPedToFaceCoord);
 
 exports<'game'>('loadStream', loadStream);
 exports<'game'>('playStreamFromPed', playStreamFromPed);

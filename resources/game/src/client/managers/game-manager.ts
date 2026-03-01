@@ -3,6 +3,7 @@ import { Log } from '@lib/client/comms/ui';
 import { AnimFlag } from '@lib/flags';
 import { Delay } from '@lib/functions';
 import { Vector3 } from '@lib/math/vector3';
+import { ScriptTaskHash, ScriptTaskStatus } from '@lib/shared/tasks';
 
 class GameManager {
   protected static instance: GameManager;
@@ -276,12 +277,16 @@ class GameManager {
     randomOutfit = true,
     networked = false,
   ): Promise<number> {
-    await this.loadModel(GetHashKey(model));
+    if (typeof model === 'string') {
+      model = GetHashKey(model);
+    }
+    await this.loadModel(model);
     const ped = CreatePed(model, x, y, z, heading, networked, true, false, false);
     if (randomOutfit) {
       SetRandomOutfitVariation(ped, true);
     }
     // await this.pedIsReadyToRender(ped);
+    SetModelAsNoLongerNeeded(model);
     return ped;
   }
 
@@ -476,6 +481,25 @@ class GameManager {
           clearInterval(modelLoadedCheck);
         }
       }, delay);
+    });
+  }
+
+  async turnPedToFaceCoord(ped: number, x: number, y: number, z: number, duration = 1000): Promise<void> {
+    TaskTurnPedToFaceCoord(ped, x, y, z, duration);
+
+    await new Promise<void>((resolve) => {
+      const start = Date.now();
+      const tickId = setInterval(() => {
+        const hasTimedOut = Date.now() - start > duration + 250;
+        if (
+          GetScriptTaskStatus(ped, ScriptTaskHash.SCRIPT_TASK_TURN_PED_TO_FACE_COORD) ===
+            ScriptTaskStatus.FINISHED_TASK ||
+          hasTimedOut
+        ) {
+          clearInterval(tickId);
+          resolve();
+        }
+      }, 1);
     });
   }
 

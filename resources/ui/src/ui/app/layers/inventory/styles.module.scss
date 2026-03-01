@@ -330,7 +330,7 @@
   width: 50vw;
   height: 75vh;
   display: none;
-  
+
   &.active {
     display: block;
   }
@@ -379,11 +379,13 @@
 
 .mainInventoryContainer {
   @extend .inventoryContainer;
+
   bottom: mixins.uiSize(64);
 }
 
 .clothingInventoryContainer {
   @extend .inventoryContainer;
+
   bottom: mixins.uiSize(64);
   width: calc(40vh);
   height: calc(40vh + #{mixins.uiSize(32)});
@@ -394,8 +396,22 @@
   }
 }
 
+.secondaryInventoryContainer {
+  @extend .inventoryContainer;
+
+  bottom: mixins.uiSize(64);
+  width: calc(40vh);
+  height: calc(40vh + #{mixins.uiSize(32)});
+  transform: translateX(40vh);
+
+  .inventorySlot {
+    width: 100%;
+  }
+}
+
 .targetInventoryContainer {
   @extend .inventoryContainer;
+
   top: mixins.uiSize(64);
 
   @for $n from 1 through 3 {
@@ -536,7 +552,7 @@
   :global(body:has(#drag-item)) {
     cursor: grabbing !important;
   }
-  
+
   :global(body:has(#drag-item):has(.inventorySlot:hover)) {
     :global(#drag-item:after) {
       opacity: 0;

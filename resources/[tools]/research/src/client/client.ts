@@ -10,6 +10,7 @@ import './stuff/gold-panning';
 import './stuff/hats';
 import './stuff/horses';
 import './stuff/instruments';
+import './stuff/pigeons';
 import './stuff/police';
 import './stuff/ptfx';
 // import './stuff/side-saddle';

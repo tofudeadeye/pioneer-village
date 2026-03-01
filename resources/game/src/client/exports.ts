@@ -126,14 +126,6 @@ const attachEntityToBoneName: Game.attachEntityToBoneName = (attacher, boneName,
   gameManager.attachEntityToBoneName(attacher, boneName, attachee, offset, rotation);
 };
 
-RegisterCommand(
-  'attachObjectTest',
-  (src: number, args: string[]) => {
-    gameManager.attachEntityToBoneName(Number(args[0]), args[1]);
-  },
-  false,
-);
-
 const loadModel: Game.loadModel = (model, delay) => {
   return gameManager.loadModel(model, delay);
 };

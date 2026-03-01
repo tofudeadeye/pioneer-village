@@ -50,6 +50,7 @@ declare namespace Inventory {
     useEvent?: string;
     maxDurability?: number;
     maxLife?: number;
+    containerType?: string;
   };
 
   // type ItemDurable = ItemBase & {

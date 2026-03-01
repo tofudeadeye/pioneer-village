@@ -136,6 +136,11 @@ class Inventories {
         .limit(1);
 
       if (inventoryResult.length === 0) {
+        // Safety net: auto-create sub-container inventories on access if they don't exist yet
+        const created = await this.ensureSubContainerInventory(identifier);
+        if (created) {
+          return this.getInventory(identifier);
+        }
         return null;
       }
 
@@ -592,6 +597,8 @@ class Inventories {
         items: {},
       };
 
+      const itemDef = PVItems[itemIdentifier];
+
       for (let n = amount; n--; ) {
         const newItem = await db
           .insert(ItemSchema)
@@ -605,6 +612,13 @@ class Inventories {
           .returning();
 
         logInfo('item', newItem[0]);
+
+        // Auto-create sub-container inventory if the item definition has a containerType
+        if (itemDef?.containerType) {
+          const subContainerIdentifier = `${itemDef.containerType}:${newItem[0].id}`;
+          logInfo('addItem', `Creating sub-container inventory: ${subContainerIdentifier}`);
+          await this.createInventory(subContainerIdentifier);
+        }
 
         if (itemAddEvent.items[slot]) {
           itemAddEvent.items[slot].ids.push(newItem[0].id);
@@ -912,6 +926,99 @@ class Inventories {
     const inventories = [...this.worldInventories.values()];
     logInfo('inventory.sendWorldInventories', 'Sending world inventories', inventories);
     socket.emit('__client__', 'inventory.world-inventories', inventories);
+  }
+
+  /**
+   * Safety net for sub-container inventories. When accessing an inventory like `bird:333`,
+   * if it doesn't exist yet, checks whether item 333 exists and has a matching containerType.
+   * If so, creates the inventory on-the-fly.
+   */
+  private async ensureSubContainerInventory(identifier: string): Promise<boolean> {
+    const parts = identifier.split(':');
+    if (parts.length !== 2) {
+      return false;
+    }
+
+    const [type, idStr] = parts;
+    const itemId = parseInt(idStr, 10);
+    if (isNaN(itemId)) {
+      return false;
+    }
+
+    // Look up the item in the database
+    const item = await this.getItem(itemId);
+    if (!item || item.deletedAt !== null) {
+      return false;
+    }
+
+    // Check if the item definition has a containerType matching this identifier's type
+    const itemDef = PVItems[item.identifier];
+    if (!itemDef?.containerType || itemDef.containerType !== type) {
+      return false;
+    }
+
+    logInfo('ensureSubContainerInventory', `Creating missing sub-container inventory: ${identifier}`);
+    const created = await this.createInventory(identifier);
+    return !!created;
+  }
+
+  /**
+   * Removes an item by setting its deletedAt timestamp (soft-delete).
+   * If the item has a containerType (sub-container), checks for remaining items
+   * in the sub-container and logs a warning if any exist.
+   */
+  async removeItem(itemId: number): Promise<ItemSchemaType | undefined> {
+    try {
+      const item = await this.getItem(itemId);
+      if (!item) {
+        return;
+      }
+
+      // Soft-delete the item
+      const deletedItems = await db
+        .update(ItemSchema)
+        .set({ deletedAt: new Date() })
+        .where(eq(ItemSchema.id, itemId))
+        .returning();
+
+      if (deletedItems.length === 0) {
+        return;
+      }
+
+      const deletedItem = deletedItems[0];
+
+      // Find which inventory this item belonged to for update notifications
+      const inventoryResult = await db
+        .select({ identifier: InventorySchema.identifier })
+        .from(InventorySchema)
+        .where(eq(InventorySchema.containerId, item.containerId))
+        .limit(1);
+
+      if (inventoryResult.length > 0) {
+        this.checkWorldInventory(inventoryResult[0].identifier);
+      }
+
+      // Check for sub-container if the item has a containerType
+      const itemDef = PVItems[item.identifier];
+      if (itemDef?.containerType) {
+        const subContainerIdentifier = `${itemDef.containerType}:${itemId}`;
+        const subInventory = await this.getInventory(subContainerIdentifier);
+
+        if (subInventory) {
+          const activeItems = subInventory.container.items.filter((i) => i.deletedAt === null);
+          if (activeItems.length > 0) {
+            console.warn(
+              `[Inventory] WARNING: Removed item ${itemId} (${itemDef.name}) has sub-container ` +
+              `${subContainerIdentifier} with ${activeItems.length} active item(s) still inside.`,
+            );
+          }
+        }
+      }
+
+      return deletedItem;
+    } catch (error) {
+      console.error('Error in removeItem:', error);
+    }
   }
 }
 

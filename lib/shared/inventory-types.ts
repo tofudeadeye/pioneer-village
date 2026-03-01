@@ -50,6 +50,18 @@ const InventoryTypes: Record<string, Inventory.Type> = {
     maxWeight: 6,
     restrictions: Restrictions.Small,
   },
+  // Character bird slots
+  birds: {
+    slots: 4,
+    maxWeight: Infinity,
+    restrictions: Restrictions.Bird,
+  },
+  // Bird letter slots
+  bird: {
+    slots: 1,
+    maxWeight: Infinity,
+    restrictions: Restrictions.Tiny,
+  },
 };
 
 export default InventoryTypes;

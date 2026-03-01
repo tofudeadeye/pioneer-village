@@ -1,4 +1,11 @@
 import { BlipModifiers, BlipSprites } from '@lib/shared/blips';
+import PostOffices from '@lib/shared/post-offices';
+
+const postOfficeBlips: Omit<Base.BlipData, 'id'>[] = PostOffices.map((po) => ({
+  label: 'Post Office',
+  sprite: BlipSprites.POST_OFFICE,
+  coords: po.coords,
+}));
 
 const Blips: Omit<Base.BlipData, 'id'>[] = [
   /**
@@ -13,11 +20,6 @@ const Blips: Omit<Base.BlipData, 'id'>[] = [
     label: 'Train Station',
     sprite: BlipSprites.SHOP_TRAIN,
     coords: { x: -175.2594, y: 631.9643, z: 113.0896 },
-  },
-  {
-    label: 'Post Office',
-    sprite: BlipSprites.POST_OFFICE,
-    coords: { x: -178.005, y: 628.197, z: 114.089 },
   },
   {
     label: 'Bath',
@@ -139,12 +141,6 @@ const Blips: Omit<Base.BlipData, 'id'>[] = [
     label: 'Train Station',
     sprite: BlipSprites.SHOP_TRAIN,
     coords: { x: 2933.088, y: 1282.3311, z: 44.652 },
-  },
-  {
-    // Annesburg
-    label: 'Post Office',
-    sprite: BlipSprites.POST_OFFICE,
-    coords: { x: 2938.942, y: 1287.05, z: 44.652 },
   },
   {
     // Annesburg
@@ -352,6 +348,43 @@ const Blips: Omit<Base.BlipData, 'id'>[] = [
     sprite: BlipSprites.MG_POKER,
     coords: { x: 2718.1831, y: -1288.4312, z: 60.36 },
   },
+  // St Dennis
+  {
+    label: 'Train Station',
+    sprite: BlipSprites.SHOP_TRAIN,
+    coords: { x: 2747.800537, y: -1396.466431, z: 46.183098 },
+  },
+  // Wallace Station
+  {
+    label: 'Train Station',
+    sprite: BlipSprites.SHOP_TRAIN,
+    coords: { x: -1300.310913, y: 400.040833, z: 95.452156 },
+  },
+  // <editor-fold desc="Riggs Station">
+  {
+    label: 'Train Station',
+    sprite: BlipSprites.SHOP_TRAIN,
+    coords: { x: -1094.323608, y: -577.707947, z: 82.409836 },
+  },
+  // </editor-fold>
+
+  // <editor-fold desc="Emerald Station">
+  {
+    label: 'Train Station',
+    sprite: BlipSprites.SHOP_TRAIN,
+    coords: { x: 1523.589111, y: 442.681946, z: 90.67852 },
+  },
+  // </editor-fold>
+
+  // <editor-fold desc="Benedict Point">
+  {
+    label: 'Train Station',
+    sprite: BlipSprites.SHOP_TRAIN,
+    coords: { x: -5228.602051, y: -3468.348145, z: -20.569672 },
+  },
+  // </editor-fold>
+
+  ...postOfficeBlips,
 ];
 
 export default Blips;

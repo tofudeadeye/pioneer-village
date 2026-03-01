@@ -656,6 +656,25 @@ const PVItems: Record<number, Inventory.Item> = {
     stackSize: 1,
     weight: 2,
   },
+  [GetHashKey('PV_PIGEON')]: {
+    identifier: GetHashKey('PV_PIGEON'),
+    image: 'pigeon',
+    name: 'Carrier Pigeon',
+    flags: ItemFlags.TOOL,
+    restriction: Restrictions.Bird,
+    stackSize: 1,
+    weight: 0.5,
+    containerType: 'bird',
+  },
+  [GetHashKey('PV_LETTER')]: {
+    identifier: GetHashKey('PV_LETTER'),
+    image: 'letter',
+    name: 'Letter',
+    flags: ItemFlags.MATERIAL,
+    restriction: Restrictions.Tiny,
+    stackSize: 1,
+    weight: 0.1,
+  },
 };
 
 export default PVItems;

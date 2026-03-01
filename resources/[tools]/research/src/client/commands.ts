@@ -4,6 +4,14 @@ import { AnimFlag } from '@lib/flags';
 import { lerp } from '@lib/math';
 
 RegisterCommand(
+  'attachObjectTest',
+  (src: number, args: string[]) => {
+    PVGame.attachEntityToBoneName(Number(args[0]), args[1]);
+  },
+  false,
+);
+
+RegisterCommand(
   'compare_config_flag',
   async (source: number, args: any[], rawCommand: string) => {
     // Log({ source, args, rawCommand });

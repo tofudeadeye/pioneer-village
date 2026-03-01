@@ -22,6 +22,13 @@
       "when": 1771168338853,
       "tag": "0002_modern_spitfire",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1772382964746,
+      "tag": "0003_absent_wendigo",
+      "breakpoints": true
     }
   ]
 }

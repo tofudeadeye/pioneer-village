@@ -294,7 +294,7 @@ const Inventories: FC<UI.BaseProps> = () => {
       return (
         <div
           className={styles.inventorySlot}
-          key={i}
+          key={`${identifier}:${i}`}
           onMouseEnter={onmouseenter}
           onMouseLeave={onmouseleave}
           onMouseDown={onmousedown}
@@ -501,6 +501,17 @@ const Inventories: FC<UI.BaseProps> = () => {
         </div>
         <div className={styles.clothingInventoryContainer}>
           {inventories[clothingInventory] && renderInventory(clothingInventory, inventories[clothingInventory])}
+        </div>
+        <div className={styles.secondaryInventoryContainer}>
+          <div className={styles.inventoryHeader}>
+            <div style={progressStyleWeight}>
+              <ProgressBar progress={0} source="left" color="gray75" height={uiSize(3)} width="100%" />
+            </div>
+          </div>
+
+          {inventories[birdsInventory] && renderInventory(birdsInventory, inventories[birdsInventory])}
+          {renderBirdStatus(inventories[birdsInventory])}
+          {renderBirdSlots(inventories[birdsInventory])}
         </div>
       </>
     )

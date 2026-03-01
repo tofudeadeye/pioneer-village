@@ -202,6 +202,14 @@ class InventoryStore {
       emitClient('inventory.clothing-change', Object.values(data.items));
     }
 
+    if (this.socket && `birds:${this.state.characterId}` === data.identifier) {
+      for (const item of Object.values(data.items)) {
+        const birdInvIdentifier = `bird:${item.ids[0]}`;
+        this.socket.emit('inventory.subscribe', birdInvIdentifier);
+        this.subscriptions.add(birdInvIdentifier);
+      }
+    }
+
     this.updateState({ inventories });
     this.computeInventoryWeight();
   };
@@ -236,6 +244,31 @@ class InventoryStore {
 
       if (this.state.characterId === Number(requestCharId)) {
         return;
+      }
+
+      if (this.socket && data.identifier.startsWith('birds:')) {
+        const inventory = this.state.inventories.get(data.identifier);
+        if (inventory) {
+          const birdInvIdentifiers: string[] = [];
+          for (const item of Object.values(inventory.items)) {
+            birdInvIdentifiers.push(`bird:${item.ids[0]}`);
+          }
+          const oldBirdInvIdentifiers = [...this.subscriptions.keys()].filter((id) => id.startsWith('bird:'));
+          for (const oldId of oldBirdInvIdentifiers) {
+            if (!birdInvIdentifiers.includes(oldId)) {
+              this.socket.emit('inventory.unsubscribe', oldId);
+              this.subscriptions.delete(oldId);
+              console.log('Unsubscribing from old bird inventory:', oldId);
+            }
+          }
+          for (const birdInvIdentifier of birdInvIdentifiers) {
+            if (!this.subscriptions.has(birdInvIdentifier)) {
+              this.socket.emit('inventory.subscribe', birdInvIdentifier);
+              this.subscriptions.add(birdInvIdentifier);
+              console.log('Subscribing to new bird inventory:', birdInvIdentifier);
+            }
+          }
+        }
       }
 
       const inventories = new Map(this.state.inventories);

@@ -5,11 +5,11 @@ import { emitClient, onClient } from '@lib/ui';
 
 import App from './app';
 import BaseController from './controllers/base';
+import CarrierPigeonsController from './controllers/carrier-birds';
 import CharacterSelectController from './controllers/character-select';
 import DoorController from './controllers/doors';
 import InteractController from './controllers/interact';
 import InventoryController from './controllers/inventory';
-import CarrierPigeonsController from './controllers/carrier-pigeons';
 import JobsController from './controllers/jobs';
 import StableController from './controllers/stable';
 import WorldController from './controllers/world';
@@ -44,7 +44,7 @@ export default (socket: Socket<UISocketEvents, SocketServer.Client & SocketServe
   notificationStore.initialize(socket);
   targetStore.initialize(socket);
   threejsStore.initialize(socket);
-  
+
   const root = createRoot(document.body);
   root.render(<App socket={socket} />);
 

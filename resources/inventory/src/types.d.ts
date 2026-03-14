@@ -51,6 +51,7 @@ declare namespace Inventory {
     maxDurability?: number;
     maxLife?: number;
     containerType?: string;
+    birdType?: string;
   };
 
   // type ItemDurable = ItemBase & {
@@ -83,6 +84,8 @@ declare namespace Inventory {
     stackSize: number;
     maxDurability?: number;
     maxLife?: number;
+    hasUseEvent?: boolean;
+    containerType?: string;
   };
 
   type UIItems = Record<number, UIItem>;

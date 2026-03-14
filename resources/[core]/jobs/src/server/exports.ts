@@ -52,7 +52,12 @@ class JobsServer {
     }
   }
 
-  public async grantPermission(characterId: number, type: 'JOB' | 'TASK', typeId: string, grantedBy: number): Promise<boolean> {
+  public async grantPermission(
+    characterId: number,
+    type: 'JOB' | 'TASK',
+    typeId: string,
+    grantedBy: number,
+  ): Promise<boolean> {
     try {
       // Forward to socket controller - fire and forget
       emitSocket('jobs.grant-permission', characterId, type, typeId, grantedBy);

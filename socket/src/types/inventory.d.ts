@@ -29,6 +29,7 @@ declare namespace SocketIn {
       oldSlot: number,
       newIdentifier: string,
       newSlot: number,
+      quantity?: number,
     ) => void;
     'inventory.item-drop': (requestId: number, identifier: string, slot: number) => void;
     'inventory.item-wear': (itemId: number) => void;

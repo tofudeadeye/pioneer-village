@@ -2,11 +2,11 @@ import { PVBase, PVGame } from '@lib/client';
 import { Log } from '@lib/client/comms/ui';
 import { AnimFlag } from '@lib/flags';
 import { Delay } from '@lib/functions';
+import BirdTypes from '@lib/shared/bird-types';
 
-const BIRD_MODELS: Record<CarrierBirds.BirdTypes, number> = {
-  pigeon: GetHashKey('A_C_PIGEON'),
-  owl: GetHashKey('A_C_OWL_01'),
-};
+const BIRD_MODELS = Object.fromEntries(
+  Object.entries(BirdTypes).map(([birdType, data]) => [birdType, data.model && GetHashKey(data.model)]),
+) as Record<CarrierBirds.BirdTypes, number>;
 
 const LETTER_MODEL = GetHashKey('p_letterenvelope_cs01x');
 

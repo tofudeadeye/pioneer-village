@@ -1,5 +1,5 @@
 import { PVCustomization, PVGame, emitUI, onUI } from '@lib/client';
-import { Log, emitSocket, onSocket } from '@lib/client/comms/ui';
+import { Log } from '@lib/client/comms/ui';
 import { Delay } from '@lib/functions';
 import PVItems from '@lib/shared/items';
 
@@ -36,6 +36,8 @@ const sendInventoryItems = () => {
       stackSize: item.stackSize,
       maxDurability: item.maxDurability,
       maxLife: item.maxLife,
+      hasUseEvent: !!item.useEvent,
+      containerType: item.containerType,
     };
   }
 

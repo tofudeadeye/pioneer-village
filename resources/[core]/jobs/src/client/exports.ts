@@ -96,7 +96,7 @@ class JobsClient {
       Log('[Jobs]', `New task created for job ${jobHandle}`);
     });
 
-    onUI('jobs.task-started', (characterId: number, taskId: number) => {
+    onUI('jobs.task-started', (characterId, taskId) => {
       if (characterId === this.getCharacterId()) {
         Log('[Jobs]', `Started task ${taskId}`);
       }

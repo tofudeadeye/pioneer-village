@@ -11,7 +11,6 @@ declare namespace ClientRPC {
     ['carrier-birds.send']: (
       pigeonItemId: number,
       receiverCharacterId: number,
-      letterItemId: number,
     ) => Promise<{ success: boolean; error?: string }>;
     ['carrier-birds.get-active']: () => Promise<CarrierBirds.ActiveDelivery[]>;
   }

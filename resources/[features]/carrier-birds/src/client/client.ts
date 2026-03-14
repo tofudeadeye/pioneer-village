@@ -1,5 +1,6 @@
 import { shuffle } from 'lodash';
 
+import './events';
 import birdManager from './managers/bird-manager';
 
 RegisterCommand(
@@ -10,7 +11,7 @@ RegisterCommand(
     for (let i = 10; i--; ) {
       birdManager.registerEvent({
         type: shuffle(['send', 'arrival', 'return'])[0] as 'send' | 'arrival' | 'return',
-        birdType: Math.random() > 0.2 ? 'pigeon' : 'owl',
+        birdType: Math.random() > 0.5 ? 'pigeon' : 'crow',
         characterId: 0,
         birdInventoryId: 0,
       });

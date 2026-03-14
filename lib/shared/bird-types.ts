@@ -14,6 +14,13 @@ const BirdTypes: Record<string, BirdTypeConfig> = {
     staminaCostPerDelivery: 15,
     maxStamina: 100,
   },
+  crow: {
+    model: 'A_C_CROW_01',
+    letterModel: 'p_letterenvelope_cs01x',
+    speed: 40.0,
+    staminaCostPerDelivery: 12,
+    maxStamina: 100,
+  },
   owl: {
     model: 'A_C_OWL_01',
     letterModel: 'p_letterenvelope_cs01x',

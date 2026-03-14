@@ -5,7 +5,9 @@ import { findNearestPostOffice } from '../../../lib/shared/post-offices';
 import { db } from '../db/connection';
 import { PigeonDeliveriesSchema, type PigeonDeliverySchemaType } from '../db/schema';
 import { logInfoS } from '../helpers';
+import { userNamespace } from '../server';
 import characters from './characters';
+import Characters from './characters';
 
 const TICK_INTERVAL_MS = 5_000;
 
@@ -28,10 +30,18 @@ class Birds {
     logInfoS('[Pigeons]', 'Pigeon delivery system initialized');
   }
 
-  getCurrentSpeed(birdType: string): number {
+  getBirdTypeSpeed(birdType: string): number {
     const config = BirdTypes[birdType];
     if (!config) return BirdTypes.pigeon.speed;
     return config.speed;
+  }
+
+  async isBirdAvailable(birdInventoryId: number): Promise<boolean> {
+    const existing = await db
+      .select()
+      .from(PigeonDeliveriesSchema)
+      .where(eq(PigeonDeliveriesSchema.pigeonItemId, birdInventoryId));
+    return existing.length === 0;
   }
 
   async sendPigeon(params: {
@@ -49,7 +59,7 @@ class Birds {
     try {
       const dx = params.destX - params.originX;
       const dy = params.destY - params.originY;
-      const totalDistance = Math.sqrt(dx * dx + dy * dy);
+      const totalDistance = this.calculate2DDistance(params.originX, params.originY, params.destX, params.destY);
 
       if (totalDistance < 1) {
         return { success: false, error: 'Destination too close' };
@@ -121,7 +131,7 @@ class Birds {
         const elapsedSeconds = (now.getTime() - delivery.lastTickAt.getTime()) / 1000;
         if (elapsedSeconds <= 0) continue;
 
-        const speed = this.getCurrentSpeed(delivery.birdType);
+        const speed = this.getBirdTypeSpeed(delivery.birdType);
         const distanceThisTick = speed * elapsedSeconds;
         const currentDistance = parseFloat(delivery.distanceCovered || '0');
         const total = parseFloat(delivery.totalDistance);
@@ -233,6 +243,15 @@ class Birds {
       logInfoS('[Pigeons]', `Pigeon ${delivery.pigeonItemId} returned to owner ${delivery.ownerId}`);
 
       await db.delete(PigeonDeliveriesSchema).where(eq(PigeonDeliveriesSchema.id, delivery.id));
+
+      const birdEvent: CarrierBirds.BirdEvent = {
+        type: 'return',
+        characterId: delivery.ownerId,
+        birdType: delivery.birdType as CarrierBirds.BirdTypes,
+        birdInventoryId: delivery.pigeonItemId,
+      };
+      userNamespace.emit('__client__', 'carrier-birds.event', birdEvent);
+      userNamespace.emit('carrier-birds.event', birdEvent);
     } else {
       await db
         .update(PigeonDeliveriesSchema)
@@ -275,7 +294,7 @@ class Birds {
   private calculate2DDistance(x1: number, y1: number, x2: number, y2: number): number {
     const dx = x2 - x1;
     const dy = y2 - y1;
-    return Math.sqrt(dx * dx + dy * dy);
+    return Math.max(Math.sqrt(dx * dx + dy * dy), 200);
   }
 }
 

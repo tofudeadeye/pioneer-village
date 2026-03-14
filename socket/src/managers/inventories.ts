@@ -396,7 +396,7 @@ class Inventories {
       ids: items.map((item) => item.id),
       metadatas: items.map((item) => item.metadata),
       durabilities: items.map((item) => item.durability),
-      quantity: 1,
+      quantity: items.length,
     };
   }
 
@@ -475,6 +475,7 @@ class Inventories {
 
   // Helper function to create swap response
   private createSwapResponse(
+    characterId: number,
     requestId: number,
     oldIdentifier: string,
     newIdentifier: string,
@@ -485,7 +486,7 @@ class Inventories {
   ): [UI.Inventory.MoveData, UI.Inventory.MoveData] {
     return [
       {
-        charRequestId: requestId.toString(),
+        charRequestId: `${characterId}:${requestId}`,
         identifier: oldIdentifier,
         items: {
           [oldSlot]: this.createItemData(existingItems),
@@ -493,7 +494,7 @@ class Inventories {
         emptySlots: [],
       } satisfies UI.Inventory.MoveData,
       {
-        charRequestId: requestId.toString(),
+        charRequestId: `${characterId}:${requestId}`,
         identifier: newIdentifier,
         items: {
           [newSlot]: this.createItemData(oldItems),
@@ -505,6 +506,7 @@ class Inventories {
 
   // Helper function to create simple move response
   private createSimpleMoveResponse(
+    characterId: number,
     requestId: number,
     oldIdentifier: string,
     newIdentifier: string,
@@ -512,16 +514,15 @@ class Inventories {
     newSlot: number,
     movedItems: ItemSchemaType[],
   ): [UI.Inventory.MoveData, UI.Inventory.MoveData] {
-    console.log('this.createItemData(movedItems)', this.createItemData(movedItems));
     return [
       {
-        charRequestId: requestId.toString(),
+        charRequestId: `${characterId}:${requestId}`,
         identifier: oldIdentifier,
         items: {},
         emptySlots: [oldSlot],
       } satisfies UI.Inventory.MoveData,
       {
-        charRequestId: requestId.toString(),
+        charRequestId: `${characterId}:${requestId}`,
         identifier: newIdentifier,
         items: {
           [newSlot]: this.createItemData(movedItems),
@@ -713,13 +714,13 @@ class Inventories {
       // Return success events as MoveData
       return [
         {
-          charRequestId: requestId.toString(),
+          charRequestId: `${characterId}:${requestId}`,
           identifier: oldIdentifier,
           items: {},
           emptySlots: [oldSlot],
         } satisfies UI.Inventory.MoveData,
         {
-          charRequestId: requestId.toString(),
+          charRequestId: `${characterId}:${requestId}`,
           identifier: newIdentifier,
           items: {
             [newSlot]: this.createItemData([...existingItems, ...movedItems]),
@@ -740,6 +741,37 @@ class Inventories {
     }
   }
 
+  // Helper function to create partial move response
+  private createPartialMoveResponse(
+    characterId: number,
+    requestId: number,
+    oldIdentifier: string,
+    newIdentifier: string,
+    oldSlot: number,
+    newSlot: number,
+    movedItems: ItemSchemaType[],
+    remainingItems: ItemSchemaType[],
+  ): [UI.Inventory.MoveData, UI.Inventory.MoveData] {
+    return [
+      {
+        charRequestId: `${characterId}:${requestId}`,
+        identifier: oldIdentifier,
+        items: {
+          [oldSlot]: this.createItemData(remainingItems),
+        },
+        emptySlots: [],
+      } satisfies UI.Inventory.MoveData,
+      {
+        charRequestId: `${characterId}:${requestId}`,
+        identifier: newIdentifier,
+        items: {
+          [newSlot]: this.createItemData(movedItems),
+        },
+        emptySlots: [],
+      } satisfies UI.Inventory.MoveData,
+    ];
+  }
+
   // Refactored main function
   async moveItem(
     characterId: number,
@@ -748,6 +780,7 @@ class Inventories {
     oldSlot: number,
     newIdentifier: string,
     newSlot: number,
+    quantity?: number,
   ): Promise<[UI.Inventory.MoveOrFailData, UI.Inventory.MoveOrFailData | null]> {
     console.log('===================');
     try {
@@ -773,6 +806,9 @@ class Inventories {
         return this.createFailureResponse(oldIdentifier, requestId, 'move');
       }
 
+      // Determine if this is a partial move
+      const isPartialMove = quantity !== undefined && quantity > 0 && quantity < oldItems.length;
+
       // Check if destination slot is occupied
       const existingItem = this.findItemsInSlot(newInventory, newSlot);
 
@@ -782,9 +818,14 @@ class Inventories {
       }
 
       if (existingItem && existingItem.length > 0) {
+        // Cannot partial-move onto an occupied slot
+        if (isPartialMove) {
+          return this.createFailureResponse(oldIdentifier, requestId, 'move');
+        }
         // Perform swap operation
         await this.performItemSwap(oldItems, existingItem, oldSlot, newSlot, oldInventory, newInventory);
         return this.createSwapResponse(
+          characterId,
           requestId,
           oldIdentifier,
           newIdentifier,
@@ -795,9 +836,35 @@ class Inventories {
         );
       }
 
-      // Perform simple move operation
+      if (isPartialMove) {
+        // Split: move only `quantity` items, leave the rest
+        const movedItems = oldItems.slice(0, quantity);
+        const remainingItems = oldItems.slice(quantity);
+
+        await this.performSimpleMove(movedItems, newSlot, newInventory);
+        return this.createPartialMoveResponse(
+          characterId,
+          requestId,
+          oldIdentifier,
+          newIdentifier,
+          oldSlot,
+          newSlot,
+          movedItems,
+          remainingItems,
+        );
+      }
+
+      // Perform simple move operation (move all)
       await this.performSimpleMove(oldItems, newSlot, newInventory);
-      return this.createSimpleMoveResponse(requestId, oldIdentifier, newIdentifier, oldSlot, newSlot, oldItems);
+      return this.createSimpleMoveResponse(
+        characterId,
+        requestId,
+        oldIdentifier,
+        newIdentifier,
+        oldSlot,
+        newSlot,
+        oldItems,
+      );
     } catch (error) {
       console.error('Error in moveItem:', error);
     }
@@ -1009,7 +1076,7 @@ class Inventories {
           if (activeItems.length > 0) {
             console.warn(
               `[Inventory] WARNING: Removed item ${itemId} (${itemDef.name}) has sub-container ` +
-              `${subContainerIdentifier} with ${activeItems.length} active item(s) still inside.`,
+                `${subContainerIdentifier} with ${activeItems.length} active item(s) still inside.`,
             );
           }
         }

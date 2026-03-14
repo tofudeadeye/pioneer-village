@@ -34,7 +34,7 @@ declare namespace ClientIn {
   interface FromSocket {
     ['jobs.clock-in-update']: (characterId: number, jobHandle: string) => void;
     ['jobs.clock-out-update']: (characterId: number, hoursWorked: number, payment: number) => void;
-    ['jobs.task-created']: (jobHandle: string, taskInstance: any) => void;
+    ['jobs.task-created']: (jobHandle: string, taskInstance: Jobs.TaskInstance) => void;
     ['jobs.payment-processed']: (characterId: number, amount: number, reason: string) => void;
     ['jobs.task-started']: (characterId: number, taskId: number) => void;
     ['jobs.task-completed']: (characterId: number, taskId: number, payment: number) => void;

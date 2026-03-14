@@ -1,6 +1,9 @@
+import PVItems from '../../../lib/shared/items';
+import { findNearestPostOffice } from '../../../lib/shared/post-offices';
 import { logInfoC } from '../helpers';
 import pigeons from '../managers/birds';
 import characters from '../managers/characters';
+import inventories from '../managers/inventories';
 import { userNamespace } from '../server';
 
 export default () => {
@@ -16,6 +19,26 @@ export default () => {
         return;
       }
 
+      if (!(await characters.doesCharacterIdExist(receiverCharacterId))) {
+        cb({ success: false, error: 'Destination charater does not exist' });
+        return;
+      }
+
+      const available = await pigeons.isBirdAvailable(pigeonItemId);
+      if (!available) {
+        cb({ success: false, error: 'Bird not available' });
+        return;
+      }
+
+      // Look up the item to determine bird type
+      const item = await inventories.getItem(pigeonItemId);
+      if (!item) {
+        cb({ success: false, error: 'Bird item not found' });
+        return;
+      }
+      const itemDef = PVItems[item.identifier];
+      const birdType = (itemDef?.birdType || 'pigeon') as CarrierBirds.BirdTypes;
+
       const senderCoords = await characters.getLastCoords(characterId);
       const receiverCoords = await characters.getLastCoords(receiverCharacterId);
 
@@ -24,14 +47,13 @@ export default () => {
 
       let destCoords = receiverCoords;
       if (!isReceiverOnline || (receiverCoords.x === 0 && receiverCoords.y === 0 && receiverCoords.z === 0)) {
-        const { findNearestPostOffice } = await import('../../../lib/shared/post-offices');
         const nearestPO = findNearestPostOffice(senderCoords.x, senderCoords.y);
         destCoords = nearestPO.coords;
       }
 
       const result = await pigeons.sendPigeon({
         pigeonItemId,
-        birdType: 'pigeon',
+        birdType,
         ownerId: characterId,
         receiverId: receiverCharacterId,
         originX: senderCoords.x,
@@ -43,7 +65,14 @@ export default () => {
       });
 
       if (result.success) {
-        userNamespace.emit('__client__', 'carrier-birds.send-animation', characterId, 'pigeon');
+        const birdEvent: CarrierBirds.BirdEvent = {
+          type: 'send',
+          characterId,
+          birdType,
+          birdInventoryId: pigeonItemId,
+        };
+        userNamespace.emit('__client__', 'carrier-birds.event', birdEvent);
+        userNamespace.emit('carrier-birds.event', birdEvent);
       }
 
       cb(result);

@@ -189,6 +189,14 @@ class Characters {
     }
   }
 
+  getCharacterSocket(charId: number) {
+    for (const char of this.characters) {
+      if (!char) continue;
+      if (char.id !== charId) continue;
+      return char.socket;
+    }
+  }
+
   getLocalCharacterAtributeWithCharId(charId: number, attribute: keyof PVCharacterData): any {
     for (const char of this.characters) {
       if (!char) continue;
@@ -196,6 +204,16 @@ class Characters {
       return char[attribute];
     }
     return null; // If character not found
+  }
+
+  async doesCharacterIdExist(charId: number): Promise<boolean> {
+    const result = await db
+      .select({ id: CharactersSchema.id })
+      .from(CharactersSchema)
+      .where(eq(CharactersSchema.id, charId))
+      .limit(1);
+
+    return result.length > 0;
   }
 
   /**

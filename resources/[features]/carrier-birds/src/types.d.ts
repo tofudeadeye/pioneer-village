@@ -1,5 +1,5 @@
 declare namespace CarrierBirds {
-  type BirdTypes = 'pigeon' | 'owl';
+  type BirdTypes = 'pigeon' | 'crow' | 'owl';
 
   interface ActiveDelivery {
     id: number;

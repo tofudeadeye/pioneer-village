@@ -121,8 +121,9 @@ export default () => {
       oldSlot,
       newIdentifier,
       newSlot,
+      quantity?,
     ) => {
-      logInfoC('inventory.item-move', requestId, oldIdentifier, oldSlot, newIdentifier, newSlot);
+      logInfoC('inventory.item-move', requestId, oldIdentifier, oldSlot, newIdentifier, newSlot, quantity);
       if (!this.socket.data.character?.id) {
         return;
       }
@@ -143,6 +144,7 @@ export default () => {
         oldSlot,
         newIdentifier,
         newSlot,
+        quantity,
       );
 
       sendMoveOrFailData(this.socket, requestId, 'move', eventSource);

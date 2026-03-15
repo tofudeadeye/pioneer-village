@@ -580,9 +580,10 @@ const Inventories: FC<UI.BaseProps> = () => {
       const weight = state.inventoriesWeight.get(identifier) || 0;
       const InventoryDetails = state.targetInventory === identifier ? styles.inventoryFooter : styles.inventoryHeader;
       const InventoryStats = state.targetInventory === identifier ? styles.inventoryHeader : styles.inventoryFooter;
+      const isScrollable = inventory.slots > 32;
       const InventoryWrapper = identifier.startsWith('birds:')
         ? styles.inventoryWrapperOneCol
-        : styles.inventoryWrapper;
+        : `${styles.inventoryWrapper}${isScrollable ? ` ${styles.scrollable}` : ''}`;
       return (
         <>
           <div className={InventoryDetails}>

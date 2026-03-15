@@ -496,9 +496,14 @@ $inventory-grids: (
   $cols: nth($grid, 1);
   $rows: nth($grid, 2);
 
+  $scrollbar: 0;
+  @if $slots > 32 {
+    $scrollbar: 2;
+  }
+
   .grid-#{$slots} {
     &.inventoryContainer {
-      width: calc(#{$cols * 9.098}vh + #{mixins.uiSize(30 + ($cols - 1) * 2)});
+      width: calc(#{$cols * 9.098}vh + #{mixins.uiSize(30 + ($cols - 1) * 2 + $scrollbar)});
       height: calc(#{$rows * 9.815}vh + #{mixins.uiSize(32 + ($rows - 1) * 2)});
     }
 
@@ -513,7 +518,7 @@ $inventory-grids: (
   @extend .inventoryContainer;
 
   bottom: mixins.uiSize(64);
-  width: calc(#{8 * 9.098}vh + #{mixins.uiSize(30 + 7 * 2)});
+  width: calc(#{8 * 9.098}vh + #{mixins.uiSize(30 + 7 * 2 + 2)});
   height: calc(#{4 * 9.815}vh + #{mixins.uiSize(32 + 3 * 2)});
 }
 
@@ -527,6 +532,7 @@ $inventory-grids: (
 
   .inventorySlot {
     width: calc(25% - #{mixins.uiSize(2)});
+    height: calc(25% - #{mixins.uiSize(2)});
   }
 }
 
@@ -540,6 +546,7 @@ $inventory-grids: (
 
   .inventorySlot {
     width: 100%;
+    height: calc(25% - #{mixins.uiSize(2)});
   }
 }
 
@@ -620,8 +627,7 @@ $inventory-grids: (
   top: mixins.uiSize(16);
   bottom: mixins.uiSize(16);
   overflow-x: hidden;
-  overflow-y: auto;
-  scrollbar-gutter: stable;
+  overflow-y: hidden;
   display: flex;
   gap: mixins.uiSize(2);
   flex-wrap: wrap;
@@ -649,6 +655,11 @@ $inventory-grids: (
   left: mixins.uiSize(16);
   right: mixins.uiSize(7);
   padding-right: mixins.uiSize(7);
+
+  &.scrollable {
+    overflow-y: auto;
+    scrollbar-gutter: stable;
+  }
 }
 
 .inventoryWrapperOneCol {

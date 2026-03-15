@@ -47,7 +47,7 @@ export default () => {
 
       let destCoords = receiverCoords;
       if (!isReceiverOnline || (receiverCoords.x === 0 && receiverCoords.y === 0 && receiverCoords.z === 0)) {
-        const nearestPO = findNearestPostOffice(senderCoords.x, senderCoords.y);
+        const nearestPO = findNearestPostOffice(receiverCoords.x, receiverCoords.y);
         destCoords = nearestPO.coords;
       }
 

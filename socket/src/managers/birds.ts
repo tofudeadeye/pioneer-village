@@ -203,6 +203,7 @@ class Birds {
   }
 
   private async rerouteToPostOffice(delivery: PigeonDeliverySchemaType, now: Date): Promise<void> {
+    logInfoS('[Pigeons]', delivery);
     const nearestPO = findNearestPostOffice(parseFloat(delivery.destX), parseFloat(delivery.destY));
     logInfoS('[Pigeons]', `Receiver ${delivery.receiverId} offline, rerouting to ${nearestPO.label} post office`);
 

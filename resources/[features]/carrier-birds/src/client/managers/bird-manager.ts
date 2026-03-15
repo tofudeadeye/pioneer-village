@@ -212,8 +212,8 @@ export class BirdManager {
     SetEntityCompletelyDisableCollision(bird, true, true);
 
     await Delay(10000);
-    if (letter !== undefined) DeleteEntity(letter);
-    DeletePed(bird);
+    if (letter !== undefined) PVBase.deleteEntity(letter);
+    PVBase.deleteEntity(bird);
   }
 
   async playArriveAnimation(birdType: CarrierBirds.BirdTypes) {
@@ -294,7 +294,7 @@ export class BirdManager {
     });
     await this.playGiveBirdLetter();
     clearTick(tick);
-    this.flyAway(bird, true);
+    await this.flyAway(bird, true);
   }
 }
 

@@ -1,6 +1,7 @@
 import { PVCustomization, PVGame, emitUI, onUI } from '@lib/client';
 import { Log } from '@lib/client/comms/ui';
 import { Delay } from '@lib/functions';
+import InventoryTypes from '@lib/shared/inventory-types';
 import PVItems from '@lib/shared/items';
 
 import './events';
@@ -38,6 +39,8 @@ const sendInventoryItems = () => {
       maxLife: item.maxLife,
       hasUseEvent: !!item.useEvent,
       containerType: item.containerType,
+      containerRestrictions: item.containerType ? InventoryTypes[item.containerType]?.restrictions : undefined,
+      restriction: item.restriction,
     };
   }
 

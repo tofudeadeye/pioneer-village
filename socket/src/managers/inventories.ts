@@ -386,7 +386,17 @@ class Inventories {
   // Helper function to validate item can be moved to new inventory
   private validateItemMove(item: ItemSchemaType[], newIdentifier: string): boolean {
     const itemData = PVItems[item[0].identifier];
-    return itemData && this.isAllowedInInventory(newIdentifier, itemData);
+    if (!itemData || !this.isAllowedInInventory(newIdentifier, itemData)) {
+      return false;
+    }
+    // Prevent nesting a container inside the same container type
+    if (itemData.containerType) {
+      const destType = newIdentifier.split(':')[0];
+      if (destType === itemData.containerType) {
+        return false;
+      }
+    }
+    return true;
   }
 
   // Helper function to create item data for response
@@ -820,6 +830,10 @@ class Inventories {
       if (existingItem && existingItem.length > 0) {
         // Cannot partial-move onto an occupied slot
         if (isPartialMove) {
+          return this.createFailureResponse(oldIdentifier, requestId, 'move');
+        }
+        // Validate the displaced item can go back to the source inventory
+        if (!this.validateItemMove(existingItem, oldIdentifier)) {
           return this.createFailureResponse(oldIdentifier, requestId, 'move');
         }
         // Perform swap operation

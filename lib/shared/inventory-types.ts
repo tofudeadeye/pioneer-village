@@ -62,6 +62,12 @@ const InventoryTypes: Record<string, Inventory.Type> = {
     maxWeight: Infinity,
     restrictions: Restrictions.Tiny,
   },
+  // Envelope slots
+  envelope: {
+    slots: 5,
+    maxWeight: Infinity,
+    restrictions: Restrictions.Tiny,
+  },
 };
 
 export default InventoryTypes;

@@ -689,6 +689,16 @@ const PVItems: Record<number, Inventory.Item> = {
     containerType: 'bird',
     birdType: 'owl',
   },
+  [GetHashKey('PV_ENVELOPE')]: {
+    identifier: GetHashKey('PV_ENVELOPE'),
+    image: 'envelope',
+    name: 'Envelope',
+    flags: ItemFlags.TOOL,
+    restriction: Restrictions.Tiny,
+    containerType: 'envelope',
+    stackSize: 1,
+    weight: 0.1,
+  },
   [GetHashKey('PV_LETTER')]: {
     identifier: GetHashKey('PV_LETTER'),
     image: 'letter',

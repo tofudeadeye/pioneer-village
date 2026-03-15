@@ -17,14 +17,14 @@ const BirdTypes: Record<string, BirdTypeConfig> = {
   crow: {
     model: 'A_C_CROW_01',
     letterModel: 'p_letterenvelope_cs01x',
-    speed: 40.0,
+    speed: 42.5,
     staminaCostPerDelivery: 12,
     maxStamina: 100,
   },
   owl: {
     model: 'A_C_OWL_01',
     letterModel: 'p_letterenvelope_cs01x',
-    speed: 45.0,
+    speed: 55.0,
     staminaCostPerDelivery: 10,
     maxStamina: 100,
   },

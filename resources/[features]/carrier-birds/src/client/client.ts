@@ -1,5 +1,6 @@
 import { shuffle } from 'lodash';
 
+// import './debug-flight';
 import './events';
 import birdManager from './managers/bird-manager';
 

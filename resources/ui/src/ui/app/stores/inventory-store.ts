@@ -349,7 +349,16 @@ class InventoryStore {
         const sourceInventory = inventories.get(sourceIdentifier);
         const targetInventory = inventories.get(targetIdentifier);
 
-        if (!sourceInventory || !targetInventory) return;
+        if (!sourceInventory) return;
+
+        if (!targetInventory) {
+          // Target not in state (e.g., container deposit that failed)
+          // Re-subscribe to source to get fresh server state
+          if (this.socket) {
+            this.socket.emit('inventory.subscribe', sourceIdentifier);
+          }
+          return;
+        }
 
         // Revert the move
         const oldItem = sourceInventory.items[oldSlot];
@@ -442,12 +451,21 @@ class InventoryStore {
       const targetInventory = this.state.inventories.get(targetIdentifier);
       if (!targetInventory) {
         if (force) {
+          // Optimistically remove from source and let server handle destination
           const inventories = new Map(this.state.inventories);
-          const sourceInventory = inventories.get(sourceIdentifier);
-          if (sourceInventory) {
-            delete sourceInventory.items[oldSlot];
+          const sourceRaw = inventories.get(sourceIdentifier);
+          if (sourceRaw) {
+            const sourceItems = { ...sourceRaw.items };
+            delete sourceItems[oldSlot];
+            inventories.set(sourceIdentifier, { ...sourceRaw, items: sourceItems });
           }
           this.updateState({ inventories });
+          this.computeInventoryWeight();
+
+          // Send to server with slot -1 to let server find first available slot
+          this.requestId++;
+          this.socket.emit('inventory.item-move', this.requestId, sourceIdentifier, oldSlot, targetIdentifier, -1, quantity);
+          this.requests.set(this.requestId, { sourceIdentifier, oldSlot, targetIdentifier, newSlot: -1 });
         }
         return;
       }
@@ -464,11 +482,17 @@ class InventoryStore {
       }
     }
 
-    // Check if the moved item is the container that opened the target inventory
+    // Check if the moved item or the swapped item is the container that opened the target inventory
     if (this.state.targetContainerItemId) {
+      const containerItemId = this.state.targetContainerItemId;
       const sourceInventory = this.state.inventories.get(sourceIdentifier);
-      const slotItem = sourceInventory?.items[oldSlot];
-      if (slotItem && slotItem.ids.includes(this.state.targetContainerItemId)) {
+      const targetInventory = this.state.inventories.get(targetIdentifier);
+      const sourceSlotItem = sourceInventory?.items[oldSlot];
+      const targetSlotItem = targetInventory?.items[newSlot];
+      if (
+        (sourceSlotItem && sourceSlotItem.ids.includes(containerItemId)) ||
+        (targetSlotItem && targetSlotItem.ids.includes(containerItemId))
+      ) {
         this.closeTargetInventory();
       }
     }

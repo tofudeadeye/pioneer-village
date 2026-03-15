@@ -1,10 +1,10 @@
+import JobsController from './controllers/jobs';
+import PigeonController from './controllers/birds';
 import CharacterController from './controllers/characters';
 import ChatController from './controllers/chat';
 import CronController from './controllers/cron';
 import DoorController from './controllers/doors';
 import InventoryController from './controllers/inventory';
-// import JobsController from './controllers/jobs';
-import PigeonController from './controllers/pigeons';
 import StableController from './controllers/stables';
 import UserController from './controllers/user';
 import WorldController from './controllers/world';
@@ -22,6 +22,7 @@ DoorController();
 InventoryController();
 StableController();
 WorldController();
+PigeonController();
 JobsController();
 
 server.listen(Number(process.env.SOCKET_PORT), () => {

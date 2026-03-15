@@ -86,6 +86,8 @@ declare namespace Inventory {
     maxLife?: number;
     hasUseEvent?: boolean;
     containerType?: string;
+    containerRestrictions?: number;
+    restriction?: number;
   };
 
   type UIItems = Record<number, UIItem>;

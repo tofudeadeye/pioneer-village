@@ -182,8 +182,8 @@
 
 .inventorySlot {
   position: relative;
-  width: calc(12.5% - #{mixins.uiSize(2)});
-  height: calc(25% - #{mixins.uiSize(2)});
+  width: 9.098vh;
+  height: 9.815vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -192,19 +192,6 @@
   background-size: 100% 100%;
   overflow: hidden;
   contain: layout;
-
-  // Dynamic rows and columns
-  @for $n from 1 through 3 {
-    .rows#{$n} & {
-      height: calc(#{math.div(100%, $n)} - #{mixins.uiSize(2)});
-    }
-  }
-
-  @for $n from 1 through 7 {
-    .columns#{$n} & {
-      width: calc(#{math.div(100%, $n)} - #{mixins.uiSize(2)});
-    }
-  }
 
   &:before {
     @include mixins.transition(opacity);
@@ -475,6 +462,23 @@
   transform: scale(1.25);
 }
 
+$inventory-grids: (
+  1: (1, 1),
+  2: (2, 1),
+  3: (3, 1),
+  4: (4, 1),
+  5: (5, 1),
+  6: (3, 2),
+  8: (4, 2),
+  10: (5, 2),
+  12: (6, 2),
+  16: (8, 2),
+  24: (8, 3),
+  32: (8, 4),
+  48: (8, 4),
+  64: (8, 4),
+);
+
 .inventoryContainer {
   position: absolute;
   left: 50%;
@@ -483,16 +487,24 @@
   transform: translateX(-50%);
   border-radius: mixins.uiSize(4);
   background-color: var(--theme-bg-primary);
+}
 
-  @for $n from 1 through 3 {
-    &.rows#{$n} {
-      height: calc(#{$n * 10}vh + #{mixins.uiSize(32)});
+// Slot unit: 10vh per slot. Container wraps around fixed-size slots.
+// Wrapper padding: left 16 + right 7 + padding-right 7 = 30px horizontal, 16 + 16 = 32px vertical.
+// Flex gap: 2px between slots. N cols = (N-1) * 2px horizontal gaps, M rows = (M-1) * 2px vertical gaps.
+@each $slots, $grid in $inventory-grids {
+  $cols: nth($grid, 1);
+  $rows: nth($grid, 2);
+
+  .grid-#{$slots} {
+    &.inventoryContainer {
+      width: calc(#{$cols * 9.098}vh + #{mixins.uiSize(30 + ($cols - 1) * 2)});
+      height: calc(#{$rows * 9.815}vh + #{mixins.uiSize(32 + ($rows - 1) * 2)});
     }
-  }
 
-  @for $n from 1 through 7 {
-    &.columns#{$n} {
-      width: calc(#{$n * 10}vh - #{mixins.uiSize(32)});
+    .inventorySlot {
+      width: 9.098vh;
+      height: 9.815vh;
     }
   }
 }
@@ -501,6 +513,8 @@
   @extend .inventoryContainer;
 
   bottom: mixins.uiSize(64);
+  width: calc(#{8 * 9.098}vh + #{mixins.uiSize(30 + 7 * 2)});
+  height: calc(#{4 * 9.815}vh + #{mixins.uiSize(32 + 3 * 2)});
 }
 
 .clothingInventoryContainer {
@@ -534,9 +548,11 @@
 
   top: mixins.uiSize(64);
 
-  @for $n from 1 through 3 {
-    &.rows#{$n} {
-      top: calc(#{(4 - $n) * 10}vh + #{mixins.uiSize(64)});
+  @each $slots, $grid in $inventory-grids {
+    $rows: nth($grid, 2);
+
+    &.grid-#{$slots} {
+      top: calc(#{(4 - $rows) * 10}vh + #{mixins.uiSize(64)});
     }
   }
 }
@@ -605,6 +621,7 @@
   bottom: mixins.uiSize(16);
   overflow-x: hidden;
   overflow-y: auto;
+  scrollbar-gutter: stable;
   display: flex;
   gap: mixins.uiSize(2);
   flex-wrap: wrap;

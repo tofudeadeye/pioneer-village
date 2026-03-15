@@ -24,6 +24,23 @@ const progressStyleWeight = { overflow: 'hidden' as const, width: '100%', border
 
 const itsThumbScale = 1;
 
+const GRID_LAYOUTS: Record<number, string> = {
+  1: 'grid-1',
+  2: 'grid-2',
+  3: 'grid-3',
+  4: 'grid-4',
+  5: 'grid-5',
+  6: 'grid-6',
+  8: 'grid-8',
+  10: 'grid-10',
+  12: 'grid-12',
+  16: 'grid-16',
+  24: 'grid-24',
+  32: 'grid-32',
+  48: 'grid-48',
+  64: 'grid-64',
+};
+
 interface ContextMenuState {
   x: number;
   y: number;
@@ -223,6 +240,32 @@ const Inventories: FC<UI.BaseProps> = () => {
           failedImages.current.delete(`${targetEl.dataset.inventoryIdentifier}::${newSlot}`);
 
           const splitQuantity = dragItem.dataset.splitQuantity ? Number(dragItem.dataset.splitQuantity) : undefined;
+
+          // Check if target slot has a container item — drop inside it
+          const targetSlotItem = targetInventory?.items[newSlot];
+          if (targetSlotItem && targetSlotItem.identifier !== sourceInventory.items[oldSlot].identifier) {
+            const targetItemDef = items[targetSlotItem.identifier];
+            const sourceItemDef = items[sourceInventory.items[oldSlot].identifier];
+            if (
+              targetItemDef?.containerType &&
+              sourceItemDef?.containerType !== targetItemDef.containerType &&
+              sourceItemDef?.restriction !== undefined &&
+              targetItemDef.containerRestrictions !== undefined &&
+              (targetItemDef.containerRestrictions === 0 || (targetItemDef.containerRestrictions & sourceItemDef.restriction))
+            ) {
+              const containerIdentifier = `${targetItemDef.containerType}:${targetSlotItem.ids[0]}`;
+              inventoryStore.moveItem(
+                dragItem.dataset.inventoryIdentifier,
+                oldSlot,
+                containerIdentifier,
+                undefined,
+                true,
+                splitQuantity,
+              );
+              cancelDrag();
+              return;
+            }
+          }
 
           // Check if Target is same and stack or move
           if (
@@ -759,16 +802,18 @@ const Inventories: FC<UI.BaseProps> = () => {
     );
   }, [splitPopup, splitValue, handleSplitConfirm]);
 
-  const rowsColumns = useCallback<(inventory: UI.Inventory.LoadData) => string | undefined>((inventory) => {
-    if (!inventory?.slots) {
-      return;
-    }
-    if (inventory.slots < 8) {
-      return `rows1 columns${inventory.slots}`;
-    }
-    if (inventory.slots <= 3 * 8) {
-      return `rows${Math.ceil(inventory.slots / 8)}`;
-    }
+  const getGridClass = useCallback<(inventory: UI.Inventory.LoadData) => string>((inventory) => {
+    if (!inventory?.slots) return '';
+    if (GRID_LAYOUTS[inventory.slots]) return styles[GRID_LAYOUTS[inventory.slots]];
+
+    const cols = Math.min(inventory.slots, 8);
+    const adjustedCols = inventory.slots > 8 ? Math.min(Math.ceil(inventory.slots / Math.ceil(inventory.slots / 8)), 8) : cols;
+    const _rows = Math.min(Math.ceil(inventory.slots / adjustedCols), 4);
+    const closestSlots = Object.keys(GRID_LAYOUTS)
+      .map(Number)
+      .sort((a, b) => a - b)
+      .find(s => s >= inventory.slots) || 32;
+    return styles[GRID_LAYOUTS[closestSlots]];
   }, []);
 
   const { clothingInventory, mainInventory, birdsInventory, targetInventory } = state;
@@ -782,7 +827,7 @@ const Inventories: FC<UI.BaseProps> = () => {
         {contextMenu && renderContextMenu()}
         {splitPopup && renderSplitPopup()}
         {state.targetInventory && (
-          <div className={`${styles.targetInventoryContainer} ${rowsColumns(inventories[targetInventory]) || ''}`}>
+          <div className={`${styles.targetInventoryContainer} ${getGridClass(inventories[targetInventory])}`}>
             {state.targetContainerItemId > 0 && (
               <button className={styles.closeTargetButton} onClick={() => inventoryStore.closeTargetInventory()}>
                 X

@@ -3,7 +3,7 @@ import jobsStore from '../../stores/jobs-store';
 import { useEscapeKey } from '../../hooks/use-game-events';
 import styles from './styles.module.scss';
 
-export default function Jobs() {
+export default function Jobs(): React.ReactElement | null {
   const [state, setState] = useState(jobsStore.getState());
 
   useEffect(() => {
@@ -11,39 +11,26 @@ export default function Jobs() {
     return unsubscribe;
   }, []);
 
-  useEffect(() => {
-    // Store handles all events
-    // Get initial job state
-    setTimeout(() => {
-      refreshJobState();
-    }, 1000);
-  }, []);
-
-  // Handle escape key
-  const onEscape = useCallback(() => {
+  const onEscape = useCallback((): void => {
     jobsStore.close();
   }, []);
 
   useEscapeKey(state.show, onEscape);
 
-  const refreshJobState = () => {
-    jobsStore.refresh();
+  const handleClockIn = (jobHandle: string): void => {
+    jobsStore.performClockIn(jobHandle);
   };
 
-  const handleClockIn = (jobHandle: string) => {
-    // Use dummy location since we don't have actual position data in the UI
-    const location = { x: 0, y: 0, z: 0 };
-    jobsStore.performClockIn(jobHandle, location);
-  };
-
-  const handleClockOut = () => {
+  const handleClockOut = (): void => {
     jobsStore.performClockOut();
   };
+
+  if (!state.show) return null;
 
   const { isClocked, currentJob, availableJobs, clockedInEmployees } = state;
 
   return (
-    <div className={`${styles.frame} ${state.show ? 'active' : ''}`}>
+    <div className={styles.frame}>
       <div className={styles.container}>
         <h2>Job Management</h2>
 
@@ -68,7 +55,7 @@ export default function Jobs() {
             <p>
               <strong>Payment:</strong> {currentJob.paymentType} - ${currentJob.paymentAmount}
             </p>
-            <button className={styles.button} onClick={handleClockOut}>Clock Out</button>
+            <button className={`${styles.button} ${styles.danger}`} onClick={handleClockOut}>Clock Out</button>
           </div>
         ) : (
           <div>
@@ -76,7 +63,7 @@ export default function Jobs() {
             {availableJobs.length === 0 ? (
               <p>No jobs available at this time.</p>
             ) : (
-              availableJobs.map((job: any) => (
+              availableJobs.map((job: Jobs.JobDefinition) => (
                 <div className={styles.jobCard} key={job.handle}>
                   <h4>{job.name}</h4>
                   <p>{job.description}</p>

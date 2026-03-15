@@ -101,32 +101,32 @@ end
 function renderMarker()
   local coords = GetEntityCoords(playerPed, true, true)
   local rot = GetEntityRotation(playerPed, 2)
-  --local forward = GetEntityForwardVector(target)
+  local forward = GetEntityForwardVector(target)
   Citizen.InvokeNative(
     0x2A32FAA57B937173,
-    GetHashKey('MARKERTYPE_HALO_POINT'),
-    coords.x,
-    coords.y,
+    GetHashKey('MARKERTYPE_SPHERE'), --GetHashKey('MARKERTYPE_HALO_POINT'),
+    coords.x, -- + (forward.x * 5),
+    coords.y, -- + (forward.y * 5),
     coords.z - 0.75,
     0,
     0,
     0,
-    rot.x,--0,
-    rot.y,--0,
-    rot.z,--GetEntityHeading(target),
+    0, -- rot.x,--0,
+    0, -- rot.y,--0,
+    0, -- rot.z,--GetEntityHeading(target),
     1.0,
-    1.0,
+    0,
     1.0,
     255,
     255,
     255,
     255,
     false,
-    false,
+    true,
     2,
     false,
-    0,--'ammo_types',
-    0,--'arrow_type_fire',
+    0, --'ammo_types',
+    0, --'arrow_type_fire',
     false
   )
 end
@@ -273,3 +273,56 @@ RegisterCommand('test_pause', function()
   Citizen.InvokeNative(0xC8FC7F4E4CF4F581, PAUSE_MENU)
   Citizen.InvokeNative(0x04428420A248A354, PAUSE_MENU)
 end)
+
+--Found: 0x94FDAE17 | -1795314153 | MARKERTYPE_CYLINDER
+--Found: 0xEC032ADD | -335336739 | MARKERTYPE_RING
+--Found: 0x29FE305A | 704524378 | MARKERTYPE_NUM_0
+--Found: 0xE3C923F1 | -473357327 | MARKERTYPE_NUM_1
+--Found: 0xD57F875E | -713062562 | MARKERTYPE_NUM_2
+--Found: 0x40675D1C | 1080515868 | MARKERTYPE_NUM_3
+--Found: 0x4E94F977 | 1318386039 | MARKERTYPE_NUM_4
+--Found: 0x234BA2E5 | 592159461 | MARKERTYPE_NUM_5
+--Found: 0xF9B24FB3 | -105754701 | MARKERTYPE_NUM_6
+--Found: 0x075FEB0E | 123726606 | MARKERTYPE_NUM_7
+--Found: 0xDD839756 | -578578602 | MARKERTYPE_NUM_8
+--Found: 0xE9F6303B | -369741765 | MARKERTYPE_NUM_9
+--Found: 0x6903B113 | 1761849619 | MARKERTYPE_HALO
+--Found: 0xD6445746 | -700164282 | MARKERTYPE_HALO_POINT
+--Found: 0x07DCE236 | 131916342 | MARKERTYPE_HALO_ROTATE
+--Found: 0x50638AB9 | 1348700857 | MARKERTYPE_SPHERE
+--Found: 0x6EB7D3BB | 1857541051 | MARKERTYPE_CUBE
+--Found: 0xE60FF3B9 | -435162183 | MARKERTYPE_FIRE
+--Found: 0x664669A6 | 1715890598 | MARKERTYPE_FIRE_2
+--Found: 0xE03A92AE | -533032274 | MARKERTYPE_BARREL
+--Found: 0x751F27D6 | 1964976086 | MARKERTYPE_FINISHBUOY
+--Found: 0x8C5F9CEE | -1939890962 | MARKERTYPE_FINISHLINE
+
+local markers = {
+	0x94FDAE17,   --modelName 	prop_mk_cylinder
+	0xEC032ADD,   --modelName 	prop_mk_ring
+	0x29FE305A,   --modelName 	prop_mk_num_0
+	0xE3C923F1,   --modelName 	prop_mk_num_1
+	0xD57F875E,   --modelName 	prop_mk_num_2
+	0x40675D1C,   --modelName 	prop_mk_num_3
+	0x4E94F977,   --modelName 	prop_mk_num_4
+	0x234BA2E5,   --modelName 	prop_mk_num_5
+	0xF9B24FB3,   --modelName 	prop_mk_num_6
+	0x075FEB0E,   --modelName 	prop_mk_num_7
+	0xDD839756,   --modelName 	prop_mk_num_8
+	0xE9F6303B,   --modelName 	prop_mk_num_9
+	0x6903B113,   --modelName 	prop_mp_halo
+	0xD6445746,   --modelName 	prop_mp_halo_point
+	0x07DCE236,   --modelName 	prop_mp_halo_rotate
+	0x50638AB9,   --modelName 	prop_mk_sphere
+	0x6EB7D3BB,   --modelName 	prop_mk_cube
+	0xE60FF3B9,   --modelName 	s_racecheckpoint01x
+	0x664669A6,   --modelName 	s_racefinish01x
+	0xE03A92AE,   --modelName  	p_canoepole01x
+	0x751F27D6,   --modelName  	p_buoy01x
+	0x8C5F9CEE,   --modelName  	0xD9F7183F
+
+	0x51C90974,   --modelName 	UNKNOWN
+	0xCCA89E07,   --modelName  	UNKNOWN
+	0x39747C45,   --modelName	UNKNOWN
+	0x68E15D2E,   --modelName	UNKNOWN
+}

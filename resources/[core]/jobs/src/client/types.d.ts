@@ -9,23 +9,16 @@ declare namespace Jobs {
     canStartTask: (taskId: number) => Promise<Jobs.TaskAvailability>;
     getAvailableTasks: (jobHandle?: string) => Promise<Jobs.TaskDefinition[]>;
   }
-
-  namespace Events {
-    type ClockInUpdate = (characterId: number, jobHandle: string) => void;
-    type ClockOutUpdate = (characterId: number, hoursWorked: number, payment: number) => void;
-    type TaskCreated = (jobHandle: string, taskInstance: any) => void;
-    type PaymentProcessed = (characterId: number, amount: number, reason: string) => void;
-  }
 }
 
 // Client perspective - RPC calls to various destinations
 declare namespace ClientRPC {
   interface Socket {
-    ['jobs.clock-in']: (jobHandle: string, location: { x: number; y: number; z: number }) => Jobs.ClockResult;
-    ['jobs.clock-out']: () => Jobs.ClockResult;
-    ['jobs.get-state']: () => UI.Jobs.State & { error?: string };
-    ['jobs.can-start-task']: (taskId: number) => Jobs.TaskAvailability;
-    ['jobs.get-available-tasks']: (jobHandle?: string) => Jobs.TaskDefinition[];
+    ['jobs.clock-in']: (jobHandle: string, location: { x: number; y: number; z: number }) => Promise<Jobs.ClockResult>;
+    ['jobs.clock-out']: () => Promise<Jobs.ClockResult>;
+    ['jobs.get-state']: () => Promise<UI.Jobs.State & { error?: string }>;
+    ['jobs.can-start-task']: (taskId: number) => Promise<Jobs.TaskAvailability>;
+    ['jobs.get-available-tasks']: (jobHandle?: string) => Promise<Jobs.TaskDefinition[]>;
   }
 }
 
@@ -41,15 +34,3 @@ declare namespace ClientIn {
     ['jobs.permission-granted']: (characterId: number, type: string, typeId: number) => void;
   }
 }
-
-// Raw Socket.io events for UI layer typing - DEDUPLICATED
-// Note: SocketIO.Events eliminated - use ClientIn.FromSocket directly
-// Events are defined in socket types: SocketOut.ToClient
-// declare namespace SocketIO {
-//   interface Events extends SocketOut.ToClient {
-//     ['jobs.clock-in-update']: Jobs.Events.ClockInUpdate;
-//     ['jobs.clock-out-update']: Jobs.Events.ClockOutUpdate;
-//     ['jobs.task-created']: Jobs.Events.TaskCreated;
-//     ['jobs.payment-processed']: Jobs.Events.PaymentProcessed;
-//   }
-// }

@@ -1,7 +1,6 @@
-import { exports, PVGame } from '@lib/client';
-import { Log, awaitUI, onUI } from '@lib/client/comms/ui';
+import { PVGame, exports } from '@lib/client';
+import { awaitUI, emitUI, onUI } from '@lib/client/comms/ui';
 
-// Job System Client
 class JobsClient {
   private currentJob: Jobs.JobDefinition | null = null;
   private isClocked = false;
@@ -11,56 +10,44 @@ class JobsClient {
   }
 
   private init(): void {
-    Log('[Jobs]', 'Jobs client initialized');
-
-    // Register commands
     this.registerCommands();
-
-    // Listen for server events
     this.setupEventHandlers();
-
-    // Get initial state
     this.getJobState();
   }
 
   private registerCommands(): void {
-    // Clock in command
     RegisterCommand(
       'clockin',
-      (source: number, args: string[]) => {
+      (_source: number, args: string[]) => {
         const jobHandle = args[0];
         if (!jobHandle) {
-          Log('[Jobs]', 'Usage: /clockin <job_handle>');
+          this.notify('Usage: /clockin <job_handle>', 'error');
           return;
         }
-
         this.clockIn(jobHandle);
       },
       false,
     );
 
-    // Clock out command
     RegisterCommand(
       'clockout',
-      (source: number, args: string[]) => {
+      () => {
         this.clockOut();
       },
       false,
     );
 
-    // Jobs list command
     RegisterCommand(
       'jobs',
-      (source: number, args: string[]) => {
+      () => {
         this.showJobsList();
       },
       false,
     );
 
-    // Job status command
     RegisterCommand(
       'jobstatus',
-      (source: number, args: string[]) => {
+      () => {
         this.showJobStatus();
       },
       false,
@@ -68,50 +55,47 @@ class JobsClient {
   }
 
   private setupEventHandlers(): void {
-    // Listen for job state updates from socket
-    onUI('jobs.clock-in-update', (characterId: number, jobHandle: string) => {
-      Log('[Jobs]', `Character ${characterId} clocked in to ${jobHandle}`);
+    onUI('jobs.clock-in-update', (characterId, jobHandle) => {
       if (characterId === this.getCharacterId()) {
         this.isClocked = true;
-        this.getJobState(); // Refresh state
+        this.getJobState();
+        this.notify(`Clocked in to ${jobHandle}`, 'success');
       }
     });
 
-    onUI('jobs.clock-out-update', (characterId: number, hoursWorked: number, payment: number) => {
-      Log(
-        '[Jobs]',
-        `Character ${characterId} clocked out. Hours: ${hoursWorked.toFixed(2)}, Payment: $${payment.toFixed(2)}`,
-      );
+    onUI('jobs.clock-out-update', (characterId, hoursWorked, payment) => {
       if (characterId === this.getCharacterId()) {
         this.isClocked = false;
         this.currentJob = null;
-
-        // Show payment notification
-        this.showNotification(`Clocked out! Worked ${hoursWorked.toFixed(2)} hours. Earned $${payment.toFixed(2)}`);
+        this.notify(`Clocked out! Worked ${hoursWorked.toFixed(2)} hours. Earned $${payment.toFixed(2)}`, 'success');
       }
     });
 
-    // Listen for other job events
-    onUI('jobs.task-created', (jobHandle: string, taskInstance: any) => {
-      Log('[Jobs]', `New task created for job ${jobHandle}`);
+    onUI('jobs.task-created', (_jobHandle, _taskInstance) => {
+      // Task created events are informational for the client
     });
 
     onUI('jobs.task-started', (characterId, taskId) => {
       if (characterId === this.getCharacterId()) {
-        Log('[Jobs]', `Started task ${taskId}`);
+        this.notify(`Started task #${taskId}`, 'info');
       }
     });
 
-    onUI('jobs.task-completed', (characterId: number, taskId: number, payment: number) => {
+    onUI('jobs.task-completed', (characterId, _taskId, payment) => {
       if (characterId === this.getCharacterId()) {
-        Log('[Jobs]', `Completed task ${taskId}. Earned $${payment.toFixed(2)}`);
-        this.showNotification(`Task completed! Earned $${payment.toFixed(2)}`);
+        this.notify(`Task completed! Earned $${payment.toFixed(2)}`, 'success');
       }
     });
 
-    onUI('jobs.permission-granted', (characterId: number, type: string, typeId: number) => {
+    onUI('jobs.payment-processed', (characterId, amount, reason) => {
       if (characterId === this.getCharacterId()) {
-        Log('[Jobs]', `Granted permission for ${type} ${typeId}`);
+        this.notify(`Pay slip: $${amount.toFixed(2)} — ${reason}`, 'info');
+      }
+    });
+
+    onUI('jobs.permission-granted', (characterId, type, typeId) => {
+      if (characterId === this.getCharacterId()) {
+        this.notify(`Permission granted: ${type} ${typeId}`, 'info');
       }
     });
   }
@@ -122,84 +106,74 @@ class JobsClient {
       const [x, y, z] = GetEntityCoords(ped, false);
       const location = { x, y, z };
       const result = await awaitUI('jobs.clock-in', jobHandle, location);
-      if (result.success) {
-        Log('[Jobs]', `Successfully clocked in to ${jobHandle}`);
-        this.showNotification(`Clocked in to ${jobHandle}`);
-      } else {
-        Log('[Jobs]', `Failed to clock in: ${result.error}`);
-        this.showNotification(`Failed to clock in: ${result.error}`, 'error');
+      if (!result.success) {
+        this.notify(`Failed to clock in: ${result.error}`, 'error');
       }
     } catch (error) {
-      Log('[Jobs]', 'Error clocking in:', error);
-      this.showNotification('Failed to clock in', 'error');
+      this.notify('Failed to clock in', 'error');
     }
   }
 
   private async clockOut(): Promise<void> {
     try {
       const result = await awaitUI('jobs.clock-out');
-      if (result.success) {
-        Log('[Jobs]', 'Successfully clocked out');
-      } else {
-        Log('[Jobs]', `Failed to clock out: ${result.error}`);
-        this.showNotification(`Failed to clock out: ${result.error}`, 'error');
+      if (!result.success) {
+        this.notify(`Failed to clock out: ${result.error}`, 'error');
       }
     } catch (error) {
-      Log('[Jobs]', 'Error clocking out:', error);
-      this.showNotification('Failed to clock out', 'error');
+      this.notify('Failed to clock out', 'error');
     }
   }
 
   private async getJobState(): Promise<void> {
     try {
       const state = await awaitUI('jobs.get-state');
-      if (state) {
+      if (state && !state.error) {
         this.currentJob = state.currentJob;
         this.isClocked = state.isClocked;
-        Log('[Jobs]', 'Job state updated:', state);
       }
     } catch (error) {
-      Log('[Jobs]', 'Error getting job state:', error);
+      // State refresh failure is non-critical
     }
   }
 
   private async showJobsList(): Promise<void> {
     try {
       const tasks = await awaitUI('jobs.get-available-tasks');
-      Log('[Jobs]', 'Available tasks:', tasks);
-
-      // Show in notification
       if (tasks && Array.isArray(tasks) && tasks.length > 0) {
-        const taskList = tasks.map((task: Jobs.TaskDefinition) => `- ${task.name}`).join('\n');
-        this.showNotification(`Available Tasks:\n${taskList}`, 'info', 10000);
+        const taskList = tasks.map((task: Jobs.TaskDefinition) => task.name).join(', ');
+        this.notify(`Available: ${taskList}`, 'info', 10000);
       } else {
-        this.showNotification('No tasks available', 'info');
+        this.notify('No tasks available', 'info');
       }
     } catch (error) {
-      Log('[Jobs]', 'Error getting jobs list:', error);
+      this.notify('Error getting jobs list', 'error');
     }
   }
 
   private showJobStatus(): void {
     if (this.isClocked && this.currentJob) {
-      this.showNotification(`Currently working: ${this.currentJob.name}`, 'info');
+      this.notify(`Currently working: ${this.currentJob.name}`, 'info');
     } else {
-      this.showNotification('Not currently clocked in to any job', 'info');
+      this.notify('Not currently clocked in', 'info');
     }
   }
 
   private getCharacterId(): number {
     const id = PVGame.characterId();
-    return id ?? 0; // Return 0 if null, or handle appropriately
+    return id ?? 0;
   }
 
-  private showNotification(message: string, type: 'info' | 'success' | 'error' = 'success', duration = 5000): void {
-    // This would integrate with your notification system
-    Log('[Jobs]', `[${type.toUpperCase()}] ${message}`);
-    // TODO: Implement actual notification UI
+  private notify(message: string, type: 'info' | 'success' | 'error' = 'success', duration = 5000): void {
+    const colors: Record<string, { bg: string; fg: string }> = {
+      success: { bg: '#2d5a2d', fg: '#ffffff' },
+      error: { bg: '#5a2d2d', fg: '#ffffff' },
+      info: { bg: '#2d2d5a', fg: '#ffffff' },
+    };
+    const color = colors[type] || colors.info;
+    emitUI('notification.notify', message, duration, color.bg, color.fg, false);
   }
 
-  // Public methods for exports
   public getCurrentJob(): Jobs.JobDefinition | null {
     return this.currentJob;
   }
@@ -209,34 +183,32 @@ class JobsClient {
   }
 
   public async canStartTask(taskId: number): Promise<Jobs.TaskAvailability> {
-    // Check if player can start a specific task
-    return {
-      canStart: true,
-      reason: undefined,
-    };
+    try {
+      return await awaitUI('jobs.can-start-task', taskId);
+    } catch (_error) {
+      return { canStart: false, reason: 'Error checking task availability' };
+    }
   }
 
   public async getAvailableTasks(jobHandle?: string): Promise<Jobs.TaskDefinition[]> {
-    // Get available tasks for current or specified job
-    const handle = jobHandle || this.currentJob?.handle;
-    if (!handle) return [];
-
-    // TODO: Get actual tasks from server
-    return [];
+    try {
+      const handle = jobHandle || this.currentJob?.handle;
+      if (!handle) return [];
+      return await awaitUI('jobs.get-available-tasks', handle);
+    } catch (_error) {
+      return [];
+    }
   }
 }
 
-// Initialize the jobs client
 const jobsClient = new JobsClient();
 
-// Export functions for other resources to use
 const getCurrentJob: Jobs.ClientExports['getCurrentJob'] = () => jobsClient.getCurrentJob();
 const isCurrentlyClocked: Jobs.ClientExports['isCurrentlyClocked'] = () => jobsClient.isCurrentlyClocked();
 const canStartTask: Jobs.ClientExports['canStartTask'] = (taskId) => jobsClient.canStartTask(taskId);
 const getAvailableTasks: Jobs.ClientExports['getAvailableTasks'] = (jobHandle) =>
   jobsClient.getAvailableTasks(jobHandle);
 
-// Register exports
 exports<'jobs'>('getCurrentJob', getCurrentJob);
 exports<'jobs'>('isCurrentlyClocked', isCurrentlyClocked);
 exports<'jobs'>('canStartTask', canStartTask);

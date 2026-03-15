@@ -8,6 +8,10 @@ local GetEntityCoords = GetEntityCoords
 local DisablePlayerFiring = DisablePlayerFiring
 local SetCursorLocation = SetCursorLocation
 local GetGameTimer = GetGameTimer
+local GetScreenCoordFromWorldCoord = GetScreenCoordFromWorldCoord
+local DrawSprite = DrawSprite
+local RequestStreamedTextureDict = RequestStreamedTextureDict
+local HasStreamedTextureDictLoaded = HasStreamedTextureDictLoaded
 
 local StartShapeTestSweptSphere = StartShapeTestSweptSphere
 local GetShapeTestResult = GetShapeTestResult
@@ -70,8 +74,16 @@ function Target.Start(threadId)
 
     self.targets = {}
     self.zones = {}
+    self.points = {}
     self.class = {}
     self.enabledCache = {} -- Cache for isEnabled results with throttling
+    self.pointSpriteDefaults = {
+        dict = 'rpg_textures',
+        name = 'rpg_background',
+        r = 255, g = 255, b = 255, a = 200,
+        scale = 0.012
+    }
+    RequestStreamedTextureDict(self.pointSpriteDefaults.dict)
 
     setmetatable(self.targets, {
         __call = function(self, data)
@@ -253,6 +265,179 @@ function Target:Enable(state)
 
     --SendNuiMessage({show = true})
     exports['ui']:emitUI('target.state', { show = true })
+
+    -- Point target rendering and interaction runs in its own thread
+    -- so it doesn't flicker when entity/zone ray-cast inner loops block the main loop
+    Citizen.CreateThread(function()
+        while self.active do
+            local pedCoords = GetEntityCoords(self.cache.ped)
+            local bestPoint = nil
+            local bestCoord = nil
+            local bestScreenDist = 999
+            local drewAny = false
+
+            for _, point in pairs(self.points) do
+                for _, coord in ipairs(point.coords) do
+                    local dist = #(pedCoords - coord)
+
+                    -- Tier 1: renderDistance culling
+                    if dist <= point.options.renderDistance then
+                        local onScreen, sx, sy = GetScreenCoordFromWorldCoord(coord.x, coord.y, coord.z)
+
+                        if onScreen then
+                            -- LOS check
+                            local passLos = true
+                            if point.options.losCheck then
+                                passLos = Citizen.InvokeNative(0x0267D00AF114F17A, self.cache.ped, coord.x, coord.y, coord.z, 17)
+                            end
+
+                            if passLos then
+                                -- Scale: full size within interact distance, fade to 0 at renderDistance
+                                local sprite = point.options.sprite
+                                local scaleFactor = sprite.scale
+                                if dist > point.options.distance then
+                                    scaleFactor = sprite.scale * (1.0 - (dist - point.options.distance) / (point.options.renderDistance - point.options.distance))
+                                end
+
+                                if not HasStreamedTextureDictLoaded(sprite.dict) then
+                                    RequestStreamedTextureDict(sprite.dict, false)
+                                else
+                                    --DrawSprite(sprite.dict, sprite.name, sx, sy, scaleFactor, scaleFactor * self.ratio, 0.0, sprite.r, sprite.g, sprite.b, sprite.a, false)
+                                    DrawMarker(
+                                        GetHashKey('MARKERTYPE_SPHERE'),
+                                        -- Location
+                                        coord.x, coord.y, coord.z,
+                                        -- Direction
+                                        0, 0, 0,
+                                        -- Rotation
+                                        0, 0, 0,
+                                        -- Scale
+                                        scaleFactor, scaleFactor, scaleFactor,
+                                        -- Color RGBA
+                                        sprite.r, sprite.g, sprite.b, sprite.a,
+                                        false, false, 2, false, 0, 0, false
+                                    )
+                                    drewAny = true
+                                end
+
+                                -- Tier 2: interactDistance check for interaction
+                                if dist <= point.options.distance then
+                                    local screenDist = math.sqrt((sx - 0.5) ^ 2 + (sy - 0.5) ^ 2)
+
+                                    if screenDist <= point.options.screenThreshold and screenDist < bestScreenDist then
+                                        bestPoint = point
+                                        bestCoord = coord
+                                        bestScreenDist = screenDist
+                                    end
+                                end
+                            end
+                        end
+                    end
+                end
+            end
+
+            if bestPoint then
+                -- isEnabled check with throttle cache
+                local passEnabled = true
+                if bestPoint.options and bestPoint.options.isEnabled then
+                    local cacheKey = ("%s_point"):format(bestPoint.id)
+                    local cached = self.enabledCache[cacheKey]
+                    local currentTime = GetGameTimer()
+
+                    if cached and currentTime < cached.expiry then
+                        passEnabled = cached.result
+                    else
+                        local result = bestPoint.options.isEnabled({
+                            distance = #(pedCoords - bestCoord),
+                            coords = bestCoord,
+                        })
+                        local enabledTime = bestPoint.options.enabledThrottle or bestPoint.options.throttle or self.enabledThrottle
+                        local disabledTime = bestPoint.options.disabledThrottle or bestPoint.options.throttle or self.disabledThrottle
+                        self.enabledCache[cacheKey] = {
+                            result = result,
+                            expiry = currentTime + (result and enabledTime or disabledTime)
+                        }
+                        passEnabled = result
+                    end
+                end
+
+                if passEnabled then
+                    exports['ui']:emitUI('target.state', { active = true })
+
+                    self:DisablePlayerFiring()
+
+                    while self.active do
+                        Wait(0)
+
+                        -- Re-check distance and screen proximity
+                        pedCoords = GetEntityCoords(self.cache.ped)
+                        local dist = #(pedCoords - bestCoord)
+                        if dist > bestPoint.options.distance then
+                            break
+                        end
+
+                        local onScreen, sx, sy = GetScreenCoordFromWorldCoord(bestCoord.x, bestCoord.y, bestCoord.z)
+                        if not onScreen then
+                            break
+                        end
+
+                        -- Keep rendering the sprite while interacting (always full size within interact distance)
+                        local sprite = bestPoint.options.sprite
+                        local scaleFactor = sprite.scale
+                        if HasStreamedTextureDictLoaded(sprite.dict) then
+                            --DrawSprite(sprite.dict, sprite.name, sx, sy, scaleFactor, scaleFactor * self.ratio, 0.0, sprite.r, sprite.g, sprite.b, sprite.a, false)
+                            DrawMarker(
+                                GetHashKey('MARKERTYPE_SPHERE'),
+                                -- Location
+                                bestCoord.x, bestCoord.y, bestCoord.z,
+                                -- Direction
+                                0, 0, 0,
+                                -- Rotation
+                                0, 0, 0,
+                                -- Scale
+                                scaleFactor, scaleFactor, scaleFactor,
+                                -- Color RGBA
+                                sprite.r, sprite.g, sprite.b, sprite.a,
+                                -- Misc
+                                false, false, 2, false,
+                                -- texture dict / name
+                                0, 0,
+                                -- Draw On Ents
+                                false
+                            )
+                        end
+
+                        local screenDist = math.sqrt((sx - 0.5) ^ 2 + (sy - 0.5) ^ 2)
+                        if screenDist > bestPoint.options.screenThreshold then
+                            break
+                        end
+
+                        if self.click then
+                            self.click = false
+                            SetCursorLocation(0.5, 0.5)
+
+                            local allActions = {}
+                            for _, action in ipairs(bestPoint.data) do
+                                table.insert(allActions, action)
+                            end
+
+                            exports['ui']:emitUI('target.state', {
+                                show = false,
+                                context = 'point',
+                                actions = allActions
+                            })
+                            exports['ui']:focusUI(true, true)
+                        end
+                    end
+
+                    self:DisablePlayerFiring()
+                    exports['ui']:emitUI('target.state', { active = false, type = -1, flag = '' })
+                end
+            end
+
+            Wait(0)
+        end
+    end)
 
     repeat
         local hit, coords, entity = self:RayCast()
@@ -696,6 +881,61 @@ function Target.AddTarget(data)
                 return rtn
             end
         })
+    elseif data.type == "point" then
+        local newKey = data.id:lower()
+
+        -- Parse coords from group field: accept {x,y,z}, [{x,y,z}], or [{x,y,z}, {x,y,z}, ...]
+        local coords = {}
+        local group = self.targets[key].group
+
+        if type(group) == "table" then
+            -- Check if group itself is a single coord {x=, y=, z=}
+            if group.x and group.y and group.z then
+                table.insert(coords, vec3(group.x, group.y, group.z))
+            else
+                -- Array of coords
+                for _, g in ipairs(group) do
+                    if type(g) == "table" and g.x and g.y and g.z then
+                        table.insert(coords, vec3(g.x, g.y, g.z))
+                    end
+                end
+            end
+        end
+
+        if #coords == 0 then
+            print("[Target] Error: point target requires group with {x, y, z} coordinates")
+            self.targets[key] = nil
+            return nil
+        end
+
+        self.points[newKey] = table.clone(self.targets[key])
+        self.targets[key] = nil
+        key = newKey
+
+        self.points[key].coords = coords
+
+        -- Set point-specific option defaults
+        local opts = self.points[key].options
+        opts.renderDistance = tonumber(opts.renderDistance) or 15
+        opts.losCheck = opts.losCheck ~= false  -- default true
+        opts.screenThreshold = tonumber(opts.screenThreshold) or 0.05
+
+        -- Sprite options with defaults
+        local spriteOpts = opts.sprite or {}
+        opts.sprite = {
+            dict = spriteOpts.dict or self.pointSpriteDefaults.dict,
+            name = spriteOpts.name or self.pointSpriteDefaults.name,
+            r = spriteOpts.r or self.pointSpriteDefaults.r,
+            g = spriteOpts.g or self.pointSpriteDefaults.g,
+            b = spriteOpts.b or self.pointSpriteDefaults.b,
+            a = spriteOpts.a or self.pointSpriteDefaults.a,
+            scale = spriteOpts.scale or self.pointSpriteDefaults.scale,
+        }
+
+        -- Request custom texture dict if needed
+        if opts.sprite.dict ~= self.pointSpriteDefaults.dict then
+            RequestStreamedTextureDict(opts.sprite.dict)
+        end
     end
 
     return key
@@ -715,6 +955,9 @@ function Target.RemoveTarget(key)
         return true
     elseif Target.zones[key] then
         Target.zones[key] = nil
+        return true
+    elseif Target.points and Target.points[key] then
+        Target.points[key] = nil
         return true
     end
 

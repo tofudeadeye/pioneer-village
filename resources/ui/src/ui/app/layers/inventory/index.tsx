@@ -4,6 +4,7 @@ import { boolval } from '@lib/functions';
 
 import PlaceholderSvg from '@styled/components/PlaceholderSvg';
 import ProgressBar from '@styled/components/ProgressBar';
+import TimesSvg from '@styled/fa5/solid/times.svg';
 
 import { cloneElement, uiSize } from '@uiLib/helpers';
 
@@ -117,82 +118,85 @@ const Inventories: FC<UI.BaseProps> = () => {
 
   useEscapeKey(state.show, onEscape);
 
-  const onmousedown = useCallback<MouseEventHandler<HTMLElement>>((e) => {
-    setContextMenu(null);
-    setSplitPopup(null);
-    if (e.button !== 0) return;
-    const target = e.currentTarget;
-    if (!boolval(target.dataset.hasItem)) {
-      return;
-    }
+  const onmousedown = useCallback<MouseEventHandler<HTMLElement>>(
+    (e) => {
+      setContextMenu(null);
+      setSplitPopup(null);
+      if (e.button !== 0) return;
+      const target = e.currentTarget;
+      if (!boolval(target.dataset.hasItem)) {
+        return;
+      }
 
-    const slot = Number(target.dataset.slot);
-    const inventoryIdentifier = target.dataset.inventoryIdentifier;
-    if (!inventoryIdentifier) return;
+      const slot = Number(target.dataset.slot);
+      const inventoryIdentifier = target.dataset.inventoryIdentifier;
+      if (!inventoryIdentifier) return;
 
-    // Shift+click: quick transfer between inventories
-    if (e.shiftKey && state.targetInventory) {
-      const isInTarget = inventoryIdentifier === state.targetInventory;
-      const destinationIdentifier = isInTarget ? state.mainInventory : state.targetInventory;
-      const sourceInventory = state.inventories.get(inventoryIdentifier);
-      const destInventory = state.inventories.get(destinationIdentifier);
-      const sourceItem = sourceInventory?.items[slot];
+      // Shift+click: quick transfer between inventories
+      if (e.shiftKey && state.targetInventory) {
+        const isInTarget = inventoryIdentifier === state.targetInventory;
+        const destinationIdentifier = isInTarget ? state.mainInventory : state.targetInventory;
+        const sourceInventory = state.inventories.get(inventoryIdentifier);
+        const destInventory = state.inventories.get(destinationIdentifier);
+        const sourceItem = sourceInventory?.items[slot];
 
-      if (sourceItem && destInventory) {
-        const itemDef = items[sourceItem.identifier];
-        let stackSlot: number | undefined;
-        if (itemDef && itemDef.stackSize > 1) {
-          for (let s = 0; s < destInventory.slots; s++) {
-            const destItem = destInventory.items[s];
-            if (destItem && destItem.identifier === sourceItem.identifier && destItem.quantity < itemDef.stackSize) {
-              stackSlot = s;
-              break;
+        if (sourceItem && destInventory) {
+          const itemDef = items[sourceItem.identifier];
+          let stackSlot: number | undefined;
+          if (itemDef && itemDef.stackSize > 1) {
+            for (let s = 0; s < destInventory.slots; s++) {
+              const destItem = destInventory.items[s];
+              if (destItem && destItem.identifier === sourceItem.identifier && destItem.quantity < itemDef.stackSize) {
+                stackSlot = s;
+                break;
+              }
+            }
+          }
+
+          if (stackSlot !== undefined) {
+            inventoryStore.stackItem(inventoryIdentifier, slot, destinationIdentifier, stackSlot);
+          } else {
+            inventoryStore.moveItem(inventoryIdentifier, slot, destinationIdentifier);
+          }
+        }
+        return;
+      }
+
+      // Start drag
+      const dragItem = cloneElement(target, true);
+      target.classList.add(styles.draggedSource);
+      dragItem.classList.add(styles.draggedItem);
+      dragItem.id = 'drag-item';
+      dragItem.style.position = 'fixed';
+      dragItem.style.zIndex = '1000';
+      dragItem.style.pointerEvents = 'none';
+      const rect = target.getBoundingClientRect();
+      dragItem.style.width = `${rect.width}px`;
+      dragItem.style.height = `${rect.height}px`;
+      dragItem.style.left = `${e.clientX}px`;
+      dragItem.style.top = `${e.clientY}px`;
+      dragItem.style.transform = 'translate(-50%, -50%)';
+
+      // Ctrl+drag: split in half
+      if (e.ctrlKey) {
+        const inventory = state.inventories.get(inventoryIdentifier);
+        if (inventory) {
+          const itemData = inventory.items[slot];
+          if (itemData && itemData.quantity > 1) {
+            const splitQuantity = Math.ceil(itemData.quantity / 2);
+            dragItem.dataset.splitQuantity = String(splitQuantity);
+            const quantitySpan = dragItem.querySelector(`.${styles.quantity}`);
+            if (quantitySpan) {
+              quantitySpan.textContent = `x${splitQuantity}`;
             }
           }
         }
-
-        if (stackSlot !== undefined) {
-          inventoryStore.stackItem(inventoryIdentifier, slot, destinationIdentifier, stackSlot);
-        } else {
-          inventoryStore.moveItem(inventoryIdentifier, slot, destinationIdentifier);
-        }
       }
-      return;
-    }
 
-    // Start drag
-    const dragItem = cloneElement(target, true);
-    target.classList.add(styles.draggedSource);
-    dragItem.classList.add(styles.draggedItem);
-    dragItem.id = 'drag-item';
-    dragItem.style.position = 'fixed';
-    dragItem.style.zIndex = '1000';
-    dragItem.style.pointerEvents = 'none';
-    const rect = target.getBoundingClientRect();
-    dragItem.style.width = `${rect.width}px`;
-    dragItem.style.height = `${rect.height}px`;
-    dragItem.style.left = `${e.clientX}px`;
-    dragItem.style.top = `${e.clientY}px`;
-    dragItem.style.transform = 'translate(-50%, -50%)';
-
-    // Ctrl+drag: split in half
-    if (e.ctrlKey) {
-      const inventory = state.inventories.get(inventoryIdentifier);
-      if (inventory) {
-        const itemData = inventory.items[slot];
-        if (itemData && itemData.quantity > 1) {
-          const splitQuantity = Math.ceil(itemData.quantity / 2);
-          dragItem.dataset.splitQuantity = String(splitQuantity);
-          const quantitySpan = dragItem.querySelector(`.${styles.quantity}`);
-          if (quantitySpan) {
-            quantitySpan.textContent = `x${splitQuantity}`;
-          }
-        }
-      }
-    }
-
-    document.body.appendChild(dragItem);
-  }, [state.targetInventory, state.mainInventory, state.inventories]);
+      document.body.appendChild(dragItem);
+    },
+    [state.targetInventory, state.mainInventory, state.inventories],
+  );
 
   const onmousemove = useCallback<(e: MouseEvent) => void>((e) => {
     const dragItem = document.getElementById('drag-item');
@@ -251,7 +255,8 @@ const Inventories: FC<UI.BaseProps> = () => {
               sourceItemDef?.containerType !== targetItemDef.containerType &&
               sourceItemDef?.restriction !== undefined &&
               targetItemDef.containerRestrictions !== undefined &&
-              (targetItemDef.containerRestrictions === 0 || (targetItemDef.containerRestrictions & sourceItemDef.restriction))
+              (targetItemDef.containerRestrictions === 0 ||
+                targetItemDef.containerRestrictions & sourceItemDef.restriction)
             ) {
               const containerIdentifier = `${targetItemDef.containerType}:${targetSlotItem.ids[0]}`;
               inventoryStore.moveItem(
@@ -543,7 +548,9 @@ const Inventories: FC<UI.BaseProps> = () => {
     [renderTint, items],
   );
 
-  const renderSlot = useCallback<(i: number, identifier: string, inventory: UI.Inventory.LoadData, disabled?: boolean) => React.ReactNode>(
+  const renderSlot = useCallback<
+    (i: number, identifier: string, inventory: UI.Inventory.LoadData, disabled?: boolean) => React.ReactNode
+  >(
     (i, identifier, inventory, disabled = false) => {
       let isBroken = false;
       if (i in inventory.items) {
@@ -635,29 +642,28 @@ const Inventories: FC<UI.BaseProps> = () => {
         <div className={styles.birdStatus}>
           {new Array(inventory.slots).fill(0).map((_, i) => (
             <div className={styles.birdStatusRow} key={i}>
-              {inventory.items[i] && (() => {
-                const birdId = inventory.items[i].ids[0];
-                const bird = birdStore.getBirdState(birdId);
-                const statusLabel = bird.status === 'delivering'
-                  ? 'Delivering'
-                  : bird.status === 'returning'
-                    ? 'Returning'
-                    : 'Available';
-                const isDisabled = bird.sendLocked || bird.status !== 'available' || !hasLetter(`bird:${birdId}`);
-                return (
-                  <>
-                    <p>{statusLabel}</p>
-                    <p>
-                      <button
-                        onClick={() => handleBirdSend(birdId)}
-                        disabled={isDisabled}
-                      >
-                        Send
-                      </button>
-                    </p>
-                  </>
-                );
-              })()}
+              {inventory.items[i] &&
+                (() => {
+                  const birdId = inventory.items[i].ids[0];
+                  const bird = birdStore.getBirdState(birdId);
+                  const statusLabel =
+                    bird.status === 'delivering'
+                      ? 'Delivering'
+                      : bird.status === 'returning'
+                        ? 'Returning'
+                        : 'Available';
+                  const isDisabled = bird.sendLocked || bird.status !== 'available' || !hasLetter(`bird:${birdId}`);
+                  return (
+                    <>
+                      <p>{statusLabel}</p>
+                      <p>
+                        <button onClick={() => handleBirdSend(birdId)} disabled={isDisabled}>
+                          Send
+                        </button>
+                      </p>
+                    </>
+                  );
+                })()}
             </div>
           ))}
         </div>
@@ -795,7 +801,9 @@ const Inventories: FC<UI.BaseProps> = () => {
           value={splitValue}
           onChange={(e) => setSplitValue(Number(e.target.value))}
         />
-        <span className={styles.splitPopupValue}>{splitValue} / {splitPopup.maxQuantity}</span>
+        <span className={styles.splitPopupValue}>
+          {splitValue} / {splitPopup.maxQuantity}
+        </span>
         <button className={styles.splitPopupConfirm} onClick={handleSplitConfirm}>
           Confirm
         </button>
@@ -808,12 +816,14 @@ const Inventories: FC<UI.BaseProps> = () => {
     if (GRID_LAYOUTS[inventory.slots]) return styles[GRID_LAYOUTS[inventory.slots]];
 
     const cols = Math.min(inventory.slots, 8);
-    const adjustedCols = inventory.slots > 8 ? Math.min(Math.ceil(inventory.slots / Math.ceil(inventory.slots / 8)), 8) : cols;
+    const adjustedCols =
+      inventory.slots > 8 ? Math.min(Math.ceil(inventory.slots / Math.ceil(inventory.slots / 8)), 8) : cols;
     const _rows = Math.min(Math.ceil(inventory.slots / adjustedCols), 4);
-    const closestSlots = Object.keys(GRID_LAYOUTS)
-      .map(Number)
-      .sort((a, b) => a - b)
-      .find(s => s >= inventory.slots) || 32;
+    const closestSlots =
+      Object.keys(GRID_LAYOUTS)
+        .map(Number)
+        .sort((a, b) => a - b)
+        .find((s) => s >= inventory.slots) || 32;
     return styles[GRID_LAYOUTS[closestSlots]];
   }, []);
 
@@ -831,7 +841,7 @@ const Inventories: FC<UI.BaseProps> = () => {
           <div className={`${styles.targetInventoryContainer} ${getGridClass(inventories[targetInventory])}`}>
             {state.targetContainerItemId > 0 && (
               <button className={styles.closeTargetButton} onClick={() => inventoryStore.closeTargetInventory()}>
-                X
+                <TimesSvg width={14} height={14} />
               </button>
             )}
             {inventories[targetInventory] && renderInventory(targetInventory, inventories[targetInventory])}

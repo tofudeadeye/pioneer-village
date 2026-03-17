@@ -95,6 +95,9 @@ const SwatchNames = [
   'uisw_leather_pt000',
   'uisw_leather_pt001',
   'uisw_leather_pt002',
+  'uisw_eyes_000',
+  'uisw_hair_000',
+  'uisw_skin_000',
 ];
 
 const SwatchData = {};
@@ -104,7 +107,7 @@ for (const swatchName of SwatchNames) {
   SwatchData[hash] = swatchName;
 }
 
-console.log(SwatchData);
+// console.log(SwatchData);
 
 const XMLdata = fs.readFileSync('./temp/shop_items.ymt.pso.xml', 'utf-8');
 

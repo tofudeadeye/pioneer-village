@@ -16,6 +16,8 @@
     "tint2": 255,
     "drawable": 3483291380,
     "albedo": 3852016129,
-    "normal": 2506190042
+    "normal": 2506190042,
+    "swatchTextureHex": "B3902E46",
+    "swatchTexture": "uisw_leather_pt001"
   }
 ]

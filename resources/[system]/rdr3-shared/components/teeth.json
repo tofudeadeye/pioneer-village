@@ -16,7 +16,9 @@
     "tint2": 255,
     "drawable": 1199085977,
     "albedo": 1954605989,
-    "normal": "teeth_story_0000_c0_000_nm"
+    "normal": "teeth_story_0000_c0_000_nm",
+    "swatchTextureHex": "7A23FEFC",
+    "swatchTexture": "uisw_cotton_000"
   },
   {
     "componentHex": "16C30C8A",
@@ -35,7 +37,9 @@
     "tint2": 255,
     "drawable": 2219844575,
     "albedo": 2352671683,
-    "normal": 4152192038
+    "normal": 4152192038,
+    "swatchTextureHex": "7A23FEFC",
+    "swatchTexture": "uisw_cotton_000"
   },
   {
     "componentHex": "2A7712A2",
@@ -54,7 +58,9 @@
     "tint2": 255,
     "drawable": "teeth_mr1_0000",
     "albedo": "teeth_gen_0000_c0_000_ab",
-    "normal": "teeth_gen_0000_c0_000_nm"
+    "normal": "teeth_gen_0000_c0_000_nm",
+    "swatchTextureHex": "7A23FEFC",
+    "swatchTexture": "uisw_cotton_000"
   },
   {
     "componentHex": "61227FF8",
@@ -73,7 +79,9 @@
     "tint2": 255,
     "drawable": "teeth_mr1_0001",
     "albedo": 860485841,
-    "normal": 3174600764
+    "normal": 3174600764,
+    "swatchTextureHex": "7A23FEFC",
+    "swatchTexture": "uisw_cotton_000"
   },
   {
     "componentHex": "060949C7",
@@ -92,7 +100,9 @@
     "tint2": 255,
     "drawable": "teeth_mr1_0002",
     "albedo": 302991810,
-    "normal": 2353746100
+    "normal": 2353746100,
+    "swatchTextureHex": "7A23FEFC",
+    "swatchTexture": "uisw_cotton_000"
   },
   {
     "componentHex": "3C87B6C3",
@@ -111,7 +121,9 @@
     "tint2": 255,
     "drawable": "teeth_mr1_0003",
     "albedo": 2206348329,
-    "normal": 1051858322
+    "normal": 1051858322,
+    "swatchTextureHex": "7A23FEFC",
+    "swatchTexture": "uisw_cotton_000"
   },
   {
     "componentHex": "E1A380FC",
@@ -130,7 +142,9 @@
     "tint2": 255,
     "drawable": "teeth_mr1_0004",
     "albedo": 384223714,
-    "normal": 457070985
+    "normal": 457070985,
+    "swatchTextureHex": "7A23FEFC",
+    "swatchTexture": "uisw_cotton_000"
   },
   {
     "componentHex": "17FCEDAE",
@@ -149,7 +163,9 @@
     "tint2": 255,
     "drawable": "teeth_mr1_0005",
     "albedo": "teeth_gen_0005_c0_000_ab",
-    "normal": "teeth_gen_0005_c0_000_nm"
+    "normal": "teeth_gen_0005_c0_000_nm",
+    "swatchTextureHex": "7A23FEFC",
+    "swatchTexture": "uisw_cotton_000"
   },
   {
     "componentHex": "E11FFFF5",
@@ -168,7 +184,9 @@
     "tint2": 255,
     "drawable": "teeth_mr1_0006",
     "albedo": "teeth_gen_0006_c0_000_ab",
-    "normal": 4218063447
+    "normal": 4218063447,
+    "swatchTextureHex": "7A23FEFC",
+    "swatchTexture": "uisw_cotton_000"
   },
   {
     "componentHex": "39340BFF",
@@ -187,7 +205,9 @@
     "tint2": 255,
     "drawable": "teeth_fr1_0000",
     "albedo": "teeth_gen_0000_c0_000_ab",
-    "normal": "teeth_gen_0000_c0_000_nm"
+    "normal": "teeth_gen_0000_c0_000_nm",
+    "swatchTextureHex": "7A23FEFC",
+    "swatchTexture": "uisw_cotton_000"
   },
   {
     "componentHex": "4AD5AF42",
@@ -206,7 +226,9 @@
     "tint2": 255,
     "drawable": "teeth_fr1_0001",
     "albedo": 860485841,
-    "normal": 3174600764
+    "normal": 3174600764,
+    "swatchTextureHex": "7A23FEFC",
+    "swatchTexture": "uisw_cotton_000"
   },
   {
     "componentHex": "54A6C2E4",
@@ -225,7 +247,9 @@
     "tint2": 255,
     "drawable": "teeth_fr1_0002",
     "albedo": 302991810,
-    "normal": 2353746100
+    "normal": 2353746100,
+    "swatchTextureHex": "7A23FEFC",
+    "swatchTexture": "uisw_cotton_000"
   },
   {
     "componentHex": "66716679",
@@ -244,7 +268,9 @@
     "tint2": 255,
     "drawable": "teeth_fr1_0003",
     "albedo": 2206348329,
-    "normal": 1051858322
+    "normal": 1051858322,
+    "swatchTextureHex": "7A23FEFC",
+    "swatchTexture": "uisw_cotton_000"
   },
   {
     "componentHex": "F57D0492",
@@ -263,7 +289,9 @@
     "tint2": 255,
     "drawable": "teeth_fr1_0004",
     "albedo": 384223714,
-    "normal": 457070985
+    "normal": 457070985,
+    "swatchTextureHex": "7A23FEFC",
+    "swatchTexture": "uisw_cotton_000"
   },
   {
     "componentHex": "20CC5B30",
@@ -282,7 +310,9 @@
     "tint2": 255,
     "drawable": "teeth_fr1_0005",
     "albedo": "teeth_gen_0005_c0_000_ab",
-    "normal": "teeth_gen_0005_c0_000_nm"
+    "normal": "teeth_gen_0005_c0_000_nm",
+    "swatchTextureHex": "7A23FEFC",
+    "swatchTexture": "uisw_cotton_000"
   },
   {
     "componentHex": "322BFDEF",
@@ -301,6 +331,8 @@
     "tint2": 255,
     "drawable": "teeth_fr1_0006",
     "albedo": "teeth_gen_0006_c0_000_ab",
-    "normal": 4218063447
+    "normal": 4218063447,
+    "swatchTextureHex": "7A23FEFC",
+    "swatchTexture": "uisw_cotton_000"
   }
 ]

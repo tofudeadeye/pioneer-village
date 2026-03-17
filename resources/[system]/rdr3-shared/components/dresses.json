@@ -16,7 +16,9 @@
     "tint2": 90,
     "drawable": "mp_season_nightgown_mr1_001",
     "albedo": "mp_season_nightgown_mr1_001_c1_999_ab",
-    "normal": "mp_season_nightgown_mr1_001_c1_999_nm"
+    "normal": "mp_season_nightgown_mr1_001_c1_999_nm",
+    "swatchTextureHex": "4EDC4A28",
+    "swatchTexture": "uisw_cotton_pt001"
   },
   {
     "componentHex": "c1b7d659",
@@ -37,6 +39,7 @@
     "tint2": 153,
     "drawable": "mp_season_nightgown_mr1_001",
     "albedo": "mp_season_nightgown_mr1_001_c1_999_ab",
-    "normal": "mp_season_nightgown_mr1_001_c1_999_nm"
+    "normal": "mp_season_nightgown_mr1_001_c1_999_nm",
+    "swatchTextureHex": "B3902E46"
   }
 ]

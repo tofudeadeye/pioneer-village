@@ -16,7 +16,9 @@
     "tint2": 80,
     "drawable": "mp_buckle_mr1_001",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_001_c1_000_nm"
+    "normal": "mp_buckle_mr1_001_c1_000_nm",
+    "swatchTextureHex": "E4B32A84",
+    "swatchTexture": "uisw_denim_ck000"
   },
   {
     "componentHex": "B816CE15",
@@ -35,7 +37,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_017",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_017_c1_000_nm"
+    "normal": "mp_buckle_mr1_017_c1_000_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "A9C17D84",
@@ -54,7 +58,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_017",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_017_c1_001_nm"
+    "normal": "mp_buckle_mr1_017_c1_001_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "5E4D9CBB",
@@ -73,7 +79,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_017",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_017_c1_002_nm"
+    "normal": "mp_buckle_mr1_017_c1_002_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "F1FF1CFE",
@@ -92,7 +100,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_017",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_017_c1_003_nm"
+    "normal": "mp_buckle_mr1_017_c1_003_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "A5483707",
@@ -111,7 +121,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_017",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_017_c1_004_nm"
+    "normal": "mp_buckle_mr1_017_c1_004_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "E9745E17",
@@ -130,7 +142,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_017",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_017_c1_005_nm"
+    "normal": "mp_buckle_mr1_017_c1_005_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "A7F31A2D",
@@ -149,7 +163,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_017",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_017_c1_007_nm"
+    "normal": "mp_buckle_mr1_017_c1_007_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "1D958866",
@@ -168,7 +184,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_017",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_017_c1_006_nm"
+    "normal": "mp_buckle_mr1_017_c1_006_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "330B9DD3",
@@ -187,7 +205,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_018",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_018_c1_000_nm"
+    "normal": "mp_buckle_mr1_018_c1_000_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "97B40D6B",
@@ -206,7 +226,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_018",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_018_c1_001_nm"
+    "normal": "mp_buckle_mr1_018_c1_001_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "9845E1F6",
@@ -225,7 +247,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_018",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_018_c1_002_nm"
+    "normal": "mp_buckle_mr1_018_c1_002_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "24936C3E",
@@ -244,7 +268,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_018",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_018_c1_003_nm"
+    "normal": "mp_buckle_mr1_018_c1_003_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "6CBFD272",
@@ -263,7 +289,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_018",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_018_c1_004_nm"
+    "normal": "mp_buckle_mr1_018_c1_004_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "FA0C22EC",
@@ -282,7 +310,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_018",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_018_c1_005_nm"
+    "normal": "mp_buckle_mr1_018_c1_005_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "A1EAC228",
@@ -301,7 +331,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_018",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_018_c1_006_nm"
+    "normal": "mp_buckle_mr1_018_c1_006_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "2087F4FB",
@@ -320,7 +352,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_018",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_018_c1_007_nm"
+    "normal": "mp_buckle_mr1_018_c1_007_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "5894AC28",
@@ -339,7 +373,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_018",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_018_c1_008_nm"
+    "normal": "mp_buckle_mr1_018_c1_008_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "3FB1B271",
@@ -358,7 +394,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_018",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_018_c1_009_nm"
+    "normal": "mp_buckle_mr1_018_c1_009_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "432B0BE0",
@@ -377,7 +415,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_018",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_018_c1_010_nm"
+    "normal": "mp_buckle_mr1_018_c1_010_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "9F82DE89",
@@ -396,7 +436,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_018",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_018_c1_012_nm"
+    "normal": "mp_buckle_mr1_018_c1_012_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "099AEAFF",
@@ -417,7 +459,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_001",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_001_c1_000_nm"
+    "normal": "mp_buckle_mr1_001_c1_000_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "18F5C8D7",
@@ -438,7 +482,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_001",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_001_c1_001_nm"
+    "normal": "mp_buckle_mr1_001_c1_001_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "4363853F",
@@ -459,7 +505,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_001",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_001_c1_004_nm"
+    "normal": "mp_buckle_mr1_001_c1_004_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "9558EBEB",
@@ -480,7 +528,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_001",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_001_c1_005_nm"
+    "normal": "mp_buckle_mr1_001_c1_005_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "3957C220",
@@ -501,7 +551,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_001",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_001_c1_006_nm"
+    "normal": "mp_buckle_mr1_001_c1_006_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "326F7BD5",
@@ -522,7 +574,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_001",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_001_c1_008_nm"
+    "normal": "mp_buckle_mr1_001_c1_008_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "DBE67772",
@@ -543,7 +597,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_001",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_001_c1_009_nm"
+    "normal": "mp_buckle_mr1_001_c1_009_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "9ECC5DFD",
@@ -564,7 +620,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_001",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_001_c1_010_nm"
+    "normal": "mp_buckle_mr1_001_c1_010_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "EF00E29A",
@@ -585,7 +643,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_001",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_001_c1_011_nm"
+    "normal": "mp_buckle_mr1_001_c1_011_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "AD4EF0F7",
@@ -606,7 +666,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_001",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_001_c1_012_nm"
+    "normal": "mp_buckle_mr1_001_c1_012_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "BC8B43F9",
@@ -627,7 +689,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_001",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_001_c1_015_nm"
+    "normal": "mp_buckle_mr1_001_c1_015_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "C9FD59CC",
@@ -648,7 +712,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_012",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_012_c1_000_nm"
+    "normal": "mp_buckle_mr1_012_c1_000_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "10443A0F",
@@ -669,7 +735,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_012",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_012_c1_002_nm"
+    "normal": "mp_buckle_mr1_012_c1_002_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "DF2C68CB",
@@ -690,7 +758,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_012",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_012_c1_003_nm"
+    "normal": "mp_buckle_mr1_012_c1_003_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "5027DE3A",
@@ -711,7 +781,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_012",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_012_c1_004_nm"
+    "normal": "mp_buckle_mr1_012_c1_004_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "A5783AB1",
@@ -732,7 +804,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_012",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_012_c1_005_nm"
+    "normal": "mp_buckle_mr1_012_c1_005_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "F5111039",
@@ -753,7 +827,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_012",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_012_c1_006_nm"
+    "normal": "mp_buckle_mr1_012_c1_006_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "461EEE19",
@@ -774,7 +850,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_012",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_012_c1_007_nm"
+    "normal": "mp_buckle_mr1_012_c1_007_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "E598ABB0",
@@ -795,7 +873,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_012",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_012_c1_008_nm"
+    "normal": "mp_buckle_mr1_012_c1_008_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "BB7F9FF1",
@@ -816,7 +896,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_012",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_012_c1_009_nm"
+    "normal": "mp_buckle_mr1_012_c1_009_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "1B301155",
@@ -837,7 +919,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_012",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_012_c1_010_nm"
+    "normal": "mp_buckle_mr1_012_c1_010_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "C9F8E43D",
@@ -858,7 +942,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_012",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_012_c1_011_nm"
+    "normal": "mp_buckle_mr1_012_c1_011_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "9711F75C",
@@ -879,7 +965,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_012",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_012_c1_012_nm"
+    "normal": "mp_buckle_mr1_012_c1_012_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "B852563F",
@@ -900,7 +988,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_012",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_012_c1_013_nm"
+    "normal": "mp_buckle_mr1_012_c1_013_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "C1C449CC",
@@ -921,7 +1011,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_004",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_004_c1_000_nm"
+    "normal": "mp_buckle_mr1_004_c1_000_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "0E1596BF",
@@ -942,7 +1034,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_004",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_004_c1_001_nm"
+    "normal": "mp_buckle_mr1_004_c1_001_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "A596F36E",
@@ -963,7 +1057,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_004",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_004_c1_002_nm"
+    "normal": "mp_buckle_mr1_004_c1_002_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "28C906B9",
@@ -984,7 +1080,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_004",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_004_c1_003_nm"
+    "normal": "mp_buckle_mr1_004_c1_003_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "463678FA",
@@ -1005,7 +1103,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_004",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_004_c1_004_nm"
+    "normal": "mp_buckle_mr1_004_c1_004_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "53E370A0",
@@ -1026,7 +1126,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_004",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_004_c1_005_nm"
+    "normal": "mp_buckle_mr1_004_c1_005_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "7265FD93",
@@ -1047,7 +1149,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_004",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_004_c1_006_nm"
+    "normal": "mp_buckle_mr1_004_c1_006_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "C9B1BB9F",
@@ -1068,7 +1172,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_011",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_011_c1_000_nm"
+    "normal": "mp_buckle_mr1_011_c1_000_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "580AB728",
@@ -1089,7 +1195,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_011",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_011_c1_001_nm"
+    "normal": "mp_buckle_mr1_011_c1_001_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "E780E835",
@@ -1110,7 +1218,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_011",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_011_c1_002_nm"
+    "normal": "mp_buckle_mr1_011_c1_002_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "C4269D77",
@@ -1131,7 +1241,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_011",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_011_c1_003_nm"
+    "normal": "mp_buckle_mr1_011_c1_003_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "F1DF3F9C",
@@ -1152,7 +1264,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_011",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_011_c1_004_nm"
+    "normal": "mp_buckle_mr1_011_c1_004_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "A80CCD06",
@@ -1173,7 +1287,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_011",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_011_c1_006_nm"
+    "normal": "mp_buckle_mr1_011_c1_006_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "41AD6860",
@@ -1194,7 +1310,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_011",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_011_c1_007_nm"
+    "normal": "mp_buckle_mr1_011_c1_007_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "A59AFA8D",
@@ -1215,7 +1333,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_011",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_011_c1_008_nm"
+    "normal": "mp_buckle_mr1_011_c1_008_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "C0EE069D",
@@ -1236,7 +1356,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_007",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_007_c1_002_nm"
+    "normal": "mp_buckle_mr1_007_c1_002_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "E82BEAF8",
@@ -1257,7 +1379,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_007",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_007_c1_003_nm"
+    "normal": "mp_buckle_mr1_007_c1_003_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "C355C4E7",
@@ -1278,7 +1402,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_007",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_007_c1_004_nm"
+    "normal": "mp_buckle_mr1_007_c1_004_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "3B9A6C0E",
@@ -1299,7 +1425,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_007",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_007_c1_005_nm"
+    "normal": "mp_buckle_mr1_007_c1_005_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "16E62CC9",
@@ -1320,7 +1448,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_007",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_007_c1_006_nm"
+    "normal": "mp_buckle_mr1_007_c1_006_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "C599CF08",
@@ -1341,7 +1471,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_007",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_007_c1_010_nm"
+    "normal": "mp_buckle_mr1_007_c1_010_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "AB518817",
@@ -1362,7 +1494,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_007",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_007_c1_009_nm"
+    "normal": "mp_buckle_mr1_007_c1_009_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "D41ECCC6",
@@ -1383,7 +1517,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_007",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_007_c1_008_nm"
+    "normal": "mp_buckle_mr1_007_c1_008_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "0BBCBFE8",
@@ -1404,7 +1540,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_007",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_007_c1_007_nm"
+    "normal": "mp_buckle_mr1_007_c1_007_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "08CF7DA2",
@@ -1425,7 +1563,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_008",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_008_c1_000_nm"
+    "normal": "mp_buckle_mr1_008_c1_000_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "49031222",
@@ -1446,7 +1586,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_008",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_008_c1_001_nm"
+    "normal": "mp_buckle_mr1_008_c1_001_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "CA269B17",
@@ -1467,7 +1609,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_008",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_008_c1_002_nm"
+    "normal": "mp_buckle_mr1_008_c1_002_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "BBAFC746",
@@ -1488,7 +1632,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_002",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_002_c1_000_nm"
+    "normal": "mp_buckle_mr1_002_c1_000_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "41C852FF",
@@ -1509,7 +1655,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_002",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_002_c1_001_nm"
+    "normal": "mp_buckle_mr1_002_c1_001_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "0AFBA657",
@@ -1530,7 +1678,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_002",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_002_c1_002_nm"
+    "normal": "mp_buckle_mr1_002_c1_002_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "9EE0C177",
@@ -1551,7 +1701,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_002",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_002_c1_003_nm"
+    "normal": "mp_buckle_mr1_002_c1_003_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "9F724211",
@@ -1572,7 +1724,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_002",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_002_c1_004_nm"
+    "normal": "mp_buckle_mr1_002_c1_004_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "A4369567",
@@ -1593,7 +1747,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_002",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_002_c1_005_nm"
+    "normal": "mp_buckle_mr1_002_c1_005_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "9DB72A0F",
@@ -1614,7 +1770,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_002",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_002_c1_007_nm"
+    "normal": "mp_buckle_mr1_002_c1_007_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "DAB72450",
@@ -1635,7 +1793,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_002",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_002_c1_008_nm"
+    "normal": "mp_buckle_mr1_002_c1_008_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "89871849",
@@ -1656,7 +1816,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_002",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_002_c1_009_nm"
+    "normal": "mp_buckle_mr1_002_c1_009_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "360E88AC",
@@ -1677,7 +1839,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_002",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_002_c1_010_nm"
+    "normal": "mp_buckle_mr1_002_c1_010_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "7367537E",
@@ -1698,7 +1862,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_002",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_002_c1_011_nm"
+    "normal": "mp_buckle_mr1_002_c1_011_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "649B05C3",
@@ -1719,7 +1885,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_002",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_002_c1_014_nm"
+    "normal": "mp_buckle_mr1_002_c1_014_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "EC089114",
@@ -1738,7 +1906,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_020",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_020_c1_001_nm"
+    "normal": "mp_buckle_mr1_020_c1_001_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "64FE6E07",
@@ -1757,7 +1927,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_020",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_020_c1_002_nm"
+    "normal": "mp_buckle_mr1_020_c1_002_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "8CA2B6B3",
@@ -1776,7 +1948,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_020",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_020_c1_003_nm"
+    "normal": "mp_buckle_mr1_020_c1_003_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "70F8171E",
@@ -1795,7 +1969,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_020",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_020_c1_004_nm"
+    "normal": "mp_buckle_mr1_020_c1_004_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "56851DFF",
@@ -1814,7 +1990,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_020",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_020_c1_005_nm"
+    "normal": "mp_buckle_mr1_020_c1_005_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "E10B1C3F",
@@ -1833,7 +2011,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_020",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_020_c1_006_nm"
+    "normal": "mp_buckle_mr1_020_c1_006_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "2BCCD154",
@@ -1852,7 +2032,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_020",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_020_c1_007_nm"
+    "normal": "mp_buckle_mr1_020_c1_007_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "CF075631",
@@ -1871,7 +2053,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_020",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_020_c1_008_nm"
+    "normal": "mp_buckle_mr1_020_c1_008_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "0678DE0C",
@@ -1890,7 +2074,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_021",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_021_c1_001_nm"
+    "normal": "mp_buckle_mr1_021_c1_001_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "DF4CB95A",
@@ -1909,7 +2095,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_021",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_021_c1_002_nm"
+    "normal": "mp_buckle_mr1_021_c1_002_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "D009136F",
@@ -1928,7 +2116,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_021",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_021_c1_003_nm"
+    "normal": "mp_buckle_mr1_021_c1_003_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "D5D3C5CB",
@@ -1947,7 +2137,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_021",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_021_c1_004_nm"
+    "normal": "mp_buckle_mr1_021_c1_004_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "2DB2CF64",
@@ -1966,7 +2158,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_021",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_021_c1_005_nm"
+    "normal": "mp_buckle_mr1_021_c1_005_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "2ABC6D2B",
@@ -1985,7 +2179,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_021",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_021_c1_006_nm"
+    "normal": "mp_buckle_mr1_021_c1_006_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "758445DC",
@@ -2004,7 +2200,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_021",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_021_c1_007_nm"
+    "normal": "mp_buckle_mr1_021_c1_007_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "4D73A800",
@@ -2023,7 +2221,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_021",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_021_c1_008_nm"
+    "normal": "mp_buckle_mr1_021_c1_008_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "4353332B",
@@ -2042,7 +2242,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_021",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_021_c1_009_nm"
+    "normal": "mp_buckle_mr1_021_c1_009_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "718D1330",
@@ -2061,7 +2263,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_021",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_021_c1_010_nm"
+    "normal": "mp_buckle_mr1_021_c1_010_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "A9E228BA",
@@ -2082,7 +2286,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_010",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_010_c1_000_nm"
+    "normal": "mp_buckle_mr1_010_c1_000_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "5FE96AD9",
@@ -2103,7 +2309,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_010",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_010_c1_001_nm"
+    "normal": "mp_buckle_mr1_010_c1_001_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "5453DA31",
@@ -2124,7 +2332,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_010",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_010_c1_002_nm"
+    "normal": "mp_buckle_mr1_010_c1_002_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "24914BD1",
@@ -2145,7 +2355,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_010",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_010_c1_003_nm"
+    "normal": "mp_buckle_mr1_010_c1_003_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "4DE76965",
@@ -2166,7 +2378,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_010",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_010_c1_004_nm"
+    "normal": "mp_buckle_mr1_010_c1_004_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "B28BD40A",
@@ -2187,7 +2401,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_000",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_000_c1_000_nm"
+    "normal": "mp_buckle_mr1_000_c1_000_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "9DE3B111",
@@ -2208,7 +2424,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_000",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_000_c1_001_nm"
+    "normal": "mp_buckle_mr1_000_c1_001_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "AA678E23",
@@ -2229,7 +2447,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_000",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_000_c1_002_nm"
+    "normal": "mp_buckle_mr1_000_c1_002_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "3D2CD88E",
@@ -2250,7 +2470,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_000",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_000_c1_003_nm"
+    "normal": "mp_buckle_mr1_000_c1_003_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "DD0F00F4",
@@ -2271,7 +2493,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_000",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_000_c1_004_nm"
+    "normal": "mp_buckle_mr1_000_c1_004_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "FF4F42F5",
@@ -2292,7 +2516,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_000",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_000_c1_005_nm"
+    "normal": "mp_buckle_mr1_000_c1_005_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "BFAFCF08",
@@ -2313,7 +2539,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_000",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_000_c1_006_nm"
+    "normal": "mp_buckle_mr1_000_c1_006_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "BAD5E8E5",
@@ -2334,7 +2562,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_000",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_000_c1_007_nm"
+    "normal": "mp_buckle_mr1_000_c1_007_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "4D765D54",
@@ -2355,7 +2585,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_000",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_000_c1_008_nm"
+    "normal": "mp_buckle_mr1_000_c1_008_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "5BA4FBBB",
@@ -2376,7 +2608,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_000",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_000_c1_009_nm"
+    "normal": "mp_buckle_mr1_000_c1_009_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "64A19AAC",
@@ -2397,7 +2631,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_000",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_000_c1_010_nm"
+    "normal": "mp_buckle_mr1_000_c1_010_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "6CFAC5AB",
@@ -2418,7 +2654,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_000",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_000_c1_011_nm"
+    "normal": "mp_buckle_mr1_000_c1_011_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "506570F0",
@@ -2439,7 +2677,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_000",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_000_c1_012_nm"
+    "normal": "mp_buckle_mr1_000_c1_012_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "E37CA384",
@@ -2460,7 +2700,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_000",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_000_c1_013_nm"
+    "normal": "mp_buckle_mr1_000_c1_013_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "4EB4E9AF",
@@ -2481,7 +2723,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_000",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_000_c1_014_nm"
+    "normal": "mp_buckle_mr1_000_c1_014_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "5E094D54",
@@ -2502,7 +2746,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_000",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_000_c1_015_nm"
+    "normal": "mp_buckle_mr1_000_c1_015_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "8074B0D2",
@@ -2523,7 +2769,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_000",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_000_c1_016_nm"
+    "normal": "mp_buckle_mr1_000_c1_016_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "BC52E7D8",
@@ -2544,7 +2792,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_000",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_000_c1_017_nm"
+    "normal": "mp_buckle_mr1_000_c1_017_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "06287CF9",
@@ -2565,7 +2815,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_000",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_000_c1_018_nm"
+    "normal": "mp_buckle_mr1_000_c1_018_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "3AC6C223",
@@ -2586,7 +2838,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_000",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_000_c1_019_nm"
+    "normal": "mp_buckle_mr1_000_c1_019_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "A9786A88",
@@ -2607,7 +2861,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_000",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_000_c1_020_nm"
+    "normal": "mp_buckle_mr1_000_c1_020_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "3358AD46",
@@ -2628,7 +2884,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_000",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_000_c1_021_nm"
+    "normal": "mp_buckle_mr1_000_c1_021_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "B7948388",
@@ -2649,7 +2907,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_000",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_000_c1_022_nm"
+    "normal": "mp_buckle_mr1_000_c1_022_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "16BBC668",
@@ -2670,7 +2930,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_000",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_000_c1_023_nm"
+    "normal": "mp_buckle_mr1_000_c1_023_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "FBD93004",
@@ -2691,7 +2953,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_000",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_000_c1_024_nm"
+    "normal": "mp_buckle_mr1_000_c1_024_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "A47988D8",
@@ -2712,7 +2976,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_000",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_000_c1_025_nm"
+    "normal": "mp_buckle_mr1_000_c1_025_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "09212A72",
@@ -2733,7 +2999,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_000",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_000_c1_026_nm"
+    "normal": "mp_buckle_mr1_000_c1_026_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "0650A86E",
@@ -2754,7 +3022,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_000",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_000_c1_027_nm"
+    "normal": "mp_buckle_mr1_000_c1_027_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "E1EFB76B",
@@ -2775,7 +3045,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_000",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_000_c1_028_nm"
+    "normal": "mp_buckle_mr1_000_c1_028_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "51B05675",
@@ -2796,7 +3068,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_003",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_003_c1_000_nm"
+    "normal": "mp_buckle_mr1_003_c1_000_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "6C5B97D6",
@@ -2817,7 +3091,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_003",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_003_c1_001_nm"
+    "normal": "mp_buckle_mr1_003_c1_001_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "CCBA34BA",
@@ -2838,7 +3114,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_003",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_003_c1_002_nm"
+    "normal": "mp_buckle_mr1_003_c1_002_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "139FCC19",
@@ -2859,7 +3137,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_003",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_003_c1_003_nm"
+    "normal": "mp_buckle_mr1_003_c1_003_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "2DD986CC",
@@ -2880,7 +3160,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_003",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_003_c1_004_nm"
+    "normal": "mp_buckle_mr1_003_c1_004_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "F99B34CF",
@@ -2899,7 +3181,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_019",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_019_c1_000_nm"
+    "normal": "mp_buckle_mr1_019_c1_000_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "A0649C75",
@@ -2918,7 +3202,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_019",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_019_c1_001_nm"
+    "normal": "mp_buckle_mr1_019_c1_001_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "19E1847B",
@@ -2937,7 +3223,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_019",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_019_c1_002_nm"
+    "normal": "mp_buckle_mr1_019_c1_002_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "B53482BF",
@@ -2956,7 +3244,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_019",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_019_c1_003_nm"
+    "normal": "mp_buckle_mr1_019_c1_003_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "E8561CB4",
@@ -2975,7 +3265,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_019",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_019_c1_004_nm"
+    "normal": "mp_buckle_mr1_019_c1_004_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "BBEF7111",
@@ -2994,7 +3286,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_019",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_019_c1_005_nm"
+    "normal": "mp_buckle_mr1_019_c1_005_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "AB7E20D7",
@@ -3013,7 +3307,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_019",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_019_c1_006_nm"
+    "normal": "mp_buckle_mr1_019_c1_006_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "48467EC9",
@@ -3032,7 +3328,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_019",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_019_c1_007_nm"
+    "normal": "mp_buckle_mr1_019_c1_007_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "3455E4E3",
@@ -3053,7 +3351,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_006",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_006_c1_000_nm"
+    "normal": "mp_buckle_mr1_006_c1_000_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "37BA4228",
@@ -3074,7 +3374,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_006",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_006_c1_001_nm"
+    "normal": "mp_buckle_mr1_006_c1_001_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "B87690D5",
@@ -3095,7 +3397,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_006",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_006_c1_002_nm"
+    "normal": "mp_buckle_mr1_006_c1_002_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "44380D26",
@@ -3116,7 +3420,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_006",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_006_c1_003_nm"
+    "normal": "mp_buckle_mr1_006_c1_003_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "E53DCE12",
@@ -3137,7 +3443,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_006",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_006_c1_004_nm"
+    "normal": "mp_buckle_mr1_006_c1_004_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "405C184D",
@@ -3158,7 +3466,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_006",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_006_c1_006_nm"
+    "normal": "mp_buckle_mr1_006_c1_006_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "563A5CD5",
@@ -3179,7 +3489,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_006",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_006_c1_008_nm"
+    "normal": "mp_buckle_mr1_006_c1_008_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "92891883",
@@ -3200,7 +3512,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_006",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_006_c1_009_nm"
+    "normal": "mp_buckle_mr1_006_c1_009_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "DC0A4D1E",
@@ -3221,7 +3535,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_006",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_006_c1_010_nm"
+    "normal": "mp_buckle_mr1_006_c1_010_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "57FBF49B",
@@ -3242,7 +3558,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_006",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_006_c1_011_nm"
+    "normal": "mp_buckle_mr1_006_c1_011_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "7E1A4269",
@@ -3263,7 +3581,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_006",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_006_c1_012_nm"
+    "normal": "mp_buckle_mr1_006_c1_012_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "7EA282ED",
@@ -3284,7 +3604,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_006",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_006_c1_014_nm"
+    "normal": "mp_buckle_mr1_006_c1_014_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "5165EB0B",
@@ -3305,7 +3627,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_005",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_005_c1_000_nm"
+    "normal": "mp_buckle_mr1_005_c1_000_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "5FAC704B",
@@ -3326,7 +3650,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_005",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_005_c1_001_nm"
+    "normal": "mp_buckle_mr1_005_c1_001_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "8E758C1E",
@@ -3347,7 +3673,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_005",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_005_c1_002_nm"
+    "normal": "mp_buckle_mr1_005_c1_002_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "316AB24E",
@@ -3368,7 +3696,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_005",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_005_c1_003_nm"
+    "normal": "mp_buckle_mr1_005_c1_003_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "70F20F7B",
@@ -3389,7 +3719,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_005",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_005_c1_004_nm"
+    "normal": "mp_buckle_mr1_005_c1_004_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "1E07AEEB",
@@ -3410,7 +3742,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_005",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_005_c1_005_nm"
+    "normal": "mp_buckle_mr1_005_c1_005_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "30499162",
@@ -3431,7 +3765,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_005",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_005_c1_006_nm"
+    "normal": "mp_buckle_mr1_005_c1_006_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "76FE363B",
@@ -3452,7 +3788,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_005",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_005_c1_007_nm"
+    "normal": "mp_buckle_mr1_005_c1_007_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "B02D9972",
@@ -3473,7 +3811,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_005",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_005_c1_008_nm"
+    "normal": "mp_buckle_mr1_005_c1_008_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "C667600E",
@@ -3494,7 +3834,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_005",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_005_c1_009_nm"
+    "normal": "mp_buckle_mr1_005_c1_009_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "458AEE97",
@@ -3515,7 +3857,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_005",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_005_c1_010_nm"
+    "normal": "mp_buckle_mr1_005_c1_010_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "C4670223",
@@ -3536,7 +3880,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_005",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_005_c1_011_nm"
+    "normal": "mp_buckle_mr1_005_c1_011_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "C9EE847B",
@@ -3557,7 +3903,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_005",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_005_c1_012_nm"
+    "normal": "mp_buckle_mr1_005_c1_012_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "D0B13749",
@@ -3576,7 +3924,9 @@
     "tint2": 16,
     "drawable": "mp_buckle_mr1_016",
     "albedo": "mp_buckle_mr1_016_c1_999_ab",
-    "normal": "mp_buckle_mr1_016_c1_000_nm"
+    "normal": "mp_buckle_mr1_016_c1_000_nm",
+    "swatchTextureHex": "7A23FEFC",
+    "swatchTexture": "uisw_cotton_000"
   },
   {
     "componentHex": "b33defc",
@@ -3597,7 +3947,8 @@
     "tint2": 30,
     "drawable": "mp_vipseason1_buckle_mr1_000",
     "albedo": "mp_vipseason1_buckle_mr1_000_c1_999_ab",
-    "normal": "mp_vipseason1_buckle_mr1_000_c1_999_nm"
+    "normal": "mp_vipseason1_buckle_mr1_000_c1_999_nm",
+    "swatchTextureHex": "4EDC4A28"
   },
   {
     "componentHex": "14dcf24e",
@@ -3618,7 +3969,8 @@
     "tint2": 30,
     "drawable": "mp_vipseason1_buckle_mr1_001",
     "albedo": "mp_vipseason1_buckle_mr1_000_c1_999_ab",
-    "normal": "mp_vipseason1_buckle_mr1_000_c1_999_nm"
+    "normal": "mp_vipseason1_buckle_mr1_000_c1_999_nm",
+    "swatchTextureHex": "4EDC4A28"
   },
   {
     "componentHex": "ddfa0489",
@@ -3639,7 +3991,8 @@
     "tint2": 72,
     "drawable": "mp_vipseason1_buckle_mr1_002",
     "albedo": "mp_vipseason1_buckle_mr1_000_c1_999_ab",
-    "normal": "mp_vipseason1_buckle_mr1_000_c1_999_nm"
+    "normal": "mp_vipseason1_buckle_mr1_000_c1_999_nm",
+    "swatchTextureHex": "4EDC4A28"
   },
   {
     "componentHex": "2d7f4672",
@@ -3660,7 +4013,8 @@
     "tint2": 166,
     "drawable": "mp_vipseason2_buckle_mr1_000",
     "albedo": "mp_vipseason2_buckle_mr1_000_c1_999_ab",
-    "normal": "mp_vipseason2_buckle_mr1_000_c1_999_nm"
+    "normal": "mp_vipseason2_buckle_mr1_000_c1_999_nm",
+    "swatchTextureHex": "B3902E46"
   },
   {
     "componentHex": "6712b9a4",
@@ -3681,7 +4035,8 @@
     "tint2": 45,
     "drawable": "mp_vipseason2_buckle_mr1_001",
     "albedo": "mp_vipseason2_buckle_mr1_001_c1_999_ab",
-    "normal": "mp_vipseason2_buckle_mr1_000_c1_999_nm"
+    "normal": "mp_vipseason2_buckle_mr1_000_c1_999_nm",
+    "swatchTextureHex": "B3902E46"
   },
   {
     "componentHex": "4cea8554",
@@ -3702,7 +4057,8 @@
     "tint2": 47,
     "drawable": "mp_vipseason2_buckle_mr1_002",
     "albedo": "mp_vipseason2_buckle_mr1_002_c1_999_ab",
-    "normal": "mp_vipseason2_buckle_mr1_000_c1_999_nm"
+    "normal": "mp_vipseason2_buckle_mr1_000_c1_999_nm",
+    "swatchTextureHex": "B3902E46"
   },
   {
     "componentHex": "c3ecf353",
@@ -3723,7 +4079,8 @@
     "tint2": 5,
     "drawable": "mp_vipseason2_buckle_mr1_003",
     "albedo": "mp_vipseason2_buckle_mr1_003_c1_999_ab",
-    "normal": "mp_vipseason2_buckle_mr1_000_c1_999_nm"
+    "normal": "mp_vipseason2_buckle_mr1_000_c1_999_nm",
+    "swatchTextureHex": "B3902E46"
   },
   {
     "componentHex": "53d95a20",
@@ -3744,7 +4101,8 @@
     "tint2": 20,
     "drawable": "mp_vipseason3_buckle_mr1_000",
     "albedo": "mp_vipseason3_buckle_mr1_000_c1_999_ab",
-    "normal": "mp_vipseason3_buckle_mr1_000_c1_999_nm"
+    "normal": "mp_vipseason3_buckle_mr1_000_c1_999_nm",
+    "swatchTextureHex": "B3902E46"
   },
   {
     "componentHex": "6627febd",
@@ -3765,7 +4123,8 @@
     "tint2": 19,
     "drawable": "mp_vipseason3_buckle_mr1_001",
     "albedo": "mp_vipseason3_buckle_mr1_001_c1_999_ab",
-    "normal": "mp_vipseason3_buckle_mr1_001_c1_999_nm"
+    "normal": "mp_vipseason3_buckle_mr1_001_c1_999_nm",
+    "swatchTextureHex": "B3902E46"
   },
   {
     "componentHex": "983662d9",
@@ -3786,7 +4145,8 @@
     "tint2": 20,
     "drawable": "mp_vipseason3_buckle_mr1_002",
     "albedo": "mp_vipseason3_buckle_mr1_002_c1_999_ab",
-    "normal": "mp_vipseason3_buckle_mr1_002_c1_999_nm"
+    "normal": "mp_vipseason3_buckle_mr1_002_c1_999_nm",
+    "swatchTextureHex": "B3902E46"
   },
   {
     "componentHex": "69a785bc",
@@ -3807,7 +4167,8 @@
     "tint2": 16,
     "drawable": "mp_vipseason3_buckle_mr1_004",
     "albedo": "mp_vipseason3_buckle_mr1_004_c1_999_ab",
-    "normal": "mp_vipseason3_buckle_mr1_004_c1_999_nm"
+    "normal": "mp_vipseason3_buckle_mr1_004_c1_999_nm",
+    "swatchTextureHex": "B3902E46"
   },
   {
     "componentHex": "b440eb47",
@@ -3828,7 +4189,8 @@
     "tint2": 20,
     "drawable": "mp_vipseason4_buckle_mr1_000",
     "albedo": "mp_vipseason4_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_vipseason4_buckle_mr1_000_c1_000_nm"
+    "normal": "mp_vipseason4_buckle_mr1_000_c1_000_nm",
+    "swatchTextureHex": "B3902E46"
   },
   {
     "componentHex": "c8b71433",
@@ -3849,7 +4211,8 @@
     "tint2": 19,
     "drawable": "mp_vipseason4_buckle_mr1_001",
     "albedo": "mp_vipseason4_buckle_mr1_001_c1_000_ab",
-    "normal": "mp_vipseason4_buckle_mr1_001_c1_000_nm"
+    "normal": "mp_vipseason4_buckle_mr1_001_c1_000_nm",
+    "swatchTextureHex": "B3902E46"
   },
   {
     "componentHex": "db45394f",
@@ -3870,7 +4233,8 @@
     "tint2": 20,
     "drawable": "mp_vipseason4_buckle_mr1_002",
     "albedo": "mp_vipseason4_buckle_mr1_002_c1_000_ab",
-    "normal": "mp_vipseason4_buckle_mr1_002_c1_000_nm"
+    "normal": "mp_vipseason4_buckle_mr1_002_c1_000_nm",
+    "swatchTextureHex": "B3902E46"
   },
   {
     "componentHex": "14db2c7a",
@@ -3891,7 +4255,8 @@
     "tint2": 16,
     "drawable": "mp_vipseason4_buckle_mr1_003",
     "albedo": "mp_vipseason4_buckle_mr1_003_c1_000_ab",
-    "normal": "mp_vipseason4_buckle_mr1_003_c1_000_nm"
+    "normal": "mp_vipseason4_buckle_mr1_003_c1_000_nm",
+    "swatchTextureHex": "B3902E46"
   },
   {
     "componentHex": "d3fdaf93",
@@ -3912,7 +4277,8 @@
     "tint2": 20,
     "drawable": "mp_vipseason5_buckle_mr1_000",
     "albedo": "mp_vipseason5_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_vipseason5_buckle_mr1_000_c1_000_nm"
+    "normal": "mp_vipseason5_buckle_mr1_000_c1_000_nm",
+    "swatchTextureHex": "B3902E46"
   },
   {
     "componentHex": "e1b84b08",
@@ -3933,7 +4299,8 @@
     "tint2": 19,
     "drawable": "mp_vipseason5_buckle_mr1_001",
     "albedo": "mp_vipseason5_buckle_mr1_001_c1_000_ab",
-    "normal": "mp_vipseason5_buckle_mr1_001_c1_000_nm"
+    "normal": "mp_vipseason5_buckle_mr1_001_c1_000_nm",
+    "swatchTextureHex": "B3902E46"
   },
   {
     "componentHex": "2f8ee6b4",
@@ -3954,7 +4321,8 @@
     "tint2": 20,
     "drawable": "mp_vipseason5_buckle_mr1_002",
     "albedo": "mp_vipseason5_buckle_mr1_002_c1_000_ab",
-    "normal": "mp_vipseason5_buckle_mr1_002_c1_000_nm"
+    "normal": "mp_vipseason5_buckle_mr1_002_c1_000_nm",
+    "swatchTextureHex": "B3902E46"
   },
   {
     "componentHex": "bd3d8213",
@@ -3975,7 +4343,8 @@
     "tint2": 16,
     "drawable": "mp_vipseason5_buckle_mr1_003",
     "albedo": "mp_vipseason5_buckle_mr1_003_c1_000_ab",
-    "normal": "mp_vipseason5_buckle_mr1_003_c1_000_nm"
+    "normal": "mp_vipseason5_buckle_mr1_003_c1_000_nm",
+    "swatchTextureHex": "B3902E46"
   },
   {
     "componentHex": "d71625fb",
@@ -3996,7 +4365,8 @@
     "tint2": 44,
     "drawable": "mp_belt_buckles_mr1_400",
     "albedo": "mp_belt_buckles_mr1_400_c1_000_ab",
-    "normal": "mp_belt_buckles_mr1_400_c1_000_nm"
+    "normal": "mp_belt_buckles_mr1_400_c1_000_nm",
+    "swatchTextureHex": "E4B32A84"
   },
   {
     "componentHex": "c45b8086",
@@ -4017,7 +4387,8 @@
     "tint2": 44,
     "drawable": "mp_belt_buckles_mr1_401",
     "albedo": "mp_belt_buckles_mr1_401_c1_000_ab",
-    "normal": "mp_belt_buckles_mr1_401_c1_000_nm"
+    "normal": "mp_belt_buckles_mr1_401_c1_000_nm",
+    "swatchTextureHex": "E4B32A84"
   },
   {
     "componentHex": "33925ef6",
@@ -4038,7 +4409,8 @@
     "tint2": 44,
     "drawable": "mp_belt_buckles_mr1_402",
     "albedo": "mp_belt_buckles_mr1_402_c1_000_ab",
-    "normal": "mp_belt_buckles_mr1_402_c1_000_nm"
+    "normal": "mp_belt_buckles_mr1_402_c1_000_nm",
+    "swatchTextureHex": "E4B32A84"
   },
   {
     "componentHex": "2148ba63",
@@ -4059,7 +4431,8 @@
     "tint2": 44,
     "drawable": "mp_belt_buckles_mr1_403",
     "albedo": "mp_belt_buckles_mr1_403_c1_000_ab",
-    "normal": "mp_belt_buckles_mr1_403_c1_000_nm"
+    "normal": "mp_belt_buckles_mr1_403_c1_000_nm",
+    "swatchTextureHex": "E4B32A84"
   },
   {
     "componentHex": "9ddeb38d",
@@ -4080,7 +4453,8 @@
     "tint2": 44,
     "drawable": "mp_belt_buckles_mr1_404",
     "albedo": "mp_belt_buckles_mr1_404_c1_000_ab",
-    "normal": "mp_belt_buckles_mr1_404_c1_000_nm"
+    "normal": "mp_belt_buckles_mr1_404_c1_000_nm",
+    "swatchTextureHex": "E4B32A84"
   },
   {
     "componentHex": "8b318e33",
@@ -4101,7 +4475,8 @@
     "tint2": 44,
     "drawable": "mp_belt_buckles_mr1_405",
     "albedo": "mp_belt_buckles_mr1_405_c1_000_ab",
-    "normal": "mp_belt_buckles_mr1_405_c1_000_nm"
+    "normal": "mp_belt_buckles_mr1_405_c1_000_nm",
+    "swatchTextureHex": "E4B32A84"
   },
   {
     "componentHex": "f96aeaa4",
@@ -4122,7 +4497,8 @@
     "tint2": 44,
     "drawable": "mp_belt_buckles_mr1_406",
     "albedo": "mp_belt_buckles_mr1_406_c1_000_ab",
-    "normal": "mp_belt_buckles_mr1_406_c1_000_nm"
+    "normal": "mp_belt_buckles_mr1_406_c1_000_nm",
+    "swatchTextureHex": "E4B32A84"
   },
   {
     "componentHex": "e8b54939",
@@ -4143,7 +4519,8 @@
     "tint2": 44,
     "drawable": "mp_belt_buckles_mr1_407",
     "albedo": "mp_belt_buckles_mr1_407_c1_000_ab",
-    "normal": "mp_belt_buckles_mr1_407_c1_000_nm"
+    "normal": "mp_belt_buckles_mr1_407_c1_000_nm",
+    "swatchTextureHex": "E4B32A84"
   },
   {
     "componentHex": "66621A4D",
@@ -4162,7 +4539,9 @@
     "tint2": 182,
     "drawable": "mp_t5_item_nl_buckle_mr1_001",
     "albedo": "mp_t5_item_nl_buckle_mr1_001_c1_999_ab",
-    "normal": "mp_t5_item_nl_buckle_mr1_001_c1_999_nm"
+    "normal": "mp_t5_item_nl_buckle_mr1_001_c1_999_nm",
+    "swatchTextureHex": "4EDC4A28",
+    "swatchTexture": "uisw_cotton_pt001"
   },
   {
     "componentHex": "78ABBEE0",
@@ -4181,7 +4560,9 @@
     "tint2": 165,
     "drawable": "mp_t5_item_nl_buckle_mr1_001",
     "albedo": "mp_t5_item_nl_buckle_mr1_001_c1_999_ab",
-    "normal": "mp_t5_item_nl_buckle_mr1_001_c1_999_nm"
+    "normal": "mp_t5_item_nl_buckle_mr1_001_c1_999_nm",
+    "swatchTextureHex": "4EDC4A28",
+    "swatchTexture": "uisw_cotton_pt001"
   },
   {
     "componentHex": "B034ADF5",
@@ -4200,7 +4581,9 @@
     "tint2": 75,
     "drawable": "mp_t5_item_nl_buckle_mr1_001",
     "albedo": "mp_t5_item_nl_buckle_mr1_001_c1_999_ab",
-    "normal": "mp_t5_item_nl_buckle_mr1_001_c1_999_nm"
+    "normal": "mp_t5_item_nl_buckle_mr1_001_c1_999_nm",
+    "swatchTextureHex": "4EDC4A28",
+    "swatchTexture": "uisw_cotton_pt001"
   },
   {
     "componentHex": "79E44151",
@@ -4219,7 +4602,9 @@
     "tint2": 208,
     "drawable": "mp_t5_item_nl_buckle_mr1_001",
     "albedo": "mp_t5_item_nl_buckle_mr1_001_c1_999_ab",
-    "normal": "mp_t5_item_nl_buckle_mr1_001_c1_999_nm"
+    "normal": "mp_t5_item_nl_buckle_mr1_001_c1_999_nm",
+    "swatchTextureHex": "4EDC4A28",
+    "swatchTexture": "uisw_cotton_pt001"
   },
   {
     "componentHex": "D4D0772C",
@@ -4238,7 +4623,9 @@
     "tint2": 138,
     "drawable": "mp_t5_item_nl_buckle_mr1_001",
     "albedo": "mp_t5_item_nl_buckle_mr1_001_c1_999_ab",
-    "normal": "mp_t5_item_nl_buckle_mr1_001_c1_999_nm"
+    "normal": "mp_t5_item_nl_buckle_mr1_001_c1_999_nm",
+    "swatchTextureHex": "4EDC4A28",
+    "swatchTexture": "uisw_cotton_pt001"
   },
   {
     "componentHex": "9D67085A",
@@ -4257,7 +4644,9 @@
     "tint2": 74,
     "drawable": "mp_t5_item_nl_buckle_mr1_001",
     "albedo": "mp_t5_item_nl_buckle_mr1_001_c1_999_ab",
-    "normal": "mp_t5_item_nl_buckle_mr1_001_c1_999_nm"
+    "normal": "mp_t5_item_nl_buckle_mr1_001_c1_999_nm",
+    "swatchTextureHex": "4EDC4A28",
+    "swatchTexture": "uisw_cotton_pt001"
   },
   {
     "componentHex": "20B52E4D",
@@ -4278,7 +4667,9 @@
     "tint2": 50,
     "drawable": "mp_buckle_mr1_301",
     "albedo": "mp_buckle_mr1_301_c1_999_ab",
-    "normal": "mp_buckle_mr1_301_c1_999_nm"
+    "normal": "mp_buckle_mr1_301_c1_999_nm",
+    "swatchTextureHex": "4EDC4A28",
+    "swatchTexture": "uisw_cotton_pt001"
   },
   {
     "componentHex": "D9491F92",
@@ -4299,7 +4690,9 @@
     "tint2": 72,
     "drawable": "mp_buckle_mr1_301",
     "albedo": "mp_buckle_mr1_301_c1_999_ab",
-    "normal": "mp_buckle_mr1_301_c1_999_nm"
+    "normal": "mp_buckle_mr1_301_c1_999_nm",
+    "swatchTextureHex": "4EDC4A28",
+    "swatchTexture": "uisw_cotton_pt001"
   },
   {
     "componentHex": "E3E434C8",
@@ -4320,7 +4713,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_mr1_301",
     "albedo": "mp_buckle_mr1_301_c1_999_ab",
-    "normal": "mp_buckle_mr1_301_c1_999_nm"
+    "normal": "mp_buckle_mr1_301_c1_999_nm",
+    "swatchTextureHex": "4EDC4A28",
+    "swatchTexture": "uisw_cotton_pt001"
   },
   {
     "componentHex": "E9A7C04F",
@@ -4341,7 +4736,9 @@
     "tint2": 15,
     "drawable": "mp_buckle_mr1_301",
     "albedo": "mp_buckle_mr1_301_c1_999_ab",
-    "normal": "mp_buckle_mr1_301_c1_999_nm"
+    "normal": "mp_buckle_mr1_301_c1_999_nm",
+    "swatchTextureHex": "4EDC4A28",
+    "swatchTexture": "uisw_cotton_pt001"
   },
   {
     "componentHex": "0879FDF3",
@@ -4362,7 +4759,9 @@
     "tint2": 72,
     "drawable": "mp_buckle_mr1_301",
     "albedo": "mp_buckle_mr1_301_c1_999_ab",
-    "normal": "mp_buckle_mr1_301_c1_999_nm"
+    "normal": "mp_buckle_mr1_301_c1_999_nm",
+    "swatchTextureHex": "4EDC4A28",
+    "swatchTexture": "uisw_cotton_pt001"
   },
   {
     "componentHex": "A061ADC0",
@@ -4383,7 +4782,9 @@
     "tint2": 8,
     "drawable": "mp_buckle_mr1_301",
     "albedo": "mp_buckle_mr1_301_c1_999_ab",
-    "normal": "mp_buckle_mr1_301_c1_999_nm"
+    "normal": "mp_buckle_mr1_301_c1_999_nm",
+    "swatchTextureHex": "4EDC4A28",
+    "swatchTexture": "uisw_cotton_pt001"
   },
   {
     "componentHex": "617fe342",
@@ -4404,7 +4805,8 @@
     "tint2": 63,
     "drawable": "mp_buckle_mr1_r04_l05_000",
     "albedo": "mp_buckle_mr1_r04_l05_000_c1_999_ab",
-    "normal": "mp_buckle_mr1_r04_l05_000_c1_999_nm"
+    "normal": "mp_buckle_mr1_r04_l05_000_c1_999_nm",
+    "swatchTextureHex": "4EDC4A28"
   },
   {
     "componentHex": "FEC51DDA",
@@ -4425,7 +4827,9 @@
     "tint2": 224,
     "drawable": "mp_buckle_mr1_r04_l05_000",
     "albedo": "mp_buckle_mr1_r04_l05_000_c1_999_ab",
-    "normal": "mp_buckle_mr1_r04_l05_000_c1_999_nm"
+    "normal": "mp_buckle_mr1_r04_l05_000_c1_999_nm",
+    "swatchTextureHex": "4EDC4A28",
+    "swatchTexture": "uisw_cotton_pt001"
   },
   {
     "componentHex": "0C0BB867",
@@ -4446,7 +4850,9 @@
     "tint2": 253,
     "drawable": "mp_buckle_mr1_r04_l05_000",
     "albedo": "mp_buckle_mr1_r04_l05_000_c1_999_ab",
-    "normal": "mp_buckle_mr1_r04_l05_000_c1_999_nm"
+    "normal": "mp_buckle_mr1_r04_l05_000_c1_999_nm",
+    "swatchTextureHex": "4EDC4A28",
+    "swatchTexture": "uisw_cotton_pt001"
   },
   {
     "componentHex": "DA5454F1",
@@ -4467,7 +4873,9 @@
     "tint2": 59,
     "drawable": "mp_buckle_mr1_r04_l05_000",
     "albedo": "mp_buckle_mr1_r04_l05_000_c1_999_ab",
-    "normal": "mp_buckle_mr1_r04_l05_000_c1_999_nm"
+    "normal": "mp_buckle_mr1_r04_l05_000_c1_999_nm",
+    "swatchTextureHex": "4EDC4A28",
+    "swatchTexture": "uisw_cotton_pt001"
   },
   {
     "componentHex": "EF927F6D",
@@ -4488,7 +4896,9 @@
     "tint2": 253,
     "drawable": "mp_buckle_mr1_r04_l05_000",
     "albedo": "mp_buckle_mr1_r04_l05_000_c1_999_ab",
-    "normal": "mp_buckle_mr1_r04_l05_000_c1_999_nm"
+    "normal": "mp_buckle_mr1_r04_l05_000_c1_999_nm",
+    "swatchTextureHex": "4EDC4A28",
+    "swatchTexture": "uisw_cotton_pt001"
   },
   {
     "componentHex": "B7818F4C",
@@ -4509,7 +4919,9 @@
     "tint2": 79,
     "drawable": "mp_buckle_mr1_r04_l05_000",
     "albedo": "mp_buckle_mr1_r04_l05_000_c1_999_ab",
-    "normal": "mp_buckle_mr1_r04_l05_000_c1_999_nm"
+    "normal": "mp_buckle_mr1_r04_l05_000_c1_999_nm",
+    "swatchTextureHex": "4EDC4A28",
+    "swatchTexture": "uisw_cotton_pt001"
   },
   {
     "componentHex": "25409ADF",
@@ -4530,7 +4942,9 @@
     "tint2": 24,
     "drawable": "mp_t1_nl_buckle_mr1_001",
     "albedo": "mp_t1_nl_buckle_mr1_001_c1_999_ab",
-    "normal": "mp_t1_nl_buckle_mr1_001_c1_999_nm"
+    "normal": "mp_t1_nl_buckle_mr1_001_c1_999_nm",
+    "swatchTextureHex": "4EDC4A28",
+    "swatchTexture": "uisw_cotton_pt001"
   },
   {
     "componentHex": "17B4FFBC",
@@ -4551,7 +4965,9 @@
     "tint2": 56,
     "drawable": "mp_t1_nl_buckle_mr1_001",
     "albedo": "mp_t1_nl_buckle_mr1_001_c1_999_ab",
-    "normal": "mp_t1_nl_buckle_mr1_001_c1_999_nm"
+    "normal": "mp_t1_nl_buckle_mr1_001_c1_999_nm",
+    "swatchTextureHex": "4EDC4A28",
+    "swatchTexture": "uisw_cotton_pt001"
   },
   {
     "componentHex": "4B046666",
@@ -4572,7 +4988,9 @@
     "tint2": 43,
     "drawable": "mp_t1_nl_buckle_mr1_001",
     "albedo": "mp_t1_nl_buckle_mr1_001_c1_999_ab",
-    "normal": "mp_t1_nl_buckle_mr1_001_c1_999_nm"
+    "normal": "mp_t1_nl_buckle_mr1_001_c1_999_nm",
+    "swatchTextureHex": "4EDC4A28",
+    "swatchTexture": "uisw_cotton_pt001"
   },
   {
     "componentHex": "353C3AD6",
@@ -4593,7 +5011,9 @@
     "tint2": 15,
     "drawable": "mp_t1_nl_buckle_mr1_001",
     "albedo": "mp_t1_nl_buckle_mr1_001_c1_999_ab",
-    "normal": "mp_t1_nl_buckle_mr1_001_c1_999_nm"
+    "normal": "mp_t1_nl_buckle_mr1_001_c1_999_nm",
+    "swatchTextureHex": "4EDC4A28",
+    "swatchTexture": "uisw_cotton_pt001"
   },
   {
     "componentHex": "6E882D6D",
@@ -4614,7 +5034,9 @@
     "tint2": 126,
     "drawable": "mp_t1_nl_buckle_mr1_001",
     "albedo": "mp_t1_nl_buckle_mr1_001_c1_999_ab",
-    "normal": "mp_t1_nl_buckle_mr1_001_c1_999_nm"
+    "normal": "mp_t1_nl_buckle_mr1_001_c1_999_nm",
+    "swatchTextureHex": "4EDC4A28",
+    "swatchTexture": "uisw_cotton_pt001"
   },
   {
     "componentHex": "5891017F",
@@ -4635,7 +5057,9 @@
     "tint2": 127,
     "drawable": "mp_t1_nl_buckle_mr1_001",
     "albedo": "mp_t1_nl_buckle_mr1_001_c1_999_ab",
-    "normal": "mp_t1_nl_buckle_mr1_001_c1_999_nm"
+    "normal": "mp_t1_nl_buckle_mr1_001_c1_999_nm",
+    "swatchTextureHex": "B3902E46",
+    "swatchTexture": "uisw_leather_pt001"
   },
   {
     "componentHex": "63B38DEB",
@@ -4656,7 +5080,9 @@
     "tint2": 165,
     "drawable": "mp_t3_nl_buckle_mr1_001",
     "albedo": "mp_t3_nl_buckle_mr1_001_c1_999_ab",
-    "normal": "mp_t3_nl_buckle_mr1_001_c1_999_nm"
+    "normal": "mp_t3_nl_buckle_mr1_001_c1_999_nm",
+    "swatchTextureHex": "4EDC4A28",
+    "swatchTexture": "uisw_cotton_pt001"
   },
   {
     "componentHex": "CCFE607F",
@@ -4677,7 +5103,9 @@
     "tint2": 36,
     "drawable": "mp_t3_nl_buckle_mr1_001",
     "albedo": "mp_t3_nl_buckle_mr1_001_c1_999_ab",
-    "normal": "mp_t3_nl_buckle_mr1_001_c1_999_nm"
+    "normal": "mp_t3_nl_buckle_mr1_001_c1_999_nm",
+    "swatchTextureHex": "4EDC4A28",
+    "swatchTexture": "uisw_cotton_pt001"
   },
   {
     "componentHex": "95C77212",
@@ -4698,7 +5126,9 @@
     "tint2": 72,
     "drawable": "mp_t3_nl_buckle_mr1_001",
     "albedo": "mp_t3_nl_buckle_mr1_001_c1_999_ab",
-    "normal": "mp_t3_nl_buckle_mr1_001_c1_999_nm"
+    "normal": "mp_t3_nl_buckle_mr1_001_c1_999_nm",
+    "swatchTextureHex": "4EDC4A28",
+    "swatchTexture": "uisw_cotton_pt001"
   },
   {
     "componentHex": "880DD69F",
@@ -4719,7 +5149,9 @@
     "tint2": 56,
     "drawable": "mp_t3_nl_buckle_mr1_001",
     "albedo": "mp_t3_nl_buckle_mr1_001_c1_999_ab",
-    "normal": "mp_t3_nl_buckle_mr1_001_c1_999_nm"
+    "normal": "mp_t3_nl_buckle_mr1_001_c1_999_nm",
+    "swatchTextureHex": "4EDC4A28",
+    "swatchTexture": "uisw_cotton_pt001"
   },
   {
     "componentHex": "3A7A3B79",
@@ -4740,7 +5172,9 @@
     "tint2": 71,
     "drawable": "mp_t3_nl_buckle_mr1_001",
     "albedo": "mp_t3_nl_buckle_mr1_001_c1_999_ab",
-    "normal": "mp_t3_nl_buckle_mr1_001_c1_999_nm"
+    "normal": "mp_t3_nl_buckle_mr1_001_c1_999_nm",
+    "swatchTextureHex": "4EDC4A28",
+    "swatchTexture": "uisw_cotton_pt001"
   },
   {
     "componentHex": "2CB79FF4",
@@ -4761,7 +5195,9 @@
     "tint2": 135,
     "drawable": "mp_t3_nl_buckle_mr1_001",
     "albedo": "mp_t3_nl_buckle_mr1_001_c1_999_ab",
-    "normal": "mp_t3_nl_buckle_mr1_001_c1_999_nm"
+    "normal": "mp_t3_nl_buckle_mr1_001_c1_999_nm",
+    "swatchTextureHex": "4EDC4A28",
+    "swatchTexture": "uisw_cotton_pt001"
   },
   {
     "componentHex": "18DB3EB3",
@@ -4782,7 +5218,9 @@
     "tint2": 49,
     "drawable": "mp_t2_nl_buckle_mr1_001",
     "albedo": "mp_t2_nl_buckle_mr1_001_c1_999_ab",
-    "normal": "mp_t2_nl_buckle_mr1_001_c1_999_nm"
+    "normal": "mp_t2_nl_buckle_mr1_001_c1_999_nm",
+    "swatchTextureHex": "4EDC4A28",
+    "swatchTexture": "uisw_cotton_pt001"
   },
   {
     "componentHex": "E60C5916",
@@ -4803,7 +5241,9 @@
     "tint2": 41,
     "drawable": "mp_t2_nl_buckle_mr1_001",
     "albedo": "mp_t2_nl_buckle_mr1_001_c1_999_ab",
-    "normal": "mp_t2_nl_buckle_mr1_001_c1_999_nm"
+    "normal": "mp_t2_nl_buckle_mr1_001_c1_999_nm",
+    "swatchTextureHex": "4EDC4A28",
+    "swatchTexture": "uisw_cotton_pt001"
   },
   {
     "componentHex": "F52F775C",
@@ -4824,7 +5264,9 @@
     "tint2": 62,
     "drawable": "mp_t2_nl_buckle_mr1_001",
     "albedo": "mp_t2_nl_buckle_mr1_001_c1_999_ab",
-    "normal": "mp_t2_nl_buckle_mr1_001_c1_999_nm"
+    "normal": "mp_t2_nl_buckle_mr1_001_c1_999_nm",
+    "swatchTextureHex": "4EDC4A28",
+    "swatchTexture": "uisw_cotton_pt001"
   },
   {
     "componentHex": "C36593C9",
@@ -4845,7 +5287,9 @@
     "tint2": 45,
     "drawable": "mp_t2_nl_buckle_mr1_001",
     "albedo": "mp_t2_nl_buckle_mr1_001_c1_999_ab",
-    "normal": "mp_t2_nl_buckle_mr1_001_c1_999_nm"
+    "normal": "mp_t2_nl_buckle_mr1_001_c1_999_nm",
+    "swatchTextureHex": "4EDC4A28",
+    "swatchTexture": "uisw_cotton_pt001"
   },
   {
     "componentHex": "30186D1D",
@@ -4866,7 +5310,9 @@
     "tint2": 49,
     "drawable": "mp_t2_nl_buckle_mr1_001",
     "albedo": "mp_t2_nl_buckle_mr1_001_c1_999_ab",
-    "normal": "mp_t2_nl_buckle_mr1_001_c1_999_nm"
+    "normal": "mp_t2_nl_buckle_mr1_001_c1_999_nm",
+    "swatchTextureHex": "4EDC4A28",
+    "swatchTexture": "uisw_cotton_pt001"
   },
   {
     "componentHex": "FE7D89E8",
@@ -4887,7 +5333,9 @@
     "tint2": 49,
     "drawable": "mp_t2_nl_buckle_mr1_001",
     "albedo": "mp_t2_nl_buckle_mr1_001_c1_999_ab",
-    "normal": "mp_t2_nl_buckle_mr1_001_c1_999_nm"
+    "normal": "mp_t2_nl_buckle_mr1_001_c1_999_nm",
+    "swatchTextureHex": "4EDC4A28",
+    "swatchTexture": "uisw_cotton_pt001"
   },
   {
     "componentHex": "4DD258F8",
@@ -4906,7 +5354,9 @@
     "tint2": 63,
     "drawable": "mp_buckle_fr1_001",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_001_c1_000_nm"
+    "normal": "mp_buckle_mr1_001_c1_000_nm",
+    "swatchTextureHex": "E4B32A84",
+    "swatchTexture": "uisw_denim_ck000"
   },
   {
     "componentHex": "59D96592",
@@ -4925,7 +5375,9 @@
     "tint2": 182,
     "drawable": "mp_t5_item_nl_buckle_fr1_001",
     "albedo": "mp_t5_item_nl_buckle_mr1_001_c1_999_ab",
-    "normal": "mp_t5_item_nl_buckle_mr1_001_c1_999_nm"
+    "normal": "mp_t5_item_nl_buckle_mr1_001_c1_999_nm",
+    "swatchTextureHex": "4EDC4A28",
+    "swatchTexture": "uisw_cotton_pt001"
   },
   {
     "componentHex": "4B8748EE",
@@ -4944,7 +5396,9 @@
     "tint2": 165,
     "drawable": "mp_t5_item_nl_buckle_fr1_001",
     "albedo": "mp_t5_item_nl_buckle_mr1_001_c1_999_ab",
-    "normal": "mp_t5_item_nl_buckle_mr1_001_c1_999_nm"
+    "normal": "mp_t5_item_nl_buckle_mr1_001_c1_999_nm",
+    "swatchTextureHex": "4EDC4A28",
+    "swatchTexture": "uisw_cotton_pt001"
   },
   {
     "componentHex": "D0D4537A",
@@ -4963,7 +5417,9 @@
     "tint2": 75,
     "drawable": "mp_t5_item_nl_buckle_fr1_001",
     "albedo": "mp_t5_item_nl_buckle_mr1_001_c1_999_ab",
-    "normal": "mp_t5_item_nl_buckle_mr1_001_c1_999_nm"
+    "normal": "mp_t5_item_nl_buckle_mr1_001_c1_999_nm",
+    "swatchTextureHex": "4EDC4A28",
+    "swatchTexture": "uisw_cotton_pt001"
   },
   {
     "componentHex": "C306B7DF",
@@ -4982,7 +5438,9 @@
     "tint2": 208,
     "drawable": "mp_t5_item_nl_buckle_fr1_001",
     "albedo": "mp_t5_item_nl_buckle_mr1_001_c1_999_ab",
-    "normal": "mp_t5_item_nl_buckle_mr1_001_c1_999_nm"
+    "normal": "mp_t5_item_nl_buckle_mr1_001_c1_999_nm",
+    "swatchTextureHex": "4EDC4A28",
+    "swatchTexture": "uisw_cotton_pt001"
   },
   {
     "componentHex": "B1D71580",
@@ -5001,7 +5459,9 @@
     "tint2": 138,
     "drawable": "mp_t5_item_nl_buckle_fr1_001",
     "albedo": "mp_t5_item_nl_buckle_mr1_001_c1_999_ab",
-    "normal": "mp_t5_item_nl_buckle_mr1_001_c1_999_nm"
+    "normal": "mp_t5_item_nl_buckle_mr1_001_c1_999_nm",
+    "swatchTextureHex": "4EDC4A28",
+    "swatchTexture": "uisw_cotton_pt001"
   },
   {
     "componentHex": "A61AFE14",
@@ -5020,7 +5480,9 @@
     "tint2": 74,
     "drawable": "mp_t5_item_nl_buckle_fr1_001",
     "albedo": "mp_t5_item_nl_buckle_mr1_001_c1_999_ab",
-    "normal": "mp_t5_item_nl_buckle_mr1_001_c1_999_nm"
+    "normal": "mp_t5_item_nl_buckle_mr1_001_c1_999_nm",
+    "swatchTextureHex": "4EDC4A28",
+    "swatchTexture": "uisw_cotton_pt001"
   },
   {
     "componentHex": "EB0D0D2A",
@@ -5041,7 +5503,9 @@
     "tint2": 50,
     "drawable": "mp_buckle_fr1_301",
     "albedo": "mp_buckle_mr1_301_c1_999_ab",
-    "normal": "mp_buckle_mr1_301_c1_999_nm"
+    "normal": "mp_buckle_mr1_301_c1_999_nm",
+    "swatchTextureHex": "4EDC4A28",
+    "swatchTexture": "uisw_cotton_pt001"
   },
   {
     "componentHex": "FBB2AE75",
@@ -5062,7 +5526,9 @@
     "tint2": 72,
     "drawable": "mp_buckle_fr1_301",
     "albedo": "mp_buckle_mr1_301_c1_999_ab",
-    "normal": "mp_buckle_mr1_301_c1_999_nm"
+    "normal": "mp_buckle_mr1_301_c1_999_nm",
+    "swatchTextureHex": "4EDC4A28",
+    "swatchTexture": "uisw_cotton_pt001"
   },
   {
     "componentHex": "09E04AD0",
@@ -5083,7 +5549,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_301",
     "albedo": "mp_buckle_mr1_301_c1_999_ab",
-    "normal": "mp_buckle_mr1_301_c1_999_nm"
+    "normal": "mp_buckle_mr1_301_c1_999_nm",
+    "swatchTextureHex": "4EDC4A28",
+    "swatchTexture": "uisw_cotton_pt001"
   },
   {
     "componentHex": "14CD60AA",
@@ -5104,7 +5572,9 @@
     "tint2": 15,
     "drawable": "mp_buckle_fr1_301",
     "albedo": "mp_buckle_mr1_301_c1_999_ab",
-    "normal": "mp_buckle_mr1_301_c1_999_nm"
+    "normal": "mp_buckle_mr1_301_c1_999_nm",
+    "swatchTextureHex": "4EDC4A28",
+    "swatchTexture": "uisw_cotton_pt001"
   },
   {
     "componentHex": "A619033F",
@@ -5125,7 +5595,9 @@
     "tint2": 72,
     "drawable": "mp_buckle_fr1_301",
     "albedo": "mp_buckle_mr1_301_c1_999_ab",
-    "normal": "mp_buckle_mr1_301_c1_999_nm"
+    "normal": "mp_buckle_mr1_301_c1_999_nm",
+    "swatchTextureHex": "4EDC4A28",
+    "swatchTexture": "uisw_cotton_pt001"
   },
   {
     "componentHex": "6B958E35",
@@ -5146,7 +5618,9 @@
     "tint2": 8,
     "drawable": "mp_buckle_fr1_301",
     "albedo": "mp_buckle_mr1_301_c1_999_ab",
-    "normal": "mp_buckle_mr1_301_c1_999_nm"
+    "normal": "mp_buckle_mr1_301_c1_999_nm",
+    "swatchTextureHex": "4EDC4A28",
+    "swatchTexture": "uisw_cotton_pt001"
   },
   {
     "componentHex": "98E6F552",
@@ -5165,7 +5639,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_017",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_017_c1_000_nm"
+    "normal": "mp_buckle_mr1_017_c1_000_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "F1341193",
@@ -5184,7 +5660,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_017",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_017_c1_001_nm"
+    "normal": "mp_buckle_mr1_017_c1_001_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "DD6CF93B",
@@ -5203,7 +5681,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_017",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_017_c1_002_nm"
+    "normal": "mp_buckle_mr1_017_c1_002_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "A00EC847",
@@ -5222,7 +5702,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_017",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_017_c1_003_nm"
+    "normal": "mp_buckle_mr1_017_c1_003_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "4839939E",
@@ -5241,7 +5723,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_017",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_017_c1_004_nm"
+    "normal": "mp_buckle_mr1_017_c1_004_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "8D8454B8",
@@ -5260,7 +5744,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_017",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_017_c1_005_nm"
+    "normal": "mp_buckle_mr1_017_c1_005_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "BEF564BF",
@@ -5279,7 +5765,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_017",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_017_c1_007_nm"
+    "normal": "mp_buckle_mr1_017_c1_007_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "9C3F6CCC",
@@ -5298,7 +5786,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_017",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_017_c1_006_nm"
+    "normal": "mp_buckle_mr1_017_c1_006_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "4C80CB7D",
@@ -5317,7 +5807,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_018",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_018_c1_000_nm"
+    "normal": "mp_buckle_mr1_018_c1_000_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "285CFC11",
@@ -5336,7 +5828,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_018",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_018_c1_001_nm"
+    "normal": "mp_buckle_mr1_018_c1_001_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "36D04011",
@@ -5355,7 +5849,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_018",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_018_c1_002_nm"
+    "normal": "mp_buckle_mr1_018_c1_002_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "D6536CE5",
@@ -5374,7 +5870,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_018",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_018_c1_003_nm"
+    "normal": "mp_buckle_mr1_018_c1_003_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "43F01DD6",
@@ -5393,7 +5891,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_018",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_018_c1_004_nm"
+    "normal": "mp_buckle_mr1_018_c1_004_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "7383DDCE",
@@ -5412,7 +5912,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_018",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_018_c1_005_nm"
+    "normal": "mp_buckle_mr1_018_c1_005_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "D41C3CE3",
@@ -5431,7 +5933,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_018",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_018_c1_006_nm"
+    "normal": "mp_buckle_mr1_018_c1_006_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "BC1D49C9",
@@ -5450,7 +5954,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_018",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_018_c1_007_nm"
+    "normal": "mp_buckle_mr1_018_c1_007_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "73BFEE5A",
@@ -5469,7 +5975,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_018",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_018_c1_008_nm"
+    "normal": "mp_buckle_mr1_018_c1_008_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "5F66FA17",
@@ -5488,7 +5996,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_018",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_018_c1_009_nm"
+    "normal": "mp_buckle_mr1_018_c1_009_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "1133A823",
@@ -5507,7 +6017,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_018",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_018_c1_010_nm"
+    "normal": "mp_buckle_mr1_018_c1_010_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "E8C0BD90",
@@ -5526,7 +6038,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_018",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_018_c1_012_nm"
+    "normal": "mp_buckle_mr1_018_c1_012_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "D5652B47",
@@ -5547,7 +6061,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_001",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_001_c1_000_nm"
+    "normal": "mp_buckle_mr1_001_c1_000_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "C7315973",
@@ -5568,7 +6084,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_001",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_001_c1_001_nm"
+    "normal": "mp_buckle_mr1_001_c1_001_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "FB2B2EBD",
@@ -5589,7 +6107,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_001",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_001_c1_004_nm"
+    "normal": "mp_buckle_mr1_001_c1_004_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "B059E0E8",
@@ -5610,7 +6130,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_001",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_001_c1_005_nm"
+    "normal": "mp_buckle_mr1_001_c1_005_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "322569C2",
@@ -5631,7 +6153,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_001",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_001_c1_006_nm"
+    "normal": "mp_buckle_mr1_001_c1_006_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "71C11DC9",
@@ -5652,7 +6176,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_001",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_001_c1_008_nm"
+    "normal": "mp_buckle_mr1_001_c1_008_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "1447205B",
@@ -5673,7 +6199,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_001",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_001_c1_009_nm"
+    "normal": "mp_buckle_mr1_001_c1_009_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "9ED6C762",
@@ -5694,7 +6222,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_001",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_001_c1_010_nm"
+    "normal": "mp_buckle_mr1_001_c1_010_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "871764C3",
@@ -5715,7 +6245,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_001",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_001_c1_011_nm"
+    "normal": "mp_buckle_mr1_001_c1_011_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "8F289D97",
@@ -5736,7 +6268,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_001",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_001_c1_012_nm"
+    "normal": "mp_buckle_mr1_001_c1_012_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "42442575",
@@ -5757,7 +6291,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_001",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_001_c1_015_nm"
+    "normal": "mp_buckle_mr1_001_c1_015_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "BDF04B6F",
@@ -5778,7 +6314,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_012",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_012_c1_000_nm"
+    "normal": "mp_buckle_mr1_012_c1_000_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "FD4B3D92",
@@ -5799,7 +6337,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_012",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_012_c1_002_nm"
+    "normal": "mp_buckle_mr1_012_c1_002_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "91A858D2",
@@ -5820,7 +6360,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_012",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_012_c1_003_nm"
+    "normal": "mp_buckle_mr1_012_c1_003_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "B70CB8FB",
@@ -5841,7 +6383,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_012",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_012_c1_004_nm"
+    "normal": "mp_buckle_mr1_012_c1_004_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "6A743CAB",
@@ -5862,7 +6406,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_012",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_012_c1_005_nm"
+    "normal": "mp_buckle_mr1_012_c1_005_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "91C60625",
@@ -5883,7 +6429,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_012",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_012_c1_006_nm"
+    "normal": "mp_buckle_mr1_012_c1_006_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "270442E4",
@@ -5904,7 +6452,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_012",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_012_c1_007_nm"
+    "normal": "mp_buckle_mr1_012_c1_007_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "BA5B63F9",
@@ -5925,7 +6475,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_012",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_012_c1_008_nm"
+    "normal": "mp_buckle_mr1_012_c1_008_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "93C85F18",
@@ -5946,7 +6498,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_012",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_012_c1_009_nm"
+    "normal": "mp_buckle_mr1_012_c1_009_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "697AE58F",
@@ -5967,7 +6521,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_012",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_012_c1_010_nm"
+    "normal": "mp_buckle_mr1_012_c1_010_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "BD077827",
@@ -5988,7 +6544,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_012",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_012_c1_011_nm"
+    "normal": "mp_buckle_mr1_012_c1_011_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "F736EFD2",
@@ -6009,7 +6567,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_012",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_012_c1_012_nm"
+    "normal": "mp_buckle_mr1_012_c1_012_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "AA6BAFA0",
@@ -6030,7 +6590,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_012",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_012_c1_013_nm"
+    "normal": "mp_buckle_mr1_012_c1_013_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "BFC7862C",
@@ -6051,7 +6613,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_004",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_004_c1_000_nm"
+    "normal": "mp_buckle_mr1_004_c1_000_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "4A5C672E",
@@ -6072,7 +6636,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_004",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_004_c1_001_nm"
+    "normal": "mp_buckle_mr1_004_c1_001_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "5E8CD55A",
@@ -6093,7 +6659,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_004",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_004_c1_002_nm"
+    "normal": "mp_buckle_mr1_004_c1_002_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "5ADADA95",
@@ -6114,7 +6682,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_004",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_004_c1_003_nm"
+    "normal": "mp_buckle_mr1_004_c1_003_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "465177F6",
@@ -6135,7 +6705,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_004",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_004_c1_004_nm"
+    "normal": "mp_buckle_mr1_004_c1_004_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "EA896B1A",
@@ -6156,7 +6728,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_004",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_004_c1_005_nm"
+    "normal": "mp_buckle_mr1_004_c1_005_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "FB32127E",
@@ -6177,7 +6751,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_004",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_004_c1_006_nm"
+    "normal": "mp_buckle_mr1_004_c1_006_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "E6340F43",
@@ -6198,7 +6774,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_011",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_011_c1_000_nm"
+    "normal": "mp_buckle_mr1_011_c1_000_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "A30373DF",
@@ -6219,7 +6797,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_011",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_011_c1_001_nm"
+    "normal": "mp_buckle_mr1_011_c1_001_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "C3780D43",
@@ -6240,7 +6820,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_011",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_011_c1_002_nm"
+    "normal": "mp_buckle_mr1_011_c1_002_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "AA0A7B13",
@@ -6261,7 +6843,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_011",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_011_c1_003_nm"
+    "normal": "mp_buckle_mr1_011_c1_003_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "B6DDD124",
@@ -6282,7 +6866,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_011",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_011_c1_004_nm"
+    "normal": "mp_buckle_mr1_011_c1_004_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "7DEC9A94",
@@ -6303,7 +6889,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_011",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_011_c1_006_nm"
+    "normal": "mp_buckle_mr1_011_c1_006_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "8593CB12",
@@ -6324,7 +6912,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_011",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_011_c1_007_nm"
+    "normal": "mp_buckle_mr1_011_c1_007_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "7685B653",
@@ -6345,7 +6935,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_011",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_011_c1_008_nm"
+    "normal": "mp_buckle_mr1_011_c1_008_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "B3123850",
@@ -6366,7 +6958,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_007",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_007_c1_002_nm"
+    "normal": "mp_buckle_mr1_007_c1_002_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "985E50C4",
@@ -6387,7 +6981,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_007",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_007_c1_003_nm"
+    "normal": "mp_buckle_mr1_007_c1_003_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "82B0EE44",
@@ -6408,7 +7004,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_007",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_007_c1_004_nm"
+    "normal": "mp_buckle_mr1_007_c1_004_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "A8691739",
@@ -6429,7 +7027,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_007",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_007_c1_005_nm"
+    "normal": "mp_buckle_mr1_007_c1_005_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "4C9ACEC6",
@@ -6450,7 +7050,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_007",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_007_c1_006_nm"
+    "normal": "mp_buckle_mr1_007_c1_006_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "39F6A373",
@@ -6471,7 +7073,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_007",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_007_c1_010_nm"
+    "normal": "mp_buckle_mr1_007_c1_010_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "70237495",
@@ -6492,7 +7096,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_007",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_007_c1_009_nm"
+    "normal": "mp_buckle_mr1_007_c1_009_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "320FB40F",
@@ -6513,7 +7119,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_007",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_007_c1_008_nm"
+    "normal": "mp_buckle_mr1_007_c1_008_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "9A114675",
@@ -6534,7 +7142,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_007",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_007_c1_007_nm"
+    "normal": "mp_buckle_mr1_007_c1_007_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "2AAC7E07",
@@ -6555,7 +7165,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_008",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_008_c1_000_nm"
+    "normal": "mp_buckle_mr1_008_c1_000_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "3C4A4108",
@@ -6576,7 +7188,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_008",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_008_c1_001_nm"
+    "normal": "mp_buckle_mr1_008_c1_001_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "5354AC98",
@@ -6597,7 +7211,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_008",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_008_c1_002_nm"
+    "normal": "mp_buckle_mr1_008_c1_002_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "9843C7BB",
@@ -6618,7 +7234,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_002",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_002_c1_000_nm"
+    "normal": "mp_buckle_mr1_002_c1_000_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "D483AC43",
@@ -6639,7 +7257,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_002",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_002_c1_001_nm"
+    "normal": "mp_buckle_mr1_002_c1_001_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "B60AC627",
@@ -6660,7 +7280,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_002",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_002_c1_002_nm"
+    "normal": "mp_buckle_mr1_002_c1_002_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "90E2A999",
@@ -6681,7 +7303,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_002",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_002_c1_003_nm"
+    "normal": "mp_buckle_mr1_002_c1_003_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "9E59CC88",
@@ -6702,7 +7326,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_002",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_002_c1_004_nm"
+    "normal": "mp_buckle_mr1_002_c1_004_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "247C6E80",
@@ -6723,7 +7349,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_002",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_002_c1_005_nm"
+    "normal": "mp_buckle_mr1_002_c1_005_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "B0EA569A",
@@ -6744,7 +7372,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_002",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_002_c1_007_nm"
+    "normal": "mp_buckle_mr1_002_c1_007_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "B2A5E0F6",
@@ -6765,7 +7395,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_002",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_002_c1_008_nm"
+    "normal": "mp_buckle_mr1_002_c1_008_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "EB06C73F",
@@ -6786,7 +7418,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_002",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_002_c1_009_nm"
+    "normal": "mp_buckle_mr1_002_c1_009_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "2C102FB2",
@@ -6807,7 +7441,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_002",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_002_c1_010_nm"
+    "normal": "mp_buckle_mr1_002_c1_010_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "B796B465",
@@ -6828,7 +7464,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_002",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_002_c1_011_nm"
+    "normal": "mp_buckle_mr1_002_c1_011_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "1F8E5631",
@@ -6849,7 +7487,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_002",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_002_c1_014_nm"
+    "normal": "mp_buckle_mr1_002_c1_014_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "362EE4AF",
@@ -6868,7 +7508,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_020",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_020_c1_001_nm"
+    "normal": "mp_buckle_mr1_020_c1_001_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "C3189CC1",
@@ -6887,7 +7529,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_020",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_020_c1_002_nm"
+    "normal": "mp_buckle_mr1_020_c1_002_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "F9796C19",
@@ -6906,7 +7550,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_020",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_020_c1_003_nm"
+    "normal": "mp_buckle_mr1_020_c1_003_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "B932E487",
@@ -6925,7 +7571,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_020",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_020_c1_004_nm"
+    "normal": "mp_buckle_mr1_020_c1_004_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "DC51F125",
@@ -6944,7 +7592,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_020",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_020_c1_005_nm"
+    "normal": "mp_buckle_mr1_020_c1_005_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "D3EA81B6",
@@ -6963,7 +7613,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_020",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_020_c1_006_nm"
+    "normal": "mp_buckle_mr1_020_c1_006_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "D772ED2A",
@@ -6982,7 +7634,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_020",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_020_c1_007_nm"
+    "normal": "mp_buckle_mr1_020_c1_007_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "828B1E4B",
@@ -7001,7 +7655,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_020",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_020_c1_008_nm"
+    "normal": "mp_buckle_mr1_020_c1_008_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "44E06433",
@@ -7020,7 +7676,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_021",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_021_c1_001_nm"
+    "normal": "mp_buckle_mr1_021_c1_001_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "4ABA2255",
@@ -7039,7 +7697,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_021",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_021_c1_002_nm"
+    "normal": "mp_buckle_mr1_021_c1_002_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "451CD7FE",
@@ -7058,7 +7718,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_021",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_021_c1_003_nm"
+    "normal": "mp_buckle_mr1_021_c1_003_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "FCBA4F1C",
@@ -7077,7 +7739,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_021",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_021_c1_004_nm"
+    "normal": "mp_buckle_mr1_021_c1_004_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "D360F42F",
@@ -7096,7 +7760,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_021",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_021_c1_005_nm"
+    "normal": "mp_buckle_mr1_021_c1_005_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "F393E001",
@@ -7115,7 +7781,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_021",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_021_c1_006_nm"
+    "normal": "mp_buckle_mr1_021_c1_006_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "371A3113",
@@ -7134,7 +7802,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_021",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_021_c1_007_nm"
+    "normal": "mp_buckle_mr1_021_c1_007_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "F77C1999",
@@ -7153,7 +7823,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_021",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_021_c1_008_nm"
+    "normal": "mp_buckle_mr1_021_c1_008_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "1B3282B0",
@@ -7172,7 +7844,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_021",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_021_c1_009_nm"
+    "normal": "mp_buckle_mr1_021_c1_009_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "5ABAC390",
@@ -7191,7 +7865,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_021",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_021_c1_010_nm"
+    "normal": "mp_buckle_mr1_021_c1_010_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "64926B3C",
@@ -7212,7 +7888,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_010",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_010_c1_000_nm"
+    "normal": "mp_buckle_mr1_010_c1_000_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "9A961DE0",
@@ -7233,7 +7911,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_010",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_010_c1_001_nm"
+    "normal": "mp_buckle_mr1_010_c1_001_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "CEE6931E",
@@ -7254,7 +7934,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_010",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_010_c1_002_nm"
+    "normal": "mp_buckle_mr1_010_c1_002_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "63E79356",
@@ -7275,7 +7957,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_010",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_010_c1_003_nm"
+    "normal": "mp_buckle_mr1_010_c1_003_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "124F10EC",
@@ -7296,7 +7980,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_010",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_010_c1_004_nm"
+    "normal": "mp_buckle_mr1_010_c1_004_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "A7C4F60C",
@@ -7317,7 +8003,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_000",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_000_c1_000_nm"
+    "normal": "mp_buckle_mr1_000_c1_000_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "4E4130A7",
@@ -7338,7 +8026,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_000",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_000_c1_001_nm"
+    "normal": "mp_buckle_mr1_000_c1_001_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "A4E88EF4",
@@ -7359,7 +8049,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_000",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_000_c1_002_nm"
+    "normal": "mp_buckle_mr1_000_c1_002_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "E9374F9A",
@@ -7380,7 +8072,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_000",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_000_c1_003_nm"
+    "normal": "mp_buckle_mr1_000_c1_003_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "8FC6C98C",
@@ -7401,7 +8095,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_000",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_000_c1_004_nm"
+    "normal": "mp_buckle_mr1_000_c1_004_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "29BBD9A9",
@@ -7422,7 +8118,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_000",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_000_c1_005_nm"
+    "normal": "mp_buckle_mr1_000_c1_005_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "B8CEDAE7",
@@ -7443,7 +8141,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_000",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_000_c1_006_nm"
+    "normal": "mp_buckle_mr1_000_c1_006_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "6745BD2D",
@@ -7464,7 +8164,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_000",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_000_c1_007_nm"
+    "normal": "mp_buckle_mr1_000_c1_007_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "0EFAA67C",
@@ -7485,7 +8187,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_000",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_000_c1_008_nm"
+    "normal": "mp_buckle_mr1_000_c1_008_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "B6D024CB",
@@ -7506,7 +8210,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_000",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_000_c1_009_nm"
+    "normal": "mp_buckle_mr1_000_c1_009_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "18AB44CC",
@@ -7527,7 +8233,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_000",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_000_c1_010_nm"
+    "normal": "mp_buckle_mr1_000_c1_010_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "6E7CCEF2",
@@ -7548,7 +8256,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_000",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_000_c1_011_nm"
+    "normal": "mp_buckle_mr1_000_c1_011_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "E812CCDF",
@@ -7569,7 +8279,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_000",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_000_c1_012_nm"
+    "normal": "mp_buckle_mr1_000_c1_012_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "DD6292BC",
@@ -7590,7 +8302,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_000",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_000_c1_013_nm"
+    "normal": "mp_buckle_mr1_000_c1_013_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "D36A93AC",
@@ -7611,7 +8325,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_000",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_000_c1_014_nm"
+    "normal": "mp_buckle_mr1_000_c1_014_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "7EA2C613",
@@ -7632,7 +8348,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_000",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_000_c1_015_nm"
+    "normal": "mp_buckle_mr1_000_c1_015_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "192B0287",
@@ -7653,7 +8371,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_000",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_000_c1_016_nm"
+    "normal": "mp_buckle_mr1_000_c1_016_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "46D7381C",
@@ -7674,7 +8394,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_000",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_000_c1_017_nm"
+    "normal": "mp_buckle_mr1_000_c1_017_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "5C525539",
@@ -7695,7 +8417,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_000",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_000_c1_018_nm"
+    "normal": "mp_buckle_mr1_000_c1_018_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "1C736119",
@@ -7716,7 +8440,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_000",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_000_c1_019_nm"
+    "normal": "mp_buckle_mr1_000_c1_019_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "271AC864",
@@ -7737,7 +8463,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_000",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_000_c1_020_nm"
+    "normal": "mp_buckle_mr1_000_c1_020_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "A2C0B3FF",
@@ -7758,7 +8486,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_000",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_000_c1_021_nm"
+    "normal": "mp_buckle_mr1_000_c1_021_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "238B114E",
@@ -7779,7 +8509,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_000",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_000_c1_022_nm"
+    "normal": "mp_buckle_mr1_000_c1_022_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "958EA1C2",
@@ -7800,7 +8532,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_000",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_000_c1_023_nm"
+    "normal": "mp_buckle_mr1_000_c1_023_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "02E72099",
@@ -7821,7 +8555,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_000",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_000_c1_024_nm"
+    "normal": "mp_buckle_mr1_000_c1_024_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "FA4E1BFD",
@@ -7842,7 +8578,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_000",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_000_c1_025_nm"
+    "normal": "mp_buckle_mr1_000_c1_025_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "074E9392",
@@ -7863,7 +8601,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_000",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_000_c1_026_nm"
+    "normal": "mp_buckle_mr1_000_c1_026_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "66A1C0DD",
@@ -7884,7 +8624,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_000",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_000_c1_027_nm"
+    "normal": "mp_buckle_mr1_000_c1_027_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "E70266D4",
@@ -7905,7 +8647,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_000",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_000_c1_028_nm"
+    "normal": "mp_buckle_mr1_000_c1_028_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "71D3B94E",
@@ -7926,7 +8670,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_003",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_003_c1_000_nm"
+    "normal": "mp_buckle_mr1_003_c1_000_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "C983BDBD",
@@ -7947,7 +8693,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_003",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_003_c1_001_nm"
+    "normal": "mp_buckle_mr1_003_c1_001_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "0BDC21AA",
@@ -7968,7 +8716,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_003",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_003_c1_002_nm"
+    "normal": "mp_buckle_mr1_003_c1_002_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "439E1D0D",
@@ -7989,7 +8739,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_003",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_003_c1_003_nm"
+    "normal": "mp_buckle_mr1_003_c1_003_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "046791E8",
@@ -8010,7 +8762,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_003",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_003_c1_004_nm"
+    "normal": "mp_buckle_mr1_003_c1_004_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "24FA98B4",
@@ -8029,7 +8783,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_019",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_019_c1_000_nm"
+    "normal": "mp_buckle_mr1_019_c1_000_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "0681BE0D",
@@ -8048,7 +8804,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_019",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_019_c1_001_nm"
+    "normal": "mp_buckle_mr1_019_c1_001_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "9C279DA9",
@@ -8067,7 +8825,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_019",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_019_c1_002_nm"
+    "normal": "mp_buckle_mr1_019_c1_002_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "9422709B",
@@ -8086,7 +8846,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_019",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_019_c1_003_nm"
+    "normal": "mp_buckle_mr1_019_c1_003_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "80264EA9",
@@ -8105,7 +8867,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_019",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_019_c1_004_nm"
+    "normal": "mp_buckle_mr1_019_c1_004_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "63D915DD",
@@ -8124,7 +8888,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_019",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_019_c1_005_nm"
+    "normal": "mp_buckle_mr1_019_c1_005_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "1E09C6CC",
@@ -8143,7 +8909,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_019",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_019_c1_006_nm"
+    "normal": "mp_buckle_mr1_019_c1_006_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "38AB7EA6",
@@ -8162,7 +8930,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_019",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_019_c1_007_nm"
+    "normal": "mp_buckle_mr1_019_c1_007_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "47794DA0",
@@ -8183,7 +8953,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_006",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_006_c1_000_nm"
+    "normal": "mp_buckle_mr1_006_c1_000_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "87489966",
@@ -8204,7 +8976,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_006",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_006_c1_001_nm"
+    "normal": "mp_buckle_mr1_006_c1_001_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "F237D4C8",
@@ -8225,7 +8999,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_006",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_006_c1_002_nm"
+    "normal": "mp_buckle_mr1_006_c1_002_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "037D993E",
@@ -8246,7 +9022,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_006",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_006_c1_003_nm"
+    "normal": "mp_buckle_mr1_006_c1_003_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "80B791ED",
@@ -8267,7 +9045,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_006",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_006_c1_004_nm"
+    "normal": "mp_buckle_mr1_006_c1_004_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "5360AC07",
@@ -8288,7 +9068,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_006",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_006_c1_006_nm"
+    "normal": "mp_buckle_mr1_006_c1_006_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "B22E80EF",
@@ -8309,7 +9091,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_006",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_006_c1_008_nm"
+    "normal": "mp_buckle_mr1_006_c1_008_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "B404E0EC",
@@ -8330,7 +9114,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_006",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_006_c1_009_nm"
+    "normal": "mp_buckle_mr1_006_c1_009_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "884CD09F",
@@ -8351,7 +9137,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_006",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_006_c1_010_nm"
+    "normal": "mp_buckle_mr1_006_c1_010_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "BBE1E85A",
@@ -8372,7 +9160,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_006",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_006_c1_011_nm"
+    "normal": "mp_buckle_mr1_006_c1_011_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "8419942F",
@@ -8393,7 +9183,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_006",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_006_c1_012_nm"
+    "normal": "mp_buckle_mr1_006_c1_012_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "203C544F",
@@ -8414,7 +9206,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_006",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_006_c1_014_nm"
+    "normal": "mp_buckle_mr1_006_c1_014_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "3CE3FD4B",
@@ -8435,7 +9229,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_005",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_005_c1_000_nm"
+    "normal": "mp_buckle_mr1_005_c1_000_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "E0D49C43",
@@ -8456,7 +9252,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_005",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_005_c1_001_nm"
+    "normal": "mp_buckle_mr1_005_c1_001_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "0669EF29",
@@ -8477,7 +9275,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_005",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_005_c1_002_nm"
+    "normal": "mp_buckle_mr1_005_c1_002_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "A9537F0F",
@@ -8498,7 +9298,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_005",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_005_c1_003_nm"
+    "normal": "mp_buckle_mr1_005_c1_003_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "7FE8B2EA",
@@ -8519,7 +9321,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_005",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_005_c1_004_nm"
+    "normal": "mp_buckle_mr1_005_c1_004_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "744AC084",
@@ -8540,7 +9344,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_005",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_005_c1_005_nm"
+    "normal": "mp_buckle_mr1_005_c1_005_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "65C8F8AF",
@@ -8561,7 +9367,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_005",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_005_c1_006_nm"
+    "normal": "mp_buckle_mr1_005_c1_006_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "F82C1AF9",
@@ -8582,7 +9390,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_005",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_005_c1_007_nm"
+    "normal": "mp_buckle_mr1_005_c1_007_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "F9C8AF65",
@@ -8603,7 +9413,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_005",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_005_c1_008_nm"
+    "normal": "mp_buckle_mr1_005_c1_008_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "3C6C1AD9",
@@ -8624,7 +9436,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_005",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_005_c1_009_nm"
+    "normal": "mp_buckle_mr1_005_c1_009_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "0BF631C1",
@@ -8645,7 +9459,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_005",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_005_c1_010_nm"
+    "normal": "mp_buckle_mr1_005_c1_010_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "4D06F865",
@@ -8666,7 +9482,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_005",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_005_c1_011_nm"
+    "normal": "mp_buckle_mr1_005_c1_011_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "8E196FD4",
@@ -8687,7 +9505,9 @@
     "tint2": 44,
     "drawable": "mp_buckle_fr1_005",
     "albedo": "mp_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_buckle_mr1_005_c1_012_nm"
+    "normal": "mp_buckle_mr1_005_c1_012_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "D1A29F17",
@@ -8706,7 +9526,9 @@
     "tint2": 16,
     "drawable": "mp_buckle_fr1_016",
     "albedo": "mp_buckle_mr1_016_c1_999_ab",
-    "normal": "mp_buckle_mr1_016_c1_000_nm"
+    "normal": "mp_buckle_mr1_016_c1_000_nm",
+    "swatchTextureHex": "7A23FEFC",
+    "swatchTexture": "uisw_cotton_000"
   },
   {
     "componentHex": "3f9d2c23",
@@ -8727,7 +9549,8 @@
     "tint2": 30,
     "drawable": "mp_vipseason1_buckle_fr1_000",
     "albedo": "mp_vipseason1_buckle_mr1_000_c1_999_ab",
-    "normal": "mp_vipseason1_buckle_mr1_000_c1_999_nm"
+    "normal": "mp_vipseason1_buckle_mr1_000_c1_999_nm",
+    "swatchTextureHex": "4EDC4A28"
   },
   {
     "componentHex": "61e470b1",
@@ -8748,7 +9571,8 @@
     "tint2": 30,
     "drawable": "mp_vipseason1_buckle_fr1_001",
     "albedo": "mp_vipseason1_buckle_mr1_000_c1_999_ab",
-    "normal": "mp_vipseason1_buckle_mr1_000_c1_999_nm"
+    "normal": "mp_vipseason1_buckle_mr1_000_c1_999_nm",
+    "swatchTextureHex": "4EDC4A28"
   },
   {
     "componentHex": "532ad33e",
@@ -8769,7 +9593,8 @@
     "tint2": 72,
     "drawable": "mp_vipseason1_buckle_fr1_002",
     "albedo": "mp_vipseason1_buckle_mr1_000_c1_999_ab",
-    "normal": "mp_vipseason1_buckle_mr1_000_c1_999_nm"
+    "normal": "mp_vipseason1_buckle_mr1_000_c1_999_nm",
+    "swatchTextureHex": "4EDC4A28"
   },
   {
     "componentHex": "cd0b4417",
@@ -8790,7 +9615,8 @@
     "tint2": 166,
     "drawable": "mp_vipseason2_buckle_fr1_000",
     "albedo": "mp_vipseason2_buckle_mr1_000_c1_999_ab",
-    "normal": "mp_vipseason2_buckle_mr1_000_c1_999_nm"
+    "normal": "mp_vipseason2_buckle_mr1_000_c1_999_nm",
+    "swatchTextureHex": "B3902E46"
   },
   {
     "componentHex": "7f48a893",
@@ -8811,7 +9637,8 @@
     "tint2": 45,
     "drawable": "mp_vipseason2_buckle_fr1_001",
     "albedo": "mp_vipseason2_buckle_mr1_001_c1_999_ab",
-    "normal": "mp_vipseason2_buckle_mr1_000_c1_999_nm"
+    "normal": "mp_vipseason2_buckle_mr1_000_c1_999_nm",
+    "swatchTextureHex": "B3902E46"
   },
   {
     "componentHex": "74d093a3",
@@ -8832,7 +9659,8 @@
     "tint2": 47,
     "drawable": "mp_vipseason2_buckle_fr1_002",
     "albedo": "mp_vipseason2_buckle_mr1_002_c1_999_ab",
-    "normal": "mp_vipseason2_buckle_mr1_000_c1_999_nm"
+    "normal": "mp_vipseason2_buckle_mr1_000_c1_999_nm",
+    "swatchTextureHex": "B3902E46"
   },
   {
     "componentHex": "a6927726",
@@ -8853,7 +9681,8 @@
     "tint2": 5,
     "drawable": "mp_vipseason2_buckle_fr1_003",
     "albedo": "mp_vipseason2_buckle_mr1_003_c1_999_ab",
-    "normal": "mp_vipseason2_buckle_mr1_000_c1_999_nm"
+    "normal": "mp_vipseason2_buckle_mr1_000_c1_999_nm",
+    "swatchTextureHex": "B3902E46"
   },
   {
     "componentHex": "27259925",
@@ -8874,7 +9703,9 @@
     "tint2": 20,
     "drawable": "mp_vipseason3_buckle_fr1_000",
     "albedo": "mp_vipseason3_buckle_mr1_000_c1_999_ab",
-    "normal": "mp_vipseason3_buckle_mr1_000_c1_999_nm"
+    "normal": "mp_vipseason3_buckle_mr1_000_c1_999_nm",
+    "swatchTextureHex": "B3902E46",
+    "swatchTexture": "uisw_leather_pt001"
   },
   {
     "componentHex": "54baf44f",
@@ -8895,7 +9726,8 @@
     "tint2": 19,
     "drawable": "mp_vipseason3_buckle_fr1_001",
     "albedo": "mp_vipseason3_buckle_mr1_001_c1_999_ab",
-    "normal": "mp_vipseason3_buckle_mr1_001_c1_999_nm"
+    "normal": "mp_vipseason3_buckle_mr1_001_c1_999_nm",
+    "swatchTextureHex": "B3902E46"
   },
   {
     "componentHex": "f293304d",
@@ -8916,7 +9748,8 @@
     "tint2": 20,
     "drawable": "mp_vipseason3_buckle_fr1_002",
     "albedo": "mp_vipseason3_buckle_mr1_002_c1_999_ab",
-    "normal": "mp_vipseason3_buckle_mr1_002_c1_999_nm"
+    "normal": "mp_vipseason3_buckle_mr1_002_c1_999_nm",
+    "swatchTextureHex": "B3902E46"
   },
   {
     "componentHex": "e4dd94e2",
@@ -8937,7 +9770,8 @@
     "tint2": 16,
     "drawable": "mp_vipseason3_buckle_fr1_004",
     "albedo": "mp_vipseason3_buckle_mr1_004_c1_999_ab",
-    "normal": "mp_vipseason3_buckle_mr1_004_c1_999_nm"
+    "normal": "mp_vipseason3_buckle_mr1_004_c1_999_nm",
+    "swatchTextureHex": "B3902E46"
   },
   {
     "componentHex": "ff5b54e6",
@@ -8958,7 +9792,8 @@
     "tint2": 20,
     "drawable": "mp_vipseason4_buckle_fr1_000",
     "albedo": "mp_vipseason4_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_vipseason4_buckle_mr1_000_c1_000_nm"
+    "normal": "mp_vipseason4_buckle_mr1_000_c1_000_nm",
+    "swatchTextureHex": "B3902E46"
   },
   {
     "componentHex": "f18a3944",
@@ -8979,7 +9814,8 @@
     "tint2": 19,
     "drawable": "mp_vipseason4_buckle_fr1_001",
     "albedo": "mp_vipseason4_buckle_mr1_001_c1_000_ab",
-    "normal": "mp_vipseason4_buckle_mr1_001_c1_000_nm"
+    "normal": "mp_vipseason4_buckle_mr1_001_c1_000_nm",
+    "swatchTextureHex": "B3902E46"
   },
   {
     "componentHex": "e2c49bb9",
@@ -9000,7 +9836,8 @@
     "tint2": 20,
     "drawable": "mp_vipseason4_buckle_fr1_002",
     "albedo": "mp_vipseason4_buckle_mr1_002_c1_000_ab",
-    "normal": "mp_vipseason4_buckle_mr1_002_c1_000_nm"
+    "normal": "mp_vipseason4_buckle_mr1_002_c1_000_nm",
+    "swatchTextureHex": "B3902E46"
   },
   {
     "componentHex": "534ffcce",
@@ -9021,7 +9858,8 @@
     "tint2": 16,
     "drawable": "mp_vipseason4_buckle_fr1_003",
     "albedo": "mp_vipseason4_buckle_mr1_003_c1_000_ab",
-    "normal": "mp_vipseason4_buckle_mr1_003_c1_000_nm"
+    "normal": "mp_vipseason4_buckle_mr1_003_c1_000_nm",
+    "swatchTextureHex": "B3902E46"
   },
   {
     "componentHex": "82529c1",
@@ -9042,7 +9880,8 @@
     "tint2": 20,
     "drawable": "mp_vipseason5_buckle_fr1_000",
     "albedo": "mp_vipseason5_buckle_mr1_000_c1_000_ab",
-    "normal": "mp_vipseason5_buckle_mr1_000_c1_000_nm"
+    "normal": "mp_vipseason5_buckle_mr1_000_c1_000_nm",
+    "swatchTextureHex": "B3902E46"
   },
   {
     "componentHex": "f9f28d5c",
@@ -9063,7 +9902,8 @@
     "tint2": 19,
     "drawable": "mp_vipseason5_buckle_fr1_001",
     "albedo": "mp_vipseason5_buckle_mr1_001_c1_000_ab",
-    "normal": "mp_vipseason5_buckle_mr1_001_c1_000_nm"
+    "normal": "mp_vipseason5_buckle_mr1_001_c1_000_nm",
+    "swatchTextureHex": "B3902E46"
   },
   {
     "componentHex": "be9416a0",
@@ -9084,7 +9924,8 @@
     "tint2": 20,
     "drawable": "mp_vipseason5_buckle_fr1_002",
     "albedo": "mp_vipseason5_buckle_mr1_002_c1_000_ab",
-    "normal": "mp_vipseason5_buckle_mr1_002_c1_000_nm"
+    "normal": "mp_vipseason5_buckle_mr1_002_c1_000_nm",
+    "swatchTextureHex": "B3902E46"
   },
   {
     "componentHex": "1845ca02",
@@ -9105,7 +9946,8 @@
     "tint2": 16,
     "drawable": "mp_vipseason5_buckle_fr1_003",
     "albedo": "mp_vipseason5_buckle_mr1_003_c1_000_ab",
-    "normal": "mp_vipseason5_buckle_mr1_003_c1_000_nm"
+    "normal": "mp_vipseason5_buckle_mr1_003_c1_000_nm",
+    "swatchTextureHex": "B3902E46"
   },
   {
     "componentHex": "981c0312",
@@ -9126,7 +9968,8 @@
     "tint2": 216,
     "drawable": "mp_belt_buckles_fr1_400",
     "albedo": "mp_belt_buckles_mr1_400_c1_000_ab",
-    "normal": "mp_belt_buckles_mr1_400_c1_000_nm"
+    "normal": "mp_belt_buckles_mr1_400_c1_000_nm",
+    "swatchTextureHex": "E4B32A84"
   },
   {
     "componentHex": "8e0aeef4",
@@ -9147,7 +9990,8 @@
     "tint2": 216,
     "drawable": "mp_belt_buckles_fr1_401",
     "albedo": "mp_belt_buckles_mr1_401_c1_000_ab",
-    "normal": "mp_belt_buckles_mr1_401_c1_000_nm"
+    "normal": "mp_belt_buckles_mr1_401_c1_000_nm",
+    "swatchTextureHex": "E4B32A84"
   },
   {
     "componentHex": "7bbd4a59",
@@ -9168,7 +10012,8 @@
     "tint2": 216,
     "drawable": "mp_belt_buckles_fr1_402",
     "albedo": "mp_belt_buckles_mr1_402_c1_000_ab",
-    "normal": "mp_belt_buckles_mr1_402_c1_000_nm"
+    "normal": "mp_belt_buckles_mr1_402_c1_000_nm",
+    "swatchTextureHex": "E4B32A84"
   },
   {
     "componentHex": "3f8ad1f5",
@@ -9189,7 +10034,8 @@
     "tint2": 216,
     "drawable": "mp_belt_buckles_fr1_403",
     "albedo": "mp_belt_buckles_mr1_403_c1_000_ab",
-    "normal": "mp_belt_buckles_mr1_403_c1_000_nm"
+    "normal": "mp_belt_buckles_mr1_403_c1_000_nm",
+    "swatchTextureHex": "E4B32A84"
   },
   {
     "componentHex": "5d340d47",
@@ -9210,7 +10056,8 @@
     "tint2": 216,
     "drawable": "mp_belt_buckles_fr1_404",
     "albedo": "mp_belt_buckles_mr1_404_c1_000_ab",
-    "normal": "mp_belt_buckles_mr1_404_c1_000_nm"
+    "normal": "mp_belt_buckles_mr1_404_c1_000_nm",
+    "swatchTextureHex": "E4B32A84"
   },
   {
     "componentHex": "22f718ce",
@@ -9231,7 +10078,8 @@
     "tint2": 216,
     "drawable": "mp_belt_buckles_fr1_405",
     "albedo": "mp_belt_buckles_mr1_405_c1_000_ab",
-    "normal": "mp_belt_buckles_mr1_405_c1_000_nm"
+    "normal": "mp_belt_buckles_mr1_405_c1_000_nm",
+    "swatchTextureHex": "E4B32A84"
   },
   {
     "componentHex": "526577aa",
@@ -9252,7 +10100,8 @@
     "tint2": 216,
     "drawable": "mp_belt_buckles_fr1_406",
     "albedo": "mp_belt_buckles_mr1_406_c1_000_ab",
-    "normal": "mp_belt_buckles_mr1_406_c1_000_nm"
+    "normal": "mp_belt_buckles_mr1_406_c1_000_nm",
+    "swatchTextureHex": "E4B32A84"
   },
   {
     "componentHex": "f05eb3d6",
@@ -9273,7 +10122,8 @@
     "tint2": 216,
     "drawable": "mp_belt_buckles_fr1_407",
     "albedo": "mp_belt_buckles_mr1_407_c1_000_ab",
-    "normal": "mp_belt_buckles_mr1_407_c1_000_nm"
+    "normal": "mp_belt_buckles_mr1_407_c1_000_nm",
+    "swatchTextureHex": "E4B32A84"
   },
   {
     "componentHex": "b4ca5278",
@@ -9294,7 +10144,8 @@
     "tint2": 63,
     "drawable": "mp_buckle_fr1_r04_l05_000",
     "albedo": "mp_buckle_mr1_r04_l05_000_c1_999_ab",
-    "normal": "mp_buckle_mr1_r04_l05_000_c1_999_nm"
+    "normal": "mp_buckle_mr1_r04_l05_000_c1_999_nm",
+    "swatchTextureHex": "4EDC4A28"
   },
   {
     "componentHex": "A70CB6FD",
@@ -9315,7 +10166,9 @@
     "tint2": 224,
     "drawable": "mp_buckle_fr1_r04_l05_000",
     "albedo": "mp_buckle_mr1_r04_l05_000_c1_999_ab",
-    "normal": "mp_buckle_mr1_r04_l05_000_c1_999_nm"
+    "normal": "mp_buckle_mr1_r04_l05_000_c1_999_nm",
+    "swatchTextureHex": "4EDC4A28",
+    "swatchTexture": "uisw_cotton_pt001"
   },
   {
     "componentHex": "D0390955",
@@ -9336,7 +10189,9 @@
     "tint2": 253,
     "drawable": "mp_buckle_fr1_r04_l05_000",
     "albedo": "mp_buckle_mr1_r04_l05_000_c1_999_ab",
-    "normal": "mp_buckle_mr1_r04_l05_000_c1_999_nm"
+    "normal": "mp_buckle_mr1_r04_l05_000_c1_999_nm",
+    "swatchTextureHex": "4EDC4A28",
+    "swatchTexture": "uisw_cotton_pt001"
   },
   {
     "componentHex": "40C16A20",
@@ -9357,7 +10212,9 @@
     "tint2": 59,
     "drawable": "mp_buckle_fr1_r04_l05_000",
     "albedo": "mp_buckle_mr1_r04_l05_000_c1_999_ab",
-    "normal": "mp_buckle_mr1_r04_l05_000_c1_999_nm"
+    "normal": "mp_buckle_mr1_r04_l05_000_c1_999_nm",
+    "swatchTextureHex": "4EDC4A28",
+    "swatchTexture": "uisw_cotton_pt001"
   },
   {
     "componentHex": "EBB5C04E",
@@ -9378,7 +10235,9 @@
     "tint2": 253,
     "drawable": "mp_buckle_fr1_r04_l05_000",
     "albedo": "mp_buckle_mr1_r04_l05_000_c1_999_ab",
-    "normal": "mp_buckle_mr1_r04_l05_000_c1_999_nm"
+    "normal": "mp_buckle_mr1_r04_l05_000_c1_999_nm",
+    "swatchTextureHex": "4EDC4A28",
+    "swatchTexture": "uisw_cotton_pt001"
   },
   {
     "componentHex": "DDF424CB",
@@ -9399,7 +10258,9 @@
     "tint2": 79,
     "drawable": "mp_buckle_fr1_r04_l05_000",
     "albedo": "mp_buckle_mr1_r04_l05_000_c1_999_ab",
-    "normal": "mp_buckle_mr1_r04_l05_000_c1_999_nm"
+    "normal": "mp_buckle_mr1_r04_l05_000_c1_999_nm",
+    "swatchTextureHex": "4EDC4A28",
+    "swatchTexture": "uisw_cotton_pt001"
   },
   {
     "componentHex": "48E34391",
@@ -9420,7 +10281,9 @@
     "tint2": 24,
     "drawable": "mp_t1_nl_buckle_fr1_001",
     "albedo": "mp_t1_nl_buckle_mr1_001_c1_999_ab",
-    "normal": "mp_t1_nl_buckle_mr1_001_c1_999_nm"
+    "normal": "mp_t1_nl_buckle_mr1_001_c1_999_nm",
+    "swatchTextureHex": "4EDC4A28",
+    "swatchTexture": "uisw_cotton_pt001"
   },
   {
     "componentHex": "E56B7C9F",
@@ -9441,7 +10304,9 @@
     "tint2": 56,
     "drawable": "mp_t1_nl_buckle_fr1_001",
     "albedo": "mp_t1_nl_buckle_mr1_001_c1_999_ab",
-    "normal": "mp_t1_nl_buckle_mr1_001_c1_999_nm"
+    "normal": "mp_t1_nl_buckle_mr1_001_c1_999_nm",
+    "swatchTextureHex": "4EDC4A28",
+    "swatchTexture": "uisw_cotton_pt001"
   },
   {
     "componentHex": "F38618D8",
@@ -9462,7 +10327,9 @@
     "tint2": 43,
     "drawable": "mp_t1_nl_buckle_fr1_001",
     "albedo": "mp_t1_nl_buckle_mr1_001_c1_999_ab",
-    "normal": "mp_t1_nl_buckle_mr1_001_c1_999_nm"
+    "normal": "mp_t1_nl_buckle_mr1_001_c1_999_nm",
+    "swatchTextureHex": "4EDC4A28",
+    "swatchTexture": "uisw_cotton_pt001"
   },
   {
     "componentHex": "01D43574",
@@ -9483,7 +10350,9 @@
     "tint2": 15,
     "drawable": "mp_t1_nl_buckle_fr1_001",
     "albedo": "mp_t1_nl_buckle_mr1_001_c1_999_ab",
-    "normal": "mp_t1_nl_buckle_mr1_001_c1_999_nm"
+    "normal": "mp_t1_nl_buckle_mr1_001_c1_999_nm",
+    "swatchTextureHex": "4EDC4A28",
+    "swatchTexture": "uisw_cotton_pt001"
   },
   {
     "componentHex": "0F2DD027",
@@ -9504,7 +10373,9 @@
     "tint2": 126,
     "drawable": "mp_t1_nl_buckle_fr1_001",
     "albedo": "mp_t1_nl_buckle_mr1_001_c1_999_ab",
-    "normal": "mp_t1_nl_buckle_mr1_001_c1_999_nm"
+    "normal": "mp_t1_nl_buckle_mr1_001_c1_999_nm",
+    "swatchTextureHex": "4EDC4A28",
+    "swatchTexture": "uisw_cotton_pt001"
   },
   {
     "componentHex": "67270024",
@@ -9525,7 +10396,9 @@
     "tint2": 127,
     "drawable": "mp_t1_nl_buckle_fr1_001",
     "albedo": "mp_t1_nl_buckle_mr1_001_c1_999_ab",
-    "normal": "mp_t1_nl_buckle_mr1_001_c1_999_nm"
+    "normal": "mp_t1_nl_buckle_mr1_001_c1_999_nm",
+    "swatchTextureHex": "B3902E46",
+    "swatchTexture": "uisw_leather_pt001"
   },
   {
     "componentHex": "A9BCB9A7",
@@ -9546,7 +10419,9 @@
     "tint2": 165,
     "drawable": "mp_t3_nl_buckle_fr1_001",
     "albedo": "mp_t3_nl_buckle_mr1_001_c1_999_ab",
-    "normal": "mp_t3_nl_buckle_mr1_001_c1_999_nm"
+    "normal": "mp_t3_nl_buckle_mr1_001_c1_999_nm",
+    "swatchTextureHex": "4EDC4A28",
+    "swatchTexture": "uisw_cotton_pt001"
   },
   {
     "componentHex": "E2E7ABFC",
@@ -9567,7 +10442,9 @@
     "tint2": 36,
     "drawable": "mp_t3_nl_buckle_fr1_001",
     "albedo": "mp_t3_nl_buckle_mr1_001_c1_999_ab",
-    "normal": "mp_t3_nl_buckle_mr1_001_c1_999_nm"
+    "normal": "mp_t3_nl_buckle_mr1_001_c1_999_nm",
+    "swatchTextureHex": "4EDC4A28",
+    "swatchTexture": "uisw_cotton_pt001"
   },
   {
     "componentHex": "F014C656",
@@ -9588,7 +10465,9 @@
     "tint2": 72,
     "drawable": "mp_t3_nl_buckle_fr1_001",
     "albedo": "mp_t3_nl_buckle_mr1_001_c1_999_ab",
-    "normal": "mp_t3_nl_buckle_mr1_001_c1_999_nm"
+    "normal": "mp_t3_nl_buckle_mr1_001_c1_999_nm",
+    "swatchTextureHex": "4EDC4A28",
+    "swatchTexture": "uisw_cotton_pt001"
   },
   {
     "componentHex": "4592F159",
@@ -9609,7 +10488,9 @@
     "tint2": 56,
     "drawable": "mp_t3_nl_buckle_fr1_001",
     "albedo": "mp_t3_nl_buckle_mr1_001_c1_999_ab",
-    "normal": "mp_t3_nl_buckle_mr1_001_c1_999_nm"
+    "normal": "mp_t3_nl_buckle_mr1_001_c1_999_nm",
+    "swatchTextureHex": "4EDC4A28",
+    "swatchTexture": "uisw_cotton_pt001"
   },
   {
     "componentHex": "D4900F4D",
@@ -9630,7 +10511,9 @@
     "tint2": 71,
     "drawable": "mp_t3_nl_buckle_fr1_001",
     "albedo": "mp_t3_nl_buckle_mr1_001_c1_999_ab",
-    "normal": "mp_t3_nl_buckle_mr1_001_c1_999_nm"
+    "normal": "mp_t3_nl_buckle_mr1_001_c1_999_nm",
+    "swatchTextureHex": "4EDC4A28",
+    "swatchTexture": "uisw_cotton_pt001"
   },
   {
     "componentHex": "7083473D",
@@ -9651,7 +10534,9 @@
     "tint2": 135,
     "drawable": "mp_t3_nl_buckle_fr1_001",
     "albedo": "mp_t3_nl_buckle_mr1_001_c1_999_ab",
-    "normal": "mp_t3_nl_buckle_mr1_001_c1_999_nm"
+    "normal": "mp_t3_nl_buckle_mr1_001_c1_999_nm",
+    "swatchTextureHex": "4EDC4A28",
+    "swatchTexture": "uisw_cotton_pt001"
   },
   {
     "componentHex": "0AA3AD87",
@@ -9672,7 +10557,9 @@
     "tint2": 49,
     "drawable": "mp_t2_nl_buckle_fr1_001",
     "albedo": "mp_t2_nl_buckle_mr1_001_c1_999_ab",
-    "normal": "mp_t2_nl_buckle_mr1_001_c1_999_nm"
+    "normal": "mp_t2_nl_buckle_mr1_001_c1_999_nm",
+    "swatchTextureHex": "4EDC4A28",
+    "swatchTexture": "uisw_cotton_pt001"
   },
   {
     "componentHex": "1CE1D203",
@@ -9693,7 +10580,9 @@
     "tint2": 41,
     "drawable": "mp_t2_nl_buckle_fr1_001",
     "albedo": "mp_t2_nl_buckle_mr1_001_c1_999_ab",
-    "normal": "mp_t2_nl_buckle_mr1_001_c1_999_nm"
+    "normal": "mp_t2_nl_buckle_mr1_001_c1_999_nm",
+    "swatchTextureHex": "4EDC4A28",
+    "swatchTexture": "uisw_cotton_pt001"
   },
   {
     "componentHex": "2F5F76FE",
@@ -9714,7 +10603,9 @@
     "tint2": 62,
     "drawable": "mp_t2_nl_buckle_fr1_001",
     "albedo": "mp_t2_nl_buckle_mr1_001_c1_999_ab",
-    "normal": "mp_t2_nl_buckle_mr1_001_c1_999_nm"
+    "normal": "mp_t2_nl_buckle_mr1_001_c1_999_nm",
+    "swatchTextureHex": "4EDC4A28",
+    "swatchTexture": "uisw_cotton_pt001"
   },
   {
     "componentHex": "AF4DF6D9",
@@ -9735,7 +10626,9 @@
     "tint2": 45,
     "drawable": "mp_t2_nl_buckle_fr1_001",
     "albedo": "mp_t2_nl_buckle_mr1_001_c1_999_ab",
-    "normal": "mp_t2_nl_buckle_mr1_001_c1_999_nm"
+    "normal": "mp_t2_nl_buckle_mr1_001_c1_999_nm",
+    "swatchTextureHex": "4EDC4A28",
+    "swatchTexture": "uisw_cotton_pt001"
   },
   {
     "componentHex": "41971B6D",
@@ -9756,7 +10649,9 @@
     "tint2": 49,
     "drawable": "mp_t2_nl_buckle_fr1_001",
     "albedo": "mp_t2_nl_buckle_mr1_001_c1_999_ab",
-    "normal": "mp_t2_nl_buckle_mr1_001_c1_999_nm"
+    "normal": "mp_t2_nl_buckle_mr1_001_c1_999_nm",
+    "swatchTextureHex": "4EDC4A28",
+    "swatchTexture": "uisw_cotton_pt001"
   },
   {
     "componentHex": "53D9BFF2",
@@ -9777,6 +10672,8 @@
     "tint2": 49,
     "drawable": "mp_t2_nl_buckle_fr1_001",
     "albedo": "mp_t2_nl_buckle_mr1_001_c1_999_ab",
-    "normal": "mp_t2_nl_buckle_mr1_001_c1_999_nm"
+    "normal": "mp_t2_nl_buckle_mr1_001_c1_999_nm",
+    "swatchTextureHex": "4EDC4A28",
+    "swatchTexture": "uisw_cotton_pt001"
   }
 ]

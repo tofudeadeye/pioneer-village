@@ -16,6 +16,8 @@
     "tint2": 255,
     "drawable": "player_three_ms1_apron_000",
     "albedo": 167072435,
-    "normal": 2860028015
+    "normal": 2860028015,
+    "swatchTextureHex": "816BE753",
+    "swatchTexture": "uisw_cotton_ck000"
   }
 ]

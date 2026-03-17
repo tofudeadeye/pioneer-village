@@ -16,7 +16,9 @@
     "tint2": 78,
     "drawable": "player_zero_beard_shv_chops_001_02",
     "albedo": 4172255973,
-    "normal": 2121174521
+    "normal": 2121174521,
+    "swatchTextureHex": "7A23FEFC",
+    "swatchTexture": "uisw_cotton_000"
   },
   {
     "componentHex": "F5D31879",
@@ -35,7 +37,9 @@
     "tint2": 78,
     "drawable": "player_zero_beard_shv_chops_000_02",
     "albedo": 4172255973,
-    "normal": 2121174521
+    "normal": 2121174521,
+    "swatchTextureHex": "7A23FEFC",
+    "swatchTexture": "uisw_cotton_000"
   },
   {
     "componentHex": "9CD93ADA",
@@ -54,7 +58,9 @@
     "tint2": 13,
     "drawable": "player_three_ms1_beard_shv_chops_001_02",
     "albedo": 4172255973,
-    "normal": 2121174521
+    "normal": 2121174521,
+    "swatchTextureHex": "7A23FEFC",
+    "swatchTexture": "uisw_cotton_000"
   },
   {
     "componentHex": "4FB035E3",
@@ -73,6 +79,8 @@
     "tint2": 13,
     "drawable": "player_three_ms1_beard_shv_chops_000_02",
     "albedo": 4172255973,
-    "normal": 2121174521
+    "normal": 2121174521,
+    "swatchTextureHex": "7A23FEFC",
+    "swatchTexture": "uisw_cotton_000"
   }
 ]

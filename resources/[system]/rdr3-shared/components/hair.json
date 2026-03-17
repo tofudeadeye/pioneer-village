@@ -437,7 +437,7 @@
     "drawable": "player_zero_hair_s01_l01_p0",
     "albedo": "hair_gen_999_c0_999_ab",
     "normal": "hair_gen_999_c0_999_nm",
-    "swatchTextureHex": "0"
+    "swatchTextureHex": "00000000"
   },
   {
     "componentHex": "A5EF55AB",
@@ -457,7 +457,7 @@
     "drawable": "player_zero_hair_s01_l01_p0",
     "albedo": "hair_gen_999_c0_999_ab",
     "normal": "hair_gen_999_c0_999_nm",
-    "swatchTextureHex": "0"
+    "swatchTextureHex": "00000000"
   },
   {
     "componentHex": "834F7AE9",
@@ -498,7 +498,7 @@
     "drawable": "player_zero_hair_s06_l03_p0",
     "albedo": "hair_gen_999_c0_999_ab",
     "normal": "hair_gen_999_c0_999_nm",
-    "swatchTextureHex": "0"
+    "swatchTextureHex": "00000000"
   },
   {
     "componentHex": "C89BC076",
@@ -518,7 +518,7 @@
     "drawable": "player_zero_hair_s06_l03_p1",
     "albedo": "hair_gen_999_c0_999_ab",
     "normal": "hair_gen_999_c0_999_nm",
-    "swatchTextureHex": "0"
+    "swatchTextureHex": "00000000"
   },
   {
     "componentHex": "F4712E87",
@@ -559,7 +559,7 @@
     "drawable": "player_zero_hair_s03_l03_p0",
     "albedo": "hair_gen_999_c0_999_ab",
     "normal": "hair_gen_999_c0_999_nm",
-    "swatchTextureHex": "0"
+    "swatchTextureHex": "00000000"
   },
   {
     "componentHex": "BC0220E9",
@@ -579,7 +579,7 @@
     "drawable": "player_zero_hair_s07_l03_p0",
     "albedo": "hair_gen_999_c0_999_ab",
     "normal": "hair_gen_999_c0_999_nm",
-    "swatchTextureHex": "0"
+    "swatchTextureHex": "00000000"
   },
   {
     "componentHex": "39665BB3",
@@ -599,7 +599,7 @@
     "drawable": "player_zero_hair_s07_l03_p1",
     "albedo": "hair_gen_999_c0_999_ab",
     "normal": "hair_gen_999_c0_999_nm",
-    "swatchTextureHex": "0"
+    "swatchTextureHex": "00000000"
   },
   {
     "componentHex": "BB97200F",
@@ -619,7 +619,7 @@
     "drawable": "player_zero_hair_s03_l03_p1",
     "albedo": "hair_gen_999_c0_999_ab",
     "normal": "hair_gen_999_c0_999_nm",
-    "swatchTextureHex": "0"
+    "swatchTextureHex": "00000000"
   },
   {
     "componentHex": "B920F6EF",
@@ -660,7 +660,7 @@
     "drawable": "player_zero_hair_s05_l03_p0",
     "albedo": "hair_gen_999_c0_999_ab",
     "normal": "hair_gen_999_c0_999_nm",
-    "swatchTextureHex": "0"
+    "swatchTextureHex": "00000000"
   },
   {
     "componentHex": "A846C709",
@@ -680,7 +680,7 @@
     "drawable": "player_zero_hair_s05_l03_p1",
     "albedo": "hair_gen_999_c0_999_ab",
     "normal": "hair_gen_999_c0_999_nm",
-    "swatchTextureHex": "0"
+    "swatchTextureHex": "00000000"
   },
   {
     "componentHex": "23E6F04A",
@@ -721,7 +721,7 @@
     "drawable": "player_zero_hair_s04_l03_p0",
     "albedo": "hair_gen_999_c0_999_ab",
     "normal": "hair_gen_999_c0_999_nm",
-    "swatchTextureHex": "0"
+    "swatchTextureHex": "00000000"
   },
   {
     "componentHex": "10A31955",
@@ -741,7 +741,7 @@
     "drawable": "player_zero_hair_s08_l03_p0",
     "albedo": "hair_gen_999_c0_999_ab",
     "normal": "hair_gen_999_c0_999_nm",
-    "swatchTextureHex": "0"
+    "swatchTextureHex": "00000000"
   },
   {
     "componentHex": "CEB1AE42",
@@ -761,7 +761,7 @@
     "drawable": "player_zero_hair_s08_l03_p1",
     "albedo": "hair_gen_999_c0_999_ab",
     "normal": "hair_gen_999_c0_999_nm",
-    "swatchTextureHex": "0"
+    "swatchTextureHex": "00000000"
   },
   {
     "componentHex": "87BB07E7",
@@ -781,7 +781,7 @@
     "drawable": "player_zero_hair_s04_l03_p1",
     "albedo": "hair_gen_999_c0_999_ab",
     "normal": "hair_gen_999_c0_999_nm",
-    "swatchTextureHex": "0"
+    "swatchTextureHex": "00000000"
   },
   {
     "componentHex": "CB88C9AA",

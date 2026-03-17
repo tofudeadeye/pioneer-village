@@ -238,7 +238,8 @@
     "drawable": "mp_t5_item_nl_gauntlets_mr1_001_full",
     "albedo": "mp_t5_item_nl_gauntlets_mr1_001_c1_999_ab",
     "normal": "mp_t5_item_nl_gauntlets_mr1_001_c1_999_nm",
-    "swatchTextureHex": "0525D566"
+    "swatchTextureHex": "0525D566",
+    "swatchTexture": "uisw_horse_cotton_pt004"
   },
   {
     "componentHex": "147CFA24",
@@ -258,7 +259,8 @@
     "drawable": "mp_t5_item_nl_gauntlets_mr1_001_full",
     "albedo": "mp_t5_item_nl_gauntlets_mr1_001_c1_999_ab",
     "normal": "mp_t5_item_nl_gauntlets_mr1_001_c1_999_nm",
-    "swatchTextureHex": "0525D566"
+    "swatchTextureHex": "0525D566",
+    "swatchTexture": "uisw_horse_cotton_pt004"
   },
   {
     "componentHex": "18260182",
@@ -278,7 +280,8 @@
     "drawable": "mp_t5_item_nl_gauntlets_mr1_001_full",
     "albedo": "mp_t5_item_nl_gauntlets_mr1_001_c1_999_ab",
     "normal": "mp_t5_item_nl_gauntlets_mr1_001_c1_999_nm",
-    "swatchTextureHex": "0525D566"
+    "swatchTextureHex": "0525D566",
+    "swatchTexture": "uisw_horse_cotton_pt004"
   },
   {
     "componentHex": "29F9A529",
@@ -298,7 +301,8 @@
     "drawable": "mp_t5_item_nl_gauntlets_mr1_001_full",
     "albedo": "mp_t5_item_nl_gauntlets_mr1_001_c1_999_ab",
     "normal": "mp_t5_item_nl_gauntlets_mr1_001_c1_999_nm",
-    "swatchTextureHex": "0525D566"
+    "swatchTextureHex": "0525D566",
+    "swatchTexture": "uisw_horse_cotton_pt004"
   },
   {
     "componentHex": "1A350594",
@@ -318,7 +322,8 @@
     "drawable": "mp_t5_item_nl_gauntlets_mr1_001_full",
     "albedo": "mp_t5_item_nl_gauntlets_mr1_001_c1_999_ab",
     "normal": "mp_t5_item_nl_gauntlets_mr1_001_c1_999_nm",
-    "swatchTextureHex": "0525D566"
+    "swatchTextureHex": "0525D566",
+    "swatchTexture": "uisw_horse_cotton_pt004"
   },
   {
     "componentHex": "2BA8287A",
@@ -338,7 +343,8 @@
     "drawable": "mp_t5_item_nl_gauntlets_mr1_001_full",
     "albedo": "mp_t5_item_nl_gauntlets_mr1_001_c1_999_ab",
     "normal": "mp_t5_item_nl_gauntlets_mr1_001_c1_999_nm",
-    "swatchTextureHex": "0525D566"
+    "swatchTextureHex": "0525D566",
+    "swatchTexture": "uisw_horse_cotton_pt004"
   },
   {
     "componentHex": "76B8A331",
@@ -421,7 +427,8 @@
     "drawable": "mp_t5_item_nl_gauntlets_fr1_001_full",
     "albedo": "mp_t5_item_nl_gauntlets_mr1_001_c1_999_ab",
     "normal": "mp_t5_item_nl_gauntlets_mr1_001_c1_999_nm",
-    "swatchTextureHex": "0525D566"
+    "swatchTextureHex": "0525D566",
+    "swatchTexture": "uisw_horse_cotton_pt004"
   },
   {
     "componentHex": "591DD8E2",
@@ -441,7 +448,8 @@
     "drawable": "mp_t5_item_nl_gauntlets_fr1_001_full",
     "albedo": "mp_t5_item_nl_gauntlets_mr1_001_c1_999_ab",
     "normal": "mp_t5_item_nl_gauntlets_mr1_001_c1_999_nm",
-    "swatchTextureHex": "0525D566"
+    "swatchTextureHex": "0525D566",
+    "swatchTexture": "uisw_horse_cotton_pt004"
   },
   {
     "componentHex": "4ADD3C61",
@@ -461,7 +469,8 @@
     "drawable": "mp_t5_item_nl_gauntlets_fr1_001_full",
     "albedo": "mp_t5_item_nl_gauntlets_mr1_001_c1_999_ab",
     "normal": "mp_t5_item_nl_gauntlets_mr1_001_c1_999_nm",
-    "swatchTextureHex": "0525D566"
+    "swatchTextureHex": "0525D566",
+    "swatchTexture": "uisw_horse_cotton_pt004"
   },
   {
     "componentHex": "EE73838F",
@@ -481,7 +490,8 @@
     "drawable": "mp_t5_item_nl_gauntlets_fr1_001_full",
     "albedo": "mp_t5_item_nl_gauntlets_mr1_001_c1_999_ab",
     "normal": "mp_t5_item_nl_gauntlets_mr1_001_c1_999_nm",
-    "swatchTextureHex": "0525D566"
+    "swatchTextureHex": "0525D566",
+    "swatchTexture": "uisw_horse_cotton_pt004"
   },
   {
     "componentHex": "6038E718",
@@ -501,7 +511,8 @@
     "drawable": "mp_t5_item_nl_gauntlets_fr1_001_full",
     "albedo": "mp_t5_item_nl_gauntlets_mr1_001_c1_999_ab",
     "normal": "mp_t5_item_nl_gauntlets_mr1_001_c1_999_nm",
-    "swatchTextureHex": "0525D566"
+    "swatchTextureHex": "0525D566",
+    "swatchTexture": "uisw_horse_cotton_pt004"
   },
   {
     "componentHex": "2835F713",
@@ -521,7 +532,8 @@
     "drawable": "mp_t5_item_nl_gauntlets_fr1_001_full",
     "albedo": "mp_t5_item_nl_gauntlets_mr1_001_c1_999_ab",
     "normal": "mp_t5_item_nl_gauntlets_mr1_001_c1_999_nm",
-    "swatchTextureHex": "0525D566"
+    "swatchTextureHex": "0525D566",
+    "swatchTexture": "uisw_horse_cotton_pt004"
   },
   {
     "componentHex": "f9dfb39e",

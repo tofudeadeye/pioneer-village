@@ -792,7 +792,8 @@
     "drawable": "mp_neckerchief_mr1_000_nude",
     "albedo": "mp_neckerchief_mr1_000_c1_998_ab",
     "normal": "mp_neckerchief_mr1_000_c1_000_nm",
-    "swatchTextureHex": "0640A79F"
+    "swatchTextureHex": "0640A79F",
+    "swatchTexture": "uisw_cotton_pd000"
   },
   {
     "componentHex": "D18AED25",
@@ -814,7 +815,8 @@
     "drawable": "mp_neckerchief_mr1_000_nude",
     "albedo": "mp_neckerchief_mr1_000_c1_998_ab",
     "normal": "mp_neckerchief_mr1_000_c1_000_nm",
-    "swatchTextureHex": "0640A79F"
+    "swatchTextureHex": "0640A79F",
+    "swatchTexture": "uisw_cotton_pd000"
   },
   {
     "componentHex": "C666D6DD",
@@ -836,7 +838,8 @@
     "drawable": "mp_neckerchief_mr1_000_nude",
     "albedo": "mp_neckerchief_mr1_000_c1_998_ab",
     "normal": "mp_neckerchief_mr1_000_c1_000_nm",
-    "swatchTextureHex": "0640A79F"
+    "swatchTextureHex": "0640A79F",
+    "swatchTexture": "uisw_cotton_pd000"
   },
   {
     "componentHex": "782E3A69",
@@ -858,7 +861,8 @@
     "drawable": "mp_neckerchief_mr1_000_nude",
     "albedo": "mp_neckerchief_mr1_000_c1_998_ab",
     "normal": "mp_neckerchief_mr1_000_c1_000_nm",
-    "swatchTextureHex": "0640A79F"
+    "swatchTextureHex": "0640A79F",
+    "swatchTexture": "uisw_cotton_pd000"
   },
   {
     "componentHex": "881ADA3E",
@@ -880,7 +884,8 @@
     "drawable": "mp_neckerchief_mr1_000_nude",
     "albedo": "mp_neckerchief_mr1_000_c1_998_ab",
     "normal": "mp_neckerchief_mr1_000_c1_000_nm",
-    "swatchTextureHex": "0640A79F"
+    "swatchTextureHex": "0640A79F",
+    "swatchTexture": "uisw_cotton_pd000"
   },
   {
     "componentHex": "3AD0BFAB",
@@ -4839,7 +4844,8 @@
     "drawable": "mp_neckwear_mr1_004_nude",
     "albedo": "mp_neckwear_mr1_004_c1_999_ab",
     "normal": "mp_neckwear_mr1_004_c1_999_nm",
-    "swatchTextureHex": "0640A79F"
+    "swatchTextureHex": "0640A79F",
+    "swatchTexture": "uisw_cotton_pd000"
   },
   {
     "componentHex": "78FE1971",
@@ -8156,7 +8162,8 @@
     "drawable": "mp_neckerchief_fr1_000_nude",
     "albedo": "mp_neckerchief_mr1_000_c1_998_ab",
     "normal": "mp_neckerchief_mr1_000_c1_000_nm",
-    "swatchTextureHex": "0640A79F"
+    "swatchTextureHex": "0640A79F",
+    "swatchTexture": "uisw_cotton_pd000"
   },
   {
     "componentHex": "91177DCA",
@@ -8178,7 +8185,8 @@
     "drawable": "mp_neckerchief_fr1_000_nude",
     "albedo": "mp_neckerchief_mr1_000_c1_998_ab",
     "normal": "mp_neckerchief_mr1_000_c1_000_nm",
-    "swatchTextureHex": "0640A79F"
+    "swatchTextureHex": "0640A79F",
+    "swatchTexture": "uisw_cotton_pd000"
   },
   {
     "componentHex": "7A5D5056",
@@ -8200,7 +8208,8 @@
     "drawable": "mp_neckerchief_fr1_000_nude",
     "albedo": "mp_neckerchief_mr1_000_c1_998_ab",
     "normal": "mp_neckerchief_mr1_000_c1_000_nm",
-    "swatchTextureHex": "0640A79F"
+    "swatchTextureHex": "0640A79F",
+    "swatchTexture": "uisw_cotton_pd000"
   },
   {
     "componentHex": "45B76707",
@@ -8222,7 +8231,8 @@
     "drawable": "mp_neckerchief_fr1_000_nude",
     "albedo": "mp_neckerchief_mr1_000_c1_998_ab",
     "normal": "mp_neckerchief_mr1_000_c1_000_nm",
-    "swatchTextureHex": "0640A79F"
+    "swatchTextureHex": "0640A79F",
+    "swatchTexture": "uisw_cotton_pd000"
   },
   {
     "componentHex": "F08DBCB5",
@@ -8244,7 +8254,8 @@
     "drawable": "mp_neckerchief_fr1_000_nude",
     "albedo": "mp_neckerchief_mr1_000_c1_998_ab",
     "normal": "mp_neckerchief_mr1_000_c1_000_nm",
-    "swatchTextureHex": "0640A79F"
+    "swatchTextureHex": "0640A79F",
+    "swatchTexture": "uisw_cotton_pd000"
   },
   {
     "componentHex": "2971AE7C",

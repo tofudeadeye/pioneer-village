@@ -529,7 +529,7 @@
     "drawable": "mp_predatorbag_fr1_001_shirt",
     "albedo": "mp_predatorbag_mr1_001_c1_000_ab",
     "normal": "mp_predatorbag_mr1_001_c1_000_nm",
-    "swatchTextureHex": "0"
+    "swatchTextureHex": "00000000"
   },
   {
     "componentHex": "FCAF241B",
@@ -549,6 +549,6 @@
     "drawable": "mp_moneybags_fr1_000_shirt",
     "albedo": 3558327793,
     "normal": 2118603501,
-    "swatchTextureHex": "0"
+    "swatchTextureHex": "00000000"
   }
 ]

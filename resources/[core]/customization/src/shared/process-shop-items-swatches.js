@@ -24,7 +24,7 @@ String.prototype.GetHashKey = function () {
 };
 
 String.prototype.GetHashKeyHex = function() {
-  return (this.GetHashKey() >>> 0).toString(16).toUpperCase();
+  return (this.GetHashKey() >>> 0).toString(16).toUpperCase().padStart(8, '0');
 }
 
 const SwatchNames = [
@@ -100,7 +100,7 @@ const SwatchNames = [
 const SwatchData = {};
 
 for (const swatchName of SwatchNames) {
-  const hash = (swatchName.GetHashKey() >>> 0).toString(16).toUpperCase();
+  const hash = swatchName.GetHashKeyHex();
   SwatchData[hash] = swatchName;
 }
 
@@ -226,7 +226,7 @@ for (const file of fs.readdirSync('../../../../[system]/rdr3-shared/components')
   fs.writeFileSync(`../../../../[system]/rdr3-shared/components/${file}`, JSON.stringify(data, null, 2), 'utf-8');
 }
 
-MissingSwatches.delete('0'); // Remove the default swatch hash
+MissingSwatches.delete('00000000'); // Remove the default swatch hash
 if (MissingSwatches.size !== 0) {
   console.log('Missing Swatches:');
   for (const swatch of MissingSwatches) {

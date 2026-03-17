@@ -3513,7 +3513,7 @@
     "drawable": 1543235833,
     "albedo": 2144307019,
     "normal": 2422725983,
-    "swatchTextureHex": "0"
+    "swatchTextureHex": "00000000"
   },
   {
     "componentHex": "8112D739",
@@ -10446,7 +10446,8 @@
     "drawable": "mp_boot_mr1_051_full",
     "albedo": "mp_boot_mr1_051_c1_999_ab",
     "normal": "mp_boot_mr1_051_c1_999_nm",
-    "swatchTextureHex": "0640A79F"
+    "swatchTextureHex": "0640A79F",
+    "swatchTexture": "uisw_cotton_pd000"
   },
   {
     "componentHex": "A433070C",
@@ -10468,7 +10469,8 @@
     "drawable": "mp_boot_mr1_051_full",
     "albedo": "mp_boot_mr1_051_c1_999_ab",
     "normal": "mp_boot_mr1_051_c1_999_nm",
-    "swatchTextureHex": "0640A79F"
+    "swatchTextureHex": "0640A79F",
+    "swatchTexture": "uisw_cotton_pd000"
   },
   {
     "componentHex": "D58169A8",
@@ -10490,7 +10492,8 @@
     "drawable": "mp_boot_mr1_051_full",
     "albedo": "mp_boot_mr1_051_c1_999_ab",
     "normal": "mp_boot_mr1_051_c1_999_nm",
-    "swatchTextureHex": "0640A79F"
+    "swatchTextureHex": "0640A79F",
+    "swatchTexture": "uisw_cotton_pd000"
   },
   {
     "componentHex": "C7A6CDF3",
@@ -10512,7 +10515,8 @@
     "drawable": "mp_boot_mr1_051_full",
     "albedo": "mp_boot_mr1_051_c1_999_ab",
     "normal": "mp_boot_mr1_051_c1_999_nm",
-    "swatchTextureHex": "0640A79F"
+    "swatchTextureHex": "0640A79F",
+    "swatchTexture": "uisw_cotton_pd000"
   },
   {
     "componentHex": "79FF32A5",
@@ -10534,7 +10538,8 @@
     "drawable": "mp_boot_mr1_051_full",
     "albedo": "mp_boot_mr1_051_c1_999_ab",
     "normal": "mp_boot_mr1_051_c1_999_nm",
-    "swatchTextureHex": "0640A79F"
+    "swatchTextureHex": "0640A79F",
+    "swatchTexture": "uisw_cotton_pd000"
   },
   {
     "componentHex": "6959915A",
@@ -10556,7 +10561,8 @@
     "drawable": "mp_boot_mr1_051_full",
     "albedo": "mp_boot_mr1_051_c1_999_ab",
     "normal": "mp_boot_mr1_051_c1_999_nm",
-    "swatchTextureHex": "0640A79F"
+    "swatchTextureHex": "0640A79F",
+    "swatchTexture": "uisw_cotton_pd000"
   },
   {
     "componentHex": "9E8BFBBE",
@@ -10578,7 +10584,8 @@
     "drawable": "mp_boot_mr1_051_full",
     "albedo": "mp_boot_mr1_051_c1_999_ab",
     "normal": "mp_boot_mr1_051_c1_999_nm",
-    "swatchTextureHex": "0640A79F"
+    "swatchTextureHex": "0640A79F",
+    "swatchTexture": "uisw_cotton_pd000"
   },
   {
     "componentHex": "906B5F7D",
@@ -10600,7 +10607,8 @@
     "drawable": "mp_boot_mr1_051_full",
     "albedo": "mp_boot_mr1_051_c1_999_ab",
     "normal": "mp_boot_mr1_051_c1_999_nm",
-    "swatchTextureHex": "0640A79F"
+    "swatchTextureHex": "0640A79F",
+    "swatchTexture": "uisw_cotton_pd000"
   },
   {
     "componentHex": "48394F16",
@@ -10622,7 +10630,8 @@
     "drawable": "mp_boot_mr1_051_full",
     "albedo": "mp_boot_mr1_051_c1_999_ab",
     "normal": "mp_boot_mr1_051_c1_999_nm",
-    "swatchTextureHex": "0640A79F"
+    "swatchTextureHex": "0640A79F",
+    "swatchTexture": "uisw_cotton_pd000"
   },
   {
     "componentHex": "88694E49",
@@ -10644,7 +10653,8 @@
     "drawable": "mp_boot_mr1_051_full",
     "albedo": "mp_boot_mr1_051_c1_999_ab",
     "normal": "mp_boot_mr1_051_c1_999_nm",
-    "swatchTextureHex": "0640A79F"
+    "swatchTextureHex": "0640A79F",
+    "swatchTexture": "uisw_cotton_pd000"
   },
   {
     "componentHex": "18E2430F",
@@ -15172,7 +15182,8 @@
     "drawable": "mp_socks_mr1_000_full",
     "albedo": "mp_socks_mr1_000_c1_997_ab",
     "normal": "mp_socks_mr1_000_c1_999_nm",
-    "swatchTextureHex": "0640A79F"
+    "swatchTextureHex": "0640A79F",
+    "swatchTexture": "uisw_cotton_pd000"
   },
   {
     "componentHex": "A16E3BAE",
@@ -15192,7 +15203,8 @@
     "drawable": "mp_socks_mr1_000_full",
     "albedo": "mp_socks_mr1_000_c1_997_ab",
     "normal": "mp_socks_mr1_000_c1_999_nm",
-    "swatchTextureHex": "0640A79F"
+    "swatchTextureHex": "0640A79F",
+    "swatchTexture": "uisw_cotton_pd000"
   },
   {
     "componentHex": "FF2273C5",
@@ -15212,7 +15224,8 @@
     "drawable": "mp_socks_mr1_000_full",
     "albedo": "mp_socks_mr1_000_c1_997_ab",
     "normal": "mp_socks_mr1_000_c1_999_nm",
-    "swatchTextureHex": "0640A79F"
+    "swatchTextureHex": "0640A79F",
+    "swatchTexture": "uisw_cotton_pd000"
   },
   {
     "componentHex": "64106871",
@@ -24566,7 +24579,8 @@
     "drawable": "mp_boot_fr1_051_full",
     "albedo": "mp_boot_mr1_051_c1_999_ab",
     "normal": "mp_boot_mr1_051_c1_999_nm",
-    "swatchTextureHex": "0640A79F"
+    "swatchTextureHex": "0640A79F",
+    "swatchTexture": "uisw_cotton_pd000"
   },
   {
     "componentHex": "981FB91A",
@@ -24588,7 +24602,8 @@
     "drawable": "mp_boot_fr1_051_full",
     "albedo": "mp_boot_mr1_051_c1_999_ab",
     "normal": "mp_boot_mr1_051_c1_999_nm",
-    "swatchTextureHex": "0640A79F"
+    "swatchTextureHex": "0640A79F",
+    "swatchTexture": "uisw_cotton_pd000"
   },
   {
     "componentHex": "E190CBFF",
@@ -24610,7 +24625,8 @@
     "drawable": "mp_boot_fr1_051_full",
     "albedo": "mp_boot_mr1_051_c1_999_ab",
     "normal": "mp_boot_mr1_051_c1_999_nm",
-    "swatchTextureHex": "0640A79F"
+    "swatchTextureHex": "0640A79F",
+    "swatchTexture": "uisw_cotton_pd000"
   },
   {
     "componentHex": "EECAE673",
@@ -24632,7 +24648,8 @@
     "drawable": "mp_boot_fr1_051_full",
     "albedo": "mp_boot_mr1_051_c1_999_ab",
     "normal": "mp_boot_mr1_051_c1_999_nm",
-    "swatchTextureHex": "0640A79F"
+    "swatchTextureHex": "0640A79F",
+    "swatchTexture": "uisw_cotton_pd000"
   },
   {
     "componentHex": "EC18E14F",
@@ -24654,7 +24671,8 @@
     "drawable": "mp_boot_fr1_051_full",
     "albedo": "mp_boot_mr1_051_c1_999_ab",
     "normal": "mp_boot_mr1_051_c1_999_nm",
-    "swatchTextureHex": "0640A79F"
+    "swatchTextureHex": "0640A79F",
+    "swatchTexture": "uisw_cotton_pd000"
   },
   {
     "componentHex": "EA51DDC1",
@@ -24676,7 +24694,8 @@
     "drawable": "mp_boot_fr1_051_full",
     "albedo": "mp_boot_mr1_051_c1_999_ab",
     "normal": "mp_boot_mr1_051_c1_999_nm",
-    "swatchTextureHex": "0640A79F"
+    "swatchTextureHex": "0640A79F",
+    "swatchTexture": "uisw_cotton_pd000"
   },
   {
     "componentHex": "8E852625",
@@ -24698,7 +24717,8 @@
     "drawable": "mp_boot_fr1_051_full",
     "albedo": "mp_boot_mr1_051_c1_999_ab",
     "normal": "mp_boot_mr1_051_c1_999_nm",
-    "swatchTextureHex": "0640A79F"
+    "swatchTextureHex": "0640A79F",
+    "swatchTexture": "uisw_cotton_pd000"
   },
   {
     "componentHex": "7CC682A8",
@@ -24720,7 +24740,8 @@
     "drawable": "mp_boot_fr1_051_full",
     "albedo": "mp_boot_mr1_051_c1_999_ab",
     "normal": "mp_boot_mr1_051_c1_999_nm",
-    "swatchTextureHex": "0640A79F"
+    "swatchTextureHex": "0640A79F",
+    "swatchTexture": "uisw_cotton_pd000"
   },
   {
     "componentHex": "B35BEFD2",
@@ -24742,7 +24763,8 @@
     "drawable": "mp_boot_fr1_051_full",
     "albedo": "mp_boot_mr1_051_c1_999_ab",
     "normal": "mp_boot_mr1_051_c1_999_nm",
-    "swatchTextureHex": "0640A79F"
+    "swatchTextureHex": "0640A79F",
+    "swatchTexture": "uisw_cotton_pd000"
   },
   {
     "componentHex": "3A17FE2C",
@@ -24764,7 +24786,8 @@
     "drawable": "mp_boot_fr1_051_full",
     "albedo": "mp_boot_mr1_051_c1_999_ab",
     "normal": "mp_boot_mr1_051_c1_999_nm",
-    "swatchTextureHex": "0640A79F"
+    "swatchTextureHex": "0640A79F",
+    "swatchTexture": "uisw_cotton_pd000"
   },
   {
     "componentHex": "A5A1745C",
@@ -29671,7 +29694,8 @@
     "drawable": "mp_socks_fr1_000_full",
     "albedo": "mp_socks_mr1_000_c1_997_ab",
     "normal": "mp_socks_mr1_000_c3_000_nm",
-    "swatchTextureHex": "0640A79F"
+    "swatchTextureHex": "0640A79F",
+    "swatchTexture": "uisw_cotton_pd000"
   },
   {
     "componentHex": "6344049A",
@@ -29691,7 +29715,8 @@
     "drawable": "mp_socks_fr1_000_full",
     "albedo": "mp_socks_mr1_000_c1_997_ab",
     "normal": "mp_socks_mr1_000_c3_000_nm",
-    "swatchTextureHex": "0640A79F"
+    "swatchTextureHex": "0640A79F",
+    "swatchTexture": "uisw_cotton_pd000"
   },
   {
     "componentHex": "8D4D5A54",
@@ -29711,7 +29736,8 @@
     "drawable": "mp_socks_fr1_000_full",
     "albedo": "mp_socks_mr1_000_c1_997_ab",
     "normal": "mp_socks_mr1_000_c3_000_nm",
-    "swatchTextureHex": "0640A79F"
+    "swatchTextureHex": "0640A79F",
+    "swatchTexture": "uisw_cotton_pd000"
   },
   {
     "componentHex": "D9D9759F",

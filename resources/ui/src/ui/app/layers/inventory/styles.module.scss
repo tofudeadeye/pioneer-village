@@ -1,3 +1,4 @@
+@use "sass:list";
 @use "sass:math";
 @use '../../styles/theme.module.scss';
 @use '../../styles/mixins.module.scss' as mixins;
@@ -493,8 +494,8 @@ $inventory-grids: (
 // Wrapper padding: left 16 + right 7 + padding-right 7 = 30px horizontal, 16 + 16 = 32px vertical.
 // Flex gap: 2px between slots. N cols = (N-1) * 2px horizontal gaps, M rows = (M-1) * 2px vertical gaps.
 @each $slots, $grid in $inventory-grids {
-  $cols: nth($grid, 1);
-  $rows: nth($grid, 2);
+  $cols: list.nth($grid, 1);
+  $rows: list.nth($grid, 2);
 
   $scrollbar: 0;
   @if $slots > 32 {
@@ -556,7 +557,7 @@ $inventory-grids: (
   top: mixins.uiSize(64);
 
   @each $slots, $grid in $inventory-grids {
-    $rows: nth($grid, 2);
+    $rows: list.nth($grid, 2);
 
     &.grid-#{$slots} {
       top: calc(#{(4 - $rows) * 10}vh + #{mixins.uiSize(64)});

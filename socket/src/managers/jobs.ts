@@ -239,24 +239,55 @@ class JobSystemManager {
         throw new Error(`Job ${jobHandle} has no DB reference`);
       }
 
-      const [task] = await db
-        .insert(JobTasksSchema)
-        .values({
-          jobId: jobDbId,
-          handle: taskData.handle,
-          name: taskData.name,
-          description: taskData.description,
-          taskType: taskData.taskType,
-          requirements: taskData.requirements || {},
-          rewards: taskData.rewards || {},
-          timeConstraints: taskData.timeConstraints || {},
-          repeatConfig: taskData.repeatConfig || {},
-          rateLimits: taskData.rateLimits || {},
-          metadata: taskData.metadata || {},
-        })
-        .returning();
+      // Check for existing task by (jobId, handle) to prevent duplicates on restart
+      const existing = await db
+        .select()
+        .from(JobTasksSchema)
+        .where(and(eq(JobTasksSchema.jobId, jobDbId), eq(JobTasksSchema.handle, taskData.handle)));
 
-      logInfoS('[Jobs]', `Created task ${task.handle} for job ${jobHandle}`);
+      let task: JobTaskSchemaType;
+
+      if (existing.length > 0) {
+        const [updated] = await db
+          .update(JobTasksSchema)
+          .set({
+            name: taskData.name,
+            description: taskData.description,
+            taskType: taskData.taskType,
+            requirements: taskData.requirements || {},
+            rewards: taskData.rewards || {},
+            timeConstraints: taskData.timeConstraints || {},
+            repeatConfig: taskData.repeatConfig || {},
+            rateLimits: taskData.rateLimits || {},
+            metadata: taskData.metadata || {},
+            active: true,
+            updatedAt: new Date(),
+          })
+          .where(eq(JobTasksSchema.id, existing[0].id))
+          .returning();
+        task = updated;
+        logInfoS('[Jobs]', `Updated task ${task.handle} for job ${jobHandle}`);
+      } else {
+        const [created] = await db
+          .insert(JobTasksSchema)
+          .values({
+            jobId: jobDbId,
+            handle: taskData.handle,
+            name: taskData.name,
+            description: taskData.description,
+            taskType: taskData.taskType,
+            requirements: taskData.requirements || {},
+            rewards: taskData.rewards || {},
+            timeConstraints: taskData.timeConstraints || {},
+            repeatConfig: taskData.repeatConfig || {},
+            rateLimits: taskData.rateLimits || {},
+            metadata: taskData.metadata || {},
+          })
+          .returning();
+        task = created;
+        logInfoS('[Jobs]', `Created task ${task.handle} for job ${jobHandle}`);
+      }
+
       return this.toTaskDefinition(task);
     } catch (error) {
       logInfoS('[Jobs]', `Task creation failed: ${error}`);
@@ -404,18 +435,25 @@ class JobSystemManager {
 
   async checkPermission(characterId: number, type: 'JOB' | 'TASK', typeId: string): Promise<boolean> {
     try {
-      const permissions = await db
+      // Check if any permissions of this type+typeId exist at all
+      const allPermissions = await db
         .select()
         .from(JobPermissionsSchema)
         .where(
           and(
-            eq(JobPermissionsSchema.characterId, characterId),
             eq(JobPermissionsSchema.type, type),
             eq(JobPermissionsSchema.typeId, typeId),
             isNull(JobPermissionsSchema.revokedAt),
           ),
         );
-      return permissions.length > 0;
+
+      // If no permissions are configured for this type+typeId, treat as open access
+      if (allPermissions.length === 0) {
+        return true;
+      }
+
+      // Permissions exist — check if this character has one
+      return allPermissions.some((p) => p.characterId === characterId);
     } catch (error) {
       logInfoS('[Jobs]', `Permission check failed: ${error}`);
       return false;

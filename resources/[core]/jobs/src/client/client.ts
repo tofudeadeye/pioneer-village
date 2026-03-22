@@ -1,2 +1,3 @@
-// Import exports to register them
 import './exports';
+import './events';
+import './commands';

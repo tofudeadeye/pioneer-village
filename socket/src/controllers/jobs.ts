@@ -177,6 +177,7 @@ export default () => {
     });
 
     socket.on('jobs.get-available-tasks', async (jobHandle: string | undefined, cb = () => {}) => {
+      logInfoC('[Jobs]', 'getAvailableTasks', jobHandle);
       const characterId = socket.data?.character?.id;
       if (!characterId) {
         cb([]);
@@ -184,6 +185,7 @@ export default () => {
       }
 
       const tasks = await jobSystemManager.getAvailableTasks(characterId, jobHandle);
+      logInfoC('[Jobs]', 'Available tasks for character', characterId, ':', tasks);
       cb(tasks);
     });
 

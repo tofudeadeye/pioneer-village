@@ -4,6 +4,8 @@ declare interface ClientExports {
 
 declare namespace Jobs {
   interface ClientExports {
+    clockIn: (jobHandle: string, location: Vector3Format) => Promise<void>;
+    clockOut: () => Promise<void>;
     getCurrentJob: () => Jobs.JobDefinition | null;
     isCurrentlyClocked: () => boolean;
     canStartTask: (taskId: number) => Promise<Jobs.TaskAvailability>;
@@ -14,11 +16,11 @@ declare namespace Jobs {
 // Client perspective - RPC calls to various destinations
 declare namespace ClientRPC {
   interface Socket {
-    ['jobs.clock-in']: (jobHandle: string, location: { x: number; y: number; z: number }) => Promise<Jobs.ClockResult>;
-    ['jobs.clock-out']: () => Promise<Jobs.ClockResult>;
-    ['jobs.get-state']: () => Promise<UI.Jobs.State & { error?: string }>;
-    ['jobs.can-start-task']: (taskId: number) => Promise<Jobs.TaskAvailability>;
-    ['jobs.get-available-tasks']: (jobHandle?: string) => Promise<Jobs.TaskDefinition[]>;
+    ['jobs.clock-in']: (jobHandle: string, location: Vector3Format) => Jobs.ClockResult;
+    ['jobs.clock-out']: () => Jobs.ClockResult;
+    ['jobs.get-state']: () => UI.Jobs.State & { error?: string };
+    ['jobs.can-start-task']: (taskId: number) => Jobs.TaskAvailability;
+    ['jobs.get-available-tasks']: (jobHandle?: string) => Jobs.TaskDefinition[];
   }
 }
 

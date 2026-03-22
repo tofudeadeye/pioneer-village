@@ -45,7 +45,7 @@ if (typeof PrepareSoundset !== 'undefined') {
 }
 
 PVTarget.AddTarget({
-  id: 'jobs::sheriff-clockin',
+  id: 'jobs::sheriff-desk',
   type: 'point',
   group: [{ x: -277.345, y: 805.225, z: 119.2 }],
   data: [
@@ -55,13 +55,28 @@ PVTarget.AddTarget({
       icon: 'clock',
       event: 'jobs:client:clock-in',
       parameters: { jobHandle: 'sheriff' },
+      isEnabled() {
+        return !PVJobs.isCurrentlyClocked();
+      },
+    },
+    {
+      id: 'sheriff_clock_tasks',
+      label: 'Tasks',
+      icon: 'tasks',
+      event: 'jobs:client:tasks',
+      parameters: { jobHandle: 'sheriff' },
+      isEnabled() {
+        return PVJobs.isCurrentlyClocked();
+      },
     },
     {
       id: 'sheriff_clock_out',
       label: 'Clock Out',
       icon: 'clock',
       event: 'jobs:client:clock-out',
-      parameters: {},
+      isEnabled() {
+        return PVJobs.isCurrentlyClocked();
+      },
     },
   ],
   options: {

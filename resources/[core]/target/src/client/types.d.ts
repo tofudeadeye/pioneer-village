@@ -27,14 +27,6 @@ declare interface ClientExports {
 }
 
 declare namespace Target {
-  interface Item {
-    id: string;
-    label: string;
-    icon: string;
-    event: string;
-    parameters: Record<string, any>;
-  }
-
   interface IsEnabledData {
     distance: number;
     coords: {
@@ -47,6 +39,15 @@ declare namespace Target {
     model?: number;
     type?: number;
     playerPed?: number;
+  }
+
+  interface Item {
+    id: string;
+    label: string;
+    icon: string;
+    event: string;
+    parameters?: Record<string, any>;
+    isEnabled?: (data: IsEnabledData) => boolean;
   }
 
   interface SpriteOptions {

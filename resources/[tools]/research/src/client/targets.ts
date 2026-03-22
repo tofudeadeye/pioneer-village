@@ -10,7 +10,6 @@ PVTarget.AddTarget({
       label: 'Delete Entity',
       icon: 'recycle',
       event: 'research:client:delete_entity',
-      parameters: {},
     },
   ],
   options: {

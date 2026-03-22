@@ -12,14 +12,14 @@ const registerTargets = async () => {
         label: 'Open Inventory',
         icon: 'sack',
         event: 'inventory:open-world',
-        parameters: {},
       },
     ],
     options: {
       distance: 2.0,
       throttle: 60_000,
       isEnabled(data) {
-        return DecorGetBool(data.entity, 'isInventory') !== false;
+        if (!data.entity) return false;
+        return DecorGetBool(data.entity, 'isInventory');
       },
     },
   });

@@ -39,6 +39,40 @@ local function tlen(t)
     return retval
 end
 
+--- Checks if a target has at least one enabled item (fast bail-out for active highlight)
+--- @param target table The target with .data and .hasItemEnabled fields
+--- @param data table The isEnabled context data
+--- @return boolean
+local function hasEnabledItems(target, data)
+    if not target.hasItemEnabled then
+        return true
+    end
+    for _, action in ipairs(target.data) do
+        if not action.isEnabled or action.isEnabled(data) then
+            return true
+        end
+    end
+    return false
+end
+
+--- Collects actions from a target/zone/point, filtering by per-item isEnabled when present
+--- @param target table The target with .data and .hasItemEnabled fields
+--- @param data table The isEnabled context data (distance, coords, entity, etc.)
+--- @param allActions table The table to append matching actions to
+local function collectActions(target, data, allActions)
+    if target.hasItemEnabled then
+        for _, action in ipairs(target.data) do
+            if not action.isEnabled or action.isEnabled(data) then
+                table.insert(allActions, action)
+            end
+        end
+    else
+        for _, action in ipairs(target.data) do
+            table.insert(allActions, action)
+        end
+    end
+end
+
 function RegisterKeyMapping()
     while GetResourceState("keymapper") ~= "started" do
         Wait(1000)
@@ -271,9 +305,10 @@ function Target:Enable(state)
     Citizen.CreateThread(function()
         while self.active do
             local pedCoords = GetEntityCoords(self.cache.ped)
-            local bestPoint = nil
+            local matchedPoints = {} -- All points passing interaction checks at the best coord
             local bestCoord = nil
             local bestScreenDist = 999
+            local bestInteractDist = 999 -- Track largest interact distance among matched points
             local drewAny = false
 
             for _, point in pairs(self.points) do
@@ -302,18 +337,12 @@ function Target:Enable(state)
                                 if not HasStreamedTextureDictLoaded(sprite.dict) then
                                     RequestStreamedTextureDict(sprite.dict, false)
                                 else
-                                    --DrawSprite(sprite.dict, sprite.name, sx, sy, scaleFactor, scaleFactor * self.ratio, 0.0, sprite.r, sprite.g, sprite.b, sprite.a, false)
                                     DrawMarker(
                                         GetHashKey('MARKERTYPE_SPHERE'),
-                                        -- Location
                                         coord.x, coord.y, coord.z,
-                                        -- Direction
                                         0, 0, 0,
-                                        -- Rotation
                                         0, 0, 0,
-                                        -- Scale
                                         scaleFactor, scaleFactor, scaleFactor,
-                                        -- Color RGBA
                                         sprite.r, sprite.g, sprite.b, sprite.a,
                                         false, false, 2, false, 0, 0, false
                                     )
@@ -324,10 +353,20 @@ function Target:Enable(state)
                                 if dist <= point.options.distance then
                                     local screenDist = math.sqrt((sx - 0.5) ^ 2 + (sy - 0.5) ^ 2)
 
-                                    if screenDist <= point.options.screenThreshold and screenDist < bestScreenDist then
-                                        bestPoint = point
-                                        bestCoord = coord
-                                        bestScreenDist = screenDist
+                                    if screenDist <= point.options.screenThreshold then
+                                        if screenDist < bestScreenDist then
+                                            -- New best coord — reset matched points
+                                            matchedPoints = { point }
+                                            bestCoord = coord
+                                            bestScreenDist = screenDist
+                                            bestInteractDist = point.options.distance
+                                        elseif coord == bestCoord or (bestCoord and coord.x == bestCoord.x and coord.y == bestCoord.y and coord.z == bestCoord.z) then
+                                            -- Same coord as current best — combine
+                                            table.insert(matchedPoints, point)
+                                            if point.options.distance > bestInteractDist then
+                                                bestInteractDist = point.options.distance
+                                            end
+                                        end
                                     end
                                 end
                             end
@@ -336,32 +375,55 @@ function Target:Enable(state)
                 end
             end
 
-            if bestPoint then
-                -- isEnabled check with throttle cache
-                local passEnabled = true
-                if bestPoint.options and bestPoint.options.isEnabled then
-                    local cacheKey = ("%s_point"):format(bestPoint.id)
-                    local cached = self.enabledCache[cacheKey]
-                    local currentTime = GetGameTimer()
+            if #matchedPoints > 0 then
+                -- isEnabled check with throttle cache for each matched point
+                local enabledPoints = {}
+                for _, point in ipairs(matchedPoints) do
+                    local passEnabled = true
+                    if point.options and point.options.isEnabled then
+                        local cacheKey = ("%s_point"):format(point.id)
+                        local cached = self.enabledCache[cacheKey]
+                        local currentTime = GetGameTimer()
 
-                    if cached and currentTime < cached.expiry then
-                        passEnabled = cached.result
-                    else
-                        local result = bestPoint.options.isEnabled({
-                            distance = #(pedCoords - bestCoord),
-                            coords = bestCoord,
-                        })
-                        local enabledTime = bestPoint.options.enabledThrottle or bestPoint.options.throttle or self.enabledThrottle
-                        local disabledTime = bestPoint.options.disabledThrottle or bestPoint.options.throttle or self.disabledThrottle
-                        self.enabledCache[cacheKey] = {
-                            result = result,
-                            expiry = currentTime + (result and enabledTime or disabledTime)
-                        }
-                        passEnabled = result
+                        if cached and currentTime < cached.expiry then
+                            passEnabled = cached.result
+                        else
+                            local result = point.options.isEnabled({
+                                distance = #(pedCoords - bestCoord),
+                                coords = bestCoord,
+                            })
+                            local enabledTime = point.options.enabledThrottle or point.options.throttle or self.enabledThrottle
+                            local disabledTime = point.options.disabledThrottle or point.options.throttle or self.disabledThrottle
+                            self.enabledCache[cacheKey] = {
+                                result = result,
+                                expiry = currentTime + (result and enabledTime or disabledTime)
+                            }
+                            passEnabled = result
+                        end
+                    end
+                    if passEnabled then
+                        table.insert(enabledPoints, point)
                     end
                 end
 
-                if passEnabled then
+                if #enabledPoints > 0 then
+                    -- Check if any enabled point has at least one enabled item before highlighting
+                    local pointData = {
+                        distance = #(pedCoords - bestCoord),
+                        coords = bestCoord,
+                    }
+                    local anyItemEnabled = false
+                    for _, point in ipairs(enabledPoints) do
+                        if hasEnabledItems(point, pointData) then
+                            anyItemEnabled = true
+                            break
+                        end
+                    end
+
+                    if not anyItemEnabled then
+                        goto continue_point_loop
+                    end
+
                     exports['ui']:emitUI('target.state', { active = true })
 
                     self:DisablePlayerFiring()
@@ -369,10 +431,10 @@ function Target:Enable(state)
                     while self.active do
                         Wait(0)
 
-                        -- Re-check distance and screen proximity
+                        -- Re-check distance and screen proximity using largest interact distance
                         pedCoords = GetEntityCoords(self.cache.ped)
                         local dist = #(pedCoords - bestCoord)
-                        if dist > bestPoint.options.distance then
+                        if dist > bestInteractDist then
                             break
                         end
 
@@ -381,34 +443,33 @@ function Target:Enable(state)
                             break
                         end
 
-                        -- Keep rendering the sprite while interacting (always full size within interact distance)
-                        local sprite = bestPoint.options.sprite
+                        -- Keep rendering the sprite while interacting (use first enabled point's sprite)
+                        local sprite = enabledPoints[1].options.sprite
                         local scaleFactor = sprite.scale
                         if HasStreamedTextureDictLoaded(sprite.dict) then
-                            --DrawSprite(sprite.dict, sprite.name, sx, sy, scaleFactor, scaleFactor * self.ratio, 0.0, sprite.r, sprite.g, sprite.b, sprite.a, false)
                             DrawMarker(
                                 GetHashKey('MARKERTYPE_SPHERE'),
-                                -- Location
                                 bestCoord.x, bestCoord.y, bestCoord.z,
-                                -- Direction
                                 0, 0, 0,
-                                -- Rotation
                                 0, 0, 0,
-                                -- Scale
                                 scaleFactor, scaleFactor, scaleFactor,
-                                -- Color RGBA
                                 sprite.r, sprite.g, sprite.b, sprite.a,
-                                -- Misc
                                 false, false, 2, false,
-                                -- texture dict / name
                                 0, 0,
-                                -- Draw On Ents
                                 false
                             )
                         end
 
+                        -- Use smallest screenThreshold among enabled points
+                        local minThreshold = enabledPoints[1].options.screenThreshold
+                        for i = 2, #enabledPoints do
+                            if enabledPoints[i].options.screenThreshold < minThreshold then
+                                minThreshold = enabledPoints[i].options.screenThreshold
+                            end
+                        end
+
                         local screenDist = math.sqrt((sx - 0.5) ^ 2 + (sy - 0.5) ^ 2)
-                        if screenDist > bestPoint.options.screenThreshold then
+                        if screenDist > minThreshold then
                             break
                         end
 
@@ -416,17 +477,24 @@ function Target:Enable(state)
                             self.click = false
                             SetCursorLocation(0.5, 0.5)
 
+                            -- Collect actions from all enabled points, filtering per-item isEnabled
                             local allActions = {}
-                            for _, action in ipairs(bestPoint.data) do
-                                table.insert(allActions, action)
+                            local pointData = {
+                                distance = dist,
+                                coords = bestCoord,
+                            }
+                            for _, point in ipairs(enabledPoints) do
+                                collectActions(point, pointData, allActions)
                             end
 
-                            exports['ui']:emitUI('target.state', {
-                                show = false,
-                                context = 'point',
-                                actions = allActions
-                            })
-                            exports['ui']:focusUI(true, true)
+                            if #allActions > 0 then
+                                exports['ui']:emitUI('target.state', {
+                                    show = false,
+                                    context = 'point',
+                                    actions = allActions
+                                })
+                                exports['ui']:focusUI(true, true)
+                            end
                         end
                     end
 
@@ -435,6 +503,7 @@ function Target:Enable(state)
                 end
             end
 
+            ::continue_point_loop::
             Wait(0)
         end
     end)
@@ -483,12 +552,22 @@ function Target:Enable(state)
                 local targets = self.targets(data)
 
                 if targets and #targets > 0 then
+                    -- Check if any matched target has at least one enabled item before highlighting
+                    local anyItemEnabled = false
+                    for _, target in ipairs(targets) do
+                        if hasEnabledItems(target, data) then
+                            anyItemEnabled = true
+                            break
+                        end
+                    end
+
+                    if not anyItemEnabled then
+                        goto continue_entity_loop
+                    end
+
                     exports['ui']:emitUI('target.state', { active = true, type = data.type, flag = flag })
 
                     self:DisablePlayerFiring()
-
-                    -- Collect all the actions from matching targets
-                    local allActions = {}
 
                     while self.active do
                         Wait(0)
@@ -502,23 +581,23 @@ function Target:Enable(state)
                             self.click = false
                             SetCursorLocation(0.5, 0.5)
 
-                            -- Collect actions from each valid target
+                            -- Collect actions from each valid target, filtering per-item isEnabled
+                            local allActions = {}
                             for _, target in ipairs(targets) do
                                 if target(data) then
-                                    -- Append actions from each matched target
-                                    for _, action in ipairs(target.data) do
-                                        table.insert(allActions, action)
-                                    end
+                                    collectActions(target, data, allActions)
                                 end
                             end
 
-                            -- Only emit once with all actions gathered
-                            exports['ui']:emitUI('target.state', {
-                                context = _entity,
-                                type = data.type,
-                                actions = allActions
-                            })
-                            exports['ui']:focusUI(true, true)
+                            -- Only emit once with all actions gathered (skip if all items filtered out)
+                            if #allActions > 0 then
+                                exports['ui']:emitUI('target.state', {
+                                    context = _entity,
+                                    type = data.type,
+                                    actions = allActions
+                                })
+                                exports['ui']:focusUI(true, true)
+                            end
                         end
                     end
 
@@ -527,6 +606,7 @@ function Target:Enable(state)
                 end
             end
 
+            ::continue_entity_loop::
         end
 
         hit, coords, entity = self:RayCast(true)
@@ -545,11 +625,22 @@ function Target:Enable(state)
                 local matchingZones = self.zones(data)
 
                 if matchingZones and #matchingZones > 0 then
-                    exports['ui']:emitUI('target.state', { active = true })  -- Show target state
+                    -- Check if any matched zone has at least one enabled item before highlighting
+                    local anyItemEnabled = false
+                    for _, zone in ipairs(matchingZones) do
+                        if hasEnabledItems(zone, data) then
+                            anyItemEnabled = true
+                            break
+                        end
+                    end
+
+                    if not anyItemEnabled then
+                        goto continue_zone_loop
+                    end
+
+                    exports['ui']:emitUI('target.state', { active = true })
 
                     self:DisablePlayerFiring()
-
-                    local allActions = {}  -- Collect all actions from matching zones
 
                     while self.active do
                         Wait(0)
@@ -559,7 +650,7 @@ function Target:Enable(state)
 
                         local data = {
                             coords = _coords,
-                            distance = #(self.cache.pedCoords - coords)
+                            distance = #(self.cache.pedCoords - _coords)
                         }
 
                         -- If no hit or the entity is not in any of the matching zones, exit the loop
@@ -567,30 +658,20 @@ function Target:Enable(state)
                             break
                         end
 
-                        -- Iterate over all matching zones
-                        for _, zone in ipairs(matchingZones) do
-                            if zone(data) then
-                                -- Collect actions from each valid zone
-                                for _, action in ipairs(zone.data) do
-                                    table.insert(allActions, action)
-                                end
-                            end
-                        end
-
                         if self.click then
                             self.click = false
-                            local clickTime = GetGameTimer()
+                            SetCursorLocation(0.5, 0.5)
 
-                            -- Wait for click, then process the actions
-                            while self.click and GetGameTimer() - clickTime < 10000 do
-                                Wait(0)
+                            -- Collect actions from each valid zone, filtering per-item isEnabled
+                            local allActions = {}
+                            for _, zone in ipairs(matchingZones) do
+                                if zone(data) then
+                                    collectActions(zone, data, allActions)
+                                end
                             end
 
-                            -- If clicked within time limit, emit UI with collected actions
-                            if GetGameTimer() - clickTime < 10000 then
-                                SetCursorLocation(0.5, 0.5)
-
-                                -- Send the collected actions for all matching zones
+                            -- Only emit if there are actions after filtering
+                            if #allActions > 0 then
                                 exports['ui']:emitUI('target.state', { show = false, context = 'zone', actions = allActions })
                                 exports['ui']:focusUI(true, true)
                             end
@@ -603,6 +684,8 @@ function Target:Enable(state)
                     exports['ui']:emitUI('target.state', { active = false, type = -1, flag = '' })
                 end
             end
+
+            ::continue_zone_loop::
         end
 
         Wait(0)
@@ -657,6 +740,16 @@ function Target.AddTarget(data)
     self.targets[key].options.throttle = self.targets[key].options.throttle and tonumber(self.targets[key].options.throttle) or nil
     self.targets[key].options.disabledThrottle = self.targets[key].options.disabledThrottle and tonumber(self.targets[key].options.disabledThrottle) or nil
     self.targets[key].options.enabledThrottle = self.targets[key].options.enabledThrottle and tonumber(self.targets[key].options.enabledThrottle) or nil
+
+    -- Check if any data items have per-item isEnabled functions
+    local hasItemEnabled = false
+    for _, item in ipairs(self.targets[key].data) do
+        if item.isEnabled then
+            hasItemEnabled = true
+            break
+        end
+    end
+    self.targets[key].hasItemEnabled = hasItemEnabled
 
     if data.type == "flag" then
         if type(self.targets[key].group) == "string" then

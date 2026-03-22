@@ -25,8 +25,11 @@ function toPercent(internal: number): number {
   return ((internal - INTERNAL_MIN) / INTERNAL_RANGE) * 100;
 }
 
+const STEP = 45;
+
 function fromPercent(pct: number): number {
-  return Math.round(INTERNAL_MIN + (pct / 100) * INTERNAL_RANGE);
+  const raw = INTERNAL_MIN + (pct / 100) * INTERNAL_RANGE;
+  return Math.round(raw / STEP) * STEP;
 }
 
 function buildTicks(): Tick[] {

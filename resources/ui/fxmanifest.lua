@@ -18,7 +18,8 @@ files {
   "index.html",
   "build/ui.js",
   "build/ui.js.map",
-  "build/ui.css"
+  "build/ui.css",
+  "assets/**/**"
 }
 
 ui_page "index.html"

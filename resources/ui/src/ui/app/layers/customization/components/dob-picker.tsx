@@ -33,7 +33,7 @@ function formatDateValue(year: number, month: number, day: number): string {
   return `${year}-${m}-${d}`;
 }
 
-export default function DOBPicker({ value, onChange }: DOBPickerProps): JSX.Element {
+export default function DOBPicker({ value, onChange }: DOBPickerProps) {
   const [openSegment, setOpenSegment] = useState<Segment | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 

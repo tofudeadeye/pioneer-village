@@ -19,7 +19,9 @@
         "tint2": 255,
         "drawable": "player_zero_tal_raven_claw_000",
         "albedo": 843618495,
-        "normal": 87907961
+        "normal": 87907961,
+        "swatchTextureHex": "B3902E46",
+        "swatchTexture": "uisw_leather_pt001"
       }
     ]
   }

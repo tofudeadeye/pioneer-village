@@ -13,7 +13,7 @@ interface SkinToneBarProps {
 export default function SkinToneBar({ value, onChange }: SkinToneBarProps): ReactNode {
   return (
     <div className={styles.bar}>
-      {SKIN_TONES.map((color, index) => (
+      {SKIN_TONES.map(([index, color]) => (
         <div
           key={index}
           className={conditionalClass(styles.swatch, {

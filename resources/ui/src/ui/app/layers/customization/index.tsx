@@ -22,15 +22,25 @@ function convertComponent(
     name: comp.name || '',
     type: comp.type,
     component: comp.component,
+    swatchTexture: comp.swatchTexture,
   };
 
-  if ('palette' in comp) {
+  if ('palette' in comp && comp.palette !== undefined && comp.palette !== '') {
+    const palette = Array.isArray(comp.palette) ? comp.palette[0] : comp.palette;
+    const tint0 = Array.isArray(comp.tint0) ? comp.tint0[0] : comp.tint0;
+    const tint1 = Array.isArray(comp.tint1) ? comp.tint1[0] : comp.tint1;
+    const tint2 = Array.isArray(comp.tint2) ? comp.tint2[0] : comp.tint2;
+
+    if (palette === '' || palette === undefined) {
+      return data;
+    }
+
     return {
       ...data,
-      palette: comp.palette,
-      tint0: comp.tint0,
-      tint1: comp.tint1,
-      tint2: comp.tint2,
+      palette,
+      tint0: tint0 as number,
+      tint1: tint1 as number,
+      tint2: tint2 as number,
     };
   }
 
@@ -292,7 +302,7 @@ export default function Customization() {
           </div>
 
           <div className={styles.bottomControls}>
-            <RotationSlider value={90} onChange={handleRotation} />
+            <RotationSlider value={state.rotation} onChange={handleRotation} />
           </div>
         </>
       )}

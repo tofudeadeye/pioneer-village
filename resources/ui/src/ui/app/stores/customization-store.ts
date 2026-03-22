@@ -27,6 +27,7 @@ interface CustomizationState {
   teeth: number;
   skinTone: number;
   bodyType: number;
+  rotation: number;
 }
 
 // State listener type
@@ -194,6 +195,7 @@ class CustomizationStore {
       teeth: 0,
       skinTone: 0,
       bodyType: 2,
+      rotation: 90,
     };
 
     // Initialize debounced function
@@ -512,6 +514,7 @@ class CustomizationStore {
 
   // Handle rotation
   handleRotation(value: number): void {
+    this.updateState({ rotation: value });
     emitClient('customization.rotate-chosen', value);
   }
 

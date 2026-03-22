@@ -20,7 +20,9 @@
         "tint2": 255,
         "drawable": "player_zero_gloves_001",
         "albedo": "player_zero_gloves_001_c0_003_ab",
-        "normal": 1116616980
+        "normal": 1116616980,
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "28E344D5",
@@ -40,7 +42,9 @@
         "tint2": 255,
         "drawable": "player_zero_gloves_001",
         "albedo": "player_zero_gloves_001_g_c0_003_ab",
-        "normal": 1116616980
+        "normal": 1116616980,
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "372CE168",
@@ -60,7 +64,9 @@
         "tint2": 255,
         "drawable": "player_zero_gloves_001",
         "albedo": "player_zero_gloves_001_g_c0_004_ab",
-        "normal": 1116616980
+        "normal": 1116616980,
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "9DB76C2C",
@@ -80,7 +86,9 @@
         "tint2": 255,
         "drawable": "player_zero_gloves_001",
         "albedo": "player_zero_gloves_001_g_c0_000_ab",
-        "normal": 1116616980
+        "normal": 1116616980,
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "8BC4C847",
@@ -100,7 +108,9 @@
         "tint2": 255,
         "drawable": "player_zero_gloves_001",
         "albedo": "player_zero_gloves_001_b_c0_001_ab",
-        "normal": 1116616980
+        "normal": 1116616980,
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "713B9335",
@@ -120,7 +130,9 @@
         "tint2": 255,
         "drawable": "player_zero_gloves_001",
         "albedo": "player_zero_gloves_001_b_c0_000_ab",
-        "normal": 1116616980
+        "normal": 1116616980,
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "67147EE3",
@@ -140,7 +152,9 @@
         "tint2": 255,
         "drawable": "player_zero_gloves_001",
         "albedo": "player_zero_gloves_001_b_c0_002_ab",
-        "normal": 1116616980
+        "normal": 1116616980,
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "54E1DA7E",
@@ -160,7 +174,9 @@
         "tint2": 255,
         "drawable": "player_zero_gloves_001",
         "albedo": "player_zero_gloves_001_b_c0_003_ab",
-        "normal": 1116616980
+        "normal": 1116616980,
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "3A4DA556",
@@ -180,7 +196,9 @@
         "tint2": 255,
         "drawable": "player_zero_gloves_001",
         "albedo": "player_zero_gloves_001_b_c0_004_ab",
-        "normal": 1116616980
+        "normal": 1116616980,
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "282000FB",
@@ -200,7 +218,9 @@
         "tint2": 255,
         "drawable": "player_zero_gloves_001",
         "albedo": "player_zero_gloves_001_g_c0_001_ab",
-        "normal": 1116616980
+        "normal": 1116616980,
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "1DB0EC1D",
@@ -220,7 +240,9 @@
         "tint2": 255,
         "drawable": "player_zero_gloves_001",
         "albedo": "player_zero_gloves_001_g_c0_002_ab",
-        "normal": 1116616980
+        "normal": 1116616980,
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "7CDFD715",
@@ -240,7 +262,9 @@
         "tint2": 255,
         "drawable": 2969759815,
         "albedo": 4166783380,
-        "normal": 167435266
+        "normal": 167435266,
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "4668BD60",
@@ -260,7 +284,9 @@
         "tint2": 255,
         "drawable": 2062303110,
         "albedo": 1143038742,
-        "normal": 119107692
+        "normal": 119107692,
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "C7A9A76F",
@@ -280,7 +306,9 @@
         "tint2": 255,
         "drawable": 837087201,
         "albedo": 2997479514,
-        "normal": 221286875
+        "normal": 221286875,
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "5C536CAE",
@@ -300,7 +328,9 @@
         "tint2": 255,
         "drawable": "player_zero_gloves_000_full",
         "albedo": 885876229,
-        "normal": 564265710
+        "normal": 564265710,
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "C581FE0A",
@@ -320,7 +350,9 @@
         "tint2": 255,
         "drawable": "player_zero_gloves_000_full",
         "albedo": 419698544,
-        "normal": 1412404922
+        "normal": 1412404922,
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "71B6D9F2",
@@ -340,7 +372,9 @@
         "tint2": 255,
         "drawable": "player_zero_gloves_002",
         "albedo": 2631221841,
-        "normal": 2412715767
+        "normal": 2412715767,
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "6E7153A2",
@@ -360,7 +394,9 @@
         "tint2": 255,
         "drawable": "player_zero_gloves_002",
         "albedo": "player_zero_gloves_002_g_c0_004_ab",
-        "normal": 2412715767
+        "normal": 2412715767,
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "6048B751",
@@ -380,7 +416,9 @@
         "tint2": 255,
         "drawable": "player_zero_gloves_002",
         "albedo": 2237380508,
-        "normal": 3197807065
+        "normal": 3197807065,
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "64963FB1",
@@ -400,7 +438,9 @@
         "tint2": 255,
         "drawable": "player_zero_gloves_002",
         "albedo": "player_zero_gloves_002_b_c0_001_ab",
-        "normal": 2412715767
+        "normal": 2412715767,
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "4CD4102D",
@@ -420,7 +460,9 @@
         "tint2": 255,
         "drawable": "player_zero_gloves_002",
         "albedo": "player_zero_gloves_002_b_c0_002_ab",
-        "normal": 2412715767
+        "normal": 2412715767,
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "2FDA563E",
@@ -440,7 +482,9 @@
         "tint2": 255,
         "drawable": "player_zero_gloves_002",
         "albedo": "player_zero_gloves_002_b_c0_003_ab",
-        "normal": 2412715767
+        "normal": 2412715767,
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "0AA10BCC",
@@ -460,7 +504,9 @@
         "tint2": 255,
         "drawable": "player_zero_gloves_002",
         "albedo": "player_zero_gloves_002_b_c0_004_ab",
-        "normal": 2412715767
+        "normal": 2412715767,
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "79476917",
@@ -480,7 +526,9 @@
         "tint2": 255,
         "drawable": "player_zero_gloves_002",
         "albedo": "player_zero_gloves_002_g_c0_000_ab",
-        "normal": 2412715767
+        "normal": 2412715767,
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "6609429B",
@@ -500,7 +548,9 @@
         "tint2": 255,
         "drawable": "player_zero_gloves_002",
         "albedo": 2022093877,
-        "normal": 2412715767
+        "normal": 2412715767,
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "E4CCC020",
@@ -520,7 +570,9 @@
         "tint2": 255,
         "drawable": "player_zero_gloves_002",
         "albedo": "player_zero_gloves_002_g_c0_002_ab",
-        "normal": 2412715767
+        "normal": 2412715767,
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "D70F24A5",
@@ -540,7 +592,9 @@
         "tint2": 255,
         "drawable": "player_zero_gloves_002",
         "albedo": 761454259,
-        "normal": 2412715767
+        "normal": 2412715767,
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "A9E11990",
@@ -560,7 +614,9 @@
         "tint2": 255,
         "drawable": "player_zero_gloves_004_full",
         "albedo": "player_zero_gloves_004_full_b_c0_000_ab",
-        "normal": 1936997339
+        "normal": 1936997339,
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "8AD6E14A",
@@ -580,7 +636,9 @@
         "tint2": 255,
         "drawable": "player_zero_gloves_004_full",
         "albedo": "player_zero_gloves_004_full_g_c0_004_ab",
-        "normal": 1936997339
+        "normal": 1936997339,
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "A5BA114A",
@@ -600,7 +658,9 @@
         "tint2": 255,
         "drawable": "player_zero_gloves_004_full",
         "albedo": 1450821113,
-        "normal": 1936997339
+        "normal": 1936997339,
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "B3F72DC4",
@@ -620,7 +680,9 @@
         "tint2": 255,
         "drawable": "player_zero_gloves_004_full",
         "albedo": "player_zero_gloves_004_full_b_c0_002_ab",
-        "normal": 1936997339
+        "normal": 1936997339,
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "C993D8FD",
@@ -640,7 +702,9 @@
         "tint2": 255,
         "drawable": "player_zero_gloves_004_full",
         "albedo": "player_zero_gloves_004_full_b_c0_003_ab",
-        "normal": 1936997339
+        "normal": 1936997339,
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "D8B5F741",
@@ -660,7 +724,9 @@
         "tint2": 255,
         "drawable": "player_zero_gloves_004_full",
         "albedo": "player_zero_gloves_004_full_b_c0_004_ab",
-        "normal": 1936997339
+        "normal": 1936997339,
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "90E0E798",
@@ -680,7 +746,9 @@
         "tint2": 255,
         "drawable": "player_zero_gloves_004_full",
         "albedo": "player_zero_gloves_004_full_g_c0_000_ab",
-        "normal": 1936997339
+        "normal": 1936997339,
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "5E1B020D",
@@ -700,7 +768,9 @@
         "tint2": 255,
         "drawable": "player_zero_gloves_004_full",
         "albedo": "player_zero_gloves_004_full_g_c0_001_ab",
-        "normal": 1936997339
+        "normal": 1936997339,
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "344FAE77",
@@ -720,7 +790,9 @@
         "tint2": 255,
         "drawable": "player_zero_gloves_004_full",
         "albedo": "player_zero_gloves_004_full_g_c0_002_ab",
-        "normal": 1936997339
+        "normal": 1936997339,
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "431BF28B",
@@ -740,7 +812,9 @@
         "tint2": 255,
         "drawable": "player_zero_gloves_005_full",
         "albedo": 1814061406,
-        "normal": 4245712060
+        "normal": 4245712060,
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "6F463C85",
@@ -760,7 +834,9 @@
         "tint2": 255,
         "drawable": 114661603,
         "albedo": 1772658590,
-        "normal": 4018306491
+        "normal": 4018306491,
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "68B00B9F",
@@ -780,7 +856,9 @@
         "tint2": 255,
         "drawable": 337884031,
         "albedo": 4157920013,
-        "normal": 1014789056
+        "normal": 1014789056,
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "444F45DD",
@@ -800,7 +878,9 @@
         "tint2": 255,
         "drawable": "player_zero_gloves_012_full",
         "albedo": 1077250797,
-        "normal": 3689135367
+        "normal": 3689135367,
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "110241BA",
@@ -820,7 +900,9 @@
         "tint2": 255,
         "drawable": 3038174308,
         "albedo": 3732215860,
-        "normal": 2972257393
+        "normal": 2972257393,
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "C5459A31",
@@ -840,7 +922,9 @@
         "tint2": 255,
         "drawable": 1590659104,
         "albedo": 1070251661,
-        "normal": 1527333814
+        "normal": 1527333814,
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "694A52D4",
@@ -860,7 +944,9 @@
         "tint2": 255,
         "drawable": 2022850029,
         "albedo": 2162180147,
-        "normal": 2883952833
+        "normal": 2883952833,
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "0DE74ADA",
@@ -880,7 +966,9 @@
         "tint2": 255,
         "drawable": 56234472,
         "albedo": 1258405100,
-        "normal": 3311570983
+        "normal": 3311570983,
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "21A51495",
@@ -900,7 +988,9 @@
         "tint2": 255,
         "drawable": 487943917,
         "albedo": 794282305,
-        "normal": 1098012626
+        "normal": 1098012626,
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "8BE9DC6F",
@@ -920,7 +1010,9 @@
         "tint2": 255,
         "drawable": "player_zero_gloves_018_full",
         "albedo": 3719189108,
-        "normal": 1114976444
+        "normal": 1114976444,
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "65842E31",
@@ -940,7 +1032,9 @@
         "tint2": 255,
         "drawable": 1034595632,
         "albedo": 2141298102,
-        "normal": 2875051290
+        "normal": 2875051290,
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "6AF284B7",
@@ -960,7 +1054,9 @@
         "tint2": 255,
         "drawable": 3534294396,
         "albedo": 1120936751,
-        "normal": 2933350116
+        "normal": 2933350116,
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "11FF5266",
@@ -980,7 +1076,9 @@
         "tint2": 255,
         "drawable": "player_zero_gloves_023_full",
         "albedo": 2612440496,
-        "normal": 1388575812
+        "normal": 1388575812,
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "3254B95B",
@@ -999,7 +1097,9 @@
         "tint2": 255,
         "drawable": "player_zero_gloves_000_full",
         "albedo": 1670814450,
-        "normal": 564265710
+        "normal": 564265710,
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "CB7D9189",
@@ -1018,7 +1118,9 @@
         "tint2": 255,
         "drawable": 1286098728,
         "albedo": 649578996,
-        "normal": 3136851792
+        "normal": 3136851792,
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "4C2AA34C",
@@ -1037,7 +1139,9 @@
         "tint2": 58,
         "drawable": "mp_gloves_mr1_201_full",
         "albedo": "mp_gloves_mr1_201_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_201_full_c1_999_nm"
+        "normal": "mp_gloves_mr1_201_full_c1_999_nm",
+        "swatchTextureHex": "4B3FDC1C",
+        "swatchTexture": "uisw_horse_trapperblanket_001"
       },
       {
         "componentHex": "97832569",
@@ -1056,7 +1160,9 @@
         "tint2": 58,
         "drawable": "mp_gloves_mr1_001_full",
         "albedo": "mp_gloves_mr1_001_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_001_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_001_full_c1_000_nm",
+        "swatchTextureHex": "4B3FDC1C",
+        "swatchTexture": "uisw_horse_trapperblanket_001"
       },
       {
         "componentHex": "24C80C76",
@@ -1075,7 +1181,9 @@
         "tint2": 58,
         "drawable": "mp_gloves_mr1_009_full",
         "albedo": "mp_gloves_mr1_009_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_009_full_c1_999_nm"
+        "normal": "mp_gloves_mr1_009_full_c1_999_nm",
+        "swatchTextureHex": "4B3FDC1C",
+        "swatchTexture": "uisw_horse_trapperblanket_001"
       },
       {
         "componentHex": "0154E80F",
@@ -1094,7 +1202,9 @@
         "tint2": 58,
         "drawable": "mp_gloves_mr1_301_full",
         "albedo": "mp_gloves_mr1_301_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_301_full_c1_999_nm"
+        "normal": "mp_gloves_mr1_301_full_c1_999_nm",
+        "swatchTextureHex": "4B3FDC1C",
+        "swatchTexture": "uisw_horse_trapperblanket_001"
       },
       {
         "componentHex": "AF4E5181",
@@ -1113,7 +1223,9 @@
         "tint2": 58,
         "drawable": "mp_gloves_mr1_008_full",
         "albedo": "mp_gloves_mr1_008_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_008_full_c1_999_nm"
+        "normal": "mp_gloves_mr1_008_full_c1_999_nm",
+        "swatchTextureHex": "4B3FDC1C",
+        "swatchTexture": "uisw_horse_trapperblanket_001"
       },
       {
         "componentHex": "5A108522",
@@ -1132,7 +1244,9 @@
         "tint2": 1,
         "drawable": "mp_t1_nl_gloves_mr1_001_full",
         "albedo": "mp_t1_nl_gloves_mr1_001_c1_999_ab",
-        "normal": "mp_t1_nl_gloves_mr1_001_c1_999_nm"
+        "normal": "mp_t1_nl_gloves_mr1_001_c1_999_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "ECD46AEA",
@@ -1151,7 +1265,9 @@
         "tint2": 20,
         "drawable": "mp_gloves_mr1_006_full",
         "albedo": "mp_gloves_mr1_006_full_c1_998_ab",
-        "normal": "mp_gloves_mr1_006_full_c1_001_nm"
+        "normal": "mp_gloves_mr1_006_full_c1_001_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "7B60D9EA",
@@ -1170,7 +1286,9 @@
         "tint2": 20,
         "drawable": "mp_gloves_mr1_002_full",
         "albedo": "mp_gloves_mr1_002_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_002_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_002_full_c1_000_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "17B1130A",
@@ -1189,7 +1307,9 @@
         "tint2": 20,
         "drawable": "mp_season_handwraps_mr1_001_full",
         "albedo": "mp_season_handwraps_mr1_001_full_c1_999_ab",
-        "normal": "mp_season_handwraps_mr1_001_full_c1_999_nm"
+        "normal": "mp_season_handwraps_mr1_001_full_c1_999_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "5eaca5b7",
@@ -1210,7 +1330,8 @@
         "tint2": 1,
         "drawable": "mp_gloves_mr1_201_full",
         "albedo": "mp_gloves_mr1_201_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_201_full_c1_999_nm"
+        "normal": "mp_gloves_mr1_201_full_c1_999_nm",
+        "swatchTextureHex": "A36A8DFB"
       },
       {
         "componentHex": "C11F710B",
@@ -1231,7 +1352,9 @@
         "tint2": 50,
         "drawable": "mp_t5_item_nl_gloves_mr1_001_full",
         "albedo": "mp_t5_item_nl_gloves_mr1_001_full_c1_999_ab",
-        "normal": "mp_t5_item_nl_gloves_mr1_001_full_c1_999_nm"
+        "normal": "mp_t5_item_nl_gloves_mr1_001_full_c1_999_nm",
+        "swatchTextureHex": "7FEA2C43",
+        "swatchTexture": "uisw_cotton_pt000"
       },
       {
         "componentHex": "D2C7145E",
@@ -1252,7 +1375,9 @@
         "tint2": 59,
         "drawable": "mp_t5_item_nl_gloves_mr1_001_full",
         "albedo": "mp_t5_item_nl_gloves_mr1_001_full_c1_999_ab",
-        "normal": "mp_t5_item_nl_gloves_mr1_001_full_c1_999_nm"
+        "normal": "mp_t5_item_nl_gloves_mr1_001_full_c1_999_nm",
+        "swatchTextureHex": "7FEA2C43",
+        "swatchTexture": "uisw_cotton_pt000"
       },
       {
         "componentHex": "8C9A0801",
@@ -1273,7 +1398,9 @@
         "tint2": 20,
         "drawable": "mp_t5_item_nl_gloves_mr1_001_full",
         "albedo": "mp_t5_item_nl_gloves_mr1_001_full_c1_999_ab",
-        "normal": "mp_t5_item_nl_gloves_mr1_001_full_c1_999_nm"
+        "normal": "mp_t5_item_nl_gloves_mr1_001_full_c1_999_nm",
+        "swatchTextureHex": "7FEA2C43",
+        "swatchTexture": "uisw_cotton_pt000"
       },
       {
         "componentHex": "9EF7ACBC",
@@ -1294,7 +1421,9 @@
         "tint2": 246,
         "drawable": "mp_t5_item_nl_gloves_mr1_001_full",
         "albedo": "mp_t5_item_nl_gloves_mr1_001_full_c1_999_ab",
-        "normal": "mp_t5_item_nl_gloves_mr1_001_full_c1_999_nm"
+        "normal": "mp_t5_item_nl_gloves_mr1_001_full_c1_999_nm",
+        "swatchTextureHex": "7FEA2C43",
+        "swatchTexture": "uisw_cotton_pt000"
       },
       {
         "componentHex": "692E412A",
@@ -1315,7 +1444,9 @@
         "tint2": 238,
         "drawable": "mp_t5_item_nl_gloves_mr1_001_full",
         "albedo": "mp_t5_item_nl_gloves_mr1_001_full_c1_999_ab",
-        "normal": "mp_t5_item_nl_gloves_mr1_001_full_c1_999_nm"
+        "normal": "mp_t5_item_nl_gloves_mr1_001_full_c1_999_nm",
+        "swatchTextureHex": "7FEA2C43",
+        "swatchTexture": "uisw_cotton_pt000"
       },
       {
         "componentHex": "7B74E5B7",
@@ -1336,7 +1467,9 @@
         "tint2": 51,
         "drawable": "mp_t5_item_nl_gloves_mr1_001_full",
         "albedo": "mp_t5_item_nl_gloves_mr1_001_full_c1_999_ab",
-        "normal": "mp_t5_item_nl_gloves_mr1_001_full_c1_999_nm"
+        "normal": "mp_t5_item_nl_gloves_mr1_001_full_c1_999_nm",
+        "swatchTextureHex": "7FEA2C43",
+        "swatchTexture": "uisw_cotton_pt000"
       },
       {
         "componentHex": "F4063FC8",
@@ -1355,7 +1488,9 @@
         "tint2": 20,
         "drawable": "mp_gloves_mr1_006_full",
         "albedo": "mp_gloves_mr1_006_full_c1_998_ab",
-        "normal": "mp_gloves_mr1_006_full_c1_001_nm"
+        "normal": "mp_gloves_mr1_006_full_c1_001_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "7D0E8654",
@@ -1374,7 +1509,9 @@
         "tint2": 255,
         "drawable": "mp_gloves_mr1_006_full",
         "albedo": "mp_gloves_mr1_006_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_006_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_006_full_c1_000_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "2C6BA43B",
@@ -1395,7 +1532,9 @@
         "tint2": 23,
         "drawable": "mp_gloves_mr1_000_full",
         "albedo": "mp_gloves_mr1_000_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_000_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_000_full_c1_000_nm",
+        "swatchTextureHex": "E3091FA6",
+        "swatchTexture": "uisw_leather_000"
       },
       {
         "componentHex": "88265BAF",
@@ -1416,7 +1555,9 @@
         "tint2": 15,
         "drawable": "mp_gloves_mr1_000_full",
         "albedo": "mp_gloves_mr1_000_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_000_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_000_full_c1_000_nm",
+        "swatchTextureHex": "E3091FA6",
+        "swatchTexture": "uisw_leather_000"
       },
       {
         "componentHex": "082ADBB6",
@@ -1437,7 +1578,9 @@
         "tint2": 113,
         "drawable": "mp_gloves_mr1_000_full",
         "albedo": "mp_gloves_mr1_000_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_000_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_000_full_c1_000_nm",
+        "swatchTextureHex": "E3091FA6",
+        "swatchTexture": "uisw_leather_000"
       },
       {
         "componentHex": "1A4A7FF5",
@@ -1458,7 +1601,9 @@
         "tint2": 119,
         "drawable": "mp_gloves_mr1_000_full",
         "albedo": "mp_gloves_mr1_000_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_000_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_000_full_c1_000_nm",
+        "swatchTextureHex": "E3091FA6",
+        "swatchTexture": "uisw_leather_000"
       },
       {
         "componentHex": "E5181591",
@@ -1479,7 +1624,9 @@
         "tint2": 69,
         "drawable": "mp_gloves_mr1_000_full",
         "albedo": "mp_gloves_mr1_000_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_000_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_000_full_c1_000_nm",
+        "swatchTextureHex": "E3091FA6",
+        "swatchTexture": "uisw_leather_000"
       },
       {
         "componentHex": "F5C6B6EE",
@@ -1500,7 +1647,9 @@
         "tint2": 70,
         "drawable": "mp_gloves_mr1_000_full",
         "albedo": "mp_gloves_mr1_000_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_000_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_000_full_c1_000_nm",
+        "swatchTextureHex": "E3091FA6",
+        "swatchTexture": "uisw_leather_000"
       },
       {
         "componentHex": "0698D88A",
@@ -1521,7 +1670,9 @@
         "tint2": 78,
         "drawable": "mp_gloves_mr1_000_full",
         "albedo": "mp_gloves_mr1_000_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_000_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_000_full_c1_000_nm",
+        "swatchTextureHex": "E3091FA6",
+        "swatchTexture": "uisw_leather_000"
       },
       {
         "componentHex": "187C7C51",
@@ -1542,7 +1693,9 @@
         "tint2": 2,
         "drawable": "mp_gloves_mr1_000_full",
         "albedo": "mp_gloves_mr1_000_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_000_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_000_full_c1_000_nm",
+        "swatchTextureHex": "E3091FA6",
+        "swatchTexture": "uisw_leather_000"
       },
       {
         "componentHex": "E34E11F5",
@@ -1563,7 +1716,9 @@
         "tint2": 21,
         "drawable": "mp_gloves_mr1_000_full",
         "albedo": "mp_gloves_mr1_000_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_000_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_000_full_c1_000_nm",
+        "swatchTextureHex": "E3091FA6",
+        "swatchTexture": "uisw_leather_000"
       },
       {
         "componentHex": "46CAD525",
@@ -1584,7 +1739,9 @@
         "tint2": 3,
         "drawable": "mp_gloves_mr1_000_full",
         "albedo": "mp_gloves_mr1_000_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_000_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_000_full_c1_000_nm",
+        "swatchTextureHex": "E3091FA6",
+        "swatchTexture": "uisw_leather_000"
       },
       {
         "componentHex": "9EAAA73D",
@@ -1603,7 +1760,9 @@
         "tint2": 113,
         "drawable": "mp_gloves_mr1_006_full",
         "albedo": "mp_gloves_mr1_006_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_006_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_006_full_c1_000_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "F99A0937",
@@ -1622,7 +1781,9 @@
         "tint2": 115,
         "drawable": "mp_gloves_mr1_000_full",
         "albedo": "mp_gloves_mr1_000_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_000_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_000_full_c1_000_nm",
+        "swatchTextureHex": "E3091FA6",
+        "swatchTexture": "uisw_leather_000"
       },
       {
         "componentHex": "aee31bef",
@@ -1641,7 +1802,8 @@
         "tint2": 118,
         "drawable": "mp_gloves_mr1_006_full",
         "albedo": "mp_gloves_mr1_006_full_c1_997_ab",
-        "normal": "mp_gloves_mr1_006_full_c1_997_nm"
+        "normal": "mp_gloves_mr1_006_full_c1_997_nm",
+        "swatchTextureHex": "A36A8DFB"
       },
       {
         "componentHex": "A4613197",
@@ -1660,7 +1822,9 @@
         "tint2": 16,
         "drawable": "mp_gloves_mr1_000_full",
         "albedo": "mp_gloves_mr1_000_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_000_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_000_full_c1_000_nm",
+        "swatchTextureHex": "E3091FA6",
+        "swatchTexture": "uisw_leather_000"
       },
       {
         "componentHex": "537820E0",
@@ -1679,7 +1843,9 @@
         "tint2": 28,
         "drawable": "mp_gloves_mr1_303_full",
         "albedo": "mp_gloves_mr1_303_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_303_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_303_full_c1_000_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "A942CC74",
@@ -1698,7 +1864,9 @@
         "tint2": 43,
         "drawable": "mp_gloves_mr1_303_full",
         "albedo": "mp_gloves_mr1_303_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_303_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_303_full_c1_000_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "B6EDE7CA",
@@ -1717,7 +1885,9 @@
         "tint2": 31,
         "drawable": "mp_gloves_mr1_303_full",
         "albedo": "mp_gloves_mr1_303_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_303_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_303_full_c1_000_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "8EEF17CD",
@@ -1736,7 +1906,9 @@
         "tint2": 28,
         "drawable": "mp_gloves_mr1_303_full",
         "albedo": "mp_gloves_mr1_303_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_303_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_303_full_c1_000_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "9CB3B356",
@@ -1755,7 +1927,9 @@
         "tint2": 59,
         "drawable": "mp_gloves_mr1_303_full",
         "albedo": "mp_gloves_mr1_303_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_303_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_303_full_c1_000_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "F27A5EE2",
@@ -1774,7 +1948,9 @@
         "tint2": 29,
         "drawable": "mp_gloves_mr1_303_full",
         "albedo": "mp_gloves_mr1_303_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_303_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_303_full_c1_000_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "7AFC07AF",
@@ -1795,7 +1971,9 @@
         "tint2": 213,
         "drawable": "mp_gloves_mr1_006_full",
         "albedo": "mp_t3_nl_gloves_mr1_001_c1_999_ab",
-        "normal": "mp_t3_nl_gloves_mr1_001_c1_999_nm"
+        "normal": "mp_t3_nl_gloves_mr1_001_c1_999_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "8962A47C",
@@ -1816,7 +1994,9 @@
         "tint2": 106,
         "drawable": "mp_gloves_mr1_006_full",
         "albedo": "mp_t3_nl_gloves_mr1_001_c1_999_ab",
-        "normal": "mp_t3_nl_gloves_mr1_001_c1_999_nm"
+        "normal": "mp_t3_nl_gloves_mr1_001_c1_999_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "5B704898",
@@ -1837,7 +2017,9 @@
         "tint2": 66,
         "drawable": "mp_gloves_mr1_006_full",
         "albedo": "mp_t3_nl_gloves_mr1_001_c1_999_ab",
-        "normal": "mp_t3_nl_gloves_mr1_001_c1_999_nm"
+        "normal": "mp_t3_nl_gloves_mr1_001_c1_999_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "6DBFED37",
@@ -1858,7 +2040,9 @@
         "tint2": 65,
         "drawable": "mp_gloves_mr1_006_full",
         "albedo": "mp_t3_nl_gloves_mr1_001_c1_999_ab",
-        "normal": "mp_t3_nl_gloves_mr1_001_c1_999_nm"
+        "normal": "mp_t3_nl_gloves_mr1_001_c1_999_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "3FF491A1",
@@ -1879,7 +2063,9 @@
         "tint2": 124,
         "drawable": "mp_gloves_mr1_006_full",
         "albedo": "mp_t3_nl_gloves_mr1_001_c1_999_ab",
-        "normal": "mp_t3_nl_gloves_mr1_001_c1_999_nm"
+        "normal": "mp_t3_nl_gloves_mr1_001_c1_999_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "5229360A",
@@ -1900,7 +2086,9 @@
         "tint2": 66,
         "drawable": "mp_gloves_mr1_006_full",
         "albedo": "mp_t3_nl_gloves_mr1_001_c1_999_ab",
-        "normal": "mp_t3_nl_gloves_mr1_001_c1_999_nm"
+        "normal": "mp_t3_nl_gloves_mr1_001_c1_999_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "D8508A77",
@@ -1921,7 +2109,9 @@
         "tint2": 14,
         "drawable": "mp_t1_nl_gloves_mr1_001_full",
         "albedo": "mp_t1_nl_gloves_mr1_001_c1_999_ab",
-        "normal": "mp_t1_nl_gloves_mr1_001_c1_999_nm"
+        "normal": "mp_t1_nl_gloves_mr1_001_c1_999_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "E5F9A5C9",
@@ -1942,7 +2132,9 @@
         "tint2": 63,
         "drawable": "mp_t1_nl_gloves_mr1_001_full",
         "albedo": "mp_t1_nl_gloves_mr1_001_c1_999_ab",
-        "normal": "mp_t1_nl_gloves_mr1_001_c1_999_nm"
+        "normal": "mp_t1_nl_gloves_mr1_001_c1_999_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "F3BB414C",
@@ -1963,7 +2155,9 @@
         "tint2": 38,
         "drawable": "mp_t1_nl_gloves_mr1_001_full",
         "albedo": "mp_t1_nl_gloves_mr1_001_c1_999_ab",
-        "normal": "mp_t1_nl_gloves_mr1_001_c1_999_nm"
+        "normal": "mp_t1_nl_gloves_mr1_001_c1_999_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "A1B49D40",
@@ -1984,7 +2178,9 @@
         "tint2": 66,
         "drawable": "mp_t1_nl_gloves_mr1_001_full",
         "albedo": "mp_t1_nl_gloves_mr1_001_c1_999_ab",
-        "normal": "mp_t1_nl_gloves_mr1_001_c1_999_nm"
+        "normal": "mp_t1_nl_gloves_mr1_001_c1_999_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "1D319438",
@@ -2005,7 +2201,9 @@
         "tint2": 66,
         "drawable": "mp_t1_nl_gloves_mr1_001_full",
         "albedo": "mp_t1_nl_gloves_mr1_001_c1_999_ab",
-        "normal": "mp_t1_nl_gloves_mr1_001_c1_999_nm"
+        "normal": "mp_t1_nl_gloves_mr1_001_c1_999_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "2B8130D7",
@@ -2026,7 +2224,9 @@
         "tint2": 253,
         "drawable": "mp_t1_nl_gloves_mr1_001_full",
         "albedo": "mp_t1_nl_gloves_mr1_001_c1_999_ab",
-        "normal": "mp_t1_nl_gloves_mr1_001_c1_999_nm"
+        "normal": "mp_t1_nl_gloves_mr1_001_c1_999_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "D3503E98",
@@ -2045,7 +2245,9 @@
         "tint2": 53,
         "drawable": "mp_gloves_mr1_002_full",
         "albedo": "mp_gloves_mr1_002_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_002_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_002_full_c1_000_nm",
+        "swatchTextureHex": "E3091FA6",
+        "swatchTexture": "uisw_leather_000"
       },
       {
         "componentHex": "D4329873",
@@ -2064,7 +2266,9 @@
         "tint2": 2,
         "drawable": "mp_gloves_mr1_002_full",
         "albedo": "mp_gloves_mr1_002_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_002_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_002_full_c1_000_nm",
+        "swatchTextureHex": "E3091FA6",
+        "swatchTexture": "uisw_leather_000"
       },
       {
         "componentHex": "8103267A",
@@ -2083,7 +2287,9 @@
         "tint2": 251,
         "drawable": "mp_season_handwraps_mr1_001_full",
         "albedo": "mp_season_handwraps_mr1_001_full_c1_999_ab",
-        "normal": "mp_season_handwraps_mr1_001_full_c1_999_nm"
+        "normal": "mp_season_handwraps_mr1_001_full_c1_999_nm",
+        "swatchTextureHex": "B45A6765",
+        "swatchTexture": "uisw_horse_cotton_used000"
       },
       {
         "componentHex": "4B7A10AE",
@@ -2104,7 +2310,9 @@
         "tint2": 14,
         "drawable": "mp_t2_out04_nl_gloves_mr1_001",
         "albedo": "mp_t2_out04_nl_gloves_mr1_001_c1_999_ab",
-        "normal": "mp_t2_out04_nl_gloves_mr1_001_c1_999_nm"
+        "normal": "mp_t2_out04_nl_gloves_mr1_001_c1_999_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "5C2CB213",
@@ -2125,7 +2333,9 @@
         "tint2": 1,
         "drawable": "mp_t2_out04_nl_gloves_mr1_001",
         "albedo": "mp_t2_out04_nl_gloves_mr1_001_c1_999_ab",
-        "normal": "mp_t2_out04_nl_gloves_mr1_001_c1_999_nm"
+        "normal": "mp_t2_out04_nl_gloves_mr1_001_c1_999_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "6EF757A8",
@@ -2146,7 +2356,9 @@
         "tint2": 0,
         "drawable": "mp_t2_out04_nl_gloves_mr1_001",
         "albedo": "mp_t2_out04_nl_gloves_mr1_001_c1_999_ab",
-        "normal": "mp_t2_out04_nl_gloves_mr1_001_c1_999_nm"
+        "normal": "mp_t2_out04_nl_gloves_mr1_001_c1_999_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "7406E1C7",
@@ -2167,7 +2379,9 @@
         "tint2": 0,
         "drawable": "mp_t2_out04_nl_gloves_mr1_001",
         "albedo": "mp_t2_out04_nl_gloves_mr1_001_c1_999_ab",
-        "normal": "mp_t2_out04_nl_gloves_mr1_001_c1_999_nm"
+        "normal": "mp_t2_out04_nl_gloves_mr1_001_c1_999_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "05428440",
@@ -2188,7 +2402,9 @@
         "tint2": 5,
         "drawable": "mp_t2_out04_nl_gloves_mr1_001",
         "albedo": "mp_t2_out04_nl_gloves_mr1_001_c1_999_ab",
-        "normal": "mp_t2_out04_nl_gloves_mr1_001_c1_999_nm"
+        "normal": "mp_t2_out04_nl_gloves_mr1_001_c1_999_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "3033DA22",
@@ -2209,7 +2425,9 @@
         "tint2": 5,
         "drawable": "mp_t2_out04_nl_gloves_mr1_001",
         "albedo": "mp_t2_out04_nl_gloves_mr1_001_c1_999_ab",
-        "normal": "mp_t2_out04_nl_gloves_mr1_001_c1_999_nm"
+        "normal": "mp_t2_out04_nl_gloves_mr1_001_c1_999_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "9F54DFB9",
@@ -2228,7 +2446,9 @@
         "tint2": 0,
         "drawable": "mp_predator_mr1_gloves_000",
         "albedo": "mp_predator_mr1_gloves_000_c3_000_ab",
-        "normal": "mp_predator_mr1_gloves_000_c3_000_nm"
+        "normal": "mp_predator_mr1_gloves_000_c3_000_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "A0DBE2C7",
@@ -2247,7 +2467,9 @@
         "tint2": 0,
         "drawable": "mp_predator_mr1_gloves_000",
         "albedo": "mp_predator_mr1_gloves_000_c3_001_ab",
-        "normal": "mp_predator_mr1_gloves_000_c3_001_nm"
+        "normal": "mp_predator_mr1_gloves_000_c3_001_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "B1D084B0",
@@ -2266,7 +2488,9 @@
         "tint2": 0,
         "drawable": "mp_predator_mr1_gloves_000",
         "albedo": "mp_predator_mr1_gloves_000_c3_002_ab",
-        "normal": "mp_predator_mr1_gloves_000_c3_002_nm"
+        "normal": "mp_predator_mr1_gloves_000_c3_002_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "C50EAB2C",
@@ -2285,7 +2509,9 @@
         "tint2": 0,
         "drawable": "mp_predator_mr1_gloves_000",
         "albedo": "mp_predator_mr1_gloves_000_c3_003_ab",
-        "normal": "mp_predator_mr1_gloves_000_c3_003_nm"
+        "normal": "mp_predator_mr1_gloves_000_c3_003_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "AFA82CBD",
@@ -2304,7 +2530,9 @@
         "tint2": 13,
         "drawable": "mp_gloves_fr1_201_full",
         "albedo": "mp_gloves_mr1_201_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_201_full_c1_999_nm"
+        "normal": "mp_gloves_mr1_201_full_c1_999_nm",
+        "swatchTextureHex": "4B3FDC1C",
+        "swatchTexture": "uisw_horse_trapperblanket_001"
       },
       {
         "componentHex": "74311362",
@@ -2323,7 +2551,9 @@
         "tint2": 13,
         "drawable": "mp_gloves_fr1_303_full",
         "albedo": "mp_gloves_mr1_303_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_303_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_303_full_c1_000_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "D4DB29CC",
@@ -2342,7 +2572,9 @@
         "tint2": 13,
         "drawable": "mp_gloves_fr1_001_full",
         "albedo": "mp_gloves_mr1_001_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_001_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_001_full_c1_000_nm",
+        "swatchTextureHex": "4B3FDC1C",
+        "swatchTexture": "uisw_horse_trapperblanket_001"
       },
       {
         "componentHex": "FE4E9182",
@@ -2361,7 +2593,9 @@
         "tint2": 13,
         "drawable": "mp_gloves_fr1_301_full",
         "albedo": "mp_gloves_mr1_301_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_301_full_c1_999_nm"
+        "normal": "mp_gloves_mr1_301_full_c1_999_nm",
+        "swatchTextureHex": "4B3FDC1C",
+        "swatchTexture": "uisw_horse_trapperblanket_001"
       },
       {
         "componentHex": "0BC262F7",
@@ -2380,7 +2614,9 @@
         "tint2": 13,
         "drawable": "mp_gloves_fr1_008_full",
         "albedo": "mp_gloves_mr1_008_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_008_full_c1_999_nm"
+        "normal": "mp_gloves_mr1_008_full_c1_999_nm",
+        "swatchTextureHex": "4B3FDC1C",
+        "swatchTexture": "uisw_horse_trapperblanket_001"
       },
       {
         "componentHex": "5313600C",
@@ -2399,7 +2635,9 @@
         "tint2": 13,
         "drawable": "mp_t1_nl_gloves_fr1_001_full",
         "albedo": "mp_t1_nl_gloves_mr1_001_c1_999_ab",
-        "normal": "mp_t1_nl_gloves_mr1_001_c1_999_nm"
+        "normal": "mp_t1_nl_gloves_mr1_001_c1_999_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "9CB59754",
@@ -2418,7 +2656,9 @@
         "tint2": 13,
         "drawable": "mp_gloves_fr1_006_full",
         "albedo": "mp_gloves_mr1_006_full_c1_998_ab",
-        "normal": "mp_gloves_mr1_006_full_c1_001_nm"
+        "normal": "mp_gloves_mr1_006_full_c1_001_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "5FBEEB9F",
@@ -2437,7 +2677,9 @@
         "tint2": 13,
         "drawable": "mp_gloves_fr1_000_full",
         "albedo": "mp_gloves_mr1_000_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_000_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_000_full_c1_000_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "26293510",
@@ -2456,7 +2698,9 @@
         "tint2": 13,
         "drawable": "mp_gloves_fr1_002_full",
         "albedo": "mp_gloves_mr1_002_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_002_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_002_full_c1_000_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "013CC97B",
@@ -2475,7 +2719,9 @@
         "tint2": 13,
         "drawable": "mp_season_handwraps_fr1_001_full",
         "albedo": "mp_season_handwraps_mr1_001_full_c1_999_ab",
-        "normal": "mp_season_handwraps_mr1_001_full_c1_999_nm"
+        "normal": "mp_season_handwraps_mr1_001_full_c1_999_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "7555bf86",
@@ -2496,7 +2742,8 @@
         "tint2": 1,
         "drawable": "mp_gloves_fr1_201_full",
         "albedo": "mp_gloves_mr1_201_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_201_full_c1_999_nm"
+        "normal": "mp_gloves_mr1_201_full_c1_999_nm",
+        "swatchTextureHex": "A36A8DFB"
       },
       {
         "componentHex": "F7DCA0C6",
@@ -2517,7 +2764,9 @@
         "tint2": 50,
         "drawable": "mp_t5_item_nl_gloves_fr1_001_full",
         "albedo": "mp_t5_item_nl_gloves_mr1_001_full_c1_999_ab",
-        "normal": "mp_t5_item_nl_gloves_mr1_001_full_c1_999_nm"
+        "normal": "mp_t5_item_nl_gloves_mr1_001_full_c1_999_nm",
+        "swatchTextureHex": "7FEA2C43",
+        "swatchTexture": "uisw_cotton_pt000"
       },
       {
         "componentHex": "F62E9D6A",
@@ -2538,7 +2787,9 @@
         "tint2": 59,
         "drawable": "mp_t5_item_nl_gloves_fr1_001_full",
         "albedo": "mp_t5_item_nl_gloves_mr1_001_full_c1_999_ab",
-        "normal": "mp_t5_item_nl_gloves_mr1_001_full_c1_999_nm"
+        "normal": "mp_t5_item_nl_gloves_mr1_001_full_c1_999_nm",
+        "swatchTextureHex": "7FEA2C43",
+        "swatchTexture": "uisw_cotton_pt000"
       },
       {
         "componentHex": "8B56C7B8",
@@ -2559,7 +2810,9 @@
         "tint2": 20,
         "drawable": "mp_t5_item_nl_gloves_fr1_001_full",
         "albedo": "mp_t5_item_nl_gloves_mr1_001_full_c1_999_ab",
-        "normal": "mp_t5_item_nl_gloves_mr1_001_full_c1_999_nm"
+        "normal": "mp_t5_item_nl_gloves_mr1_001_full_c1_999_nm",
+        "swatchTextureHex": "7FEA2C43",
+        "swatchTexture": "uisw_cotton_pt000"
       },
       {
         "componentHex": "7988241B",
@@ -2580,7 +2833,9 @@
         "tint2": 246,
         "drawable": "mp_t5_item_nl_gloves_fr1_001_full",
         "albedo": "mp_t5_item_nl_gloves_mr1_001_full_c1_999_ab",
-        "normal": "mp_t5_item_nl_gloves_mr1_001_full_c1_999_nm"
+        "normal": "mp_t5_item_nl_gloves_mr1_001_full_c1_999_nm",
+        "swatchTextureHex": "7FEA2C43",
+        "swatchTexture": "uisw_cotton_pt000"
       },
       {
         "componentHex": "AE948E37",
@@ -2601,7 +2856,9 @@
         "tint2": 238,
         "drawable": "mp_t5_item_nl_gloves_fr1_001_full",
         "albedo": "mp_t5_item_nl_gloves_mr1_001_full_c1_999_ab",
-        "normal": "mp_t5_item_nl_gloves_mr1_001_full_c1_999_nm"
+        "normal": "mp_t5_item_nl_gloves_mr1_001_full_c1_999_nm",
+        "swatchTextureHex": "7FEA2C43",
+        "swatchTexture": "uisw_cotton_pt000"
       },
       {
         "componentHex": "9D0AEB20",
@@ -2622,7 +2879,9 @@
         "tint2": 51,
         "drawable": "mp_t5_item_nl_gloves_fr1_001_full",
         "albedo": "mp_t5_item_nl_gloves_mr1_001_full_c1_999_ab",
-        "normal": "mp_t5_item_nl_gloves_mr1_001_full_c1_999_nm"
+        "normal": "mp_t5_item_nl_gloves_mr1_001_full_c1_999_nm",
+        "swatchTextureHex": "7FEA2C43",
+        "swatchTexture": "uisw_cotton_pt000"
       },
       {
         "componentHex": "ACD9B040",
@@ -2641,7 +2900,9 @@
         "tint2": 28,
         "drawable": "mp_gloves_fr1_303_full",
         "albedo": "mp_gloves_mr1_303_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_303_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_303_full_c1_000_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "C35ADD3A",
@@ -2660,7 +2921,9 @@
         "tint2": 43,
         "drawable": "mp_gloves_fr1_303_full",
         "albedo": "mp_gloves_mr1_303_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_303_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_303_full_c1_000_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "D1A979D7",
@@ -2679,7 +2942,9 @@
         "tint2": 31,
         "drawable": "mp_gloves_fr1_303_full",
         "albedo": "mp_gloves_mr1_303_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_303_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_303_full_c1_000_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "9EDE1441",
@@ -2698,7 +2963,9 @@
         "tint2": 28,
         "drawable": "mp_gloves_fr1_303_full",
         "albedo": "mp_gloves_mr1_303_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_303_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_303_full_c1_000_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "AD33B0EC",
@@ -2717,7 +2984,9 @@
         "tint2": 59,
         "drawable": "mp_gloves_fr1_303_full",
         "albedo": "mp_gloves_mr1_303_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_303_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_303_full_c1_000_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "E66CA361",
@@ -2736,7 +3005,9 @@
         "tint2": 29,
         "drawable": "mp_gloves_fr1_303_full",
         "albedo": "mp_gloves_mr1_303_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_303_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_303_full_c1_000_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "232BB82B",
@@ -2757,7 +3028,9 @@
         "tint2": 23,
         "drawable": "mp_gloves_fr1_000_full",
         "albedo": "mp_gloves_mr1_000_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_000_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_000_full_c1_000_nm",
+        "swatchTextureHex": "E3091FA6",
+        "swatchTexture": "uisw_leather_000"
       },
       {
         "componentHex": "DB37A860",
@@ -2778,7 +3051,9 @@
         "tint2": 15,
         "drawable": "mp_gloves_fr1_000_full",
         "albedo": "mp_gloves_mr1_000_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_000_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_000_full_c1_000_nm",
+        "swatchTextureHex": "E3091FA6",
+        "swatchTexture": "uisw_leather_000"
       },
       {
         "componentHex": "E9D8C5A2",
@@ -2799,7 +3074,9 @@
         "tint2": 113,
         "drawable": "mp_gloves_fr1_000_full",
         "albedo": "mp_gloves_mr1_000_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_000_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_000_full_c1_000_nm",
+        "swatchTextureHex": "E3091FA6",
+        "swatchTexture": "uisw_leather_000"
       },
       {
         "componentHex": "BF9DF12D",
@@ -2820,7 +3097,9 @@
         "tint2": 119,
         "drawable": "mp_gloves_fr1_000_full",
         "albedo": "mp_gloves_mr1_000_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_000_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_000_full_c1_000_nm",
+        "swatchTextureHex": "E3091FA6",
+        "swatchTexture": "uisw_leather_000"
       },
       {
         "componentHex": "CE640EB9",
@@ -2841,7 +3120,9 @@
         "tint2": 69,
         "drawable": "mp_gloves_fr1_000_full",
         "albedo": "mp_gloves_mr1_000_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_000_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_000_full_c1_000_nm",
+        "swatchTextureHex": "E3091FA6",
+        "swatchTexture": "uisw_leather_000"
       },
       {
         "componentHex": "A4123A16",
@@ -2862,7 +3143,9 @@
         "tint2": 70,
         "drawable": "mp_gloves_fr1_000_full",
         "albedo": "mp_gloves_mr1_000_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_000_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_000_full_c1_000_nm",
+        "swatchTextureHex": "E3091FA6",
+        "swatchTexture": "uisw_leather_000"
       },
       {
         "componentHex": "B2B5575C",
@@ -2883,7 +3166,9 @@
         "tint2": 78,
         "drawable": "mp_gloves_fr1_000_full",
         "albedo": "mp_gloves_mr1_000_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_000_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_000_full_c1_000_nm",
+        "swatchTextureHex": "E3091FA6",
+        "swatchTexture": "uisw_leather_000"
       },
       {
         "componentHex": "69AC4547",
@@ -2904,7 +3189,9 @@
         "tint2": 2,
         "drawable": "mp_gloves_fr1_000_full",
         "albedo": "mp_gloves_mr1_000_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_000_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_000_full_c1_000_nm",
+        "swatchTextureHex": "E3091FA6",
+        "swatchTexture": "uisw_leather_000"
       },
       {
         "componentHex": "77E4E1B8",
@@ -2925,7 +3212,9 @@
         "tint2": 21,
         "drawable": "mp_gloves_fr1_000_full",
         "albedo": "mp_gloves_mr1_000_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_000_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_000_full_c1_000_nm",
+        "swatchTextureHex": "E3091FA6",
+        "swatchTexture": "uisw_leather_000"
       },
       {
         "componentHex": "C760840E",
@@ -2946,7 +3235,9 @@
         "tint2": 3,
         "drawable": "mp_gloves_fr1_000_full",
         "albedo": "mp_gloves_mr1_000_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_000_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_000_full_c1_000_nm",
+        "swatchTextureHex": "E3091FA6",
+        "swatchTexture": "uisw_leather_000"
       },
       {
         "componentHex": "3D3C213B",
@@ -2965,7 +3256,9 @@
         "tint2": 115,
         "drawable": "mp_gloves_fr1_000_full",
         "albedo": "mp_gloves_mr1_000_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_000_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_000_full_c1_000_nm",
+        "swatchTextureHex": "E3091FA6",
+        "swatchTexture": "uisw_leather_000"
       },
       {
         "componentHex": "8A97297E",
@@ -2984,7 +3277,9 @@
         "tint2": 2,
         "drawable": "mp_gloves_fr1_002_full",
         "albedo": "mp_gloves_mr1_002_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_002_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_002_full_c1_000_nm",
+        "swatchTextureHex": "E3091FA6",
+        "swatchTexture": "uisw_leather_000"
       },
       {
         "componentHex": "263E22E1",
@@ -3003,7 +3298,9 @@
         "tint2": 16,
         "drawable": "mp_gloves_fr1_000_full",
         "albedo": "mp_gloves_mr1_000_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_000_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_000_full_c1_000_nm",
+        "swatchTextureHex": "E3091FA6",
+        "swatchTexture": "uisw_leather_000"
       },
       {
         "componentHex": "51475F13",
@@ -3022,7 +3319,9 @@
         "tint2": 20,
         "drawable": "mp_gloves_fr1_006_full",
         "albedo": "mp_gloves_mr1_006_full_c1_998_ab",
-        "normal": "mp_gloves_mr1_006_full_c1_001_nm"
+        "normal": "mp_gloves_mr1_006_full_c1_001_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "921B0046",
@@ -3041,7 +3340,9 @@
         "tint2": 255,
         "drawable": "mp_gloves_fr1_006_full",
         "albedo": "mp_gloves_mr1_006_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_006_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_006_full_c1_000_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "aec509de",
@@ -3060,7 +3361,8 @@
         "tint2": 118,
         "drawable": "mp_gloves_fr1_006_full",
         "albedo": "mp_gloves_mr1_006_full_c1_997_ab",
-        "normal": "mp_gloves_mr1_006_full_c1_997_nm"
+        "normal": "mp_gloves_mr1_006_full_c1_997_nm",
+        "swatchTextureHex": "A36A8DFB"
       },
       {
         "componentHex": "3CD790A8",
@@ -3079,7 +3381,9 @@
         "tint2": 251,
         "drawable": "mp_season_handwraps_fr1_001_full",
         "albedo": "mp_season_handwraps_mr1_001_full_c1_999_ab",
-        "normal": "mp_season_handwraps_mr1_001_full_c1_999_nm"
+        "normal": "mp_season_handwraps_mr1_001_full_c1_999_nm",
+        "swatchTextureHex": "B45A6765",
+        "swatchTexture": "uisw_horse_cotton_used000"
       },
       {
         "componentHex": "DCD9D8A2",
@@ -3100,7 +3404,9 @@
         "tint2": 14,
         "drawable": "mp_t1_nl_gloves_fr1_001_full",
         "albedo": "mp_t1_nl_gloves_mr1_001_c1_999_ab",
-        "normal": "mp_t1_nl_gloves_mr1_001_c1_999_nm"
+        "normal": "mp_t1_nl_gloves_mr1_001_c1_999_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "CA9AB424",
@@ -3121,7 +3427,9 @@
         "tint2": 63,
         "drawable": "mp_t1_nl_gloves_fr1_001_full",
         "albedo": "mp_t1_nl_gloves_mr1_001_c1_999_ab",
-        "normal": "mp_t1_nl_gloves_mr1_001_c1_999_nm"
+        "normal": "mp_t1_nl_gloves_mr1_001_c1_999_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "DC92D810",
@@ -3142,7 +3450,9 @@
         "tint2": 38,
         "drawable": "mp_t1_nl_gloves_fr1_001_full",
         "albedo": "mp_t1_nl_gloves_mr1_001_c1_999_ab",
-        "normal": "mp_t1_nl_gloves_mr1_001_c1_999_nm"
+        "normal": "mp_t1_nl_gloves_mr1_001_c1_999_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "CB17B51A",
@@ -3163,7 +3473,9 @@
         "tint2": 66,
         "drawable": "mp_t1_nl_gloves_fr1_001_full",
         "albedo": "mp_t1_nl_gloves_mr1_001_c1_999_ab",
-        "normal": "mp_t1_nl_gloves_mr1_001_c1_999_nm"
+        "normal": "mp_t1_nl_gloves_mr1_001_c1_999_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "F1CD8285",
@@ -3184,7 +3496,9 @@
         "tint2": 66,
         "drawable": "mp_t1_nl_gloves_fr1_001_full",
         "albedo": "mp_t1_nl_gloves_mr1_001_c1_999_ab",
-        "normal": "mp_t1_nl_gloves_mr1_001_c1_999_nm"
+        "normal": "mp_t1_nl_gloves_mr1_001_c1_999_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "EF8B7E01",
@@ -3205,7 +3519,9 @@
         "tint2": 253,
         "drawable": "mp_t1_nl_gloves_fr1_001_full",
         "albedo": "mp_t1_nl_gloves_mr1_001_c1_999_ab",
-        "normal": "mp_t1_nl_gloves_mr1_001_c1_999_nm"
+        "normal": "mp_t1_nl_gloves_mr1_001_c1_999_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "2BAA230A",
@@ -3226,7 +3542,9 @@
         "tint2": 213,
         "drawable": "mp_gloves_fr1_006_full",
         "albedo": "mp_t3_nl_gloves_mr1_001_c1_999_ab",
-        "normal": "mp_t3_nl_gloves_mr1_001_c1_999_nm"
+        "normal": "mp_t3_nl_gloves_mr1_001_c1_999_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "1E2087F7",
@@ -3247,7 +3565,9 @@
         "tint2": 106,
         "drawable": "mp_gloves_fr1_006_full",
         "albedo": "mp_t3_nl_gloves_mr1_001_c1_999_ab",
-        "normal": "mp_t3_nl_gloves_mr1_001_c1_999_nm"
+        "normal": "mp_t3_nl_gloves_mr1_001_c1_999_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "4630D817",
@@ -3268,7 +3588,9 @@
         "tint2": 66,
         "drawable": "mp_gloves_fr1_006_full",
         "albedo": "mp_t3_nl_gloves_mr1_001_c1_999_ab",
-        "normal": "mp_t3_nl_gloves_mr1_001_c1_999_nm"
+        "normal": "mp_t3_nl_gloves_mr1_001_c1_999_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "F89FBCF2",
@@ -3289,7 +3611,9 @@
         "tint2": 65,
         "drawable": "mp_gloves_fr1_006_full",
         "albedo": "mp_t3_nl_gloves_mr1_001_c1_999_ab",
-        "normal": "mp_t3_nl_gloves_mr1_001_c1_999_nm"
+        "normal": "mp_t3_nl_gloves_mr1_001_c1_999_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "E9271E01",
@@ -3310,7 +3634,9 @@
         "tint2": 124,
         "drawable": "mp_gloves_fr1_006_full",
         "albedo": "mp_t3_nl_gloves_mr1_001_c1_999_ab",
-        "normal": "mp_t3_nl_gloves_mr1_001_c1_999_nm"
+        "normal": "mp_t3_nl_gloves_mr1_001_c1_999_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "141973E5",
@@ -3331,7 +3657,9 @@
         "tint2": 66,
         "drawable": "mp_gloves_fr1_006_full",
         "albedo": "mp_t3_nl_gloves_mr1_001_c1_999_ab",
-        "normal": "mp_t3_nl_gloves_mr1_001_c1_999_nm"
+        "normal": "mp_t3_nl_gloves_mr1_001_c1_999_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "48F6C7CE",
@@ -3352,7 +3680,9 @@
         "tint2": 14,
         "drawable": "mp_t2_out04_nl_gloves_fr1_001",
         "albedo": "mp_t2_out04_nl_gloves_mr1_001_c1_999_ab",
-        "normal": "mp_t2_out04_nl_gloves_mr1_001_c1_999_nm"
+        "normal": "mp_t2_out04_nl_gloves_mr1_001_c1_999_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "57B6654D",
@@ -3373,7 +3703,9 @@
         "tint2": 1,
         "drawable": "mp_t2_out04_nl_gloves_fr1_001",
         "albedo": "mp_t2_out04_nl_gloves_mr1_001_c1_999_ab",
-        "normal": "mp_t2_out04_nl_gloves_mr1_001_c1_999_nm"
+        "normal": "mp_t2_out04_nl_gloves_mr1_001_c1_999_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "44973F0F",
@@ -3394,7 +3726,9 @@
         "tint2": 0,
         "drawable": "mp_t2_out04_nl_gloves_fr1_001",
         "albedo": "mp_t2_out04_nl_gloves_mr1_001_c1_999_ab",
-        "normal": "mp_t2_out04_nl_gloves_mr1_001_c1_999_nm"
+        "normal": "mp_t2_out04_nl_gloves_mr1_001_c1_999_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "93325C48",
@@ -3415,7 +3749,9 @@
         "tint2": 0,
         "drawable": "mp_t2_out04_nl_gloves_fr1_001",
         "albedo": "mp_t2_out04_nl_gloves_mr1_001_c1_999_ab",
-        "normal": "mp_t2_out04_nl_gloves_mr1_001_c1_999_nm"
+        "normal": "mp_t2_out04_nl_gloves_mr1_001_c1_999_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "A490FF05",
@@ -3436,7 +3772,9 @@
         "tint2": 5,
         "drawable": "mp_t2_out04_nl_gloves_fr1_001",
         "albedo": "mp_t2_out04_nl_gloves_mr1_001_c1_999_ab",
-        "normal": "mp_t2_out04_nl_gloves_mr1_001_c1_999_nm"
+        "normal": "mp_t2_out04_nl_gloves_mr1_001_c1_999_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "72D91B96",
@@ -3457,7 +3795,9 @@
         "tint2": 5,
         "drawable": "mp_t2_out04_nl_gloves_fr1_001",
         "albedo": "mp_t2_out04_nl_gloves_mr1_001_c1_999_ab",
-        "normal": "mp_t2_out04_nl_gloves_mr1_001_c1_999_nm"
+        "normal": "mp_t2_out04_nl_gloves_mr1_001_c1_999_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       }
     ]
   },
@@ -3483,7 +3823,9 @@
         "tint2": 64,
         "drawable": "mp_gloves_mr1_001_full",
         "albedo": "mp_gloves_mr1_001_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_001_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_001_full_c1_000_nm",
+        "swatchTextureHex": "7A23FEFC",
+        "swatchTexture": "uisw_cotton_000"
       },
       {
         "componentHex": "8D97FD5B",
@@ -3504,7 +3846,9 @@
         "tint2": 64,
         "drawable": "mp_gloves_mr1_001_full",
         "albedo": "mp_gloves_mr1_001_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_001_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_001_full_c1_000_nm",
+        "swatchTextureHex": "7A23FEFC",
+        "swatchTexture": "uisw_cotton_000"
       },
       {
         "componentHex": "5E781F1C",
@@ -3525,7 +3869,9 @@
         "tint2": 67,
         "drawable": "mp_gloves_mr1_001_full",
         "albedo": "mp_gloves_mr1_001_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_001_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_001_full_c1_000_nm",
+        "swatchTextureHex": "7A23FEFC",
+        "swatchTexture": "uisw_cotton_000"
       },
       {
         "componentHex": "6CAABB81",
@@ -3546,7 +3892,9 @@
         "tint2": 40,
         "drawable": "mp_gloves_mr1_001_full",
         "albedo": "mp_gloves_mr1_001_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_001_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_001_full_c1_000_nm",
+        "swatchTextureHex": "7A23FEFC",
+        "swatchTexture": "uisw_cotton_000"
       },
       {
         "componentHex": "B51ECC98",
@@ -3567,7 +3915,9 @@
         "tint2": 67,
         "drawable": "mp_gloves_mr1_001_full",
         "albedo": "mp_gloves_mr1_001_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_001_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_001_full_c1_000_nm",
+        "swatchTextureHex": "7A23FEFC",
+        "swatchTexture": "uisw_cotton_000"
       },
       {
         "componentHex": "C2CCE7F4",
@@ -3588,7 +3938,9 @@
         "tint2": 86,
         "drawable": "mp_gloves_mr1_001_full",
         "albedo": "mp_gloves_mr1_001_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_001_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_001_full_c1_000_nm",
+        "swatchTextureHex": "7A23FEFC",
+        "swatchTexture": "uisw_cotton_000"
       },
       {
         "componentHex": "91A405A3",
@@ -3609,7 +3961,9 @@
         "tint2": 77,
         "drawable": "mp_gloves_mr1_001_full",
         "albedo": "mp_gloves_mr1_001_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_001_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_001_full_c1_000_nm",
+        "swatchTextureHex": "7A23FEFC",
+        "swatchTexture": "uisw_cotton_000"
       },
       {
         "componentHex": "7ADAD811",
@@ -3630,7 +3984,9 @@
         "tint2": 2,
         "drawable": "mp_gloves_mr1_001_full",
         "albedo": "mp_gloves_mr1_001_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_001_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_001_full_c1_000_nm",
+        "swatchTextureHex": "7A23FEFC",
+        "swatchTexture": "uisw_cotton_000"
       },
       {
         "componentHex": "8767F12B",
@@ -3651,7 +4007,9 @@
         "tint2": 21,
         "drawable": "mp_gloves_mr1_001_full",
         "albedo": "mp_gloves_mr1_001_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_001_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_001_full_c1_000_nm",
+        "swatchTextureHex": "7A23FEFC",
+        "swatchTexture": "uisw_cotton_000"
       },
       {
         "componentHex": "1A2D8F40",
@@ -3672,7 +4030,9 @@
         "tint2": 2,
         "drawable": "mp_gloves_mr1_001_full",
         "albedo": "mp_gloves_mr1_001_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_001_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_001_full_c1_000_nm",
+        "swatchTextureHex": "7A23FEFC",
+        "swatchTexture": "uisw_cotton_000"
       },
       {
         "componentHex": "48786BD5",
@@ -3693,7 +4053,9 @@
         "tint2": 60,
         "drawable": "mp_gloves_mr1_001_full",
         "albedo": "mp_gloves_mr1_001_full_c1_998_ab",
-        "normal": "mp_gloves_mr1_001_full_c1_998_nm"
+        "normal": "mp_gloves_mr1_001_full_c1_998_nm",
+        "swatchTextureHex": "E3091FA6",
+        "swatchTexture": "uisw_leather_000"
       },
       {
         "componentHex": "35BD465F",
@@ -3714,7 +4076,9 @@
         "tint2": 35,
         "drawable": "mp_gloves_mr1_001_full",
         "albedo": "mp_gloves_mr1_001_full_c1_998_ab",
-        "normal": "mp_gloves_mr1_001_full_c1_998_nm"
+        "normal": "mp_gloves_mr1_001_full_c1_998_nm",
+        "swatchTextureHex": "E3091FA6",
+        "swatchTexture": "uisw_leather_000"
       },
       {
         "componentHex": "DB7C99AF",
@@ -3735,7 +4099,9 @@
         "tint2": 64,
         "drawable": "mp_gloves_fr1_001_full",
         "albedo": "mp_gloves_mr1_001_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_001_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_001_full_c1_000_nm",
+        "swatchTextureHex": "7A23FEFC",
+        "swatchTexture": "uisw_cotton_000"
       },
       {
         "componentHex": "0D527D5A",
@@ -3756,7 +4122,9 @@
         "tint2": 64,
         "drawable": "mp_gloves_fr1_001_full",
         "albedo": "mp_gloves_mr1_001_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_001_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_001_full_c1_000_nm",
+        "swatchTextureHex": "7A23FEFC",
+        "swatchTexture": "uisw_cotton_000"
       },
       {
         "componentHex": "F70F50D4",
@@ -3777,7 +4145,9 @@
         "tint2": 67,
         "drawable": "mp_gloves_fr1_001_full",
         "albedo": "mp_gloves_mr1_001_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_001_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_001_full_c1_000_nm",
+        "swatchTextureHex": "7A23FEFC",
+        "swatchTexture": "uisw_cotton_000"
       },
       {
         "componentHex": "28CE3451",
@@ -3798,7 +4168,9 @@
         "tint2": 40,
         "drawable": "mp_gloves_fr1_001_full",
         "albedo": "mp_gloves_mr1_001_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_001_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_001_full_c1_000_nm",
+        "swatchTextureHex": "7A23FEFC",
+        "swatchTexture": "uisw_cotton_000"
       },
       {
         "componentHex": "94A10BF9",
@@ -3819,7 +4191,9 @@
         "tint2": 67,
         "drawable": "mp_gloves_fr1_001_full",
         "albedo": "mp_gloves_mr1_001_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_001_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_001_full_c1_000_nm",
+        "swatchTextureHex": "7A23FEFC",
+        "swatchTexture": "uisw_cotton_000"
       },
       {
         "componentHex": "C64AEF4C",
@@ -3840,7 +4214,9 @@
         "tint2": 86,
         "drawable": "mp_gloves_fr1_001_full",
         "albedo": "mp_gloves_mr1_001_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_001_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_001_full_c1_000_nm",
+        "swatchTextureHex": "7A23FEFC",
+        "swatchTexture": "uisw_cotton_000"
       },
       {
         "componentHex": "B005C2C2",
@@ -3861,7 +4237,9 @@
         "tint2": 77,
         "drawable": "mp_gloves_fr1_001_full",
         "albedo": "mp_gloves_mr1_001_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_001_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_001_full_c1_000_nm",
+        "swatchTextureHex": "7A23FEFC",
+        "swatchTexture": "uisw_cotton_000"
       },
       {
         "componentHex": "E1D8A667",
@@ -3882,7 +4260,9 @@
         "tint2": 2,
         "drawable": "mp_gloves_fr1_001_full",
         "albedo": "mp_gloves_mr1_001_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_001_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_001_full_c1_000_nm",
+        "swatchTextureHex": "7A23FEFC",
+        "swatchTexture": "uisw_cotton_000"
       },
       {
         "componentHex": "C4C6EBE8",
@@ -3903,7 +4283,9 @@
         "tint2": 21,
         "drawable": "mp_gloves_fr1_001_full",
         "albedo": "mp_gloves_mr1_001_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_001_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_001_full_c1_000_nm",
+        "swatchTextureHex": "7A23FEFC",
+        "swatchTexture": "uisw_cotton_000"
       },
       {
         "componentHex": "3F1D5D03",
@@ -3924,7 +4306,9 @@
         "tint2": 2,
         "drawable": "mp_gloves_fr1_001_full",
         "albedo": "mp_gloves_mr1_001_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_001_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_001_full_c1_000_nm",
+        "swatchTextureHex": "7A23FEFC",
+        "swatchTexture": "uisw_cotton_000"
       },
       {
         "componentHex": "DD621992",
@@ -3945,7 +4329,9 @@
         "tint2": 64,
         "drawable": "mp_gloves_fr1_001_full",
         "albedo": "mp_gloves_mr1_001_full_c1_998_ab",
-        "normal": "mp_gloves_mr1_001_full_c1_998_nm"
+        "normal": "mp_gloves_mr1_001_full_c1_998_nm",
+        "swatchTextureHex": "E3091FA6",
+        "swatchTexture": "uisw_leather_000"
       },
       {
         "componentHex": "EF2FBD2D",
@@ -3966,7 +4352,9 @@
         "tint2": 35,
         "drawable": "mp_gloves_fr1_001_full",
         "albedo": "mp_gloves_mr1_001_full_c1_998_ab",
-        "normal": "mp_gloves_mr1_001_full_c1_998_nm"
+        "normal": "mp_gloves_mr1_001_full_c1_998_nm",
+        "swatchTextureHex": "E3091FA6",
+        "swatchTexture": "uisw_leather_000"
       }
     ]
   },
@@ -3992,7 +4380,9 @@
         "tint2": 58,
         "drawable": "mp_gloves_mr1_008_full",
         "albedo": "mp_gloves_mr1_008_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_008_full_c1_999_nm"
+        "normal": "mp_gloves_mr1_008_full_c1_999_nm",
+        "swatchTextureHex": "4B3FDC1C",
+        "swatchTexture": "uisw_horse_trapperblanket_001"
       },
       {
         "componentHex": "8DFB3ACE",
@@ -4013,7 +4403,9 @@
         "tint2": 8,
         "drawable": "mp_gloves_mr1_008_full",
         "albedo": "mp_gloves_mr1_008_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_008_full_c1_999_nm"
+        "normal": "mp_gloves_mr1_008_full_c1_999_nm",
+        "swatchTextureHex": "4B3FDC1C",
+        "swatchTexture": "uisw_horse_trapperblanket_001"
       },
       {
         "componentHex": "A071DFBB",
@@ -4034,7 +4426,9 @@
         "tint2": 30,
         "drawable": "mp_gloves_mr1_008_full",
         "albedo": "mp_gloves_mr1_008_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_008_full_c1_999_nm"
+        "normal": "mp_gloves_mr1_008_full_c1_999_nm",
+        "swatchTextureHex": "4B3FDC1C",
+        "swatchTexture": "uisw_horse_trapperblanket_001"
       },
       {
         "componentHex": "1F6D5DAC",
@@ -4055,7 +4449,9 @@
         "tint2": 55,
         "drawable": "mp_gloves_mr1_008_full",
         "albedo": "mp_gloves_mr1_008_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_008_full_c1_999_nm"
+        "normal": "mp_gloves_mr1_008_full_c1_999_nm",
+        "swatchTextureHex": "4B3FDC1C",
+        "swatchTexture": "uisw_horse_trapperblanket_001"
       },
       {
         "componentHex": "21F862C2",
@@ -4076,7 +4472,9 @@
         "tint2": 109,
         "drawable": "mp_gloves_mr1_008_full",
         "albedo": "mp_gloves_mr1_008_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_008_full_c1_999_nm"
+        "normal": "mp_gloves_mr1_008_full_c1_999_nm",
+        "swatchTextureHex": "4B3FDC1C",
+        "swatchTexture": "uisw_horse_trapperblanket_001"
       },
       {
         "componentHex": "32DA0485",
@@ -4097,7 +4495,9 @@
         "tint2": 14,
         "drawable": "mp_gloves_mr1_008_full",
         "albedo": "mp_gloves_mr1_008_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_008_full_c1_999_nm"
+        "normal": "mp_gloves_mr1_008_full_c1_999_nm",
+        "swatchTextureHex": "4B3FDC1C",
+        "swatchTexture": "uisw_horse_trapperblanket_001"
       },
       {
         "componentHex": "33D44A78",
@@ -4118,7 +4518,9 @@
         "tint2": 58,
         "drawable": "mp_gloves_fr1_008_full",
         "albedo": "mp_gloves_mr1_008_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_008_full_c1_999_nm"
+        "normal": "mp_gloves_mr1_008_full_c1_999_nm",
+        "swatchTextureHex": "4B3FDC1C",
+        "swatchTexture": "uisw_horse_trapperblanket_001"
       },
       {
         "componentHex": "AA1536F8",
@@ -4139,7 +4541,9 @@
         "tint2": 8,
         "drawable": "mp_gloves_fr1_008_full",
         "albedo": "mp_gloves_mr1_008_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_008_full_c1_999_nm"
+        "normal": "mp_gloves_mr1_008_full_c1_999_nm",
+        "swatchTextureHex": "4B3FDC1C",
+        "swatchTexture": "uisw_horse_trapperblanket_001"
       },
       {
         "componentHex": "974B9165",
@@ -4160,7 +4564,9 @@
         "tint2": 30,
         "drawable": "mp_gloves_fr1_008_full",
         "albedo": "mp_gloves_mr1_008_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_008_full_c1_999_nm"
+        "normal": "mp_gloves_mr1_008_full_c1_999_nm",
+        "swatchTextureHex": "4B3FDC1C",
+        "swatchTexture": "uisw_horse_trapperblanket_001"
       },
       {
         "componentHex": "8CB27C33",
@@ -4181,7 +4587,9 @@
         "tint2": 55,
         "drawable": "mp_gloves_fr1_008_full",
         "albedo": "mp_gloves_mr1_008_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_008_full_c1_999_nm"
+        "normal": "mp_gloves_mr1_008_full_c1_999_nm",
+        "swatchTextureHex": "4B3FDC1C",
+        "swatchTexture": "uisw_horse_trapperblanket_001"
       },
       {
         "componentHex": "7ADFD88E",
@@ -4202,7 +4610,9 @@
         "tint2": 109,
         "drawable": "mp_gloves_fr1_008_full",
         "albedo": "mp_gloves_mr1_008_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_008_full_c1_999_nm"
+        "normal": "mp_gloves_mr1_008_full_c1_999_nm",
+        "swatchTextureHex": "4B3FDC1C",
+        "swatchTexture": "uisw_horse_trapperblanket_001"
       },
       {
         "componentHex": "7A10572B",
@@ -4223,7 +4633,9 @@
         "tint2": 14,
         "drawable": "mp_gloves_fr1_008_full",
         "albedo": "mp_gloves_mr1_008_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_008_full_c1_999_nm"
+        "normal": "mp_gloves_mr1_008_full_c1_999_nm",
+        "swatchTextureHex": "4B3FDC1C",
+        "swatchTexture": "uisw_horse_trapperblanket_001"
       }
     ]
   },
@@ -4249,7 +4661,9 @@
         "tint2": 51,
         "drawable": "mp_gloves_mr1_009_full",
         "albedo": "mp_gloves_mr1_009_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_009_full_c1_999_nm"
+        "normal": "mp_gloves_mr1_009_full_c1_999_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "E4EF88EF",
@@ -4270,7 +4684,9 @@
         "tint2": 34,
         "drawable": "mp_gloves_mr1_009_full",
         "albedo": "mp_gloves_mr1_009_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_009_full_c1_999_nm"
+        "normal": "mp_gloves_mr1_009_full_c1_999_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "CA5F53BF",
@@ -4291,7 +4707,9 @@
         "tint2": 33,
         "drawable": "mp_gloves_mr1_009_full",
         "albedo": "mp_gloves_mr1_009_full_c1_998_ab",
-        "normal": "mp_gloves_mr1_009_full_c1_998_nm"
+        "normal": "mp_gloves_mr1_009_full_c1_998_nm",
+        "swatchTextureHex": "4B3FDC1C",
+        "swatchTexture": "uisw_horse_trapperblanket_001"
       },
       {
         "componentHex": "017241F4",
@@ -4312,7 +4730,9 @@
         "tint2": 42,
         "drawable": "mp_gloves_mr1_009_full",
         "albedo": "mp_gloves_mr1_009_full_c1_998_ab",
-        "normal": "mp_gloves_mr1_009_full_c1_998_nm"
+        "normal": "mp_gloves_mr1_009_full_c1_998_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "F2A3A457",
@@ -4333,7 +4753,9 @@
         "tint2": 142,
         "drawable": "mp_gloves_mr1_009_full",
         "albedo": "mp_gloves_mr1_009_full_c1_997_ab",
-        "normal": "mp_gloves_mr1_009_full_c1_997_nm"
+        "normal": "mp_gloves_mr1_009_full_c1_997_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "2D851A19",
@@ -4354,7 +4776,9 @@
         "tint2": 28,
         "drawable": "mp_gloves_mr1_009_full",
         "albedo": "mp_gloves_mr1_009_full_c1_997_ab",
-        "normal": "mp_gloves_mr1_009_full_c1_997_nm"
+        "normal": "mp_gloves_mr1_009_full_c1_997_nm",
+        "swatchTextureHex": "4B3FDC1C",
+        "swatchTexture": "uisw_horse_trapperblanket_001"
       },
       {
         "componentHex": "2EBFF2B6",
@@ -4375,7 +4799,9 @@
         "tint2": 51,
         "drawable": "mp_gloves_fr1_009_full",
         "albedo": "mp_gloves_mr1_009_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_009_full_c1_999_nm"
+        "normal": "mp_gloves_mr1_009_full_c1_999_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "E9F2691C",
@@ -4396,7 +4822,9 @@
         "tint2": 34,
         "drawable": "mp_gloves_fr1_009_full",
         "albedo": "mp_gloves_mr1_009_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_009_full_c1_999_nm"
+        "normal": "mp_gloves_mr1_009_full_c1_999_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "BC418DBB",
@@ -4417,7 +4845,9 @@
         "tint2": 33,
         "drawable": "mp_gloves_fr1_009_full",
         "albedo": "mp_gloves_mr1_009_full_c1_998_ab",
-        "normal": "mp_gloves_mr1_009_full_c1_998_nm"
+        "normal": "mp_gloves_mr1_009_full_c1_998_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "85912057",
@@ -4438,7 +4868,9 @@
         "tint2": 42,
         "drawable": "mp_gloves_fr1_009_full",
         "albedo": "mp_gloves_mr1_009_full_c1_998_ab",
-        "normal": "mp_gloves_mr1_009_full_c1_998_nm"
+        "normal": "mp_gloves_mr1_009_full_c1_998_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "D7C244BC",
@@ -4459,7 +4891,9 @@
         "tint2": 142,
         "drawable": "mp_gloves_fr1_009_full",
         "albedo": "mp_gloves_mr1_009_full_c1_997_ab",
-        "normal": "mp_gloves_mr1_009_full_c1_997_nm"
+        "normal": "mp_gloves_mr1_009_full_c1_997_nm",
+        "swatchTextureHex": "4B3FDC1C",
+        "swatchTexture": "uisw_horse_trapperblanket_001"
       },
       {
         "componentHex": "AD877043",
@@ -4480,7 +4914,9 @@
         "tint2": 28,
         "drawable": "mp_gloves_fr1_009_full",
         "albedo": "mp_gloves_mr1_009_full_c1_997_ab",
-        "normal": "mp_gloves_mr1_009_full_c1_997_nm"
+        "normal": "mp_gloves_mr1_009_full_c1_997_nm",
+        "swatchTextureHex": "4B3FDC1C",
+        "swatchTexture": "uisw_horse_trapperblanket_001"
       }
     ]
   },
@@ -4506,7 +4942,9 @@
         "tint2": 122,
         "drawable": "mp_gloves_mr1_301_full",
         "albedo": "mp_gloves_mr1_301_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_301_full_c1_999_nm"
+        "normal": "mp_gloves_mr1_301_full_c1_999_nm",
+        "swatchTextureHex": "11646D03",
+        "swatchTexture": "uisw_horse_cotton_pt011"
       },
       {
         "componentHex": "EB1FB6B4",
@@ -4527,7 +4965,9 @@
         "tint2": 46,
         "drawable": "mp_gloves_mr1_301_full",
         "albedo": "mp_gloves_mr1_301_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_301_full_c1_999_nm"
+        "normal": "mp_gloves_mr1_301_full_c1_999_nm",
+        "swatchTextureHex": "11646D03",
+        "swatchTexture": "uisw_horse_cotton_pt011"
       },
       {
         "componentHex": "6AA435BF",
@@ -4548,7 +4988,9 @@
         "tint2": 8,
         "drawable": "mp_gloves_mr1_301_full",
         "albedo": "mp_gloves_mr1_301_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_301_full_c1_999_nm"
+        "normal": "mp_gloves_mr1_301_full_c1_999_nm",
+        "swatchTextureHex": "11646D03",
+        "swatchTexture": "uisw_horse_cotton_pt011"
       },
       {
         "componentHex": "7849D10A",
@@ -4569,7 +5011,9 @@
         "tint2": 52,
         "drawable": "mp_gloves_mr1_301_full",
         "albedo": "mp_gloves_mr1_301_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_301_full_c1_999_nm"
+        "normal": "mp_gloves_mr1_301_full_c1_999_nm",
+        "swatchTextureHex": "11646D03",
+        "swatchTexture": "uisw_horse_cotton_pt011"
       },
       {
         "componentHex": "8E18FCA8",
@@ -4590,7 +5034,9 @@
         "tint2": 49,
         "drawable": "mp_gloves_mr1_301_full",
         "albedo": "mp_gloves_mr1_301_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_301_full_c1_999_nm"
+        "normal": "mp_gloves_mr1_301_full_c1_999_nm",
+        "swatchTextureHex": "11646D03",
+        "swatchTexture": "uisw_horse_cotton_pt011"
       },
       {
         "componentHex": "9BE3983D",
@@ -4611,7 +5057,9 @@
         "tint2": 87,
         "drawable": "mp_gloves_mr1_301_full",
         "albedo": "mp_gloves_mr1_301_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_301_full_c1_999_nm"
+        "normal": "mp_gloves_mr1_301_full_c1_999_nm",
+        "swatchTextureHex": "11646D03",
+        "swatchTexture": "uisw_horse_cotton_pt011"
       },
       {
         "componentHex": "03066679",
@@ -4632,7 +5080,9 @@
         "tint2": 246,
         "drawable": "mp_gloves_mr1_301_full",
         "albedo": "mp_gloves_mr1_301_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_301_full_c1_999_nm"
+        "normal": "mp_gloves_mr1_301_full_c1_999_nm",
+        "swatchTextureHex": "11646D03",
+        "swatchTexture": "uisw_horse_cotton_pt011"
       },
       {
         "componentHex": "123C04EC",
@@ -4653,7 +5103,9 @@
         "tint2": 187,
         "drawable": "mp_gloves_mr1_301_full",
         "albedo": "mp_gloves_mr1_301_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_301_full_c1_999_nm"
+        "normal": "mp_gloves_mr1_301_full_c1_999_nm",
+        "swatchTextureHex": "11646D03",
+        "swatchTexture": "uisw_horse_cotton_pt011"
       },
       {
         "componentHex": "27112E96",
@@ -4674,7 +5126,9 @@
         "tint2": 47,
         "drawable": "mp_gloves_mr1_301_full",
         "albedo": "mp_gloves_mr1_301_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_301_full_c1_999_nm"
+        "normal": "mp_gloves_mr1_301_full_c1_999_nm",
+        "swatchTextureHex": "11646D03",
+        "swatchTexture": "uisw_horse_cotton_pt011"
       },
       {
         "componentHex": "D7678BE8",
@@ -4695,7 +5149,9 @@
         "tint2": 59,
         "drawable": "mp_gloves_mr1_301_full",
         "albedo": "mp_gloves_mr1_301_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_301_full_c1_999_nm"
+        "normal": "mp_gloves_mr1_301_full_c1_999_nm",
+        "swatchTextureHex": "11646D03",
+        "swatchTexture": "uisw_horse_cotton_pt011"
       },
       {
         "componentHex": "272E8656",
@@ -4716,7 +5172,9 @@
         "tint2": 122,
         "drawable": "mp_gloves_fr1_301_full",
         "albedo": "mp_gloves_mr1_301_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_301_full_c1_999_nm"
+        "normal": "mp_gloves_mr1_301_full_c1_999_nm",
+        "swatchTextureHex": "11646D03",
+        "swatchTexture": "uisw_horse_cotton_pt011"
       },
       {
         "componentHex": "338A9EE2",
@@ -4737,7 +5195,9 @@
         "tint2": 46,
         "drawable": "mp_gloves_fr1_301_full",
         "albedo": "mp_gloves_mr1_301_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_301_full_c1_999_nm"
+        "normal": "mp_gloves_mr1_301_full_c1_999_nm",
+        "swatchTextureHex": "11646D03",
+        "swatchTexture": "uisw_horse_cotton_pt011"
       },
       {
         "componentHex": "42A13D0F",
@@ -4758,7 +5218,9 @@
         "tint2": 8,
         "drawable": "mp_gloves_fr1_301_full",
         "albedo": "mp_gloves_mr1_301_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_301_full_c1_999_nm"
+        "normal": "mp_gloves_mr1_301_full_c1_999_nm",
+        "swatchTextureHex": "11646D03",
+        "swatchTexture": "uisw_horse_cotton_pt011"
       },
       {
         "componentHex": "8CECD1A9",
@@ -4779,7 +5241,9 @@
         "tint2": 52,
         "drawable": "mp_gloves_fr1_301_full",
         "albedo": "mp_gloves_mr1_301_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_301_full_c1_999_nm"
+        "normal": "mp_gloves_mr1_301_full_c1_999_nm",
+        "swatchTextureHex": "11646D03",
+        "swatchTexture": "uisw_horse_cotton_pt011"
       },
       {
         "componentHex": "9E1A7404",
@@ -4800,7 +5264,9 @@
         "tint2": 49,
         "drawable": "mp_gloves_fr1_301_full",
         "albedo": "mp_gloves_mr1_301_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_301_full_c1_999_nm"
+        "normal": "mp_gloves_mr1_301_full_c1_999_nm",
+        "swatchTextureHex": "11646D03",
+        "swatchTexture": "uisw_horse_cotton_pt011"
       },
       {
         "componentHex": "687208B4",
@@ -4821,7 +5287,9 @@
         "tint2": 87,
         "drawable": "mp_gloves_fr1_301_full",
         "albedo": "mp_gloves_mr1_301_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_301_full_c1_999_nm"
+        "normal": "mp_gloves_mr1_301_full_c1_999_nm",
+        "swatchTextureHex": "11646D03",
+        "swatchTexture": "uisw_horse_cotton_pt011"
       },
       {
         "componentHex": "7BA4AF19",
@@ -4842,7 +5310,9 @@
         "tint2": 246,
         "drawable": "mp_gloves_fr1_301_full",
         "albedo": "mp_gloves_mr1_301_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_301_full_c1_999_nm"
+        "normal": "mp_gloves_mr1_301_full_c1_999_nm",
+        "swatchTextureHex": "11646D03",
+        "swatchTexture": "uisw_horse_cotton_pt011"
       },
       {
         "componentHex": "C5E8439F",
@@ -4863,7 +5333,9 @@
         "tint2": 187,
         "drawable": "mp_gloves_fr1_301_full",
         "albedo": "mp_gloves_mr1_301_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_301_full_c1_999_nm"
+        "normal": "mp_gloves_mr1_301_full_c1_999_nm",
+        "swatchTextureHex": "11646D03",
+        "swatchTexture": "uisw_horse_cotton_pt011"
       },
       {
         "componentHex": "D791E6F2",
@@ -4884,7 +5356,9 @@
         "tint2": 47,
         "drawable": "mp_gloves_fr1_301_full",
         "albedo": "mp_gloves_mr1_301_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_301_full_c1_999_nm"
+        "normal": "mp_gloves_mr1_301_full_c1_999_nm",
+        "swatchTextureHex": "11646D03",
+        "swatchTexture": "uisw_horse_cotton_pt011"
       },
       {
         "componentHex": "E181F506",
@@ -4905,7 +5379,9 @@
         "tint2": 59,
         "drawable": "mp_gloves_fr1_301_full",
         "albedo": "mp_gloves_mr1_301_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_301_full_c1_999_nm"
+        "normal": "mp_gloves_mr1_301_full_c1_999_nm",
+        "swatchTextureHex": "11646D03",
+        "swatchTexture": "uisw_horse_cotton_pt011"
       }
     ]
   },
@@ -4931,7 +5407,8 @@
         "tint2": 15,
         "drawable": "mp_gloves_mr1_306_full",
         "albedo": "mp_gloves_mr1_306_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_306_full_c1_999_nm"
+        "normal": "mp_gloves_mr1_306_full_c1_999_nm",
+        "swatchTextureHex": "56EE00D0"
       },
       {
         "componentHex": "078CD565",
@@ -4952,7 +5429,9 @@
         "tint2": 77,
         "drawable": "mp_gloves_mr1_306_full",
         "albedo": "mp_gloves_mr1_306_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_306_full_c1_999_nm"
+        "normal": "mp_gloves_mr1_306_full_c1_999_nm",
+        "swatchTextureHex": "56EE00D0",
+        "swatchTexture": "uisw_canvas_000"
       },
       {
         "componentHex": "1146E8D9",
@@ -4973,7 +5452,9 @@
         "tint2": 188,
         "drawable": "mp_gloves_mr1_306_full",
         "albedo": "mp_gloves_mr1_306_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_306_full_c1_999_nm"
+        "normal": "mp_gloves_mr1_306_full_c1_999_nm",
+        "swatchTextureHex": "56EE00D0",
+        "swatchTexture": "uisw_canvas_000"
       },
       {
         "componentHex": "A2DF8C0C",
@@ -4994,7 +5475,9 @@
         "tint2": 38,
         "drawable": "mp_gloves_mr1_306_full",
         "albedo": "mp_gloves_mr1_306_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_306_full_c1_999_nm"
+        "normal": "mp_gloves_mr1_306_full_c1_999_nm",
+        "swatchTextureHex": "56EE00D0",
+        "swatchTexture": "uisw_canvas_000"
       },
       {
         "componentHex": "B4C52FD7",
@@ -5015,7 +5498,9 @@
         "tint2": 77,
         "drawable": "mp_gloves_mr1_306_full",
         "albedo": "mp_gloves_mr1_306_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_306_full_c1_999_nm"
+        "normal": "mp_gloves_mr1_306_full_c1_999_nm",
+        "swatchTextureHex": "56EE00D0",
+        "swatchTexture": "uisw_canvas_000"
       },
       {
         "componentHex": "BE3342B3",
@@ -5036,7 +5521,9 @@
         "tint2": 124,
         "drawable": "mp_gloves_mr1_306_full",
         "albedo": "mp_gloves_mr1_306_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_306_full_c1_999_nm"
+        "normal": "mp_gloves_mr1_306_full_c1_999_nm",
+        "swatchTextureHex": "56EE00D0",
+        "swatchTexture": "uisw_canvas_000"
       },
       {
         "componentHex": "D03FE6CC",
@@ -5057,7 +5544,9 @@
         "tint2": 21,
         "drawable": "mp_gloves_mr1_306_full",
         "albedo": "mp_gloves_mr1_306_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_306_full_c1_999_nm"
+        "normal": "mp_gloves_mr1_306_full_c1_999_nm",
+        "swatchTextureHex": "56EE00D0",
+        "swatchTexture": "uisw_canvas_000"
       },
       {
         "componentHex": "79B839BE",
@@ -5078,7 +5567,9 @@
         "tint2": 0,
         "drawable": "mp_gloves_mr1_306_full",
         "albedo": "mp_gloves_mr1_306_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_306_full_c1_999_nm"
+        "normal": "mp_gloves_mr1_306_full_c1_999_nm",
+        "swatchTextureHex": "56EE00D0",
+        "swatchTexture": "uisw_canvas_000"
       },
       {
         "componentHex": "8B93DD75",
@@ -5099,7 +5590,9 @@
         "tint2": 248,
         "drawable": "mp_gloves_mr1_306_full",
         "albedo": "mp_gloves_mr1_306_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_306_full_c1_999_nm"
+        "normal": "mp_gloves_mr1_306_full_c1_999_nm",
+        "swatchTextureHex": "56EE00D0",
+        "swatchTexture": "uisw_canvas_000"
       },
       {
         "componentHex": "449E5A3B",
@@ -5120,7 +5613,9 @@
         "tint2": 243,
         "drawable": "mp_gloves_mr1_306_full",
         "albedo": "mp_gloves_mr1_306_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_306_full_c1_999_nm"
+        "normal": "mp_gloves_mr1_306_full_c1_999_nm",
+        "swatchTextureHex": "56EE00D0",
+        "swatchTexture": "uisw_canvas_000"
       },
       {
         "componentHex": "4889fdbd",
@@ -5141,7 +5636,8 @@
         "tint2": 15,
         "drawable": "mp_gloves_fr1_306_full",
         "albedo": "mp_gloves_mr1_306_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_306_full_c1_999_nm"
+        "normal": "mp_gloves_mr1_306_full_c1_999_nm",
+        "swatchTextureHex": "56EE00D0"
       },
       {
         "componentHex": "363B5920",
@@ -5162,7 +5658,9 @@
         "tint2": 77,
         "drawable": "mp_gloves_fr1_306_full",
         "albedo": "mp_gloves_mr1_306_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_306_full_c1_999_nm"
+        "normal": "mp_gloves_mr1_306_full_c1_999_nm",
+        "swatchTextureHex": "56EE00D0",
+        "swatchTexture": "uisw_canvas_000"
       },
       {
         "componentHex": "234C3342",
@@ -5183,7 +5681,9 @@
         "tint2": 188,
         "drawable": "mp_gloves_fr1_306_full",
         "albedo": "mp_gloves_mr1_306_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_306_full_c1_999_nm"
+        "normal": "mp_gloves_mr1_306_full_c1_999_nm",
+        "swatchTextureHex": "56EE00D0",
+        "swatchTexture": "uisw_canvas_000"
       },
       {
         "componentHex": "11CA903F",
@@ -5204,7 +5704,9 @@
         "tint2": 38,
         "drawable": "mp_gloves_fr1_306_full",
         "albedo": "mp_gloves_mr1_306_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_306_full_c1_999_nm"
+        "normal": "mp_gloves_mr1_306_full_c1_999_nm",
+        "swatchTextureHex": "56EE00D0",
+        "swatchTexture": "uisw_canvas_000"
       },
       {
         "componentHex": "EC92456F",
@@ -5225,7 +5727,9 @@
         "tint2": 77,
         "drawable": "mp_gloves_fr1_306_full",
         "albedo": "mp_gloves_mr1_306_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_306_full_c1_999_nm"
+        "normal": "mp_gloves_mr1_306_full_c1_999_nm",
+        "swatchTextureHex": "56EE00D0",
+        "swatchTexture": "uisw_canvas_000"
       },
       {
         "componentHex": "01546EF3",
@@ -5246,7 +5750,9 @@
         "tint2": 124,
         "drawable": "mp_gloves_fr1_306_full",
         "albedo": "mp_gloves_mr1_306_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_306_full_c1_999_nm"
+        "normal": "mp_gloves_mr1_306_full_c1_999_nm",
+        "swatchTextureHex": "56EE00D0",
+        "swatchTexture": "uisw_canvas_000"
       },
       {
         "componentHex": "CF1E8A88",
@@ -5267,7 +5773,9 @@
         "tint2": 21,
         "drawable": "mp_gloves_fr1_306_full",
         "albedo": "mp_gloves_mr1_306_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_306_full_c1_999_nm"
+        "normal": "mp_gloves_mr1_306_full_c1_999_nm",
+        "swatchTextureHex": "56EE00D0",
+        "swatchTexture": "uisw_canvas_000"
       },
       {
         "componentHex": "DECD29E5",
@@ -5288,7 +5796,9 @@
         "tint2": 0,
         "drawable": "mp_gloves_fr1_306_full",
         "albedo": "mp_gloves_mr1_306_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_306_full_c1_999_nm"
+        "normal": "mp_gloves_mr1_306_full_c1_999_nm",
+        "swatchTextureHex": "56EE00D0",
+        "swatchTexture": "uisw_canvas_000"
       },
       {
         "componentHex": "B4EAD621",
@@ -5309,7 +5819,9 @@
         "tint2": 248,
         "drawable": "mp_gloves_fr1_306_full",
         "albedo": "mp_gloves_mr1_306_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_306_full_c1_999_nm"
+        "normal": "mp_gloves_mr1_306_full_c1_999_nm",
+        "swatchTextureHex": "56EE00D0",
+        "swatchTexture": "uisw_canvas_000"
       },
       {
         "componentHex": "01036931",
@@ -5330,7 +5842,9 @@
         "tint2": 243,
         "drawable": "mp_gloves_fr1_306_full",
         "albedo": "mp_gloves_mr1_306_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_306_full_c1_999_nm"
+        "normal": "mp_gloves_mr1_306_full_c1_999_nm",
+        "swatchTextureHex": "56EE00D0",
+        "swatchTexture": "uisw_canvas_000"
       }
     ]
   },
@@ -5356,7 +5870,9 @@
         "tint2": 68,
         "drawable": "mp_gloves_mr1_003_full",
         "albedo": "mp_gloves_mr1_003_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_003_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_003_full_c1_000_nm",
+        "swatchTextureHex": "E3091FA6",
+        "swatchTexture": "uisw_leather_000"
       },
       {
         "componentHex": "9AFA2DFE",
@@ -5377,7 +5893,9 @@
         "tint2": 66,
         "drawable": "mp_gloves_mr1_003_full",
         "albedo": "mp_gloves_mr1_003_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_003_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_003_full_c1_000_nm",
+        "swatchTextureHex": "E3091FA6",
+        "swatchTexture": "uisw_leather_000"
       },
       {
         "componentHex": "8891892D",
@@ -5398,7 +5916,9 @@
         "tint2": 67,
         "drawable": "mp_gloves_mr1_003_full",
         "albedo": "mp_gloves_mr1_003_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_003_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_003_full_c1_000_nm",
+        "swatchTextureHex": "E3091FA6",
+        "swatchTexture": "uisw_leather_000"
       },
       {
         "componentHex": "BF60F6CB",
@@ -5419,7 +5939,9 @@
         "tint2": 69,
         "drawable": "mp_gloves_mr1_003_full",
         "albedo": "mp_gloves_mr1_003_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_003_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_003_full_c1_000_nm",
+        "swatchTextureHex": "E3091FA6",
+        "swatchTexture": "uisw_leather_000"
       },
       {
         "componentHex": "AD355274",
@@ -5440,7 +5962,9 @@
         "tint2": 255,
         "drawable": "mp_gloves_mr1_003_full",
         "albedo": "mp_gloves_mr1_003_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_003_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_003_full_c1_000_nm",
+        "swatchTextureHex": "E3091FA6",
+        "swatchTexture": "uisw_leather_000"
       },
       {
         "componentHex": "638ABF20",
@@ -5461,7 +5985,9 @@
         "tint2": 255,
         "drawable": "mp_gloves_mr1_003_full",
         "albedo": "mp_gloves_mr1_003_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_003_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_003_full_c1_000_nm",
+        "swatchTextureHex": "E3091FA6",
+        "swatchTexture": "uisw_leather_000"
       },
       {
         "componentHex": "51B81B7B",
@@ -5482,7 +6008,9 @@
         "tint2": 255,
         "drawable": "mp_gloves_mr1_003_full",
         "albedo": "mp_gloves_mr1_003_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_003_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_003_full_c1_000_nm",
+        "swatchTextureHex": "E3091FA6",
+        "swatchTexture": "uisw_leather_000"
       },
       {
         "componentHex": "085A08C0",
@@ -5503,7 +6031,9 @@
         "tint2": 255,
         "drawable": "mp_gloves_mr1_003_full",
         "albedo": "mp_gloves_mr1_003_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_003_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_003_full_c1_000_nm",
+        "swatchTextureHex": "E3091FA6",
+        "swatchTexture": "uisw_leather_000"
       },
       {
         "componentHex": "76CDE5A6",
@@ -5524,7 +6054,9 @@
         "tint2": 255,
         "drawable": "mp_gloves_mr1_003_full",
         "albedo": "mp_gloves_mr1_003_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_003_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_003_full_c1_000_nm",
+        "swatchTextureHex": "E3091FA6",
+        "swatchTexture": "uisw_leather_000"
       },
       {
         "componentHex": "EADA5149",
@@ -5545,7 +6077,9 @@
         "tint2": 2,
         "drawable": "mp_gloves_mr1_003_full",
         "albedo": "mp_gloves_mr1_003_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_003_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_003_full_c1_000_nm",
+        "swatchTextureHex": "E3091FA6",
+        "swatchTexture": "uisw_leather_000"
       },
       {
         "componentHex": "126DC683",
@@ -5566,7 +6100,9 @@
         "tint2": 68,
         "drawable": "mp_gloves_fr1_003_full",
         "albedo": "mp_gloves_mr1_003_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_003_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_003_full_c1_000_nm",
+        "swatchTextureHex": "E3091FA6",
+        "swatchTexture": "uisw_leather_000"
       },
       {
         "componentHex": "3D951CD1",
@@ -5587,7 +6123,9 @@
         "tint2": 66,
         "drawable": "mp_gloves_fr1_003_full",
         "albedo": "mp_gloves_mr1_003_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_003_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_003_full_c1_000_nm",
+        "swatchTextureHex": "E3091FA6",
+        "swatchTexture": "uisw_leather_000"
       },
       {
         "componentHex": "477E30A3",
@@ -5608,7 +6146,9 @@
         "tint2": 67,
         "drawable": "mp_gloves_fr1_003_full",
         "albedo": "mp_gloves_mr1_003_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_003_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_003_full_c1_000_nm",
+        "swatchTextureHex": "E3091FA6",
+        "swatchTexture": "uisw_leather_000"
       },
       {
         "componentHex": "5D985CD7",
@@ -5629,7 +6169,9 @@
         "tint2": 69,
         "drawable": "mp_gloves_fr1_003_full",
         "albedo": "mp_gloves_mr1_003_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_003_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_003_full_c1_000_nm",
+        "swatchTextureHex": "E3091FA6",
+        "swatchTexture": "uisw_leather_000"
       },
       {
         "componentHex": "67597059",
@@ -5650,7 +6192,9 @@
         "tint2": 255,
         "drawable": "mp_gloves_fr1_003_full",
         "albedo": "mp_gloves_mr1_003_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_003_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_003_full_c1_000_nm",
+        "swatchTextureHex": "E3091FA6",
+        "swatchTexture": "uisw_leather_000"
       },
       {
         "componentHex": "7B2B17FC",
@@ -5671,7 +6215,9 @@
         "tint2": 255,
         "drawable": "mp_gloves_fr1_003_full",
         "albedo": "mp_gloves_mr1_003_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_003_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_003_full_c1_000_nm",
+        "swatchTextureHex": "E3091FA6",
+        "swatchTexture": "uisw_leather_000"
       },
       {
         "componentHex": "84E72B74",
@@ -5692,7 +6238,9 @@
         "tint2": 255,
         "drawable": "mp_gloves_fr1_003_full",
         "albedo": "mp_gloves_mr1_003_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_003_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_003_full_c1_000_nm",
+        "swatchTextureHex": "E3091FA6",
+        "swatchTexture": "uisw_leather_000"
       },
       {
         "componentHex": "968DCEC1",
@@ -5713,7 +6261,9 @@
         "tint2": 255,
         "drawable": "mp_gloves_fr1_003_full",
         "albedo": "mp_gloves_mr1_003_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_003_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_003_full_c1_000_nm",
+        "swatchTextureHex": "E3091FA6",
+        "swatchTexture": "uisw_leather_000"
       },
       {
         "componentHex": "A054E24F",
@@ -5734,7 +6284,9 @@
         "tint2": 255,
         "drawable": "mp_gloves_fr1_003_full",
         "albedo": "mp_gloves_mr1_003_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_003_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_003_full_c1_000_nm",
+        "swatchTextureHex": "E3091FA6",
+        "swatchTexture": "uisw_leather_000"
       },
       {
         "componentHex": "7AF0186A",
@@ -5755,7 +6307,9 @@
         "tint2": 2,
         "drawable": "mp_gloves_fr1_003_full",
         "albedo": "mp_gloves_mr1_003_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_003_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_003_full_c1_000_nm",
+        "swatchTextureHex": "E3091FA6",
+        "swatchTexture": "uisw_leather_000"
       }
     ]
   },
@@ -5781,7 +6335,9 @@
         "tint2": 112,
         "drawable": "mp_gloves_mr1_004_full",
         "albedo": "mp_gloves_mr1_004_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_004_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_004_full_c1_000_nm",
+        "swatchTextureHex": "B3902E46",
+        "swatchTexture": "uisw_leather_pt001"
       },
       {
         "componentHex": "D7106BC5",
@@ -5802,7 +6358,9 @@
         "tint2": 112,
         "drawable": "mp_gloves_mr1_004_full",
         "albedo": "mp_gloves_mr1_004_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_004_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_004_full_c1_000_nm",
+        "swatchTextureHex": "B3902E46",
+        "swatchTexture": "uisw_leather_pt001"
       },
       {
         "componentHex": "A9068FB2",
@@ -5823,7 +6381,9 @@
         "tint2": 112,
         "drawable": "mp_gloves_mr1_004_full",
         "albedo": "mp_gloves_mr1_004_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_004_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_004_full_c1_000_nm",
+        "swatchTextureHex": "B3902E46",
+        "swatchTexture": "uisw_leather_pt001"
       },
       {
         "componentHex": "B71D2BDF",
@@ -5844,7 +6404,9 @@
         "tint2": 117,
         "drawable": "mp_gloves_mr1_004_full",
         "albedo": "mp_gloves_mr1_004_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_004_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_004_full_c1_000_nm",
+        "swatchTextureHex": "B3902E46",
+        "swatchTexture": "uisw_leather_pt001"
       },
       {
         "componentHex": "88BB4F1C",
@@ -5865,7 +6427,9 @@
         "tint2": 255,
         "drawable": "mp_gloves_mr1_004_full",
         "albedo": "mp_gloves_mr1_004_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_004_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_004_full_c1_000_nm",
+        "swatchTextureHex": "B3902E46",
+        "swatchTexture": "uisw_leather_pt001"
       },
       {
         "componentHex": "928562B0",
@@ -5886,7 +6450,9 @@
         "tint2": 255,
         "drawable": "mp_gloves_mr1_004_full",
         "albedo": "mp_gloves_mr1_004_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_004_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_004_full_c1_000_nm",
+        "swatchTextureHex": "B3902E46",
+        "swatchTexture": "uisw_leather_pt001"
       },
       {
         "componentHex": "64308607",
@@ -5907,7 +6473,9 @@
         "tint2": 255,
         "drawable": "mp_gloves_mr1_004_full",
         "albedo": "mp_gloves_mr1_004_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_004_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_004_full_c1_000_nm",
+        "swatchTextureHex": "B3902E46",
+        "swatchTexture": "uisw_leather_pt001"
       },
       {
         "componentHex": "4FF75D95",
@@ -5928,7 +6496,9 @@
         "tint2": 255,
         "drawable": "mp_gloves_mr1_004_full",
         "albedo": "mp_gloves_mr1_004_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_004_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_004_full_c1_000_nm",
+        "swatchTextureHex": "B3902E46",
+        "swatchTexture": "uisw_leather_pt001"
       },
       {
         "componentHex": "5A3AF21C",
@@ -5949,7 +6519,9 @@
         "tint2": 255,
         "drawable": "mp_gloves_mr1_004_full",
         "albedo": "mp_gloves_mr1_004_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_004_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_004_full_c1_000_nm",
+        "swatchTextureHex": "B3902E46",
+        "swatchTexture": "uisw_leather_pt001"
       },
       {
         "componentHex": "5912ECA0",
@@ -5970,7 +6542,9 @@
         "tint2": 1,
         "drawable": "mp_gloves_mr1_004_full",
         "albedo": "mp_gloves_mr1_004_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_004_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_004_full_c1_000_nm",
+        "swatchTextureHex": "B3902E46",
+        "swatchTexture": "uisw_leather_pt001"
       },
       {
         "componentHex": "AA05717E",
@@ -5991,7 +6565,9 @@
         "tint2": 112,
         "drawable": "mp_gloves_fr1_004_full",
         "albedo": "mp_gloves_mr1_004_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_004_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_004_full_c1_000_nm",
+        "swatchTextureHex": "B3902E46",
+        "swatchTexture": "uisw_leather_pt001"
       },
       {
         "componentHex": "9C3FD5F3",
@@ -6012,7 +6588,9 @@
         "tint2": 112,
         "drawable": "mp_gloves_fr1_004_full",
         "albedo": "mp_gloves_mr1_004_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_004_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_004_full_c1_000_nm",
+        "swatchTextureHex": "B3902E46",
+        "swatchTexture": "uisw_leather_pt001"
       },
       {
         "componentHex": "8DAAB8C9",
@@ -6033,7 +6611,9 @@
         "tint2": 112,
         "drawable": "mp_gloves_fr1_004_full",
         "albedo": "mp_gloves_mr1_004_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_004_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_004_full_c1_000_nm",
+        "swatchTextureHex": "B3902E46",
+        "swatchTexture": "uisw_leather_pt001"
       },
       {
         "componentHex": "7F601C34",
@@ -6054,7 +6634,9 @@
         "tint2": 117,
         "drawable": "mp_gloves_fr1_004_full",
         "albedo": "mp_gloves_mr1_004_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_004_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_004_full_c1_000_nm",
+        "swatchTextureHex": "B3902E46",
+        "swatchTexture": "uisw_leather_pt001"
       },
       {
         "componentHex": "F9E4113E",
@@ -6075,7 +6657,9 @@
         "tint2": 255,
         "drawable": "mp_gloves_fr1_004_full",
         "albedo": "mp_gloves_mr1_004_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_004_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_004_full_c1_000_nm",
+        "swatchTextureHex": "B3902E46",
+        "swatchTexture": "uisw_leather_pt001"
       },
       {
         "componentHex": "2A9AF2AB",
@@ -6096,7 +6680,9 @@
         "tint2": 255,
         "drawable": "mp_gloves_fr1_004_full",
         "albedo": "mp_gloves_mr1_004_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_004_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_004_full_c1_000_nm",
+        "swatchTextureHex": "B3902E46",
+        "swatchTexture": "uisw_leather_pt001"
       },
       {
         "componentHex": "DDBD58F1",
@@ -6117,7 +6703,9 @@
         "tint2": 255,
         "drawable": "mp_gloves_fr1_004_full",
         "albedo": "mp_gloves_mr1_004_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_004_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_004_full_c1_000_nm",
+        "swatchTextureHex": "B3902E46",
+        "swatchTexture": "uisw_leather_pt001"
       },
       {
         "componentHex": "0F7F3C74",
@@ -6138,7 +6726,9 @@
         "tint2": 255,
         "drawable": "mp_gloves_fr1_004_full",
         "albedo": "mp_gloves_mr1_004_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_004_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_004_full_c1_000_nm",
+        "swatchTextureHex": "B3902E46",
+        "swatchTexture": "uisw_leather_pt001"
       },
       {
         "componentHex": "68E86F45",
@@ -6159,7 +6749,9 @@
         "tint2": 255,
         "drawable": "mp_gloves_fr1_004_full",
         "albedo": "mp_gloves_mr1_004_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_004_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_004_full_c1_000_nm",
+        "swatchTextureHex": "B3902E46",
+        "swatchTexture": "uisw_leather_pt001"
       },
       {
         "componentHex": "9BEF5472",
@@ -6180,7 +6772,9 @@
         "tint2": 1,
         "drawable": "mp_gloves_fr1_004_full",
         "albedo": "mp_gloves_mr1_004_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_004_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_004_full_c1_000_nm",
+        "swatchTextureHex": "B3902E46",
+        "swatchTexture": "uisw_leather_pt001"
       }
     ]
   },
@@ -6206,7 +6800,9 @@
         "tint2": 19,
         "drawable": "mp_gloves_mr1_005_full",
         "albedo": "mp_gloves_mr1_005_full_c3_999_ab",
-        "normal": "mp_gloves_mr1_005_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_005_full_c1_000_nm",
+        "swatchTextureHex": "2D324103",
+        "swatchTexture": "uisw_denim_sv001"
       },
       {
         "componentHex": "9A22841D",
@@ -6227,7 +6823,9 @@
         "tint2": 19,
         "drawable": "mp_gloves_mr1_005_full",
         "albedo": "mp_gloves_mr1_005_full_c3_999_ab",
-        "normal": "mp_gloves_mr1_005_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_005_full_c1_000_nm",
+        "swatchTextureHex": "2D324103",
+        "swatchTexture": "uisw_denim_sv001"
       },
       {
         "componentHex": "D0D07178",
@@ -6248,7 +6846,9 @@
         "tint2": 19,
         "drawable": "mp_gloves_mr1_005_full",
         "albedo": "mp_gloves_mr1_005_full_c3_999_ab",
-        "normal": "mp_gloves_mr1_005_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_005_full_c1_000_nm",
+        "swatchTextureHex": "2D324103",
+        "swatchTexture": "uisw_denim_sv001"
       },
       {
         "componentHex": "BF774EC6",
@@ -6269,7 +6869,9 @@
         "tint2": 32,
         "drawable": "mp_gloves_mr1_005_full",
         "albedo": "mp_gloves_mr1_005_full_c3_999_ab",
-        "normal": "mp_gloves_mr1_005_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_005_full_c1_000_nm",
+        "swatchTextureHex": "2D324103",
+        "swatchTexture": "uisw_denim_sv001"
       },
       {
         "componentHex": "D52DFA2F",
@@ -6290,7 +6892,9 @@
         "tint2": 25,
         "drawable": "mp_gloves_mr1_005_full",
         "albedo": "mp_gloves_mr1_005_full_c3_999_ab",
-        "normal": "mp_gloves_mr1_005_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_005_full_c1_000_nm",
+        "swatchTextureHex": "2D324103",
+        "swatchTexture": "uisw_denim_sv001"
       },
       {
         "componentHex": "C3EFD7B3",
@@ -6311,7 +6915,9 @@
         "tint2": 25,
         "drawable": "mp_gloves_mr1_005_full",
         "albedo": "mp_gloves_mr1_005_full_c3_999_ab",
-        "normal": "mp_gloves_mr1_005_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_005_full_c1_000_nm",
+        "swatchTextureHex": "2D324103",
+        "swatchTexture": "uisw_denim_sv001"
       },
       {
         "componentHex": "F99BC30A",
@@ -6332,7 +6938,9 @@
         "tint2": 43,
         "drawable": "mp_gloves_mr1_005_full",
         "albedo": "mp_gloves_mr1_005_full_c3_999_ab",
-        "normal": "mp_gloves_mr1_005_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_005_full_c1_000_nm",
+        "swatchTextureHex": "2D324103",
+        "swatchTexture": "uisw_denim_sv001"
       },
       {
         "componentHex": "E89620FF",
@@ -6353,7 +6961,9 @@
         "tint2": 16,
         "drawable": "mp_gloves_mr1_005_full",
         "albedo": "mp_gloves_mr1_005_full_c3_999_ab",
-        "normal": "mp_gloves_mr1_005_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_005_full_c1_000_nm",
+        "swatchTextureHex": "2D324103",
+        "swatchTexture": "uisw_denim_sv001"
       },
       {
         "componentHex": "1F0B8DED",
@@ -6374,7 +6984,9 @@
         "tint2": 18,
         "drawable": "mp_gloves_mr1_005_full",
         "albedo": "mp_gloves_mr1_005_full_c3_999_ab",
-        "normal": "mp_gloves_mr1_005_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_005_full_c1_000_nm",
+        "swatchTextureHex": "2D324103",
+        "swatchTexture": "uisw_denim_sv001"
       },
       {
         "componentHex": "28189F0B",
@@ -6395,7 +7007,9 @@
         "tint2": 16,
         "drawable": "mp_gloves_mr1_005_full",
         "albedo": "mp_gloves_mr1_005_full_c3_999_ab",
-        "normal": "mp_gloves_mr1_005_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_005_full_c1_000_nm",
+        "swatchTextureHex": "2D324103",
+        "swatchTexture": "uisw_denim_sv001"
       },
       {
         "componentHex": "9AEACC04",
@@ -6416,7 +7030,9 @@
         "tint2": 19,
         "drawable": "mp_gloves_fr1_005_full",
         "albedo": "mp_gloves_mr1_005_full_c3_999_ab",
-        "normal": "mp_gloves_mr1_005_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_005_full_c1_000_nm",
+        "swatchTextureHex": "2D324103",
+        "swatchTexture": "uisw_denim_sv001"
       },
       {
         "componentHex": "8EB9B3A2",
@@ -6437,7 +7053,9 @@
         "tint2": 19,
         "drawable": "mp_gloves_fr1_005_full",
         "albedo": "mp_gloves_mr1_005_full_c3_999_ab",
-        "normal": "mp_gloves_mr1_005_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_005_full_c1_000_nm",
+        "swatchTextureHex": "2D324103",
+        "swatchTexture": "uisw_denim_sv001"
       },
       {
         "componentHex": "80A51779",
@@ -6458,7 +7076,9 @@
         "tint2": 19,
         "drawable": "mp_gloves_fr1_005_full",
         "albedo": "mp_gloves_mr1_005_full_c3_999_ab",
-        "normal": "mp_gloves_mr1_005_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_005_full_c1_000_nm",
+        "swatchTextureHex": "2D324103",
+        "swatchTexture": "uisw_denim_sv001"
       },
       {
         "componentHex": "692FE88F",
@@ -6479,7 +7099,9 @@
         "tint2": 32,
         "drawable": "mp_gloves_fr1_005_full",
         "albedo": "mp_gloves_mr1_005_full_c3_999_ab",
-        "normal": "mp_gloves_mr1_005_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_005_full_c1_000_nm",
+        "swatchTextureHex": "2D324103",
+        "swatchTexture": "uisw_denim_sv001"
       },
       {
         "componentHex": "5B004C30",
@@ -6500,7 +7122,9 @@
         "tint2": 25,
         "drawable": "mp_gloves_fr1_005_full",
         "albedo": "mp_gloves_mr1_005_full_c3_999_ab",
-        "normal": "mp_gloves_mr1_005_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_005_full_c1_000_nm",
+        "swatchTextureHex": "2D324103",
+        "swatchTexture": "uisw_denim_sv001"
       },
       {
         "componentHex": "4E933356",
@@ -6521,7 +7145,9 @@
         "tint2": 25,
         "drawable": "mp_gloves_fr1_005_full",
         "albedo": "mp_gloves_mr1_005_full_c3_999_ab",
-        "normal": "mp_gloves_mr1_005_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_005_full_c1_000_nm",
+        "swatchTextureHex": "2D324103",
+        "swatchTexture": "uisw_denim_sv001"
       },
       {
         "componentHex": "406A9705",
@@ -6542,7 +7168,9 @@
         "tint2": 43,
         "drawable": "mp_gloves_fr1_005_full",
         "albedo": "mp_gloves_mr1_005_full_c3_999_ab",
-        "normal": "mp_gloves_mr1_005_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_005_full_c1_000_nm",
+        "swatchTextureHex": "2D324103",
+        "swatchTexture": "uisw_denim_sv001"
       },
       {
         "componentHex": "C2379A9D",
@@ -6563,7 +7191,9 @@
         "tint2": 16,
         "drawable": "mp_gloves_fr1_005_full",
         "albedo": "mp_gloves_mr1_005_full_c3_999_ab",
-        "normal": "mp_gloves_mr1_005_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_005_full_c1_000_nm",
+        "swatchTextureHex": "2D324103",
+        "swatchTexture": "uisw_denim_sv001"
       },
       {
         "componentHex": "31DEF9EA",
@@ -6584,7 +7214,9 @@
         "tint2": 18,
         "drawable": "mp_gloves_fr1_005_full",
         "albedo": "mp_gloves_mr1_005_full_c3_999_ab",
-        "normal": "mp_gloves_mr1_005_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_005_full_c1_000_nm",
+        "swatchTextureHex": "2D324103",
+        "swatchTexture": "uisw_denim_sv001"
       },
       {
         "componentHex": "FE390F17",
@@ -6605,7 +7237,9 @@
         "tint2": 16,
         "drawable": "mp_gloves_fr1_005_full",
         "albedo": "mp_gloves_mr1_005_full_c3_999_ab",
-        "normal": "mp_gloves_mr1_005_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_005_full_c1_000_nm",
+        "swatchTextureHex": "2D324103",
+        "swatchTexture": "uisw_denim_sv001"
       }
     ]
   },
@@ -6631,7 +7265,9 @@
         "tint2": 65,
         "drawable": "mp_gloves_mr1_006_full",
         "albedo": "mp_gloves_mr1_006_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_006_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_006_full_c1_000_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "3B94811C",
@@ -6652,7 +7288,9 @@
         "tint2": 65,
         "drawable": "mp_gloves_mr1_006_full",
         "albedo": "mp_gloves_mr1_006_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_006_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_006_full_c1_000_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "6A5DDEAE",
@@ -6673,7 +7311,9 @@
         "tint2": 65,
         "drawable": "mp_gloves_mr1_006_full",
         "albedo": "mp_gloves_mr1_006_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_006_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_006_full_c1_000_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "78177A21",
@@ -6694,7 +7334,9 @@
         "tint2": 113,
         "drawable": "mp_gloves_mr1_006_full",
         "albedo": "mp_gloves_mr1_006_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_006_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_006_full_c1_000_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "08181A24",
@@ -6715,7 +7357,9 @@
         "tint2": 113,
         "drawable": "mp_gloves_mr1_006_full",
         "albedo": "mp_gloves_mr1_006_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_006_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_006_full_c1_000_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "16F937E6",
@@ -6736,7 +7380,9 @@
         "tint2": 113,
         "drawable": "mp_gloves_mr1_006_full",
         "albedo": "mp_gloves_mr1_006_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_006_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_006_full_c1_000_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "24B7D363",
@@ -6757,7 +7403,9 @@
         "tint2": 113,
         "drawable": "mp_gloves_mr1_006_full",
         "albedo": "mp_gloves_mr1_006_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_006_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_006_full_c1_000_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "2F55E89F",
@@ -6778,7 +7426,9 @@
         "tint2": 113,
         "drawable": "mp_gloves_mr1_006_full",
         "albedo": "mp_gloves_mr1_006_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_006_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_006_full_c1_000_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "1F6D48D2",
@@ -6799,7 +7449,9 @@
         "tint2": 113,
         "drawable": "mp_gloves_mr1_006_full",
         "albedo": "mp_gloves_mr1_006_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_006_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_006_full_c1_000_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "5994405B",
@@ -6820,7 +7472,9 @@
         "tint2": 113,
         "drawable": "mp_gloves_mr1_006_full",
         "albedo": "mp_gloves_mr1_006_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_006_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_006_full_c1_000_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "2FC6ABF5",
@@ -6841,7 +7495,9 @@
         "tint2": 65,
         "drawable": "mp_gloves_fr1_006_full",
         "albedo": "mp_gloves_mr1_006_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_006_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_006_full_c1_000_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "20180C98",
@@ -6862,7 +7518,9 @@
         "tint2": 65,
         "drawable": "mp_gloves_fr1_006_full",
         "albedo": "mp_gloves_mr1_006_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_006_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_006_full_c1_000_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "F7BC3BD1",
@@ -6883,7 +7541,9 @@
         "tint2": 65,
         "drawable": "mp_gloves_fr1_006_full",
         "albedo": "mp_gloves_mr1_006_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_006_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_006_full_c1_000_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "E9719F3C",
@@ -6904,7 +7564,9 @@
         "tint2": 113,
         "drawable": "mp_gloves_fr1_006_full",
         "albedo": "mp_gloves_mr1_006_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_006_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_006_full_c1_000_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "1328F2AA",
@@ -6925,7 +7587,9 @@
         "tint2": 113,
         "drawable": "mp_gloves_fr1_006_full",
         "albedo": "mp_gloves_mr1_006_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_006_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_006_full_c1_000_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "04D75607",
@@ -6946,7 +7610,9 @@
         "tint2": 113,
         "drawable": "mp_gloves_fr1_006_full",
         "albedo": "mp_gloves_mr1_006_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_006_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_006_full_c1_000_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "8312528B",
@@ -6967,7 +7633,9 @@
         "tint2": 113,
         "drawable": "mp_gloves_fr1_006_full",
         "albedo": "mp_gloves_mr1_006_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_006_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_006_full_c1_000_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "AED9AA0D",
@@ -6988,7 +7656,9 @@
         "tint2": 113,
         "drawable": "mp_gloves_fr1_006_full",
         "albedo": "mp_gloves_mr1_006_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_006_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_006_full_c1_000_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "A1140E82",
@@ -7009,7 +7679,9 @@
         "tint2": 113,
         "drawable": "mp_gloves_fr1_006_full",
         "albedo": "mp_gloves_mr1_006_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_006_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_006_full_c1_000_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "24150CAA",
@@ -7030,7 +7702,9 @@
         "tint2": 113,
         "drawable": "mp_gloves_fr1_006_full",
         "albedo": "mp_gloves_mr1_006_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_006_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_006_full_c1_000_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       }
     ]
   },
@@ -7056,7 +7730,9 @@
         "tint2": 114,
         "drawable": "mp_gloves_mr1_007_full",
         "albedo": "mp_gloves_mr1_007_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_007_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_007_full_c1_000_nm",
+        "swatchTextureHex": "E3091FA6",
+        "swatchTexture": "uisw_leather_000"
       },
       {
         "componentHex": "CE41A18E",
@@ -7077,7 +7753,9 @@
         "tint2": 114,
         "drawable": "mp_gloves_mr1_007_full",
         "albedo": "mp_gloves_mr1_007_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_007_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_007_full_c1_000_nm",
+        "swatchTextureHex": "E3091FA6",
+        "swatchTexture": "uisw_leather_000"
       },
       {
         "componentHex": "CB8B9C22",
@@ -7098,7 +7776,9 @@
         "tint2": 66,
         "drawable": "mp_gloves_mr1_007_full",
         "albedo": "mp_gloves_mr1_007_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_007_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_007_full_c1_000_nm",
+        "swatchTextureHex": "E3091FA6",
+        "swatchTexture": "uisw_leather_000"
       },
       {
         "componentHex": "FB267B57",
@@ -7119,7 +7799,9 @@
         "tint2": 71,
         "drawable": "mp_gloves_mr1_007_full",
         "albedo": "mp_gloves_mr1_007_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_007_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_007_full_c1_000_nm",
+        "swatchTextureHex": "E3091FA6",
+        "swatchTexture": "uisw_leather_000"
       },
       {
         "componentHex": "E97957FD",
@@ -7140,7 +7822,9 @@
         "tint2": 255,
         "drawable": "mp_gloves_mr1_007_full",
         "albedo": "mp_gloves_mr1_007_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_007_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_007_full_c1_000_nm",
+        "swatchTextureHex": "E3091FA6",
+        "swatchTexture": "uisw_leather_000"
       },
       {
         "componentHex": "D8B2B668",
@@ -7161,7 +7845,9 @@
         "tint2": 255,
         "drawable": "mp_gloves_mr1_007_full",
         "albedo": "mp_gloves_mr1_007_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_007_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_007_full_c1_000_nm",
+        "swatchTextureHex": "E3091FA6",
+        "swatchTexture": "uisw_leather_000"
       },
       {
         "componentHex": "C8421587",
@@ -7182,7 +7868,9 @@
         "tint2": 255,
         "drawable": "mp_gloves_mr1_007_full",
         "albedo": "mp_gloves_mr1_007_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_007_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_007_full_c1_000_nm",
+        "swatchTextureHex": "E3091FA6",
+        "swatchTexture": "uisw_leather_000"
       },
       {
         "componentHex": "F617F132",
@@ -7203,7 +7891,9 @@
         "tint2": 255,
         "drawable": "mp_gloves_mr1_007_full",
         "albedo": "mp_gloves_mr1_007_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_007_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_007_full_c1_000_nm",
+        "swatchTextureHex": "E3091FA6",
+        "swatchTexture": "uisw_leather_000"
       },
       {
         "componentHex": "91E1A8C7",
@@ -7224,7 +7914,9 @@
         "tint2": 255,
         "drawable": "mp_gloves_mr1_007_full",
         "albedo": "mp_gloves_mr1_007_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_007_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_007_full_c1_000_nm",
+        "swatchTextureHex": "E3091FA6",
+        "swatchTexture": "uisw_leather_000"
       },
       {
         "componentHex": "89E61A24",
@@ -7245,7 +7937,9 @@
         "tint2": 1,
         "drawable": "mp_gloves_mr1_007_full",
         "albedo": "mp_gloves_mr1_007_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_007_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_007_full_c1_000_nm",
+        "swatchTextureHex": "E3091FA6",
+        "swatchTexture": "uisw_leather_000"
       },
       {
         "componentHex": "F6F17D8B",
@@ -7266,7 +7960,9 @@
         "tint2": 114,
         "drawable": "mp_gloves_fr1_007_full",
         "albedo": "mp_gloves_mr1_007_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_007_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_007_full_c1_000_nm",
+        "swatchTextureHex": "E3091FA6",
+        "swatchTexture": "uisw_leather_000"
       },
       {
         "componentHex": "E0375017",
@@ -7287,7 +7983,9 @@
         "tint2": 114,
         "drawable": "mp_gloves_fr1_007_full",
         "albedo": "mp_gloves_mr1_007_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_007_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_007_full_c1_000_nm",
+        "swatchTextureHex": "E3091FA6",
+        "swatchTexture": "uisw_leather_000"
       },
       {
         "componentHex": "8E72AC7F",
@@ -7308,7 +8006,9 @@
         "tint2": 66,
         "drawable": "mp_gloves_fr1_007_full",
         "albedo": "mp_gloves_mr1_007_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_007_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_007_full_c1_000_nm",
+        "swatchTextureHex": "E3091FA6",
+        "swatchTexture": "uisw_leather_000"
       },
       {
         "componentHex": "79BC8313",
@@ -7329,7 +8029,9 @@
         "tint2": 71,
         "drawable": "mp_gloves_fr1_007_full",
         "albedo": "mp_gloves_mr1_007_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_007_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_007_full_c1_000_nm",
+        "swatchTextureHex": "E3091FA6",
+        "swatchTexture": "uisw_leather_000"
       },
       {
         "componentHex": "B2D67546",
@@ -7350,7 +8052,9 @@
         "tint2": 255,
         "drawable": "mp_gloves_fr1_007_full",
         "albedo": "mp_gloves_mr1_007_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_007_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_007_full_c1_000_nm",
+        "swatchTextureHex": "E3091FA6",
+        "swatchTexture": "uisw_leather_000"
       },
       {
         "componentHex": "9CA748E8",
@@ -7371,7 +8075,9 @@
         "tint2": 255,
         "drawable": "mp_gloves_fr1_007_full",
         "albedo": "mp_gloves_mr1_007_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_007_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_007_full_c1_000_nm",
+        "swatchTextureHex": "E3091FA6",
+        "swatchTexture": "uisw_leather_000"
       },
       {
         "componentHex": "D51839C9",
@@ -7392,7 +8098,9 @@
         "tint2": 255,
         "drawable": "mp_gloves_fr1_007_full",
         "albedo": "mp_gloves_mr1_007_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_007_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_007_full_c1_000_nm",
+        "swatchTextureHex": "E3091FA6",
+        "swatchTexture": "uisw_leather_000"
       },
       {
         "componentHex": "C6E59D64",
@@ -7413,7 +8121,9 @@
         "tint2": 255,
         "drawable": "mp_gloves_fr1_007_full",
         "albedo": "mp_gloves_mr1_007_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_007_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_007_full_c1_000_nm",
+        "swatchTextureHex": "E3091FA6",
+        "swatchTexture": "uisw_leather_000"
       },
       {
         "componentHex": "FB78068C",
@@ -7434,7 +8144,9 @@
         "tint2": 255,
         "drawable": "mp_gloves_fr1_007_full",
         "albedo": "mp_gloves_mr1_007_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_007_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_007_full_c1_000_nm",
+        "swatchTextureHex": "E3091FA6",
+        "swatchTexture": "uisw_leather_000"
       },
       {
         "componentHex": "F15A70F5",
@@ -7455,7 +8167,9 @@
         "tint2": 1,
         "drawable": "mp_gloves_fr1_007_full",
         "albedo": "mp_gloves_mr1_007_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_007_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_007_full_c1_000_nm",
+        "swatchTextureHex": "E3091FA6",
+        "swatchTexture": "uisw_leather_000"
       }
     ]
   },
@@ -7481,7 +8195,9 @@
         "tint2": 130,
         "drawable": "mp_gloves_mr1_004_001_full",
         "albedo": "mp_gloves_mr1_004_full_c1_998_ab",
-        "normal": "mp_gloves_mr1_004_full_c1_998_nm"
+        "normal": "mp_gloves_mr1_004_full_c1_998_nm",
+        "swatchTextureHex": "4EDC4A28",
+        "swatchTexture": "uisw_cotton_pt001"
       },
       {
         "componentHex": "B2FA78A4",
@@ -7502,7 +8218,9 @@
         "tint2": 6,
         "drawable": "mp_gloves_mr1_004_001_full",
         "albedo": "mp_gloves_mr1_004_full_c1_998_ab",
-        "normal": "mp_gloves_mr1_004_full_c1_998_nm"
+        "normal": "mp_gloves_mr1_004_full_c1_998_nm",
+        "swatchTextureHex": "4EDC4A28",
+        "swatchTexture": "uisw_cotton_pt001"
       },
       {
         "componentHex": "78B90422",
@@ -7523,7 +8241,9 @@
         "tint2": 79,
         "drawable": "mp_gloves_mr1_004_001_full",
         "albedo": "mp_gloves_mr1_004_full_c1_998_ab",
-        "normal": "mp_gloves_mr1_004_full_c1_998_nm"
+        "normal": "mp_gloves_mr1_004_full_c1_998_nm",
+        "swatchTextureHex": "4EDC4A28",
+        "swatchTexture": "uisw_cotton_pt001"
       },
       {
         "componentHex": "018A95C7",
@@ -7544,7 +8264,9 @@
         "tint2": 244,
         "drawable": "mp_gloves_mr1_004_001_full",
         "albedo": "mp_gloves_mr1_004_full_c1_998_ab",
-        "normal": "mp_gloves_mr1_004_full_c1_998_nm"
+        "normal": "mp_gloves_mr1_004_full_c1_998_nm",
+        "swatchTextureHex": "4EDC4A28",
+        "swatchTexture": "uisw_cotton_pt001"
       },
       {
         "componentHex": "0F0430BA",
@@ -7565,7 +8287,9 @@
         "tint2": 37,
         "drawable": "mp_gloves_mr1_004_001_full",
         "albedo": "mp_gloves_mr1_004_full_c1_998_ab",
-        "normal": "mp_gloves_mr1_004_full_c1_998_nm"
+        "normal": "mp_gloves_mr1_004_full_c1_998_nm",
+        "swatchTextureHex": "4EDC4A28",
+        "swatchTexture": "uisw_cotton_pt001"
       },
       {
         "componentHex": "4E38AF22",
@@ -7586,7 +8310,9 @@
         "tint2": 31,
         "drawable": "mp_gloves_mr1_004_001_full",
         "albedo": "mp_gloves_mr1_004_full_c1_998_ab",
-        "normal": "mp_gloves_mr1_004_full_c1_998_nm"
+        "normal": "mp_gloves_mr1_004_full_c1_998_nm",
+        "swatchTextureHex": "4EDC4A28",
+        "swatchTexture": "uisw_cotton_pt001"
       },
       {
         "componentHex": "1C7ACBA7",
@@ -7607,7 +8333,9 @@
         "tint2": 78,
         "drawable": "mp_gloves_mr1_004_001_full",
         "albedo": "mp_gloves_mr1_004_full_c1_998_ab",
-        "normal": "mp_gloves_mr1_004_full_c1_998_nm"
+        "normal": "mp_gloves_mr1_004_full_c1_998_nm",
+        "swatchTextureHex": "4EDC4A28",
+        "swatchTexture": "uisw_cotton_pt001"
       },
       {
         "componentHex": "C48D9BD2",
@@ -7628,7 +8356,9 @@
         "tint2": 75,
         "drawable": "mp_gloves_mr1_004_001_full",
         "albedo": "mp_gloves_mr1_004_full_c1_998_ab",
-        "normal": "mp_gloves_mr1_004_full_c1_998_nm"
+        "normal": "mp_gloves_mr1_004_full_c1_998_nm",
+        "swatchTextureHex": "4EDC4A28",
+        "swatchTexture": "uisw_cotton_pt001"
       },
       {
         "componentHex": "C9DAA66C",
@@ -7649,7 +8379,9 @@
         "tint2": 53,
         "drawable": "mp_gloves_mr1_004_001_full",
         "albedo": "mp_gloves_mr1_004_full_c1_998_ab",
-        "normal": "mp_gloves_mr1_004_full_c1_998_nm"
+        "normal": "mp_gloves_mr1_004_full_c1_998_nm",
+        "swatchTextureHex": "4EDC4A28",
+        "swatchTexture": "uisw_cotton_pt001"
       },
       {
         "componentHex": "80461B24",
@@ -7670,7 +8402,9 @@
         "tint2": 70,
         "drawable": "mp_gloves_mr1_004_001_full",
         "albedo": "mp_gloves_mr1_004_full_c1_998_ab",
-        "normal": "mp_gloves_mr1_004_full_c1_998_nm"
+        "normal": "mp_gloves_mr1_004_full_c1_998_nm",
+        "swatchTextureHex": "4EDC4A28",
+        "swatchTexture": "uisw_cotton_pt001"
       },
       {
         "componentHex": "E156CAB7",
@@ -7691,7 +8425,9 @@
         "tint2": 130,
         "drawable": "mp_gloves_fr1_004_001_full",
         "albedo": "mp_gloves_mr1_004_full_c1_998_ab",
-        "normal": "mp_gloves_mr1_004_full_c1_998_nm"
+        "normal": "mp_gloves_mr1_004_full_c1_998_nm",
+        "swatchTextureHex": "4EDC4A28",
+        "swatchTexture": "uisw_cotton_pt001"
       },
       {
         "componentHex": "08DD99C4",
@@ -7712,7 +8448,9 @@
         "tint2": 6,
         "drawable": "mp_gloves_fr1_004_001_full",
         "albedo": "mp_gloves_mr1_004_full_c1_998_ab",
-        "normal": "mp_gloves_mr1_004_full_c1_998_nm"
+        "normal": "mp_gloves_mr1_004_full_c1_998_nm",
+        "swatchTextureHex": "4EDC4A28",
+        "swatchTexture": "uisw_cotton_pt001"
       },
       {
         "componentHex": "76CD75A6",
@@ -7733,7 +8471,9 @@
         "tint2": 79,
         "drawable": "mp_gloves_fr1_004_001_full",
         "albedo": "mp_gloves_mr1_004_full_c1_998_ab",
-        "normal": "mp_gloves_mr1_004_full_c1_998_nm"
+        "normal": "mp_gloves_mr1_004_full_c1_998_nm",
+        "swatchTextureHex": "4EDC4A28",
+        "swatchTexture": "uisw_cotton_pt001"
       },
       {
         "componentHex": "2C1A603D",
@@ -7754,7 +8494,9 @@
         "tint2": 244,
         "drawable": "mp_gloves_fr1_004_001_full",
         "albedo": "mp_gloves_mr1_004_full_c1_998_ab",
-        "normal": "mp_gloves_mr1_004_full_c1_998_nm"
+        "normal": "mp_gloves_mr1_004_full_c1_998_nm",
+        "swatchTextureHex": "4EDC4A28",
+        "swatchTexture": "uisw_cotton_pt001"
       },
       {
         "componentHex": "1A423C8D",
@@ -7775,7 +8517,9 @@
         "tint2": 37,
         "drawable": "mp_gloves_fr1_004_001_full",
         "albedo": "mp_gloves_mr1_004_full_c1_998_ab",
-        "normal": "mp_gloves_mr1_004_full_c1_998_nm"
+        "normal": "mp_gloves_mr1_004_full_c1_998_nm",
+        "swatchTextureHex": "4EDC4A28",
+        "swatchTexture": "uisw_cotton_pt001"
       },
       {
         "componentHex": "41C30B92",
@@ -7796,7 +8540,9 @@
         "tint2": 31,
         "drawable": "mp_gloves_fr1_004_001_full",
         "albedo": "mp_gloves_mr1_004_full_c1_998_ab",
-        "normal": "mp_gloves_mr1_004_full_c1_998_nm"
+        "normal": "mp_gloves_mr1_004_full_c1_998_nm",
+        "swatchTextureHex": "4EDC4A28",
+        "swatchTexture": "uisw_cotton_pt001"
       },
       {
         "componentHex": "AF56E6B8",
@@ -7817,7 +8563,9 @@
         "tint2": 78,
         "drawable": "mp_gloves_fr1_004_001_full",
         "albedo": "mp_gloves_mr1_004_full_c1_998_ab",
-        "normal": "mp_gloves_mr1_004_full_c1_998_nm"
+        "normal": "mp_gloves_mr1_004_full_c1_998_nm",
+        "swatchTextureHex": "4EDC4A28",
+        "swatchTexture": "uisw_cotton_pt001"
       },
       {
         "componentHex": "6675D4F7",
@@ -7838,7 +8586,9 @@
         "tint2": 75,
         "drawable": "mp_gloves_fr1_004_001_full",
         "albedo": "mp_gloves_mr1_004_full_c1_998_ab",
-        "normal": "mp_gloves_mr1_004_full_c1_998_nm"
+        "normal": "mp_gloves_mr1_004_full_c1_998_nm",
+        "swatchTextureHex": "4EDC4A28",
+        "swatchTexture": "uisw_cotton_pt001"
       },
       {
         "componentHex": "54323070",
@@ -7859,7 +8609,9 @@
         "tint2": 53,
         "drawable": "mp_gloves_fr1_004_001_full",
         "albedo": "mp_gloves_mr1_004_full_c1_998_ab",
-        "normal": "mp_gloves_mr1_004_full_c1_998_nm"
+        "normal": "mp_gloves_mr1_004_full_c1_998_nm",
+        "swatchTextureHex": "4EDC4A28",
+        "swatchTexture": "uisw_cotton_pt001"
       },
       {
         "componentHex": "36F8F702",
@@ -7880,7 +8632,9 @@
         "tint2": 70,
         "drawable": "mp_gloves_fr1_004_001_full",
         "albedo": "mp_gloves_mr1_004_full_c1_998_ab",
-        "normal": "mp_gloves_mr1_004_full_c1_998_nm"
+        "normal": "mp_gloves_mr1_004_full_c1_998_nm",
+        "swatchTextureHex": "4EDC4A28",
+        "swatchTexture": "uisw_cotton_pt001"
       }
     ]
   },
@@ -7906,7 +8660,9 @@
         "tint2": 90,
         "drawable": "mp_gloves_mr1_012_full",
         "albedo": "mp_gloves_mr1_012_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_012_full_c1_999_nm"
+        "normal": "mp_gloves_mr1_012_full_c1_999_nm",
+        "swatchTextureHex": "B3902E46",
+        "swatchTexture": "uisw_leather_pt001"
       },
       {
         "componentHex": "558FBCAA",
@@ -7927,7 +8683,9 @@
         "tint2": 104,
         "drawable": "mp_gloves_mr1_012_full",
         "albedo": "mp_gloves_mr1_012_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_012_full_c1_999_nm"
+        "normal": "mp_gloves_mr1_012_full_c1_999_nm",
+        "swatchTextureHex": "B3902E46",
+        "swatchTexture": "uisw_leather_pt001"
       },
       {
         "componentHex": "46AE1EE7",
@@ -7948,7 +8706,9 @@
         "tint2": 62,
         "drawable": "mp_gloves_mr1_012_full",
         "albedo": "mp_gloves_mr1_012_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_012_full_c1_999_nm"
+        "normal": "mp_gloves_mr1_012_full_c1_999_nm",
+        "swatchTextureHex": "B3902E46",
+        "swatchTexture": "uisw_leather_pt001"
       },
       {
         "componentHex": "350C7BA4",
@@ -7969,7 +8729,9 @@
         "tint2": 120,
         "drawable": "mp_gloves_mr1_012_full",
         "albedo": "mp_gloves_mr1_012_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_012_full_c1_999_nm"
+        "normal": "mp_gloves_mr1_012_full_c1_999_nm",
+        "swatchTextureHex": "B3902E46",
+        "swatchTexture": "uisw_leather_pt001"
       },
       {
         "componentHex": "0A2D25E6",
@@ -7990,7 +8752,9 @@
         "tint2": 106,
         "drawable": "mp_gloves_mr1_012_full",
         "albedo": "mp_gloves_mr1_012_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_012_full_c1_999_nm"
+        "normal": "mp_gloves_mr1_012_full_c1_999_nm",
+        "swatchTextureHex": "B3902E46",
+        "swatchTexture": "uisw_leather_pt001"
       },
       {
         "componentHex": "F8868299",
@@ -8011,7 +8775,9 @@
         "tint2": 16,
         "drawable": "mp_gloves_mr1_012_full",
         "albedo": "mp_gloves_mr1_012_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_012_full_c1_999_nm"
+        "normal": "mp_gloves_mr1_012_full_c1_999_nm",
+        "swatchTextureHex": "B3902E46",
+        "swatchTexture": "uisw_leather_pt001"
       },
       {
         "componentHex": "8FBFB154",
@@ -8032,7 +8798,9 @@
         "tint2": 90,
         "drawable": "mp_gloves_fr1_012_full",
         "albedo": "mp_gloves_mr1_012_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_012_full_c1_999_nm"
+        "normal": "mp_gloves_mr1_012_full_c1_999_nm",
+        "swatchTextureHex": "B3902E46",
+        "swatchTexture": "uisw_leather_pt001"
       },
       {
         "componentHex": "9E67CEA4",
@@ -8053,7 +8821,9 @@
         "tint2": 104,
         "drawable": "mp_gloves_fr1_012_full",
         "albedo": "mp_gloves_mr1_012_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_012_full_c1_999_nm"
+        "normal": "mp_gloves_mr1_012_full_c1_999_nm",
+        "swatchTextureHex": "B3902E46",
+        "swatchTexture": "uisw_leather_pt001"
       },
       {
         "componentHex": "AC3A6A49",
@@ -8074,7 +8844,9 @@
         "tint2": 62,
         "drawable": "mp_gloves_fr1_012_full",
         "albedo": "mp_gloves_mr1_012_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_012_full_c1_999_nm"
+        "normal": "mp_gloves_mr1_012_full_c1_999_nm",
+        "swatchTextureHex": "B3902E46",
+        "swatchTexture": "uisw_leather_pt001"
       },
       {
         "componentHex": "B8AB832F",
@@ -8095,7 +8867,9 @@
         "tint2": 120,
         "drawable": "mp_gloves_fr1_012_full",
         "albedo": "mp_gloves_mr1_012_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_012_full_c1_999_nm"
+        "normal": "mp_gloves_mr1_012_full_c1_999_nm",
+        "swatchTextureHex": "B3902E46",
+        "swatchTexture": "uisw_leather_pt001"
       },
       {
         "componentHex": "E65ADE8D",
@@ -8116,7 +8890,9 @@
         "tint2": 106,
         "drawable": "mp_gloves_fr1_012_full",
         "albedo": "mp_gloves_mr1_012_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_012_full_c1_999_nm"
+        "normal": "mp_gloves_mr1_012_full_c1_999_nm",
+        "swatchTextureHex": "B3902E46",
+        "swatchTexture": "uisw_leather_pt001"
       },
       {
         "componentHex": "F51B7C0E",
@@ -8137,7 +8913,9 @@
         "tint2": 16,
         "drawable": "mp_gloves_fr1_012_full",
         "albedo": "mp_gloves_mr1_012_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_012_full_c1_999_nm"
+        "normal": "mp_gloves_mr1_012_full_c1_999_nm",
+        "swatchTextureHex": "B3902E46",
+        "swatchTexture": "uisw_leather_pt001"
       }
     ]
   },
@@ -8163,7 +8941,9 @@
         "tint2": 82,
         "drawable": "mp_gloves_mr1_302_full",
         "albedo": "mp_gloves_mr1_302_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_302_full_c1_999_nm"
+        "normal": "mp_gloves_mr1_302_full_c1_999_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "06C7FC7A",
@@ -8184,7 +8964,9 @@
         "tint2": 83,
         "drawable": "mp_gloves_mr1_302_full",
         "albedo": "mp_gloves_mr1_302_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_302_full_c1_999_nm"
+        "normal": "mp_gloves_mr1_302_full_c1_999_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "F87D5FE5",
@@ -8205,7 +8987,9 @@
         "tint2": 51,
         "drawable": "mp_gloves_mr1_302_full",
         "albedo": "mp_gloves_mr1_302_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_302_full_c1_999_nm"
+        "normal": "mp_gloves_mr1_302_full_c1_999_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "E63ABB60",
@@ -8226,7 +9010,9 @@
         "tint2": 45,
         "drawable": "mp_gloves_mr1_302_full",
         "albedo": "mp_gloves_mr1_302_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_302_full_c1_999_nm"
+        "normal": "mp_gloves_mr1_302_full_c1_999_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "D3F796DA",
@@ -8247,7 +9033,9 @@
         "tint2": 15,
         "drawable": "mp_gloves_mr1_302_full",
         "albedo": "mp_gloves_mr1_302_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_302_full_c1_999_nm"
+        "normal": "mp_gloves_mr1_302_full_c1_999_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "C1B1F24F",
@@ -8268,7 +9056,9 @@
         "tint2": 161,
         "drawable": "mp_gloves_mr1_302_full",
         "albedo": "mp_gloves_mr1_302_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_302_full_c1_999_nm"
+        "normal": "mp_gloves_mr1_302_full_c1_999_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "9F79ADDF",
@@ -8289,7 +9079,9 @@
         "tint2": 40,
         "drawable": "mp_gloves_mr1_302_full",
         "albedo": "mp_gloves_mr1_302_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_302_full_c1_999_nm"
+        "normal": "mp_gloves_mr1_302_full_c1_999_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "8D330952",
@@ -8310,7 +9102,9 @@
         "tint2": 248,
         "drawable": "mp_gloves_mr1_302_full",
         "albedo": "mp_gloves_mr1_302_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_302_full_c1_999_nm"
+        "normal": "mp_gloves_mr1_302_full_c1_999_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "A73DBD63",
@@ -8331,7 +9125,9 @@
         "tint2": 40,
         "drawable": "mp_gloves_mr1_302_full",
         "albedo": "mp_gloves_mr1_302_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_302_full_c1_999_nm"
+        "normal": "mp_gloves_mr1_302_full_c1_999_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "902C096C",
@@ -8352,7 +9148,9 @@
         "tint2": 51,
         "drawable": "mp_gloves_mr1_302_full",
         "albedo": "mp_gloves_mr1_302_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_302_full_c1_999_nm"
+        "normal": "mp_gloves_mr1_302_full_c1_999_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "16EE5270",
@@ -8373,7 +9171,9 @@
         "tint2": 82,
         "drawable": "mp_gloves_fr1_302_full",
         "albedo": "mp_gloves_mr1_302_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_302_full_c1_999_nm"
+        "normal": "mp_gloves_mr1_302_full_c1_999_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "29ADF7EF",
@@ -8394,7 +9194,9 @@
         "tint2": 83,
         "drawable": "mp_gloves_fr1_302_full",
         "albedo": "mp_gloves_mr1_302_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_302_full_c1_999_nm"
+        "normal": "mp_gloves_mr1_302_full_c1_999_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "01FCA88D",
@@ -8415,7 +9217,9 @@
         "tint2": 51,
         "drawable": "mp_gloves_fr1_302_full",
         "albedo": "mp_gloves_mr1_302_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_302_full_c1_999_nm"
+        "normal": "mp_gloves_mr1_302_full_c1_999_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "A080E59B",
@@ -8436,7 +9240,9 @@
         "tint2": 45,
         "drawable": "mp_gloves_fr1_302_full",
         "albedo": "mp_gloves_mr1_302_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_302_full_c1_999_nm"
+        "normal": "mp_gloves_mr1_302_full_c1_999_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "7CF19E7D",
@@ -8457,7 +9263,9 @@
         "tint2": 15,
         "drawable": "mp_gloves_fr1_302_full",
         "albedo": "mp_gloves_mr1_302_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_302_full_c1_999_nm"
+        "normal": "mp_gloves_mr1_302_full_c1_999_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "8724B2E3",
@@ -8478,7 +9286,9 @@
         "tint2": 161,
         "drawable": "mp_gloves_fr1_302_full",
         "albedo": "mp_gloves_mr1_302_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_302_full_c1_999_nm"
+        "normal": "mp_gloves_mr1_302_full_c1_999_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "D95ED756",
@@ -8499,7 +9309,9 @@
         "tint2": 40,
         "drawable": "mp_gloves_fr1_302_full",
         "albedo": "mp_gloves_mr1_302_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_302_full_c1_999_nm"
+        "normal": "mp_gloves_mr1_302_full_c1_999_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "593FD71A",
@@ -8520,7 +9332,9 @@
         "tint2": 248,
         "drawable": "mp_gloves_fr1_302_full",
         "albedo": "mp_gloves_mr1_302_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_302_full_c1_999_nm"
+        "normal": "mp_gloves_mr1_302_full_c1_999_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "32E68A68",
@@ -8541,7 +9355,9 @@
         "tint2": 40,
         "drawable": "mp_gloves_fr1_302_full",
         "albedo": "mp_gloves_mr1_302_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_302_full_c1_999_nm"
+        "normal": "mp_gloves_mr1_302_full_c1_999_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "E71CF196",
@@ -8562,7 +9378,9 @@
         "tint2": 51,
         "drawable": "mp_gloves_fr1_302_full",
         "albedo": "mp_gloves_mr1_302_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_302_full_c1_999_nm"
+        "normal": "mp_gloves_mr1_302_full_c1_999_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       }
     ]
   },
@@ -8588,7 +9406,8 @@
         "tint2": 0,
         "drawable": "mp_gloves_mr1_304_full",
         "albedo": "mp_gloves_mr1_304_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_304_full_c1_999_nm"
+        "normal": "mp_gloves_mr1_304_full_c1_999_nm",
+        "swatchTextureHex": "C35FD1DB"
       },
       {
         "componentHex": "97fe792a",
@@ -8609,7 +9428,8 @@
         "tint2": 0,
         "drawable": "mp_gloves_fr1_304_full",
         "albedo": "mp_gloves_mr1_304_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_304_full_c1_999_nm"
+        "normal": "mp_gloves_mr1_304_full_c1_999_nm",
+        "swatchTextureHex": "C35FD1DB"
       }
     ]
   },
@@ -8635,7 +9455,8 @@
         "tint2": 23,
         "drawable": "mp_gloves_mr1_305_full",
         "albedo": "mp_gloves_mr1_305_full_c1_000_ab",
-        "normal": "mp_gloves_mr1_305_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_305_full_c1_000_nm",
+        "swatchTextureHex": "A36A8DFB"
       },
       {
         "componentHex": "c0d50d56",
@@ -8656,7 +9477,8 @@
         "tint2": 23,
         "drawable": "mp_gloves_fr1_305_full",
         "albedo": "mp_gloves_mr1_305_full_c1_000_ab",
-        "normal": "mp_gloves_mr1_305_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_305_full_c1_000_nm",
+        "swatchTextureHex": "A36A8DFB"
       }
     ]
   },
@@ -8682,7 +9504,9 @@
         "tint2": 114,
         "drawable": "mp_gloves_mr1_002_full",
         "albedo": "mp_gloves_mr1_002_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_002_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_002_full_c1_000_nm",
+        "swatchTextureHex": "E3091FA6",
+        "swatchTexture": "uisw_leather_000"
       },
       {
         "componentHex": "D4B727A0",
@@ -8703,7 +9527,9 @@
         "tint2": 114,
         "drawable": "mp_gloves_mr1_002_full",
         "albedo": "mp_gloves_mr1_002_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_002_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_002_full_c1_000_nm",
+        "swatchTextureHex": "E3091FA6",
+        "swatchTexture": "uisw_leather_000"
       },
       {
         "componentHex": "C6140A5A",
@@ -8724,7 +9550,9 @@
         "tint2": 131,
         "drawable": "mp_gloves_mr1_002_full",
         "albedo": "mp_gloves_mr1_002_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_002_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_002_full_c1_000_nm",
+        "swatchTextureHex": "E3091FA6",
+        "swatchTexture": "uisw_leather_000"
       },
       {
         "componentHex": "B85E6EEF",
@@ -8745,7 +9573,9 @@
         "tint2": 114,
         "drawable": "mp_gloves_mr1_002_full",
         "albedo": "mp_gloves_mr1_002_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_002_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_002_full_c1_000_nm",
+        "swatchTextureHex": "E3091FA6",
+        "swatchTexture": "uisw_leather_000"
       },
       {
         "componentHex": "02920359",
@@ -8766,7 +9596,9 @@
         "tint2": 0,
         "drawable": "mp_gloves_mr1_002_full",
         "albedo": "mp_gloves_mr1_002_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_002_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_002_full_c1_000_nm",
+        "swatchTextureHex": "E3091FA6",
+        "swatchTexture": "uisw_leather_000"
       },
       {
         "componentHex": "F4CB67CC",
@@ -8787,7 +9619,9 @@
         "tint2": 63,
         "drawable": "mp_gloves_mr1_002_full",
         "albedo": "mp_gloves_mr1_002_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_002_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_002_full_c1_000_nm",
+        "swatchTextureHex": "E3091FA6",
+        "swatchTexture": "uisw_leather_000"
       },
       {
         "componentHex": "E6AC4B8E",
@@ -8808,7 +9642,9 @@
         "tint2": 11,
         "drawable": "mp_gloves_mr1_002_full",
         "albedo": "mp_gloves_mr1_002_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_002_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_002_full_c1_000_nm",
+        "swatchTextureHex": "E3091FA6",
+        "swatchTexture": "uisw_leather_000"
       },
       {
         "componentHex": "D872AF1B",
@@ -8829,7 +9665,9 @@
         "tint2": 12,
         "drawable": "mp_gloves_mr1_002_full",
         "albedo": "mp_gloves_mr1_002_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_002_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_002_full_c1_000_nm",
+        "swatchTextureHex": "E3091FA6",
+        "swatchTexture": "uisw_leather_000"
       },
       {
         "componentHex": "570E2C50",
@@ -8850,7 +9688,9 @@
         "tint2": 0,
         "drawable": "mp_gloves_mr1_002_full",
         "albedo": "mp_gloves_mr1_002_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_002_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_002_full_c1_000_nm",
+        "swatchTextureHex": "E3091FA6",
+        "swatchTexture": "uisw_leather_000"
       },
       {
         "componentHex": "B9F73DB1",
@@ -8871,7 +9711,9 @@
         "tint2": 115,
         "drawable": "mp_gloves_mr1_002_full",
         "albedo": "mp_gloves_mr1_002_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_002_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_002_full_c1_000_nm",
+        "swatchTextureHex": "E3091FA6",
+        "swatchTexture": "uisw_leather_000"
       },
       {
         "componentHex": "5B4BDA67",
@@ -8892,7 +9734,9 @@
         "tint2": 114,
         "drawable": "mp_gloves_fr1_002_full",
         "albedo": "mp_gloves_mr1_002_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_002_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_002_full_c1_000_nm",
+        "swatchTextureHex": "E3091FA6",
+        "swatchTexture": "uisw_leather_000"
       },
       {
         "componentHex": "6D327E34",
@@ -8913,7 +9757,9 @@
         "tint2": 114,
         "drawable": "mp_gloves_fr1_002_full",
         "albedo": "mp_gloves_mr1_002_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_002_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_002_full_c1_000_nm",
+        "swatchTextureHex": "E3091FA6",
+        "swatchTexture": "uisw_leather_000"
       },
       {
         "componentHex": "77B89340",
@@ -8934,7 +9780,9 @@
         "tint2": 131,
         "drawable": "mp_gloves_fr1_002_full",
         "albedo": "mp_gloves_mr1_002_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_002_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_002_full_c1_000_nm",
+        "swatchTextureHex": "E3091FA6",
+        "swatchTexture": "uisw_leather_000"
       },
       {
         "componentHex": "8A1837FF",
@@ -8955,7 +9803,9 @@
         "tint2": 114,
         "drawable": "mp_gloves_fr1_002_full",
         "albedo": "mp_gloves_mr1_002_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_002_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_002_full_c1_000_nm",
+        "swatchTextureHex": "E3091FA6",
+        "swatchTexture": "uisw_leather_000"
       },
       {
         "componentHex": "4B81BAC7",
@@ -8976,7 +9826,9 @@
         "tint2": 0,
         "drawable": "mp_gloves_fr1_002_full",
         "albedo": "mp_gloves_mr1_002_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_002_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_002_full_c1_000_nm",
+        "swatchTextureHex": "E3091FA6",
+        "swatchTexture": "uisw_leather_000"
       },
       {
         "componentHex": "1D8BDEE4",
@@ -8997,7 +9849,9 @@
         "tint2": 63,
         "drawable": "mp_gloves_fr1_002_full",
         "albedo": "mp_gloves_mr1_002_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_002_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_002_full_c1_000_nm",
+        "swatchTextureHex": "E3091FA6",
+        "swatchTexture": "uisw_leather_000"
       },
       {
         "componentHex": "67FA73B8",
@@ -9018,7 +9872,9 @@
         "tint2": 11,
         "drawable": "mp_gloves_fr1_002_full",
         "albedo": "mp_gloves_mr1_002_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_002_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_002_full_c1_000_nm",
+        "swatchTextureHex": "E3091FA6",
+        "swatchTexture": "uisw_leather_000"
       },
       {
         "componentHex": "39C5974F",
@@ -9039,7 +9895,9 @@
         "tint2": 12,
         "drawable": "mp_gloves_fr1_002_full",
         "albedo": "mp_gloves_mr1_002_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_002_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_002_full_c1_000_nm",
+        "swatchTextureHex": "E3091FA6",
+        "swatchTexture": "uisw_leather_000"
       },
       {
         "componentHex": "D01F440C",
@@ -9060,7 +9918,9 @@
         "tint2": 0,
         "drawable": "mp_gloves_fr1_002_full",
         "albedo": "mp_gloves_mr1_002_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_002_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_002_full_c1_000_nm",
+        "swatchTextureHex": "E3091FA6",
+        "swatchTexture": "uisw_leather_000"
       },
       {
         "componentHex": "1EDDE714",
@@ -9081,7 +9941,9 @@
         "tint2": 115,
         "drawable": "mp_gloves_fr1_002_full",
         "albedo": "mp_gloves_mr1_002_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_002_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_002_full_c1_000_nm",
+        "swatchTextureHex": "E3091FA6",
+        "swatchTexture": "uisw_leather_000"
       }
     ]
   },
@@ -9107,7 +9969,9 @@
         "tint2": 3,
         "drawable": "mp_gloves_mr1_010_full",
         "albedo": "mp_gloves_mr1_010_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_010_full_c1_999_nm"
+        "normal": "mp_gloves_mr1_010_full_c1_999_nm",
+        "swatchTextureHex": "126E6A76",
+        "swatchTexture": "uisw_horse_trapperblanket_005"
       },
       {
         "componentHex": "919FB97A",
@@ -9128,7 +9992,9 @@
         "tint2": 110,
         "drawable": "mp_gloves_mr1_010_full",
         "albedo": "mp_gloves_mr1_010_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_010_full_c1_999_nm"
+        "normal": "mp_gloves_mr1_010_full_c1_999_nm",
+        "swatchTextureHex": "126E6A76",
+        "swatchTexture": "uisw_horse_trapperblanket_005"
       },
       {
         "componentHex": "9FE8D60C",
@@ -9149,7 +10015,9 @@
         "tint2": 62,
         "drawable": "mp_gloves_mr1_010_full",
         "albedo": "mp_gloves_mr1_010_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_010_full_c1_999_nm"
+        "normal": "mp_gloves_mr1_010_full_c1_999_nm",
+        "swatchTextureHex": "126E6A76",
+        "swatchTexture": "uisw_horse_trapperblanket_005"
       },
       {
         "componentHex": "AD037041",
@@ -9170,7 +10038,9 @@
         "tint2": 28,
         "drawable": "mp_gloves_mr1_010_full",
         "albedo": "mp_gloves_mr1_010_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_010_full_c1_999_nm"
+        "normal": "mp_gloves_mr1_010_full_c1_999_nm",
+        "swatchTextureHex": "126E6A76",
+        "swatchTexture": "uisw_horse_trapperblanket_005"
       },
       {
         "componentHex": "3B568CE9",
@@ -9191,7 +10061,9 @@
         "tint2": 28,
         "drawable": "mp_gloves_mr1_010_full",
         "albedo": "mp_gloves_mr1_010_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_010_full_c1_999_nm"
+        "normal": "mp_gloves_mr1_010_full_c1_999_nm",
+        "swatchTextureHex": "126E6A76",
+        "swatchTexture": "uisw_horse_trapperblanket_005"
       },
       {
         "componentHex": "4C9C2F74",
@@ -9212,7 +10084,9 @@
         "tint2": 122,
         "drawable": "mp_gloves_mr1_010_full",
         "albedo": "mp_gloves_mr1_010_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_010_full_c1_999_nm"
+        "normal": "mp_gloves_mr1_010_full_c1_999_nm",
+        "swatchTextureHex": "126E6A76",
+        "swatchTexture": "uisw_horse_trapperblanket_005"
       },
       {
         "componentHex": "D607FC7C",
@@ -9233,7 +10107,9 @@
         "tint2": 3,
         "drawable": "mp_gloves_fr1_010_full",
         "albedo": "mp_gloves_mr1_010_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_010_full_c1_999_nm"
+        "normal": "mp_gloves_mr1_010_full_c1_999_nm",
+        "swatchTextureHex": "126E6A76",
+        "swatchTexture": "uisw_horse_trapperblanket_005"
       },
       {
         "componentHex": "E5AC9BC9",
@@ -9254,7 +10130,9 @@
         "tint2": 110,
         "drawable": "mp_gloves_fr1_010_full",
         "albedo": "mp_gloves_mr1_010_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_010_full_c1_999_nm"
+        "normal": "mp_gloves_mr1_010_full_c1_999_nm",
+        "swatchTextureHex": "126E6A76",
+        "swatchTexture": "uisw_horse_trapperblanket_005"
       },
       {
         "componentHex": "B30B3683",
@@ -9275,7 +10153,9 @@
         "tint2": 62,
         "drawable": "mp_gloves_fr1_010_full",
         "albedo": "mp_gloves_mr1_010_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_010_full_c1_999_nm"
+        "normal": "mp_gloves_mr1_010_full_c1_999_nm",
+        "swatchTextureHex": "126E6A76",
+        "swatchTexture": "uisw_horse_trapperblanket_005"
       },
       {
         "componentHex": "C0CCD206",
@@ -9296,7 +10176,9 @@
         "tint2": 28,
         "drawable": "mp_gloves_fr1_010_full",
         "albedo": "mp_gloves_mr1_010_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_010_full_c1_999_nm"
+        "normal": "mp_gloves_mr1_010_full_c1_999_nm",
+        "swatchTextureHex": "126E6A76",
+        "swatchTexture": "uisw_horse_trapperblanket_005"
       },
       {
         "componentHex": "88EEE24B",
@@ -9317,7 +10199,9 @@
         "tint2": 28,
         "drawable": "mp_gloves_fr1_010_full",
         "albedo": "mp_gloves_mr1_010_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_010_full_c1_999_nm"
+        "normal": "mp_gloves_mr1_010_full_c1_999_nm",
+        "swatchTextureHex": "126E6A76",
+        "swatchTexture": "uisw_horse_trapperblanket_005"
       },
       {
         "componentHex": "9CB909DF",
@@ -9338,7 +10222,9 @@
         "tint2": 122,
         "drawable": "mp_gloves_fr1_010_full",
         "albedo": "mp_gloves_mr1_010_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_010_full_c1_999_nm"
+        "normal": "mp_gloves_mr1_010_full_c1_999_nm",
+        "swatchTextureHex": "126E6A76",
+        "swatchTexture": "uisw_horse_trapperblanket_005"
       }
     ]
   },
@@ -9364,7 +10250,9 @@
         "tint2": 132,
         "drawable": "mp_gloves_mr1_011_full",
         "albedo": "mp_gloves_mr1_011_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_011_full_c1_999_nm"
+        "normal": "mp_gloves_mr1_011_full_c1_999_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "07679C97",
@@ -9385,7 +10273,9 @@
         "tint2": 43,
         "drawable": "mp_gloves_mr1_011_full",
         "albedo": "mp_gloves_mr1_011_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_011_full_c1_999_nm"
+        "normal": "mp_gloves_mr1_011_full_c1_999_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "191EC005",
@@ -9406,7 +10296,9 @@
         "tint2": 127,
         "drawable": "mp_gloves_mr1_011_full",
         "albedo": "mp_gloves_mr1_011_full_c1_998_ab",
-        "normal": "mp_gloves_mr1_011_full_c1_998_nm"
+        "normal": "mp_gloves_mr1_011_full_c1_998_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "4A8822D7",
@@ -9427,7 +10319,9 @@
         "tint2": 87,
         "drawable": "mp_gloves_mr1_011_full",
         "albedo": "mp_gloves_mr1_011_full_c1_998_ab",
-        "normal": "mp_gloves_mr1_011_full_c1_998_nm"
+        "normal": "mp_gloves_mr1_011_full_c1_998_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "3CC9875A",
@@ -9448,7 +10342,9 @@
         "tint2": 103,
         "drawable": "mp_gloves_mr1_011_full",
         "albedo": "mp_gloves_mr1_011_full_c1_997_ab",
-        "normal": "mp_gloves_mr1_011_full_c1_997_nm"
+        "normal": "mp_gloves_mr1_011_full_c1_997_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "6CC3674D",
@@ -9469,7 +10365,9 @@
         "tint2": 39,
         "drawable": "mp_gloves_mr1_011_full",
         "albedo": "mp_gloves_mr1_011_full_c1_997_ab",
-        "normal": "mp_gloves_mr1_011_full_c1_997_nm"
+        "normal": "mp_gloves_mr1_011_full_c1_997_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "5EFD4BC1",
@@ -9490,7 +10388,9 @@
         "tint2": 18,
         "drawable": "mp_gloves_mr1_011_full",
         "albedo": "mp_gloves_mr1_011_full_c1_996_ab",
-        "normal": "mp_gloves_mr1_011_full_c1_996_nm"
+        "normal": "mp_gloves_mr1_011_full_c1_996_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "917BB0C1",
@@ -9511,7 +10411,9 @@
         "tint2": 3,
         "drawable": "mp_gloves_mr1_011_full",
         "albedo": "mp_gloves_mr1_011_full_c1_996_ab",
-        "normal": "mp_gloves_mr1_011_full_c1_996_nm"
+        "normal": "mp_gloves_mr1_011_full_c1_996_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "1F0292CA",
@@ -9532,7 +10434,9 @@
         "tint2": 132,
         "drawable": "mp_gloves_fr1_011_full",
         "albedo": "mp_gloves_mr1_011_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_011_full_c1_999_nm"
+        "normal": "mp_gloves_mr1_011_full_c1_999_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "7A584978",
@@ -9553,7 +10457,9 @@
         "tint2": 43,
         "drawable": "mp_gloves_fr1_011_full",
         "albedo": "mp_gloves_mr1_011_full_c1_999_ab",
-        "normal": "mp_gloves_mr1_011_full_c1_999_nm"
+        "normal": "mp_gloves_mr1_011_full_c1_999_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "87AF6426",
@@ -9574,7 +10480,9 @@
         "tint2": 127,
         "drawable": "mp_gloves_fr1_011_full",
         "albedo": "mp_gloves_mr1_011_full_c1_998_ab",
-        "normal": "mp_gloves_mr1_011_full_c1_998_nm"
+        "normal": "mp_gloves_mr1_011_full_c1_998_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "55ED80A3",
@@ -9595,7 +10503,9 @@
         "tint2": 37,
         "drawable": "mp_gloves_fr1_011_full",
         "albedo": "mp_gloves_mr1_011_full_c1_998_ab",
-        "normal": "mp_gloves_mr1_011_full_c1_998_nm"
+        "normal": "mp_gloves_mr1_011_full_c1_998_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "D61700F4",
@@ -9616,7 +10526,9 @@
         "tint2": 103,
         "drawable": "mp_gloves_fr1_011_full",
         "albedo": "mp_gloves_mr1_011_full_c1_997_ab",
-        "normal": "mp_gloves_mr1_011_full_c1_997_nm"
+        "normal": "mp_gloves_mr1_011_full_c1_997_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "F5623F8A",
@@ -9637,7 +10549,9 @@
         "tint2": 39,
         "drawable": "mp_gloves_fr1_011_full",
         "albedo": "mp_gloves_mr1_011_full_c1_997_ab",
-        "normal": "mp_gloves_mr1_011_full_c1_997_nm"
+        "normal": "mp_gloves_mr1_011_full_c1_997_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "42BC5A3D",
@@ -9658,7 +10572,9 @@
         "tint2": 18,
         "drawable": "mp_gloves_fr1_011_full",
         "albedo": "mp_gloves_mr1_011_full_c1_996_ab",
-        "normal": "mp_gloves_mr1_011_full_c1_996_nm"
+        "normal": "mp_gloves_mr1_011_full_c1_996_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       },
       {
         "componentHex": "50EE76A1",
@@ -9679,7 +10595,9 @@
         "tint2": 3,
         "drawable": "mp_gloves_fr1_011_full",
         "albedo": "mp_gloves_mr1_011_full_c1_996_ab",
-        "normal": "mp_gloves_mr1_011_full_c1_996_nm"
+        "normal": "mp_gloves_mr1_011_full_c1_996_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       }
     ]
   },
@@ -9705,7 +10623,8 @@
         "tint2": 21,
         "drawable": "mp_season_handwraps_mr1_001_full",
         "albedo": "mp_season_handwraps_mr1_001_full_c1_998_ab",
-        "normal": "mp_season_handwraps_mr1_001_full_c1_998_nm"
+        "normal": "mp_season_handwraps_mr1_001_full_c1_998_nm",
+        "swatchTextureHex": "136871EB"
       },
       {
         "componentHex": "402b0048",
@@ -9726,7 +10645,8 @@
         "tint2": 21,
         "drawable": "mp_season_handwraps_fr1_001_full",
         "albedo": "mp_season_handwraps_mr1_001_full_c1_998_ab",
-        "normal": "mp_season_handwraps_mr1_001_full_c1_998_nm"
+        "normal": "mp_season_handwraps_mr1_001_full_c1_998_nm",
+        "swatchTextureHex": "136871EB"
       }
     ]
   },
@@ -9752,7 +10672,9 @@
         "tint2": 0,
         "drawable": "mp_gloves_mr1_007_full",
         "albedo": "mp_johnmarston_mr1_gloves_000_c0_000_ab",
-        "normal": "mp_gloves_mr1_007_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_007_full_c1_000_nm",
+        "swatchTextureHex": "E3091FA6",
+        "swatchTexture": "uisw_leather_000"
       },
       {
         "componentHex": "4B948F7C",
@@ -9773,7 +10695,9 @@
         "tint2": 64,
         "drawable": "mp_gloves_fr1_007_full",
         "albedo": "mp_johnmarston_mr1_gloves_000_c0_000_ab",
-        "normal": "mp_gloves_mr1_007_full_c1_000_nm"
+        "normal": "mp_gloves_mr1_007_full_c1_000_nm",
+        "swatchTextureHex": "A36A8DFB",
+        "swatchTexture": "uisw_leather_pt000"
       }
     ]
   },
@@ -9799,7 +10723,8 @@
         "tint2": 255,
         "drawable": "mp_gloves_mr1_400_full",
         "albedo": "mp_gloves_mr1_400_c1_000_ab",
-        "normal": "mp_gloves_mr1_400_c1_000_nm"
+        "normal": "mp_gloves_mr1_400_c1_000_nm",
+        "swatchTextureHex": "B3902E46"
       },
       {
         "componentHex": "1df4127e",
@@ -9820,7 +10745,8 @@
         "tint2": 255,
         "drawable": "mp_gloves_fr1_400_full",
         "albedo": "mp_gloves_mr1_400_c1_000_ab",
-        "normal": "mp_gloves_mr1_400_c1_000_nm"
+        "normal": "mp_gloves_mr1_400_c1_000_nm",
+        "swatchTextureHex": "B3902E46"
       }
     ]
   }

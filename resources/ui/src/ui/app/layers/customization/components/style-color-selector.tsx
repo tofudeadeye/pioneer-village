@@ -68,7 +68,7 @@ export default function StyleColorSelector({
       return false;
     }
     const paletteNum = typeof component.palette === 'number' ? component.palette : component.palette.GetHashKey();
-    return paletteNum !== -1 && paletteNum > 0;
+    return paletteNum !== -1 && paletteNum !== 0;
   };
 
   const isSelected = (styleIndex: number, optionIndex: number): boolean => {
@@ -101,6 +101,7 @@ export default function StyleColorSelector({
                   tint0={component.tint0}
                   tint1={component.tint1}
                   tint2={component.tint2}
+                  swatchTexture={component.swatchTexture}
                 />
               ) : (
                 <div className={styles.fallback} />

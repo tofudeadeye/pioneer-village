@@ -523,7 +523,16 @@ export const CLOTHING_GROUPS: Record<string, { label: string; categories: string
   },
   belts: {
     label: 'Belts & Holsters',
-    categories: ['belts', 'belt_buckles', 'gunbelts', 'gunbelt_accs', 'holsters_left', 'holsters_right', 'holsters_crossdraw', 'holsters_knife'],
+    categories: [
+      'belts',
+      'belt_buckles',
+      'gunbelts',
+      'gunbelt_accs',
+      'holsters_left',
+      'holsters_right',
+      'holsters_crossdraw',
+      'holsters_knife',
+    ],
   },
   bottoms: {
     label: 'Bottoms',
@@ -552,6 +561,7 @@ export const CLOTHING_GROUPS: Record<string, { label: string; categories: string
 };
 
 export const HAIR_CATEGORIES: string[] = [
+  'eyes',
   'hair_accessories',
   'hair',
   'beards_complete',
@@ -560,13 +570,13 @@ export const HAIR_CATEGORIES: string[] = [
   'beards_mustache',
 ];
 
-export const SKIN_TONES: string[] = [
-  '#f5dbb5',
-  '#e8c495',
-  '#c9a06c',
-  '#a07040',
-  '#6e4b2a',
-  '#3d2b1a',
+export const SKIN_TONES: [number, string][] = [
+  [0, '#f5dbb5'],
+  [2, '#e8c495'],
+  [3, '#c9a06c'],
+  [4, '#a07040'],
+  [1, '#6e4b2a'],
+  [5, '#3d2b1a'],
 ];
 
 export const PRESET_COLORS: { name: string; hex: string }[] = [

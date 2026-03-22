@@ -181,6 +181,9 @@ for (const [ItemListName, ItemList] of Object.entries(jObj.MetaPedShopItemList))
       ItemsData[componentHex] = {
         swatchTextureHex: swatchTextureHex,
         swatchTextureName: swatchTextureName,
+        // swatchTint0: Item.swatchTint0 ? Number(Item.swatchTint0['@_value']) : null,
+        // swatchTint1: Item.swatchTint1 ? Number(Item.swatchTint1['@_value']) : null,
+        // swatchTint2: Item.swatchTint2 ? Number(Item.swatchTint2['@_value']) : null,
       }
     } catch (e) {}
   }
@@ -220,9 +223,10 @@ for (const file of fs.readdirSync('../../../../[system]/rdr3-shared/components')
     if (component.componentHex && component.componentHex in ItemsData) {
       const itemData = ItemsData[component.componentHex];
       component.swatchTextureHex = itemData.swatchTextureHex;
-      if (itemData.swatchTextureName) {
-        component.swatchTexture = itemData.swatchTextureName;
-      }
+      if (itemData.swatchTextureName) component.swatchTexture = itemData.swatchTextureName;
+      // if (itemData.swatchTint0) component.swatchTint0 = itemData.swatchTint0;
+      // if (itemData.swatchTint1) component.swatchTint1 = itemData.swatchTint1;
+      // if (itemData.swatchTint2) component.swatchTint2 = itemData.swatchTint2;
     }
   }
 

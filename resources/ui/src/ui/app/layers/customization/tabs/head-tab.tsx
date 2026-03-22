@@ -1,15 +1,22 @@
-import { useMemo, useState } from 'react';
+import { useMemo } from 'react';
 
-import { conditionalClass } from '@uiLib/helpers';
-
+import CategoryBrowser from '../components/category-browser';
 import Pad2D from '../components/pad-2d';
 import Section from '../components/section';
 import Slider from '../components/slider';
 import StringSlider from '../components/string-slider';
 import StyleColorSelector from '../components/style-color-selector';
 import TintSelector from '../components/tint-selector';
-import { faceFeatures, HAIR_CATEGORIES, teethTypes } from '../constants';
-import clothingStyles from './clothing-tab.module.scss';
+import { faceFeatures, teethTypes } from '../constants';
+
+const HAIR_CATEGORIES: string[] = [
+  'hair_accessories',
+  'hair',
+  'beards_complete',
+  'beards_chin',
+  'beards_chops',
+  'beards_mustache',
+];
 
 interface HeadTabProps {
   gender: 'male' | 'female';
@@ -35,12 +42,6 @@ interface HeadTabProps {
   ) => UI.Customization.StyleColorComponentData;
 }
 
-type NavLevel = 'categories' | 'items' | 'styles';
-
-function toTitleCase(str: string): string {
-  return str.replace(/_/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase());
-}
-
 export default function HeadTab({
   gender,
   head,
@@ -56,92 +57,22 @@ export default function HeadTab({
   onTintChange,
   convertComponent,
 }: HeadTabProps) {
-  const [navLevel, setNavLevel] = useState<NavLevel>('categories');
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
-  const [selectedStyleIndex, setSelectedStyleIndex] = useState<number | null>(null);
-  const [isCustomMode, setIsCustomMode] = useState(false);
+  // Eyes — single category, no breadcrumb needed
+  const eyesData = componentsData['eyes'];
+  const hasEyes = eyesData && eyesData.length > 0;
 
-  const availableHairCategories = useMemo(() => {
-    return HAIR_CATEGORIES.filter((category) => {
-      const categoryData = componentsData[category];
-      return categoryData && categoryData.length > 0;
-    });
-  }, [componentsData]);
-
-  const getCategoryCount = (category: string): number => {
-    return componentsData[category]?.length ?? 0;
-  };
-
-  const handleCategoryClick = (category: string): void => {
-    setSelectedCategory(category);
-    setSelectedStyleIndex(null);
-    setIsCustomMode(false);
-    setNavLevel('items');
-  };
-
-  const handleStyleClick = (styleIndex: number): void => {
-    setSelectedStyleIndex(styleIndex);
-    setIsCustomMode(false);
-    setNavLevel('styles');
-  };
-
-  const handleBreadcrumbRoot = (): void => {
-    setSelectedCategory(null);
-    setSelectedStyleIndex(null);
-    setIsCustomMode(false);
-    setNavLevel('categories');
-  };
-
-  const handleBreadcrumbCategory = (): void => {
-    setSelectedStyleIndex(null);
-    setIsCustomMode(false);
-    setNavLevel('items');
-  };
-
-  const getFirstValidOption = (category: string, styleIndex: number): number => {
-    const styleData = componentsData[category]?.[styleIndex];
-    if (!styleData) return 0;
-    const index = styleData.components.findIndex((comp) => {
-      if (gender === 'male' && comp.type === '1') return false;
-      if (gender === 'female' && comp.type === '0') return false;
-      return true;
-    });
-    return index === -1 ? 0 : index;
-  };
-
-  const handleCustomClick = (): void => {
-    if (selectedCategory && selectedStyleIndex !== null) {
-      const currentStyle = currentComponents[selectedCategory]?.style;
-      if (currentStyle !== selectedStyleIndex) {
-        onComponentChange(selectedCategory, selectedStyleIndex, getFirstValidOption(selectedCategory, selectedStyleIndex));
-      }
-    }
-    setIsCustomMode(true);
-  };
-
-  const selectedCategoryData = selectedCategory && componentsData[selectedCategory];
-  const selectedStyleName =
-    selectedStyleIndex !== null && selectedCategoryData
-      ? selectedCategoryData[selectedStyleIndex]?.name ?? 'Unknown'
-      : null;
-
-  const convertedComponents = useMemo((): Array<{
+  const eyesConvertedComponents = useMemo((): Array<{
     name: string;
     components: UI.Customization.StyleColorComponentData[];
   }> => {
-    if (!selectedCategory || !componentsData[selectedCategory] || selectedStyleIndex === null) return [];
-    const selectedStyle = componentsData[selectedCategory][selectedStyleIndex];
-    if (!selectedStyle) return [];
-    return [
-      {
-        name: selectedStyle.name,
-        components: selectedStyle.components.map((comp) => convertComponent(comp)),
-      },
-    ];
-  }, [selectedCategory, selectedStyleIndex, componentsData, convertComponent]);
+    if (!eyesData) return [];
+    return eyesData.map((style) => ({
+      name: style.name,
+      components: style.components.map((comp) => convertComponent(comp)),
+    }));
+  }, [eyesData, convertComponent]);
 
-  const hasTintData =
-    selectedCategory && (isCustomMode || (tints[selectedCategory] && tints[selectedCategory].palette !== -1));
+  const currentEyesSwatch = 'uisw_eyes_000';
 
   return (
     <>
@@ -153,110 +84,64 @@ export default function HeadTab({
         <StringSlider label="Teeth" values={teethTypes} value={teeth} onChange={onTeethChange} />
       </Section>
 
+      {hasEyes && (
+        <Section label="Eyes">
+          <StyleColorSelector
+            label="Eye Color"
+            components={eyesConvertedComponents}
+            gender={gender}
+            style={currentComponents['eyes']?.style ?? 0}
+            option={currentComponents['eyes']?.option ?? 0}
+            onChange={(style, option) => {
+              onComponentChange('eyes', style, option);
+
+              const comp = eyesData?.[style]?.components[option];
+              if (comp && 'palette' in comp && comp.palette) {
+                const palette = Array.isArray(comp.palette) ? comp.palette[0] : comp.palette;
+                const tint0 = Array.isArray(comp.tint0) ? comp.tint0[0] : comp.tint0;
+                const tint1 = Array.isArray(comp.tint1) ? comp.tint1[0] : comp.tint1;
+                const tint2 = Array.isArray(comp.tint2) ? comp.tint2[0] : comp.tint2;
+                if (palette && palette !== '') {
+                  onTintChange('eyes', {
+                    palette: typeof palette === 'string' ? palette.GetHashKey() : palette,
+                    tint0: tint0 as number,
+                    tint1: tint1 as number,
+                    tint2: tint2 as number,
+                  });
+                }
+              }
+            }}
+          />
+
+          <TintSelector
+            label="Eye Tint"
+            identifier="eyes"
+            palette={tints['eyes']?.palette ?? -1}
+            tint0={tints['eyes']?.tint0 ?? 0}
+            tint1={tints['eyes']?.tint1 ?? 0}
+            tint2={tints['eyes']?.tint2 ?? 0}
+            swatchTexture={currentEyesSwatch}
+            useFallbackSwatch={false}
+            onChange={(_identifier, tint) => {
+              onTintChange('eyes', tint);
+            }}
+          />
+        </Section>
+      )}
+
       <Section label="Hair & Facial Hair">
-        <div className={clothingStyles.breadcrumb}>
-          <button
-            className={conditionalClass(clothingStyles.breadcrumbSegment, {
-              [clothingStyles.active]: navLevel === 'categories',
-            })}
-            onClick={handleBreadcrumbRoot}
-          >
-            Hair
-          </button>
-
-          {selectedCategory && (
-            <>
-              <span className={clothingStyles.breadcrumbSeparator}>&rsaquo;</span>
-              <button
-                className={conditionalClass(clothingStyles.breadcrumbSegment, {
-                  [clothingStyles.active]: navLevel === 'items',
-                })}
-                onClick={handleBreadcrumbCategory}
-              >
-                {toTitleCase(selectedCategory)}
-              </button>
-            </>
-          )}
-
-          {selectedStyleName && (
-            <>
-              <span className={clothingStyles.breadcrumbSeparator}>&rsaquo;</span>
-              <span
-                className={conditionalClass(clothingStyles.breadcrumbSegment, {
-                  [clothingStyles.active]: true,
-                })}
-              >
-                {selectedStyleName}
-              </span>
-            </>
-          )}
-        </div>
-
-        {navLevel === 'categories' && (
-          <div className={clothingStyles.cardsGrid}>
-            {availableHairCategories.map((category) => (
-              <div key={category} className={clothingStyles.card} onClick={() => handleCategoryClick(category)}>
-                <span className={clothingStyles.cardName}>{toTitleCase(category)}</span>
-                <span className={clothingStyles.cardCount}>{getCategoryCount(category)}</span>
-              </div>
-            ))}
-          </div>
-        )}
-
-        {navLevel === 'items' && selectedCategoryData && (
-          <div className={clothingStyles.itemsGrid}>
-            {selectedCategoryData.map((item, index) => (
-              <div
-                key={index}
-                className={conditionalClass(clothingStyles.itemCard, {
-                  [clothingStyles.selected]: selectedCategory ? currentComponents[selectedCategory]?.style === index : false,
-                })}
-                onClick={() => handleStyleClick(index)}
-              >
-                <div className={clothingStyles.diamond} />
-                <span className={clothingStyles.itemName}>{item.name}</span>
-              </div>
-            ))}
-          </div>
-        )}
-
-        {navLevel === 'styles' && selectedCategory && selectedStyleIndex !== null && (
-          <>
-            <StyleColorSelector
-              label={`${toTitleCase(selectedCategory)} Options`}
-              components={convertedComponents}
-              gender={gender}
-              style={currentComponents[selectedCategory]?.style === selectedStyleIndex ? 0 : -1}
-              option={currentComponents[selectedCategory]?.option ?? 0}
-              onChange={(_style, option) => {
-                onComponentChange(selectedCategory, selectedStyleIndex, option);
-                setIsCustomMode(false);
-              }}
-              onCustomClick={handleCustomClick}
-              isCustomSelected={isCustomMode}
-            />
-
-            {hasTintData && (
-              <TintSelector
-                label={`${toTitleCase(selectedCategory)} Tint`}
-                identifier={selectedCategory}
-                palette={tints[selectedCategory]?.palette ?? -1}
-                tint0={tints[selectedCategory]?.tint0 ?? 0}
-                tint1={tints[selectedCategory]?.tint1 ?? 0}
-                tint2={tints[selectedCategory]?.tint2 ?? 0}
-                onChange={(identifier, tint) => {
-                  if (selectedCategory && selectedStyleIndex !== null) {
-                    const currentStyle = currentComponents[selectedCategory]?.style;
-                    if (currentStyle !== selectedStyleIndex) {
-                      onComponentChange(selectedCategory, selectedStyleIndex, getFirstValidOption(selectedCategory, selectedStyleIndex));
-                    }
-                  }
-                  onTintChange(identifier, tint);
-                }}
-              />
-            )}
-          </>
-        )}
+        <CategoryBrowser
+          rootLabel="Hair"
+          categories={HAIR_CATEGORIES}
+          gender={gender}
+          currentComponents={currentComponents}
+          componentsData={componentsData}
+          tints={tints}
+          useFallbackSwatch={false}
+          onComponentChange={onComponentChange}
+          onTintChange={onTintChange}
+          convertComponent={convertComponent}
+        />
       </Section>
 
       <Section label="Face Features">

@@ -3,31 +3,59 @@ import { Log } from '@lib/client/comms/ui';
 const ColorPalettes: Record<Customization.PaletteNames, Customization.PaletteData> = {
   metaped_tint_animal: {
     hash: 0x9ac34f34,
-    count: 255, // 256
+    count: 255,
   },
   metaped_tint_combined: {
     hash: 0x6765bc15,
-    count: 255, // 256
+    count: 255,
   },
   metaped_tint_combined_leather: {
     hash: 0xf509c745,
-    count: 255, // 256
+    count: 255,
+  },
+  metaped_tint_combined_leather1: {
+    hash: 0xd20f57fc,
+    count: 255,
+  },
+  metaped_tint_combined_leather2: {
+    hash: 0xe3127a02,
+    count: 255,
+  },
+  metaped_tint_combined_leather3: {
+    hash: 0xb4849ce7,
+    count: 255,
+  },
+  metaped_tint_combined_leather4: {
+    hash: 0x87944303,
+    count: 255,
+  },
+  metaped_tint_combined_leather5: {
+    hash: 0x9629e02e,
+    count: 255,
+  },
+  metaped_tint_combined_leather6: {
+    hash: 0x685f0499,
+    count: 255,
   },
   metaped_tint_eye: {
     hash: 0xa4cfabd0,
-    count: 255, // 256
+    count: 255,
+  },
+  metaped_tint_eyes_ui: {
+    hash: 0xa646d2ae,
+    count: 255,
   },
   metaped_tint_generic: {
     hash: 0xaa65d8a3,
-    count: 255, // 256
+    count: 255,
   },
   metaped_tint_generic_clean: {
     hash: 0x4101ed87,
-    count: 255, // 256
+    count: 255,
   },
   metaped_tint_generic_weathered: {
     hash: 0xf93db0c8,
-    count: 255, // 256
+    count: 255,
   },
   metaped_tint_generic_worn: {
     hash: 0xb562025c,
@@ -35,31 +63,59 @@ const ColorPalettes: Record<Customization.PaletteNames, Customization.PaletteDat
   },
   metaped_tint_hair: {
     hash: 0xdfb1f64c,
-    count: 255, // 256
+    count: 255,
+  },
+  metaped_tint_hair1: {
+    hash: 0x1df9540,
+    count: 255,
+  },
+  metaped_tint_hair2: {
+    hash: 0xcbdaafc,
+    count: 255,
+  },
+  metaped_tint_hair_bed: {
+    hash: 0x86bc2af7,
+    count: 255,
+  },
+  metaped_tint_hair_ui: {
+    hash: 0xa9a440ca,
+    count: 255,
   },
   metaped_tint_hat: {
     hash: 0xfb71527b,
-    count: 255, // 256
+    count: 255,
   },
   metaped_tint_hat_clean: {
     hash: 0x3385c5db,
-    count: 255, // 256
+    count: 255,
   },
   metaped_tint_hat_weathered: {
     hash: 0x63838a81,
-    count: 255, // 256
+    count: 255,
   },
   metaped_tint_hat_worn: {
     hash: 0x17cbcc83,
-    count: 255, // 256
+    count: 255,
   },
   metaped_tint_horse: {
     hash: 0xa4041cef,
-    count: 255, // 256
+    count: 255,
+  },
+  metaped_tint_horse_001: {
+    hash: 0x3da3fdce,
+    count: 255,
+  },
+  metaped_tint_horse_combined: {
+    hash: 0xf8f38b6f,
+    count: 255,
   },
   metaped_tint_horse_leather: {
     hash: 0x8ba18876,
-    count: 255, // 256
+    count: 255,
+  },
+  metaped_tint_horse_leather_001: {
+    hash: 0x3c49a47b,
+    count: 255,
   },
   metaped_tint_leather: {
     hash: 0xd1476963,
@@ -71,19 +127,39 @@ const ColorPalettes: Record<Customization.PaletteNames, Customization.PaletteDat
   },
   metaped_tint_mpadv: {
     hash: 0xd799e1c2,
-    count: 255, // 256
+    count: 255,
+  },
+  // metaped_tint_mpadv_deuteranopia: {
+  //   hash: 0xed71eda,
+  //   count: 0,
+  // },
+  // metaped_tint_mpadv_protanopia: {
+  //   hash: 0xdb270a7,
+  //   count: 0,
+  // },
+  // metaped_tint_mpadv_tritanopia: {
+  //   hash: 0xd3ca8ec6,
+  //   count: 0,
+  // },
+  metaped_tint_si_template: {
+    hash: 0x357284bb,
+    count: 255,
   },
   metaped_tint_skirt_clean: {
     hash: 0x0105607b,
-    count: 255, // 256
+    count: 255,
   },
   metaped_tint_skirt_weathered: {
     hash: 0xb9e7f722,
-    count: 255, // 256
+    count: 255,
   },
   metaped_tint_skirt_worn: {
     hash: 0xdc6bc93b,
-    count: 255, // 256
+    count: 255,
+  },
+  metaped_tint_teeth: {
+    hash: 0xb3bef137,
+    count: 255,
   },
   weapon_tint_wood: {
     hash: 0x69abf60e,
@@ -165,12 +241,12 @@ const ColorPaletteNames: Record<number, Customization.PaletteNames> = {
   [0x3f6e70ff << 0]: 'metaped_tint_makeup',
   [0xd799e1c2 >>> 0]: 'metaped_tint_mpadv',
   [0xd799e1c2 << 0]: 'metaped_tint_mpadv',
-  [0xed71eda >>> 0]: 'metaped_tint_mpadv_deuteranopia',
-  [0xed71eda << 0]: 'metaped_tint_mpadv_deuteranopia',
-  [0xdb270a7 >>> 0]: 'metaped_tint_mpadv_protanopia',
-  [0xdb270a7 << 0]: 'metaped_tint_mpadv_protanopia',
-  [0xd3ca8ec6 >>> 0]: 'metaped_tint_mpadv_tritanopia',
-  [0xd3ca8ec6 << 0]: 'metaped_tint_mpadv_tritanopia',
+  // [0xed71eda >>> 0]: 'metaped_tint_mpadv_deuteranopia',
+  // [0xed71eda << 0]: 'metaped_tint_mpadv_deuteranopia',
+  // [0xdb270a7 >>> 0]: 'metaped_tint_mpadv_protanopia',
+  // [0xdb270a7 << 0]: 'metaped_tint_mpadv_protanopia',
+  // [0xd3ca8ec6 >>> 0]: 'metaped_tint_mpadv_tritanopia',
+  // [0xd3ca8ec6 << 0]: 'metaped_tint_mpadv_tritanopia',
   [0x357284bb >>> 0]: 'metaped_tint_si_template',
   [0x357284bb << 0]: 'metaped_tint_si_template',
   [0x105607b >>> 0]: 'metaped_tint_skirt_clean',

@@ -19,7 +19,9 @@
         "tint2": 255,
         "drawable": "player_zero_ammo_rifle_005_shirt_standardised",
         "albedo": 75031915,
-        "normal": 828001065
+        "normal": 828001065,
+        "swatchTextureHex": "7A23FEFC",
+        "swatchTexture": "uisw_cotton_000"
       },
       {
         "componentHex": "1D8890BF",
@@ -38,7 +40,9 @@
         "tint2": 255,
         "drawable": "player_zero_ammo_shotgun_005_shirt_standardised",
         "albedo": 75031915,
-        "normal": 828001065
+        "normal": 828001065,
+        "swatchTextureHex": "7A23FEFC",
+        "swatchTexture": "uisw_cotton_000"
       }
     ]
   }

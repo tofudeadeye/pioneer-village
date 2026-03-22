@@ -110,6 +110,8 @@ declare namespace UI.Customization {
     drawable: string;
     albedo: number;
     normal: number;
+    swatchTexture?: string;
+    swatchTextureHex?: string;
   }
 
   type ComponentJsonDataPalette = ComponentJsonData & {
@@ -125,7 +127,7 @@ declare namespace UI.Customization {
   }
 
   type StyleColorComponentData =
-    | { name: string; type: string; component: number }
+    | { name: string; type: string; component: number; swatchTexture?: string }
     | {
         name: string;
         type: string;
@@ -134,6 +136,7 @@ declare namespace UI.Customization {
         tint0: number;
         tint1: number;
         tint2: number;
+        swatchTexture?: string;
       };
 
   interface OverlayJsonData {

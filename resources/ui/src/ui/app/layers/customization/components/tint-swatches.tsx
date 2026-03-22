@@ -1,19 +1,50 @@
+import { useEffect, useRef } from 'react';
+
 import { ColorPaletteNames } from '@lib/shared/color-palettes';
 
-import { conditionalClass, uiSize } from '@uiLib/helpers';
-
 import styles from './tint-swatches.module.scss';
+import { downsampleSwatch, FALLBACK_SWATCH, loadImageData, paletteUrl, renderTinted, swatchUrl } from './tint-render';
+
+const SWATCH_DISPLAY_SIZE = 64;
 
 interface TintSwatchesProps {
   palette: string | number;
   tint0: number;
   tint1: number;
   tint2: number;
+  swatchTexture?: string;
 }
 
-export default function TintSwatches({ palette, tint0, tint1, tint2 }: TintSwatchesProps) {
-  const tints = [tint0, tint1, tint2];
+export default function TintSwatches({ palette, tint0, tint1, tint2, swatchTexture }: TintSwatchesProps) {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
   const paletteName = typeof palette === 'string' ? palette : ColorPaletteNames[palette >>> 0];
+  const resolvedSwatch = swatchTexture || FALLBACK_SWATCH;
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas || !paletteName) return;
+
+    let cancelled = false;
+
+    Promise.all([
+      loadImageData(swatchUrl(resolvedSwatch)),
+      loadImageData(paletteUrl(paletteName)),
+    ]).then(([swatchData, paletteData]) => {
+      if (cancelled) return;
+
+      const small = downsampleSwatch(swatchData, SWATCH_DISPLAY_SIZE, resolvedSwatch);
+      const output = renderTinted(small, paletteData, tint0, tint1, tint2);
+      canvas.width = output.width;
+      canvas.height = output.height;
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
+      ctx.putImageData(output, 0, 0);
+    }).catch((err) => {
+      if (!cancelled) console.error('TintSwatches render error:', err);
+    });
+
+    return (): void => { cancelled = true; };
+  }, [paletteName, resolvedSwatch, tint0, tint1, tint2]);
 
   if (!paletteName) {
     return null;
@@ -21,23 +52,10 @@ export default function TintSwatches({ palette, tint0, tint1, tint2 }: TintSwatc
 
   return (
     <div className={styles.tintSwatches}>
-      {tints.map((tint, i) => {
-        const THUMB_SCALE = i === 0 ? 2 : 1;
-        return (
-          <div
-            key={i}
-            className={conditionalClass(styles.tintSwatch, {
-              [styles.first]: i === 0,
-            })}
-            style={{
-              backgroundImage: `url(https://p--v.b-cdn.net/customization/palettes/${paletteName}_thumbs.png)`,
-              backgroundPosition: `-${uiSize((tint % 8) * 12 * THUMB_SCALE)} -${uiSize(
-                Math.floor(tint / 8) * 12 * THUMB_SCALE,
-              )}`,
-            }}
-          />
-        );
-      })}
+      <canvas
+        ref={canvasRef}
+        className={`${styles.tintSwatch} ${styles.first}`}
+      />
     </div>
   );
 }

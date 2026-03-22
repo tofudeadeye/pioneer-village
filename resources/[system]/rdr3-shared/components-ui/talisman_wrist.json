@@ -19,7 +19,9 @@
         "tint2": 255,
         "drawable": "player_zero_tal_alligator_tooth_000",
         "albedo": 1584311325,
-        "normal": 4201347972
+        "normal": 4201347972,
+        "swatchTextureHex": "B3902E46",
+        "swatchTexture": "uisw_leather_pt001"
       }
     ]
   }

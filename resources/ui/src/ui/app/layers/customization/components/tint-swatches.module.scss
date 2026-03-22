@@ -3,27 +3,16 @@
 .tintSwatches {
   display: flex;
   justify-content: center;
-  flex-wrap: wrap;
-  filter: url(#tintBlur) brightness(1.2);
-  transform: scale(1.5);
 }
 
 .tintSwatch {
-  width: uiSize(12);
-  height: uiSize(12);
-  border-radius: uiSize(2);
-  display: inline-block;
+  border-radius: uiSize(3);
+  display: block;
   border: 1px solid rgba(255, 255, 255, 0.1);
   image-rendering: pixelated;
-  background-size: uiSize(12 * 8);
-
-  clip-path: polygon(12.5% 12.5%, 87.5% 12.5%, 87.5% 87.5%, 12.5% 87.5%);
-  transform: scale(1.25) translateY(uiSize(-1));
 
   &.first {
-    width: uiSize(24);
-    height: uiSize(24);
-    background-size: uiSize(24 * 8);
-    transform: scale(1.25);
+    width: 100%;
+    height: 100%;
   }
 }

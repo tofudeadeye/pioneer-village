@@ -4,13 +4,46 @@ import { AttachPoint } from '@lib/flags';
 import { Delay } from '@lib/functions';
 import PVItems from '@lib/shared/items';
 
+import { BODY_CATEGORIES } from '@lib/shared/body-categories';
+
 import componentCategories from '../data/component-categories';
 import wearableStates from '../data/wearable-states';
 import { paletteManager } from './palette-manager';
 
 const BASE_HASH = GetHashKey('BASE');
 
-const CategoriesToKeep = ['BODIES_LOWER', 'BODIES_UPPER', 'EYES', 'HAIR', 'HEADS'];
+const CategoriesToKeep = BODY_CATEGORIES.map((c) => c.toUpperCase());
+
+const mpComponentHashes = new Set<number>();
+
+const componentFiles = [
+  '2886757168', 'accessories', 'ammo_pistols', 'ammo_rifles', 'aprons', 'armor', 'badges',
+  'beards_chin', 'beards_chops', 'beards_complete', 'beards_mustache', 'belt_buckles', 'belts',
+  'bodies_lower', 'bodies_upper', 'boot_accessories', 'boots', 'chaps', 'cloaks', 'coats',
+  'coats_closed', 'dresses', 'eyes', 'eyewear', 'gauntlets', 'gloves', 'gunbelt_accs', 'gunbelts',
+  'hair', 'hair_accessories', 'hats', 'heads', 'holsters_crossdraw', 'holsters_knife', 'holsters_left',
+  'holsters_right', 'jewelry_bracelets', 'jewelry_rings_left', 'jewelry_rings_right', 'loadouts',
+  'masks', 'masks_large', 'neckties', 'neckwear', 'pants', 'ponchos', 'satchels', 'shirts_full',
+  'skirts', 'spats', 'suspenders', 'talisman_belt', 'talisman_holster', 'talisman_satchel',
+  'talisman_wrist', 'teeth', 'vests',
+];
+
+for (const file of componentFiles) {
+  try {
+    const json = LoadResourceFile('rdr3-shared', `components-ui/${file}.json`);
+    if (!json) continue;
+    const styles: { components: { component: number; isMp: boolean }[] }[] = JSON.parse(json);
+    for (const style of styles) {
+      for (const comp of style.components) {
+        if (comp.isMp) mpComponentHashes.add(comp.component);
+      }
+    }
+  } catch (_e) {
+    // Skip files that fail to parse
+  }
+}
+
+const isMpComponent = (hash: number): boolean => mpComponentHashes.has(hash);
 
 enum Options {
   NONE = 0,
@@ -70,8 +103,11 @@ class ComponentManager {
 
     // Log('equipItems', items);
     for (const item of items) {
-      const components = item.metadatas.map((meta) => GetHashKey(meta.shopItem));
-      await PVGame.setPedComponentsMp(ped, components);
+      for (const meta of item.metadatas) {
+        const hash = GetHashKey(meta.shopItem);
+        ApplyShopItemToPed(ped, hash, false, isMpComponent(hash), false);
+        await Delay(1);
+      }
     }
 
     // RefreshMetaPedShopItems(ped, 1);

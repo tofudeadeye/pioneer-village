@@ -16,7 +16,9 @@ export const setCurrentCharacter = (character: Game.Character | undefined) => {
 
 const getCurrentCharacter = () => currentCharacter;
 
-const setPedOutfit = async (ped: number, components: number[]) => {
+const setPedOutfit = async (ped: number, components: Game.BodyComponent[]) => {
+  const componentHashes = components.map((c) => typeof c === 'number' ? c : c.id);
+
   let currentComponentCount = GetNumComponentsInPed(ped);
   for (let n = currentComponentCount; n--; ) {
     const component = GetShopItemComponentAtIndex(
@@ -26,21 +28,28 @@ const setPedOutfit = async (ped: number, components: number[]) => {
       new DataView(new ArrayBuffer(255)),
       new DataView(new ArrayBuffer(255)),
     );
-    if (!components.includes(component)) {
+    if (!componentHashes.includes(component)) {
       const componentCategory = GetShopItemComponentCategory(component, 0, true);
-      RemoveTagFromMetaPed(ped, componentCategory, 0); // _SET_PED_COMPONENT_DISABLED
+      RemoveTagFromMetaPed(ped, componentCategory, 0);
       await Delay(1);
     }
   }
 
-  // Set Components
-  for (const component of components) {
-    ApplyShopItemToPed(ped, component, false, true, false); // _SET_PED_COMPONENT_ENABLED
+  for (const component of componentHashes) {
+    ApplyShopItemToPed(ped, component, false, true, false);
     await Delay(1);
   }
-  Citizen.invokeNative('0x704c908e9c405136', ped); // Fix clothing???
+  Citizen.invokeNative('0x704c908e9c405136', ped);
   UpdatePedVariation(ped, false, true, true, true, false);
-  await Delay(1);
+  await Delay(100);
+
+  for (const component of components) {
+    if (typeof component !== 'number') {
+      const category = GetShopItemComponentCategory(component.id, 0, true);
+      PVCustomization.setTintByCategory(ped, category, component.p, component.t0, component.t1, component.t2);
+      await Delay(1);
+    }
+  }
 };
 
 export const skinPed = async (ped: number, character: Game.Character) => {

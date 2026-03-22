@@ -14,6 +14,11 @@ onUI('customization.set-components', (components) => {
   creationManager.setComponents(components);
 });
 
+onUI('customization.set-components-with-tints', (components) => {
+  Log('customization.set-components-with-tints', ...components);
+  creationManager.setComponentsWithTints(components);
+});
+
 onUI('customization.set-tint-by-category', (category, data) => {
   Log('customization.set-tint-by-category', category, data);
 

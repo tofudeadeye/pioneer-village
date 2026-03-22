@@ -810,10 +810,33 @@ class CreationManager {
       return;
     }
     await componentManager.unequipClothing(this.chosen);
-    // await PVGame.setPedComponents(this.chosen, components);
     await PVGame.setPedComponentsMp(this.chosen, components);
     await PVGame.pedIsReadyToRender(this.chosen);
     PVGame.finalizePedOutfit(this.chosen);
+  }
+
+  async setComponentsWithTints(
+    components: { hash: number; palette?: number | string; tint0?: number; tint1?: number; tint2?: number }[],
+  ) {
+    if (this.currentState !== CreationState.NameSelection) {
+      return;
+    }
+    await componentManager.unequipClothing(this.chosen);
+    await PVGame.setPedComponentsMp(
+      this.chosen,
+      components.map((c) => c.hash),
+    );
+    await PVGame.pedIsReadyToRender(this.chosen);
+    PVGame.finalizePedOutfit(this.chosen);
+    await Delay(100);
+
+    for (const comp of components) {
+      if (comp.palette && comp.palette !== -1 && comp.palette !== 0) {
+        const category = GetShopItemComponentCategory(comp.hash, 0, true);
+        paletteManager.setTintByCategory(this.chosen, category, comp.palette, comp.tint0!, comp.tint1!, comp.tint2!);
+        await Delay(1);
+      }
+    }
   }
 
   getBaseOverlay(name: string): Customization.BaseOverlayItem | undefined {

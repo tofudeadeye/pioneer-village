@@ -1,6 +1,7 @@
 import { Socket } from 'socket.io';
 
 import { logInfoC, logInfoS } from '../helpers';
+import { isBodyCategory } from '../../../lib/shared/body-categories';
 import Characters, { GetFaceDataFromDatabase } from '../managers/characters';
 import Inventories from '../managers/inventories';
 import { serverNamespace, userNamespace } from '../server';
@@ -92,8 +93,8 @@ export default (userAccessKey: string) => {
           lastX: 0,
           lastY: 0,
           lastZ: 0,
-          model: data.model || data.gender === 'female' ? 'MP_FEMALE' : 'MP_MALE',
-          components: Object.values(data.components), // [],
+          model: data.model || (data.gender === 'female' ? 'MP_FEMALE' : 'MP_MALE'),
+          components: data.bodyComponents || Object.values(data.components),
           clothing: data.clothing,
           features: data.features,
         },
@@ -107,6 +108,7 @@ export default (userAccessKey: string) => {
 
         if (clothingInv) {
           for (const [category, item] of Object.entries<Record<string, any>>(data.currentComponents)) {
+            if (isBodyCategory(category)) continue;
             await Inventories.addItem(clothingInv.identifier, -1007727220, 1, item);
           }
         }
@@ -138,7 +140,7 @@ export default (userAccessKey: string) => {
             lastZ: Number(character.lastZ || '0'),
             model: character.model || 'mp_male',
             face,
-            components: character.components as number[],
+            components: character.components as (number | { id: number; p: number | string; t0: number; t1: number; t2: number })[],
             clothing: Object.values(clothingInventory?.items || []),
             features: character.features as Record<string, number>,
           });

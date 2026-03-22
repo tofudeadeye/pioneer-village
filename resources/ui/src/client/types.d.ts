@@ -95,6 +95,9 @@ declare namespace ClientIn {
     ['character-select.delete']: (characterId: number) => void;
     ['customization.state']: (event: UI.Customization.Event) => void;
     ['customization.set-components']: (components: number[]) => void;
+    ['customization.set-components-with-tints']: (
+      components: { hash: number; palette?: number | string; tint0?: number; tint1?: number; tint2?: number }[],
+    ) => void;
     ['customization.highlight']: (gender: 'male' | 'female') => void;
     ['customization.choose-gender']: () => void;
     ['customization.set-state']: (state: Customization.State) => void;

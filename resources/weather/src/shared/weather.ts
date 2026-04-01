@@ -4,7 +4,7 @@ import {BiomeManager, BiomeType, WeatherType} from './biome'
 
 class BiomeWeatherManager {
   protected static instance: BiomeWeatherManager;
-  
+
   static getInstance(): BiomeWeatherManager {
     if (!BiomeWeatherManager.instance) {
       BiomeWeatherManager.instance = new BiomeWeatherManager();
@@ -13,6 +13,8 @@ class BiomeWeatherManager {
   }
 
   private weatherGrid: BiomeWeatherGrid;
+  private weatherFrozen: boolean = false;
+  private globalWeatherOverride: WeatherType | null = null;
 
   constructor() {
     this.weatherGrid = new BiomeWeatherGrid();
@@ -70,6 +72,55 @@ class BiomeWeatherManager {
 
   public getBiomeWeatherGrid(): BiomeWeatherGrid {
     return this.weatherGrid;
+  }
+
+  /**
+   * Regenerate the entire weather grid with optional seed
+   * @param seed Optional seed for deterministic generation
+   */
+  public regenerateGrid(seed?: number): void {
+    console.log(`Regenerating weather grid${seed !== undefined ? ` with seed ${seed}` : ''}...`);
+    this.weatherGrid.generateBiomeAwareWeather(seed);
+    console.log('Weather grid regenerated successfully');
+    this.weatherGrid.printGrid();
+  }
+
+  /**
+   * Freeze or unfreeze weather evolution
+   * @param frozen True to freeze, false to unfreeze
+   */
+  public freezeWeather(frozen: boolean): void {
+    this.weatherFrozen = frozen;
+    console.log(`Weather evolution ${frozen ? 'frozen' : 'unfrozen'}`);
+  }
+
+  /**
+   * Check if weather is currently frozen
+   * @returns True if frozen, false otherwise
+   */
+  public isWeatherFrozen(): boolean {
+    return this.weatherFrozen;
+  }
+
+  /**
+   * Force a specific weather type globally (overrides grid)
+   * @param weather Weather type to force, or null to disable override
+   */
+  public forceGlobalWeather(weather: WeatherType | null): void {
+    this.globalWeatherOverride = weather;
+    if (weather) {
+      console.log(`Global weather override set to ${weather}`);
+    } else {
+      console.log('Global weather override removed');
+    }
+  }
+
+  /**
+   * Get the current global weather override
+   * @returns Current override weather type, or null if none
+   */
+  public getGlobalWeatherOverride(): WeatherType | null {
+    return this.globalWeatherOverride;
   }
 }
 

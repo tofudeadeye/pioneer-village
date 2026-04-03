@@ -16,6 +16,8 @@
     "tint2": 255,
     "drawable": "p_c_horse_01_feet_001",
     "albedo": 1623349210,
-    "normal": 319460215
+    "normal": 319460215,
+    "swatchTextureHex": "7A23FEFC",
+    "swatchTexture": "uisw_cotton_000"
   }
 ]

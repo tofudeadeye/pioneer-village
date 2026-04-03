@@ -1,4 +1,4 @@
-import { PVBase, PVGame, PVJobs, PVKeymapper } from '@lib/client';
+import { PVBase, PVGame, PVJobs, PVKeymapper, PVTarget } from '@lib/client';
 import { Log } from '@lib/client/comms/ui';
 import { AnimFlag } from '@lib/flags';
 import { Delay } from '@lib/functions';
@@ -44,16 +44,46 @@ if (typeof PrepareSoundset !== 'undefined') {
   Log('PrepareSoundset is undefined');
 }
 
-const sheriffJob = {
-  handle: 'sheriff',
-  name: 'Sheriff Department',
-  description: 'Maintain law and order in the town',
-  paymentType: 'HOURLY',
-  paymentAmount: '25.00',
-  requirements: { badge: true },
-  clockInConstraints: {
-    location: { x: -275.0, y: 804.0, z: 118.0, radius: 10 },
-    hours: { start: 6, end: 22 },
+PVTarget.AddTarget({
+  id: 'jobs::sheriff-desk',
+  type: 'point',
+  group: [{ x: -277.345, y: 805.225, z: 119.2 }],
+  data: [
+    {
+      id: 'sheriff_clock_in',
+      label: 'Clock In',
+      icon: 'clock',
+      event: 'jobs:client:clock-in',
+      parameters: { jobHandle: 'sheriff' },
+      isEnabled() {
+        return !PVJobs.isCurrentlyClocked();
+      },
+    },
+    {
+      id: 'sheriff_clock_tasks',
+      label: 'Tasks',
+      icon: 'tasks',
+      event: 'jobs:client:tasks',
+      parameters: { jobHandle: 'sheriff' },
+      isEnabled() {
+        return PVJobs.isCurrentlyClocked();
+      },
+    },
+    {
+      id: 'sheriff_clock_out',
+      label: 'Clock Out',
+      icon: 'clock',
+      event: 'jobs:client:clock-out',
+      isEnabled() {
+        return PVJobs.isCurrentlyClocked();
+      },
+    },
+  ],
+  options: {
+    distance: 2,
+    renderDistance: 5,
+    losCheck: false,
+    screenThreshold: 0.05,
+    sprite: { r: 255, g: 255, b: 255, a: 255 },
   },
-  metadata: { department: 'law_enforcement' },
-};
+});

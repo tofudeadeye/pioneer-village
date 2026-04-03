@@ -1,197 +1,302 @@
-@use '../../styles/theme.module.scss' as theme;
 @use '../../styles/mixins.module.scss' as mixins;
 
-.container {}
+.customization {
+  position: relative;
+  width: 100%;
+  height: 100%;
 
-.modal {
+  // Backgrounds
+  --cust-bg-deep: #080706;
+  --cust-bg-panel: #0f0e0c;
+  --cust-bg-surface: #171614;
+  --cust-bg-raised: #1e1c19;
+  --cust-bg-hover: #272420;
+
+  // Borders
+  --cust-border-dark: #2a2722;
+  --cust-border-mid: #3d3830;
+  --cust-border-light: #4d463a;
+
+  // Brass accent
+  --cust-brass: #c9a961;
+  --cust-brass-dim: #9a7d3f;
+  --cust-brass-glow: #dfc07a;
+  --cust-brass-muted: #7a6433;
+
+  // Text
+  --cust-text-primary: #d4cbbe;
+  --cust-text-secondary: #9a9080;
+  --cust-text-muted: #6a6256;
+  --cust-text-bright: #eae3d6;
+
+  // Accent
+  --cust-accent-warm: #8b5e3c;
+  --cust-accent-red: #8b3a3a;
+
+  // Scrollbar
+  --cust-scroll-track: #0f0e0c;
+  --cust-scroll-thumb: #3d3830;
+
+  // Typography
+  --cust-font-title: 'Redressed', cursive;
+  --cust-font-body: 'Oxygen', sans-serif;
+
+  // Transitions
+  --cust-transition-fast: 125ms;
+  --cust-transition-normal: 250ms;
+
+  // Shared values
+  --cust-radius-sm: #{mixins.uiSize(3)};
+  --cust-radius-md: #{mixins.uiSize(5)};
+  --cust-radius-lg: #{mixins.uiSize(6)};
+
+  font-family: var(--cust-font-body);
+  color: var(--cust-text-primary);
+}
+
+// Right-side panel
+.panel {
   position: absolute;
-  top: mixins.uiSize(91); // = (1080 - 898) / 2
-  width: mixins.uiSize(555.5);
-  height: mixins.uiSize(898);
-  background-image: url(https://p--v.b-cdn.net/customization/background.webp);
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: center;
-  color: var(--theme-white);
-  font-family: 'Caveat', cursive;
-  user-select: none;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: mixins.uiSize(576);
+  background: var(--cust-bg-panel);
+  border-left: 1px solid var(--cust-border-dark);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 
-  input {
-    width: 100%;
-    background-color: transparent;
-    border: none;
-    border-bottom: 2px dashed var(--theme-gray50);
-    font-size: mixins.uiSize(30);
-    color: var(--theme-white);
-
-    &:focus {
-      outline: none;
-      border-bottom-color: var(--theme-white);
-    }
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent mixins.uiSize(2),
+      rgba(201, 169, 97, 0.008) mixins.uiSize(2),
+      rgba(201, 169, 97, 0.008) mixins.uiSize(3)
+    );
+    pointer-events: none;
+    z-index: 0;
   }
 }
 
-.modalLeft {
-  @extend .modal;
-  right: mixins.uiSize(1337);
+// Tab bar
+.tabBar {
+  display: flex;
+  border-bottom: 1px solid var(--cust-border-dark);
+  padding: 0 mixins.uiSize(32);
+  position: relative;
+  z-index: 2;
 }
 
-.modalRight {
-  @extend .modal;
-  left: mixins.uiSize(1337);
-}
+.tab {
+  flex: 1;
+  text-align: center;
+  padding: mixins.uiSize(12) mixins.uiSize(16);
+  font-size: mixins.uiSize(20);
+  font-family: var(--cust-font-body);
+  color: var(--cust-text-muted);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  transition: color 0.2s, border-color 0.2s;
+  border-bottom: 2px solid transparent;
 
-.modalContents {
-  position: absolute;
-  inset: mixins.uiSize(75) mixins.uiSize(60) mixins.uiSize(60);
-  //padding: mixins.uiSize(40) mixins.uiSize(60);
-  overflow: auto;
-
-  > * {
-    max-width: 99%;
+  &:hover {
+    color: var(--cust-text-primary);
   }
+}
+
+.tabActive {
+  color: var(--cust-brass);
+  border-bottom-color: var(--cust-brass);
+}
+
+// Scrollable content area
+.tabContent {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: mixins.uiSize(16) mixins.uiSize(24) mixins.uiSize(24);
+  position: relative;
+  z-index: 2;
 
   &::-webkit-scrollbar {
-    width: mixins.uiSize(2);
+    width: mixins.uiSize(6);
   }
 
   &::-webkit-scrollbar-track {
-    background: transparent;
+    background: var(--cust-scroll-track);
   }
 
   &::-webkit-scrollbar-thumb {
-    background: rgba(0, 0, 0, 0.75);
+    background: var(--cust-scroll-thumb);
+    border-radius: mixins.uiSize(3);
   }
 
   &::-webkit-scrollbar-thumb:hover {
-    background: #000;
+    background: var(--cust-border-light);
   }
 }
 
-.modalTitle {
-  position: absolute;
-  top: 0;
-  right: 0;
-  left: 0;
-  text-align: center;
-  font-family: 'Homemade Apple', cursive;
-  font-size: mixins.uiSize(50);
-  transform: translateY(-50%);
-}
-
-.modalButtons {
-  position: absolute;
-  bottom: mixins.uiSize(40);
-  right: mixins.uiSize(60);
-  left: mixins.uiSize(30);
-  transform: translateY(50%);
+// Footer action bar
+.panelFooter {
   display: flex;
-  justify-content: space-between;
-  font-size: mixins.uiSize(18);
+  gap: mixins.uiSize(10);
+  padding: mixins.uiSize(16) mixins.uiSize(24);
+  border-top: 1px solid var(--cust-border-dark);
+  position: relative;
+  z-index: 2;
 }
 
-.modalButton {
-  padding: mixins.uiSize(10) mixins.uiSize(20);
-  background-color: transparent;
+.btnRandomize {
+  flex: 1;
+  background: var(--cust-bg-raised);
+  border: 1px solid var(--cust-border-dark);
+  color: var(--cust-text-primary);
+  padding: mixins.uiSize(12);
+  border-radius: mixins.uiSize(6);
+  font-size: mixins.uiSize(14);
+  text-transform: uppercase;
+  letter-spacing: mixins.uiSize(1);
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+
+  &:hover {
+    background: var(--cust-bg-hover);
+    border-color: var(--cust-border-mid);
+  }
+}
+
+.btnConfirm {
+  flex: 1;
+  background: linear-gradient(180deg, var(--cust-brass) 0%, var(--cust-brass-dim) 100%);
   border: none;
-  color: var(--theme-white);
+  color: #080706;
+  padding: mixins.uiSize(12);
+  border-radius: mixins.uiSize(6);
+  font-size: mixins.uiSize(14);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: mixins.uiSize(1);
+  cursor: pointer;
+  transition: filter 0.2s;
 
-  &:hover,
-  &.active {
-    color: var(--theme-red);
-  }
-
-  svg {
-    height: mixins.uiSize(24);
+  &:hover {
+    filter: brightness(1.1);
   }
 }
 
-.modalButtonDisabled {
-  opacity: 0.1;
+.btnConfirmDisabled {
+  opacity: 0.4;
   pointer-events: none;
 }
 
-.confirmButtons {
+// Gender selection hover zones
+.genderSelect {
   position: absolute;
-  bottom: mixins.uiSize(9);
-  right: mixins.uiSize(19);
-  transform: translateX(38%);
-  display: flex;
-  gap: mixins.uiSize(20);
+  top: 0;
+  bottom: 0;
+  width: 50%;
+  cursor: pointer;
+  transition: background 0.3s;
 }
 
-.confirmButton {
-  padding: 0;
-  background-color: transparent;
-  border: none;
-  color: var(--theme-white);
-
-  &:hover,
-  &.active {
-    color: var(--theme-red);
-
-    &:nth-child(2) {
-      color: var(--theme-green);
-    }
-  }
-
-  svg {
-    width: mixins.uiSize(26);
-    height: mixins.uiSize(26);
-  }
+.genderSelectActive {
+  background: rgba(201, 169, 97, 0.05);
 }
 
-.bottomControls {
-  position: absolute;
-  bottom: mixins.uiSize(16);
-  width: 25vw;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
+// Exit confirmation modal
 .exitModal {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: mixins.uiSize(24);
-  padding: mixins.uiSize(24) mixins.uiSize(32);
-  font-family: 'Caveat', cursive;
-
-  background-color: rgba(0,0,0,0.75);
-  color: var(--theme-white);
-
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 100;
   opacity: 0;
-  transition: opacity var(--theme-transition-normal);
+  transition: opacity var(--cust-transition-normal);
   will-change: opacity;
 
-  &:not(.show) {
+  &:not(.exitModalShow) {
     pointer-events: none;
   }
+}
 
-  &.show {
-    opacity: 1;
-  }
+.exitModalShow {
+  opacity: 1;
+}
+
+.exitModalContent {
+  background: var(--cust-bg-panel);
+  border: 1px solid var(--cust-border-dark);
+  padding: mixins.uiSize(32);
+  border-radius: mixins.uiSize(8);
+  text-align: center;
 }
 
 .exitModalButtons {
   display: flex;
+  gap: mixins.uiSize(16);
+  margin-top: mixins.uiSize(20);
   justify-content: center;
-  gap: mixins.uiSize(32);
-  margin-top: mixins.uiSize(16);
 
   button {
     background: transparent;
     border: none;
-    color: var(--theme-white);
+    color: var(--cust-text-primary);
+    cursor: pointer;
 
     &:hover {
-      color: var(--theme-red);
+      color: var(--cust-brass);
     }
   }
 
   svg {
     width: mixins.uiSize(24);
     height: mixins.uiSize(24);
+  }
+}
+
+// Bottom rotation slider positioning
+.bottomControls {
+  position: absolute;
+  bottom: mixins.uiSize(16);
+  width: 25vw;
+  left: 50%;
+  transform: translateX(-70%);
+  z-index: 2;
+}
+
+// Global animations
+:global {
+  @keyframes custPopIn {
+    from {
+      opacity: 0;
+      transform: translateY(mixins.uiSize(-4));
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes custFadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(mixins.uiSize(6));
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 }

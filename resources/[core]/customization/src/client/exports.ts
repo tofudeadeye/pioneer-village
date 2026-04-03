@@ -1,6 +1,7 @@
 import { exports } from '@lib/client';
-import { paletteManager } from './managers/palette-manager';
+
 import { componentManager } from './managers/component-manager';
+import { paletteManager } from './managers/palette-manager';
 
 const getGuidsAtIndex: Customization.GetGuidsAtIndex = (...args) => {
   return paletteManager.getGuidsAtIndex(...args);
@@ -102,6 +103,10 @@ const equipItems: Customization.EquipItems = (...args) => {
   return componentManager.equipItems(...args);
 };
 
+const applyMetaPedOutfit: Customization.ApplyMetaPedOutfit = (...args) => {
+  return componentManager.applyMetaPedOutfit(...args);
+};
+
 exports<'customization'>('getGuidsAtIndex', getGuidsAtIndex);
 exports<'customization'>('getDrawableAtIndex', getDrawableAtIndex);
 exports<'customization'>('getAlbedoAtIndex', getAlbedoAtIndex);
@@ -127,3 +132,4 @@ exports<'customization'>('getHorseDrawableAtIndex', getHorseDrawableAtIndex);
 exports<'customization'>('getIndexForHorsePart', getIndexForHorsePart);
 exports<'customization'>('setTintByHorsePart', setTintByHorsePart);
 exports<'customization'>('equipItems', equipItems);
+exports<'customization'>('applyMetaPedOutfit', applyMetaPedOutfit);

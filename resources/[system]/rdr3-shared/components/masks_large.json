@@ -16,7 +16,9 @@
     "tint2": 23,
     "drawable": "player_zero_mask_008",
     "albedo": 2231414114,
-    "normal": 1180517012
+    "normal": 1180517012,
+    "swatchTextureHex": "5618F1CE",
+    "swatchTexture": "uisw_horse_trapperblanket_002"
   },
   {
     "componentHex": "1C52051D",
@@ -36,7 +38,9 @@
     "tint2": 255,
     "drawable": "skullmask_mr1_000",
     "albedo": 1765436707,
-    "normal": 964119490
+    "normal": 964119490,
+    "swatchTextureHex": "4B3FDC1C",
+    "swatchTexture": "uisw_horse_trapperblanket_001"
   },
   {
     "componentHex": "A9257E62",
@@ -56,7 +60,9 @@
     "tint2": 255,
     "drawable": "skullmask_mr1_001",
     "albedo": 3844333149,
-    "normal": 1018993509
+    "normal": 1018993509,
+    "swatchTextureHex": "4B3FDC1C",
+    "swatchTexture": "uisw_horse_trapperblanket_001"
   },
   {
     "componentHex": "656A8ED4",
@@ -76,7 +82,9 @@
     "tint2": 255,
     "drawable": "skullmask_mr1_002",
     "albedo": 2483344836,
-    "normal": 2789631993
+    "normal": 2789631993,
+    "swatchTextureHex": "4B3FDC1C",
+    "swatchTexture": "uisw_horse_trapperblanket_001"
   },
   {
     "componentHex": "DC928FFC",
@@ -95,7 +103,9 @@
     "tint2": 255,
     "drawable": 415352320,
     "albedo": 2862997569,
-    "normal": 163131274
+    "normal": 163131274,
+    "swatchTextureHex": "A36A8DFB",
+    "swatchTexture": "uisw_leather_pt000"
   },
   {
     "componentHex": "E33F3DA1",
@@ -114,7 +124,9 @@
     "tint2": 255,
     "drawable": "player_zero_mask_011_open",
     "albedo": 2862997569,
-    "normal": 163131274
+    "normal": 163131274,
+    "swatchTextureHex": "A36A8DFB",
+    "swatchTexture": "uisw_leather_pt000"
   },
   {
     "componentHex": "29F2D782",
@@ -133,7 +145,9 @@
     "tint2": 255,
     "drawable": "player_zero_mask_004",
     "albedo": 772689355,
-    "normal": 1731563264
+    "normal": 1731563264,
+    "swatchTextureHex": "7A23FEFC",
+    "swatchTexture": "uisw_cotton_000"
   },
   {
     "componentHex": "E563CBF2",
@@ -152,7 +166,9 @@
     "tint2": 255,
     "drawable": "player_zero_mask_003",
     "albedo": 2490353303,
-    "normal": 2519413322
+    "normal": 2519413322,
+    "swatchTextureHex": "7A23FEFC",
+    "swatchTexture": "uisw_cotton_000"
   },
   {
     "componentHex": "446654CB",
@@ -171,7 +187,9 @@
     "tint2": 255,
     "drawable": "player_zero_mask_000",
     "albedo": 3959466158,
-    "normal": 1338320573
+    "normal": 1338320573,
+    "swatchTextureHex": "7A23FEFC",
+    "swatchTexture": "uisw_cotton_000"
   },
   {
     "componentHex": "F0AC3045",
@@ -190,7 +208,9 @@
     "tint2": 255,
     "drawable": "player_zero_mask_005",
     "albedo": 2259643946,
-    "normal": 4127059030
+    "normal": 4127059030,
+    "swatchTextureHex": "7A23FEFC",
+    "swatchTexture": "uisw_cotton_000"
   },
   {
     "componentHex": "C12284EC",
@@ -209,6 +229,8 @@
     "tint2": 255,
     "drawable": "player_zero_mask_006",
     "albedo": 1134687011,
-    "normal": 2604548606
+    "normal": 2604548606,
+    "swatchTextureHex": "7A23FEFC",
+    "swatchTexture": "uisw_cotton_000"
   }
 ]

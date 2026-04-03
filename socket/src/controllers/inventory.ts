@@ -121,8 +121,9 @@ export default () => {
       oldSlot,
       newIdentifier,
       newSlot,
+      quantity?,
     ) => {
-      logInfoC('inventory.item-move', requestId, oldIdentifier, oldSlot, newIdentifier, newSlot);
+      logInfoC('inventory.item-move', requestId, oldIdentifier, oldSlot, newIdentifier, newSlot, quantity);
       if (!this.socket.data.character?.id) {
         return;
       }
@@ -136,15 +137,28 @@ export default () => {
         }
       }
 
-      const [eventSource, eventDestination] = await Inventories.moveItem(
-        this.socket.data.character.id,
-        requestId,
-        oldIdentifier,
-        oldSlot,
-        newIdentifier,
-        newSlot,
-      );
+      let result: [UI.Inventory.MoveOrFailData, UI.Inventory.MoveOrFailData | null];
+      if (newSlot < 0) {
+        result = await Inventories.moveItemToInventory(
+          this.socket.data.character.id,
+          requestId,
+          oldIdentifier,
+          oldSlot,
+          newIdentifier,
+        );
+      } else {
+        result = await Inventories.moveItem(
+          this.socket.data.character.id,
+          requestId,
+          oldIdentifier,
+          oldSlot,
+          newIdentifier,
+          newSlot,
+          quantity,
+        );
+      }
 
+      const [eventSource, eventDestination] = result;
       sendMoveOrFailData(this.socket, requestId, 'move', eventSource);
       sendMoveOrFailData(this.socket, requestId, 'move', eventDestination);
     };

@@ -1,0 +1,26 @@
+@use 'sass:math';
+@use '../../../styles/mixins.module.scss' as *;
+
+.bar {
+  display: flex;
+  gap: uiSize(6);
+  margin-top: uiSize(2);
+}
+
+.swatch {
+  flex: 1;
+  height: uiSize(28);
+  border-radius: uiSize(4);
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: all 150ms ease;
+
+  &:hover {
+    transform: scaleY(1.15);
+  }
+
+  &.selected {
+    border-color: #c9a961;
+    box-shadow: 0 0 uiSize(8) rgba(201, 169, 97, 0.4);
+  }
+}

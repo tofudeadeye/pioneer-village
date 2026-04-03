@@ -446,12 +446,12 @@ const registerTargets = async () => {
         label: 'Pan for Gold',
         icon: 'cloud-meatball',
         event: 'gold:panning',
-        parameters: {},
       },
     ],
     options: {
       distance: 2.0,
       isEnabled(data) {
+        if (!data.entity) return false;
         const bucketEntity = PVGame.getChildEntity(data.entity, 'bucket');
         const bucket = Entity(bucketEntity);
         const entity = Entity(data.entity);
@@ -470,12 +470,12 @@ const registerTargets = async () => {
         label: 'Grab Bucket',
         icon: 'fill',
         event: 'gold:panning:bucket-pickup',
-        parameters: {},
       },
     ],
     options: {
       distance: 2.0,
       isEnabled(data) {
+        if (!data.entity) return false;
         const bucketEntity = PVGame.getChildEntity(data.entity, 'bucket');
         const bucket = Entity(bucketEntity);
         const entity = Entity(data.entity);
@@ -494,12 +494,12 @@ const registerTargets = async () => {
         label: 'Return Bucket',
         icon: 'fill',
         event: 'gold:panning:bucket-putdown',
-        parameters: {},
       },
     ],
     options: {
       distance: 2.0,
       isEnabled(data) {
+        if (!data.entity) return false;
         const bucketEntity = PVGame.getChildEntity(data.entity, 'bucket');
         return PVGame.playerPed() === GetEntityAttachedTo(bucketEntity);
       },
@@ -516,7 +516,6 @@ const registerTargets = async () => {
         label: 'Teardown',
         icon: 'recycle',
         event: 'gold:panning:teardown',
-        parameters: {},
       },
     ],
     options: {

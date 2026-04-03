@@ -8,6 +8,7 @@ import GarageDuotone from '@fa/5/duotone/garage.svg';
 import EyeLight from '@fa/5/light/eye.svg';
 // Solid icons
 import CashRegisterSolid from '@fa/5/solid/cash-register.svg';
+import ClockSolid from '@fa/5/solid/clock.svg';
 import CloudMeatballSolid from '@fa/5/solid/cloud-meatball.svg';
 import DoorClosedSolid from '@fa/5/solid/door-closed.svg';
 import DoorOpenSolid from '@fa/5/solid/door-open.svg';
@@ -42,6 +43,7 @@ export const iconRegistry: Record<string, Record<string, ComponentType<any>>> = 
     lasso: LassoSolid,
     horse: HorseSolid,
     paw: PawSolid,
+    clock: ClockSolid,
   },
   light: {
     eye: EyeLight,

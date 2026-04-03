@@ -19,7 +19,7 @@ files {
   "build/ui.js",
   "build/ui.js.map",
   "build/ui.css",
-  "build/fonts/open-sans-regular.json"
+  "assets/**/**"
 }
 
 ui_page "index.html"

@@ -1,0 +1,1 @@
+ALTER TABLE "Horses" ADD COLUMN "corpses" json DEFAULT '[]';

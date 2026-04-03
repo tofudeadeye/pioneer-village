@@ -15,6 +15,7 @@ export default class Horse {
   _gender: 'MALE' | 'FEMALE' | 'OTHER';
   _age: number;
   _pelts: [number, number][];
+  _corpses: Record<string, [number, number, number, number]>;
   _weight: number;
   _food: number;
   _water: number;
@@ -45,6 +46,7 @@ export default class Horse {
     this._gender = data.gender;
     this._age = data.age;
     this._pelts = data.pelts;
+    this._corpses = data.corpses;
     this._weight = data.weight;
     this._food = data.food;
     this._water = data.water;
@@ -148,6 +150,14 @@ export default class Horse {
   set pelts(pelts) {
     this._pelts = pelts;
     this._dirtyFields.add('pelts');
+  }
+
+  get corpses() {
+    return this._corpses;
+  }
+  set corpses(corpses) {
+    this._corpses = corpses;
+    this._dirtyFields.add('corpses');
   }
 
   get weight(): number {
@@ -368,6 +378,7 @@ export default class Horse {
       gender: () => this._gender,
       age: () => this._age,
       pelts: () => this._pelts,
+      corpses: () => this._corpses,
       weight: () => this._weight,
       food: () => this._food,
       water: () => this._water,

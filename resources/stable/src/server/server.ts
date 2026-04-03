@@ -20,7 +20,14 @@ const storeTrackedHorsePeds = () => {
 const getHorseLocations = () => {
   const horseLocations = [];
   for (const [horseId, netId] of trackedHorsePeds.entries()) {
-    const horsePed = NetworkGetEntityFromNetworkId(netId);
+    let horsePed: number | null = NetworkGetEntityFromNetworkId(netId);
+
+    if (horsePed) {
+      const pedHorseId = Entity(horsePed).state.horseId;
+      if (pedHorseId !== horseId) {
+        horsePed = null;
+      }
+    }
 
     LogToUI(`Horse ID ${horseId} has ped ${horsePed} (netId ${netId})`);
 

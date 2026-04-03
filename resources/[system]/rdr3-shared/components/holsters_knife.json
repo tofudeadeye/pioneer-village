@@ -16,7 +16,9 @@
     "tint2": 255,
     "drawable": 1846107428,
     "albedo": 1486834854,
-    "normal": 3529404043
+    "normal": 3529404043,
+    "swatchTextureHex": "B3902E46",
+    "swatchTexture": "uisw_leather_pt001"
   },
   {
     "componentHex": "6B174584",
@@ -35,7 +37,9 @@
     "tint2": 255,
     "drawable": "player_zero_knife_holster_000",
     "albedo": 1486834854,
-    "normal": 3529404043
+    "normal": 3529404043,
+    "swatchTextureHex": "B3902E46",
+    "swatchTexture": "uisw_leather_pt001"
   },
   {
     "componentHex": "9C6EC971",
@@ -54,6 +58,8 @@
     "tint2": 255,
     "drawable": 1709207728,
     "albedo": 1513729661,
-    "normal": 3435290233
+    "normal": 3435290233,
+    "swatchTextureHex": "7A23FEFC",
+    "swatchTexture": "uisw_cotton_000"
   }
 ]

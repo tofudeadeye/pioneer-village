@@ -2,7 +2,8 @@ import { PVBase, PVCustomization, PVGame, PVInit, PVZone, onResourceInit } from 
 import { Log, awaitUI } from '@lib/client/comms/ui';
 import { PedConfigFlag } from '@lib/flags';
 import { Delay } from '@lib/functions';
-import { Vector3, clamp, lerp } from '@lib/math';
+import { Vector3, lerp } from '@lib/math';
+import { BlipModifiers, BlipSprites } from '@lib/shared/blips';
 import { GetDays } from '@lib/shared/time';
 
 import HorseExpressions from '../../shared/data/horse-expressions';
@@ -37,8 +38,8 @@ class StableController {
   protected _stableHorsePeds: Map<Stable.Id, Map<number, Set<number>>> = new Map(); // Map<StableId, Map<CharacterId, Set<EntityId>>
   protected _horsePedsStalls: Map<number, number> = new Map();
 
-  protected _unstabledHorsePeds: Set<number> = new Set();
-  protected _unstabledHorsePedsTemp: Set<number> = new Set();
+  protected _unstabledHorses: Map<number, number> = new Map();
+  protected _unstabledHorsesTemp: Set<number> = new Set();
 
   protected _whistlingHorse = false;
 
@@ -60,13 +61,18 @@ class StableController {
       this.loadHorses(characterId);
     });
     const handleUnstabledHorse = (mount: number) => {
-      if (this._unstabledHorsePedsTemp.has(mount)) {
+      if (this._unstabledHorsesTemp.has(mount)) {
         this.horseMakeNetworked(mount);
       }
     };
-    on('events_manager:mount', (onMount: number, horse: number, currentSeat: number) => {
-      // Log('events_manager:mount', onMount, horse, currentSeat);
-      handleUnstabledHorse(horse);
+    on('events_manager:mount', (onMount: number, horsePed: number, currentSeat: number) => {
+      // Log('events_manager:mount', onMount, horsePed, currentSeat);
+      this.checkHorse(horsePed);
+      if (onMount) {
+        handleUnstabledHorse(horsePed);
+      } else {
+        this.updateUnstableHorseCoords();
+      }
     });
     on('events_manager:leading', (isLeading: number, horse: number) => {
       // Log('isLeading', isLeading, horse);
@@ -102,22 +108,47 @@ class StableController {
     }
   }
 
+  // Checks if horse should be tracked by unstabledHorses map.
+  checkHorse(horsePed: number) {
+    if (!horsePed || !DoesEntityExist(horsePed)) {
+      return;
+    }
+
+    const state = Entity(horsePed).state;
+    const horseId = state.horseId;
+    if (!horseId || !this._horses.has(horseId)) {
+      return;
+    }
+
+    this._unstabledHorses.set(horseId, horsePed);
+  }
+
   updateUnstableHorseCoords(): void {
-    for (const horsePed of this._unstabledHorsePeds) {
+    for (const [horseId, horsePed] of this._unstabledHorses.entries()) {
       if (!DoesEntityExist(horsePed)) {
-        this._unstabledHorsePeds.delete(horsePed);
+        this._unstabledHorses.delete(horseId);
+        const horse = this.getHorseById(horseId);
+        if (!horse) {
+          continue;
+        }
+        PVBase.blipRegister(`horse:${horseId}`, {
+          label: horse.name,
+          sprite: BlipSprites.HORSE_OWNED,
+          modifiers: [BlipModifiers.SCALE_2],
+          coords: { x: horse.lastX, y: horse.lastY, z: horse.lastZ },
+        });
         continue;
       }
 
-      const horseId = Entity(horsePed).state.horseId;
+      // const horseId = Entity(horsePed).state.horseId;
       if (!horseId) {
-        this._unstabledHorsePeds.delete(horsePed);
+        this._unstabledHorses.delete(horsePed);
         continue;
       }
 
       const horse = this._horses.get(horseId);
       if (!horse) {
-        this._unstabledHorsePeds.delete(horsePed);
+        this._unstabledHorses.delete(horsePed);
         continue;
       }
 
@@ -140,6 +171,18 @@ class StableController {
       this._stabledHorses.set(horse.id, horse.stable || '');
     }
     this._pregnancies.push(...pregnancies);
+
+    for (const horse of this._horses.values()) {
+      if (!horse.stable) {
+        PVBase.blipRegister(`horse:${horse.id}`, {
+          label: horse.name,
+          sprite: BlipSprites.HORSE_OWNED,
+          modifiers: [BlipModifiers.SCALE_2],
+          coords: { x: horse.lastX, y: horse.lastY, z: horse.lastZ },
+        });
+      }
+    }
+
     PVInit.resolve('stable::load-hoses');
     Log('Load Horses Finished');
   }
@@ -333,7 +376,7 @@ class StableController {
     //   }
     // }
 
-    PVBase.deleteEntities([...stableHorses.values()]);
+    PVBase.deleteEntities([...stableHorses.values()], true);
 
     this._stableHorsePeds.set(stableId, stableHorsePeds);
 
@@ -342,6 +385,10 @@ class StableController {
 
   isStabled(horseId: Horse.Id): boolean {
     return !!this._stabledHorses.get(horseId);
+  }
+
+  isUnstabled(horseId: Horse.Id): boolean {
+    return !!this._unstabledHorses.get(horseId);
   }
 
   stableHorse(ped: number, horseId: Horse.Id, stableId: Stable.Id): void {
@@ -365,6 +412,8 @@ class StableController {
     this._stableHorsePeds.set(stableId, stableHorsePeds);
 
     this._stabledHorses.set(horseId, stableId);
+    this._unstabledHorses.delete(horseId);
+    PVBase.blipUnregister(`horse:${horseId}`);
 
     const horse = this._horses.get(horseId);
     if (horse) {
@@ -403,7 +452,7 @@ class StableController {
     if (makeNetworked) {
       this.horseMakeNetworked(horsePed);
     } else {
-      this._unstabledHorsePedsTemp.add(horsePed);
+      this._unstabledHorsesTemp.add(horsePed);
     }
 
     if (stable.horses.includes(horseId)) {
@@ -482,7 +531,6 @@ class StableController {
 
     // Log('Horses', this._horses.size);
 
-    // TODO: Guide player towards closest horse if not in range.
     for (const horse of this._horses.values()) {
       if (!horse.stable) {
         const horseCoords = new Vector3(horse.lastX, horse.lastY, horse.lastZ);
@@ -521,11 +569,13 @@ class StableController {
       emitNet('stable:track-horse', horseNetId);
     }
 
-    this._unstabledHorsePedsTemp.delete(horsePed);
-    this._unstabledHorsePeds.add(horsePed);
+    this._unstabledHorsesTemp.delete(horsePed);
 
     const horseId = DecorGetInt(horsePed, 'horseId');
     if (!horseId) return;
+
+    this._unstabledHorses.set(horseId, horsePed);
+
     const horseState = Entity(horsePed).state;
     horseState.set('horseId', horseId, true);
     Log(`Entity(${horsePed}).state.set('horseId', ${horseId}, true);`);
@@ -533,7 +583,19 @@ class StableController {
     const horse = this.getHorseById(horseId);
     if (horse) {
       horseState.set('pelts', horse.pelts, true);
-      this.setupHorsePelts(horsePed);
+      horseState.set('corpses', horse.corpses, true);
+
+      if (Object.keys(horse.corpses).length > 0) {
+        const itemSet = CreateItemset(true);
+        FindAllAttachedCarriableEntities(horsePed, itemSet);
+        const itemSetSize = GetItemsetSize(itemSet);
+        for (let i = 0; i < itemSetSize; i++) {
+          const attachedEntity = GetIndexedItemInItemset(i, itemSet);
+          if (DoesEntityExist(attachedEntity)) {
+            NetworkRegisterEntityAsNetworked(attachedEntity);
+          }
+        }
+      }
     }
 
     if (this.isHorsePregnant(horseId)) {
@@ -556,6 +618,7 @@ class StableController {
     }
 
     Log('spawning horse', horse.name);
+    PVBase.blipUnregister(`horse:${horse.id}`);
     // Log('horse dna', horse.dna);
 
     const playerPed = PVGame.playerPed();
@@ -691,12 +754,7 @@ class StableController {
 
     SetModelAsNoLongerNeeded(horse.model);
     await Delay(50);
-
-    // Citizen.invokeNative('0xD2CB0FB0FDCB473D', gameManager.playerId, horsePed) // SetPedAsSaddleHorseForPlayer
-    // Citizen.invokeNative('0xE6D4E435B56D5BD0', gameManager.playerId, horsePed) // SetPlayerOwnsMount
-    SetPedRelationshipGroupHash(horsePed, GetPedRelationshipGroupHash(horsePed));
-    SetPedOwnsAnimal(playerPed, horsePed, false);
-    SetPlayerOwnsMount(PlayerId(), horsePed);
+    DecorSetInt(horsePed, 'horseId', horse.id);
 
     if (options.local) {
       NetworkSetEntityOnlyExistsForParticipants(horsePed, true);
@@ -710,49 +768,113 @@ class StableController {
       // Citizen.invokeNative('0x06D26A96CA1BCA75', horsePed, 0, 0.8, gameManager.playerPed);
     }
 
+    // Citizen.invokeNative('0xD2CB0FB0FDCB473D', gameManager.playerId, horsePed) // SetPedAsSaddleHorseForPlayer
+    // Citizen.invokeNative('0xE6D4E435B56D5BD0', gameManager.playerId, horsePed) // SetPlayerOwnsMount
+    SetPedRelationshipGroupHash(horsePed, GetPedRelationshipGroupHash(horsePed));
+    SetPedOwnsAnimal(playerPed, horsePed, false);
+    SetPlayerOwnsMount(PlayerId(), horsePed);
+
     // this._spawningHorse.set(horse.id, false);
 
     // this.entitySetHorse(horsePed, horse);
 
     const horseState = Entity(horsePed).state;
 
-    Log(`Entity(${horsePed}).state.set('horseId', ${horse.id}, true);`);
-    horseState.set('horseId', horse.id, true);
-    DecorSetInt(horsePed, 'horseId', horse.id);
-
     SetEntityVisible(horsePed, true);
 
     this.setHorseBlip(horsePed, horse);
 
     horseState.set('pelts', horse.pelts, true);
-    if (options.local) {
-      this.setupHorsePeltsAlt(horsePed, horse.pelts);
-    } else {
-      this.setupHorsePelts(horsePed);
-    }
+    horseState.set('corpses', horse.corpses, true);
+
+    this.setupHorsePelts(horsePed, horse.pelts);
+    await this.setupHorseCorpses(horsePed, horse.corpses);
 
     return horsePed;
   }
 
-  setupHorsePelts(horsePed: number) {
+  async setupHorseCorpses(horsePed: number, corpses?: Record<string, [number, number, number, number]>) {
     const horseState = Entity(horsePed).state;
-    if (!horseState.pelts) {
-      Log('No pelts found for horsePed', horsePed);
+
+    if (horseState.setupCorpses) {
       return;
     }
-    for (let n = 3; n--; ) {
-      const pelt = GetPeltFromHorse(horsePed, n);
-      if (pelt) {
-        ClearPeltFromHorse(horsePed, pelt);
+    horseState.set('setupCorpses', true, true);
+
+    if (!corpses) {
+      corpses = horseState.corpses;
+      if (!corpses) {
+        Log('No corpses found for horsePed', horsePed);
+        return;
       }
     }
 
-    for (const [provision, texture] of horseState.pelts.slice(-3)) {
-      Citizen.invokeNative('0xc412aa1c73111fe0', horsePed, provision, texture, 0, 0);
+    for (const [slot, [model, outfit, quality, looted]] of Object.entries(corpses)) {
+      let corpse = 0;
+      const coords = PVGame.playerCoords();
+      coords.z += 2;
+      if (quality !== -1) {
+        corpse = await PVGame.createPed(
+          model,
+          coords.x,
+          coords.y,
+          coords.z,
+          0,
+          true,
+          NetworkGetEntityIsNetworked(horsePed),
+        );
+        SetEntityHealth(corpse, 0);
+        SetPedDamageCleanliness(corpse, quality);
+
+        if (outfit) {
+          PVCustomization.applyMetaPedOutfit(corpse, outfit);
+        }
+      } else {
+        Log('spawning corpse Object');
+        corpse = await PVGame.createObject(model, coords, { x: 0, y: 0, z: 0 }, NetworkGetEntityIsNetworked(horsePed));
+        Log('corpse', corpse, outfit);
+      }
+
+      if (looted === 1) {
+        const fieldDressings: [number, boolean][] = [
+          [GetHashKey('META_OUTFIT_FIELD_DRESSING_002'), false],
+          [GetHashKey('META_OUTFIT_FIELD_DRESSING_001'), false],
+          [GetHashKey('META_OUTFIT_FIELD_DRESSING_000'), true],
+        ];
+
+        for (const [fieldDressing, skipCheck] of fieldDressings) {
+          if (outfit === 0 || skipCheck || DoesMetaPedSuboutfitExistForPedModel(outfit, fieldDressing, model)) {
+            EquipMetaPedSuboutfit(corpse, fieldDressing, 0);
+            UpdatePedVariation(corpse, false, true, true, true, false);
+            break;
+          }
+        }
+
+        SetLootingFlag(corpse, 0, false);
+        SetEntityFullyLooted(corpse, true);
+      }
+
+      if (corpse) {
+        // Log('Attaching corpse to horse', corpse, horsePed, slot);
+        TaskCarriable(corpse, GetOptimalCarryConfig(corpse, quality === -1 ? 0 : 2), horsePed, Number(slot) + 1, 0);
+
+        if (quality === -1) {
+          SetEntityCarcassType(corpse, outfit);
+        }
+      }
     }
   }
 
-  setupHorsePeltsAlt(horsePed: number, pelts: [number, number][]) {
+  setupHorsePelts(horsePed: number, pelts?: [number, number][]) {
+    if (!pelts) {
+      const horseState = Entity(horsePed).state;
+      pelts = horseState.pelts;
+      if (!pelts) {
+        Log('No pelts found for horsePed', horsePed);
+        return;
+      }
+    }
+
     for (let n = 3; n--; ) {
       const pelt = GetPeltFromHorse(horsePed, n);
       if (pelt) {

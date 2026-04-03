@@ -1,0 +1,98 @@
+@use 'sass:math';
+@use '../../../styles/mixins.module.scss' as *;
+
+.container {
+  padding: uiSize(8) uiSize(4);
+  width: 100%;
+  user-select: none;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: uiSize(6);
+}
+
+.label {
+  font-size: uiSize(20);
+  font-weight: 500;
+  color: var(--cust-text-secondary);
+  letter-spacing: 0.5px;
+}
+
+.value {
+  font-size: uiSize(20);
+  font-weight: 600;
+  color: var(--cust-brass-dim);
+  font-variant-numeric: tabular-nums;
+  min-width: uiSize(40);
+  text-align: right;
+}
+
+.trackContainer {
+  position: relative;
+  height: uiSize(20);
+  display: flex;
+  align-items: center;
+}
+
+.range {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: uiSize(5);
+  background: #171614;
+  border-radius: uiSize(2);
+  outline: none;
+
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: uiSize(16);
+    height: uiSize(16);
+    background: var(--cust-brass);
+    border: uiSize(2) solid var(--cust-bg-panel);
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 0 uiSize(6) rgba(201, 169, 97, 0.25);
+    transition: box-shadow 150ms ease, transform 150ms ease;
+  }
+
+  &::-webkit-slider-thumb:hover {
+    box-shadow: 0 0 uiSize(10) rgba(201, 169, 97, 0.4);
+    transform: scale(1.15);
+  }
+
+  &:active::-webkit-slider-thumb {
+    box-shadow: 0 0 uiSize(14) rgba(201, 169, 97, 0.5);
+  }
+
+  &::-moz-range-track {
+    width: 100%;
+    height: uiSize(5);
+    background: #171614;
+    border-radius: uiSize(2);
+    border: none;
+  }
+
+  &::-moz-range-thumb {
+    width: uiSize(16);
+    height: uiSize(16);
+    background: var(--cust-brass);
+    border: uiSize(2) solid var(--cust-bg-panel);
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 0 uiSize(6) rgba(201, 169, 97, 0.25);
+    transition: box-shadow 150ms ease, transform 150ms ease;
+  }
+
+  &::-moz-range-thumb:hover {
+    box-shadow: 0 0 uiSize(10) rgba(201, 169, 97, 0.4);
+    transform: scale(1.15);
+  }
+
+  &:active::-moz-range-thumb {
+    box-shadow: 0 0 uiSize(14) rgba(201, 169, 97, 0.5);
+  }
+}

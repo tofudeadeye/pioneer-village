@@ -19,7 +19,9 @@
         "tint2": 255,
         "drawable": "player_zero_ammo_pistol_006",
         "albedo": 75031915,
-        "normal": 828001065
+        "normal": 828001065,
+        "swatchTextureHex": "7A23FEFC",
+        "swatchTexture": "uisw_cotton_000"
       }
     ]
   }

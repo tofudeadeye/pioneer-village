@@ -174,20 +174,3 @@ onUI('customization.tint-test', async (palette: string, tint0: number, tint1: nu
   // const ped = 7593731;
   // paletteManager.setTint(ped, palette, tint0, tint1, tint2);
 });
-
-onUI('customization.set-tint-by-category', (category, data) => {
-  Log('customization.set-tint-by-category', category, data);
-  // const ped = PVGame.playerPed();
-  if (data.palette !== 0) {
-    // paletteManager.setTintByCategory(ped, category, data.palette, data.tint0, data.tint1, data.tint2);
-    PVCustomization.setTintByHorsePart(
-      713474,
-      // @ts-ignore
-      'head',
-      data.palette,
-      data.tint0,
-      data.tint1,
-      data.tint2,
-    );
-  }
-});

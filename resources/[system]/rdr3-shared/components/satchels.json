@@ -38,7 +38,9 @@
     "normal": [
       2953809507,
       1030271885
-    ]
+    ],
+    "swatchTextureHex": "A36A8DFB",
+    "swatchTexture": "uisw_leather_pt000"
   },
   {
     "componentHex": "CE847162",
@@ -79,7 +81,9 @@
     "normal": [
       2222729670,
       1030271885
-    ]
+    ],
+    "swatchTextureHex": "A36A8DFB",
+    "swatchTexture": "uisw_leather_pt000"
   },
   {
     "componentHex": "36B2ED97",
@@ -120,7 +124,9 @@
     "normal": [
       3565842101,
       1030271885
-    ]
+    ],
+    "swatchTextureHex": "A36A8DFB",
+    "swatchTexture": "uisw_leather_pt000"
   },
   {
     "componentHex": "A1CA0708",
@@ -161,7 +167,9 @@
     "normal": [
       2934194260,
       1030271885
-    ]
+    ],
+    "swatchTextureHex": "A36A8DFB",
+    "swatchTexture": "uisw_leather_pt000"
   },
   {
     "componentHex": "4E14E705",
@@ -202,7 +210,9 @@
     "normal": [
       2092209173,
       1030271885
-    ]
+    ],
+    "swatchTextureHex": "A36A8DFB",
+    "swatchTexture": "uisw_leather_pt000"
   },
   {
     "componentHex": "5BE33D1D",
@@ -243,7 +253,9 @@
     "normal": [
       3849151793,
       1030271885
-    ]
+    ],
+    "swatchTextureHex": "A36A8DFB",
+    "swatchTexture": "uisw_leather_pt000"
   },
   {
     "componentHex": "DC99106D",
@@ -284,7 +296,9 @@
     "normal": [
       2492288070,
       1030271885
-    ]
+    ],
+    "swatchTextureHex": "A36A8DFB",
+    "swatchTexture": "uisw_leather_pt000"
   },
   {
     "componentHex": "A8D83213",
@@ -325,7 +339,9 @@
     "normal": [
       3480278922,
       1030271885
-    ]
+    ],
+    "swatchTextureHex": "A36A8DFB",
+    "swatchTexture": "uisw_leather_pt000"
   },
   {
     "componentHex": "3EC38679",
@@ -365,7 +381,9 @@
     "normal": [
       1976827857,
       1030271885
-    ]
+    ],
+    "swatchTextureHex": "A36A8DFB",
+    "swatchTexture": "uisw_leather_pt000"
   },
   {
     "componentHex": "7AF05834",
@@ -405,7 +423,9 @@
     "normal": [
       521384631,
       3025004989
-    ]
+    ],
+    "swatchTextureHex": "A36A8DFB",
+    "swatchTexture": "uisw_leather_pt000"
   },
   {
     "componentHex": "EA272E11",
@@ -424,7 +444,9 @@
     "tint2": 87,
     "drawable": "mp_moneybags_mr1_000_shirt",
     "albedo": 3558327793,
-    "normal": 2118603501
+    "normal": 2118603501,
+    "swatchTextureHex": "7A23FEFC",
+    "swatchTexture": "uisw_cotton_000"
   },
   {
     "componentHex": "7D84EFD5",
@@ -443,7 +465,9 @@
     "tint2": 255,
     "drawable": "mp_predatorbag_mr1_001_shirt",
     "albedo": "mp_predatorbag_mr1_001_c1_000_ab",
-    "normal": "mp_predatorbag_mr1_001_c1_000_nm"
+    "normal": "mp_predatorbag_mr1_001_c1_000_nm",
+    "swatchTextureHex": "136871EB",
+    "swatchTexture": "uisw_horse_cotton_pt005"
   },
   {
     "componentHex": "EE49F9B6",
@@ -462,7 +486,9 @@
     "tint2": 255,
     "drawable": "mp_moneybags_mr1_000_shirt",
     "albedo": 3558327793,
-    "normal": 2118603501
+    "normal": 2118603501,
+    "swatchTextureHex": "7A23FEFC",
+    "swatchTexture": "uisw_cotton_000"
   },
   {
     "componentHex": "42247599",
@@ -481,7 +507,9 @@
     "tint2": 13,
     "drawable": "mp_moneybags_fr1_000_shirt",
     "albedo": 3558327793,
-    "normal": 2118603501
+    "normal": 2118603501,
+    "swatchTextureHex": "11646D03",
+    "swatchTexture": "uisw_horse_cotton_pt011"
   },
   {
     "componentHex": "7E2D016B",
@@ -500,7 +528,8 @@
     "tint2": 255,
     "drawable": "mp_predatorbag_fr1_001_shirt",
     "albedo": "mp_predatorbag_mr1_001_c1_000_ab",
-    "normal": "mp_predatorbag_mr1_001_c1_000_nm"
+    "normal": "mp_predatorbag_mr1_001_c1_000_nm",
+    "swatchTextureHex": "00000000"
   },
   {
     "componentHex": "FCAF241B",
@@ -519,6 +548,7 @@
     "tint2": 255,
     "drawable": "mp_moneybags_fr1_000_shirt",
     "albedo": 3558327793,
-    "normal": 2118603501
+    "normal": 2118603501,
+    "swatchTextureHex": "00000000"
   }
 ]

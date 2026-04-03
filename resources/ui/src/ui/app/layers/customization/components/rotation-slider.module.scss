@@ -1,0 +1,118 @@
+@use 'sass:math';
+@use '../../../styles/mixins.module.scss' as *;
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: uiSize(8);
+  z-index: 10;
+  pointer-events: auto;
+}
+
+.readout {
+  font-family: var(--cust-font-title);
+  font-size: uiSize(22);
+  font-weight: 600;
+  color: var(--cust-brass);
+  letter-spacing: 2px;
+  opacity: 0.7;
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+}
+
+.track {
+  position: relative;
+  width: uiSize(360);
+  height: uiSize(32);
+  cursor: pointer;
+  touch-action: none;
+}
+
+.trackBg {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: uiSize(4);
+  transform: translateY(-50%);
+  background: var(--cust-border-dark);
+  border-radius: uiSize(2);
+  overflow: hidden;
+}
+
+.trackFill {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  background: var(--cust-brass-muted);
+  transition: width 0.05s, left 0.05s;
+}
+
+.ticks {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0;
+  pointer-events: none;
+}
+
+.minor {
+  width: 1px;
+  height: uiSize(6);
+  background: var(--cust-border-mid);
+  opacity: 0.4;
+}
+
+.major {
+  width: 1px;
+  height: uiSize(14);
+  background: var(--cust-border-light);
+  opacity: 0.6;
+}
+
+.center {
+  width: uiSize(2);
+  height: uiSize(18);
+  background: var(--cust-brass-dim);
+  opacity: 0.8;
+}
+
+.thumb {
+  position: absolute;
+  top: 50%;
+  width: uiSize(20);
+  height: uiSize(32);
+  transform: translate(-50%, -50%);
+  background: linear-gradient(180deg, var(--cust-brass-glow) 0%, var(--cust-brass) 40%, var(--cust-brass-dim) 100%);
+  border-radius: uiSize(4);
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  box-shadow: 0 uiSize(2) uiSize(8) rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  cursor: grab;
+  pointer-events: none;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: uiSize(2);
+    height: uiSize(16);
+    background: rgba(0, 0, 0, 0.25);
+    border-radius: 1px;
+  }
+}
+
+.labels {
+  display: flex;
+  justify-content: space-between;
+  width: uiSize(360);
+  font-size: uiSize(11);
+  color: var(--cust-text-muted);
+  opacity: 0.5;
+  letter-spacing: 1px;
+  font-family: var(--cust-font-body);
+}

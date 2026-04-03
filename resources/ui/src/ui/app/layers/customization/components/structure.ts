@@ -268,7 +268,7 @@ export const structure: CreationStructure[] = [
       },
       {
         label: 'Hair',
-        components: ['Hair', 'Beard'],
+        components: ['Eyes', 'Hair', 'Beard'],
         overlays: [
           {
             label: 'Eyebrows',

@@ -126,7 +126,7 @@ const cleanupCharacters = () => {
   PVCamera.setInactive('character-select', 0);
   const allEntities = [...spawnedPeds.values()].flat();
   Log('Cleaning character select', allEntities);
-  PVBase.deleteEntities(allEntities);
+  PVBase.deleteEntities(allEntities, true);
   spawnedPeds.clear();
 };
 
@@ -230,7 +230,7 @@ onUI('character-select.delete', (characterId) => {
 
   const entities = spawnedPeds.get(characterId);
   if (entities) {
-    PVBase.deleteEntities(entities);
+    PVBase.deleteEntities(entities, true);
     spawnedPeds.delete(characterId);
   }
 });

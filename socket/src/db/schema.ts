@@ -31,6 +31,7 @@ export const taskStatusEnum = pgEnum('TaskStatus', [
 export const permissionTypeEnum = pgEnum('PermissionType', ['JOB', 'TASK']);
 export const repeatTypeEnum = pgEnum('RepeatType', ['COOLDOWN', 'BURST', 'WINDOW', 'UNLIMITED']);
 export const pregnantEnum = pgEnum('PregnantStatus', ['ACTIVE', 'BIRTHED', 'LOST']);
+export const pigeonStateEnum = pgEnum('PigeonState', ['DELIVERING', 'WAITING_REPLY', 'RETURNING']);
 
 // Tables
 export const AccountsSchema = pgTable('Accounts', {
@@ -144,6 +145,7 @@ export const HorsesSchema = pgTable('Horses', {
   agingPaused: boolean('agingPaused').default(false),
   agingLastUpdate: timestamp('agingLastUpdate').defaultNow().notNull(),
   pelts: json('pelts').default('[]').$type<Array<[number, number]>>(),
+  corpses: json('corpses').default('{}').$type<Array<[number, number, number]>>(),
   weight: decimal('weight').notNull(),
   food: decimal('food').default('100.0'),
   water: decimal('water').default('100.0'),
@@ -209,6 +211,26 @@ export const DoorSchema = pgTable('Door', {
   id: serial('id').primaryKey(),
   hash: integer('hash').notNull(),
   state: smallint('state').default(-1),
+});
+
+export const PigeonDeliveriesSchema = pgTable('PigeonDeliveries', {
+  id: serial('id').primaryKey(),
+  pigeonItemId: integer('pigeonItemId').notNull(),
+  birdType: varchar('birdType').notNull(),
+  state: pigeonStateEnum('state').notNull(),
+  ownerId: integer('ownerId').notNull(),
+  receiverId: integer('receiverId').notNull(),
+  originX: decimal('originX').notNull(),
+  originY: decimal('originY').notNull(),
+  originZ: decimal('originZ').notNull(),
+  destX: decimal('destX').notNull(),
+  destY: decimal('destY').notNull(),
+  destZ: decimal('destZ').notNull(),
+  totalDistance: decimal('totalDistance').notNull(),
+  distanceCovered: decimal('distanceCovered').default('0'),
+  lastTickAt: timestamp('lastTickAt').defaultNow().notNull(),
+  stateChangedAt: timestamp('stateChangedAt').defaultNow().notNull(),
+  createdAt: timestamp('createdAt').defaultNow().notNull(),
 });
 
 // Job System Tables
@@ -298,6 +320,19 @@ export const JobTaskCooldownsSchema = pgTable('JobTaskCooldowns', {
   metadata: json('metadata').default('{}'),
 });
 
+export const JobPaySlipsSchema = pgTable('JobPaySlips', {
+  id: serial('id').primaryKey(),
+  characterId: integer('characterId').notNull(),
+  jobId: integer('jobId').notNull(),
+  amount: decimal('amount').notNull(),
+  reason: varchar('reason').notNull(),
+  jobHandle: varchar('jobHandle').notNull(),
+  redeemed: boolean('redeemed').default(false),
+  redeemedAt: timestamp('redeemedAt'),
+  createdAt: timestamp('createdAt').defaultNow(),
+  metadata: json('metadata').default('{}'),
+});
+
 // Relations
 export const accountsRelations = relations(AccountsSchema, ({ many }) => ({
   characters: many(CharactersSchema),
@@ -326,6 +361,7 @@ export const charactersRelations = relations(CharactersSchema, ({ one, many }) =
   jobPermissions: many(JobPermissionsSchema),
   jobTaskInstances: many(JobTaskInstancesSchema),
   jobTaskCooldowns: many(JobTaskCooldownsSchema),
+  jobPaySlips: many(JobPaySlipsSchema),
 }));
 
 export const facesRelations = relations(FacesSchema, ({ one }) => ({
@@ -399,6 +435,7 @@ export const itemRelations = relations(ItemSchema, ({ one }) => ({
 export const jobsRelations = relations(JobsSchema, ({ many }) => ({
   tasks: many(JobTasksSchema),
   employees: many(JobEmployeesSchema),
+  jobPaySlips: many(JobPaySlipsSchema),
 }));
 
 export const jobTasksRelations = relations(JobTasksSchema, ({ one, many }) => ({
@@ -454,6 +491,17 @@ export const jobTaskCooldownsRelations = relations(JobTaskCooldownsSchema, ({ on
   }),
 }));
 
+export const jobPaySlipsRelations = relations(JobPaySlipsSchema, ({ one }) => ({
+  character: one(CharactersSchema, {
+    fields: [JobPaySlipsSchema.characterId],
+    references: [CharactersSchema.id],
+  }),
+  job: one(JobsSchema, {
+    fields: [JobPaySlipsSchema.jobId],
+    references: [JobsSchema.id],
+  }),
+}));
+
 // Type exports for use in application
 export type AccountSchemaType = typeof AccountsSchema.$inferSelect;
 export type NewAccountSchemaType = typeof AccountsSchema.$inferInsert;
@@ -491,3 +539,7 @@ export type JobTaskInstanceSchemaType = typeof JobTaskInstancesSchema.$inferSele
 export type NewJobTaskInstanceSchemaType = typeof JobTaskInstancesSchema.$inferInsert;
 export type JobTaskCooldownSchemaType = typeof JobTaskCooldownsSchema.$inferSelect;
 export type NewJobTaskCooldownSchemaType = typeof JobTaskCooldownsSchema.$inferInsert;
+export type JobPaySlipSchemaType = typeof JobPaySlipsSchema.$inferSelect;
+export type NewJobPaySlipSchemaType = typeof JobPaySlipsSchema.$inferInsert;
+export type PigeonDeliverySchemaType = typeof PigeonDeliveriesSchema.$inferSelect;
+export type NewPigeonDeliverySchemaType = typeof PigeonDeliveriesSchema.$inferInsert;

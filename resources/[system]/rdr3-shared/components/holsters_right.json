@@ -16,7 +16,9 @@
     "tint2": 255,
     "drawable": 1937610991,
     "albedo": 1543293904,
-    "normal": 3628033348
+    "normal": 3628033348,
+    "swatchTextureHex": "B3902E46",
+    "swatchTexture": "uisw_leather_pt001"
   },
   {
     "componentHex": "FFBC3D1C",
@@ -35,7 +37,9 @@
     "tint2": 255,
     "drawable": 2057355603,
     "albedo": 2039493794,
-    "normal": 1044399051
+    "normal": 1044399051,
+    "swatchTextureHex": "B3902E46",
+    "swatchTexture": "uisw_leather_pt001"
   },
   {
     "componentHex": "B3911F0D",
@@ -54,7 +58,9 @@
     "tint2": 255,
     "drawable": "player_three_ms1_holster_cup_001",
     "albedo": 2515971023,
-    "normal": 2028594030
+    "normal": 2028594030,
+    "swatchTextureHex": "B3902E46",
+    "swatchTexture": "uisw_leather_pt001"
   },
   {
     "componentHex": "A9CBE70B",
@@ -73,7 +79,9 @@
     "tint2": 255,
     "drawable": 364076292,
     "albedo": 297548966,
-    "normal": 1824619118
+    "normal": 1824619118,
+    "swatchTextureHex": "B3902E46",
+    "swatchTexture": "uisw_leather_pt001"
   },
   {
     "componentHex": "E8B0946D",
@@ -92,7 +100,9 @@
     "tint2": 255,
     "drawable": 1490412360,
     "albedo": 2422355034,
-    "normal": 1415339831
+    "normal": 1415339831,
+    "swatchTextureHex": "B3902E46",
+    "swatchTexture": "uisw_leather_pt001"
   },
   {
     "componentHex": "DE5D4F11",
@@ -111,7 +121,9 @@
     "tint2": 255,
     "drawable": 2999947182,
     "albedo": 4146916308,
-    "normal": 945837754
+    "normal": 945837754,
+    "swatchTextureHex": "B3902E46",
+    "swatchTexture": "uisw_leather_pt001"
   },
   {
     "componentHex": "9B3E539B",
@@ -130,7 +142,9 @@
     "tint2": 255,
     "drawable": 3714214523,
     "albedo": 1303043318,
-    "normal": 4279619701
+    "normal": 4279619701,
+    "swatchTextureHex": "B3902E46",
+    "swatchTexture": "uisw_leather_pt001"
   },
   {
     "componentHex": "5358D14A",
@@ -149,7 +163,9 @@
     "tint2": 255,
     "drawable": "player_zero_holster_cup_007",
     "albedo": 570878653,
-    "normal": 733371323
+    "normal": 733371323,
+    "swatchTextureHex": "B3902E46",
+    "swatchTexture": "uisw_leather_pt001"
   },
   {
     "componentHex": "FDDEB0C0",
@@ -168,7 +184,9 @@
     "tint2": 255,
     "drawable": "player_zero_holster_cup_009",
     "albedo": 2676415006,
-    "normal": 2415054890
+    "normal": 2415054890,
+    "swatchTextureHex": "B3902E46",
+    "swatchTexture": "uisw_leather_pt001"
   },
   {
     "componentHex": "26D2671B",
@@ -187,7 +205,9 @@
     "tint2": 255,
     "drawable": "player_zero_holster_cup_011",
     "albedo": 2257729829,
-    "normal": 4235836742
+    "normal": 4235836742,
+    "swatchTextureHex": "B3902E46",
+    "swatchTexture": "uisw_leather_pt001"
   },
   {
     "componentHex": "147DE3DA",
@@ -206,7 +226,9 @@
     "tint2": 255,
     "drawable": 2999947182,
     "albedo": 2229712157,
-    "normal": 587492506
+    "normal": 587492506,
+    "swatchTextureHex": "A36A8DFB",
+    "swatchTexture": "uisw_leather_pt000"
   },
   {
     "componentHex": "7B8DA3D9",
@@ -225,7 +247,9 @@
     "tint2": 255,
     "drawable": 827790411,
     "albedo": 2975999766,
-    "normal": 1448271061
+    "normal": 1448271061,
+    "swatchTextureHex": "A36A8DFB",
+    "swatchTexture": "uisw_leather_pt000"
   },
   {
     "componentHex": "25376605",
@@ -244,7 +268,9 @@
     "tint2": 255,
     "drawable": 364076292,
     "albedo": 3364899597,
-    "normal": 1592670862
+    "normal": 1592670862,
+    "swatchTextureHex": "A36A8DFB",
+    "swatchTexture": "uisw_leather_pt000"
   },
   {
     "componentHex": "8197ED62",
@@ -263,7 +289,9 @@
     "tint2": 255,
     "drawable": "player_zero_holster_cup_015",
     "albedo": 2155451085,
-    "normal": 261660265
+    "normal": 261660265,
+    "swatchTextureHex": "A36A8DFB",
+    "swatchTexture": "uisw_leather_pt000"
   },
   {
     "componentHex": "97BF4614",
@@ -282,7 +310,9 @@
     "tint2": 255,
     "drawable": "player_zero_holster_cup_017",
     "albedo": 1382221989,
-    "normal": 3451916545
+    "normal": 3451916545,
+    "swatchTextureHex": "A36A8DFB",
+    "swatchTexture": "uisw_leather_pt000"
   },
   {
     "componentHex": "DD3438B1",
@@ -301,7 +331,9 @@
     "tint2": 255,
     "drawable": "player_zero_holster_cup_019",
     "albedo": 438160631,
-    "normal": 3222846776
+    "normal": 3222846776,
+    "swatchTextureHex": "B3902E46",
+    "swatchTexture": "uisw_leather_pt001"
   },
   {
     "componentHex": "8A444D5A",
@@ -320,6 +352,8 @@
     "tint2": 255,
     "drawable": "player_zero_holster_cup_004",
     "albedo": 2811674286,
-    "normal": 446116145
+    "normal": 446116145,
+    "swatchTextureHex": "B3902E46",
+    "swatchTexture": "uisw_leather_pt001"
   }
 ]

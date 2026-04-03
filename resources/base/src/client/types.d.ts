@@ -3,24 +3,48 @@ declare interface ClientExports {
 }
 
 declare namespace Base {
+  type DoorData = [doorHash: number, modelHash: number, modelName: string, x: number, y: number, z: number];
+  type BlipData = {
+    id: number;
+    // type: 'sprite';
+    label: string;
+    sprite: number;
+    modifiers?: number[];
+    coords: Vector3Format;
+  };
+  // TODO: Implement other blip types like area, entity, etc.
+  // | {
+  //   id: number;
+  //   type: 'entity';
+  //   label: string;
+  //   color?: number;
+  //   entity: number;
+  // }
+  // | {
+  //   id: number;
+  //   type: 'area';
+  //   label: string;
+  //   scale?: number;
+  //   color?: number;
+  //   coords: Vector3Format;
+  // };
+  type BlipDataWithoutId = Omit<BlipData, 'id'>;
+
   type getNetworkControlOfEntity = (entity: number) => Promise<void>;
-  type deleteEntity = (entity: number) => void;
-  type deleteEntities = (entities: number[]) => void;
+  type deleteEntity = (entity: number, attached?: boolean) => void;
+  type deleteEntities = (entities: number[], attached?: boolean) => void;
+
+  type blipRegister = (id: string, data: BlipDataWithoutId, style?: number) => number;
+  type blipUnregister = (id: string) => void;
 
   type ClientExports = {
     getNetworkControlOfEntity: getNetworkControlOfEntity;
     deleteEntity: deleteEntity;
     deleteEntities: deleteEntities;
     getCurrentCharacter: () => CharacterData | null;
-  }
-
-  type DoorData = [doorHash: number, modelHash: number, modelName: string, x: number, y: number, z: number];
-  type BlipData = {
-    name: string;
-    sprite: string | number;
-    color?: number;
-    coords: Vector3Format;
-  }
+    blipRegister: blipRegister;
+    blipUnregister: blipUnregister;
+  };
 }
 
 // Client perspective - RPC calls to various destinations
@@ -44,4 +68,3 @@ declare namespace ClientOut {
     ['base.entities-deleted']: (entities: number[]) => void;
   }
 }
-

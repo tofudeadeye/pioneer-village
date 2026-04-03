@@ -1,6 +1,7 @@
 import { PVCustomization, PVGame, emitUI, onUI } from '@lib/client';
-import { Log, emitSocket, onSocket } from '@lib/client/comms/ui';
+import { Log } from '@lib/client/comms/ui';
 import { Delay } from '@lib/functions';
+import InventoryTypes from '@lib/shared/inventory-types';
 import PVItems from '@lib/shared/items';
 
 import './events';
@@ -36,6 +37,10 @@ const sendInventoryItems = () => {
       stackSize: item.stackSize,
       maxDurability: item.maxDurability,
       maxLife: item.maxLife,
+      hasUseEvent: !!item.useEvent,
+      containerType: item.containerType,
+      containerRestrictions: item.containerType ? InventoryTypes[item.containerType]?.restrictions : undefined,
+      restriction: item.restriction,
     };
   }
 
@@ -44,7 +49,11 @@ const sendInventoryItems = () => {
 
 onNet('game:character-selected', (charId: number) => {
   sendInventoryItems();
-  emitUI('inventory.state', { clothingInventory: `clothing:${charId}`, mainInventory: `character:${charId}` });
+  emitUI('inventory.state', {
+    clothingInventory: `clothing:${charId}`,
+    mainInventory: `character:${charId}`,
+    birdsInventory: `birds:${charId}`,
+  });
 });
 
 const sendUIData = async () => {
@@ -55,6 +64,7 @@ const sendUIData = async () => {
     emitUI('inventory.state', {
       clothingInventory: `clothing:${character.id}`,
       mainInventory: `character:${character.id}`,
+      birdsInventory: `birds:${character.id}`,
       // targetInventory: '_WORLD_:-207_631_113',
     });
   }

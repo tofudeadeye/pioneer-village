@@ -14,6 +14,16 @@ declare namespace Game {
     tint2: number;
   }
 
+  type BodyComponentTinted = {
+    id: number;
+    p: number | string;
+    t0: number;
+    t1: number;
+    t2: number;
+  };
+
+  type BodyComponent = number | BodyComponentTinted;
+
   type ClothingItemData = UI.Inventory.ItemData & {
     metadatas: ClothingMetadata[];
   };
@@ -38,7 +48,7 @@ declare namespace Game {
     model: string;
     whistle?: WhistleData;
     face: Face;
-    components: number[];
+    components: BodyComponent[];
     clothing: ClothingItemData[];
     features: Record<string, number>;
   }

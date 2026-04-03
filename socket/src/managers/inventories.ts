@@ -24,6 +24,8 @@ const tenDollars = new Array(10).fill({ identifier: 'PV_DOLLAR'.GetHashKey(), sl
 
 const startingInventory = [...tenDollars];
 
+const characterInventoryIdentifiers = ['character', 'clothing', 'birds'];
+
 class Inventories {
   static readonly instance: Inventories = new Inventories();
 
@@ -80,6 +82,12 @@ class Inventories {
     }
   }
 
+  async createCharacterInventories(characterId: number): Promise<void> {
+    for (const identifier of characterInventoryIdentifiers) {
+      await this.createInventory(`${identifier}:${characterId}`);
+    }
+  }
+
   async createInventory(identifier: string): Promise<InventorySchemaType | undefined> {
     try {
       if (await this.identifierExists(identifier)) {
@@ -128,6 +136,11 @@ class Inventories {
         .limit(1);
 
       if (inventoryResult.length === 0) {
+        // Safety net: auto-create sub-container inventories on access if they don't exist yet
+        const created = await this.ensureSubContainerInventory(identifier);
+        if (created) {
+          return this.getInventory(identifier);
+        }
         return null;
       }
 
@@ -304,6 +317,7 @@ class Inventories {
   isAllowedInInventory(identifier: string, inventoryItem: Inventory.Item): boolean {
     const inventoryType = this.getInventoryType(identifier);
     let isAllowed = false;
+    logInfo('isAllowedInInventory', inventoryType.restrictions, inventoryItem.restriction);
     if (inventoryType.restrictions === 0 || inventoryType.restrictions & inventoryItem.restriction) {
       isAllowed = true;
     }
@@ -372,7 +386,17 @@ class Inventories {
   // Helper function to validate item can be moved to new inventory
   private validateItemMove(item: ItemSchemaType[], newIdentifier: string): boolean {
     const itemData = PVItems[item[0].identifier];
-    return itemData && this.isAllowedInInventory(newIdentifier, itemData);
+    if (!itemData || !this.isAllowedInInventory(newIdentifier, itemData)) {
+      return false;
+    }
+    // Prevent nesting a container inside the same container type
+    if (itemData.containerType) {
+      const destType = newIdentifier.split(':')[0];
+      if (destType === itemData.containerType) {
+        return false;
+      }
+    }
+    return true;
   }
 
   // Helper function to create item data for response
@@ -382,7 +406,7 @@ class Inventories {
       ids: items.map((item) => item.id),
       metadatas: items.map((item) => item.metadata),
       durabilities: items.map((item) => item.durability),
-      quantity: 1,
+      quantity: items.length,
     };
   }
 
@@ -461,6 +485,7 @@ class Inventories {
 
   // Helper function to create swap response
   private createSwapResponse(
+    characterId: number,
     requestId: number,
     oldIdentifier: string,
     newIdentifier: string,
@@ -471,7 +496,7 @@ class Inventories {
   ): [UI.Inventory.MoveData, UI.Inventory.MoveData] {
     return [
       {
-        charRequestId: requestId.toString(),
+        charRequestId: `${characterId}:${requestId}`,
         identifier: oldIdentifier,
         items: {
           [oldSlot]: this.createItemData(existingItems),
@@ -479,7 +504,7 @@ class Inventories {
         emptySlots: [],
       } satisfies UI.Inventory.MoveData,
       {
-        charRequestId: requestId.toString(),
+        charRequestId: `${characterId}:${requestId}`,
         identifier: newIdentifier,
         items: {
           [newSlot]: this.createItemData(oldItems),
@@ -491,6 +516,7 @@ class Inventories {
 
   // Helper function to create simple move response
   private createSimpleMoveResponse(
+    characterId: number,
     requestId: number,
     oldIdentifier: string,
     newIdentifier: string,
@@ -498,16 +524,15 @@ class Inventories {
     newSlot: number,
     movedItems: ItemSchemaType[],
   ): [UI.Inventory.MoveData, UI.Inventory.MoveData] {
-    console.log('this.createItemData(movedItems)', this.createItemData(movedItems));
     return [
       {
-        charRequestId: requestId.toString(),
+        charRequestId: `${characterId}:${requestId}`,
         identifier: oldIdentifier,
         items: {},
         emptySlots: [oldSlot],
       } satisfies UI.Inventory.MoveData,
       {
-        charRequestId: requestId.toString(),
+        charRequestId: `${characterId}:${requestId}`,
         identifier: newIdentifier,
         items: {
           [newSlot]: this.createItemData(movedItems),
@@ -583,6 +608,8 @@ class Inventories {
         items: {},
       };
 
+      const itemDef = PVItems[itemIdentifier];
+
       for (let n = amount; n--; ) {
         const newItem = await db
           .insert(ItemSchema)
@@ -596,6 +623,13 @@ class Inventories {
           .returning();
 
         logInfo('item', newItem[0]);
+
+        // Auto-create sub-container inventory if the item definition has a containerType
+        if (itemDef?.containerType) {
+          const subContainerIdentifier = `${itemDef.containerType}:${newItem[0].id}`;
+          logInfo('addItem', `Creating sub-container inventory: ${subContainerIdentifier}`);
+          await this.createInventory(subContainerIdentifier);
+        }
 
         if (itemAddEvent.items[slot]) {
           itemAddEvent.items[slot].ids.push(newItem[0].id);
@@ -690,13 +724,13 @@ class Inventories {
       // Return success events as MoveData
       return [
         {
-          charRequestId: requestId.toString(),
+          charRequestId: `${characterId}:${requestId}`,
           identifier: oldIdentifier,
           items: {},
           emptySlots: [oldSlot],
         } satisfies UI.Inventory.MoveData,
         {
-          charRequestId: requestId.toString(),
+          charRequestId: `${characterId}:${requestId}`,
           identifier: newIdentifier,
           items: {
             [newSlot]: this.createItemData([...existingItems, ...movedItems]),
@@ -717,6 +751,37 @@ class Inventories {
     }
   }
 
+  // Helper function to create partial move response
+  private createPartialMoveResponse(
+    characterId: number,
+    requestId: number,
+    oldIdentifier: string,
+    newIdentifier: string,
+    oldSlot: number,
+    newSlot: number,
+    movedItems: ItemSchemaType[],
+    remainingItems: ItemSchemaType[],
+  ): [UI.Inventory.MoveData, UI.Inventory.MoveData] {
+    return [
+      {
+        charRequestId: `${characterId}:${requestId}`,
+        identifier: oldIdentifier,
+        items: {
+          [oldSlot]: this.createItemData(remainingItems),
+        },
+        emptySlots: [],
+      } satisfies UI.Inventory.MoveData,
+      {
+        charRequestId: `${characterId}:${requestId}`,
+        identifier: newIdentifier,
+        items: {
+          [newSlot]: this.createItemData(movedItems),
+        },
+        emptySlots: [],
+      } satisfies UI.Inventory.MoveData,
+    ];
+  }
+
   // Refactored main function
   async moveItem(
     characterId: number,
@@ -725,6 +790,7 @@ class Inventories {
     oldSlot: number,
     newIdentifier: string,
     newSlot: number,
+    quantity?: number,
   ): Promise<[UI.Inventory.MoveOrFailData, UI.Inventory.MoveOrFailData | null]> {
     console.log('===================');
     try {
@@ -750,6 +816,9 @@ class Inventories {
         return this.createFailureResponse(oldIdentifier, requestId, 'move');
       }
 
+      // Determine if this is a partial move
+      const isPartialMove = quantity !== undefined && quantity > 0 && quantity < oldItems.length;
+
       // Check if destination slot is occupied
       const existingItem = this.findItemsInSlot(newInventory, newSlot);
 
@@ -759,9 +828,18 @@ class Inventories {
       }
 
       if (existingItem && existingItem.length > 0) {
+        // Cannot partial-move onto an occupied slot
+        if (isPartialMove) {
+          return this.createFailureResponse(oldIdentifier, requestId, 'move');
+        }
+        // Validate the displaced item can go back to the source inventory
+        if (!this.validateItemMove(existingItem, oldIdentifier)) {
+          return this.createFailureResponse(oldIdentifier, requestId, 'move');
+        }
         // Perform swap operation
         await this.performItemSwap(oldItems, existingItem, oldSlot, newSlot, oldInventory, newInventory);
         return this.createSwapResponse(
+          characterId,
           requestId,
           oldIdentifier,
           newIdentifier,
@@ -772,9 +850,35 @@ class Inventories {
         );
       }
 
-      // Perform simple move operation
+      if (isPartialMove) {
+        // Split: move only `quantity` items, leave the rest
+        const movedItems = oldItems.slice(0, quantity);
+        const remainingItems = oldItems.slice(quantity);
+
+        await this.performSimpleMove(movedItems, newSlot, newInventory);
+        return this.createPartialMoveResponse(
+          characterId,
+          requestId,
+          oldIdentifier,
+          newIdentifier,
+          oldSlot,
+          newSlot,
+          movedItems,
+          remainingItems,
+        );
+      }
+
+      // Perform simple move operation (move all)
       await this.performSimpleMove(oldItems, newSlot, newInventory);
-      return this.createSimpleMoveResponse(requestId, oldIdentifier, newIdentifier, oldSlot, newSlot, oldItems);
+      return this.createSimpleMoveResponse(
+        characterId,
+        requestId,
+        oldIdentifier,
+        newIdentifier,
+        oldSlot,
+        newSlot,
+        oldItems,
+      );
     } catch (error) {
       console.error('Error in moveItem:', error);
     }
@@ -903,6 +1007,99 @@ class Inventories {
     const inventories = [...this.worldInventories.values()];
     logInfo('inventory.sendWorldInventories', 'Sending world inventories', inventories);
     socket.emit('__client__', 'inventory.world-inventories', inventories);
+  }
+
+  /**
+   * Safety net for sub-container inventories. When accessing an inventory like `bird:333`,
+   * if it doesn't exist yet, checks whether item 333 exists and has a matching containerType.
+   * If so, creates the inventory on-the-fly.
+   */
+  private async ensureSubContainerInventory(identifier: string): Promise<boolean> {
+    const parts = identifier.split(':');
+    if (parts.length !== 2) {
+      return false;
+    }
+
+    const [type, idStr] = parts;
+    const itemId = parseInt(idStr, 10);
+    if (isNaN(itemId)) {
+      return false;
+    }
+
+    // Look up the item in the database
+    const item = await this.getItem(itemId);
+    if (!item || item.deletedAt !== null) {
+      return false;
+    }
+
+    // Check if the item definition has a containerType matching this identifier's type
+    const itemDef = PVItems[item.identifier];
+    if (!itemDef?.containerType || itemDef.containerType !== type) {
+      return false;
+    }
+
+    logInfo('ensureSubContainerInventory', `Creating missing sub-container inventory: ${identifier}`);
+    const created = await this.createInventory(identifier);
+    return !!created;
+  }
+
+  /**
+   * Removes an item by setting its deletedAt timestamp (soft-delete).
+   * If the item has a containerType (sub-container), checks for remaining items
+   * in the sub-container and logs a warning if any exist.
+   */
+  async removeItem(itemId: number): Promise<ItemSchemaType | undefined> {
+    try {
+      const item = await this.getItem(itemId);
+      if (!item) {
+        return;
+      }
+
+      // Soft-delete the item
+      const deletedItems = await db
+        .update(ItemSchema)
+        .set({ deletedAt: new Date() })
+        .where(eq(ItemSchema.id, itemId))
+        .returning();
+
+      if (deletedItems.length === 0) {
+        return;
+      }
+
+      const deletedItem = deletedItems[0];
+
+      // Find which inventory this item belonged to for update notifications
+      const inventoryResult = await db
+        .select({ identifier: InventorySchema.identifier })
+        .from(InventorySchema)
+        .where(eq(InventorySchema.containerId, item.containerId))
+        .limit(1);
+
+      if (inventoryResult.length > 0) {
+        this.checkWorldInventory(inventoryResult[0].identifier);
+      }
+
+      // Check for sub-container if the item has a containerType
+      const itemDef = PVItems[item.identifier];
+      if (itemDef?.containerType) {
+        const subContainerIdentifier = `${itemDef.containerType}:${itemId}`;
+        const subInventory = await this.getInventory(subContainerIdentifier);
+
+        if (subInventory) {
+          const activeItems = subInventory.container.items.filter((i) => i.deletedAt === null);
+          if (activeItems.length > 0) {
+            console.warn(
+              `[Inventory] WARNING: Removed item ${itemId} (${itemDef.name}) has sub-container ` +
+                `${subContainerIdentifier} with ${activeItems.length} active item(s) still inside.`,
+            );
+          }
+        }
+      }
+
+      return deletedItem;
+    } catch (error) {
+      console.error('Error in removeItem:', error);
+    }
   }
 }
 

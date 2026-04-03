@@ -16,6 +16,8 @@
     "tint2": 100,
     "drawable": 1016210257,
     "albedo": 1613666652,
-    "normal": 2778625447
+    "normal": 2778625447,
+    "swatchTextureHex": "7A23FEFC",
+    "swatchTexture": "uisw_cotton_000"
   }
 ]

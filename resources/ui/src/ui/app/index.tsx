@@ -5,6 +5,7 @@ import { emitClient, onClient } from '@lib/ui';
 
 import App from './app';
 import BaseController from './controllers/base';
+import CarrierPigeonsController from './controllers/carrier-birds';
 import CharacterSelectController from './controllers/character-select';
 import DoorController from './controllers/doors';
 import InteractController from './controllers/interact';
@@ -13,6 +14,7 @@ import JobsController from './controllers/jobs';
 import StableController from './controllers/stable';
 import WorldController from './controllers/world';
 import animationsStore from './stores/animations-store';
+import birdStore from './stores/bird-store';
 import characterSelectStore from './stores/character-select-store';
 import chatStore from './stores/chat-store';
 import customizationStore from './stores/customization-store';
@@ -30,6 +32,7 @@ import threejsStore from './stores/threejs-store';
 export default (socket: Socket<UISocketEvents, SocketServer.Client & SocketServer.ClientEvents>) => {
   // Initialize all stores before rendering
   animationsStore.initialize(socket);
+  birdStore.initialize(socket);
   characterSelectStore.initialize(socket);
   chatStore.initialize(socket);
   customizationStore.initialize(socket);
@@ -43,7 +46,7 @@ export default (socket: Socket<UISocketEvents, SocketServer.Client & SocketServe
   notificationStore.initialize(socket);
   targetStore.initialize(socket);
   threejsStore.initialize(socket);
-  
+
   const root = createRoot(document.body);
   root.render(<App socket={socket} />);
 
@@ -73,6 +76,7 @@ export default (socket: Socket<UISocketEvents, SocketServer.Client & SocketServe
   InteractController(socket);
   InventoryController(socket);
   JobsController(socket);
+  CarrierPigeonsController(socket);
   StableController(socket);
   WorldController(socket);
   BaseController(socket);

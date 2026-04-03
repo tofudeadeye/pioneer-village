@@ -13,7 +13,7 @@ declare namespace Customization {
     ClothingSelection = 2,
   }
 
-  type State = 'transition' | 'gender' | 'info' | 'head' | 'body' | 'clothing' | 'finalize' | 'exit';
+  type State = 'transition' | 'gender' | 'info' | 'head' | 'overlays' | 'body' | 'clothing' | 'finalize' | 'exit';
 
   type Guids = {
     drawable: number;
@@ -55,9 +55,9 @@ declare namespace Customization {
     | 'metaped_tint_leather'
     | 'metaped_tint_makeup'
     | 'metaped_tint_mpadv'
-    | 'metaped_tint_mpadv_deuteranopia'
-    | 'metaped_tint_mpadv_protanopia'
-    | 'metaped_tint_mpadv_tritanopia'
+    // | 'metaped_tint_mpadv_deuteranopia'
+    // | 'metaped_tint_mpadv_protanopia'
+    // | 'metaped_tint_mpadv_tritanopia'
     | 'metaped_tint_si_template'
     | 'metaped_tint_skirt_clean'
     | 'metaped_tint_skirt_weathered'

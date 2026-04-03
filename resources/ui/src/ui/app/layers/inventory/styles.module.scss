@@ -1,3 +1,4 @@
+@use "sass:list";
 @use "sass:math";
 @use '../../styles/theme.module.scss';
 @use '../../styles/mixins.module.scss' as mixins;
@@ -60,10 +61,130 @@
   }
 }
 
+.contextMenu {
+  position: fixed;
+  z-index: 100;
+  min-width: mixins.uiSize(120);
+  padding: mixins.uiSize(4);
+  border-radius: mixins.uiSize(4);
+  background-color: var(--theme-bg-primary);
+  background-image: radialGradient(255, 255, 255, 0.1, 0.025);
+  backdrop-filter: blur(#{mixins.uiSize(4)});
+  display: flex;
+  flex-direction: column;
+  gap: mixins.uiSize(2);
+  user-select: none;
+}
+
+.contextMenuItem {
+  display: block;
+  width: 100%;
+  padding: mixins.uiSize(6) mixins.uiSize(12);
+  border: none;
+  border-radius: mixins.uiSize(2);
+  background: transparent;
+  color: var(--theme-text-primary);
+  font-family: 'Open Sans', sans-serif;
+  font-size: mixins.uiSize(12);
+  text-align: left;
+  cursor: pointer;
+  @include mixins.transition(background-color);
+
+  &:hover {
+    background-image: radialGradient(0, 123, 255, 0.85, 0.125);
+    background-color: rgba(0, 0, 0, 0.25);
+  }
+
+  &.contextMenuDanger {
+    color: rgb(255, 100, 100);
+
+    &:hover {
+      color: var(--theme-text-primary);
+      background-image: radialGradient(255, 60, 60, 0.85, 0.125);
+    }
+  }
+}
+
+.splitPopup {
+  position: fixed;
+  z-index: 100;
+  min-width: mixins.uiSize(160);
+  padding: mixins.uiSize(8) mixins.uiSize(12);
+  border-radius: mixins.uiSize(4);
+  background-color: var(--theme-bg-primary);
+  background-image: radialGradient(255, 255, 255, 0.1, 0.025);
+  backdrop-filter: blur(#{mixins.uiSize(4)});
+  display: flex;
+  flex-direction: column;
+  gap: mixins.uiSize(6);
+  user-select: none;
+}
+
+.splitPopupLabel {
+  font-family: 'Open Sans', sans-serif;
+  font-size: mixins.uiSize(12);
+  color: var(--theme-text-primary);
+  text-align: center;
+}
+
+.splitPopupSlider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: mixins.uiSize(4);
+  border-radius: mixins.uiSize(2);
+  background: var(--theme-bg-secondary);
+  outline: none;
+
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: mixins.uiSize(12);
+    height: mixins.uiSize(12);
+    border-radius: 50%;
+    background-image: radialGradient(0, 123, 255, 0.85, 0.5);
+    background-color: rgba(0, 123, 255, 0.8);
+    cursor: pointer;
+  }
+}
+
+.splitPopupValue {
+  font-family: 'Caveat', monospace;
+  font-size: mixins.uiSize(14);
+  color: var(--theme-text-primary);
+  text-align: center;
+}
+
+.splitPopupConfirm {
+  display: block;
+  width: 100%;
+  padding: mixins.uiSize(6) mixins.uiSize(12);
+  border: none;
+  border-radius: mixins.uiSize(2);
+  background: transparent;
+  background-image: radialGradient(0, 123, 255, 0.5, 0.1);
+  color: var(--theme-text-primary);
+  font-family: 'Open Sans', sans-serif;
+  font-size: mixins.uiSize(12);
+  text-align: center;
+  cursor: pointer;
+  @include mixins.transition(background-color);
+
+  &:hover {
+    background-image: radialGradient(0, 123, 255, 0.85, 0.125);
+    background-color: rgba(0, 0, 0, 0.25);
+  }
+}
+
+.inventorySlotLetterFake {
+  width: 100%;
+  height: calc(25% - #{mixins.uiSize(2)});
+}
+
 .inventorySlot {
   position: relative;
-  width: calc(12.5% - #{mixins.uiSize(2)});
-  height: calc(25% - #{mixins.uiSize(2)});
+  width: 9.098vh;
+  height: 9.815vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -72,19 +193,6 @@
   background-size: 100% 100%;
   overflow: hidden;
   contain: layout;
-
-  // Dynamic rows and columns
-  @for $n from 1 through 3 {
-    .rows#{$n} & {
-      height: calc(#{math.div(100%, $n)} - #{mixins.uiSize(2)});
-    }
-  }
-
-  @for $n from 1 through 7 {
-    .columns#{$n} & {
-      width: calc(#{math.div(100%, $n)} - #{mixins.uiSize(2)});
-    }
-  }
 
   &:before {
     @include mixins.transition(opacity);
@@ -105,6 +213,11 @@
     &:before {
       background-image: radialGradient(255, 0, 0, 0.25, 0.025);
     }
+  }
+
+  &.slotDisabled {
+    opacity: 0.4;
+    pointer-events: none;
   }
 
   &:hover {
@@ -173,7 +286,9 @@
 
   &.draggedItem {
     background-color: var(--theme-redGray12);
+  }
 
+  &.willDrop {
     &:after {
       font-family: 'Caveat', monospace;
       font-size: mixins.uiSize(20);
@@ -323,7 +438,7 @@
   width: 50vw;
   height: 75vh;
   display: none;
-  
+
   &.active {
     display: block;
   }
@@ -348,6 +463,23 @@
   transform: scale(1.25);
 }
 
+$inventory-grids: (
+  1: (1, 1),
+  2: (2, 1),
+  3: (3, 1),
+  4: (4, 1),
+  5: (5, 1),
+  6: (3, 2),
+  8: (4, 2),
+  10: (5, 2),
+  12: (6, 2),
+  16: (8, 2),
+  24: (8, 3),
+  32: (8, 4),
+  48: (8, 4),
+  64: (8, 4),
+);
+
 .inventoryContainer {
   position: absolute;
   left: 50%;
@@ -356,27 +488,44 @@
   transform: translateX(-50%);
   border-radius: mixins.uiSize(4);
   background-color: var(--theme-bg-primary);
+}
 
-  @for $n from 1 through 3 {
-    &.rows#{$n} {
-      height: calc(#{$n * 10}vh + #{mixins.uiSize(32)});
-    }
+// Slot unit: 10vh per slot. Container wraps around fixed-size slots.
+// Wrapper padding: left 16 + right 7 + padding-right 7 = 30px horizontal, 16 + 16 = 32px vertical.
+// Flex gap: 2px between slots. N cols = (N-1) * 2px horizontal gaps, M rows = (M-1) * 2px vertical gaps.
+@each $slots, $grid in $inventory-grids {
+  $cols: list.nth($grid, 1);
+  $rows: list.nth($grid, 2);
+
+  $scrollbar: 0;
+  @if $slots > 32 {
+    $scrollbar: 2;
   }
 
-  @for $n from 1 through 7 {
-    &.columns#{$n} {
-      width: calc(#{$n * 10}vh - #{mixins.uiSize(32)});
+  .grid-#{$slots} {
+    &.inventoryContainer {
+      width: calc(#{$cols * 9.098}vh + #{mixins.uiSize(30 + ($cols - 1) * 2 + $scrollbar)});
+      height: calc(#{$rows * 9.815}vh + #{mixins.uiSize(32 + ($rows - 1) * 2)});
+    }
+
+    .inventorySlot {
+      width: 9.098vh;
+      height: 9.815vh;
     }
   }
 }
 
 .mainInventoryContainer {
   @extend .inventoryContainer;
+
   bottom: mixins.uiSize(64);
+  width: calc(#{8 * 9.098}vh + #{mixins.uiSize(30 + 7 * 2 + 2)});
+  height: calc(#{4 * 9.815}vh + #{mixins.uiSize(32 + 3 * 2)});
 }
 
 .clothingInventoryContainer {
   @extend .inventoryContainer;
+
   bottom: mixins.uiSize(64);
   width: calc(40vh);
   height: calc(40vh + #{mixins.uiSize(32)});
@@ -384,17 +533,66 @@
 
   .inventorySlot {
     width: calc(25% - #{mixins.uiSize(2)});
+    height: calc(25% - #{mixins.uiSize(2)});
+  }
+}
+
+.secondaryInventoryContainer {
+  @extend .inventoryContainer;
+
+  bottom: mixins.uiSize(64);
+  width: calc(40vh);
+  height: calc(40vh + #{mixins.uiSize(32)});
+  transform: translateX(40vh);
+
+  .inventorySlot {
+    width: 100%;
+    height: calc(25% - #{mixins.uiSize(2)});
   }
 }
 
 .targetInventoryContainer {
   @extend .inventoryContainer;
+
   top: mixins.uiSize(64);
 
-  @for $n from 1 through 3 {
-    &.rows#{$n} {
-      top: calc(#{(4 - $n) * 10}vh + #{mixins.uiSize(64)});
+  @each $slots, $grid in $inventory-grids {
+    $rows: list.nth($grid, 2);
+
+    &.grid-#{$slots} {
+      top: calc(#{(4 - $rows) * 10}vh + #{mixins.uiSize(64)});
     }
+  }
+}
+
+.closeTargetButton {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 10;
+  width: mixins.uiSize(20);
+  height: mixins.uiSize(20);
+  border: none;
+  border-radius: mixins.uiSize(4);
+  background-color: var(--theme-bg-secondary);
+  background-image: radialGradient(255, 255, 255, 0.1, 0.025);
+  color: var(--theme-text-primary);
+  line-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transform: translate(50%, -50%);
+  @include mixins.transition(background-color);
+
+  svg {
+    width: mixins.uiSize(12);
+    height: mixins.uiSize(12);
+    fill: var(--theme-text-primary);
+  }
+
+  &:hover {
+    background-image: radialGradient(255, 0, 0, 0.85, 0.125);
   }
 }
 
@@ -413,8 +611,14 @@
 
   code {
     font-family: 'Caveat', monospace;
-    opacity: 0.25;
+    opacity: 0.333;
+    font-size: mixins.uiSize(14);
   }
+}
+
+.inventoryHeader,
+.inventoryFooter {
+  user-select: none;
 }
 
 .inventoryHeader {
@@ -427,16 +631,14 @@
   bottom: 0;
 }
 
-.inventoryWrapper {
+.inventoryWrapper,
+.inventoryWrapperOneCol {
   user-select: none;
   position: absolute;
   top: mixins.uiSize(16);
-  right: mixins.uiSize(7);
   bottom: mixins.uiSize(16);
-  left: mixins.uiSize(16);
   overflow-x: hidden;
-  overflow-y: auto;
-  padding-right: mixins.uiSize(7);
+  overflow-y: hidden;
   display: flex;
   gap: mixins.uiSize(2);
   flex-wrap: wrap;
@@ -460,23 +662,86 @@
   }
 }
 
+.inventoryWrapper {
+  left: mixins.uiSize(16);
+  right: mixins.uiSize(7);
+  padding-right: mixins.uiSize(7);
+
+  &.scrollable {
+    overflow-y: auto;
+    scrollbar-gutter: stable;
+  }
+}
+
+.inventoryWrapperOneCol {
+  width: calc(25% - #{mixins.uiSize(11)});
+
+  &:has(~ .inventoryWrapperOneCol) {
+    left: mixins.uiSize(16);
+  }
+
+  ~ .inventoryWrapperOneCol {
+    right: mixins.uiSize(16);
+  }
+}
+
+.birdStatus {
+  user-select: none;
+  position: absolute;
+  left: calc(#{mixins.uiSize(16)} + 25%);
+  right: calc(#{mixins.uiSize(16)} + 25%);
+  top: mixins.uiSize(16);
+  bottom: mixins.uiSize(16);
+}
+
+.birdStatusRow {
+  height: calc(25% - #{mixins.uiSize(2)});
+  font-family: 'Caveat', monospace;
+  font-size: mixins.uiSize(18);
+  color: var(--theme-text-primary);
+  text-align: center;
+  gap: mixins.uiSize(12);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  button {
+    background-color: #000;
+    border-radius: mixins.uiSize(4);
+    background-size: 100% 100%;
+    padding: mixins.uiSize(4) mixins.uiSize(8);
+    border: none;
+    color: var(--theme-text-primary);
+    font-family: 'Open Sans', sans-serif;
+    font-size: mixins.uiSize(12);
+
+    &:hover {
+      background-image: radialGradient(0, 123, 255, 0.85, 0.125);
+    }
+
+    &[disabled] {
+      background-image: none;
+      opacity: 0.5;
+    }
+  }
+}
+
 .inventorySlotBackground {
   position: absolute;
   inset: 0;
   z-index: -1;
 }
 
-
 .globalStyle {
   // Global styles for inventory
   :global(body:has(#drag-item)) {
     cursor: grabbing !important;
   }
-  
+
   :global(body:has(#drag-item):has(.inventorySlot:hover)) {
     :global(#drag-item:after) {
       opacity: 0;
     }
   }
 }
-

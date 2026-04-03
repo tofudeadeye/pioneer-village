@@ -1,0 +1,1 @@
+ALTER TABLE "PigeonDeliveries" DROP COLUMN "letterItemId";

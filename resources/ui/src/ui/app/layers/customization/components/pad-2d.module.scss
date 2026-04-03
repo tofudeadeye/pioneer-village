@@ -1,0 +1,107 @@
+@use 'sass:math';
+@use '../../../styles/mixins.module.scss' as *;
+
+.container {
+  margin-bottom: uiSize(12);
+  user-select: none;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: uiSize(8);
+}
+
+.headerLabel {
+  font-size: uiSize(19);
+  font-weight: 500;
+  color: var(--cust-text-secondary);
+  letter-spacing: 0.5px;
+}
+
+.headerValue {
+  font-size: uiSize(19);
+  font-weight: 600;
+  color: var(--cust-brass-dim);
+  font-variant-numeric: tabular-nums;
+  min-width: uiSize(50);
+  text-align: right;
+}
+
+.padWrapper {
+  position: relative;
+}
+
+.pad {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1.6;
+  min-height: uiSize(240);
+  margin: 0 auto;
+  background: var(--cust-bg-surface);
+  border: 1px solid var(--cust-border-mid);
+  cursor: crosshair;
+  overflow: hidden;
+  touch-action: none;
+
+  // Crosshair lines through center
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(90deg, transparent 49.5%, rgba(201, 169, 97, 0.15) 49.5%, rgba(201, 169, 97, 0.15) 50.5%, transparent 50.5%),
+      linear-gradient(0deg, transparent 49.5%, rgba(201, 169, 97, 0.15) 49.5%, rgba(201, 169, 97, 0.15) 50.5%, transparent 50.5%);
+    pointer-events: none;
+  }
+}
+
+.indicator {
+  position: absolute;
+  width: uiSize(16);
+  height: uiSize(16);
+  background: var(--cust-brass);
+  border: uiSize(2) solid var(--cust-bg-panel);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 uiSize(8) rgba(201, 169, 97, 0.3);
+  pointer-events: none;
+  transition: box-shadow 0.15s;
+
+  &.dragging {
+    box-shadow: 0 0 uiSize(16) rgba(201, 169, 97, 0.5);
+  }
+}
+
+.axisLabel {
+  position: absolute;
+  font-size: uiSize(11);
+  color: var(--cust-text-muted);
+  letter-spacing: 0.5px;
+  pointer-events: none;
+}
+
+.top {
+  top: uiSize(4);
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.bottom {
+  bottom: uiSize(4);
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.left {
+  left: uiSize(6);
+  top: 50%;
+  transform: translateY(-50%) rotate(-90deg);
+}
+
+.right {
+  right: uiSize(6);
+  top: 50%;
+  transform: translateY(-50%) rotate(90deg);
+}

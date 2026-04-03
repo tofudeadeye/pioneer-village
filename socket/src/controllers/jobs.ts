@@ -1,65 +1,62 @@
 import { eq } from 'drizzle-orm';
 
 import { db } from '../db/connection';
-import { type JobSchemaType, JobsSchema } from '../db/schema';
+import { JobsSchema } from '../db/schema';
 import { logInfoC, logInfoS } from '../helpers';
 import jobSystemManager from '../managers/jobs';
 import { serverNamespace, userNamespace } from '../server';
 
 export default () => {
-  // Restore state on startup
   jobSystemManager.restoreState();
 
-  // Server namespace events (for FXServer communication)
   serverNamespace.on('connection', (socket) => {
     logInfoS('[Jobs]', 'Game server connected');
 
-    // Job registration from other resources
-    socket.on('jobs.register-job', async (jobData: any, cb = () => {}) => {
+    socket.on('jobs.register-job', async (jobData: Jobs.JobDefinition, cb = () => {}) => {
       logInfoS('[Jobs]', 'registerJob', jobData.handle, jobData.name);
 
       try {
-        // Insert or update job in database
+        // Upsert DB row for FK references only — config source of truth is jobData
         const existingJobs = await db.select().from(JobsSchema).where(eq(JobsSchema.handle, jobData.handle));
 
-        let job: JobSchemaType;
+        let dbId: number;
         if (existingJobs.length > 0) {
-          // Update existing job
-          const updatedJobs = await db
+          dbId = existingJobs[0].id;
+          await db
             .update(JobsSchema)
-            .set({ ...jobData, updatedAt: new Date() })
-            .where(eq(JobsSchema.handle, jobData.handle))
-            .returning();
-          job = updatedJobs[0];
+            .set({ name: jobData.name, updatedAt: new Date() })
+            .where(eq(JobsSchema.handle, jobData.handle));
         } else {
-          // Insert new job
-          const newJobs = await db.insert(JobsSchema).values(jobData).returning();
-          job = newJobs[0];
+          const [newJob] = await db
+            .insert(JobsSchema)
+            .values({ handle: jobData.handle, name: jobData.name })
+            .returning();
+          dbId = newJob.id;
         }
 
-        // Register in memory
-        const registeredJob = jobSystemManager.registerJob(job);
-        cb(registeredJob ? true : false);
+        const success = jobSystemManager.registerJob(jobData, dbId);
+        cb(success);
       } catch (error) {
         logInfoS('[Jobs]', 'Job registration failed:', error);
         cb(false);
       }
     });
 
-    // Task creation from other resources
-    socket.on('jobs.create-task', async (jobHandle: string, taskData: any, cb = () => {}) => {
+    socket.on('jobs.create-task', async (jobHandle: string, taskData: Jobs.TaskDefinition, cb = () => {}) => {
       logInfoS('[Jobs]', 'createTask', jobHandle, taskData.name);
 
       try {
-        const taskInstance = await jobSystemManager.createTask(jobHandle, taskData);
-        cb(taskInstance ? true : false);
+        const task = await jobSystemManager.createTask(jobHandle, taskData);
+        if (task) {
+          userNamespace.emit('__client__', 'jobs.task-created', jobHandle, task);
+        }
+        cb(task ? true : false);
       } catch (error) {
         logInfoS('[Jobs]', 'Task creation failed:', error);
         cb(false);
       }
     });
 
-    // Permission management
     socket.on(
       'jobs.grant-permission',
       async (characterId: number, type: 'JOB' | 'TASK', typeId: string, grantedBy: number, cb = () => {}) => {
@@ -67,6 +64,9 @@ export default () => {
 
         try {
           const success = await jobSystemManager.grantPermission(characterId, type, typeId, grantedBy);
+          if (success) {
+            userNamespace.emit('__client__', 'jobs.permission-granted', characterId, type, typeId);
+          }
           cb(success);
         } catch (error) {
           logInfoS('[Jobs]', 'Permission grant failed:', error);
@@ -74,36 +74,58 @@ export default () => {
         }
       },
     );
+
+    socket.on(
+      'jobs.revoke-permission',
+      async (characterId: number, type: 'JOB' | 'TASK', typeId: string, cb = () => {}) => {
+        logInfoS('[Jobs]', 'revokePermission', characterId, type, typeId);
+
+        try {
+          const success = await jobSystemManager.revokePermission(characterId, type, typeId);
+          if (success) {
+            userNamespace.emit('__client__', 'jobs.permission-revoked', characterId, type, typeId);
+          }
+          cb(success);
+        } catch (error) {
+          logInfoS('[Jobs]', 'Permission revoke failed:', error);
+          cb(false);
+        }
+      },
+    );
   });
 
-  // User namespace events (for UI communication)
   userNamespace.on('connection', (socket) => {
     logInfoC('[Jobs]', 'User connected', socket.id, socket.data);
 
-    // Send initial job state to client
     socket.on('jobs.get-state', (cb = () => {}) => {
       const characterId = socket.data?.character?.id;
       if (!characterId) {
-        cb({ error: 'No character data' });
+        cb({
+          show: false,
+          isClocked: false,
+          currentJob: null,
+          availableJobs: [],
+          clockedInEmployees: 0,
+          error: 'No character data',
+        });
         return;
       }
 
       const isClocked = jobSystemManager.isCharacterClockedIn(characterId);
       const currentJob = jobSystemManager.getCharacterJob(characterId);
-      const availableJobs = Array.from(jobSystemManager.getRegisteredJobs().values());
 
       cb({
+        show: false,
         isClocked,
         currentJob,
-        availableJobs,
-        clockedInEmployees: jobSystemManager.getClockedInEmployees().size,
+        availableJobs: jobSystemManager.getRegisteredJobs(),
+        clockedInEmployees: jobSystemManager.getClockedInCount(),
       });
     });
 
-    // Clock in request
     socket.on(
       'jobs.clock-in',
-      async (jobHandle: string, location?: { x: number; y: number; z: number }, cb = () => {}) => {
+      async (jobHandle: string, location: { x: number; y: number; z: number } | undefined | null, cb = () => {}) => {
         const characterId = socket.data?.character?.id;
         if (!characterId) {
           cb({ success: false, error: 'No character data' });
@@ -112,18 +134,16 @@ export default () => {
 
         logInfoC('[Jobs]', 'clockIn', characterId, jobHandle);
 
-        const success = await jobSystemManager.clockIn(characterId, jobHandle, location);
+        const success = await jobSystemManager.clockIn(characterId, jobHandle, location || undefined);
 
         if (success) {
-          // Update UI for all clients
           userNamespace.emit('__client__', 'jobs.clock-in-update', characterId, jobHandle);
         }
 
-        cb({ success, error: success ? null : 'Clock in failed' });
+        cb({ success, error: success ? undefined : 'Clock in failed' });
       },
     );
 
-    // Clock out request
     socket.on('jobs.clock-out', async (cb = () => {}) => {
       const characterId = socket.data?.character?.id;
       if (!characterId) {
@@ -136,14 +156,15 @@ export default () => {
       const result = await jobSystemManager.clockOut(characterId);
 
       if (result.success && result.hoursWorked !== undefined && result.payment !== undefined) {
-        // Update UI for all clients
         userNamespace.emit('__client__', 'jobs.clock-out-update', characterId, result.hoursWorked, result.payment);
+        if (result.payment > 0) {
+          userNamespace.emit('__client__', 'jobs.payment-processed', characterId, result.payment, 'Hourly wages');
+        }
       }
 
       cb(result);
     });
 
-    // Task availability check
     socket.on('jobs.can-start-task', async (taskId: number, cb = () => {}) => {
       const characterId = socket.data?.character?.id;
       if (!characterId) {
@@ -155,17 +176,70 @@ export default () => {
       cb(result);
     });
 
-    // Get available tasks
-    socket.on('jobs.get-available-tasks', async (cb = () => {}, jobHandle?: string) => {
+    socket.on('jobs.get-available-tasks', async (jobHandle: string | undefined, cb = () => {}) => {
+      logInfoC('[Jobs]', 'getAvailableTasks', jobHandle);
       const characterId = socket.data?.character?.id;
       if (!characterId) {
         cb([]);
         return;
       }
 
-      // In real implementation, this would query available tasks from database
-      // For now, return empty array
-      cb([]);
+      const tasks = await jobSystemManager.getAvailableTasks(characterId, jobHandle);
+      logInfoC('[Jobs]', 'Available tasks for character', characterId, ':', tasks);
+      cb(tasks);
+    });
+
+    socket.on('jobs.assign-task', async (taskId: number, cb = () => {}) => {
+      const characterId = socket.data?.character?.id;
+      if (!characterId) {
+        cb(null);
+        return;
+      }
+
+      const instance = await jobSystemManager.assignTask(characterId, taskId);
+      cb(instance);
+    });
+
+    socket.on('jobs.start-task', async (instanceId: number, cb = () => {}) => {
+      const characterId = socket.data?.character?.id;
+      if (!characterId) {
+        cb(false);
+        return;
+      }
+
+      const success = await jobSystemManager.startTask(instanceId);
+      if (success) {
+        userNamespace.emit('__client__', 'jobs.task-started', characterId, instanceId);
+      }
+      cb(success);
+    });
+
+    socket.on('jobs.complete-task', async (instanceId: number, cb = () => {}) => {
+      const characterId = socket.data?.character?.id;
+      if (!characterId) {
+        cb({ success: false });
+        return;
+      }
+
+      const result = await jobSystemManager.completeTask(instanceId);
+      if (result.success) {
+        userNamespace.emit('__client__', 'jobs.task-completed', characterId, instanceId, result.payment || 0);
+        if (result.payment && result.payment > 0) {
+          userNamespace.emit('__client__', 'jobs.payment-processed', characterId, result.payment, 'Task completion');
+        }
+      }
+      cb(result);
+    });
+
+    socket.on('jobs.get-pay-slips', async (cb = () => {}) => {
+      const characterId = socket.data?.character?.id;
+      if (!characterId) {
+        cb([]);
+        return;
+      }
+
+      const slips = await jobSystemManager.getUnredeemedPaySlips(characterId);
+      cb(slips);
     });
   });
 };

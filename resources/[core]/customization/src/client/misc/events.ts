@@ -1,8 +1,9 @@
-import { onUI } from '@lib/client';
+import { PVGame, onUI } from '@lib/client';
 import { Log } from '@lib/client/comms/ui';
 import { Delay } from '@lib/functions';
 
 import { creationManager } from '../managers/creation-manager';
+import { paletteManager } from '../managers/palette-manager';
 
 on('customization:client:character_creation', () => {
   creationManager.start();
@@ -11,6 +12,29 @@ on('customization:client:character_creation', () => {
 onUI('customization.set-components', (components) => {
   Log('customization.set-components', components);
   creationManager.setComponents(components);
+});
+
+onUI('customization.set-components-with-tints', (components) => {
+  Log('customization.set-components-with-tints', ...components);
+  creationManager.setComponentsWithTints(components);
+});
+
+onUI('customization.set-tint-by-category', (category, data) => {
+  Log('customization.set-tint-by-category', category, data);
+
+  if (data.palette !== 0) {
+    const ped = creationManager.isActive ? creationManager.getChosen() : PVGame.playerPed();
+    paletteManager.setTintByCategory(ped, category, data.palette, data.tint0, data.tint1, data.tint2);
+    // paletteManager.setTintByHorsePart(
+    //   713474,
+    //   // @ts-ignore
+    //   'head',
+    //   data.palette,
+    //   data.tint0,
+    //   data.tint1,
+    //   data.tint2,
+    // );
+  }
 });
 
 onUI('customization.highlight', (gender) => {

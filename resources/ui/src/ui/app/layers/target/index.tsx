@@ -1,3 +1,4 @@
+import TimesSVG from '@fa/5/solid/times.svg';
 import { useCallback, useEffect, useState } from 'react';
 
 import { emitClient } from '@lib/ui';
@@ -26,11 +27,16 @@ export default function Target() {
     targetStore.reset();
   }, []);
 
-  useEscapeKey(state.show, onEscape);
+  useEscapeKey(state.show || state.actions.length > 0, onEscape);
 
   const performAction = (action: Target.Item) => {
     console.log('performAction', action);
     emitClient('target.action', state.context, action);
+    targetStore.reset();
+    emitClient('nui.close');
+  };
+
+  const closeUI = () => {
     targetStore.reset();
     emitClient('nui.close');
   };
@@ -79,6 +85,11 @@ export default function Target() {
             </li>
           );
         })}
+        {state.actions.length > 0 && (
+          <li className={styles.cancel} onClick={() => closeUI()}>
+            <TimesSVG />
+          </li>
+        )}
       </ul>
     </div>
   );

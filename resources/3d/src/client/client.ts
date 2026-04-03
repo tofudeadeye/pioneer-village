@@ -1,3 +1,4 @@
+import { PVTarget } from '@lib/client';
 import { Log } from '@lib/client/comms/ui';
 
 const loadModel = (model: number | string): Promise<void> => {
@@ -39,13 +40,13 @@ RegisterCommand(
 
 // RequestStreamedTextureDict('pv_markers', true);
 
-// const obj = 47874;
-// const waterBottleCoords = GetEntityCoords(obj, false);
-// let target = PlayerPedId();
+const obj = 47874;
+const waterBottleCoords = GetEntityCoords(obj, false);
+let target = PlayerPedId();
 
-// on('target:changed', (newTarget: number) => {
-//   target = newTarget;
-// });
+on('target:changed', (newTarget: number) => {
+  target = newTarget;
+});
 
 // setTick(async () => {
 //   // DrawMarker(
@@ -74,47 +75,45 @@ RegisterCommand(
 //   //   'pickup_circle',
 //   //   false,
 //   // );
-//
-//   target = await PVTarget.GetEntityPlayerIsLookingAt(9.9, 2.5, 4 + 1024);
-//
-//   if (!target || !(DoesEntityExist(target) || IsEntityAVehicle(target))) {
-//     return;
-//   }
-//
-//   const boneIndex = GetEntityBoneIndexByName(target, 'handle_dside_f');
-//
-//   let coords: number[];
-//   if (boneIndex !== -1) {
-//     coords = GetWorldPositionOfEntityBone(target, boneIndex);
-//   } else {
-//     coords = GetEntityCoords(target, true);
-//   }
-//
-//   const forward = GetEntityForwardVector(target);
-//   DrawMarker(
-//     9,
-//     coords[0] + forward[0] * -0.05,
-//     coords[1] + forward[1] * -0.05,
-//     coords[2] + 0.05,
-//     0.0,
-//     0.0,
-//     0.0,
-//     forward[0] * -45,
-//     forward[1] * -45,
-//     GetEntityHeading(target) - 90.0,
-//     1.0,
-//     1.0,
-//     1.0,
-//     255,
-//     255,
-//     255,
-//     255,
-//     false,
-//     false,
-//     2,
-//     false,
-//     'markers',
-//     'locked',
-//     false,
-//   );
+//   // target = await PVTarget.GetEntityPlayerIsLookingAt(9.9, 2.5, 4 + 1024);
+//   //
+//   // if (!target || !(DoesEntityExist(target) || IsEntityAVehicle(target))) {
+//   //   return;
+//   // }
+//   //
+//   // const boneIndex = GetEntityBoneIndexByName(target, 'handle_dside_f');
+//   //
+//   // let coords: number[];
+//   // if (boneIndex !== -1) {
+//   //   coords = GetWorldPositionOfEntityBone(target, boneIndex);
+//   // } else {
+//   //   coords = GetEntityCoords(target, true);
+//   // }
+//   // const forward = GetEntityForwardVector(target);
+//   // DrawMarker(
+//   //   9,
+//   //   coords[0] + forward[0] * -0.05,
+//   //   coords[1] + forward[1] * -0.05,
+//   //   coords[2] + 0.05,
+//   //   0.0,
+//   //   0.0,
+//   //   0.0,
+//   //   forward[0] * -45,
+//   //   forward[1] * -45,
+//   //   GetEntityHeading(target) - 90.0,
+//   //   1.0,
+//   //   1.0,
+//   //   1.0,
+//   //   255,
+//   //   255,
+//   //   255,
+//   //   255,
+//   //   false,
+//   //   false,
+//   //   2,
+//   //   false,
+//   //   'markers',
+//   //   'locked',
+//   //   false,
+//   // );
 // });

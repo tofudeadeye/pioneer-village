@@ -8,8 +8,10 @@ interface InventoryState {
   show: boolean;
   characterId: number;
   clothingInventory: string;
+  birdsInventory: string;
   mainInventory: string;
   targetInventory: string;
+  targetContainerItemId: number;
   inventories: Map<string, UI.Inventory.LoadData>;
   inventoriesWeight: Map<string, number>;
   tooltipItem: UI.Inventory.ItemData | null;
@@ -46,8 +48,10 @@ class InventoryStore {
       show: false,
       characterId: 0,
       clothingInventory: '',
+      birdsInventory: '',
       mainInventory: '',
       targetInventory: '',
+      targetContainerItemId: 0,
       inventories: new Map(),
       inventoriesWeight: new Map(),
       tooltipItem: null,
@@ -132,6 +136,12 @@ class InventoryStore {
       this.subscriptions.add(event.clothingInventory);
     }
 
+    // Subscribe to birds inventory if needed
+    if (event.birdsInventory && !this.subscriptions.has(event.birdsInventory)) {
+      this.socket.emit('inventory.subscribe', event.birdsInventory);
+      this.subscriptions.add(event.birdsInventory);
+    }
+
     // Subscribe to main inventory if needed
     if (event.mainInventory && !this.subscriptions.has(event.mainInventory)) {
       this.socket.emit('inventory.subscribe', event.mainInventory);
@@ -194,6 +204,14 @@ class InventoryStore {
       emitClient('inventory.clothing-change', Object.values(data.items));
     }
 
+    if (this.socket && `birds:${this.state.characterId}` === data.identifier) {
+      for (const item of Object.values(data.items)) {
+        const birdInvIdentifier = `bird:${item.ids[0]}`;
+        this.socket.emit('inventory.subscribe', birdInvIdentifier);
+        this.subscriptions.add(birdInvIdentifier);
+      }
+    }
+
     this.updateState({ inventories });
     this.computeInventoryWeight();
   };
@@ -230,6 +248,31 @@ class InventoryStore {
         return;
       }
 
+      if (this.socket && data.identifier.startsWith('birds:')) {
+        const inventory = this.state.inventories.get(data.identifier);
+        if (inventory) {
+          const birdInvIdentifiers: string[] = [];
+          for (const item of Object.values(inventory.items)) {
+            birdInvIdentifiers.push(`bird:${item.ids[0]}`);
+          }
+          const oldBirdInvIdentifiers = [...this.subscriptions.keys()].filter((id) => id.startsWith('bird:'));
+          for (const oldId of oldBirdInvIdentifiers) {
+            if (!birdInvIdentifiers.includes(oldId)) {
+              this.socket.emit('inventory.unsubscribe', oldId);
+              this.subscriptions.delete(oldId);
+              console.log('Unsubscribing from old bird inventory:', oldId);
+            }
+          }
+          for (const birdInvIdentifier of birdInvIdentifiers) {
+            if (!this.subscriptions.has(birdInvIdentifier)) {
+              this.socket.emit('inventory.subscribe', birdInvIdentifier);
+              this.subscriptions.add(birdInvIdentifier);
+              console.log('Subscribing to new bird inventory:', birdInvIdentifier);
+            }
+          }
+        }
+      }
+
       const inventories = new Map(this.state.inventories);
       const inventory = inventories.get(moveData.identifier);
 
@@ -260,6 +303,24 @@ class InventoryStore {
         if (moveData.identifier === `clothing:${this.state.characterId}`) {
           emitClient('inventory.clothing-change', Object.values(inventory.items));
         }
+
+        // Auto-close target inventory if the container item was moved by another player
+        if (this.state.targetContainerItemId) {
+          const containerItemId = this.state.targetContainerItemId;
+          let containerItemStillExists = false;
+          for (const inv of inventories.values()) {
+            for (const item of Object.values(inv.items)) {
+              if (item.ids.includes(containerItemId)) {
+                containerItemStillExists = true;
+                break;
+              }
+            }
+            if (containerItemStillExists) break;
+          }
+          if (!containerItemStillExists) {
+            this.closeTargetInventory();
+          }
+        }
       }
 
       this.updateState({ inventories });
@@ -288,7 +349,16 @@ class InventoryStore {
         const sourceInventory = inventories.get(sourceIdentifier);
         const targetInventory = inventories.get(targetIdentifier);
 
-        if (!sourceInventory || !targetInventory) return;
+        if (!sourceInventory) return;
+
+        if (!targetInventory) {
+          // Target not in state (e.g., container deposit that failed)
+          // Re-subscribe to source to get fresh server state
+          if (this.socket) {
+            this.socket.emit('inventory.subscribe', sourceIdentifier);
+          }
+          return;
+        }
 
         // Revert the move
         const oldItem = sourceInventory.items[oldSlot];
@@ -368,6 +438,7 @@ class InventoryStore {
     targetIdentifier: string,
     newSlot?: number | null,
     force = false,
+    quantity?: number,
   ): void {
     if (!this.socket) return;
 
@@ -380,12 +451,21 @@ class InventoryStore {
       const targetInventory = this.state.inventories.get(targetIdentifier);
       if (!targetInventory) {
         if (force) {
+          // Optimistically remove from source and let server handle destination
           const inventories = new Map(this.state.inventories);
-          const sourceInventory = inventories.get(sourceIdentifier);
-          if (sourceInventory) {
-            delete sourceInventory.items[oldSlot];
+          const sourceRaw = inventories.get(sourceIdentifier);
+          if (sourceRaw) {
+            const sourceItems = { ...sourceRaw.items };
+            delete sourceItems[oldSlot];
+            inventories.set(sourceIdentifier, { ...sourceRaw, items: sourceItems });
           }
           this.updateState({ inventories });
+          this.computeInventoryWeight();
+
+          // Send to server with slot -1 to let server find first available slot
+          this.requestId++;
+          this.socket.emit('inventory.item-move', this.requestId, sourceIdentifier, oldSlot, targetIdentifier, -1, quantity);
+          this.requests.set(this.requestId, { sourceIdentifier, oldSlot, targetIdentifier, newSlot: -1 });
         }
         return;
       }
@@ -402,39 +482,82 @@ class InventoryStore {
       }
     }
 
+    // Check if the moved item or the swapped item is the container that opened the target inventory
+    if (this.state.targetContainerItemId) {
+      const containerItemId = this.state.targetContainerItemId;
+      const sourceInventory = this.state.inventories.get(sourceIdentifier);
+      const targetInventory = this.state.inventories.get(targetIdentifier);
+      const sourceSlotItem = sourceInventory?.items[oldSlot];
+      const targetSlotItem = targetInventory?.items[newSlot];
+      if (
+        (sourceSlotItem && sourceSlotItem.ids.includes(containerItemId)) ||
+        (targetSlotItem && targetSlotItem.ids.includes(containerItemId))
+      ) {
+        this.closeTargetInventory();
+      }
+    }
+
     // Clear failed image cache for these slots
     this.failedImages.delete(`${sourceIdentifier}::${oldSlot}`);
     this.failedImages.delete(`${targetIdentifier}::${newSlot}`);
 
     // Send move request to socket
     this.requestId++;
-    this.socket.emit('inventory.item-move', this.requestId, sourceIdentifier, oldSlot, targetIdentifier, newSlot);
+    this.socket.emit('inventory.item-move', this.requestId, sourceIdentifier, oldSlot, targetIdentifier, newSlot, quantity);
     this.requests.set(this.requestId, { sourceIdentifier, oldSlot, targetIdentifier, newSlot });
 
-    // Optimistically update state
+    // Optimistically update state with deep clones to prevent shared references
     const inventories = new Map(this.state.inventories);
-    const sourceInventory = inventories.get(sourceIdentifier);
-    const targetInventory = inventories.get(targetIdentifier);
+    const sourceRaw = inventories.get(sourceIdentifier);
+    const targetRaw = inventories.get(targetIdentifier);
 
-    if (!sourceInventory || !targetInventory) return;
+    if (!sourceRaw || !targetRaw) return;
 
-    const oldItem = sourceInventory.items[oldSlot];
-    const newItem = targetInventory.items[newSlot];
+    const sourceItems = { ...sourceRaw.items };
+    const targetItems = sourceIdentifier === targetIdentifier ? sourceItems : { ...targetRaw.items };
 
-    if (oldItem) {
-      targetInventory.items[newSlot] = oldItem;
+    const oldItem = sourceItems[oldSlot] ? { ...sourceItems[oldSlot] } : undefined;
+    const newItem = targetItems[newSlot] ? { ...targetItems[newSlot] } : undefined;
+
+    if (quantity && oldItem && oldItem.quantity > quantity) {
+      // Partial move: split the stack
+      const splitItem = {
+        ...oldItem,
+        ids: oldItem.ids.slice(0, quantity),
+        metadatas: oldItem.metadatas.slice(0, quantity),
+        durabilities: oldItem.durabilities.slice(0, quantity),
+        quantity,
+      };
+      const remainingItem = {
+        ...oldItem,
+        ids: oldItem.ids.slice(quantity),
+        metadatas: oldItem.metadatas.slice(quantity),
+        durabilities: oldItem.durabilities.slice(quantity),
+        quantity: oldItem.quantity - quantity,
+      };
+      targetItems[newSlot] = splitItem;
+      sourceItems[oldSlot] = remainingItem;
     } else {
-      delete targetInventory.items[newSlot];
+      if (oldItem) {
+        targetItems[newSlot] = oldItem;
+      } else {
+        delete targetItems[newSlot];
+      }
+
+      if (newItem) {
+        sourceItems[oldSlot] = newItem;
+      } else {
+        delete sourceItems[oldSlot];
+      }
     }
 
-    if (newItem) {
-      sourceInventory.items[oldSlot] = newItem;
-    } else {
-      delete sourceInventory.items[oldSlot];
-    }
-
-    // Handle clothing equipment changes
+    const sourceInventory = { ...sourceRaw, items: sourceItems };
+    inventories.set(sourceIdentifier, sourceInventory);
     if (sourceIdentifier !== targetIdentifier) {
+      const targetInventory = { ...targetRaw, items: targetItems };
+      inventories.set(targetIdentifier, targetInventory);
+
+      // Handle clothing equipment changes
       if (sourceIdentifier === `clothing:${this.state.characterId}`) {
         emitClient('inventory.clothing-change', Object.values(sourceInventory.items));
       }
@@ -455,6 +578,15 @@ class InventoryStore {
       return;
     }
 
+    // Check if the stacked item is the container that opened the target inventory
+    if (this.state.targetContainerItemId) {
+      const sourceInventory = this.state.inventories.get(sourceIdentifier);
+      const slotItem = sourceInventory?.items[oldSlot];
+      if (slotItem && slotItem.ids.includes(this.state.targetContainerItemId)) {
+        this.closeTargetInventory();
+      }
+    }
+
     // Clear failed image cache
     this.failedImages.delete(`${sourceIdentifier}::${oldSlot}`);
     this.failedImages.delete(`${targetIdentifier}::${newSlot}`);
@@ -464,16 +596,20 @@ class InventoryStore {
     this.socket.emit('inventory.item-stack', this.requestId, sourceIdentifier, oldSlot, targetIdentifier, newSlot);
     this.requests.set(this.requestId, { sourceIdentifier, oldSlot, targetIdentifier, newSlot });
 
-    // Optimistically update state
+    // Optimistically update state with deep clones
     const inventories = new Map(this.state.inventories);
-    const sourceInventory = inventories.get(sourceIdentifier);
-    const targetInventory = inventories.get(targetIdentifier);
+    const sourceRaw = inventories.get(sourceIdentifier);
+    const targetRaw = inventories.get(targetIdentifier);
 
-    if (!sourceInventory || !targetInventory) return;
+    if (!sourceRaw || !targetRaw) return;
 
-    const oldItem = sourceInventory.items[oldSlot];
-    const newItem = targetInventory.items[newSlot];
+    const sourceItems = { ...sourceRaw.items };
+    const targetItems = sourceIdentifier === targetIdentifier ? sourceItems : { ...targetRaw.items };
 
+    const oldItem = sourceItems[oldSlot] ? { ...sourceItems[oldSlot], ids: [...sourceItems[oldSlot].ids], metadatas: [...sourceItems[oldSlot].metadatas], durabilities: [...sourceItems[oldSlot].durabilities] } : undefined;
+    const newItem = targetItems[newSlot] ? { ...targetItems[newSlot], ids: [...targetItems[newSlot].ids], metadatas: [...targetItems[newSlot].metadatas], durabilities: [...targetItems[newSlot].durabilities] } : undefined;
+
+    if (!oldItem || !newItem) return;
     if (oldItem.identifier !== newItem.identifier) return;
 
     const itemData = this.items[oldItem.identifier];
@@ -484,7 +620,8 @@ class InventoryStore {
       newItem.ids.push(...oldItem.ids);
       newItem.metadatas.push(...oldItem.metadatas);
       newItem.quantity += oldItem.quantity;
-      delete sourceInventory.items[oldSlot];
+      targetItems[newSlot] = newItem;
+      delete sourceItems[oldSlot];
     } else {
       // Partial stack
       const diff = itemData.stackSize - newItem.quantity;
@@ -494,6 +631,13 @@ class InventoryStore {
       oldItem.ids = oldItem.ids.slice(diff);
       oldItem.metadatas = oldItem.metadatas.slice(diff);
       oldItem.quantity -= diff;
+      sourceItems[oldSlot] = oldItem;
+      targetItems[newSlot] = newItem;
+    }
+
+    inventories.set(sourceIdentifier, { ...sourceRaw, items: sourceItems });
+    if (sourceIdentifier !== targetIdentifier) {
+      inventories.set(targetIdentifier, { ...targetRaw, items: targetItems });
     }
 
     this.updateState({ inventories });
@@ -503,9 +647,29 @@ class InventoryStore {
   dropItem(identifier: string, slot: number): void {
     if (!this.socket) return;
 
+    // Check if the dropped item is the container that opened the target inventory
+    if (this.state.targetContainerItemId) {
+      const inventory = this.state.inventories.get(identifier);
+      const slotItem = inventory?.items[slot];
+      if (slotItem && slotItem.ids.includes(this.state.targetContainerItemId)) {
+        this.closeTargetInventory();
+      }
+    }
+
     if (this.state.targetInventory.startsWith('_WORLD_:')) {
       this.moveItem(identifier, slot, this.state.targetInventory, undefined, true);
       return;
+    }
+
+    // Optimistic removal
+    const inventories = new Map(this.state.inventories);
+    const inventory = inventories.get(identifier);
+    if (inventory) {
+      const updatedItems = { ...inventory.items };
+      delete updatedItems[slot];
+      inventories.set(identifier, { ...inventory, items: updatedItems });
+      this.updateState({ inventories });
+      this.computeInventoryWeight();
     }
 
     this.requestId++;
@@ -604,14 +768,80 @@ class InventoryStore {
     });
   }
 
+  // Use an item from a specific inventory and slot (public)
+  useItemInSlot(inventoryIdentifier: string, slot: number): void {
+    const inventory = this.state.inventories.get(inventoryIdentifier);
+    if (!inventory) return;
+
+    const slotItem = inventory.items[slot];
+    if (!slotItem) return;
+
+    if (slotItem.durabilities && slotItem.durabilities[0] !== null && slotItem.durabilities[0] <= 0) {
+      return;
+    }
+
+    emitClient('inventory.use-item', slotItem);
+  }
+
+  // Open a container item as the target inventory
+  openContainer(inventoryIdentifier: string, slot: number): void {
+    const inventory = this.state.inventories.get(inventoryIdentifier);
+    if (!inventory) return;
+
+    const slotItem = inventory.items[slot];
+    if (!slotItem) return;
+
+    const itemData = this.items[slotItem.identifier];
+    if (!itemData?.containerType) return;
+
+    const itemId = slotItem.ids[0];
+    const targetIdentifier = `${itemData.containerType}:${itemId}`;
+    this.updateState({ targetContainerItemId: itemId });
+    this.handleInventoryState({ targetInventory: targetIdentifier });
+  }
+
+  // Close only the target inventory panel
+  closeTargetInventory(): void {
+    if (!this.socket || !this.state.targetInventory) return;
+
+    const targetIdentifier = this.state.targetInventory;
+
+    // Check if a bird auto-subscription uses this identifier — don't unsubscribe if so
+    const birdsInventory = this.state.inventories.get(this.state.birdsInventory);
+    let isUsedByBird = false;
+    if (birdsInventory) {
+      for (const item of Object.values(birdsInventory.items)) {
+        if (`bird:${item.ids[0]}` === targetIdentifier) {
+          isUsedByBird = true;
+          break;
+        }
+      }
+    }
+
+    if (!isUsedByBird) {
+      this.socket.emit('inventory.unsubscribe', targetIdentifier);
+      this.subscriptions.delete(targetIdentifier);
+    }
+
+    this.updateState({ targetInventory: '', targetContainerItemId: 0 });
+
+    // Re-subscribe to world inventories since no target is open
+    if (!this.worldSubscribed) {
+      this.socket.emit('inventory.subscribe-world');
+      this.worldSubscribed = true;
+    }
+  }
+
   // Close inventory
   closeInventory(): void {
     this.cancelDrag();
-    this.socket!.emit('inventory.unsubscribe', this.state.targetInventory);
+    if (!this.socket) return;
+    this.socket.emit('inventory.unsubscribe', this.state.targetInventory);
     this.subscriptions.delete(this.state.targetInventory);
     this.updateState({
       show: false,
       targetInventory: '',
+      targetContainerItemId: 0,
     });
   }
 

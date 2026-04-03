@@ -2,6 +2,7 @@ import { debounce } from 'lodash';
 import { Socket } from 'socket.io-client';
 
 import { LoadResourceJson, emitClient, onClient } from '@lib/ui';
+import { isBodyCategory } from '@lib/shared/body-categories';
 
 // Store state interface matching the component's state
 interface CustomizationState {
@@ -27,6 +28,7 @@ interface CustomizationState {
   teeth: number;
   skinTone: number;
   bodyType: number;
+  rotation: number;
 }
 
 // State listener type
@@ -39,27 +41,50 @@ const pedComponentCategories = [
   'neckties',
   'neckwear',
   'shirts_full',
-  'suspenders',
   'vests',
   'coats',
   'coats_closed',
   'cloaks',
   'ponchos',
-  'gauntlets',
+  'aprons',
+  'dresses',
+  'skirts',
   'gloves',
+  'gauntlets',
   'belts',
   'belt_buckles',
   'gunbelts',
-  'skirts',
+  'gunbelt_accs',
+  'holsters_left',
+  'holsters_right',
+  'holsters_crossdraw',
+  'holsters_knife',
   'pants',
+  'chaps',
   'boots',
   'boot_accessories',
   'spats',
-  'chaps',
-  'accessories',
+  'suspenders',
+  'satchels',
   'jewelry_bracelets',
   'jewelry_rings_left',
   'jewelry_rings_right',
+  'talisman_belt',
+  'talisman_holster',
+  'talisman_satchel',
+  'talisman_wrist',
+  'hair_accessories',
+  'hair',
+  'beards_complete',
+  'beards_chin',
+  'beards_chops',
+  'beards_mustache',
+  'masks',
+  'masks_large',
+  'accessories',
+  'badges',
+  'armor',
+  'loadouts',
 ];
 
 const horseComponentCategories = ['head', 'hand', 'hair', 'mane', 'teef'];
@@ -171,6 +196,7 @@ class CustomizationStore {
       teeth: 0,
       skinTone: 0,
       bodyType: 2,
+      rotation: 90,
     };
 
     // Initialize debounced function
@@ -281,7 +307,7 @@ class CustomizationStore {
     // Handle state updates from game client
     onClient('customization.state', (stateUpdate: UI.Customization.Event) => {
       this.updateState(stateUpdate);
-      if (!stateUpdate.show) {
+      if (stateUpdate.show === false) {
         this.resetComponents();
       }
     });
@@ -321,9 +347,9 @@ class CustomizationStore {
   }
 
   // Get component data array
-  getComponentDataArray(): Record<string, { name: string; category: string; shopItem: string | number }> {
+  getComponentDataArray(): Record<string, { name: string; category: string; shopItem: string | number; palette?: number | string; tint0?: number; tint1?: number; tint2?: number }> {
     const currentComponents = this.state.currentComponents;
-    const components: Record<string, { name: string; category: string; shopItem: string | number }> = {};
+    const components: Record<string, { name: string; category: string; shopItem: string | number; palette?: number | string; tint0?: number; tint1?: number; tint2?: number }> = {};
 
     for (const [category, data] of Object.entries(currentComponents)) {
       if (data.style > -1 && this.ComponentsData[category]) {
@@ -346,11 +372,67 @@ class CustomizationStore {
             category: category.toUpperCase(),
             shopItem: component.name || component.component,
           };
+
+          const tint = this.state.tints[category];
+          if (tint && tint.palette !== -1) {
+            components[category].palette = tint.palette;
+            components[category].tint0 = tint.tint0;
+            components[category].tint1 = tint.tint1;
+            components[category].tint2 = tint.tint2;
+          }
         }
       }
     }
 
     return components;
+  }
+
+  private getBodyComponentsArray(): (number | { id: number; p: number | string; t0: number; t1: number; t2: number })[] {
+    const bodyComponents: (number | { id: number; p: number | string; t0: number; t1: number; t2: number })[] = [];
+    const handledKeys = new Set<string>();
+
+    // 1. Body categories from currentComponents (eyes, hair, beards — selected via CategoryBrowser)
+    for (const [category, data] of Object.entries(this.state.currentComponents)) {
+      if (!isBodyCategory(category)) continue;
+      if (data.style > -1 && this.ComponentsData[category]) {
+        const component = this.ComponentsData[category][data.style]?.components[data.option];
+        if (component) {
+          handledKeys.add(category);
+          const tint = this.state.tints[category];
+          if (tint && tint.palette !== -1) {
+            bodyComponents.push({
+              id: component.component,
+              p: tint.palette,
+              t0: tint.tint0,
+              t1: tint.tint1,
+              t2: tint.tint2,
+            });
+          } else {
+            bodyComponents.push(component.component);
+          }
+        }
+      }
+    }
+
+    // 2. Remaining body components from state.components (head, upperBody, lowerBody, teeth, etc.)
+    for (const [key, hash] of Object.entries(this.state.components)) {
+      if (handledKeys.has(key)) continue;
+      if (key === 'body' || key === 'waist') continue;
+      const tint = this.state.tints[key];
+      if (tint && tint.palette !== -1) {
+        bodyComponents.push({
+          id: hash,
+          p: tint.palette,
+          t0: tint.tint0,
+          t1: tint.tint1,
+          t2: tint.tint2,
+        });
+      } else {
+        bodyComponents.push(hash);
+      }
+    }
+
+    return bodyComponents;
   }
 
   // Set a component
@@ -360,8 +442,38 @@ class CustomizationStore {
       currentComponents,
     });
 
-    const components = this.getComponentArray(currentComponents);
-    emitClient('customization.set-components', components);
+    const componentsWithTints = this.getComponentsWithTints(currentComponents);
+    emitClient('customization.set-components-with-tints', componentsWithTints);
+  }
+
+  // Build array of components with optional tint data for live preview
+  private getComponentsWithTints(
+    currentComponents?: Record<string, { style: number; option: number }>,
+  ): { hash: number; palette?: number | string; tint0?: number; tint1?: number; tint2?: number }[] {
+    if (!currentComponents) {
+      currentComponents = this.state.currentComponents;
+    }
+
+    const result: { hash: number; palette?: number | string; tint0?: number; tint1?: number; tint2?: number }[] = [];
+    for (const [category, data] of Object.entries(currentComponents)) {
+      if (data.style > -1 && this.ComponentsData[category]) {
+        const component = this.ComponentsData[category][data.style]?.components[data.option];
+        if (component) {
+          const entry: { hash: number; palette?: number | string; tint0?: number; tint1?: number; tint2?: number } = {
+            hash: component.component,
+          };
+          const tint = this.state.tints[category];
+          if (tint && tint.palette !== -1 && tint.palette !== 0) {
+            entry.palette = tint.palette;
+            entry.tint0 = tint.tint0;
+            entry.tint1 = tint.tint1;
+            entry.tint2 = tint.tint2;
+          }
+          result.push(entry);
+        }
+      }
+    }
+    return result;
   }
 
   // Set tint by category
@@ -389,13 +501,21 @@ class CustomizationStore {
   setState(newState: Customization.State): void {
     if (newState === 'finalize') {
       if (!this.state.firstName || !this.state.lastName || !this.state.dateOfBirth) {
-        // TODO Show error message
         return;
       }
+
+      const allComponentData = this.getComponentDataArray();
+      const clothingComponents: Record<string, typeof allComponentData[string]> = {};
+      for (const [cat, data] of Object.entries(allComponentData)) {
+        if (!isBodyCategory(cat)) {
+          clothingComponents[cat] = data;
+        }
+      }
+
       const finalState = {
         ...this.state,
-        currentComponents: this.getComponentDataArray(),
-        tints: {},
+        bodyComponents: this.getBodyComponentsArray(),
+        currentComponents: clothingComponents,
         currentLayers: [],
       };
       if (this.socket) {
@@ -489,6 +609,7 @@ class CustomizationStore {
 
   // Handle rotation
   handleRotation(value: number): void {
+    this.updateState({ rotation: value });
     emitClient('customization.rotate-chosen', value);
   }
 

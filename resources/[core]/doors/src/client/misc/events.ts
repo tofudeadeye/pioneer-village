@@ -16,7 +16,7 @@ const toggleDoor = async (doorHash: number) => {
 
   if (doorEntity) {
     const keyholeCoords = GetOffsetFromEntityInWorldCoords(doorEntity, 1.0, 0.0, 1.0);
-    TaskTurnPedToFaceCoord(PVGame.playerPed(), keyholeCoords[0], keyholeCoords[1], keyholeCoords[2], 1250);
+    await PVGame.turnPedToFaceCoord(PVGame.playerPed(), keyholeCoords[0], keyholeCoords[1], keyholeCoords[2], 750);
   }
 
   await Delay(1250);

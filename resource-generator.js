@@ -1,9 +1,9 @@
-const readline = require('readline');
-const fs = require('fs');
-const fse = require('fs-extra');
-const chalk = require('chalk');
-const glob = require('glob');
-const { paramCase, pascalCase } = require('change-case');
+import chalk from 'chalk';
+import { kebabCase, pascalCase } from 'change-case';
+import fs from 'fs';
+import fse from 'fs-extra';
+import glob from 'glob';
+import readline from 'readline';
 
 const resourcePaths = glob.sync('resources/**/fxmanifest.lua', { ignore: 'resources/**/node_modules/**' });
 
@@ -20,7 +20,7 @@ const replaceText = (path, find, replace) => {
 
 const createResource = async (path) => {
   const dir = path.split('/');
-  const name = paramCase(dir.pop());
+  const name = kebabCase(dir.pop());
   const namePascal = pascalCase(name);
 
   if (currentResources.includes(name)) {

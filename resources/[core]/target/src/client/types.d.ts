@@ -27,14 +27,6 @@ declare interface ClientExports {
 }
 
 declare namespace Target {
-  interface Item {
-    id: string;
-    label: string;
-    icon: string;
-    event: string;
-    parameters: Record<string, any>;
-  }
-
   interface IsEnabledData {
     distance: number;
     coords: {
@@ -43,10 +35,29 @@ declare namespace Target {
         data: number[];
       };
     };
-    entity: number;
-    model: number;
-    type: number;
-    playerPed: number;
+    entity?: number;
+    model?: number;
+    type?: number;
+    playerPed?: number;
+  }
+
+  interface Item {
+    id: string;
+    label: string;
+    icon: string;
+    event: string;
+    parameters?: Record<string, any>;
+    isEnabled?: (data: IsEnabledData) => boolean;
+  }
+
+  interface SpriteOptions {
+    dict?: string;
+    name?: string;
+    r?: number;
+    g?: number;
+    b?: number;
+    a?: number;
+    scale?: number;
   }
 
   type Options = {
@@ -55,12 +66,16 @@ declare namespace Target {
     disabledThrottle?: number;
     enabledThrottle?: number;
     isEnabled?: (data: IsEnabledData) => boolean;
+    renderDistance?: number;
+    losCheck?: boolean;
+    screenThreshold?: number;
+    sprite?: SpriteOptions;
   };
 
   interface Menu {
     id: string;
-    type: 'flag' | 'model' | 'entity' | 'zone';
-    group: Array<number | string>;
+    type: 'flag' | 'model' | 'entity' | 'zone' | 'point';
+    group: Array<number | string | { x: number; y: number; z: number }>;
     data: Item[];
     options: Options;
   }

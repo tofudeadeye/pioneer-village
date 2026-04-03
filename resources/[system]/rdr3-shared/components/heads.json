@@ -16,7 +16,9 @@
     "tint2": 255,
     "drawable": 3723481192,
     "albedo": 3295830100,
-    "normal": "player_three_ms1_head_1000_c0_000_nm"
+    "normal": "player_three_ms1_head_1000_c0_000_nm",
+    "swatchTextureHex": "7A23FEFC",
+    "swatchTexture": "uisw_cotton_000"
   },
   {
     "componentHex": "7DECE307",
@@ -35,7 +37,9 @@
     "tint2": 255,
     "drawable": "player_three_ms1_head_1001",
     "albedo": 3295830100,
-    "normal": "player_three_ms1_head_1001_c0_000_nm"
+    "normal": "player_three_ms1_head_1001_c0_000_nm",
+    "swatchTextureHex": "7A23FEFC",
+    "swatchTexture": "uisw_cotton_000"
   },
   {
     "componentHex": "67FFB7FF",
@@ -54,7 +58,9 @@
     "tint2": 255,
     "drawable": "player_three_ms1_head_999",
     "albedo": 3295830100,
-    "normal": "player_three_ms1_head_999_c0_000_nm"
+    "normal": "player_three_ms1_head_999_c0_000_nm",
+    "swatchTextureHex": "7A23FEFC",
+    "swatchTexture": "uisw_cotton_000"
   },
   {
     "componentHex": "987C359D",
@@ -73,7 +79,9 @@
     "tint2": 255,
     "drawable": 1347658592,
     "albedo": 572188375,
-    "normal": "player_zero_head_000_c0_000_nm"
+    "normal": "player_zero_head_000_c0_000_nm",
+    "swatchTextureHex": "7A23FEFC",
+    "swatchTexture": "uisw_cotton_000"
   },
   {
     "componentHex": "1ED85F1C",
@@ -92,7 +100,9 @@
     "tint2": 255,
     "drawable": 1347658592,
     "albedo": 3993510118,
-    "normal": "player_zero_head_000_c0_000_nm"
+    "normal": "player_zero_head_000_c0_000_nm",
+    "swatchTextureHex": "7A23FEFC",
+    "swatchTexture": "uisw_cotton_000"
   },
   {
     "componentHex": "07AE423F",
@@ -111,7 +121,9 @@
     "tint2": 255,
     "drawable": "player_zero_head_1001",
     "albedo": 572188375,
-    "normal": "player_zero_head_1001_c0_000_nm"
+    "normal": "player_zero_head_1001_c0_000_nm",
+    "swatchTextureHex": "7A23FEFC",
+    "swatchTexture": "uisw_cotton_000"
   },
   {
     "componentHex": "980C7AB1",
@@ -130,7 +142,9 @@
     "tint2": 255,
     "drawable": "player_zero_head_1001",
     "albedo": 3993510118,
-    "normal": "player_zero_head_1001_c0_000_nm"
+    "normal": "player_zero_head_1001_c0_000_nm",
+    "swatchTextureHex": "7A23FEFC",
+    "swatchTexture": "uisw_cotton_000"
   },
   {
     "componentHex": "21CA5462",
@@ -149,7 +163,9 @@
     "tint2": 255,
     "drawable": "player_zero_head_999",
     "albedo": 3351129968,
-    "normal": 118428813
+    "normal": 118428813,
+    "swatchTextureHex": "7A23FEFC",
+    "swatchTexture": "uisw_cotton_000"
   },
   {
     "componentHex": "AB2D6178",
@@ -168,7 +184,9 @@
     "tint2": 255,
     "drawable": "player_zero_head_999",
     "albedo": 29910659,
-    "normal": 3051239197
+    "normal": 3051239197,
+    "swatchTextureHex": "7A23FEFC",
+    "swatchTexture": "uisw_cotton_000"
   },
   {
     "componentHex": "59465335",
@@ -187,7 +205,9 @@
     "tint2": 255,
     "drawable": "player_zero_head_999",
     "albedo": 572188375,
-    "normal": 118428813
+    "normal": 118428813,
+    "swatchTextureHex": "7A23FEFC",
+    "swatchTexture": "uisw_cotton_000"
   },
   {
     "componentHex": "C60A42D7",
@@ -206,7 +226,9 @@
     "tint2": 255,
     "drawable": "player_zero_head_999",
     "albedo": 3993510118,
-    "normal": 118428813
+    "normal": 118428813,
+    "swatchTextureHex": "7A23FEFC",
+    "swatchTexture": "uisw_cotton_000"
   },
   {
     "componentHex": "F0FB1DF0",
@@ -227,7 +249,9 @@
     "tint2": 255,
     "drawable": "mp_head_mr1_001",
     "albedo": "mp_head_mr1_sc08_c0_000_ab",
-    "normal": "mp_head_mr1_003_nm"
+    "normal": "mp_head_mr1_003_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "7320223C",
@@ -248,7 +272,9 @@
     "tint2": 255,
     "drawable": "mp_head_mr1_001",
     "albedo": "mp_head_mr1_sc01_c0_000_ab",
-    "normal": "mp_head_mr1_003_nm"
+    "normal": "mp_head_mr1_003_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "C55F46B9",
@@ -269,7 +295,9 @@
     "tint2": 255,
     "drawable": "mp_head_mr1_001",
     "albedo": "mp_head_mr1_sc02_c0_000_ab",
-    "normal": "mp_head_mr1_003_nm"
+    "normal": "mp_head_mr1_003_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "D7506A9B",
@@ -290,7 +318,9 @@
     "tint2": 255,
     "drawable": "mp_head_mr1_001",
     "albedo": "mp_head_mr1_sc03_c0_000_ab",
-    "normal": "mp_head_mr1_003_nm"
+    "normal": "mp_head_mr1_003_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "A9918F1E",
@@ -311,7 +341,9 @@
     "tint2": 255,
     "drawable": "mp_head_mr1_001",
     "albedo": "mp_head_mr1_sc04_c0_000_ab",
-    "normal": "mp_head_mr1_003_nm"
+    "normal": "mp_head_mr1_003_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "9BE9739A",
@@ -332,7 +364,9 @@
     "tint2": 255,
     "drawable": "mp_head_mr1_001",
     "albedo": "mp_head_mr1_sc05_c0_000_ab",
-    "normal": "mp_head_mr1_003_nm"
+    "normal": "mp_head_mr1_003_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "A0BE4A7B",
@@ -353,7 +387,9 @@
     "tint2": 255,
     "drawable": "mp_head_mr1_002",
     "albedo": "mp_head_mr1_sc08_c0_000_ab",
-    "normal": "mp_head_mr1_009_nm"
+    "normal": "mp_head_mr1_009_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "936FAFDE",
@@ -374,7 +410,9 @@
     "tint2": 255,
     "drawable": "mp_head_mr1_002",
     "albedo": "mp_head_mr1_sc01_c0_000_ab",
-    "normal": "mp_head_mr1_009_nm"
+    "normal": "mp_head_mr1_009_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "F3CE707E",
@@ -395,7 +433,9 @@
     "tint2": 255,
     "drawable": "mp_head_mr1_002",
     "albedo": "mp_head_mr1_sc02_c0_000_ab",
-    "normal": "mp_head_mr1_009_nm"
+    "normal": "mp_head_mr1_009_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "E718D713",
@@ -416,7 +456,9 @@
     "tint2": 255,
     "drawable": "mp_head_mr1_002",
     "albedo": "mp_head_mr1_sc03_c0_000_ab",
-    "normal": "mp_head_mr1_009_nm"
+    "normal": "mp_head_mr1_009_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "69A6DC4D",
@@ -437,7 +479,9 @@
     "tint2": 255,
     "drawable": "mp_head_mr1_002",
     "albedo": "mp_head_mr1_sc04_c0_000_ab",
-    "normal": "mp_head_mr1_009_nm"
+    "normal": "mp_head_mr1_009_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "4C55A1AB",
@@ -458,7 +502,9 @@
     "tint2": 255,
     "drawable": "mp_head_mr1_002",
     "albedo": "mp_head_mr1_sc05_c0_000_ab",
-    "normal": "mp_head_mr1_009_nm"
+    "normal": "mp_head_mr1_009_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "ED8EDA8E",
@@ -479,7 +525,9 @@
     "tint2": 255,
     "drawable": "mp_head_mr1_003",
     "albedo": "mp_head_mr1_sc08_c0_000_ab",
-    "normal": "mp_head_mr1_008_nm"
+    "normal": "mp_head_mr1_008_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "FEC87D01",
@@ -500,7 +548,9 @@
     "tint2": 255,
     "drawable": "mp_head_mr1_003",
     "albedo": "mp_head_mr1_sc01_c0_000_ab",
-    "normal": "mp_head_mr1_008_nm"
+    "normal": "mp_head_mr1_008_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "C1130197",
@@ -521,7 +571,9 @@
     "tint2": 255,
     "drawable": "mp_head_mr1_003",
     "albedo": "mp_head_mr1_sc02_c0_000_ab",
-    "normal": "mp_head_mr1_008_nm"
+    "normal": "mp_head_mr1_008_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "D1B722DF",
@@ -542,7 +594,9 @@
     "tint2": 255,
     "drawable": "mp_head_mr1_003",
     "albedo": "mp_head_mr1_sc03_c0_000_ab",
-    "normal": "mp_head_mr1_008_nm"
+    "normal": "mp_head_mr1_008_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "9B593624",
@@ -563,7 +617,9 @@
     "tint2": 255,
     "drawable": "mp_head_mr1_003",
     "albedo": "mp_head_mr1_sc04_c0_000_ab",
-    "normal": "mp_head_mr1_008_nm"
+    "normal": "mp_head_mr1_008_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "B6316BD4",
@@ -584,7 +640,9 @@
     "tint2": 255,
     "drawable": "mp_head_mr1_003",
     "albedo": "mp_head_mr1_sc05_c0_000_ab",
-    "normal": "mp_head_mr1_008_nm"
+    "normal": "mp_head_mr1_008_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "9324DB9E",
@@ -605,7 +663,9 @@
     "tint2": 255,
     "drawable": "mp_head_mr1_004",
     "albedo": "mp_head_mr1_sc08_c0_000_ab",
-    "normal": "mp_head_mr1_010_nm"
+    "normal": "mp_head_mr1_010_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "8239BA1C",
@@ -626,7 +686,9 @@
     "tint2": 255,
     "drawable": "mp_head_mr1_004",
     "albedo": "mp_head_mr1_sc01_c0_000_ab",
-    "normal": "mp_head_mr1_010_nm"
+    "normal": "mp_head_mr1_010_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "D3D6DD59",
@@ -647,7 +709,9 @@
     "tint2": 255,
     "drawable": "mp_head_mr1_004",
     "albedo": "mp_head_mr1_sc02_c0_000_ab",
-    "normal": "mp_head_mr1_010_nm"
+    "normal": "mp_head_mr1_010_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "DD95F0D7",
@@ -668,7 +732,9 @@
     "tint2": 255,
     "drawable": "mp_head_mr1_004",
     "albedo": "mp_head_mr1_sc03_c0_000_ab",
-    "normal": "mp_head_mr1_010_nm"
+    "normal": "mp_head_mr1_010_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "AF4B1442",
@@ -689,7 +755,9 @@
     "tint2": 255,
     "drawable": "mp_head_mr1_004",
     "albedo": "mp_head_mr1_sc04_c0_000_ab",
-    "normal": "mp_head_mr1_010_nm"
+    "normal": "mp_head_mr1_010_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "BB432C32",
@@ -710,7 +778,9 @@
     "tint2": 255,
     "drawable": "mp_head_mr1_004",
     "albedo": "mp_head_mr1_sc05_c0_000_ab",
-    "normal": "mp_head_mr1_010_nm"
+    "normal": "mp_head_mr1_010_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "01E78F6D",
@@ -731,7 +801,9 @@
     "tint2": 255,
     "drawable": "mp_head_mr1_005",
     "albedo": "mp_head_mr1_sc08_c0_000_ab",
-    "normal": "mp_head_mr1_000_nm"
+    "normal": "mp_head_mr1_000_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "2BADE2F9",
@@ -752,7 +824,9 @@
     "tint2": 255,
     "drawable": "mp_head_mr1_005",
     "albedo": "mp_head_mr1_sc01_c0_000_ab",
-    "normal": "mp_head_mr1_000_nm"
+    "normal": "mp_head_mr1_000_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "AC2963F2",
@@ -773,7 +847,9 @@
     "tint2": 255,
     "drawable": "mp_head_mr1_005",
     "albedo": "mp_head_mr1_sc02_c0_000_ab",
-    "normal": "mp_head_mr1_000_nm"
+    "normal": "mp_head_mr1_000_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "9DD7C74F",
@@ -794,7 +870,9 @@
     "tint2": 255,
     "drawable": "mp_head_mr1_005",
     "albedo": "mp_head_mr1_sc03_c0_000_ab",
-    "normal": "mp_head_mr1_000_nm"
+    "normal": "mp_head_mr1_000_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "48531C43",
@@ -815,7 +893,9 @@
     "tint2": 255,
     "drawable": "mp_head_mr1_005",
     "albedo": "mp_head_mr1_sc04_c0_000_ab",
-    "normal": "mp_head_mr1_000_nm"
+    "normal": "mp_head_mr1_000_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "729570C7",
@@ -836,7 +916,9 @@
     "tint2": 255,
     "drawable": "mp_head_mr1_005",
     "albedo": "mp_head_mr1_sc05_c0_000_ab",
-    "normal": "mp_head_mr1_000_nm"
+    "normal": "mp_head_mr1_000_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "DFBFB8F4",
@@ -857,7 +939,9 @@
     "tint2": 255,
     "drawable": "mp_head_mr1_006",
     "albedo": "mp_head_mr1_sc08_c0_000_ab",
-    "normal": "mp_head_mr1_009_nm"
+    "normal": "mp_head_mr1_009_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "FEB1F6D4",
@@ -878,7 +962,9 @@
     "tint2": 255,
     "drawable": "mp_head_mr1_006",
     "albedo": "mp_head_mr1_sc01_c0_000_ab",
-    "normal": "mp_head_mr1_009_nm"
+    "normal": "mp_head_mr1_009_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "D879AA64",
@@ -899,7 +985,9 @@
     "tint2": 255,
     "drawable": "mp_head_mr1_006",
     "albedo": "mp_head_mr1_sc02_c0_000_ab",
-    "normal": "mp_head_mr1_009_nm"
+    "normal": "mp_head_mr1_009_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "A156BC1F",
@@ -920,7 +1008,9 @@
     "tint2": 255,
     "drawable": "mp_head_mr1_006",
     "albedo": "mp_head_mr1_sc03_c0_000_ab",
-    "normal": "mp_head_mr1_009_nm"
+    "normal": "mp_head_mr1_009_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "8C099185",
@@ -941,7 +1031,9 @@
     "tint2": 255,
     "drawable": "mp_head_mr1_006",
     "albedo": "mp_head_mr1_sc04_c0_000_ab",
-    "normal": "mp_head_mr1_009_nm"
+    "normal": "mp_head_mr1_009_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "BF97F8A1",
@@ -962,7 +1054,9 @@
     "tint2": 255,
     "drawable": "mp_head_mr1_006",
     "albedo": "mp_head_mr1_sc05_c0_000_ab",
-    "normal": "mp_head_mr1_009_nm"
+    "normal": "mp_head_mr1_009_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "E78826B1",
@@ -983,7 +1077,9 @@
     "tint2": 255,
     "drawable": "mp_head_mr1_007",
     "albedo": "mp_head_mr1_sc08_c0_000_ab",
-    "normal": "mp_head_mr1_002_nm"
+    "normal": "mp_head_mr1_002_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "32E0BD65",
@@ -1004,7 +1100,9 @@
     "tint2": 255,
     "drawable": "mp_head_mr1_007",
     "albedo": "mp_head_mr1_sc01_c0_000_ab",
-    "normal": "mp_head_mr1_002_nm"
+    "normal": "mp_head_mr1_002_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "40365810",
@@ -1025,7 +1123,9 @@
     "tint2": 255,
     "drawable": "mp_head_mr1_007",
     "albedo": "mp_head_mr1_sc02_c0_000_ab",
-    "normal": "mp_head_mr1_002_nm"
+    "normal": "mp_head_mr1_002_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "89556A4D",
@@ -1046,7 +1146,9 @@
     "tint2": 255,
     "drawable": "mp_head_mr1_007",
     "albedo": "mp_head_mr1_sc03_c0_000_ab",
-    "normal": "mp_head_mr1_002_nm"
+    "normal": "mp_head_mr1_002_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "1D1391CB",
@@ -1067,7 +1169,9 @@
     "tint2": 255,
     "drawable": "mp_head_mr1_007",
     "albedo": "mp_head_mr1_sc04_c0_000_ab",
-    "normal": "mp_head_mr1_002_nm"
+    "normal": "mp_head_mr1_002_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "6817A7D2",
@@ -1088,7 +1192,9 @@
     "tint2": 255,
     "drawable": "mp_head_mr1_007",
     "albedo": "mp_head_mr1_sc05_c0_000_ab",
-    "normal": "mp_head_mr1_002_nm"
+    "normal": "mp_head_mr1_002_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "84F3E485",
@@ -1109,7 +1215,9 @@
     "tint2": 255,
     "drawable": "mp_head_mr1_008",
     "albedo": "mp_head_mr1_sc08_c0_000_ab",
-    "normal": "mp_head_mr1_003_nm"
+    "normal": "mp_head_mr1_003_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "8036DB0B",
@@ -1130,7 +1238,9 @@
     "tint2": 255,
     "drawable": "mp_head_mr1_008",
     "albedo": "mp_head_mr1_sc01_c0_000_ab",
-    "normal": "mp_head_mr1_003_nm"
+    "normal": "mp_head_mr1_003_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "91417D14",
@@ -1151,7 +1261,9 @@
     "tint2": 255,
     "drawable": "mp_head_mr1_008",
     "albedo": "mp_head_mr1_sc02_c0_000_ab",
-    "normal": "mp_head_mr1_003_nm"
+    "normal": "mp_head_mr1_003_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "7B035098",
@@ -1172,7 +1284,9 @@
     "tint2": 255,
     "drawable": "mp_head_mr1_008",
     "albedo": "mp_head_mr1_sc03_c0_000_ab",
-    "normal": "mp_head_mr1_003_nm"
+    "normal": "mp_head_mr1_003_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "17E48A5C",
@@ -1193,7 +1307,9 @@
     "tint2": 255,
     "drawable": "mp_head_mr1_008",
     "albedo": "mp_head_mr1_sc04_c0_000_ab",
-    "normal": "mp_head_mr1_003_nm"
+    "normal": "mp_head_mr1_003_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "47A369D9",
@@ -1214,7 +1330,9 @@
     "tint2": 255,
     "drawable": "mp_head_mr1_008",
     "albedo": "mp_head_mr1_sc05_c0_000_ab",
-    "normal": "mp_head_mr1_003_nm"
+    "normal": "mp_head_mr1_003_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "839997EF",
@@ -1235,7 +1353,9 @@
     "tint2": 255,
     "drawable": "mp_head_mr1_009",
     "albedo": "mp_head_mr1_sc08_c0_000_ab",
-    "normal": "mp_head_mr1_007_nm"
+    "normal": "mp_head_mr1_007_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "7150F35A",
@@ -1256,7 +1376,9 @@
     "tint2": 255,
     "drawable": "mp_head_mr1_009",
     "albedo": "mp_head_mr1_sc01_c0_000_ab",
-    "normal": "mp_head_mr1_007_nm"
+    "normal": "mp_head_mr1_007_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "66B5DE24",
@@ -1277,7 +1399,9 @@
     "tint2": 255,
     "drawable": "mp_head_mr1_009",
     "albedo": "mp_head_mr1_sc02_c0_000_ab",
-    "normal": "mp_head_mr1_007_nm"
+    "normal": "mp_head_mr1_007_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "771A7EE9",
@@ -1298,7 +1422,9 @@
     "tint2": 255,
     "drawable": "mp_head_mr1_009",
     "albedo": "mp_head_mr1_sc03_c0_000_ab",
-    "normal": "mp_head_mr1_007_nm"
+    "normal": "mp_head_mr1_007_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "5A5A4569",
@@ -1319,7 +1445,9 @@
     "tint2": 255,
     "drawable": "mp_head_mr1_009",
     "albedo": "mp_head_mr1_sc04_c0_000_ab",
-    "normal": "mp_head_mr1_007_nm"
+    "normal": "mp_head_mr1_007_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "48A3A1FC",
@@ -1340,7 +1468,9 @@
     "tint2": 255,
     "drawable": "mp_head_mr1_009",
     "albedo": "mp_head_mr1_sc05_c0_000_ab",
-    "normal": "mp_head_mr1_007_nm"
+    "normal": "mp_head_mr1_007_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "5E9A394D",
@@ -1361,7 +1491,9 @@
     "tint2": 255,
     "drawable": "mp_head_mr1_010",
     "albedo": "mp_head_mr1_sc08_c0_000_ab",
-    "normal": "mp_head_mr1_008_nm"
+    "normal": "mp_head_mr1_008_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "4C5C14D1",
@@ -1382,7 +1514,9 @@
     "tint2": 255,
     "drawable": "mp_head_mr1_010",
     "albedo": "mp_head_mr1_sc01_c0_000_ab",
-    "normal": "mp_head_mr1_008_nm"
+    "normal": "mp_head_mr1_008_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "7AFEF216",
@@ -1403,7 +1537,9 @@
     "tint2": 255,
     "drawable": "mp_head_mr1_010",
     "albedo": "mp_head_mr1_sc02_c0_000_ab",
-    "normal": "mp_head_mr1_008_nm"
+    "normal": "mp_head_mr1_008_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "68C7CDA8",
@@ -1424,7 +1560,9 @@
     "tint2": 255,
     "drawable": "mp_head_mr1_010",
     "albedo": "mp_head_mr1_sc03_c0_000_ab",
-    "normal": "mp_head_mr1_008_nm"
+    "normal": "mp_head_mr1_008_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "87198A9F",
@@ -1445,7 +1583,9 @@
     "tint2": 255,
     "drawable": "mp_head_mr1_010",
     "albedo": "mp_head_mr1_sc04_c0_000_ab",
-    "normal": "mp_head_mr1_008_nm"
+    "normal": "mp_head_mr1_008_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "9CCAB601",
@@ -1466,7 +1606,9 @@
     "tint2": 255,
     "drawable": "mp_head_mr1_010",
     "albedo": "mp_head_mr1_sc05_c0_000_ab",
-    "normal": "mp_head_mr1_008_nm"
+    "normal": "mp_head_mr1_008_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "7BE9E352",
@@ -1487,7 +1629,9 @@
     "tint2": 255,
     "drawable": "mp_head_mr1_011",
     "albedo": "mp_head_mr1_sc08_c0_000_ab",
-    "normal": "mp_head_mr1_008_nm"
+    "normal": "mp_head_mr1_008_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "4DAD06D9",
@@ -1508,7 +1652,9 @@
     "tint2": 255,
     "drawable": "mp_head_mr1_011",
     "albedo": "mp_head_mr1_sc01_c0_000_ab",
-    "normal": "mp_head_mr1_008_nm"
+    "normal": "mp_head_mr1_008_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "93C69313",
@@ -1529,7 +1675,9 @@
     "tint2": 255,
     "drawable": "mp_head_mr1_011",
     "albedo": "mp_head_mr1_sc02_c0_000_ab",
-    "normal": "mp_head_mr1_008_nm"
+    "normal": "mp_head_mr1_008_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "C6077794",
@@ -1550,7 +1698,9 @@
     "tint2": 255,
     "drawable": "mp_head_mr1_011",
     "albedo": "mp_head_mr1_sc03_c0_000_ab",
-    "normal": "mp_head_mr1_008_nm"
+    "normal": "mp_head_mr1_008_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "F769DA58",
@@ -1571,7 +1721,9 @@
     "tint2": 255,
     "drawable": "mp_head_mr1_011",
     "albedo": "mp_head_mr1_sc04_c0_000_ab",
-    "normal": "mp_head_mr1_008_nm"
+    "normal": "mp_head_mr1_008_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "A9A2BECB",
@@ -1592,7 +1744,9 @@
     "tint2": 255,
     "drawable": "mp_head_mr1_011",
     "albedo": "mp_head_mr1_sc05_c0_000_ab",
-    "normal": "mp_head_mr1_008_nm"
+    "normal": "mp_head_mr1_008_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "8BC1469D",
@@ -1613,7 +1767,9 @@
     "tint2": 255,
     "drawable": "mp_head_mr1_012",
     "albedo": "mp_head_mr1_sc08_c0_000_ab",
-    "normal": "mp_head_mr1_010_nm"
+    "normal": "mp_head_mr1_010_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "51EE52F8",
@@ -1634,7 +1790,9 @@
     "tint2": 255,
     "drawable": "mp_head_mr1_012",
     "albedo": "mp_head_mr1_sc01_c0_000_ab",
-    "normal": "mp_head_mr1_010_nm"
+    "normal": "mp_head_mr1_010_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "613CF195",
@@ -1655,7 +1813,9 @@
     "tint2": 255,
     "drawable": "mp_head_mr1_012",
     "albedo": "mp_head_mr1_sc02_c0_000_ab",
-    "normal": "mp_head_mr1_010_nm"
+    "normal": "mp_head_mr1_010_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "36739C03",
@@ -1676,7 +1836,9 @@
     "tint2": 255,
     "drawable": "mp_head_mr1_012",
     "albedo": "mp_head_mr1_sc03_c0_000_ab",
-    "normal": "mp_head_mr1_010_nm"
+    "normal": "mp_head_mr1_010_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "44C938AE",
@@ -1697,7 +1859,9 @@
     "tint2": 255,
     "drawable": "mp_head_mr1_012",
     "albedo": "mp_head_mr1_sc04_c0_000_ab",
-    "normal": "mp_head_mr1_010_nm"
+    "normal": "mp_head_mr1_010_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "52CC549C",
@@ -1718,7 +1882,9 @@
     "tint2": 255,
     "drawable": "mp_head_mr1_012",
     "albedo": "mp_head_mr1_sc05_c0_000_ab",
-    "normal": "mp_head_mr1_010_nm"
+    "normal": "mp_head_mr1_010_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "970F3409",
@@ -1739,7 +1905,9 @@
     "tint2": 255,
     "drawable": "mp_head_mr1_013",
     "albedo": "mp_head_mr1_sc08_c0_000_ab",
-    "normal": "mp_head_mr1_001_nm"
+    "normal": "mp_head_mr1_001_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "C2978B19",
@@ -1760,7 +1928,9 @@
     "tint2": 255,
     "drawable": "mp_head_mr1_013",
     "albedo": "mp_head_mr1_sc01_c0_000_ab",
-    "normal": "mp_head_mr1_001_nm"
+    "normal": "mp_head_mr1_001_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "F4696EBC",
@@ -1781,7 +1951,9 @@
     "tint2": 255,
     "drawable": "mp_head_mr1_013",
     "albedo": "mp_head_mr1_sc02_c0_000_ab",
-    "normal": "mp_head_mr1_001_nm"
+    "normal": "mp_head_mr1_001_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "4E11220E",
@@ -1802,7 +1974,9 @@
     "tint2": 255,
     "drawable": "mp_head_mr1_013",
     "albedo": "mp_head_mr1_sc03_c0_000_ab",
-    "normal": "mp_head_mr1_001_nm"
+    "normal": "mp_head_mr1_001_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "41FB09E2",
@@ -1823,7 +1997,9 @@
     "tint2": 255,
     "drawable": "mp_head_mr1_013",
     "albedo": "mp_head_mr1_sc04_c0_000_ab",
-    "normal": "mp_head_mr1_001_nm"
+    "normal": "mp_head_mr1_001_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "8B921D0F",
@@ -1844,7 +2020,9 @@
     "tint2": 255,
     "drawable": "mp_head_mr1_013",
     "albedo": "mp_head_mr1_sc05_c0_000_ab",
-    "normal": "mp_head_mr1_001_nm"
+    "normal": "mp_head_mr1_001_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "DC8DA4BA",
@@ -1865,7 +2043,9 @@
     "tint2": 255,
     "drawable": "mp_head_mr1_014",
     "albedo": "mp_head_mr1_sc08_c0_000_ab",
-    "normal": "mp_head_mr1_006_nm"
+    "normal": "mp_head_mr1_006_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "53361205",
@@ -1886,7 +2066,9 @@
     "tint2": 255,
     "drawable": "mp_head_mr1_014",
     "albedo": "mp_head_mr1_sc01_c0_000_ab",
-    "normal": "mp_head_mr1_006_nm"
+    "normal": "mp_head_mr1_006_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "8574F682",
@@ -1907,7 +2089,9 @@
     "tint2": 255,
     "drawable": "mp_head_mr1_014",
     "albedo": "mp_head_mr1_sc02_c0_000_ab",
-    "normal": "mp_head_mr1_006_nm"
+    "normal": "mp_head_mr1_006_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "6EF1C97C",
@@ -1928,7 +2112,9 @@
     "tint2": 255,
     "drawable": "mp_head_mr1_014",
     "albedo": "mp_head_mr1_sc03_c0_000_ab",
-    "normal": "mp_head_mr1_006_nm"
+    "normal": "mp_head_mr1_006_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "20BEAD17",
@@ -1949,7 +2135,9 @@
     "tint2": 255,
     "drawable": "mp_head_mr1_014",
     "albedo": "mp_head_mr1_sc04_c0_000_ab",
-    "normal": "mp_head_mr1_006_nm"
+    "normal": "mp_head_mr1_006_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "A0D12D3E",
@@ -1970,7 +2158,9 @@
     "tint2": 255,
     "drawable": "mp_head_mr1_014",
     "albedo": "mp_head_mr1_sc05_c0_000_ab",
-    "normal": "mp_head_mr1_006_nm"
+    "normal": "mp_head_mr1_006_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "876B1FAE",
@@ -1991,7 +2181,9 @@
     "tint2": 255,
     "drawable": "mp_head_mr1_015",
     "albedo": "mp_head_mr1_sc08_c0_000_ab",
-    "normal": "mp_head_mr1_007_nm"
+    "normal": "mp_head_mr1_007_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "B0B07238",
@@ -2012,7 +2204,9 @@
     "tint2": 255,
     "drawable": "mp_head_mr1_015",
     "albedo": "mp_head_mr1_sc01_c0_000_ab",
-    "normal": "mp_head_mr1_007_nm"
+    "normal": "mp_head_mr1_007_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "A23ED555",
@@ -2033,7 +2227,9 @@
     "tint2": 255,
     "drawable": "mp_head_mr1_015",
     "albedo": "mp_head_mr1_sc02_c0_000_ab",
-    "normal": "mp_head_mr1_007_nm"
+    "normal": "mp_head_mr1_007_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "4BCC286D",
@@ -2054,7 +2250,9 @@
     "tint2": 255,
     "drawable": "mp_head_mr1_015",
     "albedo": "mp_head_mr1_sc03_c0_000_ab",
-    "normal": "mp_head_mr1_007_nm"
+    "normal": "mp_head_mr1_007_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "3E1D8D10",
@@ -2075,7 +2273,9 @@
     "tint2": 255,
     "drawable": "mp_head_mr1_015",
     "albedo": "mp_head_mr1_sc04_c0_000_ab",
-    "normal": "mp_head_mr1_007_nm"
+    "normal": "mp_head_mr1_007_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "6B50E776",
@@ -2096,7 +2296,9 @@
     "tint2": 255,
     "drawable": "mp_head_mr1_015",
     "albedo": "mp_head_mr1_sc05_c0_000_ab",
-    "normal": "mp_head_mr1_007_nm"
+    "normal": "mp_head_mr1_007_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "CA6DABEE",
@@ -2117,7 +2319,9 @@
     "tint2": 255,
     "drawable": "mp_head_mr1_018",
     "albedo": "mp_head_mr1_sc08_c0_000_ab",
-    "normal": "mp_head_mr1_000_nm"
+    "normal": "mp_head_mr1_000_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "BC310F75",
@@ -2138,7 +2342,9 @@
     "tint2": 255,
     "drawable": "mp_head_mr1_018",
     "albedo": "mp_head_mr1_sc01_c0_000_ab",
-    "normal": "mp_head_mr1_000_nm"
+    "normal": "mp_head_mr1_000_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "E4FF6111",
@@ -2159,7 +2365,9 @@
     "tint2": 255,
     "drawable": "mp_head_mr1_018",
     "albedo": "mp_head_mr1_sc02_c0_000_ab",
-    "normal": "mp_head_mr1_000_nm"
+    "normal": "mp_head_mr1_000_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "D7CDC6AE",
@@ -2180,7 +2388,9 @@
     "tint2": 255,
     "drawable": "mp_head_mr1_018",
     "albedo": "mp_head_mr1_sc03_c0_000_ab",
-    "normal": "mp_head_mr1_000_nm"
+    "normal": "mp_head_mr1_000_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "1EF1D4F5",
@@ -2201,7 +2411,9 @@
     "tint2": 255,
     "drawable": "mp_head_mr1_018",
     "albedo": "mp_head_mr1_sc04_c0_000_ab",
-    "normal": "mp_head_mr1_000_nm"
+    "normal": "mp_head_mr1_000_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "101E374E",
@@ -2222,7 +2434,9 @@
     "tint2": 255,
     "drawable": "mp_head_mr1_018",
     "albedo": "mp_head_mr1_sc05_c0_000_ab",
-    "normal": "mp_head_mr1_000_nm"
+    "normal": "mp_head_mr1_000_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "7D7AA347",
@@ -2243,7 +2457,9 @@
     "tint2": 255,
     "drawable": "mp_head_mr1_021",
     "albedo": "mp_head_mr1_sc08_c0_000_ab",
-    "normal": "mp_head_mr1_000_nm"
+    "normal": "mp_head_mr1_000_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "93C8CFE3",
@@ -2264,7 +2480,9 @@
     "tint2": 255,
     "drawable": "mp_head_mr1_021",
     "albedo": "mp_head_mr1_sc01_c0_000_ab",
-    "normal": "mp_head_mr1_000_nm"
+    "normal": "mp_head_mr1_000_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "D89ED98E",
@@ -2285,7 +2503,9 @@
     "tint2": 255,
     "drawable": "mp_head_mr1_021",
     "albedo": "mp_head_mr1_sc02_c0_000_ab",
-    "normal": "mp_head_mr1_000_nm"
+    "normal": "mp_head_mr1_000_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "6DF5043C",
@@ -2306,7 +2526,9 @@
     "tint2": 255,
     "drawable": "mp_head_mr1_021",
     "albedo": "mp_head_mr1_sc03_c0_000_ab",
-    "normal": "mp_head_mr1_000_nm"
+    "normal": "mp_head_mr1_000_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "465D3511",
@@ -2327,7 +2549,9 @@
     "tint2": 255,
     "drawable": "mp_head_mr1_021",
     "albedo": "mp_head_mr1_sc04_c0_000_ab",
-    "normal": "mp_head_mr1_000_nm"
+    "normal": "mp_head_mr1_000_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "54CED1F4",
@@ -2348,7 +2572,9 @@
     "tint2": 255,
     "drawable": "mp_head_mr1_021",
     "albedo": "mp_head_mr1_sc05_c0_000_ab",
-    "normal": "mp_head_mr1_000_nm"
+    "normal": "mp_head_mr1_000_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "E79A7372",
@@ -2369,7 +2595,9 @@
     "tint2": 255,
     "drawable": "mp_head_mr1_022",
     "albedo": "mp_head_mr1_sc08_c0_000_ab",
-    "normal": "mp_head_mr1_000_nm"
+    "normal": "mp_head_mr1_000_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "B9C497C7",
@@ -2390,7 +2618,9 @@
     "tint2": 255,
     "drawable": "mp_head_mr1_022",
     "albedo": "mp_head_mr1_sc01_c0_000_ab",
-    "normal": "mp_head_mr1_000_nm"
+    "normal": "mp_head_mr1_000_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "3625908B",
@@ -2411,7 +2641,9 @@
     "tint2": 255,
     "drawable": "mp_head_mr1_022",
     "albedo": "mp_head_mr1_sc02_c0_000_ab",
-    "normal": "mp_head_mr1_000_nm"
+    "normal": "mp_head_mr1_000_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "48133466",
@@ -2432,7 +2664,9 @@
     "tint2": 255,
     "drawable": "mp_head_mr1_022",
     "albedo": "mp_head_mr1_sc03_c0_000_ab",
-    "normal": "mp_head_mr1_000_nm"
+    "normal": "mp_head_mr1_000_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "9AD0D9E0",
@@ -2453,7 +2687,9 @@
     "tint2": 255,
     "drawable": "mp_head_mr1_022",
     "albedo": "mp_head_mr1_sc04_c0_000_ab",
-    "normal": "mp_head_mr1_000_nm"
+    "normal": "mp_head_mr1_000_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "AC877D4D",
@@ -2474,7 +2710,9 @@
     "tint2": 255,
     "drawable": "mp_head_mr1_022",
     "albedo": "mp_head_mr1_sc05_c0_000_ab",
-    "normal": "mp_head_mr1_000_nm"
+    "normal": "mp_head_mr1_000_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "A11747C5",
@@ -2495,7 +2733,9 @@
     "tint2": 255,
     "drawable": "mp_head_mr1_025",
     "albedo": "mp_head_mr1_sc08_c0_000_ab",
-    "normal": "mp_head_mr1_000_nm"
+    "normal": "mp_head_mr1_000_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "89601857",
@@ -2516,7 +2756,9 @@
     "tint2": 255,
     "drawable": "mp_head_mr1_025",
     "albedo": "mp_head_mr1_sc01_c0_000_ab",
-    "normal": "mp_head_mr1_000_nm"
+    "normal": "mp_head_mr1_000_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "9D604053",
@@ -2537,7 +2779,9 @@
     "tint2": 255,
     "drawable": "mp_head_mr1_025",
     "albedo": "mp_head_mr1_sc02_c0_000_ab",
-    "normal": "mp_head_mr1_000_nm"
+    "normal": "mp_head_mr1_000_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "AFCDE52E",
@@ -2558,7 +2802,9 @@
     "tint2": 255,
     "drawable": "mp_head_mr1_025",
     "albedo": "mp_head_mr1_sc03_c0_000_ab",
-    "normal": "mp_head_mr1_000_nm"
+    "normal": "mp_head_mr1_000_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "421209B8",
@@ -2579,7 +2825,9 @@
     "tint2": 255,
     "drawable": "mp_head_mr1_025",
     "albedo": "mp_head_mr1_sc04_c0_000_ab",
-    "normal": "mp_head_mr1_000_nm"
+    "normal": "mp_head_mr1_000_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "5248AA25",
@@ -2600,7 +2848,9 @@
     "tint2": 255,
     "drawable": "mp_head_mr1_025",
     "albedo": "mp_head_mr1_sc05_c0_000_ab",
-    "normal": "mp_head_mr1_000_nm"
+    "normal": "mp_head_mr1_000_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "27A4DC22",
@@ -2621,7 +2871,9 @@
     "tint2": 255,
     "drawable": "mp_head_mr1_028",
     "albedo": "mp_head_mr1_sc08_c0_000_ab",
-    "normal": "mp_head_mr1_000_nm"
+    "normal": "mp_head_mr1_000_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "C00E8CF7",
@@ -2642,7 +2894,9 @@
     "tint2": 255,
     "drawable": "mp_head_mr1_028",
     "albedo": "mp_head_mr1_sc01_c0_000_ab",
-    "normal": "mp_head_mr1_000_nm"
+    "normal": "mp_head_mr1_000_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "CF482B6A",
@@ -2663,7 +2917,9 @@
     "tint2": 255,
     "drawable": "mp_head_mr1_028",
     "albedo": "mp_head_mr1_sc02_c0_000_ab",
-    "normal": "mp_head_mr1_000_nm"
+    "normal": "mp_head_mr1_000_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "158CB7F2",
@@ -2684,7 +2940,9 @@
     "tint2": 255,
     "drawable": "mp_head_mr1_028",
     "albedo": "mp_head_mr1_sc03_c0_000_ab",
-    "normal": "mp_head_mr1_000_nm"
+    "normal": "mp_head_mr1_000_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "E2BED257",
@@ -2705,7 +2963,9 @@
     "tint2": 255,
     "drawable": "mp_head_mr1_028",
     "albedo": "mp_head_mr1_sc04_c0_000_ab",
-    "normal": "mp_head_mr1_000_nm"
+    "normal": "mp_head_mr1_000_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "0FAEAC26",
@@ -2726,7 +2986,9 @@
     "tint2": 255,
     "drawable": "mp_head_mr1_028",
     "albedo": "mp_head_mr1_sc05_c0_000_ab",
-    "normal": "mp_head_mr1_000_nm"
+    "normal": "mp_head_mr1_000_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "39D2B100",
@@ -2745,7 +3007,9 @@
     "tint2": 0,
     "drawable": "mp_predator_02_mr1_head_000",
     "albedo": 3244178672,
-    "normal": "head_mr1_freak_018_nm"
+    "normal": "head_mr1_freak_018_nm",
+    "swatchTextureHex": "A36A8DFB",
+    "swatchTexture": "uisw_leather_pt000"
   },
   {
     "componentHex": "76C72AE8",
@@ -2764,7 +3028,9 @@
     "tint2": 1,
     "drawable": "mp_predator_02_mr1_head_000",
     "albedo": 3244178672,
-    "normal": "head_mr1_freak_018_nm"
+    "normal": "head_mr1_freak_018_nm",
+    "swatchTextureHex": "A36A8DFB",
+    "swatchTexture": "uisw_leather_pt000"
   },
   {
     "componentHex": "5C8FF67A",
@@ -2783,7 +3049,9 @@
     "tint2": 2,
     "drawable": "mp_predator_02_mr1_head_000",
     "albedo": 3244178672,
-    "normal": "head_mr1_freak_018_nm"
+    "normal": "head_mr1_freak_018_nm",
+    "swatchTextureHex": "A36A8DFB",
+    "swatchTexture": "uisw_leather_pt000"
   },
   {
     "componentHex": "978E6C76",
@@ -2802,7 +3070,9 @@
     "tint2": 3,
     "drawable": "mp_predator_02_mr1_head_000",
     "albedo": 3244178672,
-    "normal": "head_mr1_freak_018_nm"
+    "normal": "head_mr1_freak_018_nm",
+    "swatchTextureHex": "A36A8DFB",
+    "swatchTexture": "uisw_leather_pt000"
   },
   {
     "componentHex": "9D251F06",
@@ -2823,7 +3093,9 @@
     "tint2": 255,
     "drawable": "mp_head_fr1_001",
     "albedo": "mp_head_fr1_sc08_c0_000_ab",
-    "normal": "mp_head_fr1_004_nm"
+    "normal": "mp_head_fr1_004_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "A6F0329C",
@@ -2844,7 +3116,9 @@
     "tint2": 255,
     "drawable": "mp_head_fr1_001",
     "albedo": "mp_head_fr1_sc01_c0_000_ab",
-    "normal": "mp_head_fr1_004_nm"
+    "normal": "mp_head_fr1_004_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "B00FC4DB",
@@ -2865,7 +3139,9 @@
     "tint2": 255,
     "drawable": "mp_head_fr1_001",
     "albedo": "mp_head_fr1_sc02_c0_000_ab",
-    "normal": "mp_head_fr1_004_nm"
+    "normal": "mp_head_fr1_004_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "C9D5F867",
@@ -2886,7 +3162,9 @@
     "tint2": 255,
     "drawable": "mp_head_fr1_001",
     "albedo": "mp_head_fr1_sc03_c0_000_ab",
-    "normal": "mp_head_fr1_004_nm"
+    "normal": "mp_head_fr1_004_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "544D8D50",
@@ -2907,7 +3185,9 @@
     "tint2": 255,
     "drawable": "mp_head_fr1_001",
     "albedo": "mp_head_fr1_sc04_c0_000_ab",
-    "normal": "mp_head_fr1_004_nm"
+    "normal": "mp_head_fr1_004_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "5DC6A042",
@@ -2928,7 +3208,9 @@
     "tint2": 255,
     "drawable": "mp_head_fr1_001",
     "albedo": "mp_head_fr1_sc05_c0_000_ab",
-    "normal": "mp_head_fr1_004_nm"
+    "normal": "mp_head_fr1_004_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "30378AB3",
@@ -2949,7 +3231,9 @@
     "tint2": 255,
     "drawable": "mp_head_fr1_002",
     "albedo": "mp_head_fr1_sc08_c0_000_ab",
-    "normal": "mp_head_fr1_010_nm"
+    "normal": "mp_head_fr1_010_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "65F9F637",
@@ -2970,7 +3254,9 @@
     "tint2": 255,
     "drawable": "mp_head_fr1_002",
     "albedo": "mp_head_fr1_sc01_c0_000_ab",
-    "normal": "mp_head_fr1_010_nm"
+    "normal": "mp_head_fr1_010_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "E64076CE",
@@ -2991,7 +3277,9 @@
     "tint2": 255,
     "drawable": "mp_head_fr1_002",
     "albedo": "mp_head_fr1_sc02_c0_000_ab",
-    "normal": "mp_head_fr1_010_nm"
+    "normal": "mp_head_fr1_010_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "D47BD345",
@@ -3012,7 +3300,9 @@
     "tint2": 255,
     "drawable": "mp_head_fr1_002",
     "albedo": "mp_head_fr1_sc03_c0_000_ab",
-    "normal": "mp_head_fr1_010_nm"
+    "normal": "mp_head_fr1_010_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "8A7F3F41",
@@ -3033,7 +3323,9 @@
     "tint2": 255,
     "drawable": "mp_head_fr1_002",
     "albedo": "mp_head_fr1_sc04_c0_000_ab",
-    "normal": "mp_head_fr1_010_nm"
+    "normal": "mp_head_fr1_010_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "9D3F64C1",
@@ -3054,7 +3346,9 @@
     "tint2": 255,
     "drawable": "mp_head_fr1_002",
     "albedo": "mp_head_fr1_sc05_c0_000_ab",
-    "normal": "mp_head_fr1_010_nm"
+    "normal": "mp_head_fr1_010_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "AAC2D8A9",
@@ -3075,7 +3369,9 @@
     "tint2": 255,
     "drawable": "mp_head_fr1_003",
     "albedo": "mp_head_fr1_sc08_c0_000_ab",
-    "normal": "mp_head_fr1_008_nm"
+    "normal": "mp_head_fr1_008_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "B8F8F515",
@@ -3096,7 +3392,9 @@
     "tint2": 255,
     "drawable": "mp_head_fr1_003",
     "albedo": "mp_head_fr1_sc01_c0_000_ab",
-    "normal": "mp_head_fr1_008_nm"
+    "normal": "mp_head_fr1_008_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "87371192",
@@ -3117,7 +3415,9 @@
     "tint2": 255,
     "drawable": "mp_head_fr1_003",
     "albedo": "mp_head_fr1_sc02_c0_000_ab",
-    "normal": "mp_head_fr1_008_nm"
+    "normal": "mp_head_fr1_008_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "65A5CE70",
@@ -3138,7 +3438,9 @@
     "tint2": 255,
     "drawable": "mp_head_fr1_003",
     "albedo": "mp_head_fr1_sc03_c0_000_ab",
-    "normal": "mp_head_fr1_008_nm"
+    "normal": "mp_head_fr1_008_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "75AF6E83",
@@ -3159,7 +3461,9 @@
     "tint2": 255,
     "drawable": "mp_head_fr1_003",
     "albedo": "mp_head_fr1_sc04_c0_000_ab",
-    "normal": "mp_head_fr1_008_nm"
+    "normal": "mp_head_fr1_008_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "43F08B06",
@@ -3180,7 +3484,9 @@
     "tint2": 255,
     "drawable": "mp_head_fr1_003",
     "albedo": "mp_head_fr1_sc05_c0_000_ab",
-    "normal": "mp_head_fr1_008_nm"
+    "normal": "mp_head_fr1_008_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "F8332625",
@@ -3201,7 +3507,9 @@
     "tint2": 255,
     "drawable": "mp_head_fr1_004",
     "albedo": "mp_head_fr1_sc08_c0_000_ab",
-    "normal": "mp_head_fr1_010_nm"
+    "normal": "mp_head_fr1_010_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "E6648288",
@@ -3222,7 +3530,9 @@
     "tint2": 255,
     "drawable": "mp_head_fr1_004",
     "albedo": "mp_head_fr1_sc01_c0_000_ab",
-    "normal": "mp_head_fr1_010_nm"
+    "normal": "mp_head_fr1_010_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "2E1791E1",
@@ -3243,7 +3553,9 @@
     "tint2": 255,
     "drawable": "mp_head_fr1_004",
     "albedo": "mp_head_fr1_sc02_c0_000_ab",
-    "normal": "mp_head_fr1_010_nm"
+    "normal": "mp_head_fr1_010_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "6369FC85",
@@ -3264,7 +3576,9 @@
     "tint2": 255,
     "drawable": "mp_head_fr1_004",
     "albedo": "mp_head_fr1_sc03_c0_000_ab",
-    "normal": "mp_head_fr1_010_nm"
+    "normal": "mp_head_fr1_010_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "1C32EE08",
@@ -3285,7 +3599,9 @@
     "tint2": 255,
     "drawable": "mp_head_fr1_004",
     "albedo": "mp_head_fr1_sc04_c0_000_ab",
-    "normal": "mp_head_fr1_010_nm"
+    "normal": "mp_head_fr1_010_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "E72483EC",
@@ -3306,7 +3622,9 @@
     "tint2": 255,
     "drawable": "mp_head_fr1_004",
     "albedo": "mp_head_fr1_sc05_c0_000_ab",
-    "normal": "mp_head_fr1_010_nm"
+    "normal": "mp_head_fr1_010_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "ED123FBD",
@@ -3327,7 +3645,9 @@
     "tint2": 255,
     "drawable": "mp_head_fr1_005",
     "albedo": "mp_head_fr1_sc08_c0_000_ab",
-    "normal": "mp_head_fr1_002_nm"
+    "normal": "mp_head_fr1_002_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "11F10982",
@@ -3348,7 +3668,9 @@
     "tint2": 255,
     "drawable": "mp_head_fr1_005",
     "albedo": "mp_head_fr1_sc01_c0_000_ab",
-    "normal": "mp_head_fr1_002_nm"
+    "normal": "mp_head_fr1_002_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "477D749A",
@@ -3369,7 +3691,9 @@
     "tint2": 255,
     "drawable": "mp_head_fr1_005",
     "albedo": "mp_head_fr1_sc02_c0_000_ab",
-    "normal": "mp_head_fr1_002_nm"
+    "normal": "mp_head_fr1_002_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "A4372E08",
@@ -3390,7 +3714,9 @@
     "tint2": 255,
     "drawable": "mp_head_fr1_005",
     "albedo": "mp_head_fr1_sc03_c0_000_ab",
-    "normal": "mp_head_fr1_002_nm"
+    "normal": "mp_head_fr1_002_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "93F68D87",
@@ -3411,7 +3737,9 @@
     "tint2": 255,
     "drawable": "mp_head_fr1_005",
     "albedo": "mp_head_fr1_sc04_c0_000_ab",
-    "normal": "mp_head_fr1_002_nm"
+    "normal": "mp_head_fr1_002_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "011567C3",
@@ -3432,7 +3760,9 @@
     "tint2": 255,
     "drawable": "mp_head_fr1_005",
     "albedo": "mp_head_fr1_sc05_c0_000_ab",
-    "normal": "mp_head_fr1_002_nm"
+    "normal": "mp_head_fr1_002_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "6D06466A",
@@ -3453,7 +3783,9 @@
     "tint2": 255,
     "drawable": "mp_head_fr1_006",
     "albedo": "mp_head_fr1_sc08_c0_000_ab",
-    "normal": "mp_head_fr1_010_nm"
+    "normal": "mp_head_fr1_010_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "B2155087",
@@ -3474,7 +3806,9 @@
     "tint2": 255,
     "drawable": "mp_head_fr1_006",
     "albedo": "mp_head_fr1_sc01_c0_000_ab",
-    "normal": "mp_head_fr1_010_nm"
+    "normal": "mp_head_fr1_010_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "C9677F2B",
@@ -3495,7 +3829,9 @@
     "tint2": 255,
     "drawable": "mp_head_fr1_006",
     "albedo": "mp_head_fr1_sc02_c0_000_ab",
-    "normal": "mp_head_fr1_010_nm"
+    "normal": "mp_head_fr1_010_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "43857351",
@@ -3516,7 +3852,9 @@
     "tint2": 255,
     "drawable": "mp_head_fr1_006",
     "albedo": "mp_head_fr1_sc03_c0_000_ab",
-    "normal": "mp_head_fr1_010_nm"
+    "normal": "mp_head_fr1_010_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "11F69034",
@@ -3537,7 +3875,9 @@
     "tint2": 255,
     "drawable": "mp_head_fr1_006",
     "albedo": "mp_head_fr1_sc04_c0_000_ab",
-    "normal": "mp_head_fr1_010_nm"
+    "normal": "mp_head_fr1_010_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "5F192A74",
@@ -3558,7 +3898,9 @@
     "tint2": 255,
     "drawable": "mp_head_fr1_006",
     "albedo": "mp_head_fr1_sc05_c0_000_ab",
-    "normal": "mp_head_fr1_010_nm"
+    "normal": "mp_head_fr1_010_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "76ACA91E",
@@ -3579,7 +3921,9 @@
     "tint2": 255,
     "drawable": "mp_head_fr1_007",
     "albedo": "mp_head_fr1_sc08_c0_000_ab",
-    "normal": "mp_head_fr1_003_nm"
+    "normal": "mp_head_fr1_003_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "C770CAA5",
@@ -3600,7 +3944,9 @@
     "tint2": 255,
     "drawable": "mp_head_fr1_007",
     "albedo": "mp_head_fr1_sc01_c0_000_ab",
-    "normal": "mp_head_fr1_003_nm"
+    "normal": "mp_head_fr1_003_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "B240A051",
@@ -3621,7 +3967,9 @@
     "tint2": 255,
     "drawable": "mp_head_fr1_007",
     "albedo": "mp_head_fr1_sc02_c0_000_ab",
-    "normal": "mp_head_fr1_003_nm"
+    "normal": "mp_head_fr1_003_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "047BC4C6",
@@ -3642,7 +3990,9 @@
     "tint2": 255,
     "drawable": "mp_head_fr1_007",
     "albedo": "mp_head_fr1_sc03_c0_000_ab",
-    "normal": "mp_head_fr1_003_nm"
+    "normal": "mp_head_fr1_003_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "16C5E95A",
@@ -3663,7 +4013,9 @@
     "tint2": 255,
     "drawable": "mp_head_fr1_007",
     "albedo": "mp_head_fr1_sc04_c0_000_ab",
-    "normal": "mp_head_fr1_003_nm"
+    "normal": "mp_head_fr1_003_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "E8E50D99",
@@ -3684,7 +4036,9 @@
     "tint2": 255,
     "drawable": "mp_head_fr1_007",
     "albedo": "mp_head_fr1_sc05_c0_000_ab",
-    "normal": "mp_head_fr1_003_nm"
+    "normal": "mp_head_fr1_003_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "478C7817",
@@ -3705,7 +4059,9 @@
     "tint2": 255,
     "drawable": "mp_head_fr1_008",
     "albedo": "mp_head_fr1_sc08_c0_000_ab",
-    "normal": "mp_head_fr1_001_nm"
+    "normal": "mp_head_fr1_001_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "02AE6E5C",
@@ -3726,7 +4082,9 @@
     "tint2": 255,
     "drawable": "mp_head_fr1_008",
     "albedo": "mp_head_fr1_sc01_c0_000_ab",
-    "normal": "mp_head_fr1_001_nm"
+    "normal": "mp_head_fr1_001_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "E4EE32DC",
@@ -3747,7 +4105,9 @@
     "tint2": 255,
     "drawable": "mp_head_fr1_008",
     "albedo": "mp_head_fr1_sc02_c0_000_ab",
-    "normal": "mp_head_fr1_001_nm"
+    "normal": "mp_head_fr1_001_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "30B5C9FA",
@@ -3768,7 +4128,9 @@
     "tint2": 255,
     "drawable": "mp_head_fr1_008",
     "albedo": "mp_head_fr1_sc03_c0_000_ab",
-    "normal": "mp_head_fr1_001_nm"
+    "normal": "mp_head_fr1_001_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "169B95C6",
@@ -3789,7 +4151,9 @@
     "tint2": 255,
     "drawable": "mp_head_fr1_008",
     "albedo": "mp_head_fr1_sc04_c0_000_ab",
-    "normal": "mp_head_fr1_001_nm"
+    "normal": "mp_head_fr1_001_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "CC66815D",
@@ -3810,7 +4174,9 @@
     "tint2": 255,
     "drawable": "mp_head_fr1_008",
     "albedo": "mp_head_fr1_sc05_c0_000_ab",
-    "normal": "mp_head_fr1_001_nm"
+    "normal": "mp_head_fr1_001_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "B3BA8C05",
@@ -3831,7 +4197,9 @@
     "tint2": 255,
     "drawable": "mp_head_fr1_009",
     "albedo": "mp_head_fr1_sc08_c0_000_ab",
-    "normal": "mp_head_fr1_002_nm"
+    "normal": "mp_head_fr1_002_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "BFAFA3EF",
@@ -3852,7 +4220,9 @@
     "tint2": 255,
     "drawable": "mp_head_fr1_009",
     "albedo": "mp_head_fr1_sc01_c0_000_ab",
-    "normal": "mp_head_fr1_002_nm"
+    "normal": "mp_head_fr1_002_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "886DB564",
@@ -3873,7 +4243,9 @@
     "tint2": 255,
     "drawable": "mp_head_fr1_009",
     "albedo": "mp_head_fr1_sc02_c0_000_ab",
-    "normal": "mp_head_fr1_002_nm"
+    "normal": "mp_head_fr1_002_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "E23268F4",
@@ -3894,7 +4266,9 @@
     "tint2": 255,
     "drawable": "mp_head_fr1_009",
     "albedo": "mp_head_fr1_sc03_c0_000_ab",
-    "normal": "mp_head_fr1_002_nm"
+    "normal": "mp_head_fr1_002_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "40E72684",
@@ -3915,7 +4289,9 @@
     "tint2": 255,
     "drawable": "mp_head_fr1_009",
     "albedo": "mp_head_fr1_sc04_c0_000_ab",
-    "normal": "mp_head_fr1_002_nm"
+    "normal": "mp_head_fr1_002_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "9B4BDB4C",
@@ -3936,7 +4312,9 @@
     "tint2": 255,
     "drawable": "mp_head_fr1_009",
     "albedo": "mp_head_fr1_sc05_c0_000_ab",
-    "normal": "mp_head_fr1_002_nm"
+    "normal": "mp_head_fr1_002_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "7C1A194E",
@@ -3957,7 +4335,9 @@
     "tint2": 255,
     "drawable": "mp_head_fr1_010",
     "albedo": "mp_head_fr1_sc08_c0_000_ab",
-    "normal": "mp_head_fr1_007_nm"
+    "normal": "mp_head_fr1_007_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "8E53BDC1",
@@ -3978,7 +4358,9 @@
     "tint2": 255,
     "drawable": "mp_head_fr1_010",
     "albedo": "mp_head_fr1_sc01_c0_000_ab",
-    "normal": "mp_head_fr1_007_nm"
+    "normal": "mp_head_fr1_007_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "0C2E3978",
@@ -3999,7 +4381,9 @@
     "tint2": 255,
     "drawable": "mp_head_fr1_010",
     "albedo": "mp_head_fr1_sc02_c0_000_ab",
-    "normal": "mp_head_fr1_007_nm"
+    "normal": "mp_head_fr1_007_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "1E6FDDFB",
@@ -4020,7 +4404,9 @@
     "tint2": 255,
     "drawable": "mp_head_fr1_010",
     "albedo": "mp_head_fr1_sc03_c0_000_ab",
-    "normal": "mp_head_fr1_007_nm"
+    "normal": "mp_head_fr1_007_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "22B4E685",
@@ -4041,7 +4427,9 @@
     "tint2": 255,
     "drawable": "mp_head_fr1_010",
     "albedo": "mp_head_fr1_sc04_c0_000_ab",
-    "normal": "mp_head_fr1_007_nm"
+    "normal": "mp_head_fr1_007_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "34FC0B13",
@@ -4062,7 +4450,9 @@
     "tint2": 255,
     "drawable": "mp_head_fr1_010",
     "albedo": "mp_head_fr1_sc05_c0_000_ab",
-    "normal": "mp_head_fr1_007_nm"
+    "normal": "mp_head_fr1_007_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "772F8047",
@@ -4083,7 +4473,9 @@
     "tint2": 255,
     "drawable": "mp_head_fr1_011",
     "albedo": "mp_head_fr1_sc08_c0_000_ab",
-    "normal": "mp_head_fr1_004_nm"
+    "normal": "mp_head_fr1_004_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "ADD7ED93",
@@ -4104,7 +4496,9 @@
     "tint2": 255,
     "drawable": "mp_head_fr1_011",
     "albedo": "mp_head_fr1_sc01_c0_000_ab",
-    "normal": "mp_head_fr1_004_nm"
+    "normal": "mp_head_fr1_004_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "BB8088E4",
@@ -4125,7 +4519,9 @@
     "tint2": 255,
     "drawable": "mp_head_fr1_011",
     "albedo": "mp_head_fr1_sc02_c0_000_ab",
-    "normal": "mp_head_fr1_004_nm"
+    "normal": "mp_head_fr1_004_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "C93AA458",
@@ -4146,7 +4542,9 @@
     "tint2": 255,
     "drawable": "mp_head_fr1_011",
     "albedo": "mp_head_fr1_sc03_c0_000_ab",
-    "normal": "mp_head_fr1_004_nm"
+    "normal": "mp_head_fr1_004_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "F70CFFFC",
@@ -4167,7 +4565,9 @@
     "tint2": 255,
     "drawable": "mp_head_fr1_011",
     "albedo": "mp_head_fr1_sc04_c0_000_ab",
-    "normal": "mp_head_fr1_004_nm"
+    "normal": "mp_head_fr1_004_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "093DA499",
@@ -4188,7 +4588,9 @@
     "tint2": 255,
     "drawable": "mp_head_fr1_011",
     "albedo": "mp_head_fr1_sc05_c0_000_ab",
-    "normal": "mp_head_fr1_004_nm"
+    "normal": "mp_head_fr1_004_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "A661B163",
@@ -4209,7 +4611,9 @@
     "tint2": 255,
     "drawable": "mp_head_fr1_012",
     "albedo": "mp_head_fr1_sc08_c0_000_ab",
-    "normal": "mp_head_fr1_010_nm"
+    "normal": "mp_head_fr1_010_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "4A52F943",
@@ -4230,7 +4634,9 @@
     "tint2": 255,
     "drawable": "mp_head_fr1_012",
     "albedo": "mp_head_fr1_sc01_c0_000_ab",
-    "normal": "mp_head_fr1_010_nm"
+    "normal": "mp_head_fr1_010_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "1C851DA8",
@@ -4251,7 +4657,9 @@
     "tint2": 255,
     "drawable": "mp_head_fr1_012",
     "albedo": "mp_head_fr1_sc02_c0_000_ab",
-    "normal": "mp_head_fr1_010_nm"
+    "normal": "mp_head_fr1_010_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "DEE3A266",
@@ -4272,7 +4680,9 @@
     "tint2": 255,
     "drawable": "mp_head_fr1_012",
     "albedo": "mp_head_fr1_sc03_c0_000_ab",
-    "normal": "mp_head_fr1_010_nm"
+    "normal": "mp_head_fr1_010_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "3129C6F1",
@@ -4293,7 +4703,9 @@
     "tint2": 255,
     "drawable": "mp_head_fr1_012",
     "albedo": "mp_head_fr1_sc04_c0_000_ab",
-    "normal": "mp_head_fr1_010_nm"
+    "normal": "mp_head_fr1_010_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "89B0F7FE",
@@ -4314,7 +4726,9 @@
     "tint2": 255,
     "drawable": "mp_head_fr1_012",
     "albedo": "mp_head_fr1_sc05_c0_000_ab",
-    "normal": "mp_head_fr1_010_nm"
+    "normal": "mp_head_fr1_010_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "18665C91",
@@ -4335,7 +4749,9 @@
     "tint2": 255,
     "drawable": "mp_head_fr1_013",
     "albedo": "mp_head_fr1_sc08_c0_000_ab",
-    "normal": "mp_head_fr1_001_nm"
+    "normal": "mp_head_fr1_001_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "C71039E6",
@@ -4356,7 +4772,9 @@
     "tint2": 255,
     "drawable": "mp_head_fr1_013",
     "albedo": "mp_head_fr1_sc01_c0_000_ab",
-    "normal": "mp_head_fr1_001_nm"
+    "normal": "mp_head_fr1_001_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "6D8686E8",
@@ -4377,7 +4795,9 @@
     "tint2": 255,
     "drawable": "mp_head_fr1_013",
     "albedo": "mp_head_fr1_sc02_c0_000_ab",
-    "normal": "mp_head_fr1_001_nm"
+    "normal": "mp_head_fr1_001_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "98B8DD4C",
@@ -4398,7 +4818,9 @@
     "tint2": 255,
     "drawable": "mp_head_fr1_013",
     "albedo": "mp_head_fr1_sc03_c0_000_ab",
-    "normal": "mp_head_fr1_001_nm"
+    "normal": "mp_head_fr1_001_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "D150CE67",
@@ -4419,7 +4841,9 @@
     "tint2": 255,
     "drawable": "mp_head_fr1_013",
     "albedo": "mp_head_fr1_sc04_c0_000_ab",
-    "normal": "mp_head_fr1_001_nm"
+    "normal": "mp_head_fr1_001_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "7F2AAA30",
@@ -4440,7 +4864,9 @@
     "tint2": 255,
     "drawable": "mp_head_fr1_013",
     "albedo": "mp_head_fr1_sc05_c0_000_ab",
-    "normal": "mp_head_fr1_001_nm"
+    "normal": "mp_head_fr1_001_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "20F6540D",
@@ -4461,7 +4887,9 @@
     "tint2": 255,
     "drawable": "mp_head_fr1_014",
     "albedo": "mp_head_fr1_sc08_c0_000_ab",
-    "normal": "mp_head_fr1_003_nm"
+    "normal": "mp_head_fr1_003_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "0CDC2BD9",
@@ -4482,7 +4910,9 @@
     "tint2": 255,
     "drawable": "mp_head_fr1_014",
     "albedo": "mp_head_fr1_sc01_c0_000_ab",
-    "normal": "mp_head_fr1_003_nm"
+    "normal": "mp_head_fr1_003_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "FEA98F74",
@@ -4503,7 +4933,9 @@
     "tint2": 255,
     "drawable": "mp_head_fr1_014",
     "albedo": "mp_head_fr1_sc02_c0_000_ab",
-    "normal": "mp_head_fr1_003_nm"
+    "normal": "mp_head_fr1_003_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "5A274672",
@@ -4524,7 +4956,9 @@
     "tint2": 255,
     "drawable": "mp_head_fr1_014",
     "albedo": "mp_head_fr1_sc03_c0_000_ab",
-    "normal": "mp_head_fr1_003_nm"
+    "normal": "mp_head_fr1_003_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "8CD1ABC6",
@@ -4545,7 +4979,9 @@
     "tint2": 255,
     "drawable": "mp_head_fr1_014",
     "albedo": "mp_head_fr1_sc04_c0_000_ab",
-    "normal": "mp_head_fr1_003_nm"
+    "normal": "mp_head_fr1_003_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "53B5B98F",
@@ -4566,7 +5002,9 @@
     "tint2": 255,
     "drawable": "mp_head_fr1_014",
     "albedo": "mp_head_fr1_sc05_c0_000_ab",
-    "normal": "mp_head_fr1_003_nm"
+    "normal": "mp_head_fr1_003_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "87311A4B",
@@ -4587,7 +5025,9 @@
     "tint2": 255,
     "drawable": "mp_head_fr1_015",
     "albedo": "mp_head_fr1_sc08_c0_000_ab",
-    "normal": "mp_head_fr1_008_nm"
+    "normal": "mp_head_fr1_008_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "50882CFA",
@@ -4608,7 +5048,9 @@
     "tint2": 255,
     "drawable": "mp_head_fr1_015",
     "albedo": "mp_head_fr1_sc01_c0_000_ab",
-    "normal": "mp_head_fr1_008_nm"
+    "normal": "mp_head_fr1_008_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "A2B1D14C",
@@ -4629,7 +5071,9 @@
     "tint2": 255,
     "drawable": "mp_head_fr1_015",
     "albedo": "mp_head_fr1_sc02_c0_000_ab",
-    "normal": "mp_head_fr1_008_nm"
+    "normal": "mp_head_fr1_008_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "6DCBE781",
@@ -4650,7 +5094,9 @@
     "tint2": 255,
     "drawable": "mp_head_fr1_015",
     "albedo": "mp_head_fr1_sc03_c0_000_ab",
-    "normal": "mp_head_fr1_008_nm"
+    "normal": "mp_head_fr1_008_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "3C7D04E4",
@@ -4671,7 +5117,9 @@
     "tint2": 255,
     "drawable": "mp_head_fr1_015",
     "albedo": "mp_head_fr1_sc04_c0_000_ab",
-    "normal": "mp_head_fr1_008_nm"
+    "normal": "mp_head_fr1_008_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "09409E68",
@@ -4692,7 +5140,9 @@
     "tint2": 255,
     "drawable": "mp_head_fr1_015",
     "albedo": "mp_head_fr1_sc05_c0_000_ab",
-    "normal": "mp_head_fr1_008_nm"
+    "normal": "mp_head_fr1_008_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "0BBD7BFC",
@@ -4713,7 +5163,9 @@
     "tint2": 255,
     "drawable": "mp_head_fr1_016",
     "albedo": "mp_head_fr1_sc08_c0_000_ab",
-    "normal": "mp_head_fr1_000_nm"
+    "normal": "mp_head_fr1_000_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "6A0AB89D",
@@ -4734,7 +5186,9 @@
     "tint2": 255,
     "drawable": "mp_head_fr1_016",
     "albedo": "mp_head_fr1_sc01_c0_000_ab",
-    "normal": "mp_head_fr1_000_nm"
+    "normal": "mp_head_fr1_000_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "BBF9DC7A",
@@ -4755,7 +5209,9 @@
     "tint2": 255,
     "drawable": "mp_head_fr1_016",
     "albedo": "mp_head_fr1_sc02_c0_000_ab",
-    "normal": "mp_head_fr1_000_nm"
+    "normal": "mp_head_fr1_000_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "C6B7F1F6",
@@ -4776,7 +5232,9 @@
     "tint2": 255,
     "drawable": "mp_head_fr1_016",
     "albedo": "mp_head_fr1_sc03_c0_000_ab",
-    "normal": "mp_head_fr1_000_nm"
+    "normal": "mp_head_fr1_000_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "986F1565",
@@ -4797,7 +5255,9 @@
     "tint2": 255,
     "drawable": "mp_head_fr1_016",
     "albedo": "mp_head_fr1_sc04_c0_000_ab",
-    "normal": "mp_head_fr1_000_nm"
+    "normal": "mp_head_fr1_000_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "24452D0B",
@@ -4818,7 +5278,9 @@
     "tint2": 255,
     "drawable": "mp_head_fr1_016",
     "albedo": "mp_head_fr1_sc05_c0_000_ab",
-    "normal": "mp_head_fr1_000_nm"
+    "normal": "mp_head_fr1_000_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "C28AB791",
@@ -4839,7 +5301,9 @@
     "tint2": 255,
     "drawable": "mp_head_fr1_020",
     "albedo": "mp_head_fr1_sc08_c0_000_ab",
-    "normal": "mp_head_fr1_000_nm"
+    "normal": "mp_head_fr1_000_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "B059132E",
@@ -4860,7 +5324,9 @@
     "tint2": 255,
     "drawable": "mp_head_fr1_020",
     "albedo": "mp_head_fr1_sc01_c0_000_ab",
-    "normal": "mp_head_fr1_000_nm"
+    "normal": "mp_head_fr1_000_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "E6377EEA",
@@ -4881,7 +5347,9 @@
     "tint2": 255,
     "drawable": "mp_head_fr1_020",
     "albedo": "mp_head_fr1_sc02_c0_000_ab",
-    "normal": "mp_head_fr1_000_nm"
+    "normal": "mp_head_fr1_000_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "D406DA89",
@@ -4902,7 +5370,9 @@
     "tint2": 255,
     "drawable": "mp_head_fr1_020",
     "albedo": "mp_head_fr1_sc03_c0_000_ab",
-    "normal": "mp_head_fr1_000_nm"
+    "normal": "mp_head_fr1_000_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "E6F8006B",
@@ -4923,7 +5393,9 @@
     "tint2": 255,
     "drawable": "mp_head_fr1_020",
     "albedo": "mp_head_fr1_sc04_c0_000_ab",
-    "normal": "mp_head_fr1_000_nm"
+    "normal": "mp_head_fr1_000_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "1D896D8D",
@@ -4944,7 +5416,9 @@
     "tint2": 255,
     "drawable": "mp_head_fr1_020",
     "albedo": "mp_head_fr1_sc05_c0_000_ab",
-    "normal": "mp_head_fr1_000_nm"
+    "normal": "mp_head_fr1_000_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "1B15AE7A",
@@ -4965,7 +5439,9 @@
     "tint2": 255,
     "drawable": "mp_head_fr1_022",
     "albedo": "mp_head_fr1_sc08_c0_000_ab",
-    "normal": "mp_head_fr1_000_nm"
+    "normal": "mp_head_fr1_000_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "F7AC67A8",
@@ -4986,7 +5462,9 @@
     "tint2": 255,
     "drawable": "mp_head_fr1_022",
     "albedo": "mp_head_fr1_sc01_c0_000_ab",
-    "normal": "mp_head_fr1_000_nm"
+    "normal": "mp_head_fr1_000_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "8A1E0CED",
@@ -5007,7 +5485,9 @@
     "tint2": 255,
     "drawable": "mp_head_fr1_022",
     "albedo": "mp_head_fr1_sc02_c0_000_ab",
-    "normal": "mp_head_fr1_000_nm"
+    "normal": "mp_head_fr1_000_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "D3949F79",
@@ -5028,7 +5508,9 @@
     "tint2": 255,
     "drawable": "mp_head_fr1_022",
     "albedo": "mp_head_fr1_sc03_c0_000_ab",
-    "normal": "mp_head_fr1_000_nm"
+    "normal": "mp_head_fr1_000_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "E1D23BF4",
@@ -5049,7 +5531,9 @@
     "tint2": 255,
     "drawable": "mp_head_fr1_022",
     "albedo": "mp_head_fr1_sc04_c0_000_ab",
-    "normal": "mp_head_fr1_000_nm"
+    "normal": "mp_head_fr1_000_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "B3F26095",
@@ -5070,7 +5554,9 @@
     "tint2": 255,
     "drawable": "mp_head_fr1_022",
     "albedo": "mp_head_fr1_sc05_c0_000_ab",
-    "normal": "mp_head_fr1_000_nm"
+    "normal": "mp_head_fr1_000_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "EBCEE04E",
@@ -5091,7 +5577,9 @@
     "tint2": 255,
     "drawable": "mp_head_fr1_027",
     "albedo": "mp_head_fr1_sc08_c0_000_ab",
-    "normal": "mp_head_fr1_000_nm"
+    "normal": "mp_head_fr1_000_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "E25DCD6C",
@@ -5112,7 +5600,9 @@
     "tint2": 255,
     "drawable": "mp_head_fr1_027",
     "albedo": "mp_head_fr1_sc01_c0_000_ab",
-    "normal": "mp_head_fr1_000_nm"
+    "normal": "mp_head_fr1_000_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "62534D55",
@@ -5133,7 +5623,9 @@
     "tint2": 255,
     "drawable": "mp_head_fr1_027",
     "albedo": "mp_head_fr1_sc02_c0_000_ab",
-    "normal": "mp_head_fr1_000_nm"
+    "normal": "mp_head_fr1_000_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "50A1A9F2",
@@ -5154,7 +5646,9 @@
     "tint2": 255,
     "drawable": "mp_head_fr1_027",
     "albedo": "mp_head_fr1_sc03_c0_000_ab",
-    "normal": "mp_head_fr1_000_nm"
+    "normal": "mp_head_fr1_000_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "B57F73B0",
@@ -5175,7 +5669,9 @@
     "tint2": 255,
     "drawable": "mp_head_fr1_027",
     "albedo": "mp_head_fr1_sc04_c0_000_ab",
-    "normal": "mp_head_fr1_000_nm"
+    "normal": "mp_head_fr1_000_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "AB545F5A",
@@ -5196,7 +5692,9 @@
     "tint2": 255,
     "drawable": "mp_head_fr1_027",
     "albedo": "mp_head_fr1_sc05_c0_000_ab",
-    "normal": "mp_head_fr1_000_nm"
+    "normal": "mp_head_fr1_000_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "945686CF",
@@ -5217,7 +5715,9 @@
     "tint2": 255,
     "drawable": "mp_head_fr1_028",
     "albedo": "mp_head_fr1_sc08_c0_000_ab",
-    "normal": "mp_head_fr1_000_nm"
+    "normal": "mp_head_fr1_000_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "DB4094A2",
@@ -5238,7 +5738,9 @@
     "tint2": 255,
     "drawable": "mp_head_fr1_028",
     "albedo": "mp_head_fr1_sc01_c0_000_ab",
-    "normal": "mp_head_fr1_000_nm"
+    "normal": "mp_head_fr1_000_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "CDDA79D6",
@@ -5259,7 +5761,9 @@
     "tint2": 255,
     "drawable": "mp_head_fr1_028",
     "albedo": "mp_head_fr1_sc02_c0_000_ab",
-    "normal": "mp_head_fr1_000_nm"
+    "normal": "mp_head_fr1_000_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "AAB53384",
@@ -5280,7 +5784,9 @@
     "tint2": 255,
     "drawable": "mp_head_fr1_028",
     "albedo": "mp_head_fr1_sc03_c0_000_ab",
-    "normal": "mp_head_fr1_000_nm"
+    "normal": "mp_head_fr1_000_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "9C879729",
@@ -5301,7 +5807,9 @@
     "tint2": 255,
     "drawable": "mp_head_fr1_028",
     "albedo": "mp_head_fr1_sc04_c0_000_ab",
-    "normal": "mp_head_fr1_000_nm"
+    "normal": "mp_head_fr1_000_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "C65BEAD1",
@@ -5322,7 +5830,9 @@
     "tint2": 255,
     "drawable": "mp_head_fr1_028",
     "albedo": "mp_head_fr1_sc05_c0_000_ab",
-    "normal": "mp_head_fr1_000_nm"
+    "normal": "mp_head_fr1_000_nm",
+    "swatchTextureHex": "6AE4E5B6",
+    "swatchTexture": "uisw_flat_ck000"
   },
   {
     "componentHex": "376E2983",
@@ -5341,7 +5851,9 @@
     "tint2": 0,
     "drawable": "mp_predator_01_fr1_head_000",
     "albedo": "mp_predator_01_mr1_head_000_c3_000_ab",
-    "normal": "mp_predator_01_mr1_head_000_c3_000_nm"
+    "normal": "mp_predator_01_mr1_head_000_c3_000_nm",
+    "swatchTextureHex": "60D84ED2",
+    "swatchTexture": "uisw_denim_000"
   },
   {
     "componentHex": "82943FCE",
@@ -5360,7 +5872,9 @@
     "tint2": 0,
     "drawable": "mp_predator_01_fr1_head_000",
     "albedo": "mp_predator_01_mr1_head_000_c3_001_ab",
-    "normal": "mp_predator_01_mr1_head_000_c3_001_nm"
+    "normal": "mp_predator_01_mr1_head_000_c3_001_nm",
+    "swatchTextureHex": "60D84ED2",
+    "swatchTexture": "uisw_denim_000"
   },
   {
     "componentHex": "6ACE1042",
@@ -5379,7 +5893,9 @@
     "tint2": 0,
     "drawable": "mp_predator_01_fr1_head_000",
     "albedo": "mp_predator_01_mr1_head_000_c3_002_ab",
-    "normal": "mp_predator_01_mr1_head_000_c3_002_nm"
+    "normal": "mp_predator_01_mr1_head_000_c3_002_nm",
+    "swatchTextureHex": "60D84ED2",
+    "swatchTexture": "uisw_denim_000"
   },
   {
     "componentHex": "7562A55F",
@@ -5398,6 +5914,8 @@
     "tint2": 0,
     "drawable": "mp_predator_01_fr1_head_000",
     "albedo": "mp_predator_01_mr1_head_000_c3_003_ab",
-    "normal": "mp_predator_01_mr1_head_000_c3_003_nm"
+    "normal": "mp_predator_01_mr1_head_000_c3_003_nm",
+    "swatchTextureHex": "60D84ED2",
+    "swatchTexture": "uisw_denim_000"
   }
 ]

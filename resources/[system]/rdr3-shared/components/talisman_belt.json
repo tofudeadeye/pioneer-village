@@ -16,6 +16,8 @@
     "tint2": 255,
     "drawable": "player_zero_tal_bear_claw_000",
     "albedo": 1810567470,
-    "normal": 1926150225
+    "normal": 1926150225,
+    "swatchTextureHex": "B3902E46",
+    "swatchTexture": "uisw_leather_pt001"
   }
 ]

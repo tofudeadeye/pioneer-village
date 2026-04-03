@@ -16,7 +16,6 @@ const registerTargets = () => {
         label: 'Open Cellar',
         icon: 'door-open',
         event: 'world:client:open-cellar',
-        parameters: {},
       },
     ],
     options: {
@@ -38,7 +37,6 @@ const registerTargets = () => {
         label: 'Close Cellar',
         icon: 'door-closed',
         event: 'world:client:close-cellar',
-        parameters: {},
       },
     ],
     options: {

@@ -16,6 +16,8 @@
     "tint2": 255,
     "drawable": "player_zero_tal_buffalo_horn_000",
     "albedo": 3627966942,
-    "normal": 536473196
+    "normal": 536473196,
+    "swatchTextureHex": "B3902E46",
+    "swatchTexture": "uisw_leather_pt001"
   }
 ]

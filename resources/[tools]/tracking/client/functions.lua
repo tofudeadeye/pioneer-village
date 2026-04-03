@@ -241,9 +241,9 @@ function DrawItemInfo(entity)
     -- str = str .. " | " .. tostring(Citizen.InvokeNative(0xD21C7418C590BB40, entity)) -- Dead?
     -- str = str .. " | " .. tostring(Citizen.InvokeNative(0x0FD25587BB306C86, entity))
      local provision_hash = Citizen.InvokeNative(0x31FEF6A20F00B963, entity) -- Provision Hash ? -- Can be set with 0x399657ED871B3A6C
-     str = str .. " | " .. tostring(provision_hash)
+     str = str .. "\nProvision Hash: " .. tostring(provision_hash)
      if HASH_PROVISIONS[provision_hash] then
-         str = str .. "\n" .. HASH_PROVISIONS[provision_hash]
+         str = str .. " | " .. HASH_PROVISIONS[provision_hash]
      end
 
     local attachedTo = GetEntityAttachedTo(entity)

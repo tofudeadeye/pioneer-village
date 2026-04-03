@@ -16,7 +16,9 @@
     "tint2": 154,
     "drawable": "mp_t2_out04_nl_bracelet_mr1_001",
     "albedo": "mp_t2_out04_nl_bracelet_mr1_001_c1_999_ab",
-    "normal": "mp_t2_out04_nl_bracelet_mr1_001_c1_999_nm"
+    "normal": "mp_t2_out04_nl_bracelet_mr1_001_c1_999_nm",
+    "swatchTextureHex": "E4B32A84",
+    "swatchTexture": "uisw_denim_ck000"
   },
   {
     "componentHex": "2254C72E",
@@ -35,7 +37,9 @@
     "tint2": 154,
     "drawable": "mp_t2_out04_nl_bracelet_mr1_001",
     "albedo": "mp_t2_out04_nl_bracelet_mr1_001_c1_999_ab",
-    "normal": "mp_t2_out04_nl_bracelet_mr1_001_c1_999_nm"
+    "normal": "mp_t2_out04_nl_bracelet_mr1_001_c1_999_nm",
+    "swatchTextureHex": "E4B32A84",
+    "swatchTexture": "uisw_denim_ck000"
   },
   {
     "componentHex": "136BA95C",
@@ -54,7 +58,9 @@
     "tint2": 154,
     "drawable": "mp_t2_out04_nl_bracelet_mr1_001",
     "albedo": "mp_t2_out04_nl_bracelet_mr1_001_c1_999_ab",
-    "normal": "mp_t2_out04_nl_bracelet_mr1_001_c1_999_nm"
+    "normal": "mp_t2_out04_nl_bracelet_mr1_001_c1_999_nm",
+    "swatchTextureHex": "E4B32A84",
+    "swatchTexture": "uisw_denim_ck000"
   },
   {
     "componentHex": "05D60E31",
@@ -73,7 +79,9 @@
     "tint2": 154,
     "drawable": "mp_t2_out04_nl_bracelet_mr1_001",
     "albedo": "mp_t2_out04_nl_bracelet_mr1_001_c1_999_ab",
-    "normal": "mp_t2_out04_nl_bracelet_mr1_001_c1_999_nm"
+    "normal": "mp_t2_out04_nl_bracelet_mr1_001_c1_999_nm",
+    "swatchTextureHex": "E4B32A84",
+    "swatchTexture": "uisw_denim_ck000"
   },
   {
     "componentHex": "F799F1B5",
@@ -92,7 +100,9 @@
     "tint2": 154,
     "drawable": "mp_t2_out04_nl_bracelet_mr1_001",
     "albedo": "mp_t2_out04_nl_bracelet_mr1_001_c1_999_ab",
-    "normal": "mp_t2_out04_nl_bracelet_mr1_001_c1_999_nm"
+    "normal": "mp_t2_out04_nl_bracelet_mr1_001_c1_999_nm",
+    "swatchTextureHex": "E4B32A84",
+    "swatchTexture": "uisw_denim_ck000"
   },
   {
     "componentHex": "E94B5518",
@@ -111,7 +121,9 @@
     "tint2": 154,
     "drawable": "mp_t2_out04_nl_bracelet_mr1_001",
     "albedo": "mp_t2_out04_nl_bracelet_mr1_001_c1_999_ab",
-    "normal": "mp_t2_out04_nl_bracelet_mr1_001_c1_999_nm"
+    "normal": "mp_t2_out04_nl_bracelet_mr1_001_c1_999_nm",
+    "swatchTextureHex": "E4B32A84",
+    "swatchTexture": "uisw_denim_ck000"
   },
   {
     "componentHex": "8166574A",
@@ -130,7 +142,9 @@
     "tint2": 154,
     "drawable": "mp_t2_out04_nl_bracelet_fr1_001",
     "albedo": "mp_t2_out04_nl_bracelet_mr1_001_c1_999_ab",
-    "normal": "mp_t2_out04_nl_bracelet_mr1_001_c1_999_nm"
+    "normal": "mp_t2_out04_nl_bracelet_mr1_001_c1_999_nm",
+    "swatchTextureHex": "E4B32A84",
+    "swatchTexture": "uisw_denim_ck000"
   },
   {
     "componentHex": "97A703CB",
@@ -149,7 +163,9 @@
     "tint2": 154,
     "drawable": "mp_t2_out04_nl_bracelet_fr1_001",
     "albedo": "mp_t2_out04_nl_bracelet_mr1_001_c1_999_ab",
-    "normal": "mp_t2_out04_nl_bracelet_mr1_001_c1_999_nm"
+    "normal": "mp_t2_out04_nl_bracelet_mr1_001_c1_999_nm",
+    "swatchTextureHex": "E4B32A84",
+    "swatchTexture": "uisw_denim_ck000"
   },
   {
     "componentHex": "ACD52E27",
@@ -168,7 +184,9 @@
     "tint2": 154,
     "drawable": "mp_t2_out04_nl_bracelet_fr1_001",
     "albedo": "mp_t2_out04_nl_bracelet_mr1_001_c1_999_ab",
-    "normal": "mp_t2_out04_nl_bracelet_mr1_001_c1_999_nm"
+    "normal": "mp_t2_out04_nl_bracelet_mr1_001_c1_999_nm",
+    "swatchTextureHex": "E4B32A84",
+    "swatchTexture": "uisw_denim_ck000"
   },
   {
     "componentHex": "73263ACA",
@@ -187,7 +205,9 @@
     "tint2": 154,
     "drawable": "mp_t2_out04_nl_bracelet_fr1_001",
     "albedo": "mp_t2_out04_nl_bracelet_mr1_001_c1_999_ab",
-    "normal": "mp_t2_out04_nl_bracelet_mr1_001_c1_999_nm"
+    "normal": "mp_t2_out04_nl_bracelet_mr1_001_c1_999_nm",
+    "swatchTextureHex": "E4B32A84",
+    "swatchTexture": "uisw_denim_ck000"
   },
   {
     "componentHex": "C85DE538",
@@ -206,7 +226,9 @@
     "tint2": 154,
     "drawable": "mp_t2_out04_nl_bracelet_fr1_001",
     "albedo": "mp_t2_out04_nl_bracelet_mr1_001_c1_999_ab",
-    "normal": "mp_t2_out04_nl_bracelet_mr1_001_c1_999_nm"
+    "normal": "mp_t2_out04_nl_bracelet_mr1_001_c1_999_nm",
+    "swatchTextureHex": "E4B32A84",
+    "swatchTexture": "uisw_denim_ck000"
   },
   {
     "componentHex": "64D71DBC",
@@ -225,6 +247,8 @@
     "tint2": 154,
     "drawable": "mp_t2_out04_nl_bracelet_fr1_001",
     "albedo": "mp_t2_out04_nl_bracelet_mr1_001_c1_999_ab",
-    "normal": "mp_t2_out04_nl_bracelet_mr1_001_c1_999_nm"
+    "normal": "mp_t2_out04_nl_bracelet_mr1_001_c1_999_nm",
+    "swatchTextureHex": "E4B32A84",
+    "swatchTexture": "uisw_denim_ck000"
   }
 ]

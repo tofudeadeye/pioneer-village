@@ -17,13 +17,13 @@ const registerTargets = async () => {
         label: 'Lead',
         icon: 'lasso',
         event: 'stable:client:lead',
-        parameters: {},
       },
     ],
     options: {
       distance: 3.0,
       throttle: 1_000,
       isEnabled(data) {
+        if (!data.entity || !data.playerPed) return false;
         const horseId = DecorGetInt(data.entity, 'horseId');
         if (horseId) {
           return !stableController.isStabled(horseId);
@@ -43,13 +43,13 @@ const registerTargets = async () => {
         label: 'Drink',
         icon: 'water',
         event: 'stable:client:drink',
-        parameters: {},
       },
     ],
     options: {
       distance: 3.0,
       throttle: 1_000,
       isEnabled(data) {
+        if (!data.entity) return false;
         return GetVehicleDraftHorseIsAttachedTo(data.entity) === 0 && IsEntityInWater(data.entity);
       },
     },
@@ -65,17 +65,25 @@ const registerTargets = async () => {
         label: 'Remove Pelt',
         icon: 'paw',
         event: 'stable:client:remove-pelt',
-        parameters: {},
       },
     ],
     options: {
       distance: 3.0,
       throttle: 1_000,
       isEnabled(data) {
+        if (!data.entity || !data.playerPed) return false;
         const horseState = Entity(data.entity).state;
         const horsePelts = horseState.pelts || [];
 
-        return horsePelts.length > 0;
+        if (horsePelts.length === 0) {
+          return false;
+        }
+
+        if (GetFirstEntityPedIsCarrying(data.playerPed) || !IsPedOnFoot(data.playerPed)) {
+          return false;
+        }
+
+        return true;
       },
     },
   });
@@ -90,14 +98,13 @@ const registerTargets = async () => {
         label: 'Birth Foal',
         icon: 'horse',
         event: 'stable:client:birth_foal',
-        parameters: {},
       },
     ],
     options: {
       distance: 3.0,
       throttle: 1_000,
       isEnabled(data) {
-        const horseId = Entity(data.entity).state.horseId;
+        const horseId = data.entity && Entity(data.entity).state.horseId;
         // Log('Horse ID:', horseId);
         if (!horseId) {
           return false;
@@ -128,7 +135,6 @@ const registerTargets = async () => {
         label: 'Stable Horse',
         icon: 'garage',
         event: 'stable:client:stable-horse',
-        parameters: {},
       },
     ],
     options: {
@@ -136,7 +142,7 @@ const registerTargets = async () => {
       throttle: 1_000,
       isEnabled(data) {
         Log('stableController.currentStable', stableController.currentStable);
-        if (!stableController.currentStable) {
+        if (!data.entity || !stableController.currentStable) {
           return false;
         }
         const horseId = Entity(data.entity).state.horseId;
@@ -170,14 +176,13 @@ const registerTargets = async () => {
         label: 'Unstable Horse',
         icon: 'garage',
         event: 'stable:client:unstable-horse',
-        parameters: {},
       },
     ],
     options: {
       distance: 5.0,
       throttle: 1_000,
       isEnabled(data) {
-        if (!stableController.currentStable) {
+        if (!data.entity || !stableController.currentStable) {
           return false;
         }
         const horseId = DecorGetInt(data.entity, 'horseId');
@@ -200,7 +205,6 @@ const registerTargets = async () => {
   //       label: 'Detach from Wagon',
   //       icon: 'lasso',
   //       event: 'stable:client:detach',
-  //       parameters: {},
   //     },
   //   ],
   //   options: {
@@ -221,7 +225,6 @@ const registerTargets = async () => {
   //       label: 'Attach to Wagon',
   //       icon: 'lasso',
   //       event: 'stable:client:attach',
-  //       parameters: {},
   //     },
   //   ],
   //   options: {

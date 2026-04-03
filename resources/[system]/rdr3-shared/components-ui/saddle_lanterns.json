@@ -40,7 +40,9 @@
         "normal": [
           "mp_horselantern_harness_001_nm",
           "mp_horselantern_lantern_001_nm"
-        ]
+        ],
+        "swatchTextureHex": "7C0FB811",
+        "swatchTexture": "uisw_horse_leather_new000"
       }
     ]
   }

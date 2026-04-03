@@ -1,0 +1,54 @@
+// SCSS variables for compile-time use (if needed)
+// Components can import this file with @use if they need SCSS-level values
+// Most components should just use var(--cust-*) CSS custom properties instead
+
+@use '../../styles/mixins.module.scss' as *;
+
+// Color values as SCSS variables (for use in calculations or conditionals)
+$cust-bg-deep: #080706;
+$cust-bg-panel: #0f0e0c;
+$cust-bg-surface: #171614;
+$cust-bg-raised: #1e1c19;
+$cust-bg-hover: #272420;
+
+$cust-border-dark: #2a2722;
+$cust-border-mid: #3d3830;
+$cust-border-light: #4d463a;
+
+$cust-brass: #c9a961;
+$cust-brass-dim: #9a7d3f;
+$cust-brass-glow: #dfc07a;
+$cust-brass-muted: #7a6433;
+
+$cust-text-primary: #d4cbbe;
+$cust-text-secondary: #9a9080;
+$cust-text-muted: #6a6256;
+$cust-text-bright: #eae3d6;
+
+$cust-accent-warm: #8b5e3c;
+$cust-accent-red: #8b3a3a;
+
+// Global animations for customization UI
+@keyframes :global(custPopIn) {
+  from {
+    opacity: 0;
+    transform: translateY(uiSize(-4));
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes :global(custFadeIn) {
+  from {
+    opacity: 0;
+    transform: translateY(uiSize(6));
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

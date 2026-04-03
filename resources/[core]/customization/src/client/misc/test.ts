@@ -31,14 +31,19 @@ RegisterCommand(
       const struct1 = new DataView(new ArrayBuffer(4));
       const struct2 = new DataView(new ArrayBuffer(4));
       const component = GetShopItemComponentAtIndex(entity, i, true, struct1, struct2);
-      const componentCategory = GetShopItemComponentCategory(component, metaPedType, true);
+      let componentCategory: number;
+      if (component) {
+        componentCategory = GetShopItemComponentCategory(component, metaPedType, true);
+      } else {
+        componentCategory = GetPedComponentCategoryByIndex(entity, i);
+      }
       // if (componentCategory !== 1606587013) {
       //   continue
       // }
       components.push(component);
       Log('--------=================--------');
       if (componentCategories.has(componentCategory)) {
-        Log(i, component, componentCategories.get(componentCategory));
+        Log(i, component, componentCategories.get(componentCategory), componentCategory);
       } else if (component === 0 && componentCategory === 0) {
         Log(i, 'Unset Component');
       } else {

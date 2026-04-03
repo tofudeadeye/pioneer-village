@@ -66,6 +66,7 @@ declare namespace Game {
     animPed?: number,
   ) => Promise<void>;
   type taskPlayEntityAnim = (anims: Anim.EntityTask[]) => void;
+  type turnPedToFaceCoord = (ped: number, x: number, y: number, z: number, duration?: number) => Promise<void>;
 
   type loadStream = (streamSet: string, streamName: string, delay?: number, maxTries?: number) => Promise<boolean>;
   type playStreamFromPed = (ped: number, streamSet: string, streamName: string) => Promise<void>;
@@ -121,6 +122,7 @@ declare namespace Game {
     taskPlayAnimArrayNew: taskPlayAnimArrayNew;
     taskPlayAnimAdvArray: taskPlayAnimAdvArray;
     taskPlayEntityAnim: taskPlayEntityAnim;
+    turnPedToFaceCoord: turnPedToFaceCoord;
 
     skinPed: skinPed;
     getCurrentCharacter: () => Character;

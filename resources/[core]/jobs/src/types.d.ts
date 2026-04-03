@@ -76,4 +76,32 @@ declare namespace Jobs {
     payment?: number;
     error?: string;
   }
+
+  interface TaskInstance {
+    id: number;
+    taskId: number;
+    assignedTo: number | null;
+    status: 'AVAILABLE' | 'ASSIGNED' | 'IN_PROGRESS' | 'COMPLETED' | 'FAILED' | 'EXPIRED';
+    progress: Record<string, unknown>;
+    createdAt: Date | null;
+    assignedAt: Date | null;
+    startedAt: Date | null;
+    completedAt: Date | null;
+    scheduledFor: Date | null;
+    expiresAt: Date | null;
+    metadata: Record<string, unknown>;
+  }
+
+  interface PaySlip {
+    id: number;
+    characterId: number;
+    jobId: number;
+    amount: string;
+    reason: string;
+    jobHandle: string;
+    redeemed: boolean | null;
+    redeemedAt: Date | null;
+    createdAt: Date | null;
+    metadata: unknown;
+  }
 }

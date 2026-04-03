@@ -13,10 +13,12 @@ declare namespace Inventory {
 
   enum Restrictions {
     None = 0,
-    Small = 1,
-    Food = 2,
-    Ammo = 4,
-    Clothing = 8,
+    Tiny = 1,
+    Small = 2,
+    Food = 4,
+    Ammo = 8,
+    Clothing = 16,
+    Bird = 32,
   }
 
   interface Type {
@@ -48,6 +50,8 @@ declare namespace Inventory {
     useEvent?: string;
     maxDurability?: number;
     maxLife?: number;
+    containerType?: string;
+    birdType?: string;
   };
 
   // type ItemDurable = ItemBase & {
@@ -80,6 +84,10 @@ declare namespace Inventory {
     stackSize: number;
     maxDurability?: number;
     maxLife?: number;
+    hasUseEvent?: boolean;
+    containerType?: string;
+    containerRestrictions?: number;
+    restriction?: number;
   };
 
   type UIItems = Record<number, UIItem>;

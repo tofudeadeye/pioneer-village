@@ -1,0 +1,40 @@
+fx_version 'cerulean'
+games { 'rdr3' }
+rdr3_warning 'I acknowledge that this is a prerelease build of RedM, and I am aware my resources *will* become incompatible once RedM ships.'
+version '1.0.0'
+
+lua54 'yes'
+
+server_scripts {
+  "build/server.js",
+}
+
+client_scripts {
+  "@rdr3-shared/client/rdr3_natives.js",
+  "build/client.js",
+}
+
+exports {
+    'initializeWeatherSystem',
+    'updatePlayerWeather',
+    'getWeatherAtPosition',
+    'getBiomeAtPosition',
+    'setGridWeather',
+    'getAllowedWeatherForBiome',
+    'isInTransitionZone',
+    'getNearbyBiomes',
+    'evolveWeather',
+    'printWeatherGrid',
+    'printBiomeGrid',
+    'getGridState'
+}
+
+-- Client exports
+client_exports {
+    'getCurrentWeather',
+    'getTargetWeather',
+    'getCurrentBiome',
+    'getTransitionProgress',
+    'isTransitioning',
+    'getBiomeName'
+}

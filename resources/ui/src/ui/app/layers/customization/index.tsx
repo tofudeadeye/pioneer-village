@@ -23,6 +23,14 @@ function convertComponent(
     type: comp.type,
     component: comp.component,
     swatchTexture: comp.swatchTexture,
+    drawable: comp.drawable,
+    tintable: Boolean(
+      comp.swatchTexture &&
+        // comp.tint0 !== null &&
+        // comp.tint1 !== null &&
+        // comp.tint2 !== null &&
+        !(comp.tint0 === 255 && comp.tint1 === 255),
+    ),
   };
 
   if ('palette' in comp && comp.palette !== undefined && comp.palette !== '') {

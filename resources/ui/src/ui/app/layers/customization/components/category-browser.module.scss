@@ -51,11 +51,20 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: uiSize(8);
 
   &:hover {
     border-color: var(--cust-border-mid);
     background: var(--cust-bg-raised);
   }
+}
+
+.cardThumb {
+  width: uiSize(36);
+  height: uiSize(36);
+  object-fit: contain;
+  flex-shrink: 0;
+  opacity: 0.85;
 }
 
 .cardName {
@@ -79,7 +88,7 @@
 
 .itemsGrid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: uiSize(6);
 }
 
@@ -106,6 +115,13 @@
   }
 }
 
+.itemImage {
+  width: uiSize(60);
+  height: uiSize(60);
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
 .diamond {
   width: uiSize(60);
   height: uiSize(60);
@@ -116,7 +132,7 @@
 }
 
 .itemName {
-  font-size: uiSize(19);
+  font-size: uiSize(14);
   font-weight: 500;
   color: var(--cust-text-secondary);
   text-align: center;

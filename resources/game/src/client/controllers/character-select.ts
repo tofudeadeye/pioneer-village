@@ -287,6 +287,7 @@ RegisterCommand(
 
     const playerPed = await gameManager.setPlayerModel(GetHashKey(currentCharacter.model));
     await Delay(500);
+    Log(currentCharacter);
     await skinPed(playerPed, currentCharacter);
   },
   false,

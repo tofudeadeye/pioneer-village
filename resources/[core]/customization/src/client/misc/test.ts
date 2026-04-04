@@ -149,6 +149,8 @@ RegisterCommand(
     const isMale = IsPedMale(entity);
     const componentCount = GetNumComponentsInPed(entity);
 
+    const unnamedWearableStates = [];
+
     for (let i = componentCount; i--; ) {
       Log('--------=================--------');
       const struct1 = new DataView(new ArrayBuffer(4));
@@ -182,10 +184,17 @@ RegisterCommand(
             Log(j, wearableState, wearableStates.get(wearableState));
           } else {
             Log(j, wearableState, `0x${(wearableState >>> 0).toString(16)}`);
+            unnamedWearableStates.push(wearableState);
           }
         }
       }
     }
+
+    Log('Unnamed Wearable States:', unnamedWearableStates);
+    Log(
+      'Unnamed wearable states unique hashes',
+      unnamedWearableStates.map((state) => `0x${(state >>> 0).toString(16)}`),
+    );
   },
   false,
 );

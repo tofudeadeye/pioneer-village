@@ -127,6 +127,8 @@ onUI('inventory.clothing-change', async (equippedItems) => {
   // Log('inventory.clothing-change', equippedItems);
   const playerPed = PVGame.playerPed();
 
+  Log('clothing-change', JSON.stringify(equippedItems, null, 2));
+
   PVCustomization.equipItems(playerPed, equippedItems);
 });
 
@@ -145,3 +147,15 @@ console.log('hatItemId', Entity(7238405).state.hatItemId);
   // SetEntityVisible(hat, false, false);
   // emitSocket('inventory.world-inventories');
 })();
+
+RegisterCommand(
+  'testVest',
+  async (source: number, args: any[], rawCommand: string) => {
+    // Log({ source, args, rawCommand });
+
+    const ped = PlayerPedId();
+    ApplyShopItemToPed(ped, GetHashKey('CLOTHING_ITEM_M_VEST_000_TINT_001'), false, true, false);
+    PVGame.finalizePedOutfit(ped);
+  },
+  false,
+);

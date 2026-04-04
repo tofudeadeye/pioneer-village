@@ -168,6 +168,14 @@ export class Vector3 {
     return Math.sqrt(dX * dX + dY * dY);
   }
 
+  getOffsetFrom(vectors: Vector3Format): Vector3 {
+    return new Vector3(this.x - vectors.x, this.y - vectors.y, this.z - vectors.z);
+  }
+
+  getOffsetFromArray(vectors: Array<number>): Vector3 {
+    return new Vector3(this.x - vectors[0], this.y - vectors[1], this.z - vectors[2]);
+  }
+
   copy(): Vector3 {
     return Vector3.fromArray(this.getArray());
   }

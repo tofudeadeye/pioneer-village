@@ -2,9 +2,8 @@ import { PVGame } from '@lib/client';
 import { Log } from '@lib/client/comms/ui';
 import { AttachPoint } from '@lib/flags';
 import { Delay } from '@lib/functions';
-import PVItems from '@lib/shared/items';
-
 import { BODY_CATEGORIES } from '@lib/shared/body-categories';
+import PVItems from '@lib/shared/items';
 
 import componentCategories from '../data/component-categories';
 import wearableStates from '../data/wearable-states';
@@ -17,25 +16,73 @@ const CategoriesToKeep = BODY_CATEGORIES.map((c) => c.toUpperCase());
 const mpComponentHashes = new Set<number>();
 
 const componentFiles = [
-  '2886757168', 'accessories', 'ammo_pistols', 'ammo_rifles', 'aprons', 'armor', 'badges',
-  'beards_chin', 'beards_chops', 'beards_complete', 'beards_mustache', 'belt_buckles', 'belts',
-  'bodies_lower', 'bodies_upper', 'boot_accessories', 'boots', 'chaps', 'cloaks', 'coats',
-  'coats_closed', 'dresses', 'eyes', 'eyewear', 'gauntlets', 'gloves', 'gunbelt_accs', 'gunbelts',
-  'hair', 'hair_accessories', 'hats', 'heads', 'holsters_crossdraw', 'holsters_knife', 'holsters_left',
-  'holsters_right', 'jewelry_bracelets', 'jewelry_rings_left', 'jewelry_rings_right', 'loadouts',
-  'masks', 'masks_large', 'neckties', 'neckwear', 'pants', 'ponchos', 'satchels', 'shirts_full',
-  'skirts', 'spats', 'suspenders', 'talisman_belt', 'talisman_holster', 'talisman_satchel',
-  'talisman_wrist', 'teeth', 'vests',
+  '2886757168',
+  'accessories',
+  'ammo_pistols',
+  'ammo_rifles',
+  'aprons',
+  'armor',
+  'badges',
+  'beards_chin',
+  'beards_chops',
+  'beards_complete',
+  'beards_mustache',
+  'belt_buckles',
+  'belts',
+  'bodies_lower',
+  'bodies_upper',
+  'boot_accessories',
+  'boots',
+  'chaps',
+  'cloaks',
+  'coats',
+  'coats_closed',
+  'dresses',
+  'eyes',
+  'eyewear',
+  'gauntlets',
+  'gloves',
+  'gunbelt_accs',
+  'gunbelts',
+  'hair',
+  'hair_accessories',
+  'hats',
+  'heads',
+  'holsters_crossdraw',
+  'holsters_knife',
+  'holsters_left',
+  'holsters_right',
+  'jewelry_bracelets',
+  'jewelry_rings_left',
+  'jewelry_rings_right',
+  'loadouts',
+  'masks',
+  'masks_large',
+  'neckties',
+  'neckwear',
+  'pants',
+  'ponchos',
+  'satchels',
+  'shirts_full',
+  'skirts',
+  'spats',
+  'suspenders',
+  'talisman_belt',
+  'talisman_holster',
+  'talisman_satchel',
+  'talisman_wrist',
+  'teeth',
+  'vests',
 ];
 
 for (const file of componentFiles) {
   try {
     const json = LoadResourceFile('rdr3-shared', `components-ui/${file}.json`);
     if (!json) continue;
-    const styles: { components: { component: number; isMp: boolean }[] }[] = JSON.parse(json);
+    const styles: ComponentsUIJson = JSON.parse(json);
     for (const style of styles) {
       for (const comp of style.components) {
-        if (comp.isMp) mpComponentHashes.add(comp.component);
+        if (comp.isMp) mpComponentHashes.add(comp.component >>> 0);
       }
     }
   } catch (_e) {
@@ -43,7 +90,7 @@ for (const file of componentFiles) {
   }
 }
 
-const isMpComponent = (hash: number): boolean => mpComponentHashes.has(hash);
+const isMpComponent = (hash: number): boolean => mpComponentHashes.has(hash >>> 0);
 
 enum Options {
   NONE = 0,

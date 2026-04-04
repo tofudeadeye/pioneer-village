@@ -107,9 +107,9 @@ declare namespace UI.Customization {
     tint0?: number;
     tint1?: number;
     tint2?: number;
-    drawable: string;
-    albedo: number;
-    normal: number;
+    drawable: string | number;
+    albedo: string | number;
+    normal: string | number;
     swatchTexture?: string;
     swatchTextureHex?: string;
   }
@@ -127,7 +127,14 @@ declare namespace UI.Customization {
   }
 
   type StyleColorComponentData =
-    | { name: string; type: string; component: number; swatchTexture?: string }
+    | {
+        name: string;
+        type: string;
+        component: number;
+        swatchTexture?: string;
+        drawable: string | number;
+        tintable: boolean;
+      }
     | {
         name: string;
         type: string;
@@ -137,6 +144,8 @@ declare namespace UI.Customization {
         tint1: number;
         tint2: number;
         swatchTexture?: string;
+        drawable: string | number;
+        tintable: boolean;
       };
 
   interface OverlayJsonData {

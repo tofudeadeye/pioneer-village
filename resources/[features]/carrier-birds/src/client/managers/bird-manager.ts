@@ -12,6 +12,8 @@ const LETTER_MODEL = GetHashKey('p_letterenvelope_cs01x');
 
 const getBirdModel = (birdType: CarrierBirds.BirdTypes): number => BIRD_MODELS[birdType] || BIRD_MODELS.pigeon;
 
+// TODO: The pool should not be delayed by the awaiting deletion of the bird.
+
 export class BirdManager {
   protected static instance: BirdManager;
   protected pool = new Set<CarrierBirds.BirdEvent>();

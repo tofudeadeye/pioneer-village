@@ -134,3 +134,12 @@ RegisterCommand(
   },
   false,
 );
+
+RegisterCommand(
+  'finalize',
+  async (source: number, args: any[], rawCommand: string) => {
+    // Log({ source, args, rawCommand });
+    PVGame.finalizePedOutfit(PVGame.playerPed());
+  },
+  false,
+);

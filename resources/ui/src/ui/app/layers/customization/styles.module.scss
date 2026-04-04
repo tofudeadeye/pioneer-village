@@ -122,7 +122,8 @@
   flex: 1;
   overflow-y: auto;
   overflow-x: hidden;
-  padding: mixins.uiSize(16) mixins.uiSize(24) mixins.uiSize(24);
+  padding: mixins.uiSize(16) mixins.uiSize(10) mixins.uiSize(24) mixins.uiSize(24);
+  margin-right: mixins.uiSize(8);
   position: relative;
   z-index: 2;
 

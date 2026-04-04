@@ -2,10 +2,10 @@ import { useEffect, useRef } from 'react';
 
 import { ColorPaletteNames } from '@lib/shared/color-palettes';
 
+import { FALLBACK_SWATCH, downsampleSwatch, loadImageData, paletteUrl, renderTinted, swatchUrl } from './tint-render';
 import styles from './tint-swatches.module.scss';
-import { downsampleSwatch, FALLBACK_SWATCH, loadImageData, paletteUrl, renderTinted, swatchUrl } from './tint-render';
 
-const SWATCH_DISPLAY_SIZE = 64;
+const SWATCH_DISPLAY_SIZE = 96;
 
 interface TintSwatchesProps {
   palette: string | number;
@@ -13,12 +13,25 @@ interface TintSwatchesProps {
   tint1: number;
   tint2: number;
   swatchTexture?: string;
+  imageUrl?: string;
+  displaySize?: number;
+  onRenderError?: () => void;
 }
 
-export default function TintSwatches({ palette, tint0, tint1, tint2, swatchTexture }: TintSwatchesProps) {
+export default function TintSwatches({
+  palette,
+  tint0,
+  tint1,
+  tint2,
+  swatchTexture,
+  imageUrl,
+  displaySize = SWATCH_DISPLAY_SIZE,
+  onRenderError,
+}: TintSwatchesProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const paletteName = typeof palette === 'string' ? palette : ColorPaletteNames[palette >>> 0];
   const resolvedSwatch = swatchTexture || FALLBACK_SWATCH;
+  const swatchSrc = imageUrl || swatchUrl(resolvedSwatch);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -26,25 +39,29 @@ export default function TintSwatches({ palette, tint0, tint1, tint2, swatchTextu
 
     let cancelled = false;
 
-    Promise.all([
-      loadImageData(swatchUrl(resolvedSwatch)),
-      loadImageData(paletteUrl(paletteName)),
-    ]).then(([swatchData, paletteData]) => {
-      if (cancelled) return;
+    Promise.all([loadImageData(swatchSrc), loadImageData(paletteUrl(paletteName))])
+      .then(([swatchData, paletteData]) => {
+        if (cancelled) return;
 
-      const small = downsampleSwatch(swatchData, SWATCH_DISPLAY_SIZE, resolvedSwatch);
-      const output = renderTinted(small, paletteData, tint0, tint1, tint2);
-      canvas.width = output.width;
-      canvas.height = output.height;
-      const ctx = canvas.getContext('2d');
-      if (!ctx) return;
-      ctx.putImageData(output, 0, 0);
-    }).catch((err) => {
-      if (!cancelled) console.error('TintSwatches render error:', err);
-    });
+        const small = downsampleSwatch(swatchData, displaySize, swatchSrc);
+        const output = renderTinted(small, paletteData, tint0, tint1, tint2);
+        canvas.width = output.width;
+        canvas.height = output.height;
+        const ctx = canvas.getContext('2d');
+        if (!ctx) return;
+        ctx.putImageData(output, 0, 0);
+      })
+      .catch((err) => {
+        if (!cancelled) {
+          console.error('TintSwatches render error:', err);
+          onRenderError?.();
+        }
+      });
 
-    return (): void => { cancelled = true; };
-  }, [paletteName, resolvedSwatch, tint0, tint1, tint2]);
+    return (): void => {
+      cancelled = true;
+    };
+  }, [paletteName, swatchSrc, tint0, tint1, tint2]);
 
   if (!paletteName) {
     return null;
@@ -52,10 +69,7 @@ export default function TintSwatches({ palette, tint0, tint1, tint2, swatchTextu
 
   return (
     <div className={styles.tintSwatches}>
-      <canvas
-        ref={canvasRef}
-        className={`${styles.tintSwatch} ${styles.first}`}
-      />
+      <canvas ref={canvasRef} className={`${styles.tintSwatch} ${styles.first}`} />
     </div>
   );
 }

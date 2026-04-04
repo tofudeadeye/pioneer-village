@@ -1,6 +1,12 @@
 @use 'sass:math';
 @use '../../../styles/mixins.module.scss' as *;
 
+@property --checker-color {
+  syntax: '<color>';
+  inherits: false;
+  initial-value: #666666;
+}
+
 .container {
   margin-bottom: uiSize(16);
 }
@@ -15,7 +21,7 @@
 
 .optionGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(uiSize(50), 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(uiSize(72), 1fr));
   gap: uiSize(6);
 }
 
@@ -23,23 +29,34 @@
   background: var(--cust-bg-surface);
   border: 1px solid var(--cust-border-dark);
   border-radius: uiSize(4);
-  padding: uiSize(3);
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   aspect-ratio: 1;
-  transition: all 0.15s;
+  transition: all 0.15s, --checker-color 0.15s;
 
   overflow: hidden;
 
   &:hover {
     border-color: var(--cust-border-mid);
+    background-color: var(--cust-bg-hover);
   }
 
-  &:not(.customCell) {
+  &:has(canvas) {
+    --checker-color: #333333;
+    background-color: #111111;
+    background-image:
+      linear-gradient(45deg, var(--checker-color) 25%, transparent 25%),
+      linear-gradient(-45deg, var(--checker-color) 25%, transparent 25%),
+      linear-gradient(45deg, transparent 75%, var(--checker-color) 75%),
+      linear-gradient(-45deg, transparent 75%, var(--checker-color) 75%);
+    background-size: uiSize(16) uiSize(16);
+    background-position: 0 0, 0 uiSize(8), uiSize(8) uiSize(-8), uiSize(-8) 0;
+
     &:hover {
-      background: var(--cust-bg-hover);
+      --checker-color: #eeeeee;
+      background-color: #cccccc;
     }
   }
 
@@ -47,6 +64,12 @@
     border-color: var(--cust-brass);
     box-shadow: 0 0 uiSize(6) rgba(201, 169, 97, 0.3);
   }
+}
+
+.optionImage {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 .fallback {
@@ -63,39 +86,3 @@
   padding: uiSize(12) 0;
 }
 
-.customCell {
-  position: relative;
-  background: transparent;
-
-  &:before {
-    position: absolute;
-    inset: -25%;
-    content: '';
-    display: block;
-    z-index: -1;
-    transition: var(--theme-transition-slow);
-    background: conic-gradient(
-      from 0deg,
-      #8b3a3a,
-      #8b6b3a,
-      #3a8b3a,
-      #3a6b8b,
-      #3a3a8b,
-      #8b3a6b,
-      #8b3a3a
-    );
-  }
-
-  &:hover {
-    &:before {
-      transform: rotateZ(180deg);
-    }
-  }
-}
-
-.customIcon {
-  font-size: uiSize(20);
-  font-weight: 700;
-  color: white;
-  text-shadow: 0 1px uiSize(3) rgba(0, 0, 0, 0.5);
-}

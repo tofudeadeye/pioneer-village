@@ -1,13 +1,94 @@
-import { useMemo, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 
 import { conditionalClass } from '@uiLib/helpers';
 
+import styles from './category-browser.module.scss';
 import StyleColorSelector from './style-color-selector';
 import TintSelector from './tint-selector';
-import styles from './category-browser.module.scss';
+import TintSwatches from './tint-swatches';
 
 function toTitleCase(str: string): string {
   return str.replace(/_/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase());
+}
+
+function getDrawableImageUrl(drawableHash: string | number): string {
+  if (typeof drawableHash === 'string') {
+    drawableHash = GetHashKey(drawableHash);
+  }
+  const unsignedHash = drawableHash >>> 0;
+  return `https://p--v.b-cdn.net/drawables/${unsignedHash}.png`;
+}
+
+type ComponentData = UI.Customization.ComponentJsonData | UI.Customization.ComponentJsonDataPalette;
+
+function getFirstValidComponent(
+  componentsData: CategoryBrowserProps['componentsData'],
+  category: string,
+  gender: 'male' | 'female',
+): ComponentData | null {
+  const categoryStyles = componentsData[category];
+  if (!categoryStyles) return null;
+  for (const categoryStyle of categoryStyles) {
+    for (const comp of categoryStyle.components) {
+      if (gender === 'male' && comp.type === '1') continue;
+      if (gender === 'female' && comp.type === '0') continue;
+      return comp;
+    }
+  }
+  return null;
+}
+
+function isTintable(comp: ComponentData): comp is UI.Customization.ComponentJsonDataPalette {
+  if (!('palette' in comp) || !comp.palette || comp.palette === '') return false;
+  const paletteNum = typeof comp.palette === 'string' ? GetHashKey(comp.palette) : comp.palette;
+  return paletteNum !== -1 && paletteNum !== 0;
+}
+
+interface ComponentThumbnailProps {
+  comp: ComponentData;
+  className: string;
+  onError?: () => void;
+}
+
+function ComponentThumbnail({ comp, className, onError }: ComponentThumbnailProps): React.ReactNode {
+  const [imgFailed, setImgFailed] = useState(false);
+  const imageUrl = getDrawableImageUrl(comp.drawable);
+  const handleImgError = useCallback((): void => {
+    setImgFailed(true);
+    onError?.();
+  }, [onError]);
+
+  if (isTintable(comp)) {
+    if (!imgFailed) {
+      return (
+        <TintSwatches
+          palette={comp.palette}
+          tint0={comp.tint0}
+          tint1={comp.tint1}
+          tint2={comp.tint2}
+          swatchTexture={comp.swatchTexture}
+          imageUrl={imageUrl}
+          displaySize={128}
+          onRenderError={handleImgError}
+        />
+      );
+    }
+    return (
+      <TintSwatches
+        palette={comp.palette}
+        tint0={comp.tint0}
+        tint1={comp.tint1}
+        tint2={comp.tint2}
+        swatchTexture={comp.swatchTexture}
+      />
+    );
+  }
+
+  if (!imgFailed) {
+    return <img className={className} src={imageUrl} alt="" onError={handleImgError} />;
+  }
+
+  return null;
 }
 
 type NavLevel = 'categories' | 'items' | 'styles';
@@ -48,7 +129,6 @@ export default function CategoryBrowser({
   const [navLevel, setNavLevel] = useState<NavLevel>('categories');
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [selectedStyleIndex, setSelectedStyleIndex] = useState<number | null>(null);
-  const [isCustomMode, setIsCustomMode] = useState(false);
 
   const availableCategories = useMemo(() => {
     return categories.filter((category) => {
@@ -64,26 +144,22 @@ export default function CategoryBrowser({
   const handleCategoryClick = (category: string): void => {
     setSelectedCategory(category);
     setSelectedStyleIndex(null);
-    setIsCustomMode(false);
     setNavLevel('items');
   };
 
   const handleStyleClick = (styleIndex: number): void => {
     setSelectedStyleIndex(styleIndex);
-    setIsCustomMode(false);
     setNavLevel('styles');
   };
 
   const handleBreadcrumbRoot = (): void => {
     setSelectedCategory(null);
     setSelectedStyleIndex(null);
-    setIsCustomMode(false);
     setNavLevel('categories');
   };
 
   const handleBreadcrumbCategory = (): void => {
     setSelectedStyleIndex(null);
-    setIsCustomMode(false);
     setNavLevel('items');
   };
 
@@ -96,20 +172,6 @@ export default function CategoryBrowser({
       return true;
     });
     return index === -1 ? 0 : index;
-  };
-
-  const handleCustomClick = (): void => {
-    if (selectedCategory && selectedStyleIndex !== null) {
-      const currentStyle = currentComponents[selectedCategory]?.style;
-      if (currentStyle !== selectedStyleIndex) {
-        onComponentChange(
-          selectedCategory,
-          selectedStyleIndex,
-          getFirstValidOption(selectedCategory, selectedStyleIndex),
-        );
-      }
-    }
-    setIsCustomMode(true);
   };
 
   const selectedCategoryData = selectedCategory && componentsData[selectedCategory];
@@ -133,17 +195,20 @@ export default function CategoryBrowser({
     ];
   }, [selectedCategory, selectedStyleIndex, componentsData, convertComponent]);
 
-  const currentSwatchTexture = useMemo((): string | undefined => {
+  const currentComp = useMemo((): ComponentData | undefined => {
     if (!selectedCategory || selectedStyleIndex === null) return undefined;
     const styleData = componentsData[selectedCategory]?.[selectedStyleIndex];
     if (!styleData) return undefined;
     const currentOption = currentComponents[selectedCategory]?.option ?? 0;
-    const comp = styleData.components[currentOption];
-    return comp?.swatchTexture;
+    return styleData.components[currentOption];
   }, [selectedCategory, selectedStyleIndex, componentsData, currentComponents]);
 
   const hasTintData =
-    selectedCategory && (isCustomMode || (tints[selectedCategory] && tints[selectedCategory].palette !== -1));
+    selectedCategory &&
+    currentComp &&
+    isTintable(currentComp) &&
+    tints[selectedCategory] &&
+    tints[selectedCategory].palette !== -1;
 
   return (
     <>
@@ -187,31 +252,44 @@ export default function CategoryBrowser({
 
       {navLevel === 'categories' && (
         <div className={styles.cardsGrid}>
-          {availableCategories.map((category) => (
-            <div key={category} className={styles.card} onClick={() => handleCategoryClick(category)}>
-              <span className={styles.cardName}>{toTitleCase(category)}</span>
-              <span className={styles.cardCount}>{getCategoryCount(category)}</span>
-            </div>
-          ))}
+          {availableCategories.map((category) => {
+            const firstComp = getFirstValidComponent(componentsData, category, gender);
+            return (
+              <div key={category} className={styles.card} onClick={() => handleCategoryClick(category)}>
+                {firstComp && <ComponentThumbnail comp={firstComp} className={styles.cardThumb} />}
+                <span className={styles.cardName}>{toTitleCase(category)}</span>
+                <span className={styles.cardCount}>{getCategoryCount(category)}</span>
+              </div>
+            );
+          })}
         </div>
       )}
 
-      {navLevel === 'items' && selectedCategoryData && (
+      {navLevel === 'items' && selectedCategoryData && selectedCategory && (
         <div className={styles.itemsGrid}>
-          {selectedCategoryData.map((item, index) => (
-            <div
-              key={index}
-              className={conditionalClass(styles.itemCard, {
-                [styles.selected]: selectedCategory
-                  ? currentComponents[selectedCategory]?.style === index
-                  : false,
-              })}
-              onClick={() => handleStyleClick(index)}
-            >
-              <div className={styles.diamond} />
-              <span className={styles.itemName}>{item.name}</span>
-            </div>
-          ))}
+          {selectedCategoryData.map((item, index) => {
+            const firstComp = item.components.find((comp) => {
+              if (gender === 'male' && comp.type === '1') return false;
+              if (gender === 'female' && comp.type === '0') return false;
+              return true;
+            });
+            return (
+              <div
+                key={index}
+                className={conditionalClass(styles.itemCard, {
+                  [styles.selected]: currentComponents[selectedCategory]?.style === index,
+                })}
+                onClick={() => handleStyleClick(index)}
+              >
+                {firstComp ? (
+                  <ComponentThumbnail comp={firstComp} className={styles.itemImage} />
+                ) : (
+                  <div className={styles.diamond} />
+                )}
+                <span className={styles.itemName}>{item.name}</span>
+              </div>
+            );
+          })}
         </div>
       )}
 
@@ -225,7 +303,6 @@ export default function CategoryBrowser({
             option={currentComponents[selectedCategory]?.option ?? 0}
             onChange={(_style, option) => {
               onComponentChange(selectedCategory, selectedStyleIndex, option);
-              setIsCustomMode(false);
 
               const comp = componentsData[selectedCategory]?.[selectedStyleIndex]?.components[option];
               if (comp && 'palette' in comp && comp.palette) {
@@ -243,8 +320,6 @@ export default function CategoryBrowser({
                 }
               }
             }}
-            onCustomClick={handleCustomClick}
-            isCustomSelected={isCustomMode}
           />
 
           {hasTintData && (
@@ -255,7 +330,7 @@ export default function CategoryBrowser({
               tint0={tints[selectedCategory]?.tint0 ?? 0}
               tint1={tints[selectedCategory]?.tint1 ?? 0}
               tint2={tints[selectedCategory]?.tint2 ?? 0}
-              swatchTexture={currentSwatchTexture}
+              swatchTexture={currentComp?.swatchTexture}
               useFallbackSwatch={useFallbackSwatch}
               onChange={(ident, tint) => {
                 if (selectedCategory && selectedStyleIndex !== null) {

@@ -1,36 +1,81 @@
-# Weather Transition System
+# Weather System
 
-A grid-based weather system for RedM that provides smooth, directional weather transitions between cells using heading-based targeting and a three-phase state machine.
+A grid-based spatial weather system for RedM that provides smooth, directional weather transitions between cells. Weather state lives on the socket server, is broadcast to clients via the UI bridge, and is rendered client-side using a two-slot transition engine and heading-based targeting.
 
 ## Table of Contents
 
-- [Overview](#overview)
-- [Key Concepts](#key-concepts)
-- [Spatial Calculations](#spatial-calculations)
-- [State Machine](#state-machine)
-- [Heading-Based Targeting](#heading-based-targeting)
-- [Usage](#usage)
-- [Testing](#testing)
+- [Architecture](#architecture)
+- [Grid Structure](#grid-structure)
+- [Weather Compatibility Graph](#weather-compatibility-graph)
+- [Smooth Transition Engine](#smooth-transition-engine)
+- [Spatial Transition System](#spatial-transition-system)
+- [Weather Evolution](#weather-evolution)
+- [Client Communication](#client-communication)
+- [Client Exports](#client-exports)
+- [Biome-Specific Variants](#biome-specific-variants)
 - [Debug Commands](#debug-commands)
+- [Grid Stats](#grid-stats)
+- [Known Limitations / Future Enhancements](#known-limitations--future-enhancements)
 
-## Overview
+## Architecture
 
-The weather system divides the game world into a grid of cells, where each cell has its own weather type and biome. As players move between cells, the weather transitions smoothly based on their position and heading direction.
+The system is split across three layers:
 
-**Key Features:**
-- **Heading-aware transitions**: Weather transitions target the cell you're moving towards, not intermediate cells
-- **Anti-flapping**: Diagonal movement transitions directly to the diagonal cell
-- **Smooth progression**: Transitions use a 0.0 → 0.5 → 0.9 scale to blend between weather types
-- **Settled zones**: Inner 50% of each cell maintains stable weather without transitions
+```
+┌─────────────────────────────────────────────────────────────────────┐
+│                        Socket Server                                │
+│  socket/src/managers/weather.ts   socket/src/controllers/weather.ts │
+│                                                                     │
+│  - BiomeWeatherGrid (8x8 grid, biome map, cell bounds)            │
+│  - BiomeManager (biome boundaries, weather rules)                  │
+│  - Weather evolution (5-minute tick, 10% chance per cell)          │
+│  - Admin RPCs (freeze, override, regenerate, set biome weather)    │
+│  - Source of truth for all grid state                              │
+├─────────────────────────────────────────────────────────────────────┤
+│                        UI Controller                                │
+│  resources/ui/src/ui/app/controllers/weather.ts                     │
+│                                                                     │
+│  - Bridges socket server <-> game client                           │
+│  - Forwards grid updates, freeze state, global overrides to client │
+│  - Forwards client RPCs to socket server (request-grid, admin ops) │
+├─────────────────────────────────────────────────────────────────────┤
+│                       Client Resource                               │
+│  resources/weather/src/client/                                      │
+│                                                                     │
+│  - ClientWeatherManager (per-player state, spatial transitions)    │
+│  - Smooth transition engine (two-slot A/B blending via natives)    │
+│  - Heading-based neighbor targeting (anti-flapping)                │
+│  - Weather rendering via SetCurrWeatherState native                │
+│  - Typed exports for other resources                               │
+│  - Debug commands                                                  │
+│  - No server code — client only                                    │
+└─────────────────────────────────────────────────────────────────────┘
+```
 
-## Key Concepts
+**Data flow:**
 
-### Grid Structure
+```
+Socket Server                UI Controller              Game Client
+     │                            │                          │
+     │──── grid-update ──────────>│──── grid-update ────────>│
+     │──── freeze-state ─────────>│──── freeze-state ───────>│
+     │──── global-override ──────>│──── global-override ────>│
+     │                            │                          │
+     │<─── request-grid ──────────│<─── request-grid ────────│
+     │<─── admin.freeze-weather ──│<─── admin.freeze-weather─│
+     │<─── admin.force-global ────│<─── admin.force-global ──│
+     │<─── admin.set-biome-weather│<─── admin.set-biome...  ─│
+     │<─── admin.regenerate-grid ─│<─── admin.regenerate... ─│
+```
 
-The world is divided into a 2D grid of weather cells. Each cell contains:
-- Weather type (SUNNY, RAIN, SNOW, FOG, etc.)
-- Biome type (HEARTLANDS, GRIZZLIES, etc.)
-- Spatial bounds (position and dimensions)
+## Grid Structure
+
+The world is divided into an 8x8 grid of weather cells. Each cell contains:
+
+- **Weather type** — one of 21 `WeatherType` values (SUNNY, RAIN, SNOW, FOG, etc.)
+- **Biome type** — one of 12 `BiomeType` values (HEARTLANDS, GRIZZLIES, etc.)
+- **Variant** — biome-specific visual variant string, or null
+- **Rain rate** — 0.0 to 1.0, only applies to RAIN, SHOWER, DRIZZLE, THUNDERSTORM
 
 ### Transition Zones
 
@@ -54,126 +99,75 @@ Each cell is divided into two zones:
 └─────────────────────────────────────┘
 ```
 
-- **Inner 50%**: Settled zone - no transitions, stable weather
-- **Outer 50%**: Transition zone - weather blends based on distance from center
+- **Inner 50%**: Settled zone — no transitions, stable weather
+- **Outer 50%**: Transition zone — weather blends based on distance from center
 
-### Transition Percentage Scale
+## Weather Compatibility Graph
 
-The system uses `SetCurrWeatherState(hash1, hash2, percentFloat)` which only accepts values from 0.0 to 0.9:
+A directed graph defines which weather types can transition to each other. The `findWeatherTransitionPath()` function uses BFS to find the shortest path between any two types.
 
-- **0.0**: Fully in first weather type (settled)
-- **0.5**: At the boundary between cells (50/50 blend)
-- **0.9**: Fully in second weather type (settled in new cell)
-
-## Spatial Calculations
-
-### Single Cell Transition
-
-When approaching a cell boundary, the transition starts at the 50% mark (not the true center):
+### Chains
 
 ```
-        Cell A                    Cell B
-┌─────────────────────┐  ┌─────────────────────┐
-│                     │  │                     │
-│   ┌─────────────┐   │  │   ┌─────────────┐   │
-│   │  Settled    │   │  │   │  Settled    │   │
-│   │   Zone      │   │  │   │   Zone      │   │
-│   │             │   │  │   │             │   │
-│   │ ■ Center    │   │  │   │    Center   │   │
-│   │             │   │  │   │             │   │
-│   └─────────────┘   │  │   └─────────────┘   │
-│    Transition       │  │       Transition    │
-│      Zone           │  │         Zone        │
-│         │           │  │           │         │
-│         ↓           │  │           ↓         │
-│    0.0 → 0.5 ───────┼──┼─────→ 0.5 → 0.9    │
-│         │           │  │           │         │
-└─────────┴───────────┘  └───────────┴─────────┘
-               ▲  Edge (0.5)  ▲
-               └───────────────┘
+Extreme Cold:   WHITEOUT <-> BLIZZARD <-> GROUNDBLIZZARD
+Cold/Snow:      SNOW <-> SNOWLIGHT <-> HAIL <-> SLEET
+Storm:          HURRICANE <-> THUNDER <-> THUNDERSTORM
+Wet:            RAIN <-> SHOWER <-> DRIZZLE <-> MISTY <-> FOG
+Overcast:       OVERCAST | OVERCASTDARK
+Hub:            CLOUDS (connects to SUNNY, OVERCAST, OVERCASTDARK,
+                        HIGHPRESSURE, DRIZZLE, SNOWLIGHT, FOG)
+Clear:          SUNNY <-> HIGHPRESSURE
+Desert:         SANDSTORM
 ```
 
-**Distance Calculation:**
+CLOUDS acts as the hub node connecting most chains. Cross-chain transitions route through it. For example, SNOW to RAIN goes: SNOW -> SNOWLIGHT -> CLOUDS -> DRIZZLE -> RAIN (4 hops).
 
-```typescript
-// Distance from cell center to edge
-halfDistance = distanceBetweenCenters / 2
+The compatibility graph is also used by the smooth transition engine — when the game's current weather slots don't match the target, it walks through intermediate hops.
 
-// Transition zone starts at 50% of the way from edge to center
-transitionStartDistance = halfDistance * 0.5
+## Smooth Transition Engine
 
-// Transition zone width (outer 50% of cell)
-transitionRange = halfDistance - transitionStartDistance
-```
+ALL weather changes go through the smooth transition engine. There are no direct `SetCurrWeatherState` calls outside of it.
 
-### Two-Phase Transition
+### How It Works
 
-A complete transition across cells follows two phases:
+The game has two weather "slots" (A and B) with a blend percent between them:
 
 ```
-Phase 1: APPROACHING          Phase 2: CROSSED
-(in Cell A)                   (in Cell B)
-
-     Cell A                        Cell B
-┌─────────────────┐           ┌─────────────────┐
-│                 │           │                 │
-│  ┌──────────┐   │           │   ┌──────────┐  │
-│  │ Settled  │   │           │   │ Settled  │  │
-│  │          │   │           │   │          │  │
-│  │    ■     │   │    Edge   │   │     ■    │  │
-│  │          │   │      ↓    │   │          │  │
-│  └──────────┘   │      ║    │   │          │  │
-│      ↓          │      ║    │   │     ↑    │  │
-│   Player        │      ║    │   │  Player  │  │
-│   moving →      │      ║    │   │  moving  │  │
-│                 │      ║    │   │          │  │
-│  0.0 → 0.5 ─────┼──────╬────┼───┼→ 0.5→0.9 │  │
-│                 │      ║    │   │          │  │
-└─────────────────┘      ║    └───┼──────────┘  │
-                         ║        │             │
-  Weather: A → B         ║        │  Weather: A → B
-  Percent: 0.0 → 0.5 ════╝        │  Percent: 0.5 → 0.9
-                                  │
-                                  At 0.9:
-                                  - Phase = 'settled'
-                                  - Weather = B
-                                  - Target = null
+SetCurrWeatherState(hashA, hashB, percent, true)
+  percent = 0.0  →  fully slot A
+  percent = 0.5  →  50/50 blend
+  percent = 0.9  →  fully slot B
 ```
 
-### Distance Formulas
+To change weather, the engine:
+1. Slides the percent to free a slot (e.g., slide to 0% to free slot B)
+2. Swaps the freed slot to the next weather type in the path
+3. Slides the percent toward the new type
+4. Repeats for each hop in the path
 
-**Phase 1 - Approaching (0.0 → 0.5):**
+### Key Functions
 
-```
-Player in current cell, moving towards target cell edge
+- **`transitionToWeather(target, rainRate)`** — Transitions to a single settled weather type. Plans a multi-hop path through the compatibility graph, builds a step queue, and starts the tick loop. Used for initial load, global overrides, and when neither game slot matches the spatial target.
 
-distanceFromCenter = √[(x - cellCenterX)² + (y - cellCenterY)²]
+- **`transitionToTarget(targetA, targetB, percent, rainRate)`** — Transitions to a specific A/B/percent blend. Used during spatial transitions when the player is between two cells. Figures out which slot needs changing, slides to free it, swaps, then slides to the target percent.
 
-if distanceFromCenter < transitionStartDistance:
-    transitionPercent = 0.0  // In settled zone
-else:
-    progressInZone = distanceFromCenter - transitionStartDistance
-    transitionPercent = (progressInZone / transitionRange) × 0.5
-```
+### Timing
 
-**Phase 2 - Crossed (0.5 → 0.9):**
+- Each hop takes **700ms** (`HOP_DURATION_MS`)
+- Maximum path length is 7 hops (worst case in the compatibility graph)
+- Longest transition is ~5 seconds
+- A `setTick` loop lerps the percent each frame within a hop
+- Steps complete instantly if they are no-ops or settle steps (both slots same type)
 
-```
-Player has crossed into target cell, moving towards its 50% mark
+### Fallback
 
-distanceFromCenter = √[(x - newCellCenterX)² + (y - newCellCenterY)²]
+If no valid transition path exists (should not happen with a connected graph), the engine falls back to `snapToWeather()` which immediately sets both slots.
 
-if distanceFromCenter > transitionEndDistance:
-    distanceFromEdge = halfDistance - distanceFromCenter
-    progressInZone = max(0, distanceFromEdge)
-    transitionPercent = 0.5 + (progressInZone / transitionRange) × 0.4
-else:
-    transitionPercent = 0.9  // Reached 50% mark, fully settled
-```
+## Spatial Transition System
 
-## State Machine
+The client polls every 5 seconds, calculating the player's grid position and heading to determine if weather should transition.
 
-The system uses a three-phase state machine to track transitions:
+### State Machine
 
 ```
                   ┌──────────────┐
@@ -215,37 +209,43 @@ The system uses a three-phase state machine to track transitions:
                   └──────────────┘
 ```
 
-### State Transitions
+### Two-Phase Transition
 
-**SETTLED → APPROACHING:**
-- Player enters transition zone (outer 50% of cell)
-- System determines neighbor based on heading
-- Sets target cell and target weather
-- Begins transition from 0.0 → 0.5
+A complete transition across cells follows two phases:
 
-**APPROACHING → CROSSED:**
-- Player crosses cell boundary into target cell
-- Keeps same target weather
-- Continues transition from 0.5 → 0.9
-- Current weather NOT updated yet
+```
+Phase 1: APPROACHING          Phase 2: CROSSED
+(in Cell A)                   (in Cell B)
 
-**CROSSED → SETTLED:**
-- Player reaches 50% mark in new cell (transitionPercent ≥ 0.89)
-- Updates current weather to cell's weather
-- Clears target cell and target weather
-- Returns to stable state
+     Cell A                        Cell B
+┌─────────────────┐           ┌─────────────────┐
+│                 │           │                 │
+│  ┌──────────┐   │           │   ┌──────────┐  │
+│  │ Settled  │   │           │   │ Settled  │  │
+│  │          │   │           │   │          │  │
+│  │    ■     │   │    Edge   │   │     ■    │  │
+│  │          │   │      ↓    │   │          │  │
+│  └──────────┘   │      ║    │   │          │  │
+│      ↓          │      ║    │   │     ↑    │  │
+│   Player        │      ║    │   │  Player  │  │
+│   moving →      │      ║    │   │  moving  │  │
+│                 │      ║    │   │          │  │
+│  0.0 → 0.5 ─────┼──────╬────┼───┼→ 0.5→0.9 │  │
+│                 │      ║    │   │          │  │
+└─────────────────┘      ║    └───┼──────────┘  │
+                         ║        │             │
+  Weather: A → B         ║        │  Weather: A → B
+  Percent: 0.0 → 0.5 ════╝        │  Percent: 0.5 → 0.9
+                                  │
+                                  At 0.9:
+                                  - Phase = 'settled'
+                                  - Weather = B
+                                  - Target = null
+```
 
-**APPROACHING → SETTLED (heading change):**
-- Player changes heading by >45° while transitioning
-- Resets transition target
-- Returns to settled state
-- Prevents "flapping" between multiple targets
-
-## Heading-Based Targeting
+### Heading-Based Targeting
 
 The system uses player heading to determine which neighbor cell to transition towards, preventing "flapping" when moving diagonally.
-
-### Heading Directions
 
 RDR2 uses counter-clockwise heading angles:
 
@@ -275,9 +275,7 @@ W (67.5─────╲ │ ╱─────270°) E
             S (180°)
 ```
 
-### Direction Mapping
-
-```typescript
+```
 Heading Range    →  Direction  →  Grid Offset
 ─────────────────────────────────────────────
 337.5° - 22.5°   →     N       →  (0, +1)
@@ -290,7 +288,7 @@ Heading Range    →  Direction  →  Grid Offset
 292.5° - 337.5°  →     NE      →  (+1, +1)
 ```
 
-### Anti-Flapping Example
+### Anti-Flapping
 
 Without heading-based targeting:
 ```
@@ -314,17 +312,130 @@ With heading-based targeting:
 └─────┴─────┴─────┘
 ```
 
-## Testing
+If the player's heading changes by more than 45 degrees during a transition, the target resets and the transition returns to settled state.
 
-### Test Pattern Command
+## Weather Evolution
+
+The socket server evolves weather every 5 minutes:
+
+- Each of the 64 cells has a **10% chance to change** per tick
+- On average ~6 cells change per evolution cycle
+- New weather is chosen from the cell's biome-allowed types
+- Biome-specific variants are selected when available
+- Rain rate is assigned for rain-capable weather types
+- Respects **frozen state** — no evolution while frozen
+- Respects **global override** — no evolution while overridden
+- Grid updates are broadcast to all clients via `weather.grid-update`
+- Clients pick up changes on their next 5-second spatial tick (no forced snap)
+
+## Client Communication
+
+### Grid Requests (client-initiated)
+
+```
+Client                    UI Controller              Socket Server
+  │                            │                          │
+  │── awaitUI('weather.       │                          │
+  │     request-grid') ──────>│── socket.emit('weather.  │
+  │                           │     request-grid', cb) ─>│
+  │                           │                          │── reads grid
+  │                           │<──── cb({ grid }) ───────│
+  │<──── resolve({ grid }) ───│                          │
+```
+
+### Grid Updates (server-initiated)
+
+```
+Socket Server              UI Controller              Client
+  │                            │                          │
+  │── userNamespace.emit(     │                          │
+  │   '__client__',           │                          │
+  │   'weather.grid-update',  │                          │
+  │    grid) ────────────────>│── emitClient('weather.   │
+  │                           │     grid-update', grid)─>│
+  │                           │                          │── updates local grid
+```
+
+### Admin RPCs
+
+All admin operations follow the same pattern through the UI controller:
+
+| Event | Direction | Purpose |
+|-------|-----------|---------|
+| `weather.admin.freeze-weather` | client -> socket | Pause/resume evolution |
+| `weather.admin.force-global` | client -> socket | Override all cells to one type (or clear) |
+| `weather.admin.set-biome-weather` | client -> socket | Set all cells of a biome to a weather type |
+| `weather.admin.regenerate-grid` | client -> socket | Regenerate the entire grid (optional seed) |
+| `weather.admin.get-grid-state` | client -> socket | Get grid + frozen + override state |
+
+### Broadcast Events
+
+| Event | Direction | Purpose |
+|-------|-----------|---------|
+| `weather.grid-update` | socket -> client | Full grid data after evolution or admin change |
+| `weather.freeze-state` | socket -> client | Freeze state changed |
+| `weather.global-override` | socket -> client | Global override set or cleared |
+
+## Client Exports
+
+Other resources can query the weather system using typed exports:
+
+```ts
+import { PVWeather } from '@lib/client';
+
+PVWeather.getCurrentWeather()      // WeatherType | null
+PVWeather.getTargetWeather()       // WeatherType | null — null if settled
+PVWeather.getCurrentBiome()        // BiomeType | null
+PVWeather.getTransitionProgress()  // number (0.0 - 0.9)
+PVWeather.isTransitioning()        // boolean
+PVWeather.getBiomeName(biome)      // string — display name for a BiomeType
+```
+
+## Biome-Specific Variants
+
+Each biome has its own set of appropriate weather variants for visual variety:
+
+| Biome | Example Variants |
+|-------|-----------------|
+| GRIZZLIES | `BLIZZARD_winter2`, `SNOW_Odriscolls1`, `WHITEOUT_winter1` |
+| TALL_TREES | `MISTY_train1`, `DRIZZLE_finale1`, `OVERCASTDARK_Gang2` |
+| BAYOU | `FOG_guama`, `SHOWER_guama`, `HURRICANE_guama` |
+| HEARTLANDS | `MISTY_MP_intro`, `THUNDERSTORM_nativeSon3`, `OVERCASTDARK_STD1` |
+| NEW_AUSTIN / RIO_BRAVO | `HIGHPRESSURE_guama`, `Sunny_odriscols4` |
+| LEMOYNE | `MISTY_braithwaites3`, `SHOWER_guama`, `THUNDERSTORM_MP_Pred` |
+| ROANOKE | `MISTY_MP_Pred`, `OVERCASTDARK_finale2`, `Fog_MP_Pred` |
+
+The socket server automatically selects biome-appropriate variants when generating or evolving weather. If no biome-specific variant exists for a weather type, it falls back to the general variant pool.
+
+## Debug Commands
+
+### `/weather:grid`
+
+Print the full grid to console with biome abbreviation + weather per cell. Marks the player's current cell with `*`.
+
+### `/weather:check`
+
+Display current player weather state details:
+
+```
+========================================
+WEATHER INFORMATION
+========================================
+Position: 1234.5, 5678.9, 123.4
+Heading: 315.2°
+Current Cell: (3, 5)
+Current Biome: Heartlands
+Current Weather: SUNNY
+Target Weather: RAIN
+Target Cell: (4, 6)
+Transition Phase: approaching
+Transition Percent: 35.67%
+========================================
+```
+
+### `/weather:test`
 
 Generate a checkerboard pattern for visual testing:
-
-```
-/weather:test
-```
-
-This creates an alternating pattern of SUNNY and RAIN cells:
 
 ```
 ┌─────┬─────┬─────┬─────┬─────┐
@@ -343,144 +454,57 @@ Pattern: (x + y) % 2 === 0 → SUNNY
          (x + y) % 2 === 1 → RAIN
 ```
 
-**Testing procedure:**
-1. Run `/weather:test` to generate the pattern
-2. Move between cells in different directions
-3. Observe smooth weather transitions
-4. Verify transitions complete to 0.9
-5. Check logs for transition phase progression
+### `/weather:force <TYPE>`
 
-### Expected Behavior
+Force all grid cells to a specific weather type locally. Example: `/weather:force SNOW`
 
-When moving from SUNNY to RAIN:
+### `/weather:sync`
 
-```
-Phase 1 (Approaching):
-[Weather] SUNNY -> RAIN (0.00%) phase: approaching
-[Weather] SUNNY -> RAIN (10.25%) phase: approaching
-[Weather] SUNNY -> RAIN (25.50%) phase: approaching
-[Weather] SUNNY -> RAIN (45.75%) phase: approaching
-[Weather] SUNNY -> RAIN (50.00%) phase: approaching  ← Edge crossed
+Re-request the weather grid from the socket server, resetting any local overrides.
 
-Phase 2 (Crossed):
-[Weather] SUNNY -> RAIN (50.00%) phase: crossed
-[Weather] SUNNY -> RAIN (62.50%) phase: crossed
-[Weather] SUNNY -> RAIN (75.00%) phase: crossed
-[Weather] SUNNY -> RAIN (87.50%) phase: crossed
-[Weather] SUNNY -> RAIN (89.00%) phase: crossed      ← Reached 50% mark
-[Transition] Settled at 50% mark in cell (X, Y). Weather: RAIN
+### `/weather:compat [TYPE]`
 
-Phase 3 (Settled):
-No transitions, stable RAIN weather
-```
+Analyze the weather compatibility graph. Reports:
+- Isolated types (no outgoing transitions)
+- Unreachable pairs (no path between two types)
+- Hop distribution (how many pairs at each hop count)
+- Max hops and worst-case path
+- If a `TYPE` argument is given, prints all paths from that type to every other type
 
-## Debug Commands
+### `/togglegrid`
 
-### `/weather:check`
+Visual grid overlay with biome colors (registered outside the weather resource).
 
-Display current weather state information:
+### `/gridheight <height>`
 
-```
-========================================
-WEATHER INFORMATION
-========================================
-Position: 1234.5, 5678.9, 123.4
-Heading: 315.2°
-Current Cell: (12, 34)
-Current Biome: Heartlands
-Current Weather: SUNNY
-Target Weather: RAIN
-Target Cell: (13, 35)
-Transition Phase: approaching
-Transition Percent: 35.67%
-========================================
-```
+Set the Z height of the visual grid overlay.
 
-### `/weather:test`
+## Grid Stats
 
-Generate alternating SUNNY/RAIN test pattern:
+| Metric | Value |
+|--------|-------|
+| Grid size | 8 x 8 (64 cells) |
+| Cell size | ~1,472 x 1,296 world units |
+| Map X range | -5,632 to 6,144 |
+| Map Y range | -5,760 to 4,608 |
+| Weather types | 21 |
+| Biomes | 12 |
+| Weather types per biome | 3 to 10 |
+| Client poll interval | 5 seconds |
+| Server evolution interval | 5 minutes |
+| Evolution chance per cell | 10% |
+| Transition hop duration | 700ms |
+| Max transition hops | ~7 |
 
-```
-========================================
-TEST PATTERN GENERATED
-========================================
-Weather grid set to alternating SUNNY/RAIN pattern
-SUNNY cells: even (x+y) positions
-RAIN cells: odd (x+y) positions
-Move between cells to test transitions!
-========================================
-```
+## Known Limitations / Future Enhancements
 
-## Weather Variants
-
-The system supports weather variants that provide visual variety within the same weather type. **Variants are biome-specific** to create authentic regional atmosphere.
-
-### Biome-Specific Variants
-
-Each biome has its own set of appropriate weather variants:
-
-**Snowy Mountains (GRIZZLIES):**
-- `BLIZZARD_winter2`, `GROUNDBLIZZARD_winter2`
-- `SNOW_Odriscolls1`, `SNOW_Pearson1`
-- `SNOWLIGHT_Odriscolls1`, `SNOWLIGHT_Pearson1`
-- `WHITEOUT_winter1`
-
-**Swampy Regions (BAYOU, LEMOYNE):**
-- `FOG_guama`, `MISTY_guama`, `MISTY_braithwaites3`
-- `SHOWER_guama`, `HIGHPRESSURE_guama`
-- `HURRICANE_guama` (BAYOU only)
-
-**Plains (HEARTLANDS, GREAT_PLAINS):**
-- `MISTY_finale1`, `MISTY_MP_intro`
-- `THUNDERSTORM_nativeSon3`
-- `OVERCASTDARK_native3`, `OVERCASTDARK_STD1`
-
-**Forests (TALL_TREES, ROANOKE, CUMBERLAND):**
-- `MISTY_train1`, `MISTY_MP_Pred`
-- `DRIZZLE_finale1`
-- `OVERCASTDARK_Gang2`
-
-**Desert (NEW_AUSTIN, RIO_BRAVO):**
-- `HIGHPRESSURE_guama`
-- `Sunny_odriscols4`
-
-The system automatically selects biome-appropriate variants when generating or evolving weather. If no biome-specific variant exists, it falls back to the general variant pool.
-
-## Architecture
-
-```
-┌─────────────────────────────────────────────────────┐
-│                  Weather System                     │
-├─────────────────────────────────────────────────────┤
-│                                                     │
-│  ┌──────────────────┐      ┌───────────────────┐  │
-│  │  BiomeWeatherGrid│      │ ClientWeatherMgr  │  │
-│  │                  │      │                   │  │
-│  │ - Grid cells     │◄────►│ - Per-player     │  │
-│  │ - Coordinates    │      │   state tracking │  │
-│  │ - Bounds calc    │      │ - Transition     │  │
-│  │                  │      │   calculation    │  │
-│  └──────────────────┘      │ - State machine  │  │
-│                            │ - Weather apply  │  │
-│                            └────────┬──────────┘  │
-│                                     │             │
-│                                     ↓             │
-│                         ┌────────────────────┐    │
-│                         │ SetCurrWeatherState│    │
-│                         │   (Native API)     │    │
-│                         └────────────────────┘    │
-│                                                     │
-└─────────────────────────────────────────────────────┘
-```
-
-## Future Enhancements
-
-- [ ] Dynamic transition speed based on movement velocity
-- [ ] Smooth heading interpolation to reduce reset frequency
-- [ ] Biome-specific transition curves (faster in some biomes, slower in others)
-- [ ] Weather intensity gradients (light rain → heavy rain)
-- [ ] Multi-layer weather (ground fog + high clouds)
-- [ ] Forecasting, time based generation of evolving weather
-- [ ] Add Rain variation
-- [ ] Add Wind aspect.
-- [ ] Add management of moon phases/cycles?
+- Cell size is large — could benefit from a 16x16 grid for finer resolution
+- No weather "fronts" or directional storm movement
+- No time-of-day influence on weather selection
+- No seasonal variation in biome weather rules
+- Evolution rate is uniform across all biomes
+- No admin UI — RPCs exist but no in-game panel yet
+- Permission system is a placeholder (account system not yet integrated)
+- No wind system or wind-influenced weather
+- No multi-layer weather (e.g., ground fog + high clouds)
+- No forecasting or predictive weather patterns

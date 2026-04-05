@@ -1,9 +1,24 @@
-import { WeatherType, BiomeType, WeatherVariants, BiomeWeatherVariants, BiomeNames } from "../../shared/biome";
-import { BiomeWeatherGrid } from "../../shared/grid";
-import type { GridCell } from "../../shared/types";
-import { awaitServer } from '@lib/client';
-import { Log } from '@lib/client/comms/ui';
+import { awaitUI } from '@lib/client/comms/ui';
+import { Log, onSocket } from '@lib/client/comms/ui';
+
+import { BiomeNames, BiomeType, BiomeWeatherVariants, WeatherType, WeatherVariants, findWeatherTransitionPath } from '../../shared/biome';
 import { WeatherHashes } from '../../shared/biome';
+import { BiomeWeatherGrid } from '../../shared/grid';
+import type { GridCell } from '../../shared/types';
+
+/** Duration in ms for each hop in a multi-step weather transition */
+const HOP_DURATION_MS = 700;
+
+/**
+ * A single step in a weather transition sequence.
+ * Each step slides the percent between slotA and slotB.
+ */
+interface TransitionStep {
+  slotA: WeatherType;
+  slotB: WeatherType;
+  fromPercent: number;
+  toPercent: number;
+}
 
 interface PlayerWeatherState {
   currentCell: { x: number; y: number };
@@ -38,6 +53,11 @@ export class ClientWeatherManager {
   private neighborWeather: WeatherType | null = null;
   private lastTransitionPercent: number = 0.1;
 
+  // Smooth transition engine state
+  private transitionQueue: TransitionStep[] = [];
+  private transitionTickId: number | null = null;
+  private transitionStepStartTime: number = 0;
+
   static getInstance(): ClientWeatherManager {
     if (!ClientWeatherManager.instance) {
       ClientWeatherManager.instance = new ClientWeatherManager();
@@ -48,22 +68,40 @@ export class ClientWeatherManager {
   constructor() {
     on('onResourceStop', (resourceName: string) => {
       if (resourceName === GetCurrentResourceName()) {
-        // do any necessary cleanup here
+        this.cancelTransition();
       }
     });
 
-    // Listen for grid updates from server
-    onNet('weather:grid-update', (grid: GridCell[][]) => {
-      console.log('Received weather grid update from server');
-      this.weatherGrid.setGrid(grid);
-      this.forceWeatherFromGrid();
+    // Listen for grid updates from socket server (via UI forwarding)
+    // Only updates the grid data — the spatial system handles rendering.
+    onSocket('weather.grid-update', (grid) => {
+      console.log('Received weather grid update from socket server');
+      this.weatherGrid.setGrid(grid as unknown as GridCell[][]);
+    });
+
+    // Listen for freeze state changes
+    onSocket('weather.freeze-state', (frozen: boolean) => {
+      console.log(`[Weather] Weather evolution ${frozen ? 'frozen' : 'unfrozen'}`);
+    });
+
+    // Listen for global weather override changes
+    onSocket('weather.global-override', (weather: string | null) => {
+      this.cancelTransition();
+      if (weather) {
+        console.log(`[Weather] Global override set to ${weather}`);
+        const weatherType = weather as WeatherType;
+        this.transitionToWeather(weatherType, 0.0);
+      } else {
+        console.log('[Weather] Global override removed');
+        this.forceWeatherFromGrid();
+      }
     });
 
     this.weatherGrid = new BiomeWeatherGrid();
 
     if (!this.initialized) {
-        this.requestWeatherGrid();
-        this.initialized = true;
+      this.requestWeatherGrid();
+      this.initialized = true;
     }
   }
 
@@ -72,14 +110,15 @@ export class ClientWeatherManager {
       return;
     }
 
-    const g = await awaitServer('weather.request-grid');
-    this.weatherGrid.setGrid(g);
+    const result = await awaitUI('weather.request-grid');
+    this.weatherGrid.setGrid(result.grid as unknown as GridCell[][]);
     this.forceWeatherFromGrid();
   }
 
   /**
-   * Force apply weather from the current grid position
-   * Called when grid is synced to immediately update weather without waiting for movement
+   * Apply weather from the current grid position.
+   * Only used on first init to snap immediately. Subsequent grid updates
+   * just update the grid data — the spatial system handles rendering.
    */
   private forceWeatherFromGrid(): void {
     if (!this.weatherGrid) {
@@ -105,41 +144,15 @@ export class ClientWeatherManager {
       transitionPercent: 0.0,
       biome: currentCell.biome,
       lastHeading: heading,
-      transitionPhase: 'settled'
+      transitionPhase: 'settled',
     };
     this.playerWeatherStates.set(playerPed, playerState);
 
-    // Update internal state
-    this.currentWeather = currentCell.weather;
-    this.neighborWeather = null;
-    this.lastTransitionPercent = 0.0;
-
-    // Apply weather immediately
-    if (WeatherHashes[currentCell.weather] !== undefined) {
-      const weatherHash = WeatherHashes[currentCell.weather];
-      const biomeName = BiomeNames[currentCell.biome] || currentCell.biome;
-
-      console.log(
-        `[Weather] Force applying grid weather: ${currentCell.weather} ` +
-        `in ${biomeName} at cell (${currentGridPos.x}, ${currentGridPos.y})`
-      );
-
-      // Clear any overrides that might exist from previous forced weather or transitions
-      ClearOverrideWeather();
-      SetWeatherOwnedByNetwork(false);
-      // Set weather to fully settled (0.9)
-      SetCurrWeatherState(weatherHash, weatherHash, 0.9, true);
-
-      // Apply rain rate
-      SetRain(currentCell.rainRate);
-      console.log(`[Weather] Applied rain rate: ${currentCell.rainRate.toFixed(2)}`);
-
-      // // Apply variant if available
-      // if (currentCell.variant) {
-      //   SetWeatherVariation(currentCell.weather, currentCell.variant);
-      //   console.log(`[Weather] Applied variant: ${currentCell.variant}`);
-      // }
-    }
+    const biomeName = BiomeNames[currentCell.biome] || currentCell.biome;
+    console.log(
+      `[Weather] Grid init: ${currentCell.weather} in ${biomeName} at cell (${currentGridPos.x}, ${currentGridPos.y})`,
+    );
+    this.transitionToWeather(currentCell.weather, currentCell.rainRate);
   }
 
   public calculateIfWeatherShouldTransition(worldX: number, worldY: number, heading: number): void {
@@ -165,18 +178,18 @@ export class ClientWeatherManager {
         transitionPercent: 0.0,
         biome: currentCell.biome,
         lastHeading: heading,
-        transitionPhase: 'settled'
+        transitionPhase: 'settled',
       };
       this.playerWeatherStates.set(playerId, playerState);
     }
 
     // Detect cell change
     const cellChanged =
-      playerState.currentCell.x !== currentGridPos.x ||
-      playerState.currentCell.y !== currentGridPos.y;
+      playerState.currentCell.x !== currentGridPos.x || playerState.currentCell.y !== currentGridPos.y;
 
     // Check if heading changed significantly
-    const headingChanged = Math.abs(this.normalizeHeadingDiff(heading - playerState.lastHeading)) > this.HEADING_CHANGE_THRESHOLD;
+    const headingChanged =
+      Math.abs(this.normalizeHeadingDiff(heading - playerState.lastHeading)) > this.HEADING_CHANGE_THRESHOLD;
 
     if (cellChanged) {
       // Player crossed into a new cell
@@ -212,9 +225,9 @@ export class ClientWeatherManager {
       if (!this.lastLogTime || now - this.lastLogTime > 500) {
         console.log(
           `[Weather] ${transitionInfo.currentWeather} -> ${transitionInfo.neighborWeather || 'none'} ` +
-          `(${(transitionInfo.transitionPercent * 100).toFixed(2)}%) ` +
-          `phase: ${playerState.transitionPhase} | ` +
-          `cell: (${playerState.currentCell.x},${playerState.currentCell.y}) -> (${playerState.targetNeighborCell?.x || '?'},${playerState.targetNeighborCell?.y || '?'})`
+            `(${(transitionInfo.transitionPercent * 100).toFixed(2)}%) ` +
+            `phase: ${playerState.transitionPhase} | ` +
+            `cell: (${playerState.currentCell.x},${playerState.currentCell.y}) -> (${playerState.targetNeighborCell?.x || '?'},${playerState.targetNeighborCell?.y || '?'})`,
         );
         this.lastLogTime = now;
       }
@@ -254,7 +267,7 @@ export class ClientWeatherManager {
 
       console.log(
         `[Transition] Crossed into target cell (${newGridPos.x}, ${newGridPos.y}). ` +
-        `Continuing transition from ${playerState.currentWeather} -> ${playerState.targetWeather}`
+          `Continuing transition from ${playerState.currentWeather} -> ${playerState.targetWeather}`,
       );
       // Keep the same target to continue the transition to 0.9
     } else {
@@ -270,7 +283,7 @@ export class ClientWeatherManager {
 
       console.log(
         `[Transition] Crossed into non-target cell (${newGridPos.x}, ${newGridPos.y}). ` +
-        `Resetting transition. New weather: ${newCell.weather}`
+          `Resetting transition. New weather: ${newCell.weather}`,
       );
     }
   }
@@ -278,9 +291,7 @@ export class ClientWeatherManager {
   /**
    * Reset transition target when heading changes significantly
    */
-  private resetTransitionTarget(
-    playerState: PlayerWeatherState,
-  ): void {
+  private resetTransitionTarget(playerState: PlayerWeatherState): void {
     playerState.targetNeighborCell = null;
     playerState.targetWeather = null;
     playerState.transitionPhase = 'settled';
@@ -297,7 +308,7 @@ export class ClientWeatherManager {
     worldY: number,
     heading: number,
     playerState: PlayerWeatherState,
-    currentCell: GridCell
+    currentCell: GridCell,
   ): {
     currentWeather: WeatherType;
     neighborWeather: WeatherType | null;
@@ -319,7 +330,7 @@ export class ClientWeatherManager {
         currentRainRate: currentCell.rainRate,
         neighborRainRate: 0.0,
         transitionPercent: 0.0,
-        shouldApply: false
+        shouldApply: false,
       };
     }
 
@@ -337,7 +348,7 @@ export class ClientWeatherManager {
         currentRainRate: currentCell.rainRate,
         neighborRainRate: 0.0,
         transitionPercent: 0.0,
-        shouldApply: false
+        shouldApply: false,
       };
     }
 
@@ -351,7 +362,7 @@ export class ClientWeatherManager {
     // Get target neighbor cell bounds
     const targetBounds = this.weatherGrid.getCellBounds(
       playerState.targetNeighborCell.x,
-      playerState.targetNeighborCell.y
+      playerState.targetNeighborCell.y,
     );
 
     if (!targetBounds) {
@@ -363,7 +374,7 @@ export class ClientWeatherManager {
         currentRainRate: currentCell.rainRate,
         neighborRainRate: 0.0,
         transitionPercent: 0.0,
-        shouldApply: false
+        shouldApply: false,
       };
     }
 
@@ -376,18 +387,16 @@ export class ClientWeatherManager {
       // Phase 1: Moving from 50% mark towards edge (0.0 -> 0.5)
       // Transition starts at 50% of distance from edge to center, not at true center
       const distanceFromCurrentCenter = Math.sqrt(
-        Math.pow(worldX - cellBounds.centerX, 2) +
-        Math.pow(worldY - cellBounds.centerY, 2)
+        Math.pow(worldX - cellBounds.centerX, 2) + Math.pow(worldY - cellBounds.centerY, 2),
       );
 
       const distanceBetweenCenters = Math.sqrt(
-        Math.pow(targetBounds.centerX - cellBounds.centerX, 2) +
-        Math.pow(targetBounds.centerY - cellBounds.centerY, 2)
+        Math.pow(targetBounds.centerX - cellBounds.centerX, 2) + Math.pow(targetBounds.centerY - cellBounds.centerY, 2),
       );
 
-      const halfDistance = distanceBetweenCenters / 2;  // Distance from center to edge
-      const transitionStartDistance = halfDistance * 0.5;  // Start at 50% of way from edge to center
-      const transitionRange = halfDistance - transitionStartDistance;  // Transition zone width
+      const halfDistance = distanceBetweenCenters / 2; // Distance from center to edge
+      const transitionStartDistance = halfDistance * 0.5; // Start at 50% of way from edge to center
+      const transitionRange = halfDistance - transitionStartDistance; // Transition zone width
 
       if (distanceFromCurrentCenter < transitionStartDistance) {
         // Player is in the "settled zone" - no transition yet
@@ -397,13 +406,11 @@ export class ClientWeatherManager {
         const progressInZone = distanceFromCurrentCenter - transitionStartDistance;
         transitionPercent = Math.min(0.5, (progressInZone / transitionRange) * 0.5);
       }
-
     } else if (playerState.transitionPhase === 'crossed') {
       // Phase 2: Moving from edge to 50% mark (0.5 -> 0.9)
       // Transition ends at 50% of distance from edge to center, not at true center
       const distanceFromCurrentCenter = Math.sqrt(
-        Math.pow(worldX - cellBounds.centerX, 2) +
-        Math.pow(worldY - cellBounds.centerY, 2)
+        Math.pow(worldX - cellBounds.centerX, 2) + Math.pow(worldY - cellBounds.centerY, 2),
       );
 
       // Get previous cell bounds to calculate the distance between centers
@@ -416,13 +423,12 @@ export class ClientWeatherManager {
         transitionPercent = 0.9;
       } else {
         const distanceBetweenCenters = Math.sqrt(
-          Math.pow(cellBounds.centerX - prevBounds.centerX, 2) +
-          Math.pow(cellBounds.centerY - prevBounds.centerY, 2)
+          Math.pow(cellBounds.centerX - prevBounds.centerX, 2) + Math.pow(cellBounds.centerY - prevBounds.centerY, 2),
         );
 
-        const halfDistance = distanceBetweenCenters / 2;  // Distance from center to edge
-        const transitionEndDistance = halfDistance * 0.5;  // End at 50% of way from edge to center
-        const transitionRange = halfDistance - transitionEndDistance;  // Transition zone width
+        const halfDistance = distanceBetweenCenters / 2; // Distance from center to edge
+        const transitionEndDistance = halfDistance * 0.5; // End at 50% of way from edge to center
+        const transitionRange = halfDistance - transitionEndDistance; // Transition zone width
 
         if (distanceFromCurrentCenter > transitionEndDistance) {
           // Still in transition zone (between edge and 50% mark)
@@ -446,7 +452,7 @@ export class ClientWeatherManager {
 
         console.log(
           `[Transition] Settled at 50% mark in cell (${playerState.currentCell.x}, ${playerState.currentCell.y}). ` +
-          `Weather: ${playerState.currentWeather}`
+            `Weather: ${playerState.currentWeather}`,
         );
 
         return {
@@ -457,7 +463,7 @@ export class ClientWeatherManager {
           currentRainRate: currentCell.rainRate,
           neighborRainRate: 0.0,
           transitionPercent: 0.0,
-          shouldApply: false
+          shouldApply: false,
         };
       }
     } else {
@@ -470,7 +476,7 @@ export class ClientWeatherManager {
         currentRainRate: currentCell.rainRate,
         neighborRainRate: 0.0,
         transitionPercent: 0.0,
-        shouldApply: false
+        shouldApply: false,
       };
     }
 
@@ -482,7 +488,7 @@ export class ClientWeatherManager {
       currentRainRate: currentCell.rainRate,
       neighborRainRate: targetNeighborCell.rainRate,
       transitionPercent: transitionPercent,
-      shouldApply: true
+      shouldApply: true,
     };
   }
 
@@ -491,28 +497,36 @@ export class ClientWeatherManager {
    */
   private getNeighborFromHeading(
     currentCell: { x: number; y: number },
-    heading: number
+    heading: number,
   ): { x: number; y: number; weather: WeatherType } | null {
     let dirX = 0;
     let dirY = 0;
 
     // Convert heading to direction (RDR2 uses CCW heading: 0 = North, 90 = West, 180 = South, 270 = East)
     if (heading >= 337.5 || heading < 22.5) {
-      dirX = 0; dirY = 1; // N
+      dirX = 0;
+      dirY = 1; // N
     } else if (heading >= 22.5 && heading < 67.5) {
-      dirX = -1; dirY = 1; // NW
+      dirX = -1;
+      dirY = 1; // NW
     } else if (heading >= 67.5 && heading < 112.5) {
-      dirX = -1; dirY = 0; // W
+      dirX = -1;
+      dirY = 0; // W
     } else if (heading >= 112.5 && heading < 157.5) {
-      dirX = -1; dirY = -1; // SW
+      dirX = -1;
+      dirY = -1; // SW
     } else if (heading >= 157.5 && heading < 202.5) {
-      dirX = 0; dirY = -1; // S
+      dirX = 0;
+      dirY = -1; // S
     } else if (heading >= 202.5 && heading < 247.5) {
-      dirX = 1; dirY = -1; // SE
+      dirX = 1;
+      dirY = -1; // SE
     } else if (heading >= 247.5 && heading < 292.5) {
-      dirX = 1; dirY = 0; // E
+      dirX = 1;
+      dirY = 0; // E
     } else if (heading >= 292.5 && heading < 337.5) {
-      dirX = 1; dirY = 1; // NE
+      dirX = 1;
+      dirY = 1; // NE
     }
 
     const neighborX = currentCell.x + dirX;
@@ -538,7 +552,7 @@ export class ClientWeatherManager {
     return {
       x: neighborX,
       y: neighborY,
-      weather: neighborCell.weather
+      weather: neighborCell.weather,
     };
   }
 
@@ -552,67 +566,425 @@ export class ClientWeatherManager {
     transitionPercent: number;
     biome: BiomeType;
   }): void {
-    const { currentWeather: newCurrent, neighborWeather: newNeighbor, currentVariant, neighborVariant, currentRainRate, neighborRainRate, transitionPercent, biome } = weatherInfo;
-    
-    // Check if this is a meaningful update
-    const weatherChanged = newCurrent !== this.currentWeather || newNeighbor !== this.neighborWeather;
-    const percentChanged = Math.abs(transitionPercent - this.lastTransitionPercent) > 0.00000001; // 0.000001% threshold
+    const {
+      currentWeather: newCurrent,
+      neighborWeather: newNeighbor,
+      currentRainRate,
+      neighborRainRate,
+      transitionPercent,
+      biome,
+    } = weatherInfo;
 
-    // If same weather on both sides, treat as 0.9 (fully in current weather)
-    let effectivePercent = transitionPercent;
+    // If same weather on both sides or no neighbor, settle
     if (newCurrent === newNeighbor || newNeighbor === null) {
-      // effectivePercent = 0.9; // Fully transitioned to current weather
       return;
     }
-    
-    // Only update if something changed
-    if (weatherChanged || percentChanged) {
-      const biomeName = BiomeNames[biome] || biome;
-      
-      console.log(
-        `Weather update: ${newCurrent} -> ${newNeighbor || 'none'} ` +
-        `(${(effectivePercent * 100).toFixed(8)}%) in ${biomeName}`
-      );
-      Log(`Weather update: ${newCurrent} -> ${newNeighbor || 'none'} ` +
-        `(${effectivePercent} :=> ${(effectivePercent * 100).toFixed(8)}%) in ${biomeName}`)
-      
-      // Update state
-      this.currentWeather = newCurrent;
-      this.neighborWeather = newNeighbor;
-      this.lastTransitionPercent = transitionPercent;
 
-      // Apply weather transition using SetCurrWeatherState
-      if (WeatherHashes[this.currentWeather] !== undefined) {
-        const oldWeatherHash = WeatherHashes[this.currentWeather];
-        const newWeatherHash = this.neighborWeather && WeatherHashes[this.neighborWeather] !== undefined
-          ? WeatherHashes[this.neighborWeather]
-          : oldWeatherHash;
-        
-        if (effectivePercent > 0.99) {
-          effectivePercent = 0.99; // Cap at 0.99, anything above this causes weird UI rendering bugs
-        }
+    // Check if this is a meaningful update
+    const weatherChanged = newCurrent !== this.currentWeather || newNeighbor !== this.neighborWeather;
+    const percentChanged = Math.abs(transitionPercent - this.lastTransitionPercent) > 0.00000001;
 
-        // Use SetCurrWeatherState for smooth transitions
-        SetWeatherOwnedByNetwork(false);
-        SetCurrWeatherState(oldWeatherHash, newWeatherHash, effectivePercent, true);
-        console.log(`derpderp: ${oldWeatherHash} -> ${newWeatherHash} at ${effectivePercent}`);
-
-        // Interpolate rain rate based on transition percent
-        // When effectivePercent is 0.0, we're fully in current weather
-        // When effectivePercent is 1.0, we're fully in neighbor weather
-        const interpolatedRainRate = currentRainRate * (1.0 - effectivePercent) + neighborRainRate * effectivePercent;
-        SetRain(interpolatedRainRate);
-        console.log(`[Weather] Rain rate: ${interpolatedRainRate.toFixed(2)} (${currentRainRate.toFixed(2)} -> ${neighborRainRate.toFixed(2)})`);
-
-        // // Apply weather variants if they exist
-        // if (currentVariant) {
-        //   SetWeatherVariation(this.currentWeather, currentVariant);
-        // }
-        // if (neighborVariant && this.neighborWeather) {
-        //   SetWeatherVariation(this.neighborWeather, neighborVariant);
-        // }
-      }
+    if (!weatherChanged && !percentChanged) {
+      return;
     }
+
+    // If a smooth transition is in progress, let it finish — don't fight it
+    if (this.isTransitionInProgress()) {
+      Log(`[Apply Skip] Transition in progress, ignoring ${newCurrent} <-> ${newNeighbor} @ ${(transitionPercent * 100).toFixed(1)}%`);
+      return;
+    }
+
+    // Read current game state to see what slots we have
+    const [currentHashA, currentHashB, currentGamePercent] = GetCurrWeatherState();
+    const gameSlotA = this.hashToWeatherType(currentHashA);
+    const gameSlotB = this.hashToWeatherType(currentHashB);
+
+    if (!gameSlotA || !gameSlotB) {
+      return;
+    }
+
+    // Check if either desired type is already in a slot
+    const slotAMatchesCurrent = gameSlotA === newCurrent;
+    const slotBMatchesCurrent = gameSlotB === newCurrent;
+    const slotAMatchesNeighbor = gameSlotA === newNeighbor;
+    const slotBMatchesNeighbor = gameSlotB === newNeighbor;
+
+    const targetRainRate = currentRainRate * (1.0 - transitionPercent) + neighborRainRate * transitionPercent;
+
+    // Update tracked state
+    this.currentWeather = newCurrent;
+    this.neighborWeather = newNeighbor;
+    this.lastTransitionPercent = transitionPercent;
+
+    // All paths go through the transition engine — no direct SetCurrWeatherState
+    const hasCurrentInSlot = slotAMatchesCurrent || slotBMatchesCurrent;
+    const hasNeighborInSlot = slotAMatchesNeighbor || slotBMatchesNeighbor;
+
+    if (hasCurrentInSlot && hasNeighborInSlot) {
+      // Both slots match — lerp the percent (transitionToTarget will skip if already there)
+      this.transitionToTarget(newCurrent, newNeighbor, transitionPercent, targetRainRate);
+    } else if (hasCurrentInSlot || hasNeighborInSlot) {
+      // One slot matches — swap the other via engine
+      Log(`[Apply Swap] Game has ${gameSlotA}/${gameSlotB}, need ${newCurrent}/${newNeighbor} @ ${(transitionPercent * 100).toFixed(1)}%`);
+      this.transitionToTarget(newCurrent, newNeighbor, transitionPercent, targetRainRate);
+    } else {
+      // Neither slot matches — full multi-hop to dominant weather first
+      const dominantWeather = transitionPercent < 0.5 ? newCurrent : newNeighbor;
+      const dominantRainRate = transitionPercent < 0.5 ? currentRainRate : neighborRainRate;
+      Log(`[Apply Multi] Game has ${gameSlotA}/${gameSlotB}, need ${newCurrent}/${newNeighbor} -> hop to ${dominantWeather}`);
+      this.transitionToWeather(dominantWeather, dominantRainRate);
+    }
+  }
+
+  /**
+   * Transition the game state to a specific two-slot blend target.
+   * Figures out which slot needs changing, slides to free it, swaps, then slides to target percent.
+   */
+  private transitionToTarget(
+    targetA: WeatherType,
+    targetB: WeatherType,
+    targetPercent: number,
+    targetRainRate: number,
+  ): void {
+    const [currentHashA, currentHashB, currentPercent] = GetCurrWeatherState();
+    const gameSlotA = this.hashToWeatherType(currentHashA);
+    const gameSlotB = this.hashToWeatherType(currentHashB);
+
+    if (!gameSlotA || !gameSlotB) {
+      this.snapToWeather(targetA, targetRainRate);
+      return;
+    }
+
+    const steps: TransitionStep[] = [];
+
+    // Best case: both slots already match (in either order) — just lerp the percent
+    if (gameSlotA === targetA && gameSlotB === targetB) {
+      steps.push({ slotA: targetA, slotB: targetB, fromPercent: currentPercent, toPercent: targetPercent });
+    } else if (gameSlotA === targetB && gameSlotB === targetA) {
+      // Slots are in reverse order — keep game's order, invert the target percent
+      steps.push({ slotA: gameSlotA, slotB: gameSlotB, fromPercent: currentPercent, toPercent: 1.0 - targetPercent });
+    } else if (gameSlotA === targetA) {
+      // SlotA matches targetA, slotB needs to become targetB
+      // Slide to 0% (fully slotA), swap slotB, slide to target percent
+      if (currentPercent > 0.01) {
+        steps.push({ slotA: gameSlotA, slotB: gameSlotB, fromPercent: currentPercent, toPercent: 0.0 });
+      }
+      steps.push({ slotA: targetA, slotB: targetB, fromPercent: 0.0, toPercent: targetPercent });
+    } else if (gameSlotB === targetA) {
+      // SlotB has our targetA — slide to 100% (fully slotB=targetA), swap slotA to targetB
+      if (currentPercent < 0.99) {
+        steps.push({ slotA: gameSlotA, slotB: gameSlotB, fromPercent: currentPercent, toPercent: 1.0 });
+      }
+      steps.push({ slotA: targetB, slotB: targetA, fromPercent: 1.0, toPercent: 1.0 - targetPercent });
+    } else if (gameSlotA === targetB) {
+      // SlotA has our targetB — slide to 0% (fully slotA=targetB), swap slotB to targetA
+      if (currentPercent > 0.01) {
+        steps.push({ slotA: gameSlotA, slotB: gameSlotB, fromPercent: currentPercent, toPercent: 0.0 });
+      }
+      steps.push({ slotA: targetB, slotB: targetA, fromPercent: 0.0, toPercent: 1.0 - targetPercent });
+    } else if (gameSlotB === targetB) {
+      // SlotB has our targetB — slide to 100% (fully slotB=targetB), swap slotA to targetA
+      if (currentPercent < 0.99) {
+        steps.push({ slotA: gameSlotA, slotB: gameSlotB, fromPercent: currentPercent, toPercent: 1.0 });
+      }
+      steps.push({ slotA: targetA, slotB: targetB, fromPercent: 1.0, toPercent: targetPercent });
+    } else {
+      // Neither slot matches — fall back to single-target transition
+      this.transitionToWeather(targetA, targetRainRate);
+      return;
+    }
+
+    if (steps.length === 0) return;
+
+    // Filter out steps that are already at their target (no-ops)
+    const meaningfulSteps = steps.filter((s) => Math.abs(s.fromPercent - s.toPercent) > 0.005 || s.slotA === s.slotB);
+
+    if (meaningfulSteps.length === 0) {
+      // Nothing to do — game is already showing the right visual
+      return;
+    }
+
+    Log(
+      `[Transition Target] -> ${targetA} <-> ${targetB} @ ${(targetPercent * 100).toFixed(0)}% (${meaningfulSteps.length} steps)`,
+    );
+    for (const step of meaningfulSteps) {
+      Log(`  ${step.slotA} <-> ${step.slotB}: ${(step.fromPercent * 100).toFixed(0)}% -> ${(step.toPercent * 100).toFixed(0)}%`);
+    }
+
+    this.cancelTransition();
+    this.transitionQueue = meaningfulSteps;
+    this.transitionStepStartTime = Date.now();
+    this.startTransitionTick(targetRainRate);
+  }
+
+  /**
+   * Plan and start a smooth transition from the current game weather state
+   * to the target weather type. Uses BFS to find intermediate hops through
+   * the compatibility graph, then slides percent per hop using setTick.
+   *
+   * Target state is: both slots = targetWeather, percent = 0.9 (fully settled).
+   */
+  private transitionToWeather(targetWeather: WeatherType, targetRainRate: number): void {
+    // Read current game state
+    const [currentHashA, currentHashB, currentPercent] = GetCurrWeatherState();
+
+    // Reverse-lookup hashes to WeatherType
+    const slotA = this.hashToWeatherType(currentHashA);
+    const slotB = this.hashToWeatherType(currentHashB);
+
+    if (!slotA || !slotB) {
+      console.warn('[Weather Transition] Cannot identify current weather hashes, snapping directly');
+      this.snapToWeather(targetWeather, targetRainRate);
+      return;
+    }
+
+    // If already at target, nothing to do
+    if (slotA === targetWeather && slotB === targetWeather) {
+      return;
+    }
+
+    // Build the transition step queue
+    const steps = this.planTransitionSteps(slotA, slotB, currentPercent, targetWeather);
+
+    if (steps.length === 0) {
+      console.warn('[Weather Transition] No valid transition path found, snapping directly');
+      this.snapToWeather(targetWeather, targetRainRate);
+      return;
+    }
+
+    console.log(
+      `[Weather Transition] ${slotA}/${slotB}@${(currentPercent * 100).toFixed(0)}% -> ${targetWeather} ` +
+        `(${steps.length} step${steps.length !== 1 ? 's' : ''}, ~${((steps.length * HOP_DURATION_MS) / 1000).toFixed(1)}s)`,
+    );
+    for (const step of steps) {
+      console.log(
+        `  ${step.slotA} <-> ${step.slotB}: ${(step.fromPercent * 100).toFixed(0)}% -> ${(step.toPercent * 100).toFixed(0)}%`,
+      );
+    }
+
+    // Cancel any in-progress transition
+    this.cancelTransition();
+
+    // Start the new transition
+    this.transitionQueue = steps;
+    this.transitionStepStartTime = Date.now();
+    this.startTransitionTick(targetRainRate);
+  }
+
+  /**
+   * Plan the sequence of steps needed to get from current state to target.
+   * Each step is a percent slide on two weather slots. Between steps,
+   * one slot gets swapped when the percent is at 0% or 100%.
+   */
+  private planTransitionSteps(
+    slotA: WeatherType,
+    slotB: WeatherType,
+    currentPercent: number,
+    target: WeatherType,
+  ): TransitionStep[] {
+    const steps: TransitionStep[] = [];
+
+    // If one slot already matches the target, just slide toward it
+    if (slotA === target) {
+      // Slide to 0% (fully slotA = target)
+      if (currentPercent > 0.01) {
+        steps.push({ slotA, slotB, fromPercent: currentPercent, toPercent: 0.0 });
+      }
+      // Final settle: both slots target
+      steps.push({ slotA: target, slotB: target, fromPercent: 0.0, toPercent: 0.0 });
+      return steps;
+    }
+
+    if (slotB === target) {
+      // Slide to 100% (fully slotB = target)
+      if (currentPercent < 0.99) {
+        steps.push({ slotA, slotB, fromPercent: currentPercent, toPercent: 1.0 });
+      }
+      // Final settle: both slots target
+      steps.push({ slotA: target, slotB: target, fromPercent: 0.0, toPercent: 0.0 });
+      return steps;
+    }
+
+    // Neither slot matches. Find which slot is "closer" to target in the compatibility graph.
+    const pathFromA = findWeatherTransitionPath(slotA, target);
+    const pathFromB = findWeatherTransitionPath(slotB, target);
+
+    // Determine which direction to slide first based on shorter path
+    const distA = pathFromA ? pathFromA.length - 1 : Infinity;
+    const distB = pathFromB ? pathFromB.length - 1 : Infinity;
+
+    if (distB <= distA && pathFromB) {
+      // Slide to 100% (fully slotB), then walk slotA through intermediates
+      if (currentPercent < 0.99) {
+        steps.push({ slotA, slotB, fromPercent: currentPercent, toPercent: 1.0 });
+      }
+
+      // Now at 100% = fully slotB. Walk through path from B to target.
+      // At each intermediate: swap slotA to next, slide to 0%, swap slotB to next, slide to 100%
+      let currentA = slotA;
+      let currentB = slotB;
+
+      for (let i = 1; i < pathFromB.length; i++) {
+        const next = pathFromB[i];
+        // Swap slotA to next, slide from 100% to 0% (moving from currentB to next)
+        currentA = next;
+        steps.push({ slotA: currentA, slotB: currentB, fromPercent: 1.0, toPercent: 0.0 });
+        // Now fully in currentA (= next). If not done, swap slotB for the next hop.
+        if (i < pathFromB.length - 1) {
+          currentB = currentA;
+          // Next iteration will set currentA to the next step
+        }
+      }
+
+      // Settle: both slots = target
+      steps.push({ slotA: target, slotB: target, fromPercent: 0.0, toPercent: 0.0 });
+    } else if (pathFromA) {
+      // Slide to 0% (fully slotA), then walk slotB through intermediates
+      if (currentPercent > 0.01) {
+        steps.push({ slotA, slotB, fromPercent: currentPercent, toPercent: 0.0 });
+      }
+
+      let currentA = slotA;
+      let currentB = slotB;
+
+      for (let i = 1; i < pathFromA.length; i++) {
+        const next = pathFromA[i];
+        // Swap slotB to next, slide from 0% to 100% (moving from currentA to next)
+        currentB = next;
+        steps.push({ slotA: currentA, slotB: currentB, fromPercent: 0.0, toPercent: 1.0 });
+        // Now fully in currentB (= next). If not done, swap slotA for next hop.
+        if (i < pathFromA.length - 1) {
+          currentA = currentB;
+        }
+      }
+
+      // Settle: both slots = target
+      steps.push({ slotA: target, slotB: target, fromPercent: 0.0, toPercent: 0.0 });
+    }
+
+    return steps;
+  }
+
+  /**
+   * Start a setTick that lerps through the transition queue.
+   */
+  private startTransitionTick(targetRainRate: number): void {
+    if (this.transitionQueue.length === 0) return;
+
+    this.transitionStepStartTime = Date.now();
+    SetWeatherOwnedByNetwork(false);
+
+    this.transitionTickId = setTick(() => {
+      if (this.transitionQueue.length === 0) {
+        this.cancelTransition();
+        return;
+      }
+
+      const step = this.transitionQueue[0];
+      const elapsed = Date.now() - this.transitionStepStartTime;
+
+      // If this is a no-op step (same from/to percent, or settle step), apply instantly and skip
+      const isSettle = step.slotA === step.slotB;
+      const isNoOp = Math.abs(step.fromPercent - step.toPercent) < 0.001 && !isSettle;
+
+      if (isSettle || isNoOp) {
+        const hashA = WeatherHashes[step.slotA];
+        const hashB = WeatherHashes[step.slotB];
+        if (hashA !== undefined && hashB !== undefined) {
+          const applyPercent = isSettle ? 0.9 : step.toPercent;
+          SetCurrWeatherState(hashA, hashB, Math.min(applyPercent, 0.99999), true);
+          SetRain(targetRainRate);
+          Log(`[Transition ${isSettle ? 'Settle' : 'Swap'}] ${step.slotA} <-> ${step.slotB} @ ${(applyPercent * 100).toFixed(0)}%`);
+        }
+        if (isSettle) {
+          this.currentWeather = step.slotA;
+          this.neighborWeather = null;
+          this.lastTransitionPercent = 0.0;
+        }
+        this.transitionQueue.shift();
+        this.transitionStepStartTime = Date.now();
+        if (this.transitionQueue.length === 0) {
+          this.cancelTransition();
+        }
+        return;
+      }
+
+      // Calculate lerped percent for this step
+      const progress = Math.min(1.0, elapsed / HOP_DURATION_MS);
+      let percent = step.fromPercent + (step.toPercent - step.fromPercent) * progress;
+
+      // Clamp to safe range
+      percent = Math.max(0.0, Math.min(0.99999, percent));
+
+      const hashA = WeatherHashes[step.slotA];
+      const hashB = WeatherHashes[step.slotB];
+
+      if (hashA !== undefined && hashB !== undefined) {
+        SetCurrWeatherState(hashA, hashB, percent, true);
+        Log(`[Transition Hop] ${step.slotA} <-> ${step.slotB} @ ${(percent * 100).toFixed(1)}% (progress: ${(progress * 100).toFixed(0)}%)`);
+      }
+
+      // Interpolate rain toward target based on overall step progress
+      // (rough approximation — becomes exact when the final settle step completes)
+      SetRain(targetRainRate);
+
+      // Step complete?
+      if (progress >= 1.0) {
+        this.transitionQueue.shift();
+        this.transitionStepStartTime = Date.now();
+
+        // If more steps, the next step's slot swap happens implicitly
+        // (the next SetCurrWeatherState call will use the new slots)
+        if (this.transitionQueue.length === 0) {
+          this.cancelTransition();
+        }
+      }
+    });
+  }
+
+  /**
+   * Cancel any in-progress smooth transition.
+   */
+  private cancelTransition(): void {
+    if (this.transitionTickId !== null) {
+      clearTick(this.transitionTickId);
+      this.transitionTickId = null;
+    }
+    this.transitionQueue = [];
+  }
+
+  /**
+   * Check if a smooth transition is currently in progress.
+   */
+  private isTransitionInProgress(): boolean {
+    return this.transitionTickId !== null && this.transitionQueue.length > 0;
+  }
+
+  /**
+   * Immediately snap to a weather type with no transition.
+   */
+  private snapToWeather(weather: WeatherType, rainRate: number): void {
+    const hash = WeatherHashes[weather];
+    if (hash !== undefined) {
+      ClearOverrideWeather();
+      SetWeatherOwnedByNetwork(false);
+      SetCurrWeatherState(hash, hash, 0.9, true);
+      SetRain(rainRate);
+      Log(`[Snap Fallback] ${weather} <-> ${weather} @ 90% (no transition path available)`);
+    }
+    this.currentWeather = weather;
+    this.neighborWeather = null;
+    this.lastTransitionPercent = 0.0;
+  }
+
+  /**
+   * Reverse-lookup a weather hash to its WeatherType.
+   */
+  private hashToWeatherType(hash: number): WeatherType | null {
+    for (const [type, h] of Object.entries(WeatherHashes)) {
+      if (h === hash) return type as WeatherType;
+    }
+    return null;
   }
 
   public checkWeather(): void {
@@ -639,7 +1011,9 @@ export class ClientWeatherManager {
     console.log(`Current Biome: ${biomeName}`);
     console.log(`Current Weather: ${playerState.currentWeather}`);
     console.log(`Target Weather: ${playerState.targetWeather || 'None'}`);
-    console.log(`Target Cell: ${playerState.targetNeighborCell ? `(${playerState.targetNeighborCell.x}, ${playerState.targetNeighborCell.y})` : 'None'}`);
+    console.log(
+      `Target Cell: ${playerState.targetNeighborCell ? `(${playerState.targetNeighborCell.x}, ${playerState.targetNeighborCell.y})` : 'None'}`,
+    );
     console.log(`Transition Phase: ${playerState.transitionPhase}`);
     console.log(`Transition Percent: ${(playerState.transitionPercent * 100).toFixed(2)}%`);
     console.log('========================================');
@@ -710,7 +1084,7 @@ export class ClientWeatherManager {
       console.error(`Invalid weather type: ${weatherType}`);
       return;
     }
-    
+
     const grid = this.weatherGrid.getGrid();
     for (let y = 0; y < grid.length; y++) {
       for (let x = 0; x < grid[y].length; x++) {

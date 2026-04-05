@@ -1,5 +1,7 @@
-import weatherManager from './managers/weather';
+import { PVGame } from '@lib/client';
+
 import { BiomeType } from '../shared/biome';
+import weatherManager from './managers/weather';
 
 // Grid visualization state
 let showGridOverlay: boolean = false;
@@ -9,48 +11,60 @@ let gridVisualizationHeight: number = 300.0; // Z height for drawing
  * Biome type to color mapping (RGB)
  */
 const biomeColors: Record<BiomeType, [number, number, number]> = {
-  [BiomeType.GRIZZLIES]: [255, 255, 255],    // White (snowy)
-  [BiomeType.TALL_TREES]: [34, 139, 34],     // Forest green
-  [BiomeType.BIG_VALLEY]: [144, 238, 144],   // Light green
-  [BiomeType.HEARTLANDS]: [255, 215, 0],     // Gold
+  [BiomeType.GRIZZLIES]: [255, 255, 255], // White (snowy)
+  [BiomeType.TALL_TREES]: [34, 139, 34], // Forest green
+  [BiomeType.BIG_VALLEY]: [144, 238, 144], // Light green
+  [BiomeType.HEARTLANDS]: [255, 215, 0], // Gold
   [BiomeType.GREAT_PLAINS]: [210, 180, 140], // Tan
-  [BiomeType.BAYOU]: [85, 107, 47],          // Dark olive
-  [BiomeType.LEMOYNE]: [154, 205, 50],       // Yellow-green
-  [BiomeType.NEW_AUSTIN]: [244, 164, 96],    // Sandy brown
-  [BiomeType.RIO_BRAVO]: [210, 105, 30],     // Chocolate brown
-  [BiomeType.ROANOKE]: [107, 142, 35],       // Olive green
-  [BiomeType.CUMBERLAND]: [46, 139, 87],     // Sea green
-  [BiomeType.SCARLETT]: [152, 251, 152],     // Pale green
+  [BiomeType.BAYOU]: [85, 107, 47], // Dark olive
+  [BiomeType.LEMOYNE]: [154, 205, 50], // Yellow-green
+  [BiomeType.NEW_AUSTIN]: [244, 164, 96], // Sandy brown
+  [BiomeType.RIO_BRAVO]: [210, 105, 30], // Chocolate brown
+  [BiomeType.ROANOKE]: [107, 142, 35], // Olive green
+  [BiomeType.CUMBERLAND]: [46, 139, 87], // Sea green
+  [BiomeType.SCARLETT]: [152, 251, 152], // Pale green
 };
 
 /**
  * Toggle grid overlay command
  */
-RegisterCommand('togglegrid', () => {
-  showGridOverlay = !showGridOverlay;
-  
-  emit('chat:addMessage', {
-    args: ['Grid Debug', `Grid overlay ${showGridOverlay ? 'enabled' : 'disabled'}`]
-  });
-}, false);
+RegisterCommand(
+  'togglegrid',
+  () => {
+    showGridOverlay = !showGridOverlay;
+
+    const coords = PVGame.playerCoords(true);
+
+    gridVisualizationHeight = coords.z;
+
+    emit('chat:addMessage', {
+      args: ['Grid Debug', `Grid overlay ${showGridOverlay ? 'enabled' : 'disabled'}`],
+    });
+  },
+  false,
+);
 
 /**
  * Set grid visualization height
  */
-RegisterCommand('gridheight', (source: number, args: string[]) => {
-  const height = parseFloat(args[0]);
-  
-  if (!isNaN(height)) {
-    gridVisualizationHeight = height;
-    emit('chat:addMessage', {
-      args: ['Grid Debug', `Grid height set to ${height.toFixed(1)}`]
-    });
-  } else {
-    emit('chat:addMessage', {
-      args: ['Grid Debug', 'Usage: /gridheight <height>']
-    });
-  }
-}, false);
+RegisterCommand(
+  'gridheight',
+  (source: number, args: string[]) => {
+    const height = parseFloat(args[0]);
+
+    if (!isNaN(height)) {
+      gridVisualizationHeight = height;
+      emit('chat:addMessage', {
+        args: ['Grid Debug', `Grid height set to ${height.toFixed(1)}`],
+      });
+    } else {
+      emit('chat:addMessage', {
+        args: ['Grid Debug', 'Usage: /gridheight <height>'],
+      });
+    }
+  },
+  false,
+);
 
 /**
  * Draw a cell border
@@ -66,7 +80,7 @@ function drawCellBorder(
   r: number,
   g: number,
   b: number,
-  alpha: number = 200
+  alpha: number = 200,
 ): void {
   // Top edge (NW to NE)
   DrawLine(corners.nw.x, corners.nw.y, z, corners.ne.x, corners.ne.y, z, r, g, b, alpha);
@@ -89,11 +103,11 @@ setTick(() => {
   const playerPed = PlayerPedId();
   const playerCoords = GetEntityCoords(playerPed, false);
   const [playerX, playerY, playerZ] = playerCoords;
-  
+
   // Get player's current grid cell
   const playerGridPos = grid.worldToGrid(playerX, playerY);
-  
-  allCells.forEach(cell => {
+
+  allCells.forEach((cell) => {
     const corners = grid.getCellCorners(cell.gridX, cell.gridY);
     if (!corners) return;
 
@@ -103,7 +117,7 @@ setTick(() => {
     // Highlight player's current cell
     const isPlayerCell = cell.gridX === playerGridPos.x && cell.gridY === playerGridPos.y;
     const alpha = isPlayerCell ? 255 : 150;
-    
+
     // Draw thicker border for player's cell
     if (isPlayerCell) {
       drawCellBorder(corners, z + 1, 255, 0, 0, 255); // Red highlight
@@ -113,3 +127,12 @@ setTick(() => {
     }
   });
 });
+
+// WHITEOUT <-> BLIZZARD <-> GROUNDBLIZZARD
+// SNOW <-> SNOWLIGHT <-> HAIL <-> SLEET
+// HURRICANE <-> THUNDER <-> THUNDERSTORM
+// RAIN <-> SHOWER <-> DRIZZLE <-> MISTY <-> FOG
+// OVERCAST | OVERCASTDARK
+// CLOUDS
+// SUNNY <-> HIGHPRESSURE
+// SANDSTORM

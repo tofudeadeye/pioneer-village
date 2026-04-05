@@ -1,21 +1,21 @@
-import type { GridCell } from "./shared/grid";
-
 declare interface ClientExports {
   weather: Weather.ClientExports;
 }
 
-declare namespace ClientRPC {
-  interface Socket {
-  }
-  interface Server {
-  }
-}
-
-declare interface RPC {
-  ['weather.request-grid']: () => Promise<{ grid: GridCell[][] }>;
-}
-
 declare namespace Weather {
+  type getCurrentWeather = () => string | null;
+  type getTargetWeather = () => string | null;
+  type getCurrentBiome = () => string | null;
+  type getTransitionProgress = () => number;
+  type isTransitioning = () => boolean;
+  type getBiomeName = (biome: string) => string;
+
   type ClientExports = {
+    getCurrentWeather: getCurrentWeather;
+    getTargetWeather: getTargetWeather;
+    getCurrentBiome: getCurrentBiome;
+    getTransitionProgress: getTransitionProgress;
+    isTransitioning: isTransitioning;
+    getBiomeName: getBiomeName;
   };
 }

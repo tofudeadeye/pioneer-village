@@ -1,6 +1,5 @@
 import { BiomeType, WeatherType, BiomeManager, WEATHER_COMPATIBILITY, BIOME_WEATHER_RULES, WeatherVariants, BiomeWeatherVariants, getRainRate} from './biome'
 import { Log } from '@lib/client/comms/ui';
-import { LogToUI } from '@lib/server/comms/client';
 import type { GridCell } from './types';
 
 interface Neighbor {
@@ -772,46 +771,46 @@ class BiomeWeatherGrid {
       dirX = 0; dirY = 1; // N
       direction = 'N';
       console.log(`Heading ${heading} is N (${dirX}, ${dirY})`);
-      LogToUI(`Heading ${heading} is N (${dirX}, ${dirY})`);
+      Log(`Heading ${heading} is N (${dirX}, ${dirY})`);
     } else if ((heading >= 22.5 && heading < 67.5)) {
       dirX = -1; dirY = 1; // NW
       direction = 'NW';
       console.log(`Heading ${heading} is NW (${dirX}, ${dirY})`);
-      LogToUI(`Heading ${heading} is NW (${dirX}, ${dirY})`);
+      Log(`Heading ${heading} is NW (${dirX}, ${dirY})`);
     } else if ((heading >= 67.5 && heading < 112.5)) {
       dirX = -1; dirY = 0; // W
       direction = 'W';
       console.log(`Heading ${heading} is W (${dirX}, ${dirY})`);
-      LogToUI(`Heading ${heading} is W (${dirX}, ${dirY})`);
+      Log(`Heading ${heading} is W (${dirX}, ${dirY})`);
     } else if ((heading >= 112.5 && heading < 157.5)) {
       dirX = -1; dirY = 1; // SW
       direction = 'SW';
       console.log(`Heading ${heading} is SW (${dirX}, ${dirY})`);
-      LogToUI(`Heading ${heading} is SW (${dirX}, ${dirY})`);
+      Log(`Heading ${heading} is SW (${dirX}, ${dirY})`);
     } else if ((heading >= 157.5 && heading < 202.5)) {
       dirX = 0; dirY = -1; // S
       direction = 'S';
       console.log(`Heading ${heading} is S (${dirX}, ${dirY})`);
-      LogToUI(`Heading ${heading} is S (${dirX}, ${dirY})`);
+      Log(`Heading ${heading} is S (${dirX}, ${dirY})`);
     } else if ((heading >= 202.5 && heading < 247.5)) {
       dirX = 1; dirY = -1; // SE
       direction = 'SE';
       console.log(`Heading ${heading} is SE (${dirX}, ${dirY})`);
-      LogToUI(`Heading ${heading} is SE (${dirX}, ${dirY})`);
+      Log(`Heading ${heading} is SE (${dirX}, ${dirY})`);
     } else if ((heading >= 247.5 && heading < 292.5)) {
       dirX = 1; dirY = 0; // E
       direction = 'E';
       console.log(`Heading ${heading} is E (${dirX}, ${dirY})`);
-      LogToUI(`Heading ${heading} is E (${dirX}, ${dirY})`);
+      Log(`Heading ${heading} is E (${dirX}, ${dirY})`);
     } else if ((heading >= 292.5 && heading < 337.5)) {
       dirX = 1; dirY = 1; // NE
       direction = 'NE';
       console.log(`Heading ${heading} is NE (${dirX}, ${dirY})`);
-      LogToUI(`Heading ${heading} is NE (${dirX}, ${dirY})`);
+      Log(`Heading ${heading} is NE (${dirX}, ${dirY})`);
     } else {
       direction = 'unknown';
       console.log(`Heading ${heading} is unknown, defaulting to N (${dirX}, ${dirY})`);
-      LogToUI(`Heading ${heading} is unknown, defaulting to N (${dirX}, ${dirY})`);
+      Log(`Heading ${heading} is unknown, defaulting to N (${dirX}, ${dirY})`);
       Log(`Heading ${heading} is unknown, defaulting to N (${dirX}, ${dirY})`);
     }
     

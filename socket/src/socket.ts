@@ -7,6 +7,7 @@ import DoorController from './controllers/doors';
 import InventoryController from './controllers/inventory';
 import StableController from './controllers/stables';
 import UserController from './controllers/user';
+import WeatherController from './controllers/weather';
 import WorldController from './controllers/world';
 import './events';
 import { seedDB } from './seed';
@@ -24,6 +25,7 @@ StableController();
 WorldController();
 PigeonController();
 JobsController();
+WeatherController();
 
 server.listen(Number(process.env.SOCKET_PORT), () => {
   const serverAddress = server.address();

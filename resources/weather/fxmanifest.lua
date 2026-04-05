@@ -5,36 +5,7 @@ version '1.0.0'
 
 lua54 'yes'
 
-server_scripts {
-  "build/server.js",
-}
-
 client_scripts {
   "@rdr3-shared/client/rdr3_natives.js",
   "build/client.js",
-}
-
-exports {
-    'initializeWeatherSystem',
-    'updatePlayerWeather',
-    'getWeatherAtPosition',
-    'getBiomeAtPosition',
-    'setGridWeather',
-    'getAllowedWeatherForBiome',
-    'isInTransitionZone',
-    'getNearbyBiomes',
-    'evolveWeather',
-    'printWeatherGrid',
-    'printBiomeGrid',
-    'getGridState'
-}
-
--- Client exports
-client_exports {
-    'getCurrentWeather',
-    'getTargetWeather',
-    'getCurrentBiome',
-    'getTransitionProgress',
-    'isTransitioning',
-    'getBiomeName'
 }

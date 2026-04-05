@@ -4,18 +4,18 @@
  */
 
 export enum BiomeType {
-  GRIZZLIES = 'GRIZZLIES',           // Snowy mountains (north)
-  TALL_TREES = 'TALL_TREES',         // Dense forests
-  BIG_VALLEY = 'BIG_VALLEY',         // Valley region
-  HEARTLANDS = 'HEARTLANDS',         // Central plains
-  GREAT_PLAINS = 'GREAT_PLAINS',     // Western plains
-  BAYOU = 'BAYOU',                   // Swampy southeast
-  LEMOYNE = 'LEMOYNE',               // Southern region
-  NEW_AUSTIN = 'NEW_AUSTIN',         // Desert (southwest)
-  RIO_BRAVO = 'RIO_BRAVO',           // Arid desert
-  ROANOKE = 'ROANOKE',               // Eastern forests
-  CUMBERLAND = 'CUMBERLAND',         // Forest region
-  SCARLETT = 'SCARLETT',             // Meadows
+  GRIZZLIES = 'GRIZZLIES', // Snowy mountains (north)
+  TALL_TREES = 'TALL_TREES', // Dense forests
+  BIG_VALLEY = 'BIG_VALLEY', // Valley region
+  HEARTLANDS = 'HEARTLANDS', // Central plains
+  GREAT_PLAINS = 'GREAT_PLAINS', // Western plains
+  BAYOU = 'BAYOU', // Swampy southeast
+  LEMOYNE = 'LEMOYNE', // Southern region
+  NEW_AUSTIN = 'NEW_AUSTIN', // Desert (southwest)
+  RIO_BRAVO = 'RIO_BRAVO', // Arid desert
+  ROANOKE = 'ROANOKE', // Eastern forests
+  CUMBERLAND = 'CUMBERLAND', // Forest region
+  SCARLETT = 'SCARLETT', // Meadows
 }
 
 export enum WeatherType {
@@ -68,36 +68,41 @@ export const WeatherHashes: Record<WeatherType, number> = {
 
 // All available weather variants (used as fallback)
 export const WeatherVariants: Record<WeatherType, string[]> = {
-  [WeatherType.BLIZZARD]: ["BLIZZARD_winter2"],
-  [WeatherType.CLOUDS]: ["CLOUDS_mudtown3B"],
-  [WeatherType.DRIZZLE]: ["DRIZZLE_finale1", "DRIZZLE_finale1B"],
-  [WeatherType.FOG]: ["FOG_guama", "Fog_MP_Pred"],
-  [WeatherType.GROUNDBLIZZARD]: ["GROUNDBLIZZARD_odriscols", "GROUNDBLIZZARD_winter2"],
+  [WeatherType.BLIZZARD]: ['BLIZZARD_winter2'],
+  [WeatherType.CLOUDS]: ['CLOUDS_mudtown3B'],
+  [WeatherType.DRIZZLE]: ['DRIZZLE_finale1', 'DRIZZLE_finale1B'],
+  [WeatherType.FOG]: ['FOG_guama', 'Fog_MP_Pred'],
+  [WeatherType.GROUNDBLIZZARD]: ['GROUNDBLIZZARD_odriscols', 'GROUNDBLIZZARD_winter2'],
   [WeatherType.HAIL]: [],
-  [WeatherType.HIGHPRESSURE]: ["HIGHPRESSURE_guama"],
-  [WeatherType.HURRICANE]: ["HURRICANE_guama"],
+  [WeatherType.HIGHPRESSURE]: ['HIGHPRESSURE_guama'],
+  [WeatherType.HURRICANE]: ['HURRICANE_guama'],
   [WeatherType.MISTY]: [
-    "MISTY_braithwaites3",
-    "MISTY_finale1",
-    "MISTY_finale1B",
-    "MISTY_finale2",
-    "MISTY_guama",
-    "MISTY_MP_intro",
-    "MISTY_MP_Pred",
-    "MISTY_train1",
+    'MISTY_braithwaites3',
+    'MISTY_finale1',
+    'MISTY_finale1B',
+    'MISTY_finale2',
+    'MISTY_guama',
+    'MISTY_MP_intro',
+    'MISTY_MP_Pred',
+    'MISTY_train1',
   ],
   [WeatherType.OVERCAST]: [],
-  [WeatherType.OVERCASTDARK]: ["OVERCASTDARK_finale2", "OVERCASTDARK_Gang2", "OVERCASTDARK_native3", "OVERCASTDARK_STD1"],
+  [WeatherType.OVERCASTDARK]: [
+    'OVERCASTDARK_finale2',
+    'OVERCASTDARK_Gang2',
+    'OVERCASTDARK_native3',
+    'OVERCASTDARK_STD1',
+  ],
   [WeatherType.RAIN]: [],
   [WeatherType.SANDSTORM]: [],
   [WeatherType.SLEET]: [],
-  [WeatherType.SHOWER]: ["SHOWER_finale2", "SHOWER_guama", "shower_MP_Pred"],
-  [WeatherType.SNOW]: ["SNOW_Odriscolls1", "SNOW_Pearson1"],
-  [WeatherType.SNOWLIGHT]: ["SNOWLIGHT_finale2", "SNOWLIGHT_Odriscolls1", "SNOWLIGHT_Pearson1"],
-  [WeatherType.SUNNY]: ["Sunny_odriscols4"],
+  [WeatherType.SHOWER]: ['SHOWER_finale2', 'SHOWER_guama', 'shower_MP_Pred'],
+  [WeatherType.SNOW]: ['SNOW_Odriscolls1', 'SNOW_Pearson1'],
+  [WeatherType.SNOWLIGHT]: ['SNOWLIGHT_finale2', 'SNOWLIGHT_Odriscolls1', 'SNOWLIGHT_Pearson1'],
+  [WeatherType.SUNNY]: ['Sunny_odriscols4'],
   [WeatherType.THUNDER]: [],
-  [WeatherType.THUNDERSTORM]: ["THUNDERSTORM_MP_Pred", "THUNDERSTORM_nativeSon3"],
-  [WeatherType.WHITEOUT]: ["WHITEOUT_winter1"],
+  [WeatherType.THUNDERSTORM]: ['THUNDERSTORM_MP_Pred', 'THUNDERSTORM_nativeSon3'],
+  [WeatherType.WHITEOUT]: ['WHITEOUT_winter1'],
   // -- ONLY SINGLEPLAYER:
   // [WeatherType.SNOWCLEARING]: ["SNOWCLEARING_mud1", "SNOWCLEARING_winter4"],
 };
@@ -109,102 +114,102 @@ export const WeatherVariants: Record<WeatherType, string[]> = {
 export const BiomeWeatherVariants: Record<BiomeType, Partial<Record<WeatherType, string[]>>> = {
   [BiomeType.GRIZZLIES]: {
     // Snowy mountain variants
-    [WeatherType.BLIZZARD]: ["BLIZZARD_winter2"],
-    [WeatherType.GROUNDBLIZZARD]: ["GROUNDBLIZZARD_odriscols", "GROUNDBLIZZARD_winter2"],
-    [WeatherType.SNOW]: ["SNOW_Odriscolls1", "SNOW_Pearson1"],
-    [WeatherType.SNOWLIGHT]: ["SNOWLIGHT_Odriscolls1", "SNOWLIGHT_Pearson1"],
-    [WeatherType.WHITEOUT]: ["WHITEOUT_winter1"],
-    [WeatherType.MISTY]: ["MISTY_finale2", "MISTY_MP_Pred"],
-    [WeatherType.FOG]: ["Fog_MP_Pred"],
+    [WeatherType.BLIZZARD]: ['BLIZZARD_winter2'],
+    [WeatherType.GROUNDBLIZZARD]: ['GROUNDBLIZZARD_odriscols', 'GROUNDBLIZZARD_winter2'],
+    [WeatherType.SNOW]: ['SNOW_Odriscolls1', 'SNOW_Pearson1'],
+    [WeatherType.SNOWLIGHT]: ['SNOWLIGHT_Odriscolls1', 'SNOWLIGHT_Pearson1'],
+    [WeatherType.WHITEOUT]: ['WHITEOUT_winter1'],
+    [WeatherType.MISTY]: ['MISTY_finale2', 'MISTY_MP_Pred'],
+    [WeatherType.FOG]: ['Fog_MP_Pred'],
   },
 
   [BiomeType.TALL_TREES]: {
     // Dense forest variants
-    [WeatherType.MISTY]: ["MISTY_train1", "MISTY_MP_Pred"],
-    [WeatherType.FOG]: ["Fog_MP_Pred"],
-    [WeatherType.DRIZZLE]: ["DRIZZLE_finale1"],
-    [WeatherType.OVERCASTDARK]: ["OVERCASTDARK_Gang2"],
+    [WeatherType.MISTY]: ['MISTY_train1', 'MISTY_MP_Pred'],
+    [WeatherType.FOG]: ['Fog_MP_Pred'],
+    [WeatherType.DRIZZLE]: ['DRIZZLE_finale1'],
+    [WeatherType.OVERCASTDARK]: ['OVERCASTDARK_Gang2'],
   },
 
   [BiomeType.BIG_VALLEY]: {
     // Valley with occasional snow
-    [WeatherType.SNOWLIGHT]: ["SNOWLIGHT_finale2"],
-    [WeatherType.MISTY]: ["MISTY_finale1", "MISTY_finale2"],
-    [WeatherType.FOG]: ["Fog_MP_Pred"],
-    [WeatherType.DRIZZLE]: ["DRIZZLE_finale1B"],
+    [WeatherType.SNOWLIGHT]: ['SNOWLIGHT_finale2'],
+    [WeatherType.MISTY]: ['MISTY_finale1', 'MISTY_finale2'],
+    [WeatherType.FOG]: ['Fog_MP_Pred'],
+    [WeatherType.DRIZZLE]: ['DRIZZLE_finale1B'],
   },
 
   [BiomeType.HEARTLANDS]: {
     // Central plains variants
-    [WeatherType.SUNNY]: ["Sunny_odriscols4"],
-    [WeatherType.MISTY]: ["MISTY_finale1", "MISTY_MP_intro"],
-    [WeatherType.DRIZZLE]: ["DRIZZLE_finale1"],
-    [WeatherType.THUNDERSTORM]: ["THUNDERSTORM_nativeSon3"],
-    [WeatherType.OVERCASTDARK]: ["OVERCASTDARK_native3", "OVERCASTDARK_STD1"],
+    [WeatherType.SUNNY]: ['Sunny_odriscols4'],
+    [WeatherType.MISTY]: ['MISTY_finale1', 'MISTY_MP_intro'],
+    [WeatherType.DRIZZLE]: ['DRIZZLE_finale1'],
+    [WeatherType.THUNDERSTORM]: ['THUNDERSTORM_nativeSon3'],
+    [WeatherType.OVERCASTDARK]: ['OVERCASTDARK_native3', 'OVERCASTDARK_STD1'],
   },
 
   [BiomeType.GREAT_PLAINS]: {
     // Western plains variants
-    [WeatherType.SUNNY]: ["Sunny_odriscols4"],
-    [WeatherType.MISTY]: ["MISTY_finale1", "MISTY_MP_intro"],
-    [WeatherType.DRIZZLE]: ["DRIZZLE_finale1B"],
-    [WeatherType.THUNDERSTORM]: ["THUNDERSTORM_nativeSon3"],
+    [WeatherType.SUNNY]: ['Sunny_odriscols4'],
+    [WeatherType.MISTY]: ['MISTY_finale1', 'MISTY_MP_intro'],
+    [WeatherType.DRIZZLE]: ['DRIZZLE_finale1B'],
+    [WeatherType.THUNDERSTORM]: ['THUNDERSTORM_nativeSon3'],
   },
 
   [BiomeType.BAYOU]: {
     // Swampy southeast variants
-    [WeatherType.FOG]: ["FOG_guama"],
-    [WeatherType.MISTY]: ["MISTY_guama", "MISTY_braithwaites3"],
-    [WeatherType.SHOWER]: ["SHOWER_guama"],
-    [WeatherType.HIGHPRESSURE]: ["HIGHPRESSURE_guama"],
-    [WeatherType.HURRICANE]: ["HURRICANE_guama"],
-    [WeatherType.DRIZZLE]: ["DRIZZLE_finale1"],
+    [WeatherType.FOG]: ['FOG_guama'],
+    [WeatherType.MISTY]: ['MISTY_guama', 'MISTY_braithwaites3'],
+    [WeatherType.SHOWER]: ['SHOWER_guama'],
+    [WeatherType.HIGHPRESSURE]: ['HIGHPRESSURE_guama'],
+    [WeatherType.HURRICANE]: ['HURRICANE_guama'],
+    [WeatherType.DRIZZLE]: ['DRIZZLE_finale1'],
   },
 
   [BiomeType.LEMOYNE]: {
     // Southern region variants
-    [WeatherType.FOG]: ["FOG_guama"],
-    [WeatherType.MISTY]: ["MISTY_guama", "MISTY_braithwaites3"],
-    [WeatherType.SHOWER]: ["SHOWER_guama", "shower_MP_Pred"],
-    [WeatherType.HIGHPRESSURE]: ["HIGHPRESSURE_guama"],
-    [WeatherType.DRIZZLE]: ["DRIZZLE_finale1"],
-    [WeatherType.THUNDERSTORM]: ["THUNDERSTORM_MP_Pred"],
+    [WeatherType.FOG]: ['FOG_guama'],
+    [WeatherType.MISTY]: ['MISTY_guama', 'MISTY_braithwaites3'],
+    [WeatherType.SHOWER]: ['SHOWER_guama', 'shower_MP_Pred'],
+    [WeatherType.HIGHPRESSURE]: ['HIGHPRESSURE_guama'],
+    [WeatherType.DRIZZLE]: ['DRIZZLE_finale1'],
+    [WeatherType.THUNDERSTORM]: ['THUNDERSTORM_MP_Pred'],
   },
 
   [BiomeType.NEW_AUSTIN]: {
     // Desert variants (minimal variants due to arid climate)
-    [WeatherType.HIGHPRESSURE]: ["HIGHPRESSURE_guama"],
-    [WeatherType.SUNNY]: ["Sunny_odriscols4"],
+    [WeatherType.HIGHPRESSURE]: ['HIGHPRESSURE_guama'],
+    [WeatherType.SUNNY]: ['Sunny_odriscols4'],
   },
 
   [BiomeType.RIO_BRAVO]: {
     // Arid desert variants (minimal)
-    [WeatherType.HIGHPRESSURE]: ["HIGHPRESSURE_guama"],
-    [WeatherType.SUNNY]: ["Sunny_odriscols4"],
+    [WeatherType.HIGHPRESSURE]: ['HIGHPRESSURE_guama'],
+    [WeatherType.SUNNY]: ['Sunny_odriscols4'],
   },
 
   [BiomeType.ROANOKE]: {
     // Eastern forests variants
-    [WeatherType.FOG]: ["Fog_MP_Pred"],
-    [WeatherType.MISTY]: ["MISTY_train1", "MISTY_MP_Pred", "MISTY_finale2"],
-    [WeatherType.DRIZZLE]: ["DRIZZLE_finale1"],
-    [WeatherType.OVERCASTDARK]: ["OVERCASTDARK_Gang2", "OVERCASTDARK_finale2"],
+    [WeatherType.FOG]: ['Fog_MP_Pred'],
+    [WeatherType.MISTY]: ['MISTY_train1', 'MISTY_MP_Pred', 'MISTY_finale2'],
+    [WeatherType.DRIZZLE]: ['DRIZZLE_finale1'],
+    [WeatherType.OVERCASTDARK]: ['OVERCASTDARK_Gang2', 'OVERCASTDARK_finale2'],
   },
 
   [BiomeType.CUMBERLAND]: {
     // Forest region variants
-    [WeatherType.MISTY]: ["MISTY_finale1", "MISTY_MP_Pred"],
-    [WeatherType.FOG]: ["Fog_MP_Pred"],
-    [WeatherType.DRIZZLE]: ["DRIZZLE_finale1B"],
-    [WeatherType.SUNNY]: ["Sunny_odriscols4"],
+    [WeatherType.MISTY]: ['MISTY_finale1', 'MISTY_MP_Pred'],
+    [WeatherType.FOG]: ['Fog_MP_Pred'],
+    [WeatherType.DRIZZLE]: ['DRIZZLE_finale1B'],
+    [WeatherType.SUNNY]: ['Sunny_odriscols4'],
   },
 
   [BiomeType.SCARLETT]: {
     // Meadows variants
-    [WeatherType.SUNNY]: ["Sunny_odriscols4"],
-    [WeatherType.MISTY]: ["MISTY_braithwaites3", "MISTY_finale1"],
-    [WeatherType.DRIZZLE]: ["DRIZZLE_finale1"],
-    [WeatherType.SHOWER]: ["SHOWER_finale2"],
+    [WeatherType.SUNNY]: ['Sunny_odriscols4'],
+    [WeatherType.MISTY]: ['MISTY_braithwaites3', 'MISTY_finale1'],
+    [WeatherType.DRIZZLE]: ['DRIZZLE_finale1'],
+    [WeatherType.SHOWER]: ['SHOWER_finale2'],
   },
 };
 
@@ -307,16 +312,13 @@ export const BIOME_WEATHER_RULES: Record<BiomeType, WeatherType[]> = {
     WeatherType.HIGHPRESSURE,
   ],
   [BiomeType.NEW_AUSTIN]: [
+    WeatherType.SANDSTORM,
     WeatherType.SUNNY,
     WeatherType.HIGHPRESSURE,
     WeatherType.CLOUDS,
-    WeatherType.OVERCAST // Rare
+    WeatherType.OVERCAST, // Rare
   ],
-  [BiomeType.RIO_BRAVO]: [
-    WeatherType.SUNNY,
-    WeatherType.HIGHPRESSURE,
-    WeatherType.CLOUDS
-  ],
+  [BiomeType.RIO_BRAVO]: [WeatherType.SUNNY, WeatherType.HIGHPRESSURE, WeatherType.CLOUDS],
   [BiomeType.ROANOKE]: [
     WeatherType.FOG,
     WeatherType.OVERCAST,
@@ -344,32 +346,75 @@ export const BIOME_WEATHER_RULES: Record<BiomeType, WeatherType[]> = {
     WeatherType.DRIZZLE,
     WeatherType.MISTY,
     WeatherType.SHOWER,
-  ]
+  ],
 };
 
-// Weather compatibility (same as before)
+// Weather compatibility — directed graph of allowed transitions.
+// Chains: WHITEOUT <-> BLIZZARD <-> GROUNDBLIZZARD
+//         SNOW <-> SNOWLIGHT <-> HAIL <-> SLEET
+//         HURRICANE <-> THUNDER <-> THUNDERSTORM
+//         RAIN <-> SHOWER <-> DRIZZLE <-> MISTY <-> FOG
+//         OVERCAST | OVERCASTDARK
+//         CLOUDS (hub)
+//         SUNNY <-> HIGHPRESSURE
+//         SANDSTORM
 export const WEATHER_COMPATIBILITY: Record<WeatherType, WeatherType[]> = {
-  [WeatherType.BLIZZARD]: [WeatherType.BLIZZARD, WeatherType.SNOW, WeatherType.OVERCAST],
-  [WeatherType.CLOUDS]: [WeatherType.CLOUDS, WeatherType.SUNNY, WeatherType.OVERCAST, WeatherType.HIGHPRESSURE, WeatherType.DRIZZLE],
-  [WeatherType.DRIZZLE]: [WeatherType.DRIZZLE, WeatherType.CLOUDS, WeatherType.OVERCAST, WeatherType.RAIN],
-  [WeatherType.FOG]: [WeatherType.FOG, WeatherType.OVERCAST, WeatherType.CLOUDS],
-  [WeatherType.GROUNDBLIZZARD]: [],
-  [WeatherType.HAIL]: [],
-  [WeatherType.HIGHPRESSURE]: [WeatherType.HIGHPRESSURE, WeatherType.SUNNY, WeatherType.CLOUDS],
-  [WeatherType.HURRICANE]: [],
-  [WeatherType.MISTY]: [],
-  [WeatherType.OVERCAST]: [WeatherType.OVERCAST, WeatherType.CLOUDS, WeatherType.DRIZZLE, WeatherType.RAIN, WeatherType.FOG],
-  [WeatherType.OVERCASTDARK]: [],
-  [WeatherType.RAIN]: [WeatherType.RAIN, WeatherType.DRIZZLE, WeatherType.OVERCAST, WeatherType.THUNDER],
-  [WeatherType.SANDSTORM]: [],
-  [WeatherType.SHOWER]: [],
-  [WeatherType.SLEET]: [],
-  [WeatherType.SNOW]: [WeatherType.SNOW, WeatherType.SNOWLIGHT, WeatherType.OVERCAST, WeatherType.BLIZZARD],
-  [WeatherType.SNOWLIGHT]: [WeatherType.SNOWLIGHT, WeatherType.SNOW, WeatherType.CLOUDS, WeatherType.OVERCAST],
-  [WeatherType.SUNNY]: [WeatherType.SUNNY, WeatherType.HIGHPRESSURE, WeatherType.CLOUDS],
-  [WeatherType.THUNDER]: [WeatherType.THUNDER, WeatherType.RAIN, WeatherType.OVERCAST],
-  [WeatherType.THUNDERSTORM]: [WeatherType.THUNDERSTORM, WeatherType.RAIN, WeatherType.OVERCAST],
-  [WeatherType.WHITEOUT]: [WeatherType.WHITEOUT, WeatherType.BLIZZARD, WeatherType.SNOW]
+  // Extreme cold chain
+  [WeatherType.WHITEOUT]: [WeatherType.BLIZZARD, WeatherType.SNOW],
+  [WeatherType.BLIZZARD]: [WeatherType.WHITEOUT, WeatherType.SNOW, WeatherType.GROUNDBLIZZARD, WeatherType.OVERCAST],
+  [WeatherType.GROUNDBLIZZARD]: [WeatherType.BLIZZARD],
+
+  // Cold/snow chain
+  [WeatherType.SNOW]: [WeatherType.SNOWLIGHT, WeatherType.OVERCAST, WeatherType.BLIZZARD, WeatherType.WHITEOUT],
+  [WeatherType.SNOWLIGHT]: [WeatherType.SNOW, WeatherType.HAIL, WeatherType.CLOUDS, WeatherType.OVERCAST],
+  [WeatherType.HAIL]: [WeatherType.SLEET, WeatherType.SNOWLIGHT, WeatherType.SNOW],
+  [WeatherType.SLEET]: [WeatherType.HAIL, WeatherType.SNOW, WeatherType.RAIN, WeatherType.OVERCAST],
+
+  // Storm chain
+  [WeatherType.HURRICANE]: [WeatherType.THUNDERSTORM, WeatherType.THUNDER, WeatherType.RAIN],
+  [WeatherType.THUNDER]: [WeatherType.THUNDERSTORM, WeatherType.HURRICANE, WeatherType.RAIN, WeatherType.OVERCAST],
+  [WeatherType.THUNDERSTORM]: [WeatherType.HURRICANE, WeatherType.THUNDER, WeatherType.RAIN, WeatherType.OVERCAST],
+
+  // Wet chain
+  [WeatherType.RAIN]: [WeatherType.SHOWER, WeatherType.DRIZZLE, WeatherType.OVERCAST, WeatherType.THUNDER],
+  [WeatherType.SHOWER]: [WeatherType.RAIN, WeatherType.DRIZZLE],
+  [WeatherType.DRIZZLE]: [
+    WeatherType.SHOWER,
+    WeatherType.MISTY,
+    WeatherType.CLOUDS,
+    WeatherType.OVERCAST,
+    WeatherType.RAIN,
+  ],
+  [WeatherType.MISTY]: [WeatherType.DRIZZLE, WeatherType.FOG],
+  [WeatherType.FOG]: [WeatherType.MISTY, WeatherType.OVERCAST, WeatherType.CLOUDS],
+
+  // Overcast
+  [WeatherType.OVERCAST]: [
+    WeatherType.OVERCASTDARK,
+    WeatherType.CLOUDS,
+    WeatherType.DRIZZLE,
+    WeatherType.RAIN,
+    WeatherType.FOG,
+  ],
+  [WeatherType.OVERCASTDARK]: [WeatherType.OVERCAST, WeatherType.CLOUDS],
+
+  // Hub
+  [WeatherType.CLOUDS]: [
+    WeatherType.SUNNY,
+    WeatherType.OVERCAST,
+    WeatherType.OVERCASTDARK,
+    WeatherType.HIGHPRESSURE,
+    WeatherType.DRIZZLE,
+    WeatherType.SNOWLIGHT,
+    WeatherType.FOG,
+  ],
+
+  // Clear chain
+  [WeatherType.SUNNY]: [WeatherType.HIGHPRESSURE, WeatherType.CLOUDS],
+  [WeatherType.HIGHPRESSURE]: [WeatherType.SUNNY, WeatherType.CLOUDS, WeatherType.SANDSTORM],
+
+  // Desert
+  [WeatherType.SANDSTORM]: [WeatherType.HIGHPRESSURE, WeatherType.SUNNY],
 };
 
 /**
@@ -393,9 +438,9 @@ export const BIOME_BOUNDARIES: BiomeBoundary[] = [
     maxX: 1500,
     minY: 1500,
     maxY: 4608,
-    priority: 10
+    priority: 10,
   },
-  
+
   // Desert regions (southwest)
   {
     biome: BiomeType.RIO_BRAVO,
@@ -403,7 +448,7 @@ export const BIOME_BOUNDARIES: BiomeBoundary[] = [
     maxX: -3500,
     minY: -5760,
     maxY: -3500,
-    priority: 9
+    priority: 9,
   },
   {
     biome: BiomeType.NEW_AUSTIN,
@@ -411,9 +456,9 @@ export const BIOME_BOUNDARIES: BiomeBoundary[] = [
     maxX: -2000,
     minY: -3500,
     maxY: -1000,
-    priority: 8
+    priority: 8,
   },
-  
+
   // Bayou (southeast swamp)
   {
     biome: BiomeType.BAYOU,
@@ -421,9 +466,9 @@ export const BIOME_BOUNDARIES: BiomeBoundary[] = [
     maxX: 6144,
     minY: -5760,
     maxY: -800,
-    priority: 9
+    priority: 9,
   },
-  
+
   // Lemoyne (southern region)
   {
     biome: BiomeType.LEMOYNE,
@@ -431,9 +476,9 @@ export const BIOME_BOUNDARIES: BiomeBoundary[] = [
     maxX: 2400,
     minY: -2500,
     maxY: -200,
-    priority: 7
+    priority: 7,
   },
-  
+
   // Roanoke Ridge (northeast)
   {
     biome: BiomeType.ROANOKE,
@@ -441,9 +486,9 @@ export const BIOME_BOUNDARIES: BiomeBoundary[] = [
     maxX: 6144,
     minY: 800,
     maxY: 4608,
-    priority: 8
+    priority: 8,
   },
-  
+
   // Tall Trees (northwest forest)
   {
     biome: BiomeType.TALL_TREES,
@@ -451,9 +496,9 @@ export const BIOME_BOUNDARIES: BiomeBoundary[] = [
     maxX: -1400,
     minY: -800,
     maxY: 1200,
-    priority: 7
+    priority: 7,
   },
-  
+
   // Big Valley
   {
     biome: BiomeType.BIG_VALLEY,
@@ -461,9 +506,9 @@ export const BIOME_BOUNDARIES: BiomeBoundary[] = [
     maxX: -800,
     minY: 200,
     maxY: 1600,
-    priority: 6
+    priority: 6,
   },
-  
+
   // Cumberland Forest
   {
     biome: BiomeType.CUMBERLAND,
@@ -471,9 +516,9 @@ export const BIOME_BOUNDARIES: BiomeBoundary[] = [
     maxX: 1800,
     minY: 600,
     maxY: 1800,
-    priority: 6
+    priority: 6,
   },
-  
+
   // Scarlett Meadows
   {
     biome: BiomeType.SCARLETT,
@@ -481,9 +526,9 @@ export const BIOME_BOUNDARIES: BiomeBoundary[] = [
     maxX: 2200,
     minY: -1500,
     maxY: 200,
-    priority: 5
+    priority: 5,
   },
-  
+
   // Great Plains (west)
   {
     biome: BiomeType.GREAT_PLAINS,
@@ -491,9 +536,9 @@ export const BIOME_BOUNDARIES: BiomeBoundary[] = [
     maxX: -400,
     minY: -2000,
     maxY: 200,
-    priority: 5
+    priority: 5,
   },
-  
+
   // Heartlands (central - lowest priority, default)
   {
     biome: BiomeType.HEARTLANDS,
@@ -501,8 +546,8 @@ export const BIOME_BOUNDARIES: BiomeBoundary[] = [
     maxX: 1500,
     minY: -1000,
     maxY: 1000,
-    priority: 4
-  }
+    priority: 4,
+  },
 ];
 
 /**
@@ -510,40 +555,38 @@ export const BIOME_BOUNDARIES: BiomeBoundary[] = [
  */
 export class BiomeManager {
   private biomeCache: Map<string, BiomeType> = new Map();
-  
+
   /**
    * Get the biome at a specific world coordinate
    */
   public getBiomeAtPosition(worldX: number, worldY: number): BiomeType {
     const cacheKey = `${Math.floor(worldX / 100)},${Math.floor(worldY / 100)}`;
-    
+
     // Check cache first (cache by 100-unit squares for performance)
     if (this.biomeCache.has(cacheKey)) {
       return this.biomeCache.get(cacheKey)!;
     }
-    
+
     // Find all biomes that contain this point
-    const matchingBiomes = BIOME_BOUNDARIES.filter(boundary => 
-      worldX >= boundary.minX &&
-      worldX <= boundary.maxX &&
-      worldY >= boundary.minY &&
-      worldY <= boundary.maxY
+    const matchingBiomes = BIOME_BOUNDARIES.filter(
+      (boundary) =>
+        worldX >= boundary.minX && worldX <= boundary.maxX && worldY >= boundary.minY && worldY <= boundary.maxY,
     );
-    
+
     // If multiple biomes match, use the one with highest priority
     let selectedBiome = BiomeType.HEARTLANDS; // Default fallback
-    
+
     if (matchingBiomes.length > 0) {
       matchingBiomes.sort((a, b) => b.priority - a.priority);
       selectedBiome = matchingBiomes[0].biome;
     }
-    
+
     // Cache the result
     this.biomeCache.set(cacheKey, selectedBiome);
-    
+
     return selectedBiome;
   }
-  
+
   /**
    * Check if a weather type is allowed in a specific biome
    */
@@ -551,80 +594,74 @@ export class BiomeManager {
     const allowedWeathers = BIOME_WEATHER_RULES[biome];
     return allowedWeathers.includes(weather);
   }
-  
+
   /**
    * Get all weather types allowed in a biome
    */
   public getAllowedWeatherForBiome(biome: BiomeType): WeatherType[] {
     return [...BIOME_WEATHER_RULES[biome]];
   }
-  
+
   /**
    * Get compatible weather types that are valid in a specific biome
    */
-  public getCompatibleWeatherInBiome(
-    currentWeather: WeatherType,
-    biome: BiomeType
-  ): WeatherType[] {
+  public getCompatibleWeatherInBiome(currentWeather: WeatherType, biome: BiomeType): WeatherType[] {
     const compatible = WEATHER_COMPATIBILITY[currentWeather];
     const allowed = BIOME_WEATHER_RULES[biome];
-    
+
     // Return intersection of compatible and allowed
-    return compatible.filter(w => allowed.includes(w));
+    return compatible.filter((w) => allowed.includes(w));
   }
-  
+
   /**
    * Find the nearest allowed weather type for a biome
    * Used when weather needs to transition into a new biome
    */
-  public findNearestAllowedWeather(
-    currentWeather: WeatherType,
-    targetBiome: BiomeType
-  ): WeatherType {
+  public findNearestAllowedWeather(currentWeather: WeatherType, targetBiome: BiomeType): WeatherType {
     // If current weather is already allowed, keep it
     if (this.isWeatherAllowedInBiome(currentWeather, targetBiome)) {
       return currentWeather;
     }
-    
+
     // Try to find a compatible weather that's allowed
     const compatible = this.getCompatibleWeatherInBiome(currentWeather, targetBiome);
-    
+
     if (compatible.length > 0) {
       return compatible[0];
     }
-    
+
     // If no compatible weather, return the most neutral weather for the biome
     const allowed = BIOME_WEATHER_RULES[targetBiome];
-    
+
     // Prefer CLEAR or CLOUDS as neutral options
     // if (allowed.includes(WeatherType.SUNNY)) return WeatherType.SUNNY;
     if (allowed.includes(WeatherType.CLOUDS)) return WeatherType.CLOUDS;
     if (allowed.includes(WeatherType.OVERCAST)) return WeatherType.OVERCAST;
-    
+
     // Otherwise return first allowed weather
     return allowed[0];
   }
-  
+
   /**
    * Get biome transition zones (where two biomes meet)
    * Returns list of biomes within a certain distance
    */
   public getNearbyBiomes(worldX: number, worldY: number, radius: number = 500): BiomeType[] {
     const biomes = new Set<BiomeType>();
-    
+
     // Sample points in a circle around the position
     const samples = 8;
     for (let i = 0; i < samples; i++) {
       const angle = (i / samples) * Math.PI * 2;
       const sampleX = worldX + Math.cos(angle) * radius;
       const sampleY = worldY + Math.sin(angle) * radius;
-      
+
       biomes.add(this.getBiomeAtPosition(sampleX, sampleY));
     }
-    
+
     return Array.from(biomes);
   }
-  
+
   /**
    * Check if a position is in a biome transition zone
    */
@@ -632,7 +669,7 @@ export class BiomeManager {
     const nearbyBiomes = this.getNearbyBiomes(worldX, worldY, 300);
     return nearbyBiomes.length > 1;
   }
-  
+
   /**
    * Get a visual representation of biomes (for debugging/admin tools)
    */
@@ -641,53 +678,55 @@ export class BiomeManager {
     const MAP_MAX_X = 6144.0;
     const MAP_MIN_Y = -5760.0;
     const MAP_MAX_Y = 4608.0;
-    
+
     const biomeMap: BiomeType[][] = [];
-    
+
     for (let y = 0; y < gridHeight; y++) {
       const row: BiomeType[] = [];
-      
+
       for (let x = 0; x < gridWidth; x++) {
         // Convert grid position to world coordinates (center of cell)
         const worldX = MAP_MIN_X + ((x + 0.5) / gridWidth) * (MAP_MAX_X - MAP_MIN_X);
         const worldY = MAP_MIN_Y + ((y + 0.5) / gridHeight) * (MAP_MAX_Y - MAP_MIN_Y);
-        
+
         row.push(this.getBiomeAtPosition(worldX, worldY));
       }
-      
+
       biomeMap.push(row);
     }
-    
+
     return biomeMap;
   }
-  
+
   /**
    * Print biome map for debugging
    */
   public printBiomeMap(gridWidth: number = 8, gridHeight: number = 8): void {
     const biomeMap = this.getBiomeMap(gridWidth, gridHeight);
-    
+
     console.log('\n=== Biome Map ===');
     for (let y = 0; y < gridHeight; y++) {
-      const row = biomeMap[y].map(biome => {
-        // Abbreviate biome names
-        const abbrev: Record<string, string> = {
-          'GRIZZLIES': 'GRIZ',
-          'TALL_TREES': 'TREE',
-          'BIG_VALLEY': 'BVAL',
-          'HEARTLANDS': 'HEAR',
-          'GREAT_PLAINS': 'PLNS',
-          'BAYOU': 'BAYO',
-          'LEMOYNE': 'LEMO',
-          'NEW_AUSTIN': 'NAUS',
-          'RIO_BRAVO': 'RBRA',
-          'ROANOKE': 'ROAN',
-          'CUMBERLAND': 'CUMB',
-          'SCARLETT': 'SCAR'
-        };
-        return (abbrev[biome] || biome.substring(0, 4)).padEnd(4);
-      }).join(' | ');
-      
+      const row = biomeMap[y]
+        .map((biome) => {
+          // Abbreviate biome names
+          const abbrev: Record<string, string> = {
+            GRIZZLIES: 'GRIZ',
+            TALL_TREES: 'TREE',
+            BIG_VALLEY: 'BVAL',
+            HEARTLANDS: 'HEAR',
+            GREAT_PLAINS: 'PLNS',
+            BAYOU: 'BAYO',
+            LEMOYNE: 'LEMO',
+            NEW_AUSTIN: 'NAUS',
+            RIO_BRAVO: 'RBRA',
+            ROANOKE: 'ROAN',
+            CUMBERLAND: 'CUMB',
+            SCARLETT: 'SCAR',
+          };
+          return (abbrev[biome] || biome.substring(0, 4)).padEnd(4);
+        })
+        .join(' | ');
+
       console.log(row);
       if (y < gridHeight - 1) {
         console.log('-'.repeat(row.length));
@@ -695,7 +734,7 @@ export class BiomeManager {
     }
     console.log('=================\n');
   }
-  
+
   /**
    * Clear the biome cache (useful if biome boundaries are modified)
    */
@@ -777,6 +816,82 @@ export function getRainRate(weatherType: WeatherType, random: () => number = Mat
  */
 export function isRainWeather(weatherType: WeatherType): boolean {
   return RAIN_WEATHER_TYPES.includes(weatherType as any);
+}
+
+/**
+ * Find the shortest transition path between two weather types using BFS.
+ * Uses WEATHER_COMPATIBILITY as a directed graph.
+ * Returns the path as an array of WeatherTypes (including start and end),
+ * or null if no path exists.
+ */
+export function findWeatherTransitionPath(from: WeatherType, to: WeatherType): WeatherType[] | null {
+  if (from === to) return [from];
+
+  const visited = new Set<WeatherType>([from]);
+  const queue: Array<{ type: WeatherType; path: WeatherType[] }> = [{ type: from, path: [from] }];
+
+  while (queue.length > 0) {
+    const current = queue.shift()!;
+    const neighbors = WEATHER_COMPATIBILITY[current.type] || [];
+
+    for (const neighbor of neighbors) {
+      if (neighbor === current.type) continue; // skip self-references
+      if (neighbor === to) return [...current.path, neighbor];
+
+      if (!visited.has(neighbor)) {
+        visited.add(neighbor);
+        queue.push({ type: neighbor, path: [...current.path, neighbor] });
+      }
+    }
+  }
+
+  return null;
+}
+
+/**
+ * Analyze the full weather compatibility graph.
+ * Returns statistics about reachability, isolated types, and max hop counts.
+ */
+export function analyzeWeatherCompatibility(): {
+  reachable: Array<{ from: WeatherType; to: WeatherType; hops: number; path: WeatherType[] }>;
+  unreachable: Array<{ from: WeatherType; to: WeatherType }>;
+  isolated: WeatherType[];
+  maxHops: number;
+  worstPath: { from: WeatherType; to: WeatherType; hops: number; path: WeatherType[] } | null;
+} {
+  const allTypes = Object.values(WeatherType);
+  const reachable: Array<{ from: WeatherType; to: WeatherType; hops: number; path: WeatherType[] }> = [];
+  const unreachable: Array<{ from: WeatherType; to: WeatherType }> = [];
+  let maxHops = 0;
+  let worstPath: { from: WeatherType; to: WeatherType; hops: number; path: WeatherType[] } | null = null;
+
+  // Find types with no outgoing edges
+  const isolated = allTypes.filter((type) => {
+    const neighbors = WEATHER_COMPATIBILITY[type] || [];
+    const outgoing = neighbors.filter((n) => n !== type);
+    return outgoing.length === 0;
+  });
+
+  for (const from of allTypes) {
+    for (const to of allTypes) {
+      if (from === to) continue;
+
+      const path = findWeatherTransitionPath(from, to);
+      if (path) {
+        const hops = path.length - 1;
+        reachable.push({ from, to, hops, path });
+
+        if (hops > maxHops) {
+          maxHops = hops;
+          worstPath = { from, to, hops, path };
+        }
+      } else {
+        unreachable.push({ from, to });
+      }
+    }
+  }
+
+  return { reachable, unreachable, isolated, maxHops, worstPath };
 }
 
 export default BiomeManager;

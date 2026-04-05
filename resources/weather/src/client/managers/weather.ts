@@ -1,7 +1,15 @@
+import { PVGame } from '@lib/client';
 import { awaitUI } from '@lib/client/comms/ui';
 import { Log, onSocket } from '@lib/client/comms/ui';
 
-import { BiomeNames, BiomeType, BiomeWeatherVariants, WeatherType, WeatherVariants, findWeatherTransitionPath } from '../../shared/biome';
+import {
+  BiomeNames,
+  BiomeType,
+  BiomeWeatherVariants,
+  WeatherType,
+  WeatherVariants,
+  findWeatherTransitionPath,
+} from '../../shared/biome';
 import { WeatherHashes } from '../../shared/biome';
 import { BiomeWeatherGrid } from '../../shared/grid';
 import type { GridCell } from '../../shared/types';
@@ -127,12 +135,11 @@ export class ClientWeatherManager {
     }
 
     const playerPed = PlayerPedId();
-    const coords = GetEntityCoords(playerPed, false);
-    const [worldX, worldY] = coords;
+    const coords = PVGame.playerCoords(true);
     const heading = GetEntityHeading(playerPed);
 
-    const currentGridPos = this.weatherGrid.worldToGrid(worldX, worldY);
-    const currentCell = this.weatherGrid.getCellAtPosition(worldX, worldY);
+    const currentGridPos = this.weatherGrid.worldToGrid(coords.x, coords.y);
+    const currentCell = this.weatherGrid.getCellAtPosition(coords.x, coords.y);
 
     // Initialize or update player state
     const playerState: PlayerWeatherState = {
@@ -590,7 +597,9 @@ export class ClientWeatherManager {
 
     // If a smooth transition is in progress, let it finish — don't fight it
     if (this.isTransitionInProgress()) {
-      Log(`[Apply Skip] Transition in progress, ignoring ${newCurrent} <-> ${newNeighbor} @ ${(transitionPercent * 100).toFixed(1)}%`);
+      Log(
+        `[Apply Skip] Transition in progress, ignoring ${newCurrent} <-> ${newNeighbor} @ ${(transitionPercent * 100).toFixed(1)}%`,
+      );
       return;
     }
 
@@ -625,13 +634,17 @@ export class ClientWeatherManager {
       this.transitionToTarget(newCurrent, newNeighbor, transitionPercent, targetRainRate);
     } else if (hasCurrentInSlot || hasNeighborInSlot) {
       // One slot matches — swap the other via engine
-      Log(`[Apply Swap] Game has ${gameSlotA}/${gameSlotB}, need ${newCurrent}/${newNeighbor} @ ${(transitionPercent * 100).toFixed(1)}%`);
+      Log(
+        `[Apply Swap] Game has ${gameSlotA}/${gameSlotB}, need ${newCurrent}/${newNeighbor} @ ${(transitionPercent * 100).toFixed(1)}%`,
+      );
       this.transitionToTarget(newCurrent, newNeighbor, transitionPercent, targetRainRate);
     } else {
       // Neither slot matches — full multi-hop to dominant weather first
       const dominantWeather = transitionPercent < 0.5 ? newCurrent : newNeighbor;
       const dominantRainRate = transitionPercent < 0.5 ? currentRainRate : neighborRainRate;
-      Log(`[Apply Multi] Game has ${gameSlotA}/${gameSlotB}, need ${newCurrent}/${newNeighbor} -> hop to ${dominantWeather}`);
+      Log(
+        `[Apply Multi] Game has ${gameSlotA}/${gameSlotB}, need ${newCurrent}/${newNeighbor} -> hop to ${dominantWeather}`,
+      );
       this.transitionToWeather(dominantWeather, dominantRainRate);
     }
   }
@@ -708,7 +721,9 @@ export class ClientWeatherManager {
       `[Transition Target] -> ${targetA} <-> ${targetB} @ ${(targetPercent * 100).toFixed(0)}% (${meaningfulSteps.length} steps)`,
     );
     for (const step of meaningfulSteps) {
-      Log(`  ${step.slotA} <-> ${step.slotB}: ${(step.fromPercent * 100).toFixed(0)}% -> ${(step.toPercent * 100).toFixed(0)}%`);
+      Log(
+        `  ${step.slotA} <-> ${step.slotB}: ${(step.fromPercent * 100).toFixed(0)}% -> ${(step.toPercent * 100).toFixed(0)}%`,
+      );
     }
 
     this.cancelTransition();
@@ -894,7 +909,9 @@ export class ClientWeatherManager {
           const applyPercent = isSettle ? 0.9 : step.toPercent;
           SetCurrWeatherState(hashA, hashB, Math.min(applyPercent, 0.99999), true);
           SetRain(targetRainRate);
-          Log(`[Transition ${isSettle ? 'Settle' : 'Swap'}] ${step.slotA} <-> ${step.slotB} @ ${(applyPercent * 100).toFixed(0)}%`);
+          Log(
+            `[Transition ${isSettle ? 'Settle' : 'Swap'}] ${step.slotA} <-> ${step.slotB} @ ${(applyPercent * 100).toFixed(0)}%`,
+          );
         }
         if (isSettle) {
           this.currentWeather = step.slotA;
@@ -921,7 +938,7 @@ export class ClientWeatherManager {
 
       if (hashA !== undefined && hashB !== undefined) {
         SetCurrWeatherState(hashA, hashB, percent, true);
-        Log(`[Transition Hop] ${step.slotA} <-> ${step.slotB} @ ${(percent * 100).toFixed(1)}% (progress: ${(progress * 100).toFixed(0)}%)`);
+        // Log(`[Transition Hop] ${step.slotA} <-> ${step.slotB} @ ${(percent * 100).toFixed(1)}% (progress: ${(progress * 100).toFixed(0)}%)`);
       }
 
       // Interpolate rain toward target based on overall step progress
@@ -989,8 +1006,7 @@ export class ClientWeatherManager {
 
   public checkWeather(): void {
     const playerPed = PlayerPedId();
-    const coords = GetEntityCoords(playerPed, false);
-    const [x, y, z] = coords;
+    const coords = PVGame.playerCoords(true);
     const heading = GetEntityHeading(playerPed);
 
     const playerState = this.playerWeatherStates.get(playerPed);
@@ -1005,7 +1021,7 @@ export class ClientWeatherManager {
     console.log('========================================');
     console.log('WEATHER INFORMATION');
     console.log('========================================');
-    console.log(`Position: ${x.toFixed(1)}, ${y.toFixed(1)}, ${z.toFixed(1)}`);
+    console.log(`Position: ${coords.x.toFixed(1)}, ${coords.y.toFixed(1)}, ${coords.z.toFixed(1)}`);
     console.log(`Heading: ${heading.toFixed(1)}°`);
     console.log(`Current Cell: (${playerState.currentCell.x}, ${playerState.currentCell.y})`);
     console.log(`Current Biome: ${biomeName}`);

@@ -1,4 +1,4 @@
-import { PVBase, PVGame, PVWorld, emitUI, focusUI } from '@lib/client';
+import { PVBase, PVCustomization, PVGame, PVWorld, emitUI, focusUI } from '@lib/client';
 import { Log } from '@lib/client/comms/ui';
 import { AnimFlag } from '@lib/flags';
 import { lerp } from '@lib/math';
@@ -140,6 +140,57 @@ RegisterCommand(
   async (source: number, args: any[], rawCommand: string) => {
     // Log({ source, args, rawCommand });
     PVGame.finalizePedOutfit(PVGame.playerPed());
+  },
+  false,
+);
+
+let bandanaState = false;
+RegisterCommand(
+  'bandana',
+  async (source: number, args: any[], rawCommand: string) => {
+    // Log({ source, args, rawCommand });
+
+    if (bandanaState) {
+      bandanaState = false;
+      PVCustomization.setWearableState('neckwear', 'BASE');
+    } else {
+      bandanaState = true;
+      PVCustomization.setWearableState('neckwear', 'MASK_UP');
+    }
+  },
+  false,
+);
+
+let sleevesState = false;
+RegisterCommand(
+  'sleeves',
+  async (source: number, args: any[], rawCommand: string) => {
+    // Log({ source, args, rawCommand });
+
+    if (sleevesState) {
+      sleevesState = false;
+      PVCustomization.setWearableState('shirts_full', 'BASE');
+    } else {
+      sleevesState = true;
+      PVCustomization.setWearableState('shirts_full', 'OPEN_COLLAR_ROLLED_SLEEVE');
+    }
+  },
+  false,
+);
+
+RegisterCommand(
+  'wearableState',
+  async (source: number, args: any[], rawCommand: string) => {
+    // Log({ source, args, rawCommand });
+
+    if (args[0] == Number(args[0])) {
+      args[0] = Number(args[0]);
+    }
+    if (args[1] == Number(args[1])) {
+      args[1] = Number(args[1]);
+    }
+
+    PVCustomization.setWearableState(args[0], args[1] || 'BASE');
   },
   false,
 );

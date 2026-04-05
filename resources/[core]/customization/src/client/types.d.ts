@@ -67,6 +67,8 @@ declare namespace Customization {
   type EquipItems = (ped: number, items: UI.Inventory.ItemData[]) => void;
   type ApplyMetaPedOutfit = (ped: number, outfit: string | number) => void;
 
+  type SetWearableState = (catgegory: string | number, state: string | number, ped?: number) => void;
+
   interface ClientExports {
     getGuidsAtIndex: GetGuidsAtIndex;
     getDrawableAtIndex: GetDrawableAtIndex;
@@ -94,6 +96,7 @@ declare namespace Customization {
     setTintByHorsePart: SetTintByHorsePart;
     equipItems: EquipItems;
     applyMetaPedOutfit: ApplyMetaPedOutfit;
+    setWearableState: SetWearableState;
   }
 }
 

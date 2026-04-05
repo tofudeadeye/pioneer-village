@@ -12,6 +12,7 @@ declare namespace Game {
     tint0: number;
     tint1: number;
     tint2: number;
+    wearableState?: string | number;
   }
 
   type BodyComponentTinted = {

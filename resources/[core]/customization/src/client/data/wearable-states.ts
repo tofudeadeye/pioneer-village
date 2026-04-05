@@ -5,6 +5,10 @@ const wearableStates: Map<number, string> = new Map();
 // -11116820,
 // -2113597814
 
+// 7 -1194873559 0xb8c7ad29
+// 3 -1200513218 0xb8719f3e
+// 0 1960246981 0x74d6fec5
+
 const states = [
   'BASE',
   'CUSTOM',
@@ -71,6 +75,12 @@ const states = [
   'GOWN_UNDER_SHORT_BOOTS',
   'RIPPED_PANTS_KNEE',
   'SHORT_PANTS_UNDER_SHORT_BOOTS',
+
+  'MASK_UP',
+  'VEST_CUSTOM',
+  'VEST_COAT_OPEN',
+  'SHIRT_COAT_OPEN',
+  'DUELWIELD',
 
   //
   'SHIRT_009',

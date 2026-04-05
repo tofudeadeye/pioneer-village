@@ -154,6 +154,10 @@ class ComponentManager {
         const hash = GetHashKey(meta.shopItem);
         ApplyShopItemToPed(ped, hash, false, isMpComponent(hash), false);
         await Delay(1);
+        if (meta.wearableState) {
+          const state = typeof meta.wearableState === 'string' ? GetHashKey(meta.wearableState) : meta.wearableState;
+          UpdateShopItemWearableState(ped, hash, state, 0, true, 0);
+        }
       }
     }
 
@@ -342,6 +346,29 @@ class ComponentManager {
 
     ApplyPedMetaPedOutfit(requestId, ped, true, false);
     ReleaseMetaPedOutfitRequest(requestId);
+  }
+
+  async setWearableState(category: string | number, state: string | number, ped?: number) {
+    if (!ped) {
+      ped = PVGame.playerPed();
+    }
+    if (typeof category === 'string') {
+      category = GetHashKey(category);
+    }
+    if (typeof state === 'string') {
+      state = GetHashKey(state);
+    }
+    console.log(`PVCustomization.setWearableState(${category}, ${state});`);
+
+    const components = this.getPedComponents(ped);
+
+    for (const component of components) {
+      if (category === component.category) {
+        UpdateShopItemWearableState(ped, component.id, state, 0, true, 0);
+        break;
+      }
+    }
+    PVGame.finalizePedOutfit(ped);
   }
 }
 

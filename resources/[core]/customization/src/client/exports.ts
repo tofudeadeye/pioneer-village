@@ -107,6 +107,10 @@ const applyMetaPedOutfit: Customization.ApplyMetaPedOutfit = (...args) => {
   return componentManager.applyMetaPedOutfit(...args);
 };
 
+const setWearableState: Customization.SetWearableState = (...args) => {
+  return componentManager.setWearableState(...args);
+};
+
 exports<'customization'>('getGuidsAtIndex', getGuidsAtIndex);
 exports<'customization'>('getDrawableAtIndex', getDrawableAtIndex);
 exports<'customization'>('getAlbedoAtIndex', getAlbedoAtIndex);
@@ -133,3 +137,4 @@ exports<'customization'>('getIndexForHorsePart', getIndexForHorsePart);
 exports<'customization'>('setTintByHorsePart', setTintByHorsePart);
 exports<'customization'>('equipItems', equipItems);
 exports<'customization'>('applyMetaPedOutfit', applyMetaPedOutfit);
+exports<'customization'>('setWearableState', setWearableState);

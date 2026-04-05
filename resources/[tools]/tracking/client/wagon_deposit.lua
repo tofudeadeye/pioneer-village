@@ -209,39 +209,41 @@ end)
 --BANDANA_ON_LEFT_HAND_RIFLE
 --BANDANA_ON_RIGHT_HAND
 
+-- 0xbe852191 0x92f1fc1a
+
 local InvokeNative = Citizen.InvokeNative
 local BANDANA_COMPONENT = `CLOTHING_ITEM_M_NECKERCHIEF_003_TINT_001`
 local bandana = nil
 local on = false
 -- -2081918609 Boots underpants
-RegisterCommand('bandanaon', function(source, args, rawCommand)
-    local player = PlayerPedId()
-    bandana = tonumber(args[1]) or bandana or BANDANA_COMPONENT
-    if not on then
-        on = true
-        InvokeNative(0xD3A7B003ED343FD9, player, bandana, true, true)
-        InvokeNative(0xAE72E7DF013AAA61, player, 0, `BANDANA_ON_RIGHT_HAND`, 1, 0, -1.0) -- _TASK_ITEM_INTERACTION
-        Citizen.Wait(750)
-    end
-    InvokeNative(0x66B957AAC2EAAEAB, player, bandana, -1829635046, 0, true, 1)
-    --InvokeNative(0x704C908E9C405136, player) -- FIX_OUTFIT
-    InvokeNative(0xAAB86462966168CE, player, true)
-    InvokeNative(0xCC8CA3E88256E58F, player, false, true, true, true, false) -- _UPDATE_PED_VARIATION
-end)
-
-RegisterCommand('bandanaoff', function(source, args, rawCommand)
-    local player = PlayerPedId()
-    bandana = tonumber(args[1]) or bandana or BANDANA_COMPONENT
-    if on then
-        on = false
-        InvokeNative(0xAE72E7DF013AAA61, player, 0, `BANDANA_OFF_RIGHT_HAND`, 1, 0, -1.0) -- _TASK_ITEM_INTERACTION
-        Citizen.Wait(750)
-    end
-    InvokeNative(0x66B957AAC2EAAEAB, player, bandana, `base`, 0, true, 1)
-    --InvokeNative(0x704C908E9C405136, player) -- FIX_OUTFIT
-    InvokeNative(0xAAB86462966168CE, player, true)
-    InvokeNative(0xCC8CA3E88256E58F, player, false, true, true, true, false) -- _UPDATE_PED_VARIATION
-end)
+--RegisterCommand('bandanaon', function(source, args, rawCommand)
+--    local player = PlayerPedId()
+--    bandana = tonumber(args[1]) or bandana or BANDANA_COMPONENT
+--    if not on then
+--        on = true
+--        InvokeNative(0xD3A7B003ED343FD9, player, bandana, true, true)
+--        InvokeNative(0xAE72E7DF013AAA61, player, 0, `BANDANA_ON_RIGHT_HAND`, 1, 0, -1.0) -- _TASK_ITEM_INTERACTION
+--        Citizen.Wait(750)
+--    end
+--    InvokeNative(0x66B957AAC2EAAEAB, player, bandana, `MASK_UP`, 0, true, 1)
+--    --InvokeNative(0x704C908E9C405136, player) -- FIX_OUTFIT
+--    InvokeNative(0xAAB86462966168CE, player, true)
+--    InvokeNative(0xCC8CA3E88256E58F, player, false, true, true, true, false) -- _UPDATE_PED_VARIATION
+--end)
+--
+--RegisterCommand('bandanaoff', function(source, args, rawCommand)
+--    local player = PlayerPedId()
+--    bandana = tonumber(args[1]) or bandana or BANDANA_COMPONENT
+--    if on then
+--        on = false
+--        InvokeNative(0xAE72E7DF013AAA61, player, 0, `BANDANA_OFF_RIGHT_HAND`, 1, 0, -1.0) -- _TASK_ITEM_INTERACTION
+--        Citizen.Wait(750)
+--    end
+--    InvokeNative(0x66B957AAC2EAAEAB, player, bandana, `base`, 0, true, 1)
+--    --InvokeNative(0x704C908E9C405136, player) -- FIX_OUTFIT
+--    InvokeNative(0xAAB86462966168CE, player, true)
+--    InvokeNative(0xCC8CA3E88256E58F, player, false, true, true, true, false) -- _UPDATE_PED_VARIATION
+--end)
 
 RegisterCommand('sometest', function(source, args, rawCommand)
     local player = PlayerPedId()

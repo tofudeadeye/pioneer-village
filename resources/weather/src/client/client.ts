@@ -1,3 +1,4 @@
+import { PVGame } from '@lib/client';
 import { Log } from '@lib/client/comms/ui';
 import { Vector3 } from '@lib/math';
 
@@ -11,18 +12,14 @@ import './exports';
 import weatherManager from './managers/weather';
 import './test';
 
-const oldCoords = Vector3.fromArray([0, 0, 0]);
-
 setInterval(() => {
   const playerPed = PlayerPedId();
   if (playerPed && playerPed !== 0) {
-    const [cX, cY, cZ] = GetEntityCoords(playerPed, false);
+    const coords = PVGame.playerCoords(true);
     const heading = GetEntityHeading(playerPed);
-    const coords = Vector3.fromArray([cX, cY, cZ]);
 
     // Always update weather state — handles grid changes even when stationary
     // The transition engine ensures smooth blending regardless
-    oldCoords.setFromObject(coords);
     weatherManager.calculateIfWeatherShouldTransition(coords.x, coords.y, heading);
   }
 }, 5_000); // Check every 5 seconds
@@ -68,28 +65,37 @@ RegisterCommand(
   () => {
     const grid = weatherManager.getWeatherGrid();
     const cells = grid.getGrid();
-    const playerPed = PlayerPedId();
-    const [pX, pY] = GetEntityCoords(playerPed, false);
-    const playerPos = grid.worldToGrid(pX, pY);
+    const coords = PVGame.playerCoords(true);
+    const playerPos = grid.worldToGrid(coords.x, coords.y);
 
     console.log('========================================');
     console.log('WEATHER GRID');
     console.log('========================================');
 
     const biomeAbbrev: Record<string, string> = {
-      GRIZZLIES: 'GRIZ', TALL_TREES: 'TREE', BIG_VALLEY: 'BVAL',
-      HEARTLANDS: 'HEAR', GREAT_PLAINS: 'PLNS', BAYOU: 'BAYO',
-      LEMOYNE: 'LEMO', NEW_AUSTIN: 'NAUS', RIO_BRAVO: 'RBRA',
-      ROANOKE: 'ROAN', CUMBERLAND: 'CUMB', SCARLETT: 'SCAR',
+      GRIZZLIES: 'GRIZ',
+      TALL_TREES: 'TREE',
+      BIG_VALLEY: 'BVAL',
+      HEARTLANDS: 'HEAR',
+      GREAT_PLAINS: 'PLNS',
+      BAYOU: 'BAYO',
+      LEMOYNE: 'LEMO',
+      NEW_AUSTIN: 'NAUS',
+      RIO_BRAVO: 'RBRA',
+      ROANOKE: 'ROAN',
+      CUMBERLAND: 'CUMB',
+      SCARLETT: 'SCAR',
     };
 
     for (let y = cells.length - 1; y >= 0; y--) {
-      const row = cells[y].map((cell) => {
-        const biome = biomeAbbrev[cell.biome] || cell.biome.substring(0, 4);
-        const weather = cell.weather.substring(0, 6).padEnd(6);
-        const marker = (cell.x === playerPos.x && cell.y === playerPos.y) ? '*' : ' ';
-        return `${marker}${biome}:${weather}`;
-      }).join(' | ');
+      const row = cells[y]
+        .map((cell) => {
+          const biome = biomeAbbrev[cell.biome] || cell.biome.substring(0, 4);
+          const weather = cell.weather.substring(0, 6).padEnd(6);
+          const marker = cell.x === playerPos.x && cell.y === playerPos.y ? '*' : ' ';
+          return `${marker}${biome}:${weather}`;
+        })
+        .join(' | ');
       console.log(`Y${y} ${row}`);
     }
 

@@ -15,6 +15,7 @@ export interface GridCell {
   variant: string | null;
   biome: BiomeType;
   rainRate: number; // 0.0 - 1.0, only applies to RAIN, SHOWER, DRIZZLE, THUNDERSTORM
+  assigned?: boolean; // internal generation flag — not sent to clients
 }
 
 /**

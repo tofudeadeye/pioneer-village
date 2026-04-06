@@ -6,6 +6,7 @@ A grid-based spatial weather system for RedM that provides smooth, directional w
 
 - [Architecture](#architecture)
 - [Grid Structure](#grid-structure)
+- [Grid Generation](#grid-generation)
 - [Weather Compatibility Graph](#weather-compatibility-graph)
 - [Smooth Transition Engine](#smooth-transition-engine)
 - [Spatial Transition System](#spatial-transition-system)
@@ -101,6 +102,64 @@ Each cell is divided into two zones:
 
 - **Inner 50%**: Settled zone — no transitions, stable weather
 - **Outer 50%**: Transition zone — weather blends based on distance from center
+
+## Grid Generation
+
+Grid generation runs in two phases when `generateBiomeAwareWeather()` is called.
+
+### Phase 1 — Seeding
+
+For each biome, roughly 30% of its cells are selected as seed points (minimum 1). Each seed cell is assigned a randomly chosen weather type from `BIOME_WEATHER_RULES[biome]`, subject to compatibility with any already-placed seeds nearby. Cells that cannot satisfy constraints are skipped. Successfully seeded cells are added to `assignedCells`.
+
+### Phase 2 — Fill: Greedy Wave Function Collapse
+
+The remaining unassigned cells are filled using a **greedy Wave Function Collapse (WFC)** algorithm. The key property is that exactly **one cell is committed per iteration**, always chosen as the most-constrained frontier cell — the unassigned cell adjacent to at least one assigned cell that has the fewest remaining valid weather options.
+
+```
+while frontier cells exist:
+  for each unassigned cell adjacent to an assigned cell:
+    compute valid options = biome types ∩ compatible with all assigned neighbours
+  pick cell with fewest valid options  ← most constrained first
+  assign it, add to assignedCells
+  repeat
+```
+
+#### Why BFS was replaced
+
+The original implementation used a **Breadth-First Search (BFS) wave expansion**. Seeds were placed into a queue and the grid was filled by processing neighbours in wave order. This introduced a systematic race condition:
+
+```
+BFS wave 2 — two adjacent cells processed in the same pass:
+
+   Seed A (assigned)
+   │
+   ├── Cell X  ← queued, assigned RAIN  (sees only A)
+   └── Cell Y  ← queued, assigned RAIN  (also sees only A)
+
+   Result: X and Y are adjacent and both RAIN — compatibility violation
+```
+
+Because BFS commits multiple cells per wave, cells in the same wave are assigned without seeing each other as constraints. The larger the grid and the more seeds, the more frequently two frontier cells in the same wave ended up adjacent with conflicting or identical weather.
+
+The greedy WFC eliminates this entirely. By committing one cell at a time and immediately adding it to `assignedCells`, every subsequent candidate sees the fully up-to-date constraint state. No two cells are ever assigned in the same step, so the race condition cannot occur.
+
+#### Most-constrained-first heuristic
+
+Choosing the cell with the **fewest remaining valid options** is a standard WFC technique to reduce contradictions. A cell with only one valid option must be assigned that option immediately — deferring it risks adjacent cells consuming that option, leaving it with zero valid choices. Assigning tight cells first keeps the constraint space maximally open for cells that have more flexibility.
+
+#### Fallback handling
+
+If a frontier cell reaches zero valid options (constraint deadlock), the algorithm does not backtrack. Instead it applies a progressive relaxation:
+
+1. **Best partial match** — scores each biome-allowed type by how many of its assigned neighbours it is compatible with, and picks the highest-scoring type(s). This minimises the number of constraint violations rather than picking arbitrarily.
+2. **Deadlock fallback** — if all biome types are blocked by same-type constraints (e.g., a desert biome with only 3–4 types whose neighbours already hold all of them), the scoring is repeated allowing same-type candidates, favouring the one most compatible with non-same-type neighbours. This produces at most one same-type adjacency rather than silently leaving the cell at the default placeholder.
+3. **Safety net** — immediately before selection, any candidate that would duplicate an assigned neighbour's weather type is removed from the candidate list (if doing so still leaves at least one option). This catches same-type slippage from the fallback path.
+
+Deadlocks only occur in very small biomes at the edge of the map (e.g., RIO_BRAVO with 3 cell types) where the 8-directional neighbourhood can exhaust the entire biome palette. These cases are kept rare by ensuring each biome has enough weather types to satisfy typical neighbourhood configurations.
+
+### `assignedCells` tracking
+
+Both `isCompatibleWithNeighbors` and `getCompatibleWeatherTypes` skip neighbours that are not in `assignedCells`. This means the default `CLOUDS` placeholder that cells hold before assignment is never treated as a constraint. Without this, every unassigned cell would appear to have `CLOUDS` weather and heavily skew the compatibility filtering before any real assignment had taken place.
 
 ## Weather Compatibility Graph
 

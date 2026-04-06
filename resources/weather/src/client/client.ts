@@ -1,6 +1,4 @@
 import { PVGame } from '@lib/client';
-import { Log } from '@lib/client/comms/ui';
-import { Vector3 } from '@lib/math';
 
 import {
   WEATHER_COMPATIBILITY,

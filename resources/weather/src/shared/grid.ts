@@ -811,7 +811,6 @@ class BiomeWeatherGrid {
       direction = 'unknown';
       console.log(`Heading ${heading} is unknown, defaulting to N (${dirX}, ${dirY})`);
       Log(`Heading ${heading} is unknown, defaulting to N (${dirX}, ${dirY})`);
-      Log(`Heading ${heading} is unknown, defaulting to N (${dirX}, ${dirY})`);
     }
     
     const neighborGridX = gridPos.x + dirX;

@@ -694,6 +694,7 @@ export class BiomeWeatherGrid {
   private width: number;
   private height: number;
   private biomeManager: BiomeManager;
+  private assignedCells: Set<string> = new Set();
 
   private readonly MAP_MIN_X = -5632.0;
   private readonly MAP_MAX_X = 6144.0;
@@ -793,13 +794,28 @@ export class BiomeWeatherGrid {
 
     for (const neighbor of neighbors) {
       const neighborCell = this.grid[neighbor.y][neighbor.x];
+      if (!this.assignedCells.has(`${neighbor.x},${neighbor.y}`)) {
+        continue;
+      }
+
       const neighborWeather = neighborCell.weather;
+      if (weatherType === neighborWeather) {
+        return false;
+      }
+
+      if (compatibleWeathers.length === 0) {
+        return false;
+      }
+
+      const neighborCompatible = WEATHER_COMPATIBILITY[neighborWeather];
+      if (neighborCompatible.length === 0) {
+        continue;
+      }
 
       if (!compatibleWeathers.includes(neighborWeather)) {
         return false;
       }
 
-      const neighborCompatible = WEATHER_COMPATIBILITY[neighborWeather];
       if (!neighborCompatible.includes(weatherType)) {
         return false;
       }
@@ -822,11 +838,28 @@ export class BiomeWeatherGrid {
     }
 
     for (const neighbor of neighbors) {
-      const neighborWeather = this.grid[neighbor.y][neighbor.x].weather;
+      const neighborCell = this.grid[neighbor.y][neighbor.x];
+      if (!this.assignedCells.has(`${neighbor.x},${neighbor.y}`)) {
+        continue;
+      }
+
+      const neighborWeather = neighborCell.weather;
       const neighborCompatible = WEATHER_COMPATIBILITY[neighborWeather];
 
       compatible = new Set(
         Array.from(compatible).filter((w) => {
+          // Adjacent cells cannot share the same weather type
+          if (w === neighborWeather) {
+            return false;
+          }
+          // Exclude isolated types (empty compatibility) — they can't validly neighbour anything assigned
+          if (WEATHER_COMPATIBILITY[w].length === 0) {
+            return false;
+          }
+          // If the neighbor is an isolated type, only the same-type check matters
+          if (neighborCompatible.length === 0) {
+            return true;
+          }
           const isInNeighborCompatible = neighborCompatible.includes(w);
           const neighborIsInWeatherCompatible = WEATHER_COMPATIBILITY[w].includes(neighborWeather);
           return isInNeighborCompatible && neighborIsInWeatherCompatible;
@@ -861,6 +894,7 @@ export class BiomeWeatherGrid {
     cell.weather = weatherType;
     cell.variant = this.getRandomVariant(weatherType, cell.biome);
     cell.rainRate = getRainRate(weatherType);
+    this.assignedCells.add(`${x},${y}`);
     return true;
   }
 
@@ -868,7 +902,8 @@ export class BiomeWeatherGrid {
    * Initialize the grid with biome-appropriate random weather
    */
   public generateBiomeAwareWeather(seed?: number): void {
-    const random = seed !== undefined ? this.seededRandom(seed) : Math.random;
+    let random = seed !== undefined ? this.seededRandom(seed) : Math.random;
+    this.assignedCells.clear();
 
     const biomeGroups = new Map<BiomeType, GridCell[]>();
 
@@ -903,6 +938,7 @@ export class BiomeWeatherGrid {
           if (this.isCompatibleWithNeighbors(seedCell.x, seedCell.y, weatherType)) {
             seedCell.variant = this.getRandomVariant(weatherType, biome, random);
             seedCell.rainRate = getRainRate(weatherType, random);
+            this.assignedCells.add(`${seedCell.x},${seedCell.y}`);
             placedSeeds++;
             break;
           } else {
@@ -912,44 +948,116 @@ export class BiomeWeatherGrid {
       }
     });
 
-    const queue: GridCell[] = [];
-    const visited = new Set<string>();
+    // Greedy WFC fill: assign one cell per iteration — always the frontier cell with
+    // the fewest valid options (most constrained first). Because each assignment is
+    // committed to assignedCells before the next candidate is selected, every
+    // subsequent assignment sees the complete current constraint state. This eliminates
+    // the race condition with previous BFS implementation where two adjacent cells could
+    // be assigned in the same "wave" without seeing each other as constraints.
+    while (true) {
+      let bestX = -1, bestY = -1;
+      let bestCompatible: WeatherType[] = [];
+      let fewestOptions = Infinity;
+      let hasFrontierCell = false;
 
-    this.grid.forEach((row) => {
-      row.forEach((cell) => {
-        if (
-          cell.weather !== WeatherType.CLOUDS ||
-          this.biomeManager.isWeatherAllowedInBiome(WeatherType.CLOUDS, cell.biome)
-        ) {
-          queue.push(cell);
-          visited.add(`${cell.x},${cell.y}`);
-        }
-      });
-    });
+      for (let y = 0; y < this.height; y++) {
+        for (let x = 0; x < this.width; x++) {
+          if (this.assignedCells.has(`${x},${y}`)) continue;
+          if (!this.getNeighbors(x, y).some(n => this.assignedCells.has(`${n.x},${n.y}`))) continue;
 
-    while (queue.length > 0) {
-      const current = queue.shift()!;
-      const neighbors = this.getNeighbors(current.x, current.y);
+          hasFrontierCell = true;
+          const compatible = this.getCompatibleWeatherTypes(x, y);
 
-      for (const neighbor of neighbors) {
-        const key = `${neighbor.x},${neighbor.y}`;
-
-        if (!visited.has(key)) {
-          visited.add(key);
-          const neighborCell = this.grid[neighbor.y][neighbor.x];
-
-          const compatible = this.getCompatibleWeatherTypes(neighbor.x, neighbor.y);
-
-          if (compatible.length > 0) {
-            const selectedWeather = this.selectDiverseWeather(neighbor.x, neighbor.y, compatible, random);
-            neighborCell.weather = selectedWeather;
-            neighborCell.variant = this.getRandomVariant(selectedWeather, neighborCell.biome, random);
-            neighborCell.rainRate = getRainRate(selectedWeather, random);
+          // Prefer cells with the fewest positive options (most constrained).
+          // Cells with 0 options are tracked separately and only used as fallback.
+          if (compatible.length > 0 && compatible.length < fewestOptions) {
+            fewestOptions = compatible.length;
+            bestX = x;
+            bestY = y;
+            bestCompatible = compatible;
           }
-
-          queue.push(neighborCell);
         }
       }
+
+      if (!hasFrontierCell) break; // All cells assigned or unreachable
+
+      // If every frontier cell has 0 strict options, pick the first one for fallback
+      if (bestX === -1) {
+        outer: for (let y = 0; y < this.height; y++) {
+          for (let x = 0; x < this.width; x++) {
+            if (this.assignedCells.has(`${x},${y}`)) continue;
+            if (!this.getNeighbors(x, y).some(n => this.assignedCells.has(`${n.x},${n.y}`))) continue;
+            bestX = x; bestY = y;
+            break outer;
+          }
+        }
+      }
+
+      const key = `${bestX},${bestY}`;
+      const cell = this.grid[bestY][bestX];
+      let compatible = bestCompatible;
+
+      // Fallback: strict WFC found no valid option — relax constraints progressively.
+      // Rather than ignoring compatibility entirely, pick the type most compatible with
+      // the most assigned neighbours (best partial match), which minimises violations.
+      if (compatible.length === 0) {
+        const assignedNeighbors = this.getNeighbors(bestX, bestY)
+          .filter(n => this.assignedCells.has(`${n.x},${n.y}`));
+        const assignedNeighborWeathers = assignedNeighbors.map(n => this.grid[n.y][n.x].weather);
+        const assignedSet = new Set(assignedNeighborWeathers);
+
+        const biomeWeathers = BIOME_WEATHER_RULES[cell.biome].filter(w => !assignedSet.has(w));
+
+        // Score each candidate by how many assigned neighbours it is compatible with
+        const scored = biomeWeathers.map(w => {
+          const score = assignedNeighborWeathers.filter(nw =>
+            WEATHER_COMPATIBILITY[w].includes(nw) && WEATHER_COMPATIBILITY[nw].includes(w)
+          ).length;
+          return { w, score };
+        });
+
+        if (scored.length > 0) {
+          const maxScore = Math.max(...scored.map(s => s.score));
+          compatible = scored.filter(s => s.score === maxScore).map(s => s.w);
+        }
+
+        // Deadlock: all biome types are blocked by same-type constraints.
+        // Re-score including same-type types, picking whichever is most compatible
+        // with non-same-type neighbours. This produces at most one same-type
+        // violation rather than silently leaving the cell at the default CLOUDS.
+        if (compatible.length === 0) {
+          const allBiomeTypes = BIOME_WEATHER_RULES[cell.biome];
+          const deadlockScored = allBiomeTypes.map(w => {
+            const score = assignedNeighborWeathers.filter(nw =>
+              nw !== w &&
+              WEATHER_COMPATIBILITY[w].includes(nw) &&
+              WEATHER_COMPATIBILITY[nw].includes(w)
+            ).length;
+            return { w, score };
+          });
+          const maxDeadlockScore = Math.max(...deadlockScored.map(s => s.score));
+          compatible = deadlockScored.filter(s => s.score === maxDeadlockScore).map(s => s.w);
+          if (compatible.length === 0) compatible = allBiomeTypes;
+        }
+      }
+
+      if (compatible.length > 0) {
+        // Safety net: remove any types that would duplicate an assigned neighbour's weather
+        // (only if doing so still leaves valid candidates — avoids leaving cell unassigned).
+        const assignedNeighbourSet = new Set<WeatherType>(
+          this.getNeighbors(bestX, bestY)
+            .filter(n => this.assignedCells.has(`${n.x},${n.y}`))
+            .map(n => this.grid[n.y][n.x].weather)
+        );
+        const safeCompatible = compatible.filter(w => !assignedNeighbourSet.has(w));
+        const finalCompatible = safeCompatible.length > 0 ? safeCompatible : compatible;
+
+        const selectedWeather = this.selectDiverseWeather(bestX, bestY, finalCompatible, random);
+        cell.weather = selectedWeather;
+        cell.variant = this.getRandomVariant(selectedWeather, cell.biome, random);
+        cell.rainRate = getRainRate(selectedWeather, random);
+      }
+      this.assignedCells.add(key); // Always mark assigned to advance the frontier
     }
   }
 

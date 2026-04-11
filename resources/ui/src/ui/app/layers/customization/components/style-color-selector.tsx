@@ -30,8 +30,6 @@ function OptionThumbnail({ component, hasPalette }: OptionThumbnailProps): React
     return <div className={styles.fallback} />;
   }
 
-  console.log('component', component);
-
   if (hasPalette && 'palette' in component) {
     if (!component.name.includes('eyes') && !imgFailed) {
       return (

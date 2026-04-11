@@ -39,7 +39,8 @@ onUI('customization.set-tint-by-category', (category, data) => {
 });
 
 onUI('customization.set-wearable-state', (category, state) => {
-  componentManager.setWearableState(category, state);
+  const ped = creationManager.isActive ? creationManager.getChosen() : PVGame.playerPed();
+  componentManager.setWearableState(category, state, ped);
 });
 
 onUI('customization.highlight', (gender) => {

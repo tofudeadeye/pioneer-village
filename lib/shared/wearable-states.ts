@@ -48,6 +48,18 @@ const WearableStateCategories: Record<string, WearableStateCategory> = {
       },
     ],
   },
+  // BOOTS: {
+  //   states: [
+  //     {
+  //       state: 'BASE',
+  //       label: 'Remove Boots',
+  //     },
+  //     {
+  //       state: 'SHORT_BOOTS_UNDER_PANTS',
+  //       label: 'Short Boots',
+  //     },
+  //   ],
+  // },
 };
 
 const getWearableStateConfig = (category: string | number, state: string | number): WearableStateOption | void => {

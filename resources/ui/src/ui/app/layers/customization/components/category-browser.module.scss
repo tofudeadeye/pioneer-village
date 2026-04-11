@@ -60,8 +60,12 @@
 }
 
 .cardThumb {
+  min-width: uiSize(36);
+  min-height: uiSize(36);
   width: uiSize(36);
   height: uiSize(36);
+  max-width: uiSize(36);
+  max-height: uiSize(36);
   object-fit: contain;
   flex-shrink: 0;
   opacity: 0.85;

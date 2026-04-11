@@ -1,8 +1,9 @@
 import { debounce } from 'lodash';
 import { Socket } from 'socket.io-client';
 
-import { LoadResourceJson, emitClient, onClient } from '@lib/ui';
 import { isBodyCategory } from '@lib/shared/body-categories';
+import { getWearableStateOptions } from '@lib/shared/wearable-states';
+import { LoadResourceJson, emitClient, onClient } from '@lib/ui';
 
 // Store state interface matching the component's state
 interface CustomizationState {
@@ -13,8 +14,8 @@ interface CustomizationState {
   components: Record<string, number>; // Component values from the event
   model: string | number;
   gender: 'male' | 'female';
-  currentComponents: Record<string, { style: number; option: number }>;
-  hiddenComponents: Record<string, { style: number; option: number }>;
+  currentComponents: Record<string, { style: number; option: number; wearableState?: string | number }>;
+  hiddenComponents: Record<string, { style: number; option: number; wearableState?: string | number }>;
   currentFaceOptions: Record<string, number>;
   currentFaceFeatures: Record<string, number>;
   currentBodyOptions: Record<string, number>;
@@ -347,9 +348,33 @@ class CustomizationStore {
   }
 
   // Get component data array
-  getComponentDataArray(): Record<string, { name: string; category: string; shopItem: string | number; palette?: number | string; tint0?: number; tint1?: number; tint2?: number }> {
+  getComponentDataArray(): Record<
+    string,
+    {
+      name: string;
+      category: string;
+      shopItem: string | number;
+      palette?: number | string;
+      tint0?: number;
+      tint1?: number;
+      tint2?: number;
+      wearableState?: string | number;
+    }
+  > {
     const currentComponents = this.state.currentComponents;
-    const components: Record<string, { name: string; category: string; shopItem: string | number; palette?: number | string; tint0?: number; tint1?: number; tint2?: number }> = {};
+    const components: Record<
+      string,
+      {
+        name: string;
+        category: string;
+        shopItem: string | number;
+        palette?: number | string;
+        tint0?: number;
+        tint1?: number;
+        tint2?: number;
+        wearableState?: string | number;
+      }
+    > = {};
 
     for (const [category, data] of Object.entries(currentComponents)) {
       if (data.style > -1 && this.ComponentsData[category]) {
@@ -380,6 +405,10 @@ class CustomizationStore {
             components[category].tint1 = tint.tint1;
             components[category].tint2 = tint.tint2;
           }
+
+          if (data.wearableState) {
+            components[category].wearableState = data.wearableState;
+          }
         }
       }
     }
@@ -387,7 +416,10 @@ class CustomizationStore {
     return components;
   }
 
-  private getBodyComponentsArray(): (number | { id: number; p: number | string; t0: number; t1: number; t2: number })[] {
+  private getBodyComponentsArray(): (
+    | number
+    | { id: number; p: number | string; t0: number; t1: number; t2: number }
+  )[] {
     const bodyComponents: (number | { id: number; p: number | string; t0: number; t1: number; t2: number })[] = [];
     const handledKeys = new Set<string>();
 
@@ -484,6 +516,27 @@ class CustomizationStore {
     this.sendClientData(category);
   }
 
+  // Set wearable state for a clothing category
+  setWearableState(category: string, state: string | number): void {
+    const current = this.state.currentComponents[category];
+    if (!current || current.style === -1) return;
+
+    const currentComponents = {
+      ...this.state.currentComponents,
+      [category]: { ...current, wearableState: state },
+    };
+    this.updateState({ currentComponents });
+    emitClient('customization.set-wearable-state', category, state);
+  }
+
+  // Remove clothing item from a category
+  removeComponent(category: string): void {
+    this.updateState({
+      tints: { ...this.state.tints, [category]: { palette: -1, tint0: 0, tint1: 0, tint2: 0 } },
+    });
+    this.setComponent(category, -1, 0);
+  }
+
   // Highlight gender
   highlightGender(gender: 'male' | 'female'): void {
     this.updateState({
@@ -505,7 +558,7 @@ class CustomizationStore {
       }
 
       const allComponentData = this.getComponentDataArray();
-      const clothingComponents: Record<string, typeof allComponentData[string]> = {};
+      const clothingComponents: Record<string, (typeof allComponentData)[string]> = {};
       for (const [cat, data] of Object.entries(allComponentData)) {
         if (!isBodyCategory(cat)) {
           clothingComponents[cat] = data;

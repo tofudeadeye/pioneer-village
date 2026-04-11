@@ -3,6 +3,7 @@ import Times from '@fa/5/duotone/times.svg';
 import { type MouseEvent, useEffect, useState } from 'react';
 
 import customizationStore from '../../stores/customization-store';
+import EquippedSidebar from './components/equipped-sidebar';
 import RotationSlider from './components/rotation-slider';
 import styles from './styles.module.scss';
 import BodyTab from './tabs/body-tab';
@@ -211,6 +212,14 @@ export default function Customization() {
       {/* Main Panel */}
       {state.state !== 'gender' && state.state !== 'transition' && (
         <>
+          <EquippedSidebar
+            currentComponents={state.currentComponents}
+            componentsData={customizationStore.getComponentsData()}
+            tints={state.tints}
+            gender={state.gender}
+            onRemove={(category) => customizationStore.removeComponent(category)}
+            onWearableStateChange={(category, wState) => customizationStore.setWearableState(category, wState)}
+          />
           <div className={styles.panel}>
             <div className={styles.tabBar}>
               {TABS.map((tab) => (

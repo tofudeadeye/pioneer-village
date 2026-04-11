@@ -162,44 +162,44 @@ RegisterCommand(
 // APPLY_LOTION_LEFT_HAND_RIFLE
 // APPLY_POMADE_WITH_HAT
 // APPLY_POMADE_WITH_NO_HAT
-
-let bandanaState = false;
-RegisterCommand(
-  'bandana',
-  async (source: number, args: any[], rawCommand: string) => {
-    // Log({ source, args, rawCommand });
-
-    if (bandanaState) {
-      bandanaState = false;
-      StartTaskItemInteraction(PVGame.playerPed(), 0, 'BANDANA_OFF_RIGHT_HAND', 1, 0, -1.0);
-      await Delay(750);
-      PVCustomization.setWearableState('neckwear', 'BASE');
-    } else {
-      bandanaState = true;
-      StartTaskItemInteraction(PVGame.playerPed(), 0, 'BANDANA_ON_RIGHT_HAND', 1, 0, -1.0);
-      await Delay(600);
-      PVCustomization.setWearableState('neckwear', 'MASK_UP');
-    }
-  },
-  false,
-);
-
-let sleevesState = false;
-RegisterCommand(
-  'sleeves',
-  async (source: number, args: any[], rawCommand: string) => {
-    // Log({ source, args, rawCommand });
-
-    if (sleevesState) {
-      sleevesState = false;
-      PVCustomization.setWearableState('shirts_full', 'BASE');
-    } else {
-      sleevesState = true;
-      PVCustomization.setWearableState('shirts_full', 'OPEN_COLLAR_ROLLED_SLEEVE');
-    }
-  },
-  false,
-);
+//
+// let bandanaState = false;
+// RegisterCommand(
+//   'bandana',
+//   async (source: number, args: any[], rawCommand: string) => {
+//     // Log({ source, args, rawCommand });
+//
+//     if (bandanaState) {
+//       bandanaState = false;
+//       StartTaskItemInteraction(PVGame.playerPed(), 0, 'BANDANA_OFF_RIGHT_HAND', 1, 0, -1.0);
+//       await Delay(750);
+//       PVCustomization.setWearableState('neckwear', 'BASE');
+//     } else {
+//       bandanaState = true;
+//       StartTaskItemInteraction(PVGame.playerPed(), 0, 'BANDANA_ON_RIGHT_HAND', 1, 0, -1.0);
+//       await Delay(600);
+//       PVCustomization.setWearableState('neckwear', 'MASK_UP');
+//     }
+//   },
+//   false,
+// );
+//
+// let sleevesState = false;
+// RegisterCommand(
+//   'sleeves',
+//   async (source: number, args: any[], rawCommand: string) => {
+//     // Log({ source, args, rawCommand });
+//
+//     if (sleevesState) {
+//       sleevesState = false;
+//       PVCustomization.setWearableState('shirts_full', 'BASE');
+//     } else {
+//       sleevesState = true;
+//       PVCustomization.setWearableState('shirts_full', 'OPEN_COLLAR_ROLLED_SLEEVE');
+//     }
+//   },
+//   false,
+// );
 
 RegisterCommand(
   'wearableState',

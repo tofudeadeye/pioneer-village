@@ -188,6 +188,7 @@ export default function HUD() {
           </ProgressIcon>
         </div>
         {/*<div className={styles.hudBottomRight}></div>*/}
+        {state.health <= 0 && <div className={styles.bottomStatus}>Dead</div>}
       </>
     )
   );

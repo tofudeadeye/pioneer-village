@@ -112,6 +112,7 @@ declare namespace ClientIn {
 
     ['customization.set-tint-by-category']: (category: string, tint: Customization.Palette) => void;
     ['customization.remove-tint-by-category']: (category: string) => void;
+    ['customization.set-wearable-state']: (category: string, state: string | number) => void;
 
     ['customization.finalized']: () => void;
 

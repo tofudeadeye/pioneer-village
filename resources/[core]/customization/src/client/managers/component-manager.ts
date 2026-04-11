@@ -4,6 +4,7 @@ import { AttachPoint } from '@lib/flags';
 import { Delay } from '@lib/functions';
 import { BODY_CATEGORIES } from '@lib/shared/body-categories';
 import PVItems from '@lib/shared/items';
+import { getWearableStateConfig } from '@lib/shared/wearable-states';
 
 import componentCategories from '../data/component-categories';
 import wearableStates from '../data/wearable-states';
@@ -352,18 +353,30 @@ class ComponentManager {
     if (!ped) {
       ped = PVGame.playerPed();
     }
+    Log(`PVCustomization.setWearableState(${category}, ${state});`);
+
+    const options = getWearableStateConfig(category, state);
+
     if (typeof category === 'string') {
       category = GetHashKey(category);
     }
     if (typeof state === 'string') {
       state = GetHashKey(state);
     }
-    console.log(`PVCustomization.setWearableState(${category}, ${state});`);
 
     const components = this.getPedComponents(ped);
 
     for (const component of components) {
       if (category === component.category) {
+        if (options) {
+          if ('interaction' in options) {
+            StartTaskItemInteraction(PVGame.playerPed(), 0, options.interaction, 1, 0, -1.0);
+            await Delay(options.interactionDelay);
+          }
+          if ('anim' in options) {
+            await PVGame.playAnimTask(options.anim);
+          }
+        }
         UpdateShopItemWearableState(ped, component.id, state, 0, true, 0);
         break;
       }

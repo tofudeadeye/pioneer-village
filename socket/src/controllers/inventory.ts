@@ -51,6 +51,7 @@ export default () => {
       'inventory.item-move',
       'inventory.item-wear',
       'inventory.item-drop',
+      'inventory.item-update-metadata',
       'inventory.lost-hat',
       'inventory.pickup-hat',
       'inventory.check-world',
@@ -172,6 +173,11 @@ export default () => {
       if (success && inventoryIdentifier) {
         userNamespace.to(`inventory:${inventoryIdentifier}`).emit('inventory.item-wear', itemId, wearAmount);
       }
+    };
+
+    ['inventory.item-update-metadata']: SocketIn.FromClient['inventory.item-update-metadata'] = async (itemId, metadata) => {
+      logInfoC('inventory.item-update-metadata', itemId, metadata);
+      await Inventories.updateItemMetadata(itemId, metadata);
     };
 
     ['inventory.lost-hat']: SocketIn.FromClient['inventory.lost-hat'] = async (hatNetId, coords) => {

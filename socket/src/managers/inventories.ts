@@ -355,6 +355,43 @@ class Inventories {
     }
   }
 
+  async updateItemMetadata(
+    itemId: number,
+    partialMetadata: Record<string, any>,
+  ): Promise<{ success: boolean; inventoryIdentifier?: string; metadata?: Record<string, any> }> {
+    try {
+      const itemResult = await db.select().from(ItemSchema).where(eq(ItemSchema.id, itemId)).limit(1);
+
+      if (itemResult.length === 0) {
+        return { success: false };
+      }
+
+      const item = itemResult[0];
+      const existingMetadata = (item.metadata || {}) as Record<string, any>;
+      const mergedMetadata = { ...existingMetadata, ...partialMetadata };
+
+      const inventoryResult = await db
+        .select()
+        .from(InventorySchema)
+        .where(eq(InventorySchema.containerId, item.containerId))
+        .limit(1);
+
+      await db
+        .update(ItemSchema)
+        .set({ metadata: mergedMetadata })
+        .where(eq(ItemSchema.id, itemId));
+
+      return {
+        success: true,
+        inventoryIdentifier: inventoryResult[0]?.identifier,
+        metadata: mergedMetadata,
+      };
+    } catch (error) {
+      console.error(error);
+      return { success: false };
+    }
+  }
+
   private async validateInventories(
     oldIdentifier: string,
     newIdentifier: string,

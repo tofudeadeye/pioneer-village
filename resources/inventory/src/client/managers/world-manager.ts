@@ -1,5 +1,6 @@
 import { PVBase, emitUI, focusUI } from '@lib/client';
 import { Log, LogExtra, emitSocket } from '@lib/client/comms/ui';
+import { DecorType } from '@lib/shared/decor-type';
 
 type InventoryDetail = {
   identifier: string;
@@ -7,7 +8,7 @@ type InventoryDetail = {
   objectId: number;
 };
 
-DecorRegister('isInventory', 2); // 2 = boolean
+DecorRegister('isInventory', DecorType.BOOL);
 
 /*
  *  p_moneybag01x

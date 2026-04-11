@@ -676,6 +676,31 @@ class InventoryStore {
     this.socket.emit('inventory.item-drop', this.requestId, identifier, slot);
   }
 
+  // Update item metadata (e.g., wearable state) — optimistic + fire-and-forget DB persist
+  updateItemMetadata(identifier: string, slot: number, metadata: Record<string, any>): void {
+    if (!this.socket) return;
+
+    const inventories = new Map(this.state.inventories);
+    const inventory = inventories.get(identifier);
+    if (!inventory) return;
+
+    const slotItem = inventory.items[slot];
+    if (!slotItem) return;
+
+    // Optimistic local update
+    slotItem.metadatas[0] = { ...slotItem.metadatas[0], ...metadata };
+    this.updateState({ inventories });
+
+    // DB persist (fire-and-forget)
+    const itemId = slotItem.ids[0];
+    this.socket.emit('inventory.item-update-metadata', itemId, metadata);
+
+    // Visual update (instant, no re-equip)
+    if (identifier.startsWith('clothing:')) {
+      emitClient('customization.set-wearable-state', slotItem.metadatas[0]?.category, metadata.wearableState);
+    }
+  }
+
   // Cancel current drag operation
   cancelDrag(): void {
     const dragItem = document.getElementById('drag-item');

@@ -211,10 +211,10 @@ end)
 
 -- 0xbe852191 0x92f1fc1a
 
-local InvokeNative = Citizen.InvokeNative
-local BANDANA_COMPONENT = `CLOTHING_ITEM_M_NECKERCHIEF_003_TINT_001`
-local bandana = nil
-local on = false
+--local InvokeNative = Citizen.InvokeNative
+--local BANDANA_COMPONENT = `CLOTHING_ITEM_M_NECKERCHIEF_003_TINT_001`
+--local bandana = nil
+--local on = false
 -- -2081918609 Boots underpants
 --RegisterCommand('bandanaon', function(source, args, rawCommand)
 --    local player = PlayerPedId()
@@ -245,14 +245,14 @@ local on = false
 --    InvokeNative(0xCC8CA3E88256E58F, player, false, true, true, true, false) -- _UPDATE_PED_VARIATION
 --end)
 
-RegisterCommand('sometest', function(source, args, rawCommand)
-    local player = PlayerPedId()
-    InvokeNative(0x66B957AAC2EAAEAB, player, 1707193846, `open_collar_rolled_sleeve`, 0, true, 1)
-    InvokeNative(0x704C908E9C405136, player) -- FIX_OUTFIT
-    InvokeNative(0xAAB86462966168CE, player, true)
-    InvokeNative(0xCC8CA3E88256E58F, player, false, true, true, true, false) -- _UPDATE_PED_VARIATION
-    InvokeNative(0x66B957AAC2EAAEAB, player, 552411882, `Bounty_Hunter_L30`, 0, true, 1)
-    InvokeNative(0x704C908E9C405136, player) -- FIX_OUTFIT
-    InvokeNative(0xAAB86462966168CE, player, true)
-    InvokeNative(0xCC8CA3E88256E58F, player, false, true, true, true, false) -- _UPDATE_PED_VARIATION
-end)
+--RegisterCommand('sometest', function(source, args, rawCommand)
+--    local player = PlayerPedId()
+--    InvokeNative(0x66B957AAC2EAAEAB, player, 1707193846, `open_collar_rolled_sleeve`, 0, true, 1)
+--    InvokeNative(0x704C908E9C405136, player) -- FIX_OUTFIT
+--    InvokeNative(0xAAB86462966168CE, player, true)
+--    InvokeNative(0xCC8CA3E88256E58F, player, false, true, true, true, false) -- _UPDATE_PED_VARIATION
+--    InvokeNative(0x66B957AAC2EAAEAB, player, 552411882, `Bounty_Hunter_L30`, 0, true, 1)
+--    InvokeNative(0x704C908E9C405136, player) -- FIX_OUTFIT
+--    InvokeNative(0xAAB86462966168CE, player, true)
+--    InvokeNative(0xCC8CA3E88256E58F, player, false, true, true, true, false) -- _UPDATE_PED_VARIATION
+--end)

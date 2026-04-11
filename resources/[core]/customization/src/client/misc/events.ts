@@ -2,6 +2,7 @@ import { PVGame, onUI } from '@lib/client';
 import { Log } from '@lib/client/comms/ui';
 import { Delay } from '@lib/functions';
 
+import { componentManager } from '../managers/component-manager';
 import { creationManager } from '../managers/creation-manager';
 import { paletteManager } from '../managers/palette-manager';
 
@@ -35,6 +36,10 @@ onUI('customization.set-tint-by-category', (category, data) => {
     //   data.tint2,
     // );
   }
+});
+
+onUI('customization.set-wearable-state', (category, state) => {
+  componentManager.setWearableState(category, state);
 });
 
 onUI('customization.highlight', (gender) => {

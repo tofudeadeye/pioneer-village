@@ -1,6 +1,7 @@
 import { type FC, type MouseEventHandler, type ReactNode, useCallback, useEffect, useRef, useState } from 'react';
 
 import { boolval } from '@lib/functions';
+import { getWearableStateOptions } from '@lib/shared/wearable-states';
 
 import PlaceholderSvg from '@styled/components/PlaceholderSvg';
 import ProgressBar from '@styled/components/ProgressBar';
@@ -751,6 +752,10 @@ const Inventories: FC<UI.BaseProps> = () => {
     if (!item) return null;
 
     const isTargetInventory = contextMenu.inventoryIdentifier === state.targetInventory;
+    const metadata = slotItem.metadatas[0];
+    const wearableOptions = metadata?.category
+      ? getWearableStateOptions(metadata.category, metadata.wearableState)
+      : [];
 
     return (
       <div ref={contextMenuRef} className={styles.contextMenu} style={{ left: contextMenu.x, top: contextMenu.y }}>
@@ -770,6 +775,22 @@ const Inventories: FC<UI.BaseProps> = () => {
                 Open
               </button>
             )}
+            {wearableOptions.map((option) => (
+              <button
+                key={option.state}
+                className={styles.contextMenuItem}
+                onClick={() => {
+                  inventoryStore.updateItemMetadata(
+                    contextMenu.inventoryIdentifier,
+                    contextMenu.slot,
+                    { wearableState: option.state },
+                  );
+                  setContextMenu(null);
+                }}
+              >
+                {option.label}
+              </button>
+            ))}
             {slotItem.quantity > 1 && (
               <button className={styles.contextMenuItem} onClick={() => handleContextMenuAction('split')}>
                 Split

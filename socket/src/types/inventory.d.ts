@@ -37,6 +37,7 @@ declare namespace SocketIn {
     'inventory.pickup-hat': (itemId: number) => void;
     'inventory.check-world': () => void;
     'inventory.get-world-inventories': () => void;
+    'inventory.item-update-metadata': (itemId: number, metadata: Record<string, any>) => void;
   }
 }
 

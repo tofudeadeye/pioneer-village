@@ -1,6 +1,7 @@
 import { PVBase, PVCustomization, PVGame, PVWorld, emitUI, focusUI } from '@lib/client';
 import { Log } from '@lib/client/comms/ui';
 import { AnimFlag } from '@lib/flags';
+import { Delay } from '@lib/functions';
 import { lerp } from '@lib/math';
 
 RegisterCommand(
@@ -144,6 +145,24 @@ RegisterCommand(
   false,
 );
 
+// MASK_OFF_LEFT_HAND
+// MASK_OFF_LEFT_HAND_RIFLE
+// MASK_OFF_RIGHT_HAND
+// BANDANA_OFF_LEFT_HAND
+// BANDANA_OFF_LEFT_HAND_RIFLE
+// BANDANA_OFF_RIGHT_HAND
+// MASK_ON_LEFT_HAND
+// MASK_ON_LEFT_HAND_RIFLE
+// MASK_ON_RIGHT_HAND
+// BANDANA_ON_LEFT_HAND
+// BANDANA_ON_LEFT_HAND_RIFLE
+// BANDANA_ON_RIGHT_HAND
+// APPLY_LOTION_BOTH_HANDS
+// APPLY_LOTION_LEFT_HAND
+// APPLY_LOTION_LEFT_HAND_RIFLE
+// APPLY_POMADE_WITH_HAT
+// APPLY_POMADE_WITH_NO_HAT
+
 let bandanaState = false;
 RegisterCommand(
   'bandana',
@@ -152,9 +171,13 @@ RegisterCommand(
 
     if (bandanaState) {
       bandanaState = false;
+      StartTaskItemInteraction(PVGame.playerPed(), 0, 'BANDANA_OFF_RIGHT_HAND', 1, 0, -1.0);
+      await Delay(750);
       PVCustomization.setWearableState('neckwear', 'BASE');
     } else {
       bandanaState = true;
+      StartTaskItemInteraction(PVGame.playerPed(), 0, 'BANDANA_ON_RIGHT_HAND', 1, 0, -1.0);
+      await Delay(600);
       PVCustomization.setWearableState('neckwear', 'MASK_UP');
     }
   },

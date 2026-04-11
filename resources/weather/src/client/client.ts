@@ -1,4 +1,6 @@
 import { PVGame } from '@lib/client';
+import { Log } from '@lib/client/comms/ui';
+import { Delay } from '@lib/functions';
 
 import {
   WEATHER_COMPATIBILITY,
@@ -9,6 +11,19 @@ import {
 import './exports';
 import weatherManager from './managers/weather';
 import './test';
+
+(async () => {
+  const [h, m, s] = NetworkGetGlobalMultiplayerClock();
+  Log(`Initial multiplayer clock time: ${h}:${m}:${s}`);
+  const hours = GetClockHours();
+  const minutes = GetClockMinutes();
+  const seconds = GetClockSeconds();
+  Log(`SetClockTime(${hours}, ${minutes}, ${seconds})`);
+  await Delay(1);
+  SetWeatherOwnedByNetwork(false);
+  await Delay(1);
+  SetClockTime(hours, minutes, seconds);
+})();
 
 setInterval(() => {
   const playerPed = PlayerPedId();

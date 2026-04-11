@@ -19,6 +19,73 @@ AddEventHandler('onResourceStop', function(resourceName)
     end
 end)
 
+local hours = GetClockHours()
+local minutes = GetClockMinutes()
+local seconds = GetClockSeconds()
+
+Citizen.CreateThread(function()
+    while false do
+        Wait(0)
+        local newHours = GetClockHours()
+        local newMinutes = GetClockMinutes()
+        local newSeconds = GetClockSeconds()
+
+        local diffHours = math.abs(newHours - hours)
+        local diffMinutes = math.abs(newMinutes - minutes)
+        local diffSeconds = math.abs(newSeconds - seconds)
+
+
+        if diffHours > 1 then
+            print('Hour changed: ' .. hours .. ' -> ' .. newHours)
+        end
+        if diffMinutes > 1 then
+            print('Minute changed: ' .. minutes .. ' -> ' .. newMinutes)
+        end
+        if diffSeconds > 1 then
+            print('Second changed: ' .. seconds .. ' -> ' .. newSeconds)
+        end
+
+        --if diffHours > 1 or diffMinutes > 1 or diffSeconds > 1 then
+        --    Wait(250)
+        --    local h,m,s = NetworkGetGlobalMultiplayerClock()
+        --    print('Network clock: ' .. h .. ':' .. m .. ':' .. s)
+        --    NetworkClockTimeOverride(h, m, s)
+        --end
+
+        DrawTxt(
+            string.format('Time: %02d:%02d:%02d', newHours, newMinutes, newSeconds),
+            0.05, 0.85,
+            1.5,
+            true,
+            255, 255, 255, 255,
+            false,
+            9
+        )
+        DrawTxt(
+            string.format('Diff: %02d:%02d:%02d', diffHours, diffMinutes, diffSeconds),
+            0.05, 0.75,
+            1.5,
+            true,
+            255, 255, 255, 255,
+            false,
+            9
+        )
+
+        --NetworkClockTimeOverride(9, 10, 5, 0, false)
+        --SetClockTime(9, 10, 5)
+
+        --local h, m, s = NetworkGetGlobalMultiplayerClock();
+        --print('Network clock: ' .. h .. ':' .. m .. ':' .. s)
+--        NetworkClockTimeOverride(h, m, s, 0, false);
+
+        hours = newHours
+        minutes = newMinutes
+        seconds = newSeconds
+        NetworkClearClockOverrideOvertime()
+        NetworkClearClockTimeOverride()
+    end
+end )
+
 --Citizen.CreateThread(function()
 --    while true do
 --        Wait(0)

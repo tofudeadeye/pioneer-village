@@ -887,7 +887,6 @@ export class ClientWeatherManager {
     if (this.transitionQueue.length === 0) return;
 
     this.transitionStepStartTime = Date.now();
-    SetWeatherOwnedByNetwork(false);
 
     this.transitionTickId = setTick(() => {
       if (this.transitionQueue.length === 0) {
@@ -984,7 +983,6 @@ export class ClientWeatherManager {
     const hash = WeatherHashes[weather];
     if (hash !== undefined) {
       ClearOverrideWeather();
-      SetWeatherOwnedByNetwork(false);
       SetCurrWeatherState(hash, hash, 0.9, true);
       SetRain(rainRate);
       Log(`[Snap Fallback] ${weather} <-> ${weather} @ 90% (no transition path available)`);

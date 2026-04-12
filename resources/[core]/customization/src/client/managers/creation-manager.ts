@@ -11,7 +11,7 @@ import OverlayInfo from '../data/overlay-info';
 import skinTones from '../data/skin-tones';
 import teeth from '../data/teeth';
 import waists from '../data/waists';
-import { componentManager } from './component-manager';
+import { componentManager, isMpComponent } from './component-manager';
 import { paletteManager } from './palette-manager';
 
 enum CreationState {
@@ -822,10 +822,21 @@ class CreationManager {
       return;
     }
     await componentManager.unequipClothing(this.chosen);
-    await PVGame.setPedComponentsMp(
-      this.chosen,
-      components.map((c) => c.hash),
-    );
+    const spComponents: number[] = [];
+    const mpComponents: number[] = [];
+    for (const component of components) {
+      if (isMpComponent(component.hash)) {
+        mpComponents.push(component.hash);
+      } else {
+        spComponents.push(component.hash);
+      }
+    }
+    if (mpComponents.length > 0) {
+      await PVGame.setPedComponentsMp(this.chosen, mpComponents);
+    }
+    if (spComponents.length > 0) {
+      await PVGame.setPedComponents(this.chosen, spComponents);
+    }
     await PVGame.pedIsReadyToRender(this.chosen);
     PVGame.finalizePedOutfit(this.chosen);
     await Delay(100);

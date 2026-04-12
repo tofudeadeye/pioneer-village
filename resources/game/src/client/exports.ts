@@ -17,7 +17,7 @@ export const setCurrentCharacter = (character: Game.Character | undefined) => {
 const getCurrentCharacter = () => currentCharacter;
 
 const setPedOutfit = async (ped: number, components: Game.BodyComponent[]) => {
-  const componentHashes = components.map((c) => typeof c === 'number' ? c : c.id);
+  const componentHashes = components.map((c) => (typeof c === 'number' ? c : c.id));
 
   let currentComponentCount = GetNumComponentsInPed(ped);
   for (let n = currentComponentCount; n--; ) {
@@ -54,7 +54,9 @@ const setPedOutfit = async (ped: number, components: Game.BodyComponent[]) => {
 
 export const skinPed = async (ped: number, character: Game.Character) => {
   await setPedOutfit(ped, character.components);
-  await PVCustomization.equipItems(ped, character.clothing);
+  console.log('AAAA');
+  PVCustomization.equipItems(ped, character.clothing);
+  console.log('BBBB');
 
   await gameManager.pedIsReadyToRender(ped);
   for (const [feature, value] of Object.entries(character.features)) {

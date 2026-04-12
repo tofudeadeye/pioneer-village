@@ -91,7 +91,7 @@ for (const file of componentFiles) {
   }
 }
 
-const isMpComponent = (hash: number): boolean => mpComponentHashes.has(hash >>> 0);
+export const isMpComponent = (hash: number): boolean => mpComponentHashes.has(hash >>> 0);
 
 enum Options {
   NONE = 0,
@@ -152,7 +152,7 @@ class ComponentManager {
     // Log('equipItems', items);
     for (const item of items) {
       for (const meta of item.metadatas) {
-        const hash = GetHashKey(meta.shopItem);
+        const hash = typeof meta.shopItem === 'string' ? GetHashKey(meta.shopItem) : meta.shopItem;
         ApplyShopItemToPed(ped, hash, false, isMpComponent(hash), false);
         await Delay(1);
         if (meta.wearableState) {

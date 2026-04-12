@@ -389,10 +389,10 @@ export const pedComponentCategories: string[] = [
   'belt_buckles',
   'gunbelts',
   'gunbelt_accs',
-  'holsters_left',
-  'holsters_right',
-  'holsters_crossdraw',
-  'holsters_knife',
+  // 'holsters_left',
+  // 'holsters_right',
+  // 'holsters_crossdraw',
+  // 'holsters_knife',
 
   'pants',
   'chaps',
@@ -403,7 +403,7 @@ export const pedComponentCategories: string[] = [
 
   'suspenders',
 
-  'satchels',
+  // 'satchels',
 
   'jewelry_bracelets',
   'jewelry_rings_left',
@@ -425,10 +425,6 @@ export const pedComponentCategories: string[] = [
   'masks_large',
 
   'accessories',
-  'badges',
-
-  'armor',
-  'loadouts',
 ];
 
 export const componentFiles: string[] = [
@@ -559,6 +555,13 @@ export const CLOTHING_GROUPS: Record<string, { label: string; categories: string
     categories: ['hair_accessories', 'hair', 'beards_complete', 'beards_chin', 'beards_chops', 'beards_mustache'],
   },
 };
+
+// Categories that cannot be equipped simultaneously
+export const EXCLUSIVE_GROUPS: string[][] = [
+  ['neckties', 'neckwear', 'ponchos'],
+  ['coats', 'coats_closed'],
+  ['masks', 'masks_large'],
+];
 
 export const HAIR_CATEGORIES: string[] = [
   'eyes',

@@ -66,7 +66,7 @@ const getWearableStateConfig = (category: string | number, state: string | numbe
   let config = WearableStateCategories[category];
   if (typeof category === 'number') {
     for (const key in Object.keys(WearableStateCategories)) {
-      if (category === GetHashKey(category)) {
+      if (category === GetHashKey(key)) {
         config = WearableStateCategories[key];
         break;
       }

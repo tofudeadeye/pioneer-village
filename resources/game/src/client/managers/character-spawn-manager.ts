@@ -1,7 +1,7 @@
-import { Vector3 } from '@lib/math';
-import { Delay, randomRange } from '@lib/functions';
-import { onResourceInit, PVBase, PVGame, PVPrompt } from '@lib/client';
+import { PVBase, PVGame, PVPrompt, onResourceInit } from '@lib/client';
 import { Log } from '@lib/client/comms/ui';
+import { Delay, randomRange } from '@lib/functions';
+import { Vector3 } from '@lib/math';
 
 const CityScenarios = [
   'WORLD_HUMAN_LEAN_READ_PAPER',

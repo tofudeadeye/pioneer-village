@@ -5,6 +5,8 @@ import { isBodyCategory } from '@lib/shared/body-categories';
 import { getWearableStateOptions } from '@lib/shared/wearable-states';
 import { LoadResourceJson, emitClient, onClient } from '@lib/ui';
 
+import { EXCLUSIVE_GROUPS } from '../layers/customization/constants';
+
 // Store state interface matching the component's state
 interface CustomizationState {
   show: boolean;
@@ -470,6 +472,20 @@ class CustomizationStore {
   // Set a component
   setComponent(componentType: string, style: number, option: number): void {
     const currentComponents = { ...this.state.currentComponents, [componentType]: { style, option } };
+
+    // Clear exclusive categories when equipping
+    if (style > -1) {
+      for (const group of EXCLUSIVE_GROUPS) {
+        if (group.includes(componentType)) {
+          for (const other of group) {
+            if (other !== componentType && currentComponents[other]?.style > -1) {
+              currentComponents[other] = { style: -1, option: 0 };
+            }
+          }
+        }
+      }
+    }
+
     this.updateState({
       currentComponents,
     });

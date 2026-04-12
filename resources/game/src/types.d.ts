@@ -6,9 +6,9 @@ declare interface RPC {
 declare namespace Game {
   interface ClothingMetadata {
     name: string;
-    category: string;
-    shopItem: string;
-    palette: string;
+    category: string | number;
+    shopItem: string | number;
+    palette: string | number;
     tint0: number;
     tint1: number;
     tint2: number;

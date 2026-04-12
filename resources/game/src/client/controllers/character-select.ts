@@ -142,6 +142,7 @@ const spawnCharacter = async (
   await gameManager.loadModel(modelHash);
   const ped = CreatePed(modelHash, x, y, z, h, false, false, false, false);
   Log(`Creating ped with model: ${modelHash} @ ${x}, ${y}, ${z} (${ped})`);
+  console.log(`Creating ped with model: ${modelHash} @ ${x}, ${y}, ${z} (${ped})`);
 
   await gameManager.pedIsReadyToRender(ped);
 
@@ -154,6 +155,7 @@ const spawnCharacter = async (
   SetEntityCollision(ped, false, false);
 
   await skinPed(ped, character);
+  console.log('CCCC');
 
   SetModelAsNoLongerNeeded(modelHash);
 

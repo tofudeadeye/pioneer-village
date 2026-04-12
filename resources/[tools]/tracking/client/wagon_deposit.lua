@@ -16,7 +16,8 @@ PROMPT = exports.prompts
 function initPrompts()
     CreateThread(function()
         Citizen.Wait(1000 + math.random() * 4000) -- Without waiting at least 1000 the game will hang if you restart prompt.
-        depositPrompt = PROMPT:registerWithEvent('createHold', depositPromptName, 0xE30CD707, 'Deposit')
+        PROMPT:registerWithEvent('createHold', depositPromptName, 0xE30CD707, 'Deposit')
+        depositPrompt = true
     end)
 end
 
@@ -63,6 +64,8 @@ Citizen.CreateThread(function()
         local player = PlayerPedId()
         local coords = GetEntityCoords(player)
         local carriedEntity = Citizen.InvokeNative(0xD806CD2A4F2C2996, player)
+
+        local showPrompt = false
 
         if depositPrompt and carriedEntity then
             if not IsPedHuman(carriedEntity) then
@@ -130,12 +133,17 @@ Citizen.CreateThread(function()
                     Citizen.InvokeNative(0x20A4BF0E09BEE146, itemSet) -- Empty Item Set
 
                     if distance < cartDistance[hitModel] and itemsInCart < 6 then
-                        PROMPT:show(depositPromptName, depositGroupName)
+                        PROMPT:show(depositPromptName)
+                        showPrompt = true
                     end
                 end
             end
         else
             --tarpEntity = false
+        end
+
+        if not showPrompt then
+            PROMPT:hide(depositPromptName)
         end
     end
 end)

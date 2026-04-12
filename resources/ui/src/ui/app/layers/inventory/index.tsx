@@ -3,7 +3,7 @@ import { type FC, type MouseEventHandler, type ReactNode, useCallback, useEffect
 import { boolval } from '@lib/functions';
 import { getWearableStateOptions } from '@lib/shared/wearable-states';
 
-import PlaceholderSvg from '@styled/components/PlaceholderSvg';
+import ItemThumbnail from '@styled/components/ItemThumbnail';
 import ProgressBar from '@styled/components/ProgressBar';
 import TimesSvg from '@styled/fa5/solid/times.svg';
 
@@ -91,6 +91,7 @@ const Inventories: FC<UI.BaseProps> = () => {
 
   // Get items from store
   const items = inventoryStore.getItems();
+  const drawableMap = inventoryStore.getDrawableMap();
 
   const cancelDrag = useCallback<() => void>(() => {
     const dragItem = document.getElementById('drag-item');
@@ -107,11 +108,9 @@ const Inventories: FC<UI.BaseProps> = () => {
   const onEscape = useCallback<() => void>(() => {
     if (splitPopup) {
       setSplitPopup(null);
-      return;
     }
     if (contextMenu) {
       setContextMenu(null);
-      return;
     }
     cancelDrag();
     inventoryStore.closeInventory();
@@ -507,19 +506,23 @@ const Inventories: FC<UI.BaseProps> = () => {
       }
 
       const firstMetadata: Inventory.AnyItemMetadata = itemData.metadatas[0];
+      const isClothing = firstMetadata && 'shopItem' in firstMetadata;
+      const shopItemHash = isClothing
+        ? String((typeof firstMetadata.shopItem === 'string' ? GetHashKey(firstMetadata.shopItem) : firstMetadata.shopItem) >>> 0)
+        : undefined;
+      const drawableEntry = shopItemHash ? drawableMap[shopItemHash] : undefined;
 
       return (
         <>
-          {!failedImages.current.has(`${identifier}::${i}`) && (
-            <img
-              src={`https://p--v.b-cdn.net/inventory/${firstMetadata?.image || item?.image}.png`}
-              onError={() => {
-                failedImages.current.add(`${identifier}::${i}`);
-              }}
-            />
-          )}
-
-          {failedImages.current.has(`${identifier}::${i}`) && <PlaceholderSvg text={item?.name} />}
+          <ItemThumbnail
+            image={firstMetadata?.image || item?.image}
+            name={item?.name}
+            drawableData={drawableEntry ? { drawable: drawableEntry[0], swatchTexture: drawableEntry[1] } : undefined}
+            palette={isClothing ? firstMetadata.palette : undefined}
+            tint0={isClothing ? firstMetadata.tint0 : undefined}
+            tint1={isClothing ? firstMetadata.tint1 : undefined}
+            tint2={isClothing ? firstMetadata.tint2 : undefined}
+          />
           <span className={styles.weight}>{item?.weight * itemData.quantity}</span>
           <span className={styles.quantity}>x{itemData.quantity}</span>
           {durabilityProgress !== null && (
@@ -780,11 +783,9 @@ const Inventories: FC<UI.BaseProps> = () => {
                 key={option.state}
                 className={styles.contextMenuItem}
                 onClick={() => {
-                  inventoryStore.updateItemMetadata(
-                    contextMenu.inventoryIdentifier,
-                    contextMenu.slot,
-                    { wearableState: option.state },
-                  );
+                  inventoryStore.updateItemMetadata(contextMenu.inventoryIdentifier, contextMenu.slot, {
+                    wearableState: option.state,
+                  });
                   setContextMenu(null);
                 }}
               >

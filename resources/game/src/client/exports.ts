@@ -54,9 +54,7 @@ const setPedOutfit = async (ped: number, components: Game.BodyComponent[]) => {
 
 export const skinPed = async (ped: number, character: Game.Character) => {
   await setPedOutfit(ped, character.components);
-  console.log('AAAA');
   PVCustomization.equipItems(ped, character.clothing);
-  console.log('BBBB');
 
   await gameManager.pedIsReadyToRender(ped);
   for (const [feature, value] of Object.entries(character.features)) {

@@ -228,6 +228,12 @@
     }
   }
 
+  &:has(canvas) {
+    .itsThumbs {
+      display: none;
+    }
+  }
+
   // Hover effect when dragging
   :global(body:has(#drag-item)) &:hover {
     &:before {
@@ -249,8 +255,10 @@
     max-width: 66.6%;
   }
 
-  img {
+  img,
+  canvas {
     max-width: 80%;
+    pointer-events: none;
   }
 
   .quantity,

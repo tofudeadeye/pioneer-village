@@ -710,7 +710,14 @@ export class ClientWeatherManager {
     if (steps.length === 0) return;
 
     // Filter out steps that are already at their target (no-ops)
-    const meaningfulSteps = steps.filter((s) => Math.abs(s.fromPercent - s.toPercent) > 0.005 || s.slotA === s.slotB);
+    // Settle steps are only kept if the game isn't already settled on that weather
+    const meaningfulSteps = steps.filter((s) => {
+      if (s.slotA === s.slotB) {
+        // Settle step — skip if game is already at this weather with both slots matching
+        return !(gameSlotA === s.slotA && gameSlotB === s.slotB);
+      }
+      return Math.abs(s.fromPercent - s.toPercent) > 0.005;
+    });
 
     if (meaningfulSteps.length === 0) {
       // Nothing to do — game is already showing the right visual
@@ -825,10 +832,12 @@ export class ClientWeatherManager {
     const pathFromB = findWeatherTransitionPath(slotB, target);
 
     // Determine which direction to slide first based on shorter path
+    // When equal distance, prefer the slot closer to its edge (less sliding needed)
     const distA = pathFromA ? pathFromA.length - 1 : Infinity;
     const distB = pathFromB ? pathFromB.length - 1 : Infinity;
+    const preferB = distB < distA || (distB === distA && currentPercent > 0.5);
 
-    if (distB <= distA && pathFromB) {
+    if (preferB && pathFromB) {
       // Slide to 100% (fully slotB), then walk slotA through intermediates
       if (currentPercent < 0.99) {
         steps.push({ slotA, slotB, fromPercent: currentPercent, toPercent: 1.0 });
@@ -905,7 +914,7 @@ export class ClientWeatherManager {
         const hashA = WeatherHashes[step.slotA];
         const hashB = WeatherHashes[step.slotB];
         if (hashA !== undefined && hashB !== undefined) {
-          const applyPercent = isSettle ? 0.9 : step.toPercent;
+          const applyPercent = isSettle ? 0.0 : step.toPercent;
           SetCurrWeatherState(hashA, hashB, Math.min(applyPercent, 0.99999), true);
           SetRain(targetRainRate);
           Log(

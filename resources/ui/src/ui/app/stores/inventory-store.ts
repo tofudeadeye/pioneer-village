@@ -1,7 +1,7 @@
 import { Socket } from 'socket.io-client';
 
 import { clamp } from '@lib/math';
-import { emitClient, onClient, onClientCall } from '@lib/ui';
+import { LoadResourceJson, emitClient, onClient, onClientCall } from '@lib/ui';
 
 // Store state interface matching the component's state
 interface InventoryState {
@@ -40,6 +40,7 @@ class InventoryStore {
   private requestId = 0;
   private requests = new Map<number, MoveRequest>();
   private items: Inventory.UIItems = {};
+  private drawableMap: Record<string, [number, string]> = {};
   private failedImages = new Set<string>();
   private initialized = false;
 
@@ -83,8 +84,22 @@ class InventoryStore {
     // Set up client event handlers
     this.setupClientHandlers();
 
+    // Load drawable map for clothing thumbnails
+    this.loadDrawableMap();
+
     // Emit startup event
     emitClient('inventory.startup');
+  }
+
+  private async loadDrawableMap(): Promise<void> {
+    try {
+      const map = await LoadResourceJson('rdr3-shared', 'resources/drawable-map.json');
+      if (map) {
+        this.drawableMap = map as Record<string, [number, string]>;
+      }
+    } catch (err) {
+      console.warn('[Inventory] Failed to load drawable map:', err);
+    }
   }
 
   private setupSocketHandlers(): void {
@@ -769,6 +784,11 @@ class InventoryStore {
   // Get items data
   getItems(): Inventory.UIItems {
     return this.items;
+  }
+
+  // Get drawable map for clothing thumbnails
+  getDrawableMap(): Record<string, [number, string]> {
+    return this.drawableMap;
   }
 
   // Check if an image has failed to load

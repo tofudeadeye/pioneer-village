@@ -83,24 +83,24 @@ export class ClientWeatherManager {
     // Listen for grid updates from socket server (via UI forwarding)
     // Only updates the grid data — the spatial system handles rendering.
     onSocket('weather.grid-update', (grid) => {
-      console.log('Received weather grid update from socket server');
+      Log('Received weather grid update from socket server');
       this.weatherGrid.setGrid(grid as unknown as GridCell[][]);
     });
 
     // Listen for freeze state changes
     onSocket('weather.freeze-state', (frozen: boolean) => {
-      console.log(`[Weather] Weather evolution ${frozen ? 'frozen' : 'unfrozen'}`);
+      Log(`[Weather] Weather evolution ${frozen ? 'frozen' : 'unfrozen'}`);
     });
 
     // Listen for global weather override changes
     onSocket('weather.global-override', (weather: string | null) => {
       this.cancelTransition();
       if (weather) {
-        console.log(`[Weather] Global override set to ${weather}`);
+        Log(`[Weather] Global override set to ${weather}`);
         const weatherType = weather as WeatherType;
         this.transitionToWeather(weatherType, 0.0);
       } else {
-        console.log('[Weather] Global override removed');
+        Log('[Weather] Global override removed');
         this.forceWeatherFromGrid();
       }
     });
@@ -156,7 +156,7 @@ export class ClientWeatherManager {
     this.playerWeatherStates.set(playerPed, playerState);
 
     const biomeName = BiomeNames[currentCell.biome] || currentCell.biome;
-    console.log(
+    Log(
       `[Weather] Grid init: ${currentCell.weather} in ${biomeName} at cell (${currentGridPos.x}, ${currentGridPos.y})`,
     );
     this.transitionToWeather(currentCell.weather, currentCell.rainRate);
@@ -230,7 +230,7 @@ export class ClientWeatherManager {
       // Log the update (throttle to avoid spam)
       const now = GetGameTimer();
       if (!this.lastLogTime || now - this.lastLogTime > 500) {
-        console.log(
+        Log(
           `[Weather] ${transitionInfo.currentWeather} -> ${transitionInfo.neighborWeather || 'none'} ` +
             `(${(transitionInfo.transitionPercent * 100).toFixed(2)}%) ` +
             `phase: ${playerState.transitionPhase} | ` +
@@ -272,7 +272,7 @@ export class ClientWeatherManager {
       // currentWeather stays as the OLD weather until we reach 'settled' phase
       playerState.transitionPhase = 'crossed';
 
-      console.log(
+      Log(
         `[Transition] Crossed into target cell (${newGridPos.x}, ${newGridPos.y}). ` +
           `Continuing transition from ${playerState.currentWeather} -> ${playerState.targetWeather}`,
       );
@@ -288,7 +288,7 @@ export class ClientWeatherManager {
       playerState.transitionPhase = 'settled';
       playerState.transitionPercent = 0.0;
 
-      console.log(
+      Log(
         `[Transition] Crossed into non-target cell (${newGridPos.x}, ${newGridPos.y}). ` +
           `Resetting transition. New weather: ${newCell.weather}`,
       );
@@ -457,7 +457,7 @@ export class ClientWeatherManager {
         playerState.targetNeighborCell = null;
         playerState.targetWeather = null;
 
-        console.log(
+        Log(
           `[Transition] Settled at 50% mark in cell (${playerState.currentCell.x}, ${playerState.currentCell.y}). ` +
             `Weather: ${playerState.currentWeather}`,
         );
@@ -767,12 +767,12 @@ export class ClientWeatherManager {
       return;
     }
 
-    console.log(
+    Log(
       `[Weather Transition] ${slotA}/${slotB}@${(currentPercent * 100).toFixed(0)}% -> ${targetWeather} ` +
         `(${steps.length} step${steps.length !== 1 ? 's' : ''}, ~${((steps.length * HOP_DURATION_MS) / 1000).toFixed(1)}s)`,
     );
     for (const step of steps) {
-      console.log(
+      Log(
         `  ${step.slotA} <-> ${step.slotB}: ${(step.fromPercent * 100).toFixed(0)}% -> ${(step.toPercent * 100).toFixed(0)}%`,
       );
     }
@@ -1010,27 +1010,27 @@ export class ClientWeatherManager {
     const playerState = this.playerWeatherStates.get(playerPed);
 
     if (!playerState) {
-      console.log('No weather state tracked for player yet');
+      Log('No weather state tracked for player yet');
       return;
     }
 
     const biomeName = BiomeNames[playerState.biome] || playerState.biome;
 
-    console.log('========================================');
-    console.log('WEATHER INFORMATION');
-    console.log('========================================');
-    console.log(`Position: ${coords.x.toFixed(1)}, ${coords.y.toFixed(1)}, ${coords.z.toFixed(1)}`);
-    console.log(`Heading: ${heading.toFixed(1)}°`);
-    console.log(`Current Cell: (${playerState.currentCell.x}, ${playerState.currentCell.y})`);
-    console.log(`Current Biome: ${biomeName}`);
-    console.log(`Current Weather: ${playerState.currentWeather}`);
-    console.log(`Target Weather: ${playerState.targetWeather || 'None'}`);
-    console.log(
+    Log('========================================');
+    Log('WEATHER INFORMATION');
+    Log('========================================');
+    Log(`Position: ${coords.x.toFixed(1)}, ${coords.y.toFixed(1)}, ${coords.z.toFixed(1)}`);
+    Log(`Heading: ${heading.toFixed(1)}°`);
+    Log(`Current Cell: (${playerState.currentCell.x}, ${playerState.currentCell.y})`);
+    Log(`Current Biome: ${biomeName}`);
+    Log(`Current Weather: ${playerState.currentWeather}`);
+    Log(`Target Weather: ${playerState.targetWeather || 'None'}`);
+    Log(
       `Target Cell: ${playerState.targetNeighborCell ? `(${playerState.targetNeighborCell.x}, ${playerState.targetNeighborCell.y})` : 'None'}`,
     );
-    console.log(`Transition Phase: ${playerState.transitionPhase}`);
-    console.log(`Transition Percent: ${(playerState.transitionPercent * 100).toFixed(2)}%`);
-    console.log('========================================');
+    Log(`Transition Phase: ${playerState.transitionPhase}`);
+    Log(`Transition Percent: ${(playerState.transitionPercent * 100).toFixed(2)}%`);
+    Log('========================================');
   }
 
   /**
@@ -1074,14 +1074,14 @@ export class ClientWeatherManager {
     // Update the grid
     this.weatherGrid.setGrid(grid);
 
-    console.log('========================================');
-    console.log('TEST PATTERN GENERATED');
-    console.log('========================================');
-    console.log('Weather grid set to alternating SUNNY/RAIN pattern');
-    console.log('SUNNY cells: even (x+y) positions');
-    console.log('RAIN cells: odd (x+y) positions');
-    console.log('Move between cells to test transitions!');
-    console.log('========================================');
+    Log('========================================');
+    Log('TEST PATTERN GENERATED');
+    Log('========================================');
+    Log('Weather grid set to alternating SUNNY/RAIN pattern');
+    Log('SUNNY cells: even (x+y) positions');
+    Log('RAIN cells: odd (x+y) positions');
+    Log('Move between cells to test transitions!');
+    Log('========================================');
   }
 
   public getWeatherGrid(): BiomeWeatherGrid {
@@ -1106,7 +1106,7 @@ export class ClientWeatherManager {
       }
     }
     this.weatherGrid.setGrid(grid);
-    console.log(`All cells set to weather type: ${weatherType}`);
+    Log(`All cells set to weather type: ${weatherType}`);
   }
 }
 

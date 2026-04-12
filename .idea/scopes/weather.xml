@@ -1,0 +1,3 @@
+<component name="DependencyValidationManager">
+  <scope name="weather" pattern="file[pioneer-village]:resources/weather//*||file[pioneer-village]:socket/src//*weather*" />
+</component>

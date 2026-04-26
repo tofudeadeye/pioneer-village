@@ -83,6 +83,7 @@ function generatePoly(data)
             points = data.points, -- Original 2D points for reference
             coords = centerPoint, -- Center position for distance checks
             debug = data.options.debug, -- Whether to show debug visualization
+            debugColor = data.options.debugColor or { r = 255, g = 0, b = 255, a = 128 }, -- Debug color (default magenta)
             delayEnter = data.options.delayEnter, -- Milliseconds delay before triggering enter event
             delayExit = data.options.delayExit, -- Milliseconds delay before triggering exit event
             maxZ = maxZ,
@@ -411,6 +412,7 @@ if DEBUG then
     Citizen.CreateThread(function()
         Wait(500) -- Small delay to ensure zones are loaded
         while true do
+            local playerCoords = GetEntityCoords(PlayerPedId(), false)
             -- Loop through all zones and draw those with debug enabled
             for _, zone in pairs(Zones) do
                 if zone.data.debug then
@@ -423,9 +425,16 @@ if DEBUG then
                             if k < #corner then
                                 secondPoint = corner[k + 1] -- Use next point if not at end
                             end
-                            -- Draw a vertical wall between the two points
-                            -- Black color (0,0,0) with 50% transparency (128)
-                            DrawWall(point, secondPoint, zone.data.minZ, zone.data.maxZ, 0, 0, 0, 128)
+
+                            DrawWall(point, secondPoint, zone.data.minZ, zone.data.maxZ, zone.data.debugColor.r, zone.data.debugColor.g, zone.data.debugColor.b, zone.data.debugColor.a)
+                            --if #(playerCoords - point) < 2500.0 then
+                            --    -- Draw a vertical wall between the two points
+                            --    -- Black color (0,0,0) with 50% transparency (128)
+                            --    DrawWall(point, secondPoint, zone.data.minZ, zone.data.maxZ, zone.data.debugColor.r, zone.data.debugColor.g, zone.data.debugColor.b, zone.data.debugColor.a)
+                            --end
+                            --if #(playerCoords - point) < 2000.0 then
+                            --    DrawLine(point.x * 1.0, point.y * 1.0, zone.data.debugColor.a + 150.01, secondPoint.x * 1.0, secondPoint.y * 1.0, zone.data.debugColor.a + 150.01, zone.data.debugColor.r, zone.data.debugColor.g, zone.data.debugColor.b, 255) -- Draw line between corners
+                            --end
                         end
                     elseif zone.type == 'sphere' then
                         -- Draw sphere zones using the sphere marker

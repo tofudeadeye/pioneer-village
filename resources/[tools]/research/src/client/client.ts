@@ -14,6 +14,7 @@ import './stuff/pigeons';
 import './stuff/police';
 import './stuff/ptfx';
 // import './stuff/side-saddle';
+import './stuff/zones';
 import './targets';
 
 onUI('animations.play-anim', (data) => {

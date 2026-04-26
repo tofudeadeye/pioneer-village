@@ -5,6 +5,23 @@ local vehiclesToDraw = {}
 local trackPeds = false
 local trackVehicles = false
 local trackEntities = false
+local trackZones = false
+
+local ZoneType = {
+    STATE = 0,
+    TOWN = 1,
+    LAKE = 2,
+    RIVER = 3,
+    OIL_SPILL = 4,
+    SWAMP = 5,
+    OCEAN= 6,
+    CREEK=7,
+    POND=8,
+    GLACIER=9,
+    DISTRICT=10,
+    TEXT_PRINTED=11,
+    TEXT_WRITTEN=12
+}
 
 AddEventHandler('onResourceStop', function(resourceName)
     if resourceName == GetCurrentResourceName() then
@@ -805,6 +822,10 @@ Citizen.CreateThread(function()
         if IsDisabledControlJustReleased(2, 0x3C3DD371) then -- PageDown
             trackEntities = not trackEntities
         end
+        if IsDisabledControlJustReleased(2, 0x064D1698) then
+            print('============================')
+            trackZones = not trackZones
+        end
 
         if trackEntities then
             local player = PlayerPedId()
@@ -825,6 +846,27 @@ Citizen.CreateThread(function()
             local rtnVal, hit, endCoords, surfaceNormal, entityHit = GetShapeTestResult(shapeTest)
             if hit > 0 then
                 TxtAtWorldCoord(endCoords.x, endCoords.y, endCoords.z, "1: " .. tostring(entityHit), 0.3, 9)
+            end
+        end
+
+        if trackZones then
+            for i = 0, 12 do
+                local zoneName = GetMapZoneAtCoords(GetEntityCoords(PlayerPedId()), i)
+                if MAP_ZONES[zoneName] then
+                    zoneName = MAP_ZONES[zoneName]
+                end
+                if zoneName == 0 then
+                    zoneName = "none"
+                end
+                DrawTxt(
+                    tostring(i) .. ": " .. tostring(zoneName),
+                    0.01, 0.5 + (i * 0.015),
+                    0.25,
+                    true,
+                    255, 255, 255, 255,
+                    false,
+                    9
+                )
             end
         end
 

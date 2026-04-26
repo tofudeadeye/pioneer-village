@@ -18,6 +18,21 @@ import type { GridCell } from '../../shared/types';
 const HOP_DURATION_MS = 700;
 
 /**
+ * Width of the "near a midline" band as a fraction of cell half-width.
+ * If a position offset is below this on a given axis, that axis is "weak"
+ * and contributes nothing to neighbor selection.
+ */
+const MIDLINE_BAND = 0.25;
+
+/**
+ * How close the two axis offsets must be (in normalized cell-half units)
+ * before heading is consulted to break the tie between the X-axis cardinal
+ * (E/W) and the Y-axis cardinal (N/S). Outside this band the dominant axis
+ * wins outright. Diagonals are never picked — only cardinal neighbors.
+ */
+const TIEBREAK_BAND = 0.2;
+
+/**
  * A single step in a weather transition sequence.
  * Each step slides the percent between slotA and slotB.
  */
@@ -36,7 +51,6 @@ interface PlayerWeatherState {
   targetWeather: WeatherType | null;
   transitionPercent: number;
   biome: BiomeType;
-  lastHeading: number;
   transitionPhase: 'approaching' | 'crossed' | 'settled';
 }
 
@@ -49,9 +63,6 @@ export class ClientWeatherManager {
 
   // Per-player weather state tracking
   private playerWeatherStates: Map<number, PlayerWeatherState> = new Map();
-
-  // Heading change threshold to reset transition target (degrees)
-  private readonly HEADING_CHANGE_THRESHOLD = 45;
 
   // Debug logging throttle
   private lastLogTime: number = 0;
@@ -136,7 +147,6 @@ export class ClientWeatherManager {
 
     const playerPed = PlayerPedId();
     const coords = PVGame.playerCoords(true);
-    const heading = GetEntityHeading(playerPed);
 
     const currentGridPos = this.weatherGrid.worldToGrid(coords.x, coords.y);
     const currentCell = this.weatherGrid.getCellAtPosition(coords.x, coords.y);
@@ -150,7 +160,6 @@ export class ClientWeatherManager {
       targetWeather: null,
       transitionPercent: 0.0,
       biome: currentCell.biome,
-      lastHeading: heading,
       transitionPhase: 'settled',
     };
     this.playerWeatherStates.set(playerPed, playerState);
@@ -184,7 +193,6 @@ export class ClientWeatherManager {
         targetWeather: null,
         transitionPercent: 0.0,
         biome: currentCell.biome,
-        lastHeading: heading,
         transitionPhase: 'settled',
       };
       this.playerWeatherStates.set(playerId, playerState);
@@ -194,24 +202,19 @@ export class ClientWeatherManager {
     const cellChanged =
       playerState.currentCell.x !== currentGridPos.x || playerState.currentCell.y !== currentGridPos.y;
 
-    // Check if heading changed significantly
-    const headingChanged =
-      Math.abs(this.normalizeHeadingDiff(heading - playerState.lastHeading)) > this.HEADING_CHANGE_THRESHOLD;
-
     if (cellChanged) {
       // Player crossed into a new cell
       this.handleCellCrossing(playerState, currentGridPos, currentCell);
-    } else if (headingChanged && playerState.transitionPhase !== 'settled') {
-      // Heading changed significantly during transition - reset target
-      this.resetTransitionTarget(playerState);
     }
 
-    // Calculate current transition state
+    // Calculate current transition state. The neighbor target is locked once
+    // chosen — heading no longer kicks the transition mid-flight, since
+    // neighbor selection is now position-driven (heading is only a tiebreaker
+    // at the moment a target is first picked).
     const transitionInfo = this.calculateTransition(worldX, worldY, heading, playerState, currentCell);
 
     // Update player state
     playerState.transitionPercent = transitionInfo.transitionPercent;
-    playerState.lastHeading = heading;
     playerState.biome = currentCell.biome;
 
     // Apply weather if there's an active transition
@@ -239,15 +242,6 @@ export class ClientWeatherManager {
         this.lastLogTime = now;
       }
     }
-  }
-
-  /**
-   * Normalize heading difference to -180 to 180 range
-   */
-  private normalizeHeadingDiff(diff: number): number {
-    while (diff > 180) diff -= 360;
-    while (diff < -180) diff += 360;
-    return diff;
   }
 
   /**
@@ -296,16 +290,6 @@ export class ClientWeatherManager {
   }
 
   /**
-   * Reset transition target when heading changes significantly
-   */
-  private resetTransitionTarget(playerState: PlayerWeatherState): void {
-    playerState.targetNeighborCell = null;
-    playerState.targetWeather = null;
-    playerState.transitionPhase = 'settled';
-    playerState.transitionPercent = 0.0;
-  }
-
-  /**
    * Calculate transition percentage and target based on player position and heading
    * Returns 0.0 (50% from edge to center) -> 0.5 (edge) -> 0.9 (50% from edge to center in neighbor)
    * This creates a transition zone in the outer 50% of each cell, leaving the inner 50% as "settled"
@@ -341,8 +325,15 @@ export class ClientWeatherManager {
       };
     }
 
-    // Determine which neighbor we're heading towards based on heading
-    const targetNeighbor = this.getNeighborFromHeading(playerState.currentCell, heading);
+    // Determine which neighbor to blend with — closest corner by position,
+    // with heading as a tiebreaker only when the player is near a midline.
+    const targetNeighbor = this.getNeighborFromPosition(
+      playerState.currentCell,
+      worldX,
+      worldY,
+      heading,
+      cellBounds,
+    );
 
     // If no valid neighbor or we're settled, no transition
     if (!targetNeighbor) {
@@ -500,55 +491,85 @@ export class ClientWeatherManager {
   }
 
   /**
-   * Get the neighbor cell based on heading direction
+   * Pick which neighbor cell to blend with — always one of the four cardinal
+   * neighbors (N, S, E, or W). Diagonals are never picked; weather bleeds
+   * across shared edges and diagonal cells share no edge with the current
+   * one.
+   *
+   * Selection:
+   *   - both axes within MIDLINE_BAND of center → no neighbor (settled zone)
+   *   - one axis dominates → cardinal pick on that axis (heading ignored)
+   *   - axes roughly equal (within TIEBREAK_BAND) → heading picks between
+   *     the X-axis cardinal and the Y-axis cardinal
    */
-  private getNeighborFromHeading(
+  private getNeighborFromPosition(
     currentCell: { x: number; y: number },
+    worldX: number,
+    worldY: number,
     heading: number,
+    cellBounds: { minX: number; maxX: number; minY: number; maxY: number; centerX: number; centerY: number },
   ): { x: number; y: number; weather: WeatherType } | null {
+    const halfW = (cellBounds.maxX - cellBounds.minX) / 2;
+    const halfH = (cellBounds.maxY - cellBounds.minY) / 2;
+
+    // Normalized offset from cell center, range [-1, 1] per axis
+    const nx = (worldX - cellBounds.centerX) / halfW;
+    const ny = (worldY - cellBounds.centerY) / halfH;
+
+    const ax = Math.abs(nx);
+    const ay = Math.abs(ny);
+
+    // Both axes weak — player is in the inner settled zone, no transition
+    if (ax < MIDLINE_BAND && ay < MIDLINE_BAND) {
+      return null;
+    }
+
+    const sx = nx > 0 ? 1 : -1;
+    const sy = ny > 0 ? 1 : -1;
+
+    // Decide whether to use heading as a tiebreaker. If one axis clearly
+    // dominates (offset gap >= TIEBREAK_BAND), pick that cardinal outright.
+    const useHeading = ax >= MIDLINE_BAND && ay >= MIDLINE_BAND && Math.abs(ax - ay) < TIEBREAK_BAND;
+
     let dirX = 0;
     let dirY = 0;
 
-    // Convert heading to direction (RDR2 uses CCW heading: 0 = North, 90 = West, 180 = South, 270 = East)
-    if (heading >= 337.5 || heading < 22.5) {
-      dirX = 0;
-      dirY = 1; // N
-    } else if (heading >= 22.5 && heading < 67.5) {
-      dirX = -1;
-      dirY = 1; // NW
-    } else if (heading >= 67.5 && heading < 112.5) {
-      dirX = -1;
-      dirY = 0; // W
-    } else if (heading >= 112.5 && heading < 157.5) {
-      dirX = -1;
-      dirY = -1; // SW
-    } else if (heading >= 157.5 && heading < 202.5) {
-      dirX = 0;
-      dirY = -1; // S
-    } else if (heading >= 202.5 && heading < 247.5) {
-      dirX = 1;
-      dirY = -1; // SE
-    } else if (heading >= 247.5 && heading < 292.5) {
-      dirX = 1;
-      dirY = 0; // E
-    } else if (heading >= 292.5 && heading < 337.5) {
-      dirX = 1;
-      dirY = 1; // NE
+    if (useHeading) {
+      // RDR2 CCW heading: 0=N, 90=W, 180=S, 270=E. With gridY+ = N, the
+      // forward unit vector is (-sin(h), cos(h)).
+      const headingRad = (heading * Math.PI) / 180;
+      const forwardX = -Math.sin(headingRad);
+      const forwardY = Math.cos(headingRad);
+
+      // Compare alignment with the two candidate cardinals
+      const xCardinalDot = forwardX * sx; // E or W
+      const yCardinalDot = forwardY * sy; // N or S
+
+      if (xCardinalDot >= yCardinalDot) {
+        dirX = sx;
+      } else {
+        dirY = sy;
+      }
+    } else if (ax >= ay) {
+      // X axis dominates
+      dirX = sx;
+    } else {
+      // Y axis dominates
+      dirY = sy;
     }
 
     const neighborX = currentCell.x + dirX;
     const neighborY = currentCell.y + dirY;
 
-    // Check if neighbor is within grid bounds
+    // Check grid bounds
     const gridDimensions = this.weatherGrid.getCellDimensions();
     const gridWidth = Math.round(gridDimensions.totalWidth / gridDimensions.cellWidth);
     const gridHeight = Math.round(gridDimensions.totalHeight / gridDimensions.cellHeight);
 
     if (neighborX < 0 || neighborX >= gridWidth || neighborY < 0 || neighborY >= gridHeight) {
-      return null; // No neighbor in this direction
+      return null;
     }
 
-    // Get neighbor cell bounds to find center, then get weather at that position
     const neighborBounds = this.weatherGrid.getCellBounds(neighborX, neighborY);
     if (!neighborBounds) {
       return null;

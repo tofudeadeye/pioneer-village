@@ -5,6 +5,7 @@ declare interface ClientExports {
 declare namespace Zones {
   interface PolyOptions {
     debug?: boolean;
+    debugColor?: { r: number; g: number; b: number; a: number };
     delayEnter?: number;
     delayExit?: number;
   }

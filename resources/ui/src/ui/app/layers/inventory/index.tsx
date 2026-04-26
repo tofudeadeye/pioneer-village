@@ -508,7 +508,11 @@ const Inventories: FC<UI.BaseProps> = () => {
       const firstMetadata: Inventory.AnyItemMetadata = itemData.metadatas[0];
       const isClothing = firstMetadata && 'shopItem' in firstMetadata;
       const shopItemHash = isClothing
-        ? String((typeof firstMetadata.shopItem === 'string' ? GetHashKey(firstMetadata.shopItem) : firstMetadata.shopItem) >>> 0)
+        ? String(
+            (typeof firstMetadata.shopItem === 'string'
+              ? GetHashKey(firstMetadata.shopItem)
+              : firstMetadata.shopItem) >>> 0,
+          )
         : undefined;
       const drawableEntry = shopItemHash ? drawableMap[shopItemHash] : undefined;
 
@@ -539,6 +543,7 @@ const Inventories: FC<UI.BaseProps> = () => {
           )}
           {firstMetadata &&
             'palette' in firstMetadata &&
+            typeof firstMetadata.palette === 'string' &&
             firstMetadata.palette !== 'NONE' &&
             renderTint(
               firstMetadata.palette,

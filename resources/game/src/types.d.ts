@@ -4,17 +4,6 @@ declare interface RPC {
 }
 
 declare namespace Game {
-  interface ClothingMetadata {
-    name: string;
-    category: string | number;
-    shopItem: string | number;
-    palette: string | number;
-    tint0: number;
-    tint1: number;
-    tint2: number;
-    wearableState?: string | number;
-  }
-
   type BodyComponentTinted = {
     id: number;
     p: number | string;
@@ -26,7 +15,7 @@ declare namespace Game {
   type BodyComponent = number | BodyComponentTinted;
 
   type ClothingItemData = UI.Inventory.ItemData & {
-    metadatas: ClothingMetadata[];
+    metadatas: Inventory.ClothingMetadata[];
   };
 
   type WhistleData = {

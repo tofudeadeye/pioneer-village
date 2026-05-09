@@ -261,6 +261,14 @@ const characterId = (): Game.characterId => {
   return gameManager.characterId;
 };
 
+const getAngleTo: Game.getAngleTo = (targetCoords, ped) => {
+  return gameManager.getAngleTo(targetCoords, ped);
+};
+
+const isPedFacingCoord: Game.isPedFacingCoord = (targetCoords, ped, toleranceDeg) => {
+  return gameManager.isPedFacingCoord(targetCoords, ped, toleranceDeg);
+};
+
 exports<'game'>('playerPed', playerPed);
 exports<'game'>('mountPed', mountPed);
 exports<'game'>('playerCoords', playerCoords);
@@ -312,6 +320,9 @@ exports<'game'>('vegRemoveAllSpheres', vegRemoveAllSpheres);
 exports<'game'>('getPlayerServerId', getPlayerServerId);
 exports<'game'>('getPlayerSteamId', getPlayerSteamId);
 exports<'game'>('characterId', characterId);
+
+exports<'game'>('getAngleTo', getAngleTo);
+exports<'game'>('isPedFacingCoord', isPedFacingCoord);
 
 // Character-related exports
 exports<'game'>('skinPed', skinPed);

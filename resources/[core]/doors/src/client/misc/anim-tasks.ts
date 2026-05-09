@@ -1,5 +1,5 @@
-import { Delay } from '@lib/functions';
 import { PVBase, PVGame } from '@lib/client';
+import { Delay } from '@lib/functions';
 import { Vector3 } from '@lib/math';
 
 export const doorOpenAnim: Anim.Task = {

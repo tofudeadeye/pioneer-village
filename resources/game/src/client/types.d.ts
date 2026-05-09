@@ -88,6 +88,9 @@ declare namespace Game {
 
   type characterId = number | null;
 
+  type getAngleTo = (targetCoords: Vector3Format, ped?: number) => number;
+  type isPedFacingCoord = (targetCoords: Vector3Format, ped?: number, toleranceDeg?: number) => boolean;
+
   type ClientExports = {
     playerPed: () => number;
     mountPed: () => number | null;
@@ -144,6 +147,9 @@ declare namespace Game {
     getPlayerSteamId: () => Promise<string>;
 
     characterId: () => number | null;
+
+    getAngleTo: getAngleTo;
+    isPedFacingCoord: isPedFacingCoord;
 
     // Lua Exports
     // getStateValue: (entity: number, key: string) => any;

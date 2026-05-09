@@ -1,6 +1,6 @@
-import { PVBase, PVGame } from '@lib/client';
+import { PVGame } from '@lib/client';
 import { Log, emitSocket } from '@lib/client/comms/ui';
-import { Delay } from '@lib/functions';
+import { Delay, lerp } from '@lib/functions';
 import { Vector3 } from '@lib/math';
 
 import doorManager from '../managers/door-manager';
@@ -9,17 +9,25 @@ import { doorOpenAnim } from './anim-tasks';
 const toggleDoor = async (doorHash: number) => {
   if (Math.abs(DoorSystemGetOpenRatio(doorHash)) > 0.15) {
     doorManager.closeDoor(doorHash, 0.25);
-    await Delay(250);
   }
 
   const doorEntity = doorManager.getDoorEntity(doorHash);
 
   if (doorEntity) {
-    const keyholeCoords = GetOffsetFromEntityInWorldCoords(doorEntity, 1.0, 0.0, 1.0);
-    await PVGame.turnPedToFaceCoord(PVGame.playerPed(), keyholeCoords[0], keyholeCoords[1], keyholeCoords[2], 750);
+    const keyholeCoords = Vector3.fromArray(GetOffsetFromEntityInWorldCoords(doorEntity, 1.0, 0.0, 1.0));
+    const angleTo = PVGame.getAngleTo(keyholeCoords);
+    if (angleTo > 20) {
+      await PVGame.turnPedToFaceCoord(
+        PVGame.playerPed(),
+        keyholeCoords.x,
+        keyholeCoords.y,
+        keyholeCoords.z,
+        lerp(250, 750, angleTo / 180),
+      );
+      await Delay(lerp(125, 250, angleTo / 180));
+    }
   }
 
-  await Delay(1250);
   PVGame.taskPlayAnim(doorOpenAnim);
   await doorManager.toggleDoorState(doorHash);
 };

@@ -1190,6 +1190,24 @@ class GameManager {
   // getComponentById(id: number): Component {
   //   return exports['research'].getComponentById(id);
   // }
+
+  getAngleTo(targetCoords: Vector3Format, ped?: number): number {
+    if (!ped) ped = this._playerPed;
+    const pedCoords = GetEntityCoords(ped, true, true);
+    const forward = Vector3.fromArray(GetEntityForwardVector(ped));
+
+    const toTarget = Vector3.fromObject(targetCoords).getOffsetFromArray(pedCoords);
+    toTarget.z = 0;
+    forward.z = 0;
+
+    if (toTarget.magnitude() < 0.001) return 0;
+
+    return forward.normalize().angle(toTarget.normalize());
+  }
+
+  isPedFacingCoord(targetCoords: Vector3Format, ped?: number, toleranceDeg = 20): boolean {
+    return this.getAngleTo(targetCoords, ped) <= toleranceDeg;
+  }
 }
 
 const gameManager = GameManager.getInstance();

@@ -1,4 +1,5 @@
 import { Socket } from 'socket.io-client';
+
 import { onClient } from '@lib/ui';
 
 // Store state interface
@@ -47,7 +48,7 @@ class NotificationStore {
 
     // Set up socket event handlers
     this.setupSocketHandlers();
-    
+
     // Set up client event handlers
     this.setupClientHandlers();
   }
@@ -76,7 +77,7 @@ class NotificationStore {
     duration?: number,
     bgColor?: string,
     fgColor?: string,
-    centered?: boolean
+    centered?: boolean,
   ): void => {
     this.addNotification({
       text,
@@ -230,7 +231,7 @@ class NotificationStore {
       bgColor?: string;
       fgColor?: string;
       centered?: boolean;
-    }
+    },
   ): void {
     this.addNotification({
       text,
@@ -313,14 +314,14 @@ class NotificationStore {
 
   // Notify all listeners of state change
   private notifyListeners(): void {
-    this.listeners.forEach(listener => listener(this.state));
+    this.listeners.forEach((listener) => listener(this.state));
   }
 
   // Subscribe to state changes
   subscribe(listener: StateListener): () => void {
     this.listeners.add(listener);
     listener(this.state); // Call immediately with current state
-    
+
     return () => {
       this.listeners.delete(listener);
     };

@@ -1,4 +1,4 @@
-import { type EventData, PVEvents, PVGame, awaitUI } from '@lib/client';
+import { type EventData, PVGame, PVGameEvents, awaitUI } from '@lib/client';
 import { Log } from '@lib/client/comms/ui';
 import { SetPlayerControlFlags } from '@lib/flags/set-player-control';
 import { Delay } from '@lib/functions';
@@ -20,11 +20,11 @@ export class PeltController {
   initialized = false;
 
   constructor() {
-    PVEvents.register('EVENT_PLACE_CARRIABLE_ONTO_PARENT', (data) => {
+    PVGameEvents.register('EVENT_PLACE_CARRIABLE_ONTO_PARENT', (data) => {
       this.eventPlaceCarriable(data);
     });
 
-    PVEvents.register('EVENT_PICKUP_CARRIABLE', (data) => {
+    PVGameEvents.register('EVENT_PICKUP_CARRIABLE', (data) => {
       this.eventPickupCarriable(data);
     });
 

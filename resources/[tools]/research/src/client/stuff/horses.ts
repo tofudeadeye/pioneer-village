@@ -1,15 +1,15 @@
-import { PVEvents, PVGame } from '@lib/client';
+import { PVGame, PVGameEvents } from '@lib/client';
 import { Log } from '@lib/client/comms/ui';
 import { Delay } from '@lib/functions';
 import { Vector3 } from '@lib/math';
 
 import { PELTS } from './pelts';
 
-PVEvents.register('EVENT_PICKUP_CARRIABLE', (data) => {
+PVGameEvents.register('EVENT_PICKUP_CARRIABLE', (data) => {
   Log('EVENT_PICKUP_CARRIABLE', data);
 });
 
-PVEvents.register('EVENT_PLACE_CARRIABLE_ONTO_PARENT', (data) => {
+PVGameEvents.register('EVENT_PLACE_CARRIABLE_ONTO_PARENT', (data) => {
   Log('EVENT_PLACE_CARRIABLE_ONTO_PARENT', data);
 
   const peltTexture = Citizen.invokeNative<number>('0x120376c23f019c6c', data.carriable, Citizen.pointerValueInt());
@@ -24,15 +24,15 @@ PVEvents.register('EVENT_PLACE_CARRIABLE_ONTO_PARENT', (data) => {
   // ExecuteCommand(`pelts ${data.parent}`);
 });
 
-PVEvents.register('EVENT_CARRIABLE_UPDATE_CARRY_STATE', (data) => {
+PVGameEvents.register('EVENT_CARRIABLE_UPDATE_CARRY_STATE', (data) => {
   Log('EVENT_CARRIABLE_UPDATE_CARRY_STATE', data);
 });
 
-PVEvents.register('EVENT_LOOT', (data) => {
+PVGameEvents.register('EVENT_LOOT', (data) => {
   Log('EVENT_LOOT', data);
 });
 
-PVEvents.register('EVENT_LOOT_COMPLETE', (data) => {
+PVGameEvents.register('EVENT_LOOT_COMPLETE', (data) => {
   Log('EVENT_LOOT_COMPLETE', data);
 });
 

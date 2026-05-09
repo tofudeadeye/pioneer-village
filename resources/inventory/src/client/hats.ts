@@ -1,9 +1,9 @@
-import { PVEvents, PVGame, emitServer } from '@lib/client';
+import { PVGame, PVGameEvents, emitServer } from '@lib/client';
 import { Log, emitSocket } from '@lib/client/comms/ui';
 import { Vector3 } from '@lib/math';
 
 const registerEvents = () => {
-  PVEvents.register('EVENT_PLAYER_HAT_KNOCKED_OFF', (data) => {
+  PVGameEvents.register('EVENT_PLAYER_HAT_KNOCKED_OFF', (data) => {
     const { originPed, hat } = data;
 
     if (!originPed || !hat || originPed !== PVGame.playerPed()) {
@@ -23,7 +23,7 @@ const registerEvents = () => {
     }, 1_500);
   });
 
-  PVEvents.register('EVENT_PLAYER_HAT_EQUIPPED', (data) => {
+  PVGameEvents.register('EVENT_PLAYER_HAT_EQUIPPED', (data) => {
     const { ped, hat } = data;
 
     if (!ped || !hat || ped !== PVGame.playerPed()) {

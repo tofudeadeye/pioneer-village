@@ -1,9 +1,9 @@
-import { PVEvents } from '@lib/client';
+import { PVGameEvents } from '@lib/client';
 
 import healthManager from '../managers/health-manager';
 
 const registerEvents = () => {
-  PVEvents.register('EVENT_ENTITY_DAMAGED', (data) => {
+  PVGameEvents.register('EVENT_ENTITY_DAMAGED', (data) => {
     const { attacked, attacker, weaponHash, ammoHash, damage, x, y, z } = data;
     healthManager.handleDamageEvent(attacker, attacked, weaponHash, ammoHash, x, y, z);
   });

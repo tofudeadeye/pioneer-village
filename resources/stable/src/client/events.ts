@@ -1,4 +1,4 @@
-import { PVEvents, PVGame, PVZone } from '@lib/client';
+import { PVGame, PVGameEvents, PVZone } from '@lib/client';
 import { awaitUI } from '@lib/client';
 import { Log } from '@lib/client/comms/ui';
 import { PedConfigFlag } from '@lib/flags';
@@ -178,7 +178,7 @@ on('stable:client:attach', async (pEntity: number, pArgs: Record<string, any>) =
   }
 });
 
-PVEvents.register('EVENT_PED_WHISTLE', (data) => {
+PVGameEvents.register('EVENT_PED_WHISTLE', (data) => {
   Log('EVENT_PED_WHISTLE', data);
   const playerPed = PlayerPedId();
 

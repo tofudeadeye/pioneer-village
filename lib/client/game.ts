@@ -43,15 +43,24 @@ export const removeZone = (name: string) => {
   RegisteredEvents.delete(`zones::${name}::exit`);
 };
 
-export const onResourceStart = (resourceName: string, cb: () => void) => {
+export const onResourceStart = (callback: () => void, resourceName = GetCurrentResourceName()) => {
   if (GetResourceState(resourceName) === 'started') {
-    cb();
+    callback();
   }
 
   on('onResourceStart', async (resource: string) => {
     if (resource === resourceName) {
-      cb();
+      callback();
     }
+  });
+};
+
+export const onResourceStop = (callback: () => void, resourceName = GetCurrentResourceName()) => {
+  on('onResourceStop', (resource: string) => {
+    if (resource !== resourceName) {
+      return;
+    }
+    callback();
   });
 };
 

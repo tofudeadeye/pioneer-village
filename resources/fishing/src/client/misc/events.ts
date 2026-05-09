@@ -1,4 +1,5 @@
-import { PVEvents } from '@lib/client';
+import { PVGameEvents } from '@lib/client';
+
 import fishingManager from '../managers/fishing-manager';
 
 const eventHandlers = {
@@ -21,7 +22,7 @@ const eventHandlers = {
 // }, 1000);
 
 const registerEvents = () => {
-  PVEvents.register('weapon', eventHandlers.weaponChanged);
+  PVGameEvents.register('weapon', eventHandlers.weaponChanged);
 };
 
 on('onResourceStart', (resourceName: string) => {

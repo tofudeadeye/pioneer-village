@@ -253,6 +253,6 @@ function register<T extends keyof typeof eventMappings>(
   }
 }
 
-export const PVEvents = {
+export const PVGameEvents = {
   register,
 };

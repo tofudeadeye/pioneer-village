@@ -1,4 +1,4 @@
-import { addZone } from '@lib/client';
+import { DrawTxt, PVEvents, addZone } from '@lib/client';
 import { Log } from '@lib/client/comms/ui';
 
 interface RingItem {
@@ -46,6 +46,20 @@ const ZoneTypeColors: Record<string, RGBA> = {
 
 const FALLBACK_COLOR: RGBA = { r: 255, g: 0, b: 255, a: 128 };
 
+const InsideZones = new Map<string, string>();
+
+for (const zoneType of Object.keys(ZoneTypeColors)) {
+  InsideZones.set(zoneType, '');
+}
+
+// setTick(() => {
+//   let n = 0;
+//   for (const [zoneType, zoneName] of InsideZones.entries()) {
+//     if (!zoneType) continue;
+//     DrawTxt(`[${zoneType}] ${zoneName || 'None'}`, 0.15, 0.5 + 0.0175 * n++, 0.25);
+//   }
+// });
+
 for (const zones of mapzones) {
   const debugColor = ZoneTypeColors[zones.type] ?? FALLBACK_COLOR;
   let n = 0;
@@ -57,16 +71,24 @@ for (const zones of mapzones) {
       minZ: -50.0,
       maxZ: 1000.0,
       options: {
-        debug: false, // zones.type === 'DISTRICT',
+        debug: false, // zones.type === 'STATE',
         debugColor,
       },
       onEnter() {
         Log(`Entered zone ${zones.name} (${zones.type})`);
+        InsideZones.set(zones.type, zones.name);
       },
       onExit() {
         Log(`Exited zone ${zones.name} (${zones.type})`);
+        InsideZones.set(zones.type, '');
       },
     });
     n++;
   }
 }
+
+// PVEvents.registerCronEvent('research:zoneCheck', '*/5 * * * * *'); // every 5 seconds
+//
+// on('events:timeEvent:research:zoneCheck', () => {
+//   Log('Performing periodic zone check');
+// });

@@ -26,12 +26,16 @@ RegisterCommand(
     const characterId = Number(args[0]);
     const itemId = GetHashKey('PV_DOOR_KEY');
 
-    const metadata: { doorHashes?: number[]; doorHash?: number } = {};
+    const metadata: { name?: string; doorHashes?: number[]; doorHash?: number } = {};
 
     if (args[1].includes(',')) {
       metadata.doorHashes = args[1].split(',').map((doorHash) => Number(doorHash) << 0);
     } else {
       metadata.doorHash = Number(args[1]) << 0;
+    }
+
+    if (args[2]) {
+      metadata.name = args[2];
     }
 
     emitSocket('inventoryAddItem', `character:${characterId}`, itemId, 1, metadata, (success: boolean) => {});

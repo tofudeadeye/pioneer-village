@@ -86,10 +86,10 @@ for (const zones of mapzones) {
   }
 }
 
-registerCronEvent(
-  () => {
-    console.log('Performing periodic zone check');
-  },
-  'zoneCheck',
-  '*/5 * * * * *', // every 5 seconds
-);
+// registerCronEvent(
+//   () => {
+//     console.log('Performing periodic zone check');
+//   },
+//   'zoneCheck',
+//   '*/5 * * * * *', // every 5 seconds
+// );

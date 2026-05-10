@@ -1,5 +1,4 @@
 import { addZone, onResourceInit } from '@lib/client';
-import { Log } from '@lib/client/comms/ui';
 
 import Stables from '../shared/data/stableData';
 import { ZonePrefix } from './config';
@@ -10,9 +9,9 @@ for (const stable of Stables) {
 }
 
 const registerStableZones = async () => {
-  Log('registerStableZones');
+  console.log('registerStableZones');
   for (const stable of Stables) {
-    // Log('adding zone', stable.identifier);
+    // console.log('adding zone', stable.identifier);
     // PVZone.CreatePoly(`${ZonePrefix}${stable.identifier}`, stable.zones.interior, 114.0, 123.0, { debug: true },);
     addZone({
       _type: 'poly',
@@ -22,11 +21,11 @@ const registerStableZones = async () => {
       maxZ: 999,
       options: { debug: false, delayExit: 5000 },
       onEnter() {
-        Log(`Entered ${stable.identifier}`);
+        console.log(`Entered ${stable.identifier}`);
         stableController.enterStable(stable.identifier);
       },
       onExit() {
-        Log(`Exited ${stable.identifier}`);
+        console.log(`Exited ${stable.identifier}`);
         stableController.exitStable(stable.identifier);
       },
     });

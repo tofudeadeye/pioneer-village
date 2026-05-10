@@ -1,5 +1,4 @@
 import { PVGame, PVTarget } from '@lib/client';
-import { Log } from '@lib/client/comms/ui';
 import { Delay } from '@lib/functions';
 
 const attackControls = ['INPUT_HORSE_MELEE', 'INPUT_MELEE_ATTACK', 'INPUT_ATTACK'];
@@ -206,7 +205,7 @@ setTick(async () => {
           ResetPedModelPersonality(GetEntityModel(PVGame.playerPed()));
           ClearPedTasks(PVGame.playerPed());
           TaskMelee(PVGame.playerPed(), currentTarget, currentAnimal.attack || 0, 1, 1, 1.75, 0, -1.0);
-          // Log(`TaskMelee(${PVGame.playerPed()}, ${currentTarget}, ${currentAnimal.attack || 0}, 1, 1, 1.75, 0, -1.0);`);
+          // console.log(`TaskMelee(${PVGame.playerPed()}, ${currentTarget}, ${currentAnimal.attack || 0}, 1, 1, 1.75, 0, -1.0);`);
         }
       });
     }

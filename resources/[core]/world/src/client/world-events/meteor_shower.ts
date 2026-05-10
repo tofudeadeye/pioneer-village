@@ -1,4 +1,4 @@
-import { Log, onSocket } from '@lib/client/comms/ui';
+import { onSocket } from '@lib/client/comms/ui';
 import { Delay } from '@lib/functions';
 
 import ptfxManager from '../managers/ptfx-manager';
@@ -9,7 +9,7 @@ onSocket('world.meteor-shower', async () => {
   if (meteorShowerActive) return;
   meteorShowerActive = true;
   const scale = 1 + Math.random();
-  Log('[Meteor Shower]', 'Activating meteor shower', scale);
+  console.log('[Meteor Shower]', 'Activating meteor shower', scale);
 
   await ptfxManager.startFxAtCoords(
     'meteor_shower',

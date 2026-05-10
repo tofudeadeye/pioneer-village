@@ -1,5 +1,4 @@
 import { DrawTxt, PVEvents, addZone } from '@lib/client';
-import { Log } from '@lib/client/comms/ui';
 
 interface RingItem {
   x: number;
@@ -75,11 +74,11 @@ for (const zones of mapzones) {
         debugColor,
       },
       onEnter() {
-        Log(`Entered zone ${zones.name} (${zones.type})`);
+        console.log(`Entered zone ${zones.name} (${zones.type})`);
         InsideZones.set(zones.type, zones.name);
       },
       onExit() {
-        Log(`Exited zone ${zones.name} (${zones.type})`);
+        console.log(`Exited zone ${zones.name} (${zones.type})`);
         InsideZones.set(zones.type, '');
       },
     });
@@ -87,8 +86,8 @@ for (const zones of mapzones) {
   }
 }
 
-// PVEvents.registerCronEvent('research:zoneCheck', '*/5 * * * * *'); // every 5 seconds
-//
-// on('events:timeEvent:research:zoneCheck', () => {
-//   Log('Performing periodic zone check');
-// });
+PVEvents.registerCronEvent('research:zoneCheck', '*/5 * * * * *'); // every 5 seconds
+
+on('events:timeEvent:research:zoneCheck', () => {
+  console.log('Performing periodic zone check');
+});

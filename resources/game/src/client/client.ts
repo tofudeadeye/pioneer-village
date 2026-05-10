@@ -1,5 +1,5 @@
 import { PVGame, PVInit, awaitUI, emitUI, focusUI, onUI } from '@lib/client';
-import { Log, emitSocket } from '@lib/client/comms/ui';
+import { emitSocket } from '@lib/client/comms/ui';
 import { Delay } from '@lib/functions';
 
 import { spawnCharacters } from './controllers/character-select';
@@ -94,8 +94,8 @@ const initTick = setTick(() => {
 });
 
 onUI('socket.connected', async () => {
-  Log('socket.connected');
-  // Log('socket.connected', PVGame.getCurrentCharacter(), !PVGame.getCurrentCharacter());
+  console.log('socket.connected');
+  // console.log('socket.connected', PVGame.getCurrentCharacter(), !PVGame.getCurrentCharacter());
   const character = PVGame.getCurrentCharacter();
   if (character) {
     const steamId = await PVGame.getPlayerSteamId();

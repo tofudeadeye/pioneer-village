@@ -1,6 +1,6 @@
-import { awaitUI, PVBase, PVGame } from '@lib/client';
+import { PVBase, PVGame, awaitUI } from '@lib/client';
+import { emitSocket } from '@lib/client/comms/ui';
 import { Vector3 } from '@lib/math';
-import { emitSocket, Log } from '@lib/client/comms/ui';
 
 class WorldController {
   protected static instance: WorldController;
@@ -40,15 +40,15 @@ class WorldController {
 
   async serverObjects(): Promise<void> {
     const serverObjects = await awaitUI('world.registered-objects');
-    // Log('serverObjects', serverObjects);
+    // console.log('serverObjects', serverObjects);
     for (const [name, id] of Object.entries(serverObjects)) {
-      // Log('NetworkDoesNetworkIdExist(id)', name, NetworkDoesNetworkIdExist(id));
+      // console.log('NetworkDoesNetworkIdExist(id)', name, NetworkDoesNetworkIdExist(id));
       if (NetworkDoesNetworkIdExist(id)) {
         this.activeObjects.set(name, NetworkGetEntityFromNetworkId(id));
         this.networkObjects.set(name, id);
-        // Log('Net World Object', name, id, NetworkGetEntityFromNetworkId(id));
+        // console.log('Net World Object', name, id, NetworkGetEntityFromNetworkId(id));
       } else {
-        // Log('Net World Object', name, id, 'does not exist');
+        // console.log('Net World Object', name, id, 'does not exist');
         // emitSocket('world.unregister-object', name);
         // TODO: Handle on server using : NetworkGetEntityFromNetworkId
       }
@@ -67,7 +67,7 @@ class WorldController {
             if (!this.activeObjects.has(objectName)) {
               if (this.objects.get(objectName)?.networked) {
                 if (await awaitUI('world.request-creation', objectName)) {
-                  Log('createObject', objectName);
+                  console.log('createObject', objectName);
                   this.createObject(objectName);
                 }
               } else {
@@ -107,11 +107,11 @@ class WorldController {
     };
     if (!this.cells.has(coordsCell.x)) {
       this.cells.set(coordsCell.x, new Map());
-      // Log('new Map', coordsCell.x);
+      // console.log('new Map', coordsCell.x);
     }
     if (!this.cells.get(coordsCell.x)?.has(coordsCell.y)) {
       this.cells.get(coordsCell.x)?.set(coordsCell.y, new Set());
-      // Log('new Set', coordsCell.y);
+      // console.log('new Set', coordsCell.y);
     }
 
     console.info(`Registering world object: ${name}`);
@@ -128,7 +128,7 @@ class WorldController {
         worldObject.rotation,
         worldObject.networked,
       );
-      Log('Created:', name, entityId);
+      console.log('Created:', name, entityId);
       this.activeObjects.set(name, entityId);
       if (worldObject.networked) {
         const netId = NetworkGetNetworkIdFromEntity(entityId);
@@ -142,7 +142,7 @@ class WorldController {
     const entityId = this.activeObjects.get(name);
     if (entityId) {
       await PVBase.deleteEntity(entityId);
-      Log('Destroyed:', name, entityId);
+      console.log('Destroyed:', name, entityId);
       this.activeObjects.delete(name);
       this.networkObjects.delete(name);
       emitSocket('world.unregister-object', name);

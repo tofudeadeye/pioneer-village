@@ -1,5 +1,3 @@
-import { Log } from '@lib/client/comms/ui';
-
 class SaloonController {
   protected static instance: SaloonController;
 
@@ -43,8 +41,8 @@ class SaloonController {
 
     totalDrinkingTime += timeDrinking;
     this.drinks.set(this.currentDrink, totalDrinkingTime);
-    Log('time drinking: ' + timeDrinking);
-    Log('total drinking: ', totalDrinkingTime);
+    console.log('time drinking: ' + timeDrinking);
+    console.log('total drinking: ', totalDrinkingTime);
 
     const drinkPercent = timeDrinking / 5250;
     emit('saloon::client::add-to-alcohol-content', drinkPercent * 0.2);

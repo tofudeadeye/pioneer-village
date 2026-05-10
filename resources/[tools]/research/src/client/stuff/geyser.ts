@@ -1,5 +1,4 @@
 import { PVGame, PVPrompt, PVTarget, PVWorld, addZone } from '@lib/client';
-import { Log } from '@lib/client/comms/ui';
 import { AnimFlag } from '@lib/flags';
 import { Delay } from '@lib/functions';
 import { Vector3 } from '@lib/math';
@@ -75,7 +74,7 @@ const flipTeslaLever = async () => {
     );
 
     crackpotSoundId = GetSoundId();
-    Log('crackpotSoundId', crackpotSoundId);
+    console.log('crackpotSoundId', crackpotSoundId);
     PrepareSoundset('RCKPT2_Sounds', false);
     PlaySoundFromPositionWithId(crackpotSoundId, 'DEVICE', 2515.84, 2285.24, 179.46, 'RCKPT2_Sounds', false, 0, false);
   }
@@ -114,11 +113,11 @@ const turnEngineOneValue = async () => {
     false,
   );
   if (!entity) {
-    Log('No entity found for engine two lever');
+    console.log('No entity found for engine two lever');
     return;
   }
 
-  Log(entity);
+  console.log(entity);
   PVPrompt.hide('engine_two_lever');
   SetPedDesiredHeading(PlayerPedId(), 157.81008911133);
   await Delay(1500);
@@ -182,11 +181,11 @@ const turnEngineTwoValue = async () => {
     false,
   );
   if (!entity) {
-    Log('No entity found for engine one valve');
+    console.log('No entity found for engine one valve');
     return;
   }
 
-  Log(entity);
+  console.log(entity);
 
   PVPrompt.hide('engine_one_valve');
   const dict = `amb_work@world_human_valve@med@male_${engineTwoActive ? 'a' : 'b'}@wip_base`;
@@ -270,7 +269,7 @@ addZone({
 RegisterCommand(
   'meteor_shower',
   async (source: number, args: any[], rawCommand: string) => {
-    // Log({ source, args, rawCommand });
+    // console.log({ source, args, rawCommand });
 
     await PVWorld.startFxAtCoords(
       'meteor_shower',
@@ -292,7 +291,7 @@ RegisterCommand(
 RegisterCommand(
   'crackpot',
   async (source: number, args: any[], rawCommand: string) => {
-    // Log({ source, args, rawCommand });
+    // console.log({ source, args, rawCommand });
     await PVWorld.startFxAtCoords(
       'ptfx_test',
       true,
@@ -304,7 +303,7 @@ RegisterCommand(
     );
 
     soundId = GetSoundId();
-    // Log({ source, args, rawCommand });
+    // console.log({ source, args, rawCommand });
     PrepareSoundset('RCKPT2_Sounds', false);
     // PlaySoundFromEntity('DEVICE', playerPed, 'RCKPT2_Sounds', true, 0, 0);
     PlaySoundFromPositionWithId(soundId, 'DEVICE', 2515.84, 2285.24, 179.46, 'RCKPT2_Sounds', false, 0, false);
@@ -352,7 +351,7 @@ RegisterCommand(
       { x: 0, y: 0, z: 0 },
       1.0,
     );
-    Log('id', id);
+    console.log('id', id);
 
     /*
     await PVWorld.startFxOnEntityBoneByName(
@@ -425,7 +424,7 @@ RegisterCommand(
     */
 
     // for (const loc of locs) {
-    //   Log('Spawning at', loc);
+    //   console.log('Spawning at', loc);
     //   await PVWorld.startFxAtCoords(
     //     'ptfx_test',
     //     false,
@@ -471,7 +470,7 @@ RegisterCommand(
 RegisterCommand(
   'ptfx_test_stop',
   async (source: number, args: any[], rawCommand: string) => {
-    // Log({ source, args, rawCommand });
+    // console.log({ source, args, rawCommand });
 
     PVWorld.stopFx('ptfx_test');
   },
@@ -482,7 +481,7 @@ RegisterCommand(
   'sound_test',
   async (source: number, args: any[], rawCommand: string) => {
     soundId = GetSoundId();
-    // Log({ source, args, rawCommand });
+    // console.log({ source, args, rawCommand });
     PrepareSoundset('RCKPT2_Sounds', false);
     // PlaySoundFromEntity('DEVICE', playerPed, 'RCKPT2_Sounds', true, 0, 0);
     const coords = PVGame.playerCoords(true);
@@ -523,7 +522,7 @@ let ptfxAllActive = false;
 RegisterCommand(
   'ptfx_test_all',
   async (source: number, args: any[], rawCommand: string) => {
-    // Log({ source, args, rawCommand });
+    // console.log({ source, args, rawCommand });
 
     if (ptfxAllActive) return;
     ptfxAllActive = true;
@@ -538,7 +537,7 @@ RegisterCommand(
     for (const [dict, fxs] of Object.entries(ptfx)) {
       if (!dict.startsWith('scr_winter1')) continue;
       for (const [fxName, fxData] of Object.entries(fxs)) {
-        Log(`Starting FX: ${dict} - ${fxName}`);
+        console.log(`Starting FX: ${dict} - ${fxName}`);
 
         if (fxData.looped) {
           await startLoopedFx(dict, fxName, coords);
@@ -550,10 +549,10 @@ RegisterCommand(
         if (fxData.evolutions) {
           for (const evolution of fxData.evolutions) {
             if (evolution === 'LOD') continue;
-            Log(` - Setting evolution: ${evolution} to 1.0`);
+            console.log(` - Setting evolution: ${evolution} to 1.0`);
             PVWorld.setFxEvolution('ptfx_looped_test', evolution, 1.0);
             await Delay(5_000);
-            Log(` - Setting evolution: ${evolution} to 0.0`);
+            console.log(` - Setting evolution: ${evolution} to 0.0`);
             PVWorld.setFxEvolution('ptfx_looped_test', evolution, 0.0);
             await Delay(1_000);
           }
@@ -564,7 +563,7 @@ RegisterCommand(
       }
     }
 
-    Log('Done');
+    console.log('Done');
     ptfxAllActive = false;
   },
   false,

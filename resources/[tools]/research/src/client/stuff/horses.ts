@@ -1,16 +1,15 @@
 import { PVGame, PVGameEvents } from '@lib/client';
-import { Log } from '@lib/client/comms/ui';
 import { Delay } from '@lib/functions';
 import { Vector3 } from '@lib/math';
 
 import { PELTS } from './pelts';
 
 PVGameEvents.register('EVENT_PICKUP_CARRIABLE', (data) => {
-  Log('EVENT_PICKUP_CARRIABLE', data);
+  console.log('EVENT_PICKUP_CARRIABLE', data);
 });
 
 PVGameEvents.register('EVENT_PLACE_CARRIABLE_ONTO_PARENT', (data) => {
-  Log('EVENT_PLACE_CARRIABLE_ONTO_PARENT', data);
+  console.log('EVENT_PLACE_CARRIABLE_ONTO_PARENT', data);
 
   const peltTexture = Citizen.invokeNative<number>('0x120376c23f019c6c', data.carriable, Citizen.pointerValueInt());
   let peltData;
@@ -20,20 +19,20 @@ PVGameEvents.register('EVENT_PLACE_CARRIABLE_ONTO_PARENT', (data) => {
     }
   }
 
-  Log('peltTexture', peltTexture, peltData);
+  console.log('peltTexture', peltTexture, peltData);
   // ExecuteCommand(`pelts ${data.parent}`);
 });
 
 PVGameEvents.register('EVENT_CARRIABLE_UPDATE_CARRY_STATE', (data) => {
-  Log('EVENT_CARRIABLE_UPDATE_CARRY_STATE', data);
+  console.log('EVENT_CARRIABLE_UPDATE_CARRY_STATE', data);
 });
 
 PVGameEvents.register('EVENT_LOOT', (data) => {
-  Log('EVENT_LOOT', data);
+  console.log('EVENT_LOOT', data);
 });
 
 PVGameEvents.register('EVENT_LOOT_COMPLETE', (data) => {
-  Log('EVENT_LOOT_COMPLETE', data);
+  console.log('EVENT_LOOT_COMPLETE', data);
 });
 
 const PROVISION = [
@@ -474,7 +473,7 @@ for (let handle = 0; handle < 15; handle++) {
 RegisterCommand(
   'pelts',
   async (source: number, args: any[], rawCommand: string) => {
-    // Log({ source, args, rawCommand });
+    // console.log({ source, args, rawCommand });
     const horse = Number(GetMountOwnedByPlayer(PlayerId())) || 0;
     if (!horse) return;
 
@@ -484,8 +483,8 @@ RegisterCommand(
     const lastPelts = horseState.lastPelts || [];
     const storedPelts = horseState.storedPelts || [];
 
-    Log(`Horse ${horse} last pelt count:`, lastPeltCount);
-    Log(`Horse ${horse} last pelts:`, lastPelts);
+    console.log(`Horse ${horse} last pelt count:`, lastPeltCount);
+    console.log(`Horse ${horse} last pelts:`, lastPelts);
 
     const pelts: [number, string][] = [];
     let n = 0;
@@ -493,7 +492,7 @@ RegisterCommand(
       const pelt = GetPeltFromHorse(horse, n);
       if (pelt === 0) break;
       let peltName = PROVISION_HASHES[pelt] || '';
-      Log(`Pelt ${n}:`, peltName || pelt);
+      console.log(`Pelt ${n}:`, peltName || pelt);
       pelts.push([pelt, peltName]);
       n++;
       if (n > 5) break;
@@ -513,8 +512,8 @@ RegisterCommand(
     horseState.set('lastPelts', pelts, true);
     horseState.set('lastPeltCount', pelts.length, true);
     horseState.set('storedPelts', storedPelts, true);
-    Log('Visible Pelts\n', pelts.join('\n '));
-    Log('Stored Pelts\n', storedPelts.join('\n '));
+    console.log('Visible Pelts\n', pelts.join('\n '));
+    console.log('Stored Pelts\n', storedPelts.join('\n '));
   },
   false,
 );
@@ -525,7 +524,7 @@ RegisterCommand(
     // Get PLAYER inventory, not horse
     const playerPed = PlayerPedId();
     const inventoryId = InventoryGetInventoryIdFromPed(playerPed);
-    Log('Inventory ID:', inventoryId); // Should be 1-5
+    console.log('Inventory ID:', inventoryId); // Should be 1-5
 
     // Create filter struct (18 fields × 8 bytes = 144 bytes)
     const filterStruct = new DataView(new ArrayBuffer(18 * 8));
@@ -542,8 +541,8 @@ RegisterCommand(
       Citizen.resultAsInteger(),
     );
 
-    Log('Collection Handle:', collectionHandle);
-    Log('Item Count:', itemCount);
+    console.log('Collection Handle:', collectionHandle);
+    console.log('Item Count:', itemCount);
     if (collectionHandle === -1) return;
 
     const pelts: number[] = [];
@@ -562,14 +561,14 @@ RegisterCommand(
       const isPelt = InventoryGetInventoryItemIsAnimalPelt(itemHash);
       if (isPelt) {
         pelts.push(itemHash);
-        Log(`Pelt found: ${itemHash} (0x${(itemHash >>> 0).toString(16).toUpperCase()})`);
+        console.log(`Pelt found: ${itemHash} (0x${(itemHash >>> 0).toString(16).toUpperCase()})`);
       }
     }
 
     // ALWAYS release collection
     InventoryReleaseItemCollection(collectionHandle);
 
-    Log('Total pelts:', pelts.length, pelts);
+    console.log('Total pelts:', pelts.length, pelts);
   },
   false,
 );
@@ -583,12 +582,12 @@ async function exploreInventoryTree(inventoryId: number, itemStruct: DataView, d
   const isPelt = InventoryGetInventoryItemIsAnimalPelt(itemHash);
   const peltMarker = isPelt ? ' ★ PELT!' : '';
 
-  Log(`${indent}Slot: ${slotName}, Hash: 0x${(itemHash >>> 0).toString(16)}${peltMarker}`);
+  console.log(`${indent}Slot: ${slotName}, Hash: 0x${(itemHash >>> 0).toString(16)}${peltMarker}`);
 
   const childCount = InventoryGetChildrenCount(inventoryId, itemStruct);
 
   if (childCount > 0) {
-    Log(`${indent}  Children: ${childCount}`);
+    console.log(`${indent}  Children: ${childCount}`);
 
     for (let c = 0; c < childCount; c++) {
       const childStruct = new DataView(new ArrayBuffer(14 * 8));
@@ -623,19 +622,19 @@ for (const name of HASH_NAMES) {
 RegisterCommand(
   'pelts3',
   async (source: number, args: any[], rawCommand: string) => {
-    // Log({ source, args, rawCommand });
+    // console.log({ source, args, rawCommand });
     const horse = Number(GetMountOwnedByPlayer(PlayerId())) || 0;
-    Log('Horse Entity:', horse);
+    console.log('Horse Entity:', horse);
     if (!horse) return;
 
     /**/
     const peltStruct = new DataView(new ArrayBuffer(48));
     GetCarriedPeltSkins(horse, peltStruct);
     for (let n = 0; n < 3; n++) {
-      Log(n * 16, peltStruct.getInt32(n * 16));
-      Log(n * 16 + 4, peltStruct.getInt32(n * 16 + 4));
-      Log(n * 16 + 8, peltStruct.getInt32(n * 16 + 8));
-      Log(n * 16 + 12, peltStruct.getInt32(n * 16 + 12));
+      console.log(n * 16, peltStruct.getInt32(n * 16));
+      console.log(n * 16 + 4, peltStruct.getInt32(n * 16 + 4));
+      console.log(n * 16 + 8, peltStruct.getInt32(n * 16 + 8));
+      console.log(n * 16 + 12, peltStruct.getInt32(n * 16 + 12));
     }
     /**/
 
@@ -645,17 +644,17 @@ RegisterCommand(
       const pelt = GetPeltFromHorse(horse, n);
       if (pelt === 0) break;
       let peltName = PROVISION_HASHES[pelt] || '';
-      Log(`Pelt ${n}:`, peltName || pelt);
+      console.log(`Pelt ${n}:`, peltName || pelt);
       pelts.push(pelt);
       n++;
       if (n > 5) break;
     }
-    Log('Pelts found:', pelts);
+    console.log('Pelts found:', pelts);
 
     // 1 | 5 |6
     // const inventoryId = 1;
     const inventoryId = InventoryGetInventoryIdFromPed(horse);
-    Log('Inventory ID:', inventoryId);
+    console.log('Inventory ID:', inventoryId);
     const struct = new DataView(new ArrayBuffer(18 * 8));
     for (let f = 0; f < 18; f++) {
       struct.setBigInt64(f * 8, BigInt(-1), true);
@@ -670,8 +669,8 @@ RegisterCommand(
       Citizen.returnResultAnyway(),
       Citizen.resultAsInteger(),
     );
-    Log('Collection Handle:', collectionHandle);
-    Log('Item Count:', itemCount);
+    console.log('Collection Handle:', collectionHandle);
+    console.log('Item Count:', itemCount);
     if (collectionHandle === -1) return;
 
     for (let i = 0; i < itemCount; i++) {
@@ -687,14 +686,14 @@ RegisterCommand(
       for (const int of ints) {
         const isPelt = InventoryGetInventoryItemIsAnimalPelt(int);
         if (isPelt) {
-          Log('Is Pelt:', isPelt);
-          Log('Is Pelt:', isPelt);
-          Log('Is Pelt:', isPelt);
-          Log('Is Pelt:', isPelt);
+          console.log('Is Pelt:', isPelt);
+          console.log('Is Pelt:', isPelt);
+          console.log('Is Pelt:', isPelt);
+          console.log('Is Pelt:', isPelt);
         }
       }
-      Log(`Item ${i}`, SLOT_IDS[slotId] || '');
-      Log(
+      console.log(`Item ${i}`, SLOT_IDS[slotId] || '');
+      console.log(
         ints
           .map((int, i) => (int === 0 ? false : `${i}: ${HASHES[int] || `${int} 0x${(int >>> 0).toString(16)}`}`))
           .filter(Boolean)
@@ -708,31 +707,31 @@ RegisterCommand(
           itemStruct.setInt32(9 * 8, GetHashKey('SLOTID_NONE'), true);
           InventoryGetItemFromCollectionIndex(collectionHandle, i, itemStruct);
 
-          Log(`\n=== ROOT ITEM ${i} ===`);
+          console.log(`\n=== ROOT ITEM ${i} ===`);
           await exploreInventoryTree(inventoryId, itemStruct, 0);
         }*/
         const childCOunt = InventoryGetChildrenCount(inventoryId, itemStruct);
-        Log(`Child count`, childCOunt);
+        console.log(`Child count`, childCOunt);
 
         for (let c = 0; c < childCOunt; c++) {
           const childStruct = new DataView(new ArrayBuffer(14 * 8));
           const gotChild = Boolean(InventoryGetInventoryItemChild(inventoryId, itemStruct, c, childStruct));
-          Log(`| Got child ${c}:`, gotChild);
+          console.log(`| Got child ${c}:`, gotChild);
 
           const childInts = [];
           for (let n = 0; n < 14; n++) {
             childInts.push(childStruct.getInt32(n * 8, true));
             childInts.push(childStruct.getInt32(n * 8 + 4, true));
           }
-          Log(`| Child Item ${c}`);
-          Log(
+          console.log(`| Child Item ${c}`);
+          console.log(
             '| ',
             childInts
               .map((int, i) => (int === 0 ? false : `${i}: ${HASHES[int] || `${int} 0x${(int >>> 0).toString(16)}`}`))
               .filter(Boolean)
               .join('\n| '),
           );
-          Log('|________________________');
+          console.log('|________________________');
         }
       } catch (e) {}
 
@@ -744,10 +743,10 @@ RegisterCommand(
         for (let n = 0; n < 29; n++) {
           ints2.push(itemStruct2.getUint8(n));
         }
-        Log(`Item2 ${i}`);
-        Log(ints2);
+        console.log(`Item2 ${i}`);
+        console.log(ints2);
       } catch (e) {}
-      Log('----------------');
+      console.log('----------------');
     }
 
     InventoryReleaseItemCollection(collectionHandle);
@@ -758,7 +757,7 @@ RegisterCommand(
 RegisterCommand(
   'create_pelt',
   async (source: number, args: any[], rawCommand: string) => {
-    // Log({ source, args, rawCommand });
+    // console.log({ source, args, rawCommand });
 
     // PROVISION_FOX_FUR_POOR
     // P_CS_PELT_MEDLARGE
@@ -773,7 +772,7 @@ RegisterCommand(
     // P_CS_PELT_XLARGE_BUFFALO
     const peltModel = 'P_CS_PELT_MEDLARGE';
     const peltDetails = 'PROVISION_FOX_FUR_POOR'; //PROVISION[Math.floor(Math.random() * PROVISION.length)];
-    Log('Pelt details:', peltDetails);
+    console.log('Pelt details:', peltDetails);
 
     const coords = PVGame.playerCoords();
     coords.x += 2;
@@ -786,7 +785,7 @@ RegisterCommand(
     SetEntityCarcassType(object, peltDetails);
     TaskPickupCarriableEntity(PlayerPedId(), object);
 
-    Log('Pelt', object);
+    console.log('Pelt', object);
   },
   false,
 );
@@ -794,7 +793,7 @@ RegisterCommand(
 RegisterCommand(
   'inv',
   async (source: number, args: any[], rawCommand: string) => {
-    // Log({ source, args, rawCommand });
+    // console.log({ source, args, rawCommand });
 
     const invId = InventoryGetInventoryIdFromPed(Number(args[0])) >>> 0;
     console.log('invId', invId);
@@ -808,8 +807,8 @@ RegisterCommand(
       ints.push(struct.getUint8(n));
       ints2.push(struct2.getUint8(n));
     }
-    Log('struct', ints);
-    Log('struct2', ints2);
+    console.log('struct', ints);
+    console.log('struct2', ints2);
   },
   false,
 );
@@ -835,7 +834,7 @@ RegisterCommand(
     const peltModel = 'P_CS_PELT_MEDLARGE';
     const peltDetails = 'PROVISION_FOX_FUR_POOR';
 
-    Log('Pelt details:', peltDetails);
+    console.log('Pelt details:', peltDetails);
 
     const coords = PVGame.playerCoords();
     coords.x += 2;
@@ -879,7 +878,7 @@ RegisterCommand(
         const txdNormalMap = txdNormalMapDV.getInt32(0, true); // pelt_large_panther_000_c0_000_nm
         const txdMaterial = txdMaterialDV.getInt32(0, true); // pelt_large_panther_000_c0_000_m
 
-        Log('TXD hashes:', txdAlbedo, txdNormalMap, txdMaterial);
+        console.log('TXD hashes:', txdAlbedo, txdNormalMap, txdMaterial);
 
         // if (txdAlbedo) RequestStreamedTxd(txdAlbedo, false);
         // if (txdNormalMap) RequestStreamedTxd(txdNormalMap, false);
@@ -897,16 +896,16 @@ RegisterCommand(
           0,
         );
 
-        Log('Applied texture from rig:', txdAlbedoAnimal);
+        console.log('Applied texture from rig:', txdAlbedoAnimal);
       } else {
-        Log('Failed to get TXD from rig:', txdAlbedoAnimal);
+        console.log('Failed to get TXD from rig:', txdAlbedoAnimal);
       }
     }
 
     // Pick up the pelt
     TaskPickupCarriableEntity(PlayerPedId(), object);
 
-    Log('Pelt created:', object);
+    console.log('Pelt created:', object);
   },
   false,
 );
@@ -933,14 +932,14 @@ guids[0] 1 -283697558 66160022 -212120206 257455351
 RegisterCommand(
   'applyMetaPedOutfit',
   async (source: number, args: any[], rawCommand: string) => {
-    // Log({ source, args, rawCommand });
+    // console.log({ source, args, rawCommand });
     const entity = Number(args[0]);
     const outfitHash = Number(args[1]) == args[1] ? Number(args[1]) : GetHashKey(args[1]);
     const model = GetEntityModel(entity);
 
-    Log('Entity:', entity);
-    Log('Outfit Hash:', outfitHash);
-    Log('Model Hash:', model);
+    console.log('Entity:', entity);
+    console.log('Outfit Hash:', outfitHash);
+    console.log('Model Hash:', model);
 
     if (!DoesMetaPedOutfitExistForPedModel(outfitHash, model)) return;
 
@@ -961,7 +960,7 @@ RegisterCommand(
       }
     });
 
-    Log('requestId', requestId);
+    console.log('requestId', requestId);
 
     ApplyPedMetaPedOutfit(requestId, entity, true, false);
     ReleaseMetaPedOutfitRequest(requestId);
@@ -972,7 +971,7 @@ RegisterCommand(
 RegisterCommand(
   'setSkinned',
   async (source: number, args: any[], rawCommand: string) => {
-    // Log({ source, args, rawCommand });
+    // console.log({ source, args, rawCommand });
     const entity = Number(args[0]);
     const model = GetEntityModel(entity);
 
@@ -988,7 +987,7 @@ RegisterCommand(
 
     for (const [fieldDressing, skipCheck] of fieldDressings) {
       if (skipCheck || DoesMetaPedSuboutfitExistForPedModel(outfit, fieldDressing, model)) {
-        Log(`Equipping suboutfit ${fieldDressing}`);
+        console.log(`Equipping suboutfit ${fieldDressing}`);
         EquipMetaPedSuboutfit(entity, fieldDressing, 0);
         UpdatePedVariation(entity, false, true, true, true, false);
         break;
@@ -1008,14 +1007,14 @@ RegisterCommand(
 RegisterCommand(
   'outfitsTest',
   async (source: number, args: any[], rawCommand: string) => {
-    // Log({ source, args, rawCommand });
+    // console.log({ source, args, rawCommand });
 
     const entity = Number(args[0]);
     const model = GetEntityModel(entity);
 
     const outfitCount = GetNumMetaPedOutfits(entity);
 
-    Log(`Entity ${entity} has ${outfitCount} meta outfits:`);
+    console.log(`Entity ${entity} has ${outfitCount} meta outfits:`);
     for (let i = 0; i < outfitCount; i++) {
       const outfitHash = Citizen.invokeNative<number>('0x62FDF4E678E40CC6', entity, i);
       const hasFieldDressing = DoesMetaPedSuboutfitExistForPedModel(
@@ -1024,7 +1023,7 @@ RegisterCommand(
         model,
       );
       if (!outfitHash) continue;
-      Log(
+      console.log(
         `Outfit ${i}:`,
         outfitHash,
         // outfitHash ? DoesMetaPedOutfitExistForPedModel(outfitHash, model) : '',
@@ -1036,7 +1035,7 @@ RegisterCommand(
 
       await Delay(2_500);
     }
-    Log('Done testing outfits');
+    console.log('Done testing outfits');
   },
   false,
 );
@@ -1050,7 +1049,7 @@ RegisterCommand(
 RegisterCommand(
   'attached_info',
   async (source: number, args: any[], rawCommand: string) => {
-    // Log({ source, args, rawCommand });
+    // console.log({ source, args, rawCommand });
     const ped = Number(args[0]);
 
     for (let n = 0; n < 10; n++) {
@@ -1058,16 +1057,16 @@ RegisterCommand(
       const result = GetCarriedAttachedInfoForSlot(data, ped, n, 0);
 
       if (result) {
-        Log('--- Slot', n, '---');
+        console.log('--- Slot', n, '---');
         const model = data.getInt32(0, true);
         const carryConfig = data.getInt32(8, true);
         const carriableSlot = data.getInt32(16, true);
         const entityCarried = data.getInt32(24, true);
 
-        Log('Model:', model);
-        Log('Carry Config:', carryConfig);
-        Log('Carriable Slot:', carriableSlot);
-        Log('Entity Carried:', entityCarried);
+        console.log('Model:', model);
+        console.log('Carry Config:', carryConfig);
+        console.log('Carriable Slot:', carriableSlot);
+        console.log('Entity Carried:', entityCarried);
       }
     }
   },
@@ -1077,7 +1076,7 @@ RegisterCommand(
 RegisterCommand(
   'test_pos',
   async (source: number, args: any[], rawCommand: string) => {
-    // Log({ source, args, rawCommand });
+    // console.log({ source, args, rawCommand });
     const player = PlayerPedId();
     const horse = 259074;
 
@@ -1090,7 +1089,7 @@ RegisterCommand(
     const left = Vector3.fromArray(GetOffsetFromEntityInWorldCoords(horse, -0.65, -0.5, 0));
     const right = Vector3.fromArray(GetOffsetFromEntityInWorldCoords(horse, 0.65, -0.5, 0));
 
-    // Log(offset);
+    // console.log(offset);
 
     const leftDistance = playerPosition.getDistance(left);
     const rightDistance = playerPosition.getDistance(right);

@@ -1,6 +1,6 @@
 import { PVGame, awaitServer, emitUI, onResourceInit } from '@lib/client';
 import { DrawTxt, TxtAtWorldCoord } from '@lib/client';
-import { Log, emitSocket } from '@lib/client/comms/ui';
+import { emitSocket } from '@lib/client/comms/ui';
 import { Vector3 } from '@lib/math';
 
 import './exports';
@@ -32,10 +32,10 @@ const boneNames: string[] = [
   'SKEL_R_FOOT',
 ];
 
-// Log('getWarmthTarget(-10)', healthManager.getWarmthTarget(-10));
-// Log('getWarmthTarget(0)', healthManager.getWarmthTarget(0));
-// Log('getWarmthTarget(15)', healthManager.getWarmthTarget(15));
-// Log('getWarmthTarget(38)', healthManager.getWarmthTarget(38));
+// console.log('getWarmthTarget(-10)', healthManager.getWarmthTarget(-10));
+// console.log('getWarmthTarget(0)', healthManager.getWarmthTarget(0));
+// console.log('getWarmthTarget(15)', healthManager.getWarmthTarget(15));
+// console.log('getWarmthTarget(38)', healthManager.getWarmthTarget(38));
 
 const handleCharacterSelected = async (charId: number) => {
   healthManager.checkUpdatePed();
@@ -47,7 +47,7 @@ const handleCharacterSelected = async (charId: number) => {
   emitUI('hud.state', { food, drink });
 
   const healthMetadata = await awaitServer('health.getHealthMetadata', charId);
-  // Log('healthMetadata', healthMetadata);
+  // console.log('healthMetadata', healthMetadata);
   healthManager.health = healthMetadata.health;
   healthManager.stamina = healthMetadata.stamina;
   healthManager.litersOfBlood = healthMetadata.litersOfBlood;
@@ -185,8 +185,8 @@ const initHealth = async () => {
   if (interval) {
     clearInterval(interval);
   }
-  // Log('[HEALTH] onResourceInit(game)');
-  Log('[HEALTH] Character Selected');
+  // console.log('[HEALTH] onResourceInit(game)');
+  console.log('[HEALTH] Character Selected');
   await healthManager.init();
 
   SetAiMeleeWeaponDamageModifier(0.001);
@@ -223,7 +223,7 @@ onNet('game:character-selected', initHealth);
  */
 // setInterval(() => {
 //   const activePlayers = GetActivePlayers();
-//   Log(activePlayers);
+//   console.log(activePlayers);
 //
 //   for (const player of activePlayers) {
 //     const playerPed = GetPlayerPedScriptIndex(player);

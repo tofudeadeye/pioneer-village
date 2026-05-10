@@ -1,5 +1,4 @@
 import { PVTarget, onResourceInit } from '@lib/client';
-import { Log } from '@lib/client/comms/ui';
 
 const registerTargets = async () => {
   PVTarget.AddTarget({

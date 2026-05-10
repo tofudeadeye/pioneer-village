@@ -1,6 +1,5 @@
 import { PVGame, PVGameEvents, PVZone } from '@lib/client';
 import { awaitUI } from '@lib/client';
-import { Log } from '@lib/client/comms/ui';
 import { PedConfigFlag } from '@lib/flags';
 import { Delay } from '@lib/functions';
 import { Vector3 } from '@lib/math';
@@ -11,18 +10,18 @@ import peltController from './controllers/pelt-controller';
 import stableController from './controllers/stable-controller';
 
 on('stable:client:lead', (pEntity: number, pArgs: Record<string, any>) => {
-  Log('stable:client:lead', pEntity, pArgs);
+  console.log('stable:client:lead', pEntity, pArgs);
   ClearPedTasks(pEntity, false, false);
   TaskLeadHorse(PVGame.playerPed(), pEntity);
 });
 
 on('stable:client:remove-pelt', (pEntity: number, pArgs: Record<string, any>) => {
-  Log('stable:client:remove-pelt', pEntity, pArgs);
+  console.log('stable:client:remove-pelt', pEntity, pArgs);
   peltController.removePelt(pEntity);
 });
 
 on('stable:client:stable-horse', (pEntity: number, pArgs: Record<string, any>) => {
-  Log('stable:client:stable-horse', pEntity, pArgs);
+  console.log('stable:client:stable-horse', pEntity, pArgs);
   const horseId = Entity(pEntity).state.horseId;
   if (!horseId) {
     return;
@@ -42,25 +41,25 @@ on('stable:client:stable-horse', (pEntity: number, pArgs: Record<string, any>) =
 });
 
 on('stable:client:unstable-horse', async (pEntity: number, pArgs: Record<string, any>) => {
-  Log('stable:client:unstable-horse', pEntity, pArgs);
+  console.log('stable:client:unstable-horse', pEntity, pArgs);
   const horseId = DecorGetInt(pEntity, 'horseId');
   if (!horseId) {
     return;
   }
   const currentStable = stableController.currentStableData();
   const stallIndex = stableController.getHorseStall(pEntity) ?? -1;
-  Log(`Current stable for horse ${horseId}:`, currentStable, stallIndex);
+  console.log(`Current stable for horse ${horseId}:`, currentStable, stallIndex);
   stableController.unstableHorse(horseId, pEntity);
 
   const interiorBounds = currentStable?.zones?.interior || [];
   if (interiorBounds.length) {
-    Log('Moving horse to random point in stable interior');
+    console.log('Moving horse to random point in stable interior');
 
-    Log('Stall Doors:', currentStable?.stallDoors);
+    console.log('Stall Doors:', currentStable?.stallDoors);
     const stallDoor = currentStable?.stallDoors?.[stallIndex];
-    Log(`Stall door for stall index ${stallIndex}: ${stallDoor}`);
+    console.log(`Stall door for stall index ${stallIndex}: ${stallDoor}`);
     if (currentStable?.stallDoors) {
-      Log(currentStable?.stallDoors[stallIndex]);
+      console.log(currentStable?.stallDoors[stallIndex]);
     }
     if (stallDoor) {
       DoorSystemSetOpenRatio(stallDoor, 0.5, false);
@@ -92,13 +91,13 @@ on('stable:client:unstable-horse', async (pEntity: number, pArgs: Record<string,
 });
 
 on('stable:client:birth_foal', async (pEntity: number, pArgs: Record<string, any>) => {
-  Log('stable:client:birth_foal', pEntity, pArgs);
+  console.log('stable:client:birth_foal', pEntity, pArgs);
   const horseId = DecorGetInt(pEntity, 'horseId');
   if (!horseId) {
     return;
   }
   const canBirth = await awaitUI('stable.can-birth-foal', horseId);
-  Log('Can birth:', canBirth);
+  console.log('Can birth:', canBirth);
   if (!canBirth) {
     return;
   }
@@ -106,10 +105,10 @@ on('stable:client:birth_foal', async (pEntity: number, pArgs: Record<string, any
 });
 
 on('stable:client:detach', async (pEntity: number, pArgs: Record<string, any>) => {
-  Log('stable:client:detach', pEntity, pArgs);
+  console.log('stable:client:detach', pEntity, pArgs);
 
   const wagon = GetVehicleDraftHorseIsAttachedTo(pEntity);
-  Log(`Wagon: ${wagon}`);
+  console.log(`Wagon: ${wagon}`);
   if (!wagon) {
     return;
   }
@@ -119,11 +118,11 @@ on('stable:client:detach', async (pEntity: number, pArgs: Record<string, any>) =
   const wagonModel = GetEntityModel(wagon);
 
   const harnesses = GetNumDraftVehicleHarnessPed(wagonModel);
-  Log(`Harnesses: ${harnesses}`);
+  console.log(`Harnesses: ${harnesses}`);
 
   for (let i = 0; i < harnesses; i++) {
     const horse = GetPedInDraftHarness(wagon, i);
-    Log(`Horse in harness ${i}: ${horse}`, horse === pEntity);
+    console.log(`Horse in harness ${i}: ${horse}`, horse === pEntity);
     if (horse === pEntity) {
       // PVGame.getNetworkControlOfNetworkId();
       DetachDraftVehicleHarnessFromIndex(wagon, i);
@@ -135,11 +134,11 @@ on('stable:client:detach', async (pEntity: number, pArgs: Record<string, any>) =
 });
 
 on('stable:client:attach', async (pEntity: number, pArgs: Record<string, any>) => {
-  Log('stable:client:attach', pEntity, pArgs);
+  console.log('stable:client:attach', pEntity, pArgs);
 
   // const wagon = GetLastVehicleDraftHorseWasAttachedTo(pEntity);
   const wagon = NetworkGetEntityFromNetworkId(171);
-  Log(`Wagon: ${wagon}`);
+  console.log(`Wagon: ${wagon}`);
   if (!wagon) {
     return;
   }
@@ -154,32 +153,32 @@ on('stable:client:attach', async (pEntity: number, pArgs: Record<string, any>) =
   const wagonModel = GetEntityModel(wagon);
 
   const harnesses = GetNumDraftVehicleHarnessPed(wagonModel);
-  Log(`Harnesses: ${harnesses}`);
+  console.log(`Harnesses: ${harnesses}`);
 
   for (let i = 0; i < harnesses; i++) {
     const horse = GetPedInDraftHarness(wagon, i);
-    Log(`Horse in harness ${i}: ${horse}`, horse === pEntity);
+    console.log(`Horse in harness ${i}: ${horse}`, horse === pEntity);
     if (horse === 0) {
       const horseNetId = NetworkGetNetworkIdFromEntity(pEntity);
       const wagonNetId = NetworkGetNetworkIdFromEntity(wagon);
-      Log(`Requesting network control of horse ${pEntity} (${horseNetId}) and wagon ${wagon} (${wagonNetId})`);
+      console.log(`Requesting network control of horse ${pEntity} (${horseNetId}) and wagon ${wagon} (${wagonNetId})`);
       await PVGame.getNetworkControlOfEntity(horseNetId);
       await PVGame.getNetworkControlOfEntity(wagonNetId);
-      Log(`Got network control of horse ${pEntity} and wagon ${wagon}`);
+      console.log(`Got network control of horse ${pEntity} and wagon ${wagon}`);
       SetPedConfigFlag(pEntity, PedConfigFlag.CanActivateRagdollWhenVehicleUpsideDown, false);
       SetPedConfigFlag(pEntity, PedConfigFlag.CantWitnessCrimes, true);
       SetPedConfigFlag(pEntity, PedConfigFlag.DisableEvasiveStep, true);
       SetPedConfigFlag(pEntity, 304, false);
       Citizen.invokeNative('0xE31A04513237DC89', pEntity);
       AttachDraftVehicleHarnessPed(pEntity, wagon, i);
-      Log(`AttachDraftVehicleHarnessPed(${pEntity}, ${wagon}, ${i});`);
+      console.log(`AttachDraftVehicleHarnessPed(${pEntity}, ${wagon}, ${i});`);
       break;
     }
   }
 });
 
 PVGameEvents.register('EVENT_PED_WHISTLE', (data) => {
-  Log('EVENT_PED_WHISTLE', data);
+  console.log('EVENT_PED_WHISTLE', data);
   const playerPed = PlayerPedId();
 
   if (data._0 !== playerPed) {

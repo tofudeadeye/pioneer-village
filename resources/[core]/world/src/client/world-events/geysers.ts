@@ -1,5 +1,5 @@
 import { PVGame, PVWorld, addZone } from '@lib/client';
-import { Log, onSocket } from '@lib/client/comms/ui';
+import { onSocket } from '@lib/client/comms/ui';
 import { Delay } from '@lib/functions';
 import { Vector3, lerp } from '@lib/math';
 
@@ -49,7 +49,7 @@ const getShakeIntensity = (distance: number): number => {
 onSocket('world.geyser-show', async (steps: World.GeyserShowSteps) => {
   if (geysersActive) return;
   geysersActive = true;
-  Log('[Geysers]', 'Playing geyser show sequence');
+  console.log('[Geysers]', 'Playing geyser show sequence');
 
   for (const step of steps) {
     switch (step._type) {
@@ -68,7 +68,7 @@ onSocket('world.geyser-show', async (steps: World.GeyserShowSteps) => {
           // Camera shake when erupting
           if (step.evolutions.erupt && step.evolutions.erupt > 0) {
             const shakeIntensity = getShakeIntensity(distanceFromGeyser(step.id));
-            Log('[Geysers]', `Eruption camera shake intensity: ${shakeIntensity.toFixed(3)}`);
+            console.log('[Geysers]', `Eruption camera shake intensity: ${shakeIntensity.toFixed(3)}`);
             if (shakeIntensity > 0) {
               ShakeGameplayCam(CameraShakeName, shakeIntensity);
 
@@ -77,7 +77,7 @@ onSocket('world.geyser-show', async (steps: World.GeyserShowSteps) => {
               SetPedWetnessHeight(playerPed, 1.0);
               // @ts-ignore GetPedWetness not defined currently
               const wetness = Math.max(GetPedWetness(playerPed), lerp(0, 1, shakeIntensity / 0.25));
-              Log('[Geysers]', `Setting player wetness to: ${wetness.toFixed(3)}`);
+              console.log('[Geysers]', `Setting player wetness to: ${wetness.toFixed(3)}`);
               SetPedWetness(playerPed, wetness);
 
               if (shakeIntensity > 0.2) {
@@ -127,7 +127,7 @@ onSocket('world.geyser-show', async (steps: World.GeyserShowSteps) => {
   }
 
   geysersActive = false;
-  Log('[Geysers]', 'Geyser show complete');
+  console.log('[Geysers]', 'Geyser show complete');
 });
 
 // </editor-fold>
@@ -196,11 +196,11 @@ for (const geyser of Geysers) {
     radius: 1.25,
     name: `zone_${geyser.name}`,
     onEnter: () => {
-      // Log('Entered geyser zone 1');
+      // console.log('Entered geyser zone 1');
       geyserEject('geyser', geyser.coords, 32);
     },
     // onExit: () => {
-    //   Log('Exited geyser zone 1');
+    //   console.log('Exited geyser zone 1');
     // },
   });
 }

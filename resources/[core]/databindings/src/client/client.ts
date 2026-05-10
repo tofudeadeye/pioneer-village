@@ -1,7 +1,7 @@
-import './exports';
 import { PVGame } from '@lib/client';
-import { Log } from '@lib/client/comms/ui';
 import { Delay } from '@lib/functions';
+
+import './exports';
 import DataManager from './managers/data-manager';
 
 /*
@@ -404,7 +404,11 @@ RegisterCommand(
       };
 
       for (const [key, value] of Object.entries(datas)) {
-        Log(`data[${key}]`, value, Object.keys(UIScriptEventType)[Object.values(UIScriptEventType).indexOf(value)]);
+        console.log(
+          `data[${key}]`,
+          value,
+          Object.keys(UIScriptEventType)[Object.values(UIScriptEventType).indexOf(value)],
+        );
       }
     }
   },

@@ -1,5 +1,4 @@
 import { PVCustomization, PVGame, emitUI, onUI } from '@lib/client';
-import { Log } from '@lib/client/comms/ui';
 import { Delay } from '@lib/functions';
 import InventoryTypes from '@lib/shared/inventory-types';
 import PVItems from '@lib/shared/items';
@@ -11,7 +10,7 @@ import './targets';
 import './weapons';
 
 onUI('inventory.use-item', (itemData: UI.Inventory.ItemData) => {
-  // Log(itemData);
+  // console.log(itemData);
   const item = PVItems[itemData.identifier];
   if (!item) {
     console.warn(`Item doesn't exist ${itemData.identifier}`);
@@ -22,7 +21,7 @@ onUI('inventory.use-item', (itemData: UI.Inventory.ItemData) => {
     return;
   }
 
-  Log('Emitting event', item.useEvent);
+  console.log('Emitting event', item.useEvent);
   emit(item.useEvent, item, itemData);
 });
 
@@ -94,7 +93,7 @@ const processItemData = (items: Record<string, UI.Inventory.ItemData>) => {
     const item = PVItems[slot.identifier];
 
     if (!item) {
-      Log(GetHashKey('PV_DOOR_KEY'), GetHashKey('PV_DOOR_KEY') >>> 0, slot.identifier);
+      console.log(GetHashKey('PV_DOOR_KEY'), GetHashKey('PV_DOOR_KEY') >>> 0, slot.identifier);
       continue;
     }
 
@@ -113,8 +112,8 @@ const processItemData = (items: Record<string, UI.Inventory.ItemData>) => {
 onUI('inventory.main-inventory', (data, clothingData) => {
   const playerPed = PVGame.playerPed();
 
-  // Log('inventory.main-inventory', data);
-  // Log('inventory.main-inventory clothing', clothingData);
+  // console.log('inventory.main-inventory', data);
+  // console.log('inventory.main-inventory clothing', clothingData);
   RemoveAllPedWeapons(playerPed, true, true);
 
   processItemData(data.items);
@@ -124,10 +123,10 @@ onUI('inventory.main-inventory', (data, clothingData) => {
 });
 
 onUI('inventory.clothing-change', async (equippedItems) => {
-  // Log('inventory.clothing-change', equippedItems);
+  // console.log('inventory.clothing-change', equippedItems);
   const playerPed = PVGame.playerPed();
 
-  Log('clothing-change', JSON.stringify(equippedItems, null, 2));
+  console.log('clothing-change', JSON.stringify(equippedItems, null, 2));
 
   PVCustomization.equipItems(playerPed, equippedItems);
 });
@@ -151,7 +150,7 @@ console.log('hatItemId', Entity(7238405).state.hatItemId);
 RegisterCommand(
   'testVest',
   async (source: number, args: any[], rawCommand: string) => {
-    // Log({ source, args, rawCommand });
+    // console.log({ source, args, rawCommand });
 
     const ped = PlayerPedId();
     ApplyShopItemToPed(ped, GetHashKey('CLOTHING_ITEM_M_VEST_000_TINT_001'), false, true, false);

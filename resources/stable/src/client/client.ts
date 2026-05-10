@@ -1,5 +1,5 @@
 import { PVCustomization, PVDoors, PVGame, TxtAtWorldCoord, awaitUI } from '@lib/client';
-import { Log, emitSocket } from '@lib/client/comms/ui';
+import { emitSocket } from '@lib/client/comms/ui';
 import { Delay } from '@lib/functions';
 import { lerp } from '@lib/math';
 
@@ -44,7 +44,7 @@ async function spawnChildHorse(child: DNA, model: string | number) {
   await PVGame.pedIsReadyToRender(horsePed);
 
   SetPedScale(horsePed, child.getGene<number>('Scale')?.value || 1.0);
-  // Log('Scale', child.getGene<number>('Scale')?.value || 1.0);
+  // console.log('Scale', child.getGene<number>('Scale')?.value || 1.0);
 
   for (const part of ['head', 'hand']) {
     PVCustomization.setTintByHorsePart(
@@ -57,7 +57,7 @@ async function spawnChildHorse(child: DNA, model: string | number) {
       Math.floor(child.getGene<number>('BodyTint2')?.value || 0),
     );
 
-    // Log(
+    // console.log(
     //   `Set ${part} tint to`,
     //   Math.floor(child.getGene<number>('BodyTint0')?.value || 0),
     //   Math.floor(child.getGene<number>('BodyTint1')?.value || 0),
@@ -75,7 +75,7 @@ async function spawnChildHorse(child: DNA, model: string | number) {
       Math.floor(child.getGene<number>('HairTint1')?.value || 0),
       Math.floor(child.getGene<number>('HairTint2')?.value || 0),
     );
-    // Log(
+    // console.log(
     //   `Set ${part} tint to`,
     //   Math.floor(child.getGene<number>('HairTint0')?.value || 0),
     //   Math.floor(child.getGene<number>('HairTint1')?.value || 0),
@@ -93,11 +93,11 @@ async function spawnChildHorse(child: DNA, model: string | number) {
 RegisterCommand(
   'breedHorses',
   async (source: number, args: any[], rawCommand: string) => {
-    // Log({ source, args, rawCommand });
+    // console.log({ source, args, rawCommand });
     const horses = await awaitUI('stable.breed-horses', Number(args[0]), Number(args[1]));
 
     // if (args.length < 2 || args[0] === args[1]) {
-    //   Log('Usage: /breedHorses [horseId1] [horseId2]');
+    //   console.log('Usage: /breedHorses [horseId1] [horseId2]');
     //   return;
     // }
     //
@@ -111,7 +111,7 @@ RegisterCommand(
     //   return;
     // }
     //
-    // Log('awaitUI', horseId1, horseId2);
+    // console.log('awaitUI', horseId1, horseId2);
     // const horses = await awaitUI('stable.breed-horses', horseId1, horseId2);
     //
     // if (!horses) {
@@ -122,21 +122,21 @@ RegisterCommand(
 
     //
 
-    // Log('Breeding horses', horse1.name, '<->', horse2.name);
-    // Log(horse1.dna);
+    // console.log('Breeding horses', horse1.name, '<->', horse2.name);
+    // console.log(horse1.dna);
     //
     // const child = DNA.crossover(horse1.dna, horse2.dna, {
     //   inheritanceMode: 'random',
     // });
     //
-    // Log('Child:', child.toString());
+    // console.log('Child:', child.toString());
     //
     // child.metadata.generation = horse1.dna.metadata.generation + 1;
-    // // Log('Child Metadata:', child.metadata);
+    // // console.log('Child Metadata:', child.metadata);
     //
     // const horsePed = await spawnChildHorse(child, Math.random() < 0.5 ? horse1.model : horse2.model);
     //
-    // Log('horsePed', horsePed);
+    // console.log('horsePed', horsePed);
   },
   false,
 );
@@ -144,7 +144,7 @@ RegisterCommand(
 RegisterCommand(
   'debugStalls',
   async (source: number, args: any[], rawCommand: string) => {
-    // Log({ source, args, rawCommand });
+    // console.log({ source, args, rawCommand });
 
     const start = Date.now();
     while (true) {
@@ -153,7 +153,7 @@ RegisterCommand(
       const stableData = stableController.currentStableData();
 
       if (!stableData) {
-        Log('No stable data');
+        console.log('No stable data');
         break;
       }
 
@@ -174,7 +174,7 @@ RegisterCommand(
       }
 
       if (Date.now() - start > 2_000) {
-        Log('Stall Doors', `${doors.length}/${stableData.stalls.length}`, `stallDoors: [${doors.join(',')}]`);
+        console.log('Stall Doors', `${doors.length}/${stableData.stalls.length}`, `stallDoors: [${doors.join(',')}]`);
         break;
       }
     }

@@ -1,4 +1,3 @@
-import { Log } from '@lib/client/comms/ui';
 import { Delay } from '@lib/functions';
 import { Vector3 } from '@lib/math/vector3';
 
@@ -19,10 +18,10 @@ class CameraManager {
   activeCamFov?: number;
 
   constructor() {
-    Log('CameraManager constructor');
+    console.log('CameraManager constructor');
     on('onResourceStop', (resourceName: string) => {
       if (resourceName === GetCurrentResourceName()) {
-        Log('CameraManager onResourceStop', resourceName);
+        console.log('CameraManager onResourceStop', resourceName);
         this.destruct();
       }
     });
@@ -30,7 +29,7 @@ class CameraManager {
 
   destruct(): void {
     for (const [id, cam] of this.cameras.entries()) {
-      Log(`Destroying camera ${id} (${cam})`);
+      console.log(`Destroying camera ${id} (${cam})`);
       DestroyCam(cam, false);
       this.cameras.delete(id);
     }
@@ -39,7 +38,7 @@ class CameraManager {
   create(data: Camera.Data): number {
     const existingCamera = this.cameras.get(data.id);
     if (existingCamera) {
-      Log(`Camera ${data.id} already exists`);
+      console.log(`Camera ${data.id} already exists`);
       return existingCamera;
     }
 
@@ -51,11 +50,11 @@ class CameraManager {
       data._type = GetHashKey(data._type);
     }
     const camera = CreateCamera(data._type, false);
-    Log(`CreateCamera(${data._type}, false) | ${camera}`);
+    console.log(`CreateCamera(${data._type}, false) | ${camera}`);
     SetCamCoord(camera, data.coords.x, data.coords.y, data.coords.z);
     SetCamRot(camera, data.rot.x, data.rot.y, data.rot.z, 2);
     SetCamFov(camera, data.fov);
-    Log(data.id, camera);
+    console.log(data.id, camera);
     this.cameras.set(data.id, camera);
     return camera;
   }
@@ -110,7 +109,7 @@ class CameraManager {
     if (!this.has(id)) {
       return;
     }
-    Log(`DestroyCam(${this.get(id)}, false);`);
+    console.log(`DestroyCam(${this.get(id)}, false);`);
     DestroyCam(this.get(id), false);
     this.cameras.delete(id);
   }
@@ -120,7 +119,7 @@ class CameraManager {
       return;
     }
     const cam = this.get(id);
-    Log(`SetCamActive(${cam}, true);`);
+    console.log(`SetCamActive(${cam}, true);`);
     SetCamActive(cam, true);
     RenderScriptCams(true, easeTime > 0, easeTime, true, false, 0);
     this.activeCam = cam;
@@ -134,7 +133,7 @@ class CameraManager {
       return;
     }
     const cam = this.get(id);
-    Log(`SetCamActive(${cam}, false);`);
+    console.log(`SetCamActive(${cam}, false);`);
     SetCamActive(cam, false);
     RenderScriptCams(false, false, easeTime, false, false, 0);
     if (this.activeCam === cam) {

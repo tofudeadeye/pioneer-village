@@ -1,5 +1,4 @@
 import { PVCamera, PVGame } from '@lib/client';
-import { Log } from '@lib/client/comms/ui';
 import { AnimFlag } from '@lib/flags';
 import { Delay } from '@lib/functions';
 import { Vector3 } from '@lib/math';
@@ -79,9 +78,9 @@ const convertArgs = (nativeArgs: any[]): any[] => {
 // txdAlbedoDV.getInt32(0, true);
 
 const testNatives = async (category: string, parameterCount: number, nativeArgs: any[], restrictUnnamed = true) => {
-  Log('==============');
-  Log(`Testing ${category} natives with ${parameterCount >= 5 ? '5+' : parameterCount} parameters`);
-  Log(`Args`, nativeArgs);
+  console.log('==============');
+  console.log(`Testing ${category} natives with ${parameterCount >= 5 ? '5+' : parameterCount} parameters`);
+  console.log(`Args`, nativeArgs);
   for (const [native, data] of Object.entries<any>(Natives[category])) {
     try {
       if (restrictUnnamed && !data.name.startsWith('_0x')) {
@@ -99,35 +98,35 @@ const testNatives = async (category: string, parameterCount: number, nativeArgs:
       // await Delay(2_500);
       const rtn = Citizen.invokeNative(native, ...newNativeArgs) as any;
       if (!rtn) continue;
-      Log('-=-=-=-=-=-=-=-=-=-=-=-=-=-');
-      Log('Native: ', native);
+      console.log('-=-=-=-=-=-=-=-=-=-=-=-=-=-');
+      console.log('Native: ', native);
       if (rtn === nativeArgs[0] || rtn === false) continue;
       if (!data.name.startsWith('_0x')) {
-        Log('name', data.name);
+        console.log('name', data.name);
       }
       if (data.return_type === 'float') {
-        Log('rtn', HexToFloat32(rtn.toString(16)));
+        console.log('rtn', HexToFloat32(rtn.toString(16)));
       } else {
-        Log('rtn', rtn);
+        console.log('rtn', rtn);
         if (typeof rtn === 'number' && rtn > 255) {
-          Log('rtn', HexToFloat32(rtn.toString(16)));
+          console.log('rtn', HexToFloat32(rtn.toString(16)));
         }
       }
 
       for (const arg of newNativeArgs) {
         if (typeof arg === 'object' && arg instanceof DataView) {
-          // Log('DataView Arg:', arg);
+          // console.log('DataView Arg:', arg);
           const ints = [];
           for (let o = 0; o < arg.byteLength; o += 4) {
             ints.push(arg.getInt32(0, true));
           }
           if (ints.filter(Boolean).length === 0) continue;
-          Log('DataView Ints:', ints);
+          console.log('DataView Ints:', ints);
         }
       }
     } catch {}
   }
-  Log('==============');
+  console.log('==============');
 };
 
 const parseArgs = (args: string[]) => {
@@ -170,7 +169,7 @@ RegisterCommand(
     for (let n = 0; n < GetNumMetaPedOutfits(playerPed); n++) {
       // GetMetaPedOutfit
       const rtn = Citizen.invokeNative('0x62FDF4E678E40CC6', playerPed, n);
-      Log(`Meta Ped Outfit ${n}:`, rtn);
+      console.log(`Meta Ped Outfit ${n}:`, rtn);
     }
   },
   false,
@@ -179,7 +178,7 @@ RegisterCommand(
 RegisterCommand(
   'firstPerson',
   async (source: number, args: any[], rawCommand: string) => {
-    // Log({ source, args, rawCommand });
+    // console.log({ source, args, rawCommand });
 
     let heading = GetEntityHeading(PlayerPedId());
     let pitch = 0;
@@ -219,7 +218,7 @@ RegisterCommand(
 
     setTimeout(() => {
       PVCamera.destroy('first_person');
-      Log('done');
+      console.log('done');
       clearTick(tick);
     }, 30e3);
   },
@@ -233,11 +232,11 @@ on('onResourceStop', (resourceName: string) => {
 });
 
 on('events_manager:firstPerson', (isInFirstPerson: boolean) => {
-  Log(`First Person: ${isInFirstPerson}`);
+  console.log(`First Person: ${isInFirstPerson}`);
 });
 
 on('events_manager:controlsChanged', () => {
-  Log(`Controls Changed`);
+  console.log(`Controls Changed`);
 
   // IsControlEnabled(0, GetHashKey());
 });
@@ -786,10 +785,10 @@ const animFxs = [
 RegisterCommand(
   'animFxs',
   async (source: number, args: any[], rawCommand: string) => {
-    // Log({ source, args, rawCommand });
+    // console.log({ source, args, rawCommand });
 
     for (const animFx of animFxs) {
-      Log(animFx);
+      console.log(animFx);
       AnimpostfxPlay(animFx);
 
       await Delay(2e3);
@@ -799,7 +798,7 @@ RegisterCommand(
       await Delay(1e3);
     }
 
-    Log('Done playing all animpostfx.');
+    console.log('Done playing all animpostfx.');
   },
   false,
 );

@@ -1,5 +1,5 @@
 import { PVGame } from '@lib/client';
-import { Log, emitSocket } from '@lib/client/comms/ui';
+import { emitSocket } from '@lib/client/comms/ui';
 import { Delay, lerp } from '@lib/functions';
 import { Vector3 } from '@lib/math';
 
@@ -33,20 +33,20 @@ const toggleDoor = async (doorHash: number) => {
 };
 
 on('doors:client:toggle_door', async (item: Inventory.ItemBase, itemData: UI.Inventory.ItemData) => {
-  Log('doors:client:toggle_door', item, itemData);
+  console.log('doors:client:toggle_door', item, itemData);
   for (const metadata of itemData.metadatas) {
     let closestDoorHash = metadata.doorHash;
     let distance = doorManager.getDoorDistance(metadata.doorHash);
     for (const doorHash of metadata.doorHashes || []) {
       const curDistance = doorManager.getDoorDistance(doorHash);
-      Log('Checking door hash', doorHash, 'distance', curDistance);
+      console.log('Checking door hash', doorHash, 'distance', curDistance);
       if (curDistance < distance) {
         closestDoorHash = doorHash;
         distance = curDistance;
       }
     }
 
-    Log('distance', distance);
+    console.log('distance', distance);
 
     if (distance < 2.5) {
       await toggleDoor(closestDoorHash);

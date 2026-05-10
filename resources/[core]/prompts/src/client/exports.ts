@@ -1,10 +1,9 @@
 import { exports } from '@lib/client';
-import { Log } from '@lib/client/comms/ui';
 
 import promptManager from './managers/prompt-manager';
 
 const register: Prompts.register = (callback, promptType, name, key, label, duration, enabled, visible): void => {
-  Log(
+  console.log(
     `Registering prompt: ${name} with type: ${promptType}, key: ${key}, label: ${label}, duration: ${duration}, enabled: ${enabled}, visible: ${visible}`,
   );
   promptManager.register(callback, promptType, name, key, label, duration, enabled, visible);
@@ -19,7 +18,7 @@ const registerWithEvent: Prompts.registerWithEvent = (
   enabled,
   visible,
 ): void => {
-  Log(
+  console.log(
     `Registering prompt with event: ${name} with type: ${promptType}, key: ${key}, label: ${label}, duration: ${duration}, enabled: ${enabled}, visible: ${visible}`,
   );
   promptManager.register(

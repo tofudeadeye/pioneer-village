@@ -90,32 +90,3 @@ on('onResourceStart', (resource: string) => {
 
   focusBuffer.forEach((_, params) => global.exports['ui'].focusUI(...params));
 });
-
-const DEV_ENV = true;
-export const Log = (...messages: any[]) => {
-  if (!DEV_ENV) return;
-  emitUI('log.message', {
-    resource: GetCurrentResourceName(),
-    message: messages
-      .map((item) => {
-        if (typeof item === 'object') {
-          if (
-            item &&
-            'toString' in item &&
-            typeof item.toString === 'function' &&
-            item.toString() !== '[object Object]'
-          ) {
-            return item.toString();
-          }
-          return JSON.stringify(item, null, 2);
-        }
-        return item;
-      })
-      .join(' '),
-  });
-};
-
-export const LogExtra = (...messages: any[]) => {
-  console.log(...messages);
-  Log(...messages);
-};

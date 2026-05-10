@@ -1,12 +1,10 @@
 // import gameManager, { AnimTask } from '@ts-shared/client/managers/game-manager';
 // import { Vector3 } from '@ts-shared/shared/classes/vector3';
 // import {AnimFlag} from '@ts-shared/shared/flags';
-
-import { Vector3 } from '@lib/math';
-import { AnimFlag } from '@lib/flags';
 import { PVBase, PVGame, PVHealth } from '@lib/client';
+import { AnimFlag } from '@lib/flags';
 import { Delay } from '@lib/functions';
-import { Log } from '@lib/client/comms/ui';
+import { Vector3 } from '@lib/math';
 
 interface Song {
   streamSet: string;
@@ -1055,20 +1053,20 @@ class InstrumentManager {
     if (!song) {
       const songKeys = Object.keys(this.currentInstrument.songs);
       const songKey = songKeys[Math.floor(Math.random() * songKeys.length)];
-      Log('songKey', songKey);
+      console.log('songKey', songKey);
       const songs = this.currentInstrument.songs[songKey];
       song = {
         streamSet: songKey,
         streamName: songs[Math.floor(Math.random() * songs.length)],
       };
-      Log('song', song);
+      console.log('song', song);
     }
 
     for (const prop of this.currentInstrument.props) {
       const coords = await PVGame.playerCoords();
       const propEntity = await PVGame.createObject(prop.model, coords, new Vector3(0, 0, 0), true);
-      Log('propEntity', propEntity);
-      Log(propEntity, prop.attach);
+      console.log('propEntity', propEntity);
+      console.log(propEntity, prop.attach);
       PVGame.attachEntityToBoneName(
         propEntity,
         prop.attach,
@@ -1080,7 +1078,7 @@ class InstrumentManager {
     }
     // TODO: Move to helper
     const id = Math.round(Math.random() * 10000000).toString(16);
-    Log('id', id);
+    console.log('id', id);
     this.isPlaying = id;
     this.isStreamNotPlaying = 0;
 
@@ -1146,7 +1144,7 @@ class InstrumentManager {
       await PVGame.playAnimTask(animTask);
     }
 
-    Log('Loop ended');
+    console.log('Loop ended');
 
     if (this.isPlaying === id) {
       this.stop();
@@ -1256,7 +1254,7 @@ RegisterCommand(
       // '_upperclass',
     ];
     for (const instrument of instruments) {
-      Log(`Checking ${instrument}`);
+      console.log(`Checking ${instrument}`);
       for (const suffix of suffixes) {
         let failures = 0;
         let n = 0;
@@ -1264,7 +1262,7 @@ RegisterCommand(
         while (true) {
           n++;
           if (await PVGame.loadStream(streamSet, n.toString())) {
-            Log(`${streamSet} ${n}`);
+            console.log(`${streamSet} ${n}`);
             PVGame.stopStream(streamSet, n.toString());
           } else {
             failures++;
@@ -1275,7 +1273,7 @@ RegisterCommand(
         }
       }
     }
-    Log('Done');
+    console.log('Done');
   },
   false,
 );
@@ -1285,9 +1283,9 @@ RegisterCommand(
   async (src: number, args: string[]) => {
     if (await PVGame.loadStream(args[0], args[1], 150, 15)) {
       PVGame.stopStream(args[0], args[1]);
-      Log('Yes');
+      console.log('Yes');
     } else {
-      Log('No');
+      console.log('No');
     }
   },
   false,

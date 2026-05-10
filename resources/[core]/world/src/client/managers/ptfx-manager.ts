@@ -1,5 +1,4 @@
 import { PVGame } from '@lib/client';
-import { Log } from '@lib/client/comms/ui';
 import { Vector3 } from '@lib/math';
 
 type PtfxInfo = {
@@ -59,12 +58,12 @@ export class PtfxManager {
     if (this.ptfxs.has(id)) {
       return this.ptfxs.get(id)!.id;
     }
-    // Log('Starting PTFX', id, dict, name, coords, rot, scale, looped);
+    // console.log('Starting PTFX', id, dict, name, coords, rot, scale, looped);
 
     const playerCoords = PVGame.playerCoords();
     const distance = Vector3.fromObject(coords).getDistance(playerCoords);
     if (distance > 500) {
-      Log('PTFX too far away, not starting', id, distance);
+      console.log('PTFX too far away, not starting', id, distance);
       return 0;
     }
 
@@ -126,7 +125,7 @@ export class PtfxManager {
     if (this.ptfxs.has(id)) {
       return this.ptfxs.get(id)!.id;
     }
-    // Log('Starting PTFX on entity', id, dict, name, entity, offset, rot, scale, looped);
+    // console.log('Starting PTFX on entity', id, dict, name, entity, offset, rot, scale, looped);
 
     let ptfxId = 0;
     UseParticleFxAsset(dict);
@@ -161,7 +160,7 @@ export class PtfxManager {
         false,
       );
 
-      Log('ptfxId', ptfxId);
+      console.log('ptfxId', ptfxId);
     }
 
     if (ptfxId) {
@@ -185,7 +184,7 @@ export class PtfxManager {
     if (this.ptfxs.has(id)) {
       return this.ptfxs.get(id)!.id;
     }
-    // Log('Starting PTFX on entity bone', id, dict, name, entity, offset, rot, boneIndex, scale, looped);
+    // console.log('Starting PTFX on entity bone', id, dict, name, entity, offset, rot, boneIndex, scale, looped);
 
     let ptfxId = 0;
     UseParticleFxAsset(dict);
@@ -222,7 +221,7 @@ export class PtfxManager {
         false,
       );
 
-      Log('ptfxId', ptfxId);
+      console.log('ptfxId', ptfxId);
     }
 
     if (ptfxId) {
@@ -244,7 +243,7 @@ export class PtfxManager {
     scale: number = 1.0,
   ): Promise<number> {
     const boneIndex = GetEntityBoneIndexByName(entity, boneName);
-    Log('boneIndex', boneIndex);
+    console.log('boneIndex', boneIndex);
     if (boneIndex === -1) {
       return 0;
     }
@@ -265,7 +264,7 @@ export class PtfxManager {
     if (this.ptfxs.has(id)) {
       return this.ptfxs.get(id)!.id;
     }
-    // Log('Starting PTFX on ped bone', id, dict, name, ped, offset, rot, boneIndex, scale, looped);
+    // console.log('Starting PTFX on ped bone', id, dict, name, ped, offset, rot, boneIndex, scale, looped);
 
     let ptfxId = 0;
     UseParticleFxAsset(dict);
@@ -304,7 +303,7 @@ export class PtfxManager {
         false,
       );
 
-      Log('ptfxId', ptfxId);
+      console.log('ptfxId', ptfxId);
     }
 
     if (ptfxId) {
@@ -326,7 +325,7 @@ export class PtfxManager {
     scale: number = 1.0,
   ): Promise<number> {
     const boneIndex = GetEntityBoneIndexByName(ped, boneName);
-    Log('boneIndex', boneIndex);
+    console.log('boneIndex', boneIndex);
     if (boneIndex === -1) {
       return 0;
     }
@@ -339,7 +338,7 @@ export class PtfxManager {
       return;
     }
     if (ptfx.looped && DoesParticleFxLoopedExist(ptfx.id)) {
-      Log('Stopping PTFX', id, ptfx.id);
+      console.log('Stopping PTFX', id, ptfx.id);
       if (removeNow) RemoveParticleFx(ptfx.id, false);
       StopParticleFxLooped(ptfx.id, false);
     }
@@ -351,7 +350,7 @@ export class PtfxManager {
     if (!ptfx || !DoesParticleFxLoopedExist(ptfx.id)) {
       return;
     }
-    Log('Setting PTFX evolution', id, name, value);
+    console.log('Setting PTFX evolution', id, name, value);
     SetParticleFxLoopedEvolution(ptfx.id, name, value, false);
   }
 
@@ -361,7 +360,7 @@ export class PtfxManager {
       return;
     }
     for (const [name, value] of Object.entries(evolutions)) {
-      Log('Setting PTFX evolution', id, name, value);
+      console.log('Setting PTFX evolution', id, name, value);
       SetParticleFxLoopedEvolution(ptfx.id, name, value, false);
     }
   }

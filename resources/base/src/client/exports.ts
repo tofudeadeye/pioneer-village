@@ -1,5 +1,5 @@
 import { exports } from '@lib/client';
-import { Log, onUI } from '@lib/client/comms/ui';
+import { onUI } from '@lib/client/comms/ui';
 import { Delay } from '@lib/functions';
 import { BlipStyles } from '@lib/shared/blips';
 
@@ -10,14 +10,14 @@ let character: CharacterData | null = null;
 
 onUI('character-client-update.getCharacter', (pCharacter) => {
   character = JSON.parse(pCharacter) as CharacterData;
-  // Log('character-client-update.getCharacter', character);
+  // console.log('character-client-update.getCharacter', character);
 });
 
 onUI('character-client-update.updateAttribute', (attribute, newVal) => {
   if (!character) return;
   (character[attribute] as any) = newVal;
 
-  // Log(
+  // console.log(
   //   'character-client-update.updateAttribute',
   //   attribute,
   //   typeof newVal === 'object' ? JSON.stringify(newVal, null, 2) : newVal,
@@ -38,11 +38,11 @@ const getNetworkControlOfEntity: Base.getNetworkControlOfEntity = async (entity)
 
 const deleteEntity: Base.deleteEntity = async (entity: number, attached?: boolean): Promise<void> => {
   if (!DoesEntityExist(entity)) {
-    Log(`Entity doesn't exist ${entity}`);
+    console.log(`Entity doesn't exist ${entity}`);
     return;
   }
   if (NetworkGetEntityIsNetworked(entity)) {
-    Log(`Requesting control ${entity}`);
+    console.log(`Requesting control ${entity}`);
     await getNetworkControlOfEntity(entity);
   }
 
@@ -70,28 +70,28 @@ const deleteEntity: Base.deleteEntity = async (entity: number, attached?: boolea
 
   // await Delay(5);
   // if (IsEntityAPed(entity)) {
-  //   Log(`DeletePed(${entity})`);
+  //   console.log(`DeletePed(${entity})`);
   //   DeletePed(entity);
   // }
   //
   // await Delay(5);
   // if (IsEntityAnObject(entity)) {
-  //   Log(`DeleteObject(${entity})`);
+  //   console.log(`DeleteObject(${entity})`);
   //   DeleteObject(entity);
   // }
   //
   // if (!DoesEntityExist(entity)) {
-  //   Log(`Entity doesn't exist ${entity}`);
+  //   console.log(`Entity doesn't exist ${entity}`);
   //   return;
   // }
 
   await Delay(5);
-  Log(`DeleteEntity(${entity})`);
+  console.log(`DeleteEntity(${entity})`);
   DeleteEntity(entity);
 
   await Delay(10);
   if (DoesEntityExist(entity)) {
-    Log(`Entity Still exists: ${entity}`);
+    console.log(`Entity Still exists: ${entity}`);
     SetEntityAsMissionEntity(entity, false, false);
 
     await Delay(5);

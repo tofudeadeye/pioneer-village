@@ -1,5 +1,3 @@
-import { Log } from '@lib/client/comms/ui';
-
 class InitManager {
   protected static instance: InitManager;
 
@@ -33,19 +31,19 @@ class InitManager {
     });
 
     on('onResourceStart', (resourceName: string) => {
-      Log('onResourceStart', resourceName);
+      console.log('onResourceStart', resourceName);
       this.registerResource(resourceName);
     });
 
     on('onResourceStop', (resourceName: string) => {
-      Log('onResourceStop', resourceName);
+      console.log('onResourceStop', resourceName);
       this.rejectResource(resourceName);
       this.registerResource(resourceName, { reset: true });
     });
   }
 
   register: Init.register = (name, options = {}) => {
-    // Log('Registering', name, options);
+    // console.log('Registering', name, options);
     if (options.reset && this._initialized.has(name)) {
       this.reject(name);
       this._initialized.delete(name);
@@ -59,7 +57,7 @@ class InitManager {
         this._initializedRejector.set(name, reject);
       });
       promise.catch(() => {
-        Log('Catch', name);
+        console.log('Catch', name);
       });
       this._initialized.set(name, promise);
 
@@ -96,13 +94,13 @@ class InitManager {
       this._initializedRejector.delete(name);
       this._initializedResources.add(name);
 
-      Log(`emit(onPVInit::${name})`);
+      console.log(`emit(onPVInit::${name})`);
       emit(`onPVInit::${name}`);
     }
   };
 
   resolveResource: Init.resolveResource = (resourceName) => {
-    Log('resolveResource', resourceName);
+    console.log('resolveResource', resourceName);
     this.resolve(`${this._resourcePrefix}${resourceName}`);
   };
 

@@ -1,5 +1,4 @@
 import { PVTarget } from '@lib/client';
-import { Log } from '@lib/client/comms/ui';
 
 const loadModel = (model: number | string): Promise<void> => {
   if (typeof model === 'string') {
@@ -25,7 +24,7 @@ RegisterCommand(
   async (source: number, args: string[]) => {
     const model = GetHashKey(args[0]);
     if (!IsModelValid(model)) {
-      Log('invalid model');
+      console.log('invalid model');
       return;
     }
 
@@ -33,7 +32,7 @@ RegisterCommand(
     const coords = GetEntityCoords(PlayerPedId(), true);
     const entity = CreateObject(model, coords[0] + 1, coords[1], coords[2] - 1.0, true, true, false);
     SetEntityRotation(entity, 0.0, 0.0, 0.0, 2, false);
-    Log('spawned', entity);
+    console.log('spawned', entity);
   },
   false,
 );

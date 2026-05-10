@@ -1,5 +1,5 @@
 // import { PVGameEvents, PVGame, emitServer } from '@lib/client';
-// import { Log, emitSocket } from '@lib/client/comms/ui';
+// import { emitSocket } from '@lib/client/comms/ui';
 // import { Vector3 } from '@lib/math';
 //
 // const registerEvents = () => {
@@ -10,7 +10,7 @@
 //       return;
 //     }
 //
-//     Log(`EVENT_PLAYER_HAT_KNOCKED_OFF: Hat ${hat} knocked off by ${data.causePed} on player ${originPed}`);
+//     console.log(`EVENT_PLAYER_HAT_KNOCKED_OFF: Hat ${hat} knocked off by ${data.causePed} on player ${originPed}`);
 //
 //     setTimeout(() => {
 //       const coords = Vector3.fromArray(GetEntityCoords(hat, false));
@@ -28,7 +28,7 @@
 //       return;
 //     }
 //
-//     Log(`EVENT_PLAYER_HAT_EQUIPPED: Hat ${hat} equipped on player ${ped}`);
+//     console.log(`EVENT_PLAYER_HAT_EQUIPPED: Hat ${hat} equipped on player ${ped}`);
 //
 //     const hatNetId = NetworkGetNetworkIdFromEntity(hat);
 //

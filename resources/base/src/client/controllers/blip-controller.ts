@@ -1,4 +1,3 @@
-import { Log } from '@lib/client/comms/ui';
 import { BlipStyles } from '@lib/shared/blips';
 
 export class BlipController {
@@ -32,9 +31,9 @@ export class BlipController {
   }
 
   register(id: string, data: Base.BlipDataWithoutId, style = BlipStyles.NEUTRAL_OBJECTIVE) {
-    // Log('BlipController::register', id, data);
+    // console.log('BlipController::register', id, data);
     if (this.blips.has(id)) {
-      Log(`Blip with id ${id} already exists, unregistering before registering new one.`);
+      console.log(`Blip with id ${id} already exists, unregistering before registering new one.`);
       this.unregister(id);
     }
 
@@ -47,7 +46,7 @@ export class BlipController {
     }
 
     SetBlipName(blipId, data.label);
-    // Log('Registering blip with id', id, blipId);
+    // console.log('Registering blip with id', id, blipId);
     this.blips.set(id, { id: blipId, ...data });
     return blipId;
   }
@@ -57,7 +56,7 @@ export class BlipController {
     if (!blipData) {
       return;
     }
-    Log('Unregistering blip with id', id, blipData.id);
+    console.log('Unregistering blip with id', id, blipData.id);
     Citizen.invokeNative('0x01B928CA2E198B01', blipData.id);
     RemoveBlip(blipData.id);
     this.blips.delete(id);

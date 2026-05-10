@@ -1,13 +1,12 @@
 // import PromptManager from '@ts-shared/client/managers/prompt-manager';
 // import entityManager from '@ts-shared/shared/managers/entity-manager';
 import { PVBase, PVGame, PVHealth, PVPlaceObject, PVPrompt, PVTarget, onResourceInit } from '@lib/client';
-import { Log } from '@lib/client/comms/ui';
 import { AnimFlag } from '@lib/flags';
 import { Delay } from '@lib/functions';
 import { Vector3 } from '@lib/math';
 
 // let bucket = PVGame.getChildEntity(1822722, 'bucket');
-// Log('bucket', bucket);
+// console.log('bucket', bucket);
 
 /*
 pinId = InvokeNative(0x6F3068258A499E52, `P_DOOR_VAL_BARN_L`, -361.6891, 785.3472, 115.2065, 7)
@@ -50,7 +49,7 @@ on('gold:panning', async (goldCradleEntityId: number, parameters: any) => {
   SetEntityCollision(bucket, false, false);
 
   const pan = await PVGame.createObject(GetHashKey('P_CS_MININGPAN01X'), new Vector3(0, 0, 0), new Vector3(0, 0, 0));
-  // Log('pan', pan);
+  // console.log('pan', pan);
   PVGame.attachEntityToBoneName(pan, 'IK_R_HAND');
 
   // SetEntityCoords(PVGame.playerPed, coords.x, coords.y, coords.z, 0.0, 0.0, 0.0, false);
@@ -66,7 +65,7 @@ on('gold:panning', async (goldCradleEntityId: number, parameters: any) => {
       new Vector3(0, 0, 0),
       new Vector3(0, 0, 0),
     );
-    Log('nuggetSize', nuggetSize, `P_GOLDNUGGET0${Math.ceil(4 - nuggetSize)}X`);
+    console.log('nuggetSize', nuggetSize, `P_GOLDNUGGET0${Math.ceil(4 - nuggetSize)}X`);
 
     PVGame.attachEntityToBoneName(goldNugget, 'PH_R_HAND');
 
@@ -212,7 +211,7 @@ const bucketWalk = () => {
 };
 
 const fillBucket = async () => {
-  Log('fillBucket');
+  console.log('fillBucket');
   const isMale = IsPedMale(PVGame.playerPed());
   PVGame.clearAnimWalk();
 
@@ -324,7 +323,7 @@ const pickupBucket = async () => {
 
 const returnBucket = async () => {
   const heading = GetEntityHeading(cradleEntity);
-  Log('returnBucket', cradleEntity, carryBucketEntity);
+  console.log('returnBucket', cradleEntity, carryBucketEntity);
   DetachEntity(carryBucketEntity, false, false);
   let bucketOffset = new Vector3(0.825, -0.333, -0.065);
   if (IsPedMale(PVGame.playerPed())) {
@@ -334,7 +333,7 @@ const returnBucket = async () => {
     GetOffsetFromEntityInWorldCoords(cradleEntity, bucketOffset.x, bucketOffset.y, bucketOffset.z),
   );
   FreezeEntityPosition(carryBucketEntity, true);
-  Log(
+  console.log(
     `SetEntityCoords(${carryBucketEntity}, ${bucketCoords.x}, ${bucketCoords.y}, ${bucketCoords.z}, 0.0, 0.0, 0.0, false);`,
   );
   SetEntityCoords(carryBucketEntity, bucketCoords.x, bucketCoords.y, bucketCoords.z, false, false, false, false);
@@ -405,10 +404,10 @@ const putdownBucket = async () => {
 };
 
 on('gold:panning:bucket-pickup', async (goldCradleEntityId: number, parameters: any) => {
-  Log('gold:panning:bucket-pickup', goldCradleEntityId);
+  console.log('gold:panning:bucket-pickup', goldCradleEntityId);
   cradleEntity = goldCradleEntityId;
   carryBucketEntity = PVGame.getChildEntity(goldCradleEntityId, 'bucket');
-  Log('carryBucketEntity', carryBucketEntity);
+  console.log('carryBucketEntity', carryBucketEntity);
   pickupBucket();
 });
 
@@ -545,7 +544,7 @@ RegisterCommand(
       },
       true,
     );
-    Log('placed entity ids:', ids);
+    console.log('placed entity ids:', ids);
   },
   false,
 );

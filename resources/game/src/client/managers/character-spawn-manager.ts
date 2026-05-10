@@ -1,5 +1,4 @@
 import { PVBase, PVGame, PVPrompt, onResourceInit } from '@lib/client';
-import { Log } from '@lib/client/comms/ui';
 import { Delay, randomRange } from '@lib/functions';
 import { Vector3 } from '@lib/math';
 
@@ -46,20 +45,20 @@ class CharacterSpawnManager {
           scenario = Citizen.invokeNative('0x569F1E1237508DEB', PVGame.playerPed(), Citizen.resultAsInteger());
           if (scenario === 0) {
             scenario = GetHashKey(WildernessScenarios[randomRange(1, WildernessScenarios.length)]);
-            Log('predetermined wilderness scenario', scenario);
+            console.log('predetermined wilderness scenario', scenario);
           } else {
-            Log('dynamic wilderness scenario', scenario);
+            console.log('dynamic wilderness scenario', scenario);
           }
         } else {
           scenario = GetHashKey(CityScenarios[randomRange(1, CityScenarios.length)]);
-          Log('predetermined city scenario', scenario);
+          console.log('predetermined city scenario', scenario);
         }
 
         await Delay(200);
         // @ts-ignore
         TaskStartScenarioInPlace(PVGame.playerPed(), scenario, 0, false, false, 0, -1.0, false);
       } else {
-        Log('dynamic place scenario is now playing');
+        console.log('dynamic place scenario is now playing');
       }
     }
 
@@ -99,7 +98,7 @@ class CharacterSpawnManager {
     const result = new Int32Array(buffer);
     let finalScenarios: { hash: number; coords: Vector3 }[] = [];
 
-    Log('found', foundScenarios, 'scenarios');
+    console.log('found', foundScenarios, 'scenarios');
 
     if (foundScenarios === false) return false;
     for (const [index, data] of result.entries()) {

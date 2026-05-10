@@ -1,5 +1,4 @@
 import { PVCustomization, PVGame, emitUI, focusUI, onUI } from '@lib/client';
-import { Log } from '@lib/client/comms/ui';
 import { ColorPalettes } from '@lib/shared/color-palettes';
 
 // import PaletteOptions from '../../shared/palette-options';
@@ -45,10 +44,10 @@ RegisterCommand(
 
     const index = paletteManager.getIndexForCategory(playerPed, 'HEADS');
     const { albedo, normal, material } = paletteManager.getGuidsAtIndex(playerPed, index);
-    Log('heads guids', index, albedo, normal, material);
+    console.log('heads guids', index, albedo, normal, material);
 
     const textureId = RequestTexture(albedo, normal, material);
-    Log('textureId', textureId);
+    console.log('textureId', textureId);
     TextureIDs.set(playerPed, textureId);
 
     // paletteManager.updateLayersForCategory(playerPed, 'HEADS', [
@@ -62,12 +61,12 @@ RegisterCommand(
     };
     const [overlayCategory, overlayInfo] = creationManager.getOverlayInfo(overlay.id);
     if (!overlayCategory || !overlayInfo) {
-      Log('Overlay not found', overlay.id);
+      console.log('Overlay not found', overlay.id);
       return;
     }
     const baseOverlay = creationManager.getBaseOverlay(overlayCategory);
 
-    Log('addLayer', textureId, overlay, baseOverlay, overlayInfo);
+    console.log('addLayer', textureId, overlay, baseOverlay, overlayInfo);
 
     if (!baseOverlay || !overlayInfo) {
       return;
@@ -82,7 +81,7 @@ RegisterCommand(
       baseOverlay.tx_opacity,
       baseOverlay.tx_unk,
     );
-    Log('layerId', layerId);
+    console.log('layerId', layerId);
 
     SetTextureLayerPallete(textureId, layerId, ColorPalettes.metaped_tint_generic.hash);
     SetTextureLayerTint(
@@ -103,7 +102,7 @@ RegisterCommand(
     UpdatePedTexture(textureId);
 
     PVGame.finalizePedOutfit(playerPed);
-    Log('DONE');
+    console.log('DONE');
   },
   false,
 );
@@ -116,10 +115,10 @@ RegisterCommand(
 
     const hatCategoryTint = paletteManager.getTintForCategory(ped, 'hats');
     const hatCategoryIndex = paletteManager.getIndexForCategory(ped, 'hats');
-    Log('hatCategoryTint', hatCategoryIndex, hatCategoryTint);
+    console.log('hatCategoryTint', hatCategoryIndex, hatCategoryTint);
     const coatCategoryTint = paletteManager.getTintForCategory(ped, 'coats');
     const coatCategoryIndex = paletteManager.getIndexForCategory(ped, 'coats');
-    Log('coatCategoryTint', coatCategoryIndex, coatCategoryTint);
+    console.log('coatCategoryTint', coatCategoryIndex, coatCategoryTint);
     emitUI('customization.state', { show: true, state: 'gender' });
     if (hatCategoryTint) {
       emitUI('customization.set-tint-by-category', 'hats', hatCategoryTint);
@@ -133,7 +132,7 @@ RegisterCommand(
     for (const category of categories) {
       const CategoryTint = paletteManager.getTintForCategory(ped, category);
       const CategoryIndex = paletteManager.getIndexForCategory(ped, category);
-      Log('CategoryTint', category, CategoryIndex, CategoryTint);
+      console.log('CategoryTint', category, CategoryIndex, CategoryTint);
     }
   },
   false,
@@ -148,11 +147,11 @@ RegisterCommand(
   false,
 );
 
-// Log('GetMetaPedAssetGuids', GetMetaPedAssetGuids(PVGame.playerPed(), 7));
+// console.log('GetMetaPedAssetGuids', GetMetaPedAssetGuids(PVGame.playerPed(), 7));
 
 // @ts-ignore
 onUI('customization.tint-test', async (palette: string, tint0: number, tint1: number, tint2: number) => {
-  Log('customization.tint-test', palette, tint0, tint1, tint2);
+  console.log('customization.tint-test', palette, tint0, tint1, tint2);
 
   // const ped = 437506;
   // paletteManager.setTint(ped, palette, tint0, tint1, tint2);

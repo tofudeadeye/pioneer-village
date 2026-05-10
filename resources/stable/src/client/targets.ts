@@ -1,5 +1,4 @@
 import { PVGame, PVTarget, PVZone, onResourceInit } from '@lib/client';
-import { Log } from '@lib/client/comms/ui';
 
 import StableData from '../shared/data/stableData';
 import { ZonePrefix } from './config';
@@ -105,11 +104,11 @@ const registerTargets = async () => {
       throttle: 1_000,
       isEnabled(data) {
         const horseId = data.entity && Entity(data.entity).state.horseId;
-        // Log('Horse ID:', horseId);
+        // console.log('Horse ID:', horseId);
         if (!horseId) {
           return false;
         }
-        // Log('Is horse stabled?', stableController.isStabled(horseId));
+        // console.log('Is horse stabled?', stableController.isStabled(horseId));
         if (stableController.isStabled(horseId)) {
           return false;
         }
@@ -141,20 +140,20 @@ const registerTargets = async () => {
       distance: 3.0,
       throttle: 1_000,
       isEnabled(data) {
-        Log('stableController.currentStable', stableController.currentStable);
+        console.log('stableController.currentStable', stableController.currentStable);
         if (!data.entity || !stableController.currentStable) {
           return false;
         }
         const horseId = Entity(data.entity).state.horseId;
-        Log('Horse ID:', horseId);
+        console.log('Horse ID:', horseId);
         if (!horseId) {
           return false;
         }
-        Log('Is horse stabled?', stableController.isStabled(horseId));
+        console.log('Is horse stabled?', stableController.isStabled(horseId));
         if (stableController.isStabled(horseId)) {
           return false;
         }
-        Log('Checking zones for entity:', data.entity);
+        console.log('Checking zones for entity:', data.entity);
         for (const stable of StableData) {
           if (PVZone.IsEntityInZone(`${ZonePrefix}${stable.identifier}`, data.entity)) {
             return true;
@@ -246,7 +245,7 @@ onResourceInit('target', registerTargets);
 RegisterCommand(
   'female_horse',
   async (source: number, args: any[], rawCommand: string) => {
-    // Log({ source, args, rawCommand });
+    // console.log({ source, args, rawCommand });
     PVGame.makeHorseFemale(Number(args[0]));
   },
   false,

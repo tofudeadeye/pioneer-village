@@ -1,5 +1,4 @@
 import { PVBase, PVCamera, PVGame, emitUI, focusUI } from '@lib/client';
-import { Log } from '@lib/client/comms/ui';
 import { AnimFlag } from '@lib/flags/anim-flag';
 import { PedMotionState } from '@lib/flags/ped-motion-state';
 import { Delay, debounce } from '@lib/functions';
@@ -482,7 +481,7 @@ class CreationManager {
     ClonePedToTarget(this.currentGender === 'male' ? this.male : this.female, this.chosen);
     await PVGame.pedIsReadyToRender(this.chosen);
     PVGame.finalizePedOutfit(this.chosen);
-    Log('Create Chosen Ped', this.chosen);
+    console.log('Create Chosen Ped', this.chosen);
     ForcePedMotionState(this.chosen, PedMotionState.DoNothing, false, 0, false);
     TaskForceMotionState(this.chosen, PedMotionState.DoNothing, false);
 
@@ -561,7 +560,7 @@ class CreationManager {
 
     await PVGame.pedIsReadyToRender(this.male);
     PVGame.finalizePedOutfit(this.male);
-    Log('Create Male Ped', this.male);
+    console.log('Create Male Ped', this.male);
     console.log('Create Male Ped', this.male);
     ForcePedMotionState(this.male, 247561816, false, 0, false);
 
@@ -589,7 +588,7 @@ class CreationManager {
 
     await PVGame.pedIsReadyToRender(this.female);
     PVGame.finalizePedOutfit(this.female);
-    Log('Create Female Ped', this.female);
+    console.log('Create Female Ped', this.female);
     console.log('Create Female Ped', this.female);
     ForcePedMotionState(this.female, 247561816, false, 0, false);
   }
@@ -666,7 +665,7 @@ class CreationManager {
       ([key, value]) => value.hash === this.chosenComponents.body,
     );
 
-    Log('setSkinTone', skinTone);
+    console.log('setSkinTone', skinTone);
     if (skinTone >= 0 && skinTone < this.chosenSkinTones.length) {
       this.chosenSkinTone = skinTone;
       this.chosenComponents.upperBody = this.chosenSkinTones[skinTone][bodyTypeIndex].upperBody;
@@ -688,7 +687,7 @@ class CreationManager {
     if (this.currentState !== CreationState.NameSelection) {
       return;
     }
-    Log('setHead', headIndex);
+    console.log('setHead', headIndex);
 
     if (headIndex >= 0 && headIndex < this.chosenHeads[this.chosenSkinTone].length) {
       this.chosenHead = headIndex;
@@ -699,7 +698,7 @@ class CreationManager {
       this.chosenComponents.head = head;
 
       await PVGame.setPedComponentsMp(this.chosen, [head]);
-      Log('ready to render', IsPedReadyToRender(this.chosen));
+      console.log('ready to render', IsPedReadyToRender(this.chosen));
 
       if (updatePed) {
         await Delay(1);
@@ -709,11 +708,11 @@ class CreationManager {
       }
     }
 
-    Log('setHead duration', Date.now() - start);
+    console.log('setHead duration', Date.now() - start);
   }
 
   setIdleFaceAnim() {
-    Log('Clear Facial Idle Anim Override', this.chosen);
+    console.log('Clear Facial Idle Anim Override', this.chosen);
     ClearFacialIdleAnimOverride(this.chosen);
     SetFacialIdleAnimOverride(this.chosen, 'eyefocus', 'FACE_HUMAN@GEN_MALE@BASE');
   }
@@ -733,7 +732,7 @@ class CreationManager {
     SetFacialIdleAnimOverride(this.chosen, 'Face_Dentistry_Loop', 'FACE_HUMAN@GEN_MALE@BASE');
     this.setIdleFaceAnimDebounce();
 
-    Log('setTeeth', teethIndex);
+    console.log('setTeeth', teethIndex);
     if (teethIndex >= 0 && teethIndex < teethOptions.length) {
       this.chosenComponents.teeth = teethOptions[teethIndex];
       await PVGame.setPedComponentsMp(this.chosen, [this.chosenComponents.teeth]);
@@ -749,7 +748,7 @@ class CreationManager {
     }
 
     if (bodyType in bodyTypes) {
-      Log('setBodyType', bodyTypes[bodyType]);
+      console.log('setBodyType', bodyTypes[bodyType]);
       this.chosenComponents.body = bodyTypes[bodyType].hash;
       this.setSkinTone(this.chosenSkinTone, false);
       await PVGame.equipMetaPedOutfit(this.chosen, bodyTypes[bodyType].hash);
@@ -765,7 +764,7 @@ class CreationManager {
     }
 
     if (waist in waists) {
-      Log('setWaist', waists[waist]);
+      console.log('setWaist', waists[waist]);
       await PVGame.equipMetaPedOutfit(this.chosen, waists[waist]);
       await PVGame.pedIsReadyToRender(this.chosen);
       PVGame.finalizePedOutfit(this.chosen);
@@ -784,7 +783,7 @@ class CreationManager {
     if (this.currentState !== CreationState.NameSelection) {
       return;
     }
-    Log('setFaceOptions', options);
+    console.log('setFaceOptions', options);
     for (const [option, value] of Object.entries(options)) {
       if (option in faceFeatures) {
         const feature = faceFeatures[option];
@@ -798,7 +797,7 @@ class CreationManager {
     if (this.currentState !== CreationState.NameSelection) {
       return;
     }
-    Log('setFaceFeature', this.chosen, feature, value);
+    console.log('setFaceFeature', this.chosen, feature, value);
     SetPedFaceFeature(this.chosen, feature, value);
     await Delay(1);
     // UpdatePedVariation(this.chosen, false, true, true, true, false);
@@ -864,7 +863,7 @@ class CreationManager {
       if (overlays.length > 0) {
         for (const overlay of overlays) {
           if (overlay.id === id) {
-            // Log('getOverlayInfo', id, overlay);
+            // console.log('getOverlayInfo', id, overlay);
             return [category, overlay];
           }
         }
@@ -877,12 +876,12 @@ class CreationManager {
   addLayer(textureId: number, overlay: Customization.Overlay) {
     const [overlayCategory, overlayInfo] = this.getOverlayInfo(overlay.id);
     if (!overlayCategory || !overlayInfo) {
-      // Log('Overlay not found', overlay.id);
+      // console.log('Overlay not found', overlay.id);
       return;
     }
     const baseOverlay = this.getBaseOverlay(overlayCategory);
 
-    // Log('addLayer', textureId, overlay, baseOverlay, overlayInfo);
+    // console.log('addLayer', textureId, overlay, baseOverlay, overlayInfo);
 
     if (!baseOverlay || !overlayInfo) {
       return;
@@ -897,10 +896,10 @@ class CreationManager {
       overlay.opacity,
       baseOverlay.var,
     );
-    // Log(
+    // console.log(
     //   `AddTextureLayer(${textureId}, ${overlayInfo.id}, ${overlayInfo.normal || 0}, ${overlayInfo.ma || 0}, ${baseOverlay.tx_color_type}, ${overlay.opacity}, ${baseOverlay.var});`,
     // );
-    // Log('layerId', layerId);
+    // console.log('layerId', layerId);
     if (layerId === -1) {
       return;
     }
@@ -909,9 +908,9 @@ class CreationManager {
 
     if (overlay.palette) {
       SetTextureLayerPallete(textureId, layerId, overlay.palette.palette);
-      // Log(`SetTextureLayerPallete(${textureId}, ${layerId}, ${overlay.palette.palette});`);
+      // console.log(`SetTextureLayerPallete(${textureId}, ${layerId}, ${overlay.palette.palette});`);
       SetTextureLayerTint(textureId, layerId, overlay.palette.tint0, overlay.palette.tint1, overlay.palette.tint2);
-      // Log(
+      // console.log(
       //   `SetTextureLayerTint(${textureId}, ${layerId}, ${overlay.palette.tint0}, ${overlay.palette.tint1}, ${overlay.palette.tint2});`,
       // );
     }
@@ -922,26 +921,26 @@ class CreationManager {
 
     if ('roughness' in overlay && overlay.roughness !== undefined) {
       SetTextureLayerRoughness(textureId, layerId, overlay.roughness);
-      // Log(`SetTextureLayerRoughness(${textureId}, ${layerId}, ${overlay.roughness});`);
+      // console.log(`SetTextureLayerRoughness(${textureId}, ${layerId}, ${overlay.roughness});`);
     }
     SetTextureLayerSheetGridIndex(textureId, layerId, baseOverlay.var);
-    // Log(`SetTextureLayerSheetGridIndex(${textureId}, ${layerId}, ${baseOverlay.var});`);
+    // console.log(`SetTextureLayerSheetGridIndex(${textureId}, ${layerId}, ${baseOverlay.var});`);
     SetTextureLayerAlpha(textureId, layerId, overlay.opacity);
-    // Log(`SetTextureLayerAlpha(${textureId}, ${layerId}, ${overlay.opacity});`);
+    // console.log(`SetTextureLayerAlpha(${textureId}, ${layerId}, ${overlay.opacity});`);
   }
 
   async setOverlays(overlays: Customization.Overlay[], ped: number = this.chosen) {
-    // Log('setOverlays', ped, overlays);
+    // console.log('setOverlays', ped, overlays);
     await this.releasePedTextures(ped, true);
 
     const textureIds: number[] = [];
 
     const index = paletteManager.getIndexForCategory(ped, 'HEADS');
     const { albedo, normal, material } = paletteManager.getGuidsAtIndex(ped, index);
-    // Log('heads guids', index, albedo, normal, material);
+    // console.log('heads guids', index, albedo, normal, material);
 
     const textureId = RequestTexture(albedo, normal, material);
-    // Log('textureId', textureId);
+    // console.log('textureId', textureId);
     await this.textureId(textureId, 1, 25);
     textureIds.push(textureId);
 
@@ -957,20 +956,20 @@ class CreationManager {
 
     await PVGame.pedIsReadyToRender(ped);
     PVGame.finalizePedOutfit(ped);
-    // Log('DONE');
+    // console.log('DONE');
   }
 
   // Stuff to maybe move to PVGame
 
   setPedTextures(texturesIds: number[], ped: number = this.chosen) {
     const textureIdsString = texturesIds.join(',');
-    // Log('setPedTextures', ped, textureIdsString);
+    // console.log('setPedTextures', ped, textureIdsString);
     Entity(ped).state.set('textures', textureIdsString, false);
   }
 
   getPedTextures(ped: number = this.chosen): number[] {
     const textures = Entity(ped).state.textures || '';
-    // Log('getPedTextures', ped, textures);
+    // console.log('getPedTextures', ped, textures);
     if (typeof textures === 'string') {
       return textures.split(',').map((id) => parseInt(id, 10));
     }
@@ -979,9 +978,9 @@ class CreationManager {
 
   async releasePedTextures(ped: number = this.chosen, awaitRemoval = false) {
     const pedTextures = this.getPedTextures(ped);
-    // Log('releasePedTextures', ped, pedTextures);
+    // console.log('releasePedTextures', ped, pedTextures);
     for (const textureId of pedTextures) {
-      // Log('Removing texture', textureId);
+      // console.log('Removing texture', textureId);
       RemoveTexture(textureId);
       if (awaitRemoval) {
         await this.textureId(textureId, false, 25);

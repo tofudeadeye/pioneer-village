@@ -1,5 +1,4 @@
 import { PVBase, PVGame } from '@lib/client';
-import { Log } from '@lib/client/comms/ui';
 import { Delay } from '@lib/functions';
 import { Vector3 } from '@lib/math';
 
@@ -149,7 +148,7 @@ RegisterCommand('bird2', () => birdLand(true), false);
 RegisterCommand(
   'birdTime',
   async (source: number, args: any[], rawCommand: string) => {
-    // Log({ source, args, rawCommand });
+    // console.log({ source, args, rawCommand });
 
     const [marker, x, y] = GetWaypointPosition();
 
@@ -159,7 +158,7 @@ RegisterCommand(
 
     const time = distance / 37.5;
 
-    Log(`Distance: ${distance.toFixed(2)} units, Estimated time: ${time.toFixed(2)} seconds`);
+    console.log(`Distance: ${distance.toFixed(2)} units, Estimated time: ${time.toFixed(2)} seconds`);
   },
   false,
 );

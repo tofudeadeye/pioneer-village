@@ -3,7 +3,7 @@ import { shuffle } from 'lodash';
 import { PVCustomization, PVGame } from '@lib/client';
 import { PVBase, PVCamera } from '@lib/client';
 import { emitUI, onUI } from '@lib/client';
-import { Log, emitSocket, focusUI } from '@lib/client/comms/ui';
+import { emitSocket, focusUI } from '@lib/client/comms/ui';
 import { AnimFlag } from '@lib/flags';
 import { Delay } from '@lib/functions';
 import { Vector3 } from '@lib/math/vector3';
@@ -125,7 +125,7 @@ const cleanupCharacters = () => {
   focusUI(false, false);
   PVCamera.setInactive('character-select', 0);
   const allEntities = [...spawnedPeds.values()].flat();
-  Log('Cleaning character select', allEntities);
+  console.log('Cleaning character select', allEntities);
   PVBase.deleteEntities(allEntities, true);
   spawnedPeds.clear();
 };
@@ -141,11 +141,11 @@ const spawnCharacter = async (
 
   await gameManager.loadModel(modelHash);
   const ped = CreatePed(modelHash, x, y, z, h, false, false, false, false);
-  Log(`Creating ped with model: ${modelHash} @ ${x}, ${y}, ${z} (${ped})`);
+  console.log(`Creating ped with model: ${modelHash} @ ${x}, ${y}, ${z} (${ped})`);
 
   await gameManager.pedIsReadyToRender(ped);
 
-  Log('spawned', character.id, ped);
+  console.log('spawned', character.id, ped);
 
   SetRandomOutfitVariation(ped, true);
   FreezeEntityPosition(ped, true);
@@ -226,7 +226,7 @@ export const spawnCharacters = async (characters: Game.Character[]): Promise<UI.
 };
 
 onUI('character-select.delete', (characterId) => {
-  Log('character-select.delete', characterId);
+  console.log('character-select.delete', characterId);
 
   const entities = spawnedPeds.get(characterId);
   if (entities) {
@@ -236,7 +236,7 @@ onUI('character-select.delete', (characterId) => {
 });
 
 onUI('character-select.choose', async (characterId) => {
-  Log('character-select.choose', characterId);
+  console.log('character-select.choose', characterId);
   const steam = await PVGame.getPlayerSteamId();
   const character = playerCharacters.get(characterId);
   if (!character) {
@@ -255,7 +255,7 @@ onUI('character-select.choose', async (characterId) => {
   cleanupCharacters();
 
   emit('game:character-selected', characterId);
-  // Log('game:character-selected');
+  // console.log('game:character-selected');
   await gameManager.collisionLoadedAtEntity(playerPed);
   await Delay(1000);
   await characterSpawn.setCoords(new Vector3().setFromArray([character.lastX, character.lastY, character.lastZ]));
@@ -263,7 +263,7 @@ onUI('character-select.choose', async (characterId) => {
 });
 
 onUI('character-select.create', () => {
-  // Log('character-select.create');
+  // console.log('character-select.create');
   emit('customization:client:character_creation');
   cleanupCharacters();
 });
@@ -287,7 +287,7 @@ RegisterCommand(
 
     const playerPed = await gameManager.setPlayerModel(GetHashKey(currentCharacter.model));
     await Delay(500);
-    Log(currentCharacter);
+    console.log(currentCharacter);
     await skinPed(playerPed, currentCharacter);
   },
   false,

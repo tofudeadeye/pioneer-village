@@ -1,5 +1,4 @@
 import { PVGame, onUI } from '@lib/client';
-import { Log } from '@lib/client/comms/ui';
 import { Delay } from '@lib/functions';
 
 import { componentManager } from '../managers/component-manager';
@@ -11,17 +10,17 @@ on('customization:client:character_creation', () => {
 });
 
 onUI('customization.set-components', (components) => {
-  Log('customization.set-components', components);
+  console.log('customization.set-components', components);
   creationManager.setComponents(components);
 });
 
 onUI('customization.set-components-with-tints', (components) => {
-  Log('customization.set-components-with-tints', ...components);
+  console.log('customization.set-components-with-tints', ...components);
   creationManager.setComponentsWithTints(components);
 });
 
 onUI('customization.set-tint-by-category', (category, data) => {
-  Log('customization.set-tint-by-category', category, data);
+  console.log('customization.set-tint-by-category', category, data);
 
   if (data.palette !== 0) {
     const ped = creationManager.isActive ? creationManager.getChosen() : PVGame.playerPed();
@@ -64,7 +63,7 @@ onUI('customization.set-head', (head) => {
 });
 
 onUI('customization.set-teeth', (teeth) => {
-  Log('customization.set-teeth', teeth);
+  console.log('customization.set-teeth', teeth);
   creationManager.setTeeth(teeth);
 });
 
@@ -77,17 +76,17 @@ onUI('customization.set-waist', (waist) => {
 });
 
 onUI('customization.set-face-option', (options) => {
-  Log(options);
+  console.log(options);
   creationManager.setFaceOptions(options);
 });
 
 onUI('customization.set-face-feature', (feature, value) => {
-  Log('customization.set-face-feature', feature, value);
+  console.log('customization.set-face-feature', feature, value);
   creationManager.setFaceFeature(feature, value);
 });
 
 onUI('customization.set-layers', (layers: UI.Customization.LayerData[]) => {
-  Log('overlaycustomization.set-layers', layers);
+  console.log('overlaycustomization.set-layers', layers);
 
   creationManager.setOverlays(layers);
 });

@@ -13,7 +13,6 @@ import {
   FishingStatus,
   FishSizeIndex,
 } from '../state/fishing-enums';
-import { Log } from '@lib/client/comms/ui';
 
 const weaponFishingrod = GetHashKey('WEAPON_FISHINGROD');
 
@@ -175,9 +174,9 @@ class FishingManager {
         this.update();
       });
       // setTimeout(() => {
-      //   Log('FishingManager', 'startFishing');
+      //   console.log('FishingManager', 'startFishing');
       //   for (let i = 0; i < 0xf0; i += 4) {
-      //     Log(i, this.state.theData.getInt32(i, true), this.state.theData.getFloat32(i, true));
+      //     console.log(i, this.state.theData.getInt32(i, true), this.state.theData.getFloat32(i, true));
       //   }
       // }, 1000);
     }
@@ -208,7 +207,7 @@ class FishingManager {
   }
 
   fishDecision(request: FishingRequest) {
-    Log('fishDecision', request);
+    console.log('fishDecision', request);
     const hookedFish = this.state.hookedEntity;
     this.madeDecision = true;
     PVPrompt.hide('fishing:keep-fish');
@@ -269,13 +268,13 @@ class FishingManager {
   }
 
   getState() {
-    // Log('GetTaskFishing', GetTaskFishing);
+    // console.log('GetTaskFishing', GetTaskFishing);
     GetTaskFishing(this.playerPed, this.state.getState());
   }
 
   setState() {
     if (this.state.modified) {
-      // Log('SetTaskFishing', SetTaskFishing);
+      // console.log('SetTaskFishing', SetTaskFishing);
       SetTaskFishing(this.playerPed, this.state.getState());
       this.state.modified = false;
     }
@@ -349,7 +348,7 @@ class FishingManager {
     // 1 Peds | 2 Vehicles | 3 Entities
     const itemsFound = GetEntitiesInVolume(this.volumeArea, this.itemSet, 1);
 
-    // Log('itemsFound', itemsFound);
+    // console.log('itemsFound', itemsFound);
     if (itemsFound) {
       for (let i = itemsFound; i--; ) {
         const ped = GetIndexedItemInItemset(i, this.itemSet);
@@ -369,7 +368,7 @@ class FishingManager {
     ClearItemset(this.itemSet);
 
     if (this.isNibbling && this.nibblingFish) {
-      Log('this.isNibbling', this.isNibbling, this.nibblingFish);
+      console.log('this.isNibbling', this.isNibbling, this.nibblingFish);
       if (this.state.codeSig & FishingCodeSig.FLICK_BAIT) {
         this.isNibbling = false;
 
@@ -396,9 +395,9 @@ class FishingManager {
           this.splashAtFish(this.nibblingFish, (this.hookedFishInfo?.size ?? 4) + Math.random());
         }
 
-        Log('Roll for Junk');
+        console.log('Roll for Junk');
         if (Math.random() < this.junkChance) {
-          Log('Caught Junk');
+          console.log('Caught Junk');
           this.caughtJunk = true;
           SetEntityVisible(this.nibblingFish, false, false);
         }
@@ -506,7 +505,7 @@ class FishingManager {
 
     if (!this.caughtJunk && this.gameTimer - this.struggleStart > this.struggleDelay && this.nibblingFish) {
       this.state.shakeFightMultiplier = 5.0;
-      Log('start struggle');
+      console.log('start struggle');
       this.state.request = FishingRequest.FISH_STRUGGLING;
       this.struggleStart = this.gameTimer;
       this.isStruggling = true;
@@ -529,7 +528,7 @@ class FishingManager {
 
     if (this.isStruggling && this.gameTimer - this.struggleStart > this.struggleDuration && this.nibblingFish) {
       this.state.shakeFightMultiplier = 0;
-      Log('stop struggle');
+      console.log('stop struggle');
       this.state.request = FishingRequest.NONE;
       this.struggleStart = this.gameTimer;
       this.isStruggling = false;
@@ -561,7 +560,7 @@ class FishingManager {
         }
         SetEntityVisible(this.state.hookedEntity, false);
 
-        Log('attached junk', this.attachedJunk, this.state.hookedEntity);
+        console.log('attached junk', this.attachedJunk, this.state.hookedEntity);
         SetEntityHealth(this.state.hookedEntity, 0, this.playerPed);
         ChangeEntityHealth(this.state.hookedEntity, -200.0, this.playerPed, weaponFishingrod);
         PVGame.attachEntityToBoneIndex(
@@ -615,7 +614,7 @@ class FishingManager {
       duration: 3000,
     });
 
-    Log('detach junk');
+    console.log('detach junk');
     setImmediate(() => {
       DetachEntity(object, false, false);
       SetEntityCollision(object, true, true);
@@ -702,7 +701,7 @@ class FishingManager {
         !(keyAsNumber & FishingCodeSig.FISH_DIED_IN_UNHOOK) &&
         !(keyAsNumber & FishingCodeSig.IS_BOAT_FISHING)
       ) {
-        Log(FishingCodeSig[keyAsNumber]);
+        console.log(FishingCodeSig[keyAsNumber]);
       }
     });
 

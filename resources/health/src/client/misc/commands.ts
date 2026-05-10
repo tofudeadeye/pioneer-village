@@ -1,5 +1,4 @@
 import { PVGame, emitUI, focusUI, onUI } from '@lib/client';
-import { Log } from '@lib/client/comms/ui';
 import { AnimFlag } from '@lib/flags';
 import { Delay } from '@lib/functions';
 
@@ -135,14 +134,14 @@ const getUIBones = (ped = PlayerPedId()): [number, UI.Doctor.BoneStatus[]] => {
   const uiBonesBase: Record<string, UI.Doctor.BoneStatus> = {};
   const uiBones: UI.Doctor.BoneStatus[] = [];
 
-  // Log('ped', ped);
-  // Log('bones', bones);
-  // Log('healthManager.boneStatus', [...healthManager.boneStatus.entries()]);
+  // console.log('ped', ped);
+  // console.log('bones', bones);
+  // console.log('healthManager.boneStatus', [...healthManager.boneStatus.entries()]);
 
   for (const boneName of bones) {
     const bone = healthManager.boneNames[boneName];
     if (!bone) {
-      // Log('bone not found', boneName);
+      // console.log('bone not found', boneName);
       continue;
     }
     const coords = GetPedBoneCoords(ped, bone.id, 0.0, 0.0, 0.0);
@@ -150,12 +149,12 @@ const getUIBones = (ped = PlayerPedId()): [number, UI.Doctor.BoneStatus[]] => {
 
     if (screenCoords[0]) {
       const boneStatus = healthManager.boneStatus.get(bone.id);
-      // Log('boneStatus', boneStatus);
+      // console.log('boneStatus', boneStatus);
       if (!boneStatus) {
-        // Log('boneStatus missing?', boneStatus);
+        // console.log('boneStatus missing?', boneStatus);
         continue;
       }
-      // Log('boneStatus', boneStatus);
+      // console.log('boneStatus', boneStatus);
       uiBonesBase[boneName] = {
         coords: { x: screenCoords[1] * 100, y: screenCoords[2] * 100 },
         name: boneName,
@@ -240,7 +239,7 @@ RegisterCommand(
 
     if (args[0] === '1' || args[0] === 'true') {
       const update = setInterval(() => {
-        Log('Update');
+        console.log('Update');
         const [entity, uiBones] = getUIBones();
         emitUI('doctor.state', { entity: entity, boneStatus: uiBones });
       }, 1000);
@@ -250,7 +249,7 @@ RegisterCommand(
       });
     }
 
-    // Log({ show: true, entity, boneStatus: uiBones });
+    // console.log({ show: true, entity, boneStatus: uiBones });
 
     emitUI('doctor.state', { show: true, entity, boneStatus: uiBones });
     focusUI(true, true);

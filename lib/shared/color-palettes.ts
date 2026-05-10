@@ -1,5 +1,3 @@
-import { Log } from '@lib/client/comms/ui';
-
 const ColorPalettes: Record<Customization.PaletteNames, Customization.PaletteData> = {
   metaped_tint_animal: {
     hash: 0x9ac34f34,

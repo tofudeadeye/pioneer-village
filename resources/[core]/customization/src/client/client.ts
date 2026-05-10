@@ -1,6 +1,6 @@
-import './misc/events';
-import './misc/commands';
 import './exports';
+import './misc/commands';
+import './misc/events';
 import './misc/test';
 
 // const strings = LoadResourceFile('research', 'files/strings.txt').split('\n');
@@ -115,5 +115,5 @@ import './misc/test';
 // MotionState_StealthCrouch_RunStop,
 
 // AddStateBagChangeHandler('textures', '', (bagName: string, key: string, value: string) => {
-//   Log('Textures state changed', bagName, key, value);
+//   console.log('Textures state changed', bagName, key, value);
 // });

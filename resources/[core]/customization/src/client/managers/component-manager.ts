@@ -1,5 +1,4 @@
 import { PVGame } from '@lib/client';
-import { Log } from '@lib/client/comms/ui';
 import { AttachPoint } from '@lib/flags';
 import { Delay } from '@lib/functions';
 import { BODY_CATEGORIES } from '@lib/shared/body-categories';
@@ -140,7 +139,7 @@ class ComponentManager {
       if (CategoriesToKeep.includes(categoryName)) {
         continue;
       }
-      // Log('removePedComponentCategory', ped, categoryHash);
+      // console.log('removePedComponentCategory', ped, categoryHash);
       await PVGame.removePedComponentCategory(ped, categoryHash);
       await Delay(1);
     }
@@ -149,7 +148,7 @@ class ComponentManager {
   async equipItems(ped: number, items: UI.Inventory.ItemData[]) {
     await this.unequipClothing(ped);
 
-    // Log('equipItems', items);
+    // console.log('equipItems', items);
     for (const item of items) {
       for (const meta of item.metadatas) {
         const hash = typeof meta.shopItem === 'string' ? GetHashKey(meta.shopItem) : meta.shopItem;
@@ -353,7 +352,7 @@ class ComponentManager {
     if (!ped) {
       ped = PVGame.playerPed();
     }
-    Log(`PVCustomization.setWearableState(${category}, ${state});`);
+    console.log(`PVCustomization.setWearableState(${category}, ${state});`);
 
     const options = getWearableStateConfig(category, state);
 

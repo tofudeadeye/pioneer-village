@@ -1,5 +1,4 @@
 import { PVGame } from '@lib/client';
-import { Log } from '@lib/client/comms/ui';
 import { Delay } from '@lib/functions';
 
 import {
@@ -14,11 +13,11 @@ import './test';
 
 (async () => {
   const [h, m, s] = NetworkGetGlobalMultiplayerClock();
-  Log(`Initial multiplayer clock time: ${h}:${m}:${s}`);
+  console.log(`Initial multiplayer clock time: ${h}:${m}:${s}`);
   const hours = GetClockHours();
   const minutes = GetClockMinutes();
   const seconds = GetClockSeconds();
-  Log(`SetClockTime(${hours}, ${minutes}, ${seconds})`);
+  console.log(`SetClockTime(${hours}, ${minutes}, ${seconds})`);
   await Delay(1);
   SetWeatherOwnedByNetwork(false);
   await Delay(1);

@@ -7,7 +7,7 @@ import birdManager from './managers/bird-manager';
 RegisterCommand(
   'birdTest',
   async (source: number, args: any[], rawCommand: string) => {
-    // Log({ source, args, rawCommand });
+    // console.log({ source, args, rawCommand });
 
     for (let i = 10; i--; ) {
       birdManager.registerEvent({
@@ -24,7 +24,7 @@ RegisterCommand(
 RegisterCommand(
   'birdSend',
   async (source: number, args: any[], rawCommand: string) => {
-    // Log({ source, args, rawCommand });
+    // console.log({ source, args, rawCommand });
     birdManager.registerEvent({
       type: 'send',
       birdType: Math.random() > 0.2 ? 'pigeon' : 'owl',
@@ -38,7 +38,7 @@ RegisterCommand(
 RegisterCommand(
   'birdArrive',
   async (source: number, args: any[], rawCommand: string) => {
-    // Log({ source, args, rawCommand });
+    // console.log({ source, args, rawCommand });
     birdManager.registerEvent({
       type: 'arrival',
       birdType: Math.random() > 0.2 ? 'pigeon' : 'owl',
@@ -52,7 +52,7 @@ RegisterCommand(
 RegisterCommand(
   'birdReturn',
   async (source: number, args: any[], rawCommand: string) => {
-    // Log({ source, args, rawCommand });
+    // console.log({ source, args, rawCommand });
     birdManager.registerEvent({
       type: 'return',
       birdType: Math.random() > 0.2 ? 'pigeon' : 'owl',

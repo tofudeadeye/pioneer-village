@@ -6,7 +6,7 @@ const { TsCheckerRspackPlugin } = require('ts-checker-rspack-plugin');
 /** @type {import('@rspack/cli').Configuration} */
 module.exports = () => ({
   name: 'client',
-  entry: path.resolve('./src/client/client.ts'),
+  entry: ['@lib/client/logger.ts', path.resolve('./src/client/client.ts')],
   module: {
     rules: [
       {

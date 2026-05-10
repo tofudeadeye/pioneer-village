@@ -1,5 +1,3 @@
-import { Log } from '@lib/client/comms/ui';
-
 const componentFiles = [
   '2886757168',
   'accessories',
@@ -90,7 +88,7 @@ class ComponentManager {
       const componentsData = JSON.parse(
         LoadResourceFile('rdr3-shared', `components/${componentFile}.json`),
       ) as Component[];
-      Log(`Loading components from file: ${componentFile} (${componentsData.length} components)`);
+      console.log(`Loading components from file: ${componentFile} (${componentsData.length} components)`);
       for (const componentData of componentsData) {
         if (!this.componentsGroups.has(componentFile)) {
           this.componentsGroups.set(componentFile, new Set());
@@ -99,7 +97,7 @@ class ComponentManager {
         this.components.set(componentData.component << 0, componentData);
       }
     }
-    Log(`Loaded ${this.components.size} components`);
+    console.log(`Loaded ${this.components.size} components`);
   }
 
   getById(id: number): Component | undefined {

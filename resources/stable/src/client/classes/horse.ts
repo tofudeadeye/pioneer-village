@@ -1,4 +1,4 @@
-import { Log, awaitUI } from '@lib/client/comms/ui';
+import { awaitUI } from '@lib/client/comms/ui';
 import { Vector3 } from '@lib/math';
 
 import { DNA, type Gene } from '../../shared/dna';
@@ -354,7 +354,7 @@ export default class Horse {
     if (!this.isDirty) {
       return;
     }
-    Log(`Saving Horse: ${this._name}`);
+    console.log(`Saving Horse: ${this._name}`);
 
     const dirtyData: Horse.DirtyData = {
       id: this._id, // Always include ID for identification
@@ -406,15 +406,15 @@ export default class Horse {
         // Safely assign the value with proper typing
         Object.assign(dirtyData, { [field]: getValue() });
       } else {
-        Log(`Warning: Unknown dirty field '${field}' in Horse save()`);
+        console.log(`Warning: Unknown dirty field '${field}' in Horse save()`);
       }
     }
 
     // TODO: Send dirtyData to server/database for persistence
     // Example: emitServer('stable.update-horse', dirtyData);
     const result = await awaitUI('stable.save-horse', dirtyData);
-    Log(`Horse save result: ${result}`);
-    Log(`Saved Horse #${this._id} with fields: ${Array.from(this._dirtyFields).join(', ')}`);
+    console.log(`Horse save result: ${result}`);
+    console.log(`Saved Horse #${this._id} with fields: ${Array.from(this._dirtyFields).join(', ')}`);
 
     // Clear dirty fields after successful save
     this._dirtyFields.clear();

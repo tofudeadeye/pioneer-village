@@ -1,5 +1,5 @@
 import { PVBase, emitUI, focusUI } from '@lib/client';
-import { Log, LogExtra, emitSocket } from '@lib/client/comms/ui';
+import { emitSocket } from '@lib/client/comms/ui';
 import { DecorType } from '@lib/shared/decor-type';
 
 type InventoryDetail = {
@@ -36,7 +36,7 @@ export class WorldManager {
 
   constructor() {
     this.init();
-    Log('constructor');
+    console.log('constructor');
 
     // Cleanup on resource stop
     on('onResourceStop', (resourceName: string) => {
@@ -48,7 +48,7 @@ export class WorldManager {
 
   destruct() {
     const allSpawnedEntities = Array.from(this.inventoryDetails.values()).map((detail) => detail.objectId);
-    LogExtra('Cleaning up inventory objects', allSpawnedEntities);
+    console.log('Cleaning up inventory objects', allSpawnedEntities);
     PVBase.deleteEntities(allSpawnedEntities);
   }
 
@@ -58,7 +58,7 @@ export class WorldManager {
     }
     this.initialized = true;
 
-    Log('WorldManager initialized');
+    console.log('WorldManager initialized');
 
     emitSocket('inventory.get-world-inventories');
   }
@@ -66,7 +66,7 @@ export class WorldManager {
   setInventories(inventories: string[]) {
     this.inventories = new Set(inventories);
 
-    Log('this.inventories', this.inventories);
+    console.log('this.inventories', this.inventories);
     this.placeInventoryObjects();
     this.cleanupInventoryObjects();
   }
@@ -74,7 +74,7 @@ export class WorldManager {
   cleanupInventoryObjects() {
     for (const [objectId, identifier] of this.objects.entries()) {
       if (!this.inventories.has(identifier)) {
-        Log('Removing inventory object for identifier:', identifier, 'with objectId:', objectId);
+        console.log('Removing inventory object for identifier:', identifier, 'with objectId:', objectId);
         this.inventoryDetails.delete(identifier);
         PVBase.deleteEntity(objectId);
       }
@@ -84,7 +84,7 @@ export class WorldManager {
   placeInventoryObjects() {
     for (const identifier of this.inventories.values()) {
       if (this.inventoryDetails.has(identifier)) {
-        Log('Inventory object already exists for identifier:', identifier);
+        console.log('Inventory object already exists for identifier:', identifier);
         continue;
       }
 
@@ -101,9 +101,9 @@ export class WorldManager {
       FreezeEntityPosition(objectId, true);
       // SetPickupLight(objectId, true);
       DecorSetBool(objectId, 'isInventory', true);
-      Log('isInventory', typeof objectId, objectId, DecorGetBool(objectId, 'isInventory'));
+      console.log('isInventory', typeof objectId, objectId, DecorGetBool(objectId, 'isInventory'));
 
-      Log('Placing inventory object', identifier, 'at coords:', x, y, z, 'with objectId:', objectId);
+      console.log('Placing inventory object', identifier, 'at coords:', x, y, z, 'with objectId:', objectId);
 
       this.inventoryDetails.set(identifier, { identifier, coords: { x, y, z }, objectId });
       this.objects.set(objectId, identifier);
@@ -113,11 +113,11 @@ export class WorldManager {
   openWorldInventory(objectId: number) {
     const identifier = this.objects.get(objectId);
     if (!identifier) {
-      Log('No inventory found for objectId:', objectId);
+      console.log('No inventory found for objectId:', objectId);
       return;
     }
 
-    Log('Opening world inventory for identifier:', identifier);
+    console.log('Opening world inventory for identifier:', identifier);
     emitUI('inventory.state', { show: true, targetInventory: identifier });
     focusUI(true, true);
   }

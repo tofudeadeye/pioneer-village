@@ -1,5 +1,4 @@
 import { PVGame, PVWorld, TxtAtWorldCoord } from '@lib/client';
-import { Log } from '@lib/client/comms/ui';
 import { Delay } from '@lib/functions';
 import { Vector3 } from '@lib/math';
 
@@ -49,7 +48,7 @@ const testPtfxDict = async (dict: string) => {
         fxCoords.z = groundZ + 1.0;
       }
 
-      Log(`Starting PTFX: Dict='${dict}' FX='${fxName}' at X=${fxCoords.x} Y=${fxCoords.y} Z=${fxCoords.z}`);
+      console.log(`Starting PTFX: Dict='${dict}' FX='${fxName}' at X=${fxCoords.x} Y=${fxCoords.y} Z=${fxCoords.z}`);
       const id = await PVWorld.startFxAtCoords(
         `ptfx_${dict}_${fxName}`,
         fxData.looped,
@@ -69,7 +68,7 @@ const testPtfxDict = async (dict: string) => {
       if (fxData.evolutions) {
         for (const evolution of fxData.evolutions) {
           // if (evolution === 'LOD') continue;
-          Log(` - Setting evolution: ${evolution} to 1.0`);
+          console.log(` - Setting evolution: ${evolution} to 1.0`);
           PVWorld.setFxEvolution('ptfx_looped_test', evolution, 1.0);
         }
       }
@@ -95,7 +94,7 @@ const testPtfxDict = async (dict: string) => {
           fxCoords.z = groundZ + 1.0;
         }
 
-        Log(`Starting PTFX: Dict='${dict}' FX='${fxName}' at X=${fxCoords.x} Y=${fxCoords.y} Z=${fxCoords.z}`);
+        console.log(`Starting PTFX: Dict='${dict}' FX='${fxName}' at X=${fxCoords.x} Y=${fxCoords.y} Z=${fxCoords.z}`);
         PVWorld.startFxAtCoords(
           `ptfx_${dict}_${fxName}`,
           fxData.looped,
@@ -116,7 +115,7 @@ const testPtfxDict = async (dict: string) => {
 
   // Stop all fx in dict
   for (const [fxName, fxData] of Object.entries(fxs)) {
-    Log(`Stopping PTFX: Dict='${dict}' FX='${fxName}'`);
+    console.log(`Stopping PTFX: Dict='${dict}' FX='${fxName}'`);
     PVWorld.stopFx(`ptfx_${dict}_${fxName}`);
   }
   DrawTxtData = [];
@@ -125,7 +124,7 @@ const testPtfxDict = async (dict: string) => {
 RegisterCommand(
   'ptfx_dict',
   async (source: number, args: any[], rawCommand: string) => {
-    // Log({ source, args, rawCommand });
+    // console.log({ source, args, rawCommand });
 
     testPtfxDict(args[0]);
   },

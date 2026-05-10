@@ -1,5 +1,4 @@
 import { PVBase, PVCustomization, PVGame, PVWorld, emitUI, focusUI } from '@lib/client';
-import { Log } from '@lib/client/comms/ui';
 import { AnimFlag } from '@lib/flags';
 import { Delay } from '@lib/functions';
 import { lerp } from '@lib/math';
@@ -15,7 +14,7 @@ RegisterCommand(
 RegisterCommand(
   'compare_config_flag',
   async (source: number, args: any[], rawCommand: string) => {
-    // Log({ source, args, rawCommand });
+    // console.log({ source, args, rawCommand });
 
     const pedOne = Number(args[0]);
     const pedTwo = Number(args[1]);
@@ -25,7 +24,7 @@ RegisterCommand(
       const flagTwo = GetPedConfigFlag(pedTwo, i, true);
 
       if (flagOne !== flagTwo) {
-        Log(`Flag ${i} differs: PedOne=${flagOne}, PedTwo=${flagTwo}`);
+        console.log(`Flag ${i} differs: PedOne=${flagOne}, PedTwo=${flagTwo}`);
       }
     }
   },
@@ -139,7 +138,7 @@ RegisterCommand(
 RegisterCommand(
   'finalize',
   async (source: number, args: any[], rawCommand: string) => {
-    // Log({ source, args, rawCommand });
+    // console.log({ source, args, rawCommand });
     PVGame.finalizePedOutfit(PVGame.playerPed());
   },
   false,
@@ -167,7 +166,7 @@ RegisterCommand(
 // RegisterCommand(
 //   'bandana',
 //   async (source: number, args: any[], rawCommand: string) => {
-//     // Log({ source, args, rawCommand });
+//     // console.log({ source, args, rawCommand });
 //
 //     if (bandanaState) {
 //       bandanaState = false;
@@ -188,7 +187,7 @@ RegisterCommand(
 // RegisterCommand(
 //   'sleeves',
 //   async (source: number, args: any[], rawCommand: string) => {
-//     // Log({ source, args, rawCommand });
+//     // console.log({ source, args, rawCommand });
 //
 //     if (sleevesState) {
 //       sleevesState = false;
@@ -204,7 +203,7 @@ RegisterCommand(
 RegisterCommand(
   'wearableState',
   async (source: number, args: any[], rawCommand: string) => {
-    // Log({ source, args, rawCommand });
+    // console.log({ source, args, rawCommand });
 
     if (args[0] == Number(args[0])) {
       args[0] = Number(args[0]);

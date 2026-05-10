@@ -1,5 +1,4 @@
 import { PVInit, emitUI, focusUI } from '@lib/client';
-import { Log } from '@lib/client/comms/ui';
 
 const Inputs = {
   ToggleHolster: GetHashKey('ToggleHolster'),
@@ -52,11 +51,11 @@ setTick(() => {
     emitUI('inventory.use-slot', 4);
   }
   if (IsDisabledControlJustReleased(0, Inputs.KeyI)) {
-    Log('KeyI');
+    console.log('KeyI');
     openUI();
   }
   if (IsDisabledControlJustReleased(0, Inputs.KeyL)) {
-    Log('KeyL');
+    console.log('KeyL');
     emitUI('log.state', { show: true });
     focusUI(true, true);
   }

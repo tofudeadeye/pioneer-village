@@ -1,5 +1,4 @@
 import { PVBase, PVCustomization, PVGame } from '@lib/client';
-import { Log } from '@lib/client/comms/ui';
 import { Delay } from '@lib/functions';
 import { lerp } from '@lib/math';
 
@@ -10,19 +9,19 @@ import { CreepMutation, DNA, DNABuilder, DNAUtils, GaussianMutation } from '../.
 RegisterCommand(
   'HorseBreedingTest',
   async (source: number, args: any[], rawCommand: string) => {
-    // Log({ source, args, rawCommand });
+    // console.log({ source, args, rawCommand });
     const model1 =
       args[0] || Object.keys(HorseModelScales)[Math.floor(Math.random() * Object.keys(HorseModelScales).length)];
     const model2 =
       args[1] || Object.keys(HorseModelScales)[Math.floor(Math.random() * Object.keys(HorseModelScales).length)];
-    Log('Breeding', model1, 'and', model2);
+    console.log('Breeding', model1, 'and', model2);
 
     if (!(model1 in HorseModelScales)) {
-      Log('Invalid horse model1:', model1);
+      console.log('Invalid horse model1:', model1);
       return;
     }
     if (!(model2 in HorseModelScales)) {
-      Log('Invalid horse model2:', model2);
+      console.log('Invalid horse model2:', model2);
       return;
     }
 
@@ -34,25 +33,25 @@ RegisterCommand(
     await PVGame.pedIsReadyToRender(parent2Ped);
 
     const parent1HeadIndex = PVCustomization.getIndexForHorsePart(parent1Ped, 'hand');
-    Log('parent1HeadIndex', parent1HeadIndex);
+    console.log('parent1HeadIndex', parent1HeadIndex);
     const parent2HeadIndex = PVCustomization.getIndexForHorsePart(parent1Ped, 'hand');
-    Log('parent2HeadIndex', parent2HeadIndex);
+    console.log('parent2HeadIndex', parent2HeadIndex);
     const parent1ManeIndex = PVCustomization.getIndexForHorsePart(parent1Ped, 'mane');
-    Log('parent1ManeIndex', parent1ManeIndex);
+    console.log('parent1ManeIndex', parent1ManeIndex);
     const parent2ManeIndex = PVCustomization.getIndexForHorsePart(parent1Ped, 'mane');
-    Log('parent2ManeIndex', parent2ManeIndex);
+    console.log('parent2ManeIndex', parent2ManeIndex);
 
     await Delay(1_000);
     // PVBase.deleteEntities([parent1Ped, parent2Ped]);
 
     const parent1HeadTints = PVCustomization.getTintAtIndex(parent1Ped, parent1HeadIndex);
-    // Log('parent1HeadTints', parent1HeadTints);
+    // console.log('parent1HeadTints', parent1HeadTints);
     const parent2HeadTints = PVCustomization.getTintAtIndex(parent2Ped, parent2HeadIndex);
-    // Log('parent2HeadTints', parent2HeadTints);
+    // console.log('parent2HeadTints', parent2HeadTints);
     const parent1ManeTints = PVCustomization.getTintAtIndex(parent1Ped, parent1ManeIndex);
-    // Log('parent1ManeTints', parent1ManeTints);
+    // console.log('parent1ManeTints', parent1ManeTints);
     const parent2ManeTints = PVCustomization.getTintAtIndex(parent2Ped, parent2ManeIndex);
-    // Log('parent2ManeTints', parent2ManeTints);
+    // console.log('parent2ManeTints', parent2ManeTints);
 
     // @ts-ignore
     const parent1Scale = HorseModelScales[model1];
@@ -110,8 +109,8 @@ RegisterCommand(
     let parent1 = parent1builder.build();
     let parent2 = parent2builder.build();
 
-    // Log('Parent 1:', parent1.toString());
-    // Log('Parent 2:', parent2.toString());
+    // console.log('Parent 1:', parent1.toString());
+    // console.log('Parent 2:', parent2.toString());
 
     async function spawnChildHorse(child: DNA, offsetX = 0, offsetY = 0) {
       const model = Math.random() > 0.5 ? model1 : model2;
@@ -152,7 +151,7 @@ RegisterCommand(
       await PVGame.pedIsReadyToRender(horsePed);
 
       SetPedScale(horsePed, child.getGene<number>('Scale')?.value || 1.0);
-      // Log('Scale', child.getGene<number>('Scale')?.value || 1.0);
+      // console.log('Scale', child.getGene<number>('Scale')?.value || 1.0);
 
       for (const part of ['head', 'hand']) {
         PVCustomization.setTintByHorsePart(
@@ -165,7 +164,7 @@ RegisterCommand(
           Math.floor(child.getGene<number>('BodyTint2')?.value || 0),
         );
 
-        // Log(
+        // console.log(
         //   `Set ${part} tint to`,
         //   Math.floor(child.getGene<number>('BodyTint0')?.value || 0),
         //   Math.floor(child.getGene<number>('BodyTint1')?.value || 0),
@@ -183,7 +182,7 @@ RegisterCommand(
           Math.floor(child.getGene<number>('HairTint1')?.value || 0),
           Math.floor(child.getGene<number>('HairTint2')?.value || 0),
         );
-        // Log(
+        // console.log(
         //   `Set ${part} tint to`,
         //   Math.floor(child.getGene<number>('HairTint0')?.value || 0),
         //   Math.floor(child.getGene<number>('HairTint1')?.value || 0),
@@ -208,13 +207,13 @@ RegisterCommand(
         inheritanceMode: 'random',
       });
 
-      Log('Child:', child1.toString());
-      Log('Child:', child2.toString());
+      console.log('Child:', child1.toString());
+      console.log('Child:', child2.toString());
 
       child1.metadata.generation = parent1.metadata.generation + 1;
       child2.metadata.generation = parent2.metadata.generation + 1;
-      // Log('Child Metadata:', child1.metadata);
-      // Log('Child Metadata:', child2.metadata);
+      // console.log('Child Metadata:', child1.metadata);
+      // console.log('Child Metadata:', child2.metadata);
 
       const horsePed1 = await spawnChildHorse(child1, 0, (i - count / 2) * 3);
       const horsePed2 = await spawnChildHorse(child2, 1, (i - count / 2) * 3);
@@ -293,7 +292,7 @@ function getComponents(entity: number) {
 
     const palette = PVCustomization.getTintAtIndex(entity, i);
     if (palette.palette !== 0) {
-      Log(i, component, componentCategory, palette.palette, palette.tint0, palette.tint1, palette.tint2);
+      console.log(i, component, componentCategory, palette.palette, palette.tint0, palette.tint1, palette.tint2);
     }
   }
 }
@@ -301,25 +300,25 @@ function getComponents(entity: number) {
 RegisterCommand(
   'GetDNA',
   async (source: number, args: any[], rawCommand: string) => {
-    // Log({ source, args, rawCommand });
+    // console.log({ source, args, rawCommand });
     const ped = Number(args[0] || 0);
     if (!ped || !DoesEntityExist(ped)) {
-      Log('Invalid ped:', ped);
+      console.log('Invalid ped:', ped);
       return;
     }
 
     const builder = new DNABuilder().withMetadata('name', 'Kevin').withMetadata('generation', 0);
     const headIndex = PVCustomization.getIndexForHorsePart(ped, 'hand');
-    Log('headIndex', headIndex);
+    console.log('headIndex', headIndex);
     const maneIndex = PVCustomization.getIndexForHorsePart(ped, 'mane');
-    Log('maneIndex', maneIndex);
+    console.log('maneIndex', maneIndex);
     const headTints = PVCustomization.getTintAtIndex(ped, headIndex);
-    Log('headTints', headTints);
+    console.log('headTints', headTints);
     const maneTints = PVCustomization.getTintAtIndex(ped, maneIndex);
-    Log('maneTints', maneTints);
+    console.log('maneTints', maneTints);
 
     const pedScale = 0.91875;
-    Log('pedScale', pedScale);
+    console.log('pedScale', pedScale);
 
     builder
       .addGene('OffRoad', GetAttributePoints(ped, 0))
@@ -339,7 +338,7 @@ RegisterCommand(
       const value = GetPedFaceFeature(ped, id);
       builder.addGene(name, value);
     }
-    Log(builder.build().toJSON());
+    console.log(builder.build().toJSON());
   },
   false,
 );
@@ -463,7 +462,7 @@ RegisterCommand(
   async (source: number, args: any[], rawCommand: string) => {
     for (let n = 0; n <= 22; n++) {
       const attr = GetAttributePoints(Number(args[0]), n);
-      Log(`Attribute ${n}: ${attr} Rank: ${pointsToRank(attr)}`);
+      console.log(`Attribute ${n}: ${attr} Rank: ${pointsToRank(attr)}`);
     }
   },
   false,

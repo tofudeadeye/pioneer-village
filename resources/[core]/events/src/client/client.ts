@@ -1,14 +1,13 @@
-import './misc/events';
+import eventListener from './event/event-listener';
 import './exports';
 import './misc/commands';
-import eventListener from './event/event-listener';
-import { Log } from '@lib/client/comms/ui';
+import './misc/events';
 
 on('onResourceStart', (resourceName: string) => {
   // Events Resource Starts
   if (resourceName === GetCurrentResourceName()) {
     eventListener.restartListener();
-    Log('EventListener Started');
+    console.log('EventListener Started');
   }
 });
 
@@ -21,5 +20,5 @@ on('onResourceStop', (resourceName: string) => {
 
 onNet('game:character-selected', (charId: number) => {
   eventListener.restartListener();
-  Log('EventListener Restarted');
+  console.log('EventListener Restarted');
 });

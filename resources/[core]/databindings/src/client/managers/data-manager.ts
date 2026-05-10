@@ -1,5 +1,4 @@
 import { PVGame } from '@lib/client';
-import { Log } from '@lib/client/comms/ui';
 import { Delay } from '@lib/functions';
 
 import { bindingTypes, dataContainers, dataTypes, listBindingTypes, rootBindingTypes, rootDataTypes } from '../data';
@@ -65,7 +64,7 @@ class DataManager {
       case 'list':
         return this.addListItems(container, key, value);
       default:
-        Log('Unknown type', _type);
+        console.log('Unknown type', _type);
         return 0;
     }
   }
@@ -96,7 +95,7 @@ class DataManager {
         // @ts-ignore
         return this.bindListItems(key, container as Record<string, number>, value);
       default:
-        Log('Unknown type', _type);
+        console.log('Unknown type', _type);
     }
   }
 
@@ -134,7 +133,7 @@ class DataManager {
     data: Databindings.RootBindings[T],
   ): Promise<void> {
     const types = this.getRootTypes(index);
-    // Log('types', types);
+    // console.log('types', types);
 
     const binding = this.getRootBindings(index, data);
     if (!binding) {
@@ -192,7 +191,7 @@ class DataManager {
 
   async bindData<T extends keyof Databindings.Bindings>(index: T, data: Databindings.Bindings[T]): Promise<void> {
     const types = this.getTypes(index);
-    // Log('types', types);
+    // console.log('types', types);
 
     const container = this.getContainer(index);
     const binding = this.getBindings(index, container, data);
@@ -221,7 +220,7 @@ class DataManager {
     DatabindingRemoveDataEntry(DatabindingAddDataContainer(container, key));
     const subContainer = DatabindingAddDataContainer(container, key);
     const rtnValue: Record<string, number> = { container: subContainer };
-    // Log('subContainer', subContainer);
+    // console.log('subContainer', subContainer);
 
     if (key.startsWith('textField')) {
       if (typeof value.text === 'string') {
@@ -252,7 +251,7 @@ class DataManager {
   }
 
   bindContainer(key: string, binding: Record<string, number>, value: Record<string, any>): void {
-    Log('bindContainer', key, binding, value);
+    console.log('bindContainer', key, binding, value);
     if (key.startsWith('textField')) {
       if (typeof value.text === 'string') {
         DatabindingWriteDataString(binding.text, value.text);
@@ -269,7 +268,7 @@ class DataManager {
       DatabindingWriteDataBool(binding.modifiedPriceGold, value.modifiedPriceGold);
       DatabindingWriteDataInt(binding.purchaseModifiedPrice, value.purchaseModifiedPrice);
     } else if (key === 'Title') {
-      Log(`DatabindingWriteDataString(${binding.Heading}, ${value.Heading});`);
+      console.log(`DatabindingWriteDataString(${binding.Heading}, ${value.Heading});`);
       DatabindingWriteDataString(binding.Heading, value.Heading);
       DatabindingWriteDataInt(binding.HeadingColor, value.HeadingColor);
       DatabindingWriteDataString(binding.Stat1, value.Stat1);
@@ -286,7 +285,7 @@ class DataManager {
     key: string,
     data: Record<string, any>,
   ): Record<string, number | Record<string, number>> {
-    // Log('addListItems', container, key, data);
+    // console.log('addListItems', container, key, data);
 
     const types = listBindingTypes[key];
 
@@ -323,7 +322,7 @@ class DataManager {
   }
 
   addContainerArray(container: number, key: string, data: Record<string, any>[]): Record<string, number>[] {
-    // Log('addContainerArray', container, key, data);
+    // console.log('addContainerArray', container, key, data);
 
     let rootContainer = container;
     if (key === 'LeaderboardListItem') {
@@ -362,7 +361,7 @@ class DataManager {
   }
 
   bindContainerArray(key: string, binding: Record<string, number>[], data: Record<string, any>[]): void {
-    // Log('bindContainerArray', key, binding);
+    // console.log('bindContainerArray', key, binding);
 
     const types = listBindingTypes[key];
 

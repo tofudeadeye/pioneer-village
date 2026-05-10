@@ -1,5 +1,4 @@
 import { PVGame } from '@lib/client';
-import { Log } from '@lib/client/comms/ui';
 import { Delay } from '@lib/functions';
 import { Vector3 } from '@lib/math';
 
@@ -63,8 +62,8 @@ RegisterCommand(
     );
     FreezeEntityPosition(PVGame.mountPed() || PVGame.playerPed(), false);
 
-    Log('waypoint', waypoint);
-    Log('groundZ', groundZ);
+    console.log('waypoint', waypoint);
+    console.log('groundZ', groundZ);
 
     await Delay(1000);
     DoScreenFadeIn(500);
@@ -77,11 +76,11 @@ RegisterCommand(
   async (src: number, args: string[], raw: any) => {
     let [x, y, z] = args.map((c) => parseFloat(c.replace(/,/g, '')) || 0);
 
-    if (x === undefined || y === undefined || z === undefined) return Log('Invalid coords.');
+    if (x === undefined || y === undefined || z === undefined) return console.log('Invalid coords.');
 
     teleport(x, y, z);
 
-    Log('Coords', x, y, z);
+    console.log('Coords', x, y, z);
   },
   false,
 );
@@ -232,7 +231,7 @@ RegisterCommand(
     const coords = GetEntityCoords(playerPed, false);
     const heightAboveGround = GetEntityHeightAboveGround(playerPed);
 
-    Log(`x: ${coords[0]}, y: ${coords[1]}, z: ${coords[2] - heightAboveGround}`);
+    console.log(`x: ${coords[0]}, y: ${coords[1]}, z: ${coords[2] - heightAboveGround}`);
   },
   false,
 );

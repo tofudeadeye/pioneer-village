@@ -1,6 +1,5 @@
 import { PVInit } from '@lib/client';
 import { exports } from '@lib/client';
-import { Log } from '@lib/client/comms/ui';
 
 interface PendingCallback {
   resolve: (value: any) => void;
@@ -31,7 +30,7 @@ const onUICall: UI.onUICall = (evtName, callback) => {
   if (listeners.has(evtName)) {
     listeners.delete(evtName);
   }
-  Log(`registering listener ${resource}/${evtName}`);
+  console.log(`registering listener ${resource}/${evtName}`);
   listeners.set(evtName, callback as (...args: any[]) => any);
 };
 
@@ -122,7 +121,7 @@ on(
     let processed = false;
     let success = false;
     let response: unknown = null;
-    Log(`Processing UI callback for ${evtName}`);
+    console.log(`Processing UI callback for ${evtName}`);
 
     callListeners.forEach((listeners) => {
       if (processed) {
@@ -137,14 +136,14 @@ on(
       processed = true;
 
       (async () => {
-        Log(`Attempting to resolve listener for ${evtName}`);
+        console.log(`Attempting to resolve listener for ${evtName}`);
         try {
           response = await Promise.resolve(listener(...params));
           success = true;
         } catch (e: unknown) {
           response = (e instanceof Error ? e.message : String(e)) || `Failed to call ${evtName}`;
         }
-        Log(`Response from ${evtName}, success: ${success}`);
+        console.log(`Response from ${evtName}, success: ${success}`);
         cb({
           success,
           response,
@@ -162,7 +161,7 @@ on(
 
 // Handle nui.close event
 onUI('nui.close', () => {
-  Log('Closing UI');
+  console.log('Closing UI');
   SetNuiFocus(false, false);
 });
 
@@ -174,7 +173,7 @@ onUI('ui.ready', () => {
 // Handle form answer events
 onUI('form.answer', (formEvent) => {
   focusUI(false, false);
-  Log('formEvent', formEvent);
+  console.log('formEvent', formEvent);
 });
 
 // Export all functions for @lib/client/comms/ui to use

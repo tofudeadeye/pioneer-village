@@ -1,5 +1,4 @@
 import { PVBase, PVGame, PVJobs, PVKeymapper, PVTarget } from '@lib/client';
-import { Log } from '@lib/client/comms/ui';
 import { AnimFlag } from '@lib/flags';
 import { Delay } from '@lib/functions';
 import { Vector3 } from '@lib/math';
@@ -39,9 +38,9 @@ RegisterCommand('+whistle', whistle, false);
 PVKeymapper.RegisterKeyMapping('whistle', 'Police Whistle', 'keyboard', 'J');
 
 if (typeof PrepareSoundset !== 'undefined') {
-  Log('PrepareSoundset', PrepareSoundset);
+  console.log('PrepareSoundset', PrepareSoundset);
 } else {
-  Log('PrepareSoundset is undefined');
+  console.log('PrepareSoundset is undefined');
 }
 
 PVTarget.AddTarget({

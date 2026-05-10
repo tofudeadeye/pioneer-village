@@ -1,5 +1,4 @@
 import { PVBase, PVGame } from '@lib/client';
-import { Log } from '@lib/client/comms/ui';
 import { AnimFlag } from '@lib/flags';
 import { Delay } from '@lib/functions';
 import BirdTypes from '@lib/shared/bird-types';
@@ -51,7 +50,7 @@ export class BirdManager {
     this.pool.delete(event);
     this.isBirdActive = true;
 
-    Log('[BirdManager] Handling bird event', event);
+    console.log('[BirdManager] Handling bird event', event);
 
     switch (event.type) {
       case 'return':
@@ -219,7 +218,7 @@ export class BirdManager {
   }
 
   async playArriveAnimation(birdType: CarrierBirds.BirdTypes) {
-    Log('[Pigeons] Playing arrive animation');
+    console.log('[Pigeons] Playing arrive animation');
     const bird = await this.spawnBird(birdType);
     const letter = this.attachLetterToBird(bird);
     await this.flyBirdToShoulder(bird, birdType);
@@ -263,7 +262,7 @@ export class BirdManager {
   }
 
   async playReturnAnimation(birdType: CarrierBirds.BirdTypes) {
-    Log('[Birds] Playing return animation');
+    console.log('[Birds] Playing return animation');
     const bird = await this.spawnBird(birdType);
     await this.flyBirdToShoulder(bird, birdType);
     const tick = setTick(() => {
@@ -288,7 +287,7 @@ export class BirdManager {
   }
 
   async playSendAnimation(birdType: CarrierBirds.BirdTypes) {
-    Log('[Pigeons] Playing send animation');
+    console.log('[Pigeons] Playing send animation');
     const bird = await this.spawnBird(birdType);
     await this.flyBirdToShoulder(bird, birdType);
     const tick = setTick(() => {

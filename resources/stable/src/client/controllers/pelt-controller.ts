@@ -1,5 +1,4 @@
 import { type EventData, PVGame, PVGameEvents, awaitUI } from '@lib/client';
-import { Log } from '@lib/client/comms/ui';
 import { SetPlayerControlFlags } from '@lib/flags/set-player-control';
 import { Delay } from '@lib/functions';
 import { Vector3 } from '@lib/math';
@@ -39,10 +38,10 @@ export class PeltController {
   }
 
   eventPlaceCarriable(data: EventData['EVENT_PLACE_CARRIABLE_ONTO_PARENT']) {
-    // Log('EVENT_PLACE_CARRIABLE_ONTO_PARENT', data);
+    // console.log('EVENT_PLACE_CARRIABLE_ONTO_PARENT', data);
 
     const horseId = Entity(data.parent).state.horseId;
-    // Log('Horse ID:', horseId);
+    // console.log('Horse ID:', horseId);
     if (!horseId || !stableController.isUnstabled(horseId)) {
       return;
     }
@@ -75,7 +74,7 @@ export class PeltController {
     corpses[data.slot] = [model, outfit, quality, looted];
 
     horseState.set('corpses', corpses, true);
-    Log('Corpses\n', JSON.stringify(corpses, null, 2));
+    console.log('Corpses\n', JSON.stringify(corpses, null, 2));
 
     this.updateHorseCorpses(horseId, corpses);
   }
@@ -86,16 +85,16 @@ export class PeltController {
     const peltTexture = Citizen.invokeNative<number>('0x120376c23f019c6c', data.carriable, Citizen.pointerValueInt());
     const horseState = Entity(data.parent).state;
 
-    // Log('Pelt with texture placed on horse', peltTexture);
+    // console.log('Pelt with texture placed on horse', peltTexture);
 
     const pelts: [number, number][] = horseState.pelts || [];
 
-    // Log(`Horse ${horseEntity} last pelts:`, pelts);
+    // console.log(`Horse ${horseEntity} last pelts:`, pelts);
 
     pelts.push([data.provision, peltTexture]);
 
     horseState.set('pelts', pelts, true);
-    Log('Pelts\n', pelts.join('\n '));
+    console.log('Pelts\n', pelts.join('\n '));
 
     this.updateHorsePelts(horseId, pelts);
   }
@@ -107,11 +106,11 @@ export class PeltController {
 
     const horseState = Entity(data.entity).state;
     const horseId = horseState.horseId;
-    // Log('Horse ID:', horseId);
+    // console.log('Horse ID:', horseId);
     if (!horseId || !stableController.isUnstabled(horseId)) {
       return;
     }
-    Log('Picked up carriable from horse', data);
+    console.log('Picked up carriable from horse', data);
 
     const model = GetEntityModel(data.carriable);
 
@@ -142,7 +141,7 @@ export class PeltController {
 
     this.updateHorseCorpses(horseId, corpses);
     horseState.set('corpses', corpses, true);
-    Log('Corpses\n', JSON.stringify(corpses, null, 2));
+    console.log('Corpses\n', JSON.stringify(corpses, null, 2));
   }
 
   fromLeft(horsePed: number) {
@@ -196,7 +195,7 @@ export class PeltController {
     SetPlayerControl(PlayerId(), true, 0, false);
 
     horseState.set('pelts', pelts, true);
-    Log('Pelts\n', pelts.join('\n '));
+    console.log('Pelts\n', pelts.join('\n '));
 
     stableController.setupHorsePelts(horsePed);
 
@@ -216,7 +215,7 @@ export class PeltController {
       return false;
     }
 
-    Log('Spawning pelt with provision:', provisionData, textureData);
+    console.log('Spawning pelt with provision:', provisionData, textureData);
 
     const { model, carryConfig } = provisionData;
     const { albedo, normal, material } = textureData;

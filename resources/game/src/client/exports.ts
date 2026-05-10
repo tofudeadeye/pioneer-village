@@ -1,5 +1,4 @@
 import { PVCustomization, exports } from '@lib/client';
-import { Log } from '@lib/client/comms/ui';
 import { Delay } from '@lib/functions';
 import { Vector3 } from '@lib/math/vector3';
 

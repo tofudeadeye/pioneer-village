@@ -1,7 +1,6 @@
-import { Vector3 } from '@lib/math';
 import { PVGame, PVPrompt } from '@lib/client';
 import { VegModifierFlag, VegModifierType } from '@lib/flags/veg-modifiers';
-import { Log } from '@lib/client/comms/ui';
+import { Vector3 } from '@lib/math';
 
 export default class ItemPlacer {
   ghostItem: number = 0;
@@ -323,7 +322,7 @@ export default class ItemPlacer {
       Entity(objectId).state.set(subItem.name, subObjectId, false);
       Entity(objectId).state.set(`${subItem.name}NetId`, NetworkGetNetworkIdFromEntity(subObjectId), true);
 
-      Log(subObjectId, subItem.dof?.expression || 0, subItem.dof?.name, subItem.dof?.value);
+      console.log(subObjectId, subItem.dof?.expression || 0, subItem.dof?.name, subItem.dof?.value);
 
       if (subItem.dof) {
         Citizen.invokeNative(

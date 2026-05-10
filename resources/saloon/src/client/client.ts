@@ -1,5 +1,4 @@
 import { DrawTxt, PVBase, PVGame, PVPlaceObject, PVPrompt, emitUI, focusUI } from '@lib/client';
-import { Log } from '@lib/client/comms/ui';
 import { Delay } from '@lib/functions';
 
 import saloonController from './controllers/saloon-controller';
@@ -24,10 +23,10 @@ RegisterCommand(
 //     { x: -304.75, y: 815.075 },
 //   ],
 //   onEnter() {
-//     Log('Entered saloon:valentine:dining');
+//     console.log('Entered saloon:valentine:dining');
 //   },
 //   onExit() {
-//     Log('Exited saloon:valentine:dining');
+//     console.log('Exited saloon:valentine:dining');
 //   },
 // });
 //
@@ -42,10 +41,10 @@ RegisterCommand(
 //     { x: -314.35192871094, y: 808.02435302734 },
 //   ],
 //   onEnter() {
-//     Log('Entered saloon:valentine:bartending');
+//     console.log('Entered saloon:valentine:bartending');
 //   },
 //   onExit() {
-//     Log('Exited saloon:valentine:bartending');
+//     console.log('Exited saloon:valentine:bartending');
 //   },
 // });
 
@@ -106,7 +105,7 @@ EAT_STEW_BOWL_TABLE_EAT_TRANS
 // }
 
 const pickupItem = async (entityId: number, networkId: number) => {
-  Log('pickupItem', entityId, networkId);
+  console.log('pickupItem', entityId, networkId);
 
   const playerPed = PVGame.playerPed();
 
@@ -156,7 +155,7 @@ RegisterCommand(
 );
 
 on('events_manager:itemInteraction', async (state: boolean, interactionHash: number, entity: number) => {
-  Log('events_manager:itemInteraction', state, interactionHash, entity);
+  console.log('events_manager:itemInteraction', state, interactionHash, entity);
   if (holdInteractions.includes(interactionHash)) {
     saloonController.holdingDrink(entity);
     saloonController.endDrinking();
@@ -213,10 +212,10 @@ RegisterCommand(
     const name = args[0];
     const value = args[1] === 'true';
     SetPedBlackboardBool(playerPed, name, value, -1);
-    Log(`set ${name} to ${value}`);
+    console.log(`set ${name} to ${value}`);
     await Delay(5000);
     RemovePedBlackboardBool(playerPed, name);
-    Log(`removed ${name}`);
+    console.log(`removed ${name}`);
   },
   false,
 );
@@ -228,10 +227,10 @@ RegisterCommand(
     const name = args[0];
     const value = Number(args[1]);
     SetPedBlackboardFloat(playerPed, name, value, -1);
-    Log(`set ${name} to ${value}`);
+    console.log(`set ${name} to ${value}`);
     await Delay(5000);
     RemovePedBlackboardFloat(playerPed, name);
-    Log(`removed ${name}`);
+    console.log(`removed ${name}`);
   },
   false,
 );
@@ -243,10 +242,10 @@ RegisterCommand(
     const name = args[0];
     const value = Number(args[1]);
     SetPedBlackboardInt(playerPed, name, value, -1);
-    Log(`set ${name} to ${value}`);
+    console.log(`set ${name} to ${value}`);
     await Delay(5000);
     RemovePedBlackboardInt(playerPed, name);
-    Log(`removed ${name}`);
+    console.log(`removed ${name}`);
   },
   false,
 );
@@ -258,10 +257,10 @@ RegisterCommand(
     const name = args[0];
     const value = args[1];
     SetPedBlackboardHash(playerPed, name, value, -1);
-    Log(`set ${name} to ${value}`);
+    console.log(`set ${name} to ${value}`);
     await Delay(5000);
     RemovePedBlackboardHash(playerPed, name);
-    Log(`removed ${name}`);
+    console.log(`removed ${name}`);
   },
   false,
 );

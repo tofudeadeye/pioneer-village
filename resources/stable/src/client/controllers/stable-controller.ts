@@ -1,5 +1,5 @@
 import { PVBase, PVCustomization, PVGame, PVInit, PVZone, onResourceInit } from '@lib/client';
-import { Log, awaitUI } from '@lib/client/comms/ui';
+import { awaitUI } from '@lib/client/comms/ui';
 import { PedConfigFlag } from '@lib/flags';
 import { Delay } from '@lib/functions';
 import { Vector3, lerp } from '@lib/math';
@@ -66,7 +66,7 @@ class StableController {
       }
     };
     on('events_manager:mount', (onMount: number, horsePed: number, currentSeat: number) => {
-      // Log('events_manager:mount', onMount, horsePed, currentSeat);
+      // console.log('events_manager:mount', onMount, horsePed, currentSeat);
       this.checkHorse(horsePed);
       if (onMount) {
         handleUnstabledHorse(horsePed);
@@ -75,11 +75,11 @@ class StableController {
       }
     });
     on('events_manager:leading', (isLeading: number, horse: number) => {
-      // Log('isLeading', isLeading, horse);
+      // console.log('isLeading', isLeading, horse);
       handleUnstabledHorse(horse);
     });
     on('events_manager:onRoad', (onRoad: boolean) => {
-      Log('onRoad', onRoad);
+      console.log('onRoad', onRoad);
       if (onRoad) {
         // Rescale Handling | Speed | Acceleration based on horseshoes by about 1/3 each
       } else {
@@ -160,13 +160,13 @@ class StableController {
   }
 
   async loadHorses(characterId: number) {
-    Log('Load Horses Started');
+    console.log('Load Horses Started');
     PVInit.register('stable::load-hoses', { reset: true });
     const [horses, pregnancies] = await awaitUI('stable.load-character-horses', characterId);
-    // Log('horses', horses);
-    // Log('pregnancies', pregnancies);
+    // console.log('horses', horses);
+    // console.log('pregnancies', pregnancies);
     for (const horse of horses) {
-      // Log('horse', horse);
+      // console.log('horse', horse);
       this._horses.set(horse.id, new Horse(horse));
       this._stabledHorses.set(horse.id, horse.stable || '');
     }
@@ -184,7 +184,7 @@ class StableController {
     }
 
     PVInit.resolve('stable::load-hoses');
-    Log('Load Horses Finished');
+    console.log('Load Horses Finished');
   }
 
   isHorsePregnant(horseId: Horse.Id): boolean {
@@ -211,14 +211,14 @@ class StableController {
   async birthFoal(motherPed: number, motherId: Horse.Id) {
     const pregnancy = this.getHorsePregnancy(motherId, 'ACTIVE');
     if (!pregnancy) {
-      Log('No active pregnancy found for horse', motherId);
+      console.log('No active pregnancy found for horse', motherId);
       return;
     }
     pregnancy.status = 'BIRTHED';
 
     const motherHorse = this._horses.get(motherId);
     if (!motherHorse) {
-      Log('Mother horse not found', motherId);
+      console.log('Mother horse not found', motherId);
       return;
     }
 
@@ -230,7 +230,7 @@ class StableController {
 
     const foalHorse = this._horses.get(pregnancy.foalId);
     if (!foalHorse) {
-      Log('Foal horse not found', pregnancy.foalId);
+      console.log('Foal horse not found', pregnancy.foalId);
       return;
     }
 
@@ -255,7 +255,7 @@ class StableController {
     SetPedToRagdoll(foalPed, 1000, 3000, 0, false, false, false);
 
     foalHorse.save();
-    Log('Foal born', foalHorse);
+    console.log('Foal born', foalHorse);
   }
 
   canHorseSpawn(horseId: Horse.Id): boolean {
@@ -288,7 +288,7 @@ class StableController {
 
   async enterStable(stableId: Stable.Id): Promise<void> {
     if (this._currentStable === stableId) {
-      Log('Already in stable');
+      console.log('Already in stable');
       return;
     }
 
@@ -297,7 +297,7 @@ class StableController {
     const stable = this.getById(stableId);
 
     if (!stable) {
-      Log('Stable not found');
+      console.log('Stable not found');
       return;
     }
 
@@ -307,15 +307,15 @@ class StableController {
 
     const characterId = PVGame.characterId();
 
-    Log('characterId', characterId);
+    console.log('characterId', characterId);
 
     if (!characterId) {
-      Log('Character not found');
+      console.log('Character not found');
       return;
     }
 
     await PVInit.initialized('stable::load-hoses');
-    Log('Spawn Horses');
+    console.log('Spawn Horses');
 
     const stableHorsePeds = stableHorses.get(characterId) || new Set<number>();
 
@@ -348,7 +348,7 @@ class StableController {
   async exitStable(stableId: Stable.Id): Promise<void> {
     const stableHorsePeds = this._stableHorsePeds.get(stableId) || new Map<number, Set<number>>();
 
-    Log('stableHorsePeds', stableHorsePeds.entries());
+    console.log('stableHorsePeds', stableHorsePeds.entries());
 
     const characterId = PVGame.characterId();
     if (!characterId) {
@@ -366,10 +366,10 @@ class StableController {
     //     horsesInStables.push(horsePed);
     //     continue;
     //   }
-    //   Log(`Horse ${horsePed} not in stable zone, removing from stable`);
+    //   console.log(`Horse ${horsePed} not in stable zone, removing from stable`);
     //   NetworkRegisterEntityAsNetworked(horsePed);
     //   const horseId = Entity(horsePed).state.horseId;
-    //   Log('horseId', horseId);
+    //   console.log('horseId', horseId);
     //
     //   if (horseId) {
     //     this.unstableHorse(horseId);
@@ -406,8 +406,8 @@ class StableController {
     const stableHorsePeds = this._stableHorsePeds.get(stableId) || new Map<number, Set<number>>(); // Map<StableId, Map<CharacterId, Set<EntityId>>
     const stabledHorses = stableHorsePeds.get(characterId) || new Set<number>();
     stabledHorses.add(ped);
-    Log(`stabledHorses.add(${ped});`);
-    Log('stabledHorses', [...stabledHorses.values()]);
+    console.log(`stabledHorses.add(${ped});`);
+    console.log('stabledHorses', [...stabledHorses.values()]);
     stableHorsePeds.set(characterId, stabledHorses);
     this._stableHorsePeds.set(stableId, stableHorsePeds);
 
@@ -427,7 +427,7 @@ class StableController {
   }
 
   unstableHorse(horseId: Horse.Id, horsePed: number, makeNetworked = false): void {
-    Log('unstableHorse', horseId);
+    console.log('unstableHorse', horseId);
     const stable = this.getByHorseId(horseId);
 
     if (!stable) {
@@ -440,8 +440,8 @@ class StableController {
       for (const [characterId, horsePeds] of stableHorsePeds.entries()) {
         if (horsePeds.has(horsePed)) {
           horsePeds.delete(horsePed);
-          Log(`horsePeds.delete(${horsePed});`);
-          Log('horsePeds', [...horsePeds.values()]);
+          console.log(`horsePeds.delete(${horsePed});`);
+          console.log('horsePeds', [...horsePeds.values()]);
           stableHorsePeds.set(characterId, horsePeds);
           break;
         }
@@ -510,14 +510,14 @@ class StableController {
 
     const playerPed = PVGame.playerPed();
     TaskGoToWhistle(horsePed, playerPed, whistleType);
-    Log(`TaskGoToWhistle(${horsePed}, ${playerPed}, ${whistleType});`);
+    console.log(`TaskGoToWhistle(${horsePed}, ${playerPed}, ${whistleType});`);
     return true;
   }
 
   async whistleLastOrNearby(whistleEventType: number): Promise<void> {
     const horsePed = GetSaddleHorseForPlayer(PlayerId());
     if (horsePed && this.whistleHorsePed(horsePed, whistleEventType)) {
-      Log('Whistled current mount');
+      console.log('Whistled current mount');
       return;
     }
 
@@ -529,7 +529,7 @@ class StableController {
     const playerCoords = PVGame.playerCoords();
     const nearbyUnstabledHorses = [];
 
-    // Log('Horses', this._horses.size);
+    // console.log('Horses', this._horses.size);
 
     for (const horse of this._horses.values()) {
       if (!horse.stable) {
@@ -537,7 +537,7 @@ class StableController {
 
         const distance = horseCoords.getDistance(playerCoords);
 
-        // Log('distance', distance);
+        // console.log('distance', distance);
 
         if (distance > 60) {
           continue;
@@ -547,7 +547,7 @@ class StableController {
       }
     }
 
-    // Log(nearbyUnstabledHorses);
+    // console.log(nearbyUnstabledHorses);
 
     for (const horse of nearbyUnstabledHorses) {
       const horsePed = await this.spawnHorse(horse);
@@ -578,7 +578,7 @@ class StableController {
 
     const horseState = Entity(horsePed).state;
     horseState.set('horseId', horseId, true);
-    Log(`Entity(${horsePed}).state.set('horseId', ${horseId}, true);`);
+    console.log(`Entity(${horsePed}).state.set('horseId', ${horseId}, true);`);
 
     const horse = this.getHorseById(horseId);
     if (horse) {
@@ -613,18 +613,18 @@ class StableController {
 
   async spawnHorse(horse: Horse, options: Horse.SpawnOptions = {}): Promise<number> {
     if (!this.canHorseSpawn(horse.id) && !options.force) {
-      Log('Horse cannot spawn yet', horse.id);
+      console.log('Horse cannot spawn yet', horse.id);
       return 0;
     }
 
-    Log('spawning horse', horse.name);
+    console.log('spawning horse', horse.name);
     PVBase.blipUnregister(`horse:${horse.id}`);
-    // Log('horse dna', horse.dna);
+    // console.log('horse dna', horse.dna);
 
     const playerPed = PVGame.playerPed();
     const characterId = PVGame.characterId();
     if (!characterId) {
-      Log('Error no character');
+      console.log('Error no character');
       return 0;
     }
 
@@ -664,7 +664,7 @@ class StableController {
       SetAttributePoints(horsePed, 7, horse.statBonding[characterId]);
     }
 
-    // Log('spawnedHorse', horsePed);
+    // console.log('spawnedHorse', horsePed);
 
     await Delay(1);
     await PVGame.pedIsReadyToRender(horsePed);
@@ -690,9 +690,9 @@ class StableController {
     await Delay(1);
 
     for (const component of horse.components) {
-      // Log('component', component);
+      // console.log('component', component);
       const componentData = PVGame.getComponentById(component);
-      // Log('componentData', componentData);
+      // console.log('componentData', componentData);
       ApplyShopItemToPed(horsePed, component, false, componentData?.isMp || false, false); // _SET_PED_COMPONENT_ENABLED
       await Delay(10);
     }
@@ -704,16 +704,16 @@ class StableController {
 
     await this.horsePedLoadDNA(horsePed, horse.dna, horse.age);
     if (horse.gender === 'MALE') {
-      Log('Set Horse Face Features to Male');
+      console.log('Set Horse Face Features to Male');
       PVGame.setPedFaceFeature(horsePed, 0xa28b, 0.0); // Default
     } else if (horse.gender === 'FEMALE') {
-      Log('Set Horse Face Features to Female');
+      console.log('Set Horse Face Features to Female');
       PVGame.setPedFaceFeature(horsePed, 0xa28b, 1.0);
     }
 
     const pregnancyProgress = this.pregnancyProgress(horse.id);
     if (pregnancyProgress) {
-      Log('Set Pregnant Horse Face Features');
+      console.log('Set Pregnant Horse Face Features');
       const bellyHeight = GetPedFaceFeature(horsePed, 63348);
       const bellyWidth = GetPedFaceFeature(horsePed, 57577);
 
@@ -804,7 +804,7 @@ class StableController {
     if (!corpses) {
       corpses = horseState.corpses;
       if (!corpses) {
-        Log('No corpses found for horsePed', horsePed);
+        console.log('No corpses found for horsePed', horsePed);
         return;
       }
     }
@@ -830,9 +830,9 @@ class StableController {
           PVCustomization.applyMetaPedOutfit(corpse, outfit);
         }
       } else {
-        Log('spawning corpse Object');
+        console.log('spawning corpse Object');
         corpse = await PVGame.createObject(model, coords, { x: 0, y: 0, z: 0 }, NetworkGetEntityIsNetworked(horsePed));
-        Log('corpse', corpse, outfit);
+        console.log('corpse', corpse, outfit);
       }
 
       if (looted === 1) {
@@ -855,7 +855,7 @@ class StableController {
       }
 
       if (corpse) {
-        // Log('Attaching corpse to horse', corpse, horsePed, slot);
+        // console.log('Attaching corpse to horse', corpse, horsePed, slot);
         TaskCarriable(corpse, GetOptimalCarryConfig(corpse, quality === -1 ? 0 : 2), horsePed, Number(slot) + 1, 0);
 
         if (quality === -1) {
@@ -870,7 +870,7 @@ class StableController {
       const horseState = Entity(horsePed).state;
       pelts = horseState.pelts;
       if (!pelts) {
-        Log('No pelts found for horsePed', horsePed);
+        console.log('No pelts found for horsePed', horsePed);
         return;
       }
     }
@@ -892,31 +892,31 @@ class StableController {
     if (health !== undefined) {
       SetAttributePoints(horsePed, 0, health.value);
       await Delay(1);
-      // Log('Set Health', health.value);
+      // console.log('Set Health', health.value);
     }
     const endurance = dna.getGene<number>('Endurance');
     if (endurance !== undefined) {
       SetAttributePoints(horsePed, 1, endurance.value);
       await Delay(1);
-      // Log('Set Endurance', endurance.value);
+      // console.log('Set Endurance', endurance.value);
     }
     const handling = dna.getGene<number>('Handling');
     if (handling !== undefined) {
       SetAttributePoints(horsePed, 4, handling.value);
       await Delay(1);
-      // Log('Set Handling', handling.value);
+      // console.log('Set Handling', handling.value);
     }
     const speed = dna.getGene<number>('Speed');
     if (speed !== undefined) {
       SetAttributePoints(horsePed, 5, speed.value);
       await Delay(1);
-      // Log('Set Speed', speed.value);
+      // console.log('Set Speed', speed.value);
     }
     const acceleration = dna.getGene<number>('Acceleration');
     if (acceleration !== undefined) {
       SetAttributePoints(horsePed, 6, acceleration.value);
       await Delay(1);
-      // Log('Set Acceleration', acceleration.value);
+      // console.log('Set Acceleration', acceleration.value);
     }
 
     for (const [name, id] of Object.entries(HorseExpressions)) {
@@ -924,7 +924,7 @@ class StableController {
       if (gene) {
         SetPedFaceFeature(horsePed, id, gene.value);
         await Delay(1);
-        // Log(`Set ${name}`, gene.value);
+        // console.log(`Set ${name}`, gene.value);
       }
     }
 
@@ -934,14 +934,14 @@ class StableController {
       (dna.getGene<number>('Speed')?.value || 0);
     SetPedFaceFeature(horsePed, 8147, lerp(-1, 1, HealthHandlingSpeed / 6000));
     await Delay(1);
-    // Log('HealthHandlingSpeed', lerp(-1, 1, HealthHandlingSpeed / 6000), HealthHandlingSpeed);
+    // console.log('HealthHandlingSpeed', lerp(-1, 1, HealthHandlingSpeed / 6000), HealthHandlingSpeed);
     const OffRoadEnduranceAcceleration =
       (dna.getGene<number>('OffRoad')?.value || 0) +
       (dna.getGene<number>('Endurance')?.value || 0) +
       (dna.getGene<number>('Acceleration')?.value || 0);
     SetPedFaceFeature(horsePed, 3015, lerp(-1, 1, OffRoadEnduranceAcceleration / 6000));
     await Delay(1);
-    // Log('OffRoadEnduranceAcceleration', lerp(-1, 1, OffRoadEnduranceAcceleration / 6000), OffRoadEnduranceAcceleration);
+    // console.log('OffRoadEnduranceAcceleration', lerp(-1, 1, OffRoadEnduranceAcceleration / 6000), OffRoadEnduranceAcceleration);
 
     const scaleGene = dna.getGene<number>('Scale');
     let scale = 1.0;
@@ -955,7 +955,7 @@ class StableController {
 
     SetPedScale(horsePed, scale);
     await Delay(1);
-    Log('Set Scale', scale);
+    console.log('Set Scale', scale);
 
     if (dna.getGene<number>('BodyTint0') || dna.getGene<number>('BodyTint1') || dna.getGene<number>('BodyTint2')) {
       for (const part of ['head', 'hand']) {
@@ -969,7 +969,7 @@ class StableController {
           Math.floor(dna.getGene<number>('BodyTint2')?.value || 0),
         );
         await Delay(1);
-        // Log(`Set ${part} tint`, {
+        // console.log(`Set ${part} tint`, {
         //   part,
         //   tint0: Math.floor(dna.getGene<number>('BodyTint0')?.value || 0),
         //   tint1: Math.floor(dna.getGene<number>('BodyTint1')?.value || 0),
@@ -990,7 +990,7 @@ class StableController {
           Math.floor(dna.getGene<number>('HairTint2')?.value || 0),
         );
         await Delay(1);
-        // Log(`Set ${part} tint`, {
+        // console.log(`Set ${part} tint`, {
         //   part,
         //   tint0: Math.floor(dna.getGene<number>('HairTint0')?.value || 0),
         //   tint1: Math.floor(dna.getGene<number>('HairTint1')?.value || 0),

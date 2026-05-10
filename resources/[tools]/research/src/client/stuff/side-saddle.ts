@@ -1,5 +1,4 @@
 import { PVGame } from '@lib/client';
-import { Log } from '@lib/client/comms/ui';
 import { AnimFlag } from '@lib/flags';
 import { Vector3 } from '@lib/math';
 
@@ -117,7 +116,7 @@ setInterval(async () => {
   if (GetMount(PlayerPedId())) {
     const speed = Vector3.fromArray(GetEntitySpeedVector(GetMount(PlayerPedId()), true));
 
-    // Log('speed', speed);
+    // console.log('speed', speed);
 
     let animSpeed = 'idle';
     let anim = 'idle';
@@ -151,7 +150,7 @@ setInterval(async () => {
       return;
     }
 
-    Log(dict, anim);
+    console.log(dict, anim);
 
     lastDict = dict;
     lastAnim = anim;
@@ -170,7 +169,7 @@ setInterval(async () => {
       flags,
     });
   } else if (lastDict || lastAnim) {
-    Log('stop anim', lastDict, lastAnim);
+    console.log('stop anim', lastDict, lastAnim);
     StopAnimTask(PlayerPedId(), lastDict, lastAnim, 1);
     lastDict = '';
     lastAnim = '';

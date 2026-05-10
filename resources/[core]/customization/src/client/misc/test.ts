@@ -1,5 +1,4 @@
 import { PVBase, PVGame } from '@lib/client';
-import { Log } from '@lib/client/comms/ui';
 import { Delay } from '@lib/functions';
 import { Vector3 } from '@lib/math';
 
@@ -41,34 +40,34 @@ RegisterCommand(
       //   continue
       // }
       components.push(component);
-      Log('--------=================--------');
+      console.log('--------=================--------');
       if (componentCategories.has(componentCategory)) {
-        Log(i, component, componentCategories.get(componentCategory), componentCategory);
+        console.log(i, component, componentCategories.get(componentCategory), componentCategory);
       } else if (component === 0 && componentCategory === 0) {
-        Log(i, 'Unset Component');
+        console.log(i, 'Unset Component');
       } else {
-        Log(i, component, componentCategory, '=================');
+        console.log(i, component, componentCategory, '=================');
       }
 
       if (IsThisModelAHorse(GetEntityModel(entity))) {
         const drawable = paletteManager.getHorseDrawableAtIndex(entity, i);
-        Log('drawable', drawable);
+        console.log('drawable', drawable);
       }
 
       const struct1Value = struct1.getInt32(0, true);
       if (struct1Value) {
-        Log('struct1', struct1Value);
+        console.log('struct1', struct1Value);
       }
       const wearableState = struct2.getInt32(0, true);
       if (wearableStates.has(wearableState)) {
-        Log('wearableState', wearableStates.get(wearableState));
+        console.log('wearableState', wearableStates.get(wearableState));
       } else if (wearableState !== 0) {
-        Log('wearableState', wearableState, `0x${(wearableState >>> 0).toString(16)}`);
+        console.log('wearableState', wearableState, `0x${(wearableState >>> 0).toString(16)}`);
       }
 
       const palette = paletteManager.getTintAtIndex(entity, i);
       if (palette.palette !== 0) {
-        Log('palette', palette.palette, palette.tint0, palette.tint1, palette.tint2);
+        console.log('palette', palette.palette, palette.tint0, palette.tint1, palette.tint2);
       }
 
       const struct3 = new DataView(new ArrayBuffer(512));
@@ -77,7 +76,7 @@ RegisterCommand(
       // ItemdatabaseFilloutUiData(component, struct3);
       // for (const [tagHash, tagName] of itemTags.entries()) {
       //   if (ItemdatabaseDoesItemHaveTag(component, tagHash, TagTypes.ITEM_HAS_PROPERTY_TAG)) {
-      //     Log('itemTag', tagHash, tagName);
+      //     console.log('itemTag', tagHash, tagName);
       //   }
       // }
       const ints = [];
@@ -93,7 +92,7 @@ RegisterCommand(
         }
       }
       if (ints.length > 0) {
-        Log('ints', ints);
+        console.log('ints', ints);
       }
       // const struct4 = new DataView(new ArrayBuffer(8));
       const [_, tagCount] = ItemdatabaseFilloutTagData(component, struct3, 20); // _ITEM_DATABASE_FILLOUT_TAG_DATA
@@ -105,14 +104,14 @@ RegisterCommand(
         const ret = Citizen.invokeNative('0x5A11D6EEA17165B0', component, var0, var1, 20) as boolean;
         if (ret) {
           const tagCount = var1.getUint32(0, true);
-          // Log(tagCount, buf2hex(var0.buffer));
+          // console.log(tagCount, buf2hex(var0.buffer));
           let offset = 8;
           for (let t = tagCount; t--; ) {
             const tagHash = var0.getInt32(offset, true);
             offset += 8;
             const tagCategory = var0.getInt32(offset, true);
             offset += 8;
-            Log(`Tag${tagCount - t}:`, tagCategory, tagHash, itemTags.get(tagHash));
+            console.log(`Tag${tagCount - t}:`, tagCategory, tagHash, itemTags.get(tagHash));
           }
         }
       }
@@ -132,9 +131,9 @@ RegisterCommand(
       // GetCategoryOfComponentAtIndex
       const componentCategory = Citizen.invokeNative('0x9b90842304c938a7', entity, i, false) as number;
       if (componentCategories.has(componentCategory)) {
-        Log(i, componentCategories.get(componentCategory));
+        console.log(i, componentCategories.get(componentCategory));
       } else {
-        Log(i, componentCategory);
+        console.log(i, componentCategory);
       }
     }
   },
@@ -152,7 +151,7 @@ RegisterCommand(
     const unnamedWearableStates = [];
 
     for (let i = componentCount; i--; ) {
-      Log('--------=================--------');
+      console.log('--------=================--------');
       const struct1 = new DataView(new ArrayBuffer(4));
       const struct2 = new DataView(new ArrayBuffer(4));
       const component = GetShopItemComponentAtIndex(entity, i, true, struct1, struct2);
@@ -161,37 +160,37 @@ RegisterCommand(
       const componentCategory = GetShopItemComponentCategory(component, metaPedType, true);
 
       if (componentCategories.has(componentCategory)) {
-        Log(i, component, componentCategories.get(componentCategory));
+        console.log(i, component, componentCategories.get(componentCategory));
       } else {
-        Log(i, component, componentCategory, '=================');
+        console.log(i, component, componentCategory, '=================');
       }
 
       const wearableStateCount = GetShopItemNumWearableStates(component, !isMale, true);
 
       if (wearableStates.has(wearableState)) {
-        Log('Current State:', wearableStates.get(wearableState));
+        console.log('Current State:', wearableStates.get(wearableState));
       } else {
-        Log('Current State:', wearableState, `0x${(wearableState >>> 0).toString(16)}`);
+        console.log('Current State:', wearableState, `0x${(wearableState >>> 0).toString(16)}`);
       }
 
-      Log('Wearable Count: ', wearableStateCount);
+      console.log('Wearable Count: ', wearableStateCount);
 
       if (wearableStateCount > 0) {
         for (let j = wearableStateCount; j--; ) {
           const wearableState = GetShopItemWearableStateByIndex(component, j, !isMale, true);
 
           if (wearableStates.has(wearableState)) {
-            Log(j, wearableState, wearableStates.get(wearableState));
+            console.log(j, wearableState, wearableStates.get(wearableState));
           } else {
-            Log(j, wearableState, `0x${(wearableState >>> 0).toString(16)}`);
+            console.log(j, wearableState, `0x${(wearableState >>> 0).toString(16)}`);
             unnamedWearableStates.push(wearableState);
           }
         }
       }
     }
 
-    Log('Unnamed Wearable States:', unnamedWearableStates);
-    Log(
+    console.log('Unnamed Wearable States:', unnamedWearableStates);
+    console.log(
       'Unnamed wearable states unique hashes',
       unnamedWearableStates.map((state) => `0x${(state >>> 0).toString(16)}`),
     );
@@ -204,7 +203,7 @@ RegisterCommand(
   () => {
     const components = componentManager.getPedComponentsForUI(PlayerPedId());
 
-    Log(components);
+    console.log(components);
   },
   false,
 );
@@ -218,9 +217,9 @@ RegisterCommand(
     for (let i = componentCount; i--; ) {
       const [_, drawable, albedo, normal, material] = GetMetaPedAssetGuids(entity, i);
       if (horseDrawables[drawable]) {
-        Log(`guids[${i}]`, horseDrawables[drawable], drawable, albedo, normal, material);
+        console.log(`guids[${i}]`, horseDrawables[drawable], drawable, albedo, normal, material);
       } else {
-        Log(`guids[${i}]`, _, drawable, albedo, normal, material);
+        console.log(`guids[${i}]`, _, drawable, albedo, normal, material);
       }
     }
   },
@@ -437,7 +436,7 @@ RegisterCommand(
     for (const expression of expressions) {
       const value = GetCharExpression(ped, expression);
       if (value !== 0) {
-        Log(expression, value);
+        console.log(expression, value);
       }
     }
   },
@@ -497,7 +496,7 @@ RegisterCommand(
   'findExpressions',
   async (source: number, args: string[]) => {
     const character = PVGame.getCurrentCharacter();
-    Log('character', character);
+    console.log('character', character);
 
     await PVGame.loadModel('MP_FEMALE');
     SetPlayerModel(PlayerId(), 'MP_FEMALE');
@@ -523,7 +522,7 @@ RegisterCommand(
     console.log(start, '-', end);
     for (let n = start; n <= end; n++) {
       if (expressions.includes(n)) {
-        Log('Skip', n);
+        console.log('Skip', n);
         continue;
       }
 
@@ -555,7 +554,7 @@ RegisterCommand(
 
     for (const expression of expressions) {
       const value = GetCharExpression(ped, expression);
-      Log(expression, value);
+      console.log(expression, value);
       SetPedFaceFeature(ped2, expression, value);
     }
 
@@ -721,7 +720,7 @@ RegisterCommand(
 //     const forward = Vector3.fromArray(GetEntityForwardVector(PlayerPedId()));
 //     coords.add(forward.multiplyScalar(5));
 //     for (const model of horseModels) {
-//       Log('model', model);
+//       console.log('model', model);
 //       const horse = await PVGame.createPed(model, coords.x, coords.y, coords.z);
 //       await Delay(500);
 //
@@ -730,16 +729,16 @@ RegisterCommand(
 //       for (let i = componentCount; i--; ) {
 //         const [drawable, albedo, normal, material] = GetMetaPedAssetGuids(horse, i);
 //         if (horseDrawables[drawable]) {
-//           // Log(`guids[${i}]`, horseDrawables[drawable], drawable, albedo, normal, material);
+//           // console.log(`guids[${i}]`, horseDrawables[drawable], drawable, albedo, normal, material);
 //         } else if (drawable !== 505041967 && drawable !== 1410957448) {
-//           Log(`guids[${i}]`, drawable, albedo, normal, material);
+//           console.log(`guids[${i}]`, drawable, albedo, normal, material);
 //         }
 //       }
 //
 //       await Delay(125);
 //       PVBase.deleteEntity(horse);
 //     }
-//     Log('! DONE !');
+//     console.log('! DONE !');
 //   },
 //   false,
 // );
@@ -749,7 +748,7 @@ RegisterCommand(
   async (source: number, args: any[], rawCommand: string) => {
     const ped = Number(args[0]);
     for (let n = 0; n < 10; n++) {
-      Log(n / 10);
+      console.log(n / 10);
       SetPedFaceFeature(ped, 57577, n / 10); // Belly Size
       SetPedFaceFeature(ped, 60649, -n / 5); // Shrink the width of belly size
       SetPedFaceFeature(ped, 63348, -n / 3.75); // Lower the belly rear

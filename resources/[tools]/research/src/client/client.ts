@@ -1,5 +1,4 @@
 import { PVGame, onUI } from '@lib/client';
-import { Log } from '@lib/client/comms/ui';
 
 import './commands';
 import './natives';
@@ -58,18 +57,15 @@ onUI('animations.stop-anim', (data) => {
   ClearPedTasks(data.entity || PVGame.playerPed(), false, false);
 });
 
-// @ts-ignore
-global.Log = Log;
-
 RegisterCommand(
   'jcrun',
   async (source: number, args: string[]) => {
     const rtns = eval(args.join(' '));
     if (!rtns) {
-      Log('No return value from command');
+      console.log('No return value from command');
       return;
     }
-    Log(rtns);
+    console.log(rtns);
   },
   false,
 );

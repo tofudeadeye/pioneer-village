@@ -1,8 +1,8 @@
 import { exports } from '@lib/client';
 
+import timeManager from '../shared/managers/time-manager';
 import { EventManager } from './managers/event-manager';
 import { KeyManager } from './managers/key-manager';
-import timeManager from './managers/time-manager';
 
 const eventManager = EventManager.getInstance();
 const keyManager = KeyManager.getInstance();

@@ -71,10 +71,7 @@ export function useEscapeKey(show: boolean | undefined, onEscape?: () => void, p
 export function useEmitClient() {
   return useCallback<
     <T extends keyof ClientIn.FromSocket>(eventName: T, ...args: Parameters<ClientIn.FromSocket[T]>) => void
-  >(
-    (eventName, ...args) => {
-      emitClient(eventName, ...args);
-    },
-    [],
-  );
+  >((eventName, ...args) => {
+    emitClient(eventName, ...args);
+  }, []);
 }

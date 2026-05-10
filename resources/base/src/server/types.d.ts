@@ -21,12 +21,14 @@ declare namespace Base {
 
   type awaitSocket = <
     T extends keyof {
-      [K in keyof SocketServer.Server]: LastParam<SocketServer.Server[K]> extends () => any ? T : never;
+      [K in keyof SocketServer.Server as LastParam<SocketServer.Server[K]> extends (...args: any) => any
+        ? K
+        : never]: SocketServer.Server[K];
     },
   >(
     evtName: T,
     ...params: DropLastParam<SocketServer.Server[T]>
-  ) => Promise<LastParam<SocketServer.Server[T]>>;
+  ) => Promise<Parameters<LastParam<SocketServer.Server[T]>>[0]>;
 
   type onSocket = <T extends keyof SocketServer.SocketEvents>(
     evtName: T,

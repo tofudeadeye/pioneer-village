@@ -12,8 +12,7 @@ onNet('jobs.create-task-from-resource', (jobHandle: string, taskData: Jobs.TaskD
 // Exported functions
 const registerJob: Jobs.ServerExports['registerJob'] = async (jobData) => {
   try {
-    const result = await awaitSocket('jobs.register-job', jobData);
-    return result === true;
+    return await awaitSocket('jobs.register-job', jobData);
   } catch (error) {
     console.log(`[Jobs] Job registration failed:`, jobData.handle, error);
     return false;
@@ -22,8 +21,7 @@ const registerJob: Jobs.ServerExports['registerJob'] = async (jobData) => {
 
 const createTask: Jobs.ServerExports['createTask'] = async (jobHandle, taskData) => {
   try {
-    const result = await awaitSocket('jobs.create-task', jobHandle, taskData);
-    return result === true;
+    return await awaitSocket('jobs.create-task', jobHandle, taskData);
   } catch (error) {
     console.log(`[Jobs] Task creation failed:`, jobHandle, taskData.name, error);
     return false;
@@ -32,8 +30,7 @@ const createTask: Jobs.ServerExports['createTask'] = async (jobHandle, taskData)
 
 const grantPermission: Jobs.ServerExports['grantPermission'] = async (characterId, type, typeId, grantedBy) => {
   try {
-    const result = await awaitSocket('jobs.grant-permission', characterId, type, typeId, grantedBy);
-    return result === true;
+    return await awaitSocket('jobs.grant-permission', characterId, type, typeId, grantedBy);
   } catch (error) {
     console.log(`[Jobs] Permission grant failed:`, characterId, type, typeId, error);
     return false;
@@ -42,8 +39,7 @@ const grantPermission: Jobs.ServerExports['grantPermission'] = async (characterI
 
 const revokePermission: Jobs.ServerExports['revokePermission'] = async (characterId, type, typeId) => {
   try {
-    const result = await awaitSocket('jobs.revoke-permission', characterId, type, typeId);
-    return result === true;
+    return await awaitSocket('jobs.revoke-permission', characterId, type, typeId);
   } catch (error) {
     console.log(`[Jobs] Permission revoke failed:`, characterId, type, typeId, error);
     return false;

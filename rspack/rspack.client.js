@@ -26,12 +26,13 @@ module.exports = () => ({
   },
   plugins: [
     new HotReloadPlugin('client'),
-    // new TsCheckerRspackPlugin({
-    //   typescript: {
-    //     typescriptPath: require.resolve('typescript'),
-    //     configFile: path.resolve('./src/client/tsconfig.json'),
-    //   },
-    // }),
+    process.env.NODE_ENV === 'development' &&
+      new TsCheckerRspackPlugin({
+        typescript: {
+          typescriptPath: require.resolve('typescript'),
+          configFile: path.resolve('./src/client/tsconfig.json'),
+        },
+      }),
   ],
   optimization: {
     minimize: false,

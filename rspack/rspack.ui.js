@@ -93,12 +93,13 @@ module.exports = () => ({
   },
   plugins: [
     new HotReloadPlugin('ui'),
-    // new TsCheckerRspackPlugin({
-    //   typescript: {
-    //     typescriptPath: require.resolve('typescript'),
-    //     configFile: path.resolve('./src/ui/tsconfig.json'),
-    //   },
-    // }),
+    process.env.NODE_ENV === 'development' &&
+      new TsCheckerRspackPlugin({
+        typescript: {
+          typescriptPath: require.resolve('typescript'),
+          configFile: path.resolve('./src/ui/tsconfig.json'),
+        },
+      }),
   ].filter(Boolean),
   optimization: {
     minimize: false,

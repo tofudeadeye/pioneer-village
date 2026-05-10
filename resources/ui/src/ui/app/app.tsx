@@ -1,5 +1,6 @@
 import ExclamationTriangle from '@fa/5/solid/exclamation-triangle.svg';
 import WifiSlash from '@fa/5/solid/signal-slash.svg';
+// @ts-ignore
 import 'normalize.css';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 
@@ -52,6 +53,7 @@ interface CrashData {
   [layerName: string]: CrashEntry[];
 }
 
+// @ts-ignore
 window.GetHashKey = (text: string): number => {
   const keyLowered = text.toLowerCase();
   const length = text.length;

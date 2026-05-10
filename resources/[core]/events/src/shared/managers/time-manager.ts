@@ -1,7 +1,5 @@
 import { CronExpressionParser } from 'cron-parser';
 
-import { onResourceStop } from '@lib/client';
-
 const computeNextCronFire = (cron: string, from: number): number => {
   return CronExpressionParser.parse(cron, { currentDate: from }).next().getTime();
 };
@@ -29,11 +27,12 @@ export class TimeManager {
 
     TimeManager.tick = setTick(this.onTick.bind(this));
 
-    onResourceStop(() => {
-      clearTick(TimeManager.tick);
-    });
-
     on('onResourceStop', (resourceName: string) => {
+      if (resourceName === GetCurrentResourceName()) {
+        clearTick(TimeManager.tick);
+        return;
+      }
+
       const events = this.resourceEvents.get(resourceName);
       if (events) {
         for (const eventId of events) {

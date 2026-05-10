@@ -6,12 +6,12 @@ import { emitClient } from '@lib/ui/comms/client';
 import EventBus from './event-bus';
 
 export default abstract class UIComponent<P, S extends UI.BaseState, C> extends Component<P, S> {
-  context: { socket: Socket<UISocketEvents, SocketServer.Client & SocketServer.ClientEvents> } & C;
+  context: ({ socket: Socket<UISocketEvents, SocketServer.Client & SocketServer.ClientEvents> } & C) | undefined;
 
   closeOnEscape?: boolean;
   onEscape?(): void;
 
-  keyupWrapperHandler: (e: KeyboardEvent) => void;
+  keyupWrapperHandler: ((e: KeyboardEvent) => void) | undefined;
 
   _onKeyupWrapper(e: KeyboardEvent) {
     if (!this.state.show) {
@@ -27,7 +27,7 @@ export default abstract class UIComponent<P, S extends UI.BaseState, C> extends 
     emitClient('nui.close');
   }
 
-  componentWillMount() {
+  componentDidMount() {
     if (this.onEscape) {
       this.keyupWrapperHandler = this._onKeyupWrapper.bind(this);
 

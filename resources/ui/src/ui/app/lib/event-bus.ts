@@ -16,7 +16,7 @@ const EventBus = {
   dispatch<T>(event: string, data?: T) {
     document.dispatchEvent(new CustomEvent<T>(event, { detail: data }));
   },
-  off(event: string, callback: (e: unknown) => void) {
+  off(event: string, callback: (e: never) => void) {
     const handler = (callback as any).__eventBusHandler;
     if (handler) {
       window.removeEventListener(event, handler);

@@ -65,7 +65,7 @@
     "three": "^0.179.1",
     "ts-checker-rspack-plugin": "^1.1.5",
     "ts-node": "^10.9.2",
-    "typescript": "^5.9.2"
+    "typescript": "^6.0.3"
   },
   "dependencies": {
     "@nativewrappers/redm": "^0.0.103",

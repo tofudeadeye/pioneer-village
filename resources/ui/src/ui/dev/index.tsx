@@ -8,6 +8,7 @@ const socketServerUri = process.env.SOCKET_SERVER_CONNECTION as string;
 const socketServerKey = process.env.SOCKET_SERVER_KEY as string;
 const socketClientUri = process.env.SOCKET_USER_CONNECTION as string;
 
+// @ts-ignore
 window.GetHashKey = (text: string): number => {
   const keyLowered = text.toLowerCase();
   const length = text.length;

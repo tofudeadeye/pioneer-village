@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { JSX, useCallback, useEffect, useRef, useState } from 'react';
 
 import styles from './rotation-slider.module.scss';
 
@@ -108,30 +108,16 @@ export default function RotationSlider({ value, onChange }: RotationSliderProps)
   return (
     <div className={styles.wrapper}>
       <div className={styles.readout}>{displayDegrees}&deg;</div>
-      <div
-        className={styles.track}
-        ref={trackRef}
-        onMouseDown={handleMouseDown}
-        onContextMenu={handleContextMenu}
-      >
+      <div className={styles.track} ref={trackRef} onMouseDown={handleMouseDown} onContextMenu={handleContextMenu}>
         <div className={styles.trackBg}>
-          <div
-            className={styles.trackFill}
-            style={{ left: `${fillLeft}%`, width: `${fillWidth}%` }}
-          />
+          <div className={styles.trackFill} style={{ left: `${fillLeft}%`, width: `${fillWidth}%` }} />
         </div>
         <div className={styles.ticks}>
           {TICKS.map((tick) => (
-            <div
-              key={tick.deg}
-              className={styles[tick.type]}
-            />
+            <div key={tick.deg} className={styles[tick.type]} />
           ))}
         </div>
-        <div
-          className={styles.thumb}
-          style={{ left: `${valuePct}%` }}
-        />
+        <div className={styles.thumb} style={{ left: `${valuePct}%` }} />
       </div>
       <div className={styles.labels}>
         <span>-180&deg;</span>

@@ -128,6 +128,7 @@ const cleanupCharacters = () => {
   console.log('Cleaning character select', allEntities);
   PVBase.deleteEntities(allEntities, true);
   spawnedPeds.clear();
+  NetworkClearClockTimeOverride();
 };
 
 const spawnCharacter = async (
@@ -137,6 +138,7 @@ const spawnCharacter = async (
   z: number,
   h: number,
 ): Promise<number> => {
+  NetworkClockTimeOverride(0, 0, 0, 0, true);
   const modelHash = GetHashKey(character.model);
 
   await gameManager.loadModel(modelHash);
@@ -190,6 +192,18 @@ export const spawnCharacters = async (characters: Game.Character[]): Promise<UI.
       continue;
     }
     const { position, rotation, animation, objects, screenOffset } = spot;
+    console.log(`Creating Light: character-select-light:${character.id}`);
+    PVCamera.lightCreateOrUpdate({
+      id: `character-select-light:${character.id}`,
+      x: position.x,
+      y: position.y,
+      z: position.z + 1,
+      r: 200,
+      g: 75,
+      b: 0,
+      range: 1.5,
+      intensity: 5,
+    });
     const characterPed = await spawnCharacter(character, position.x, position.y, position.z, rotation.z);
     const entities = [characterPed];
     if (objects) {
@@ -224,6 +238,16 @@ export const spawnCharacters = async (characters: Game.Character[]): Promise<UI.
 
   return uiCharacters;
 };
+
+onUI('character-select.hover', (characterId) => {
+  console.log('character-select.hover', `character-select-light:${characterId}`);
+  PVCamera.lightTurnOn(`character-select-light:${characterId}`);
+});
+
+onUI('character-select.unhover', (characterId) => {
+  console.log('character-select.unhover', `character-select-light:${characterId}`);
+  PVCamera.lightTurnOff(`character-select-light:${characterId}`);
+});
 
 onUI('character-select.delete', (characterId) => {
   console.log('character-select.delete', characterId);

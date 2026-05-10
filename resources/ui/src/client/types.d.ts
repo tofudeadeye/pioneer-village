@@ -93,6 +93,8 @@ declare namespace ClientIn {
     ['character-select.create']: () => void;
     ['character-select.choose']: (characterId: number) => void;
     ['character-select.delete']: (characterId: number) => void;
+    ['character-select.hover']: (characterId: number) => void;
+    ['character-select.unhover']: (characterId: number) => void;
     ['customization.state']: (event: UI.Customization.Event) => void;
     ['customization.set-components']: (components: number[]) => void;
     ['customization.set-components-with-tints']: (

@@ -3,6 +3,8 @@ import Times from '@fa/5/duotone/times.svg';
 import TrashAlt from '@fa/5/solid/trash-alt.svg';
 import { useEffect, useState } from 'react';
 
+import { emitClient } from '@lib/ui';
+
 import characterSelectStore from '../../stores/character-select-store';
 import styles from './styles.module.scss';
 
@@ -69,6 +71,8 @@ export default function CharacterSelect() {
                   key={character.id}
                   className={`${styles.characterLabel} ${character.pos ? styles.positioned : styles.unpositioned}`}
                   style={characterStyle(character)}
+                  onMouseEnter={() => emitClient('character-select.hover', character.id)}
+                  onMouseLeave={() => emitClient('character-select.unhover', character.id)}
                 >
                   <div className={styles.characterName} onClick={() => chooseCharacter(character.id)}>
                     {character.firstName} {character.lastName}

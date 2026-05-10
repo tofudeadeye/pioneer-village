@@ -253,25 +253,77 @@ function register<T extends keyof typeof eventMappings>(
   }
 }
 
-export function registerCronEvent(callback: () => void, eventId: string, cron: string) {
-  const eventName = PVEvents.registerCronEvent(eventId, cron);
+type CronEntry = {
+  type: 'cron';
+  eventId: string;
+  cron: string;
+  callback: () => void;
+  boundEventName?: string;
+};
+
+type TimeEntry = {
+  type: 'time';
+  eventId: string;
+  time: number;
+  deleteAfterFire?: boolean;
+  callback: () => void;
+  boundEventName?: string;
+};
+
+type CronTimeEntry = CronEntry | TimeEntry;
+
+const cronTimeRegistry: Set<CronTimeEntry> = new Set();
+
+const performRegistration = (entry: CronTimeEntry): void => {
+  if (entry.boundEventName) {
+    removeEventListener(entry.boundEventName, entry.callback);
+    entry.boundEventName = undefined;
+  }
+
+  const label = entry.type === 'cron' ? 'registerCronEvent' : 'registerTimeEvent';
+  const eventName =
+    entry.type === 'cron'
+      ? PVEvents.registerCronEvent(entry.eventId, entry.cron)
+      : PVEvents.registerTimeEvent(entry.eventId, entry.time, entry.deleteAfterFire);
+
   if (eventName) {
-    console.log(`Successful registerCronEvent with id "${eventName}"`);
-    on(eventName, callback);
+    console.log(`Successful ${label} with id "${eventName}"`);
+    on(eventName, entry.callback);
+    entry.boundEventName = eventName;
   } else {
-    console.log(`Failed to registerCronEvent with id "${eventId}"`);
+    console.log(`Failed to ${label} with id "${entry.eventId}"`);
+  }
+};
+
+export function registerCronEvent(callback: () => void, eventId: string, cron: string) {
+  const entry: CronEntry = { type: 'cron', eventId, cron, callback };
+  cronTimeRegistry.add(entry);
+  if (GetResourceState('events') === 'started') {
+    performRegistration(entry);
   }
 }
 
 export function registerTimeEvent(callback: () => void, eventId: string, time: number, deleteAfterFire?: boolean) {
-  const eventName = PVEvents.registerTimeEvent(eventId, time, deleteAfterFire);
-  if (eventName) {
-    console.log(`Successful registerTimeEvent with id "${eventName}"`);
-    on(eventName, callback);
-  } else {
-    console.log(`Failed to registerTimeEvent with id "${eventId}"`);
+  const entry: TimeEntry = { type: 'time', eventId, time, deleteAfterFire, callback };
+  cronTimeRegistry.add(entry);
+  if (GetResourceState('events') === 'started') {
+    performRegistration(entry);
   }
 }
+
+on('onResourceStart', (resource: string) => {
+  if (resource !== 'events') {
+    return;
+  }
+
+  for (const entry of cronTimeRegistry) {
+    if (entry.type === 'time' && entry.time < Date.now()) {
+      cronTimeRegistry.delete(entry);
+      continue;
+    }
+    performRegistration(entry);
+  }
+});
 
 export const PVGameEvents = {
   register,

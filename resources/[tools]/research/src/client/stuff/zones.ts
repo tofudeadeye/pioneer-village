@@ -1,4 +1,4 @@
-import { DrawTxt, PVEvents, addZone } from '@lib/client';
+import { DrawTxt, PVEvents, addZone, registerCronEvent } from '@lib/client';
 
 interface RingItem {
   x: number;
@@ -86,8 +86,10 @@ for (const zones of mapzones) {
   }
 }
 
-PVEvents.registerCronEvent('research:zoneCheck', '*/5 * * * * *'); // every 5 seconds
-
-on('events:timeEvent:research:zoneCheck', () => {
-  console.log('Performing periodic zone check');
-});
+registerCronEvent(
+  () => {
+    console.log('Performing periodic zone check');
+  },
+  'zoneCheck',
+  '*/5 * * * * *', // every 5 seconds
+);

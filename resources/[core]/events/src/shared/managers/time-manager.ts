@@ -1,9 +1,12 @@
 import { CronExpressionParser } from 'cron-parser';
-import { onResourceStop } from 'lib/client';
+
+import { onResourceStop } from '@lib/client';
 
 const computeNextCronFire = (cron: string, from: number): number => {
   return CronExpressionParser.parse(cron, { currentDate: from }).next().getTime();
 };
+
+const EVENT_PREFIX = 'events:time:' as const;
 
 export class TimeManager {
   protected static instance: TimeManager;
@@ -30,6 +33,17 @@ export class TimeManager {
       clearTick(TimeManager.tick);
     });
 
+    on('onResourceStop', (resourceName: string) => {
+      const events = this.resourceEvents.get(resourceName);
+      if (events) {
+        for (const eventId of events) {
+          this.timeEvents.delete(eventId);
+          console.log(`Cleaned up time event ${eventId} from resource ${resourceName}`);
+        }
+        this.resourceEvents.delete(resourceName);
+      }
+    });
+
     TimeManager.initialized = true;
   }
 
@@ -42,7 +56,7 @@ export class TimeManager {
 
     for (const [eventId, config] of this.timeEvents.entries()) {
       if (this.testEvent(eventId, config)) {
-        emit(`events:timeEvent:${eventId}`);
+        emit(`${EVENT_PREFIX}${eventId}`);
       }
     }
   }
@@ -70,27 +84,45 @@ export class TimeManager {
     return false;
   }
 
+  addResourceEvent(resource: string, eventId: string) {
+    if (!this.resourceEvents.has(resource)) {
+      this.resourceEvents.set(resource, []);
+    }
+    this.resourceEvents.get(resource)?.push(eventId);
+  }
+
   registerCronEvent(eventId: string, cron: string) {
-    // NOTE: console.log('registerCronEvent called by:', GetInvokingResource());
+    const resource = GetInvokingResource();
+    eventId = `${resource}:${eventId}`;
+
     if (this.timeEvents.has(eventId)) {
       console.log(`Time event with ID ${eventId} already exists. Overwriting.`);
     }
     try {
       const nextFire = computeNextCronFire(cron, Date.now());
-      this.timeEvents.set(eventId, { type: 'cron', cron, nextFire });
+      this.timeEvents.set(eventId, { type: 'cron', resource, cron, nextFire });
+      this.addResourceEvent(resource, eventId);
       console.log(`Registered cron event ${eventId} (${cron}), next at ${nextFire}`);
     } catch (err) {
       console.log(`Failed to register cron event ${eventId}: invalid expression "${cron}"`, err);
     }
+
+    return `${EVENT_PREFIX}${eventId}`;
   }
 
   registerTimeEvent(eventId: string, time: number, deleteAfterFire = false) {
+    const resource = GetInvokingResource();
+    eventId = `${resource}:${eventId}`;
+
     if (this.timeEvents.has(eventId)) {
       console.log(`Time event with ID ${eventId} already exists. Overwriting.`);
     } else {
       console.log(`Registered time event ${eventId} for ${time}`);
     }
-    this.timeEvents.set(eventId, { type: 'time', time, deleteAfterFire });
+    this.timeEvents.set(eventId, { type: 'time', resource, time, deleteAfterFire });
+    this.addResourceEvent(resource, eventId);
+
+    return `${EVENT_PREFIX}${eventId}`;
   }
 
   unregisterEvent(eventId: string) {

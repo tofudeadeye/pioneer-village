@@ -1,6 +1,6 @@
 import { Buffer } from 'buffer';
 
-import { PVEventsManager } from '@lib/client/resources';
+import { PVEvents, PVEventsManager } from '@lib/client/resources';
 
 const intToFloat = (int: number) => {
   const buffer = Buffer.alloc(4);
@@ -250,6 +250,26 @@ function register<T extends keyof typeof eventMappings>(
         callback(data);
       }
     });
+  }
+}
+
+export function registerCronEvent(callback: () => void, eventId: string, cron: string) {
+  const eventName = PVEvents.registerCronEvent(eventId, cron);
+  if (eventName) {
+    console.log(`Successful registerCronEvent with id "${eventName}"`);
+    on(eventName, callback);
+  } else {
+    console.log(`Failed to registerCronEvent with id "${eventId}"`);
+  }
+}
+
+export function registerTimeEvent(callback: () => void, eventId: string, time: number, deleteAfterFire?: boolean) {
+  const eventName = PVEvents.registerTimeEvent(eventId, time, deleteAfterFire);
+  if (eventName) {
+    console.log(`Successful registerTimeEvent with id "${eventName}"`);
+    on(eventName, callback);
+  } else {
+    console.log(`Failed to registerTimeEvent with id "${eventId}"`);
   }
 }
 

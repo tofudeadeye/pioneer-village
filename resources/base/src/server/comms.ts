@@ -1,15 +1,17 @@
-import 'dotenv/config';
 import { Socket, io } from 'socket.io-client';
 
 import { exports } from '@lib/server';
 
+const SOCKET_SERVER_CONNECTION = GetConvar('SOCKET_SERVER_CONNECTION', '');
+const SOCKET_SERVER_KEY = GetConvar('SOCKET_SERVER_KEY', '');
+
 const socketListeners: Map<string, Map<string, any>> = new Map();
 
-const client: Socket<SocketServer.SocketEvents, SocketServer.Server> = io(process.env.SOCKET_SERVER_CONNECTION, {
+const client: Socket<SocketServer.SocketEvents, SocketServer.Server> = io(SOCKET_SERVER_CONNECTION, {
   autoConnect: false,
   transports: ['websocket'],
   auth: {
-    token: process.env.SOCKET_SERVER_KEY,
+    token: SOCKET_SERVER_KEY,
   },
 });
 

@@ -4,11 +4,11 @@
   "main": "index.js",
   "license": "CC-BY-NC-SA-4.0",
   "data": {
-    "serverVersion": "25770"
+    "serverVersion": "29586"
   },
   "scripts": {
     "download-server": "cd artifacts && node download.js",
-    "start": "./artifacts/25770/FXServer.exe +exec server.cfg +set onesync on +set svgui_disable 1 +set sv_lan 1 +sv_enforceGameBuild 1491",
+    "start": "./artifacts/29586/FXServer.exe +exec server.cfg +set onesync on +set svgui_disable 1 +set sv_lan 1 +sv_enforceGameBuild 1491",
     "watch": "lerna run watch --stream --parallel",
     "build": "lerna run build --stream --parallel",
     "build:socket": "lerna run build --stream --parallel --scope=socket",
@@ -24,8 +24,8 @@
     "7zip": "^0.0.6",
     "@babel/plugin-syntax-jsx": "^7.27.1",
     "@babel/plugin-syntax-typescript": "^7.27.1",
-    "@citizenfx/client": "2.0.25770-1",
-    "@citizenfx/server": "2.0.25770-1",
+    "@citizenfx/client": "2.0.29586-1",
+    "@citizenfx/server": "2.0.29586-1",
     "@rspack/cli": "^1.4.11",
     "@rspack/core": "^1.4.11",
     "@svgr/cli": "^8.1.0",
@@ -74,7 +74,7 @@
     "canvas": "^3.2.0",
     "colors": "^1.4.0",
     "cron-parser": "^5.5.0",
-    "dotenv": "^17.2.1",
+    "dotenv": "^17.4.2",
     "drizzle-orm": "^0.44.2",
     "fast-xml-parser": "^5.3.1",
     "howler": "^2.2.3",

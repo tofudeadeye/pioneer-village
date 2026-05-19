@@ -8,6 +8,11 @@ set onesync_forceMigration true
 #Used in /webpack/webpack.hot-reload.js for auto reloading resources on change
 set rcon_password "qwerty"
 
+# Env Variables
+set SOCKET_USER_CONNECTION "ws://localhost:3000/users"
+set SOCKET_SERVER_CONNECTION "ws://localhost:3000/server"
+set SOCKET_SERVER_KEY "random-string-for-server-socket-auth"
+
 # obfuscates files with a global key, instead of a per-client key
 #set adhesive_cdnKey "yourSecret"
 

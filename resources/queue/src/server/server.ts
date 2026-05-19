@@ -1,6 +1,8 @@
-import 'dotenv/config';
-import { onClientCall, awaitSocket, getIdentifiers } from '@lib/server';
+import { awaitSocket, getIdentifiers, onClientCall } from '@lib/server';
+
 import './queue';
+
+const SOCKET_USER_CONNECTION = GetConvar('SOCKET_USER_CONNECTION', '');
 
 const socketDetails: Map<number, SocketDetails> = new Map();
 
@@ -19,7 +21,7 @@ onClientCall('getSocketDetails', async (serverId, useCache = true) => {
   // console.log('identifiers', identifiers);
   const token = await awaitSocket('generateJWT', serverId, identifiers);
   const details: SocketDetails = {
-    socketUrl: process.env.SOCKET_USER_CONNECTION,
+    socketUrl: SOCKET_USER_CONNECTION,
     token,
   };
   socketDetails.set(serverId, details);

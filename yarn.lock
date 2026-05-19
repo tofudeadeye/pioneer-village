@@ -993,15 +993,15 @@
   resolved "https://registry.yarnpkg.com/@bufbuild/protobuf/-/protobuf-2.6.3.tgz#291dcd1cdfae453a16b40e0b50961e2a444f6d3c"
   integrity sha512-w/gJKME9mYN7ZoUAmSMAWXk4hkVpxRKvEJCb3dV5g9wwWdxTJJ0ayOJAVcNxtdqaxDyFuC0uz4RSGVacJ030PQ==
 
-"@citizenfx/client@2.0.25770-1":
-  version "2.0.25770-1"
-  resolved "https://registry.yarnpkg.com/@citizenfx/client/-/client-2.0.25770-1.tgz#422363046066685c05f4fd4a632d547b51e7b4c8"
-  integrity sha512-E9KIaa5CFVNQ7IDEoN8Tn9nQT7OSAv9KVRFAnMyiwIZOPgo0FNloWT2Peve1Q63nBqBQddmpAWvqxYVdv6wHGA==
+"@citizenfx/client@2.0.29586-1":
+  version "2.0.29586-1"
+  resolved "https://registry.yarnpkg.com/@citizenfx/client/-/client-2.0.29586-1.tgz#1171ac5d4c51b2c935b7634f3bda0eeec014f263"
+  integrity sha512-6u84vzCBaoqw18BHeJE7XIpsY/5Cz2n1KXi8P7H0g0e3+e4HbEPYwbmHAJnIzgbDpYyY8oSMTovR0GspO+boTg==
 
-"@citizenfx/server@2.0.25770-1":
-  version "2.0.25770-1"
-  resolved "https://registry.yarnpkg.com/@citizenfx/server/-/server-2.0.25770-1.tgz#1c1a54eea628444fa5f32d5c2f9777bc15226cc5"
-  integrity sha512-DSNYwoEGS0+1rFnuTW/XP/JTNF5a6NLxt5txezGLkVcCF3ymXoWsU+ZvxIMgyYSHYcbx7K3Ji9XWct4NvAJ+ZA==
+"@citizenfx/server@2.0.29586-1":
+  version "2.0.29586-1"
+  resolved "https://registry.yarnpkg.com/@citizenfx/server/-/server-2.0.29586-1.tgz#617366fa024abed2d916d51b39410b3760f9080f"
+  integrity sha512-XXUW5XGMJN/U6RoFqH84q24IfvwhOri6IP0Vr9ctZvETCDn8gqxNSVNQwEGchqn4NENDzgmhMIE27exiJTVnaQ==
 
 "@cspotcode/source-map-support@^0.8.0":
   version "0.8.1"
@@ -4826,10 +4826,10 @@ dot-prop@^5.1.0:
   dependencies:
     is-obj "^2.0.0"
 
-dotenv@^17.2.1:
-  version "17.2.1"
-  resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-17.2.1.tgz#6f32e10faf014883515538dc922a0fb8765d9b32"
-  integrity sha512-kQhDYKZecqnM0fCnzI5eIv5L4cAe/iRI+HqMbO/hbRdTAeXDG+M9FjipUxNfbARuEg4iHIbhnhs78BCHNbSxEQ==
+dotenv@^17.4.2:
+  version "17.4.2"
+  resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-17.4.2.tgz#c07e54a746e11eba021dd9e1047ced5afdc1c034"
+  integrity sha512-nI4U3TottKAcAD9LLud4Cb7b2QztQMUEfHbvhTH09bqXTxnSie8WnjPALV/WMCrJZ6UV/qHJ6L03OqO3LcdYZw==
 
 drizzle-kit@^0.31.1:
   version "0.31.1"

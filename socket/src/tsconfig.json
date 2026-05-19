@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
+    "baseUrl": "../../",
+    "rootDir": "../../",
     "noImplicitAny": true,
     "strictNullChecks": true,
     "module": "none",

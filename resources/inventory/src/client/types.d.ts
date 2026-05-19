@@ -1,4 +1,14 @@
-declare namespace Inventory {}
+declare interface ClientExports {
+  inventory: Inventory.ClientExports;
+}
+
+declare namespace Inventory {
+  type openInventory = (identifier: string) => void;
+
+  type ClientExports = {
+    openInventory: openInventory;
+  };
+}
 
 // Client perspective - RPC calls to various destinations
 declare namespace ClientRPC {

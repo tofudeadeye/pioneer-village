@@ -8,6 +8,7 @@ export const PVEventsManager = exports['events_manager'];
 export const PVEvents = exports['events'];
 export const PVGame = exports['game'];
 export const PVHealth = exports['health'];
+export const PVInventory = exports['inventory'];
 export const PVPrompt = exports['prompts'];
 export const PVPlaceObject = exports['place-object'];
 export const PVTarget = exports['target'];

@@ -1,3 +1,12 @@
+ function getStateValue(entityId, key)
+    if not entityId then
+        return nil
+    end
+    return Entity(entityId).state[key]
+end
+
+exports('getStateValue', getStateValue)
+
 function getChildEntity(entityId, name)
   if not entityId then
     return nil

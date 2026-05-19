@@ -6,6 +6,7 @@ import { DNA } from '../../../resources/stable/src/shared/dna';
 import { db } from '../db/connection';
 import { BrandsSchema, HorsePregnancySchema, type HorseSchemaType, HorsesSchema } from '../db/schema';
 import { logInfo } from '../helpers';
+import Inventories from './inventories';
 
 type HorseWithBrand = HorseSchemaType & { brand?: typeof BrandsSchema.$inferSelect | null };
 
@@ -33,6 +34,8 @@ class Stables {
       .where(eq(HorsesSchema.ownerId, characterId));
 
     for (const row of result) {
+      await Inventories.createInventory(`horse:${row.Horses.id}`);
+
       logInfo(
         `Horse: ${row.Horses.id}`,
         row.Horses.name || 'UNNAMED',

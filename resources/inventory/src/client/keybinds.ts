@@ -1,4 +1,4 @@
-import { PVInit, emitUI, focusUI } from '@lib/client';
+import { PVGame, PVInit, emitUI, focusUI } from '@lib/client';
 
 const Inputs = {
   ToggleHolster: GetHashKey('ToggleHolster'),
@@ -13,7 +13,15 @@ const Inputs = {
 
 const openUI = async () => {
   await PVInit.initialized('ui::ready');
-  emitUI('inventory.state', { show: true });
+
+  const mountPed = GetMount(PVGame.playerPed());
+  const horseId = mountPed && Entity(mountPed).state.horseId;
+
+  if (horseId) {
+    emitUI('inventory.state', { show: true, targetInventory: `horse:${horseId}` });
+  } else {
+    emitUI('inventory.state', { show: true });
+  }
   focusUI(true, true);
 };
 

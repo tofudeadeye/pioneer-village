@@ -94,6 +94,8 @@ class Inventories {
         return;
       }
 
+      logInfo('Creating inventory', identifier);
+
       // Create container first
       const newContainer = await db.insert(ContainerSchema).values({}).returning();
 
@@ -321,6 +323,7 @@ class Inventories {
     if (inventoryType.restrictions === 0 || inventoryType.restrictions & inventoryItem.restriction) {
       isAllowed = true;
     }
+    logInfo('isAllowedInInventory result', isAllowed);
     return isAllowed;
   }
 
@@ -376,10 +379,7 @@ class Inventories {
         .where(eq(InventorySchema.containerId, item.containerId))
         .limit(1);
 
-      await db
-        .update(ItemSchema)
-        .set({ metadata: mergedMetadata })
-        .where(eq(ItemSchema.id, itemId));
+      await db.update(ItemSchema).set({ metadata: mergedMetadata }).where(eq(ItemSchema.id, itemId));
 
       return {
         success: true,

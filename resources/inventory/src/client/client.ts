@@ -4,6 +4,7 @@ import InventoryTypes from '@lib/shared/inventory-types';
 import PVItems from '@lib/shared/items';
 
 import './events';
+import './exports';
 import './hats';
 import './keybinds';
 import './targets';

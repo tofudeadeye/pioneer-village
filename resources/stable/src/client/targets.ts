@@ -55,6 +55,34 @@ const registerTargets = async () => {
   });
 
   PVTarget.AddTarget({
+    id: 'stable::horse_inv',
+    type: 'flag',
+    group: ['isHorse'],
+    data: [
+      {
+        id: 'horse_inv',
+        label: 'Open Inventory',
+        icon: 'sack',
+        event: 'stable:client:horse-inv',
+      },
+    ],
+    options: {
+      distance: 3.0,
+      throttle: 1_000,
+      isEnabled(data) {
+        if (!data.entity || !data.playerPed) return false;
+        const horseId = data.entity && Entity(data.entity).state.horseId;
+        // console.log('Horse ID:', horseId);
+        if (!horseId) {
+          return false;
+        }
+
+        return true;
+      },
+    },
+  });
+
+  PVTarget.AddTarget({
     id: 'stable::pelt_remove',
     type: 'flag',
     group: ['isHorse'],

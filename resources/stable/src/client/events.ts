@@ -1,4 +1,4 @@
-import { PVGame, PVGameEvents, PVZone } from '@lib/client';
+import { PVGame, PVGameEvents, PVInventory, PVZone } from '@lib/client';
 import { awaitUI } from '@lib/client';
 import { PedConfigFlag } from '@lib/flags';
 import { Delay } from '@lib/functions';
@@ -18,6 +18,20 @@ on('stable:client:lead', (pEntity: number, pArgs: Record<string, any>) => {
 on('stable:client:remove-pelt', (pEntity: number, pArgs: Record<string, any>) => {
   console.log('stable:client:remove-pelt', pEntity, pArgs);
   peltController.removePelt(pEntity);
+});
+
+on('stable:client:horse-inv', (pEntity: number, pArgs: Record<string, any>) => {
+  console.log('stable:client:horse-inv', pEntity, pArgs);
+
+  const horseId = pEntity && Entity(pEntity).state.horseId;
+  // console.log('Horse ID:', horseId);
+  if (!horseId) {
+    return false;
+  }
+
+  console.log(`Opening inventory for horse ${horseId} on entity ${pEntity}`);
+
+  PVInventory.openInventory(`horse:${horseId}`);
 });
 
 on('stable:client:stable-horse', (pEntity: number, pArgs: Record<string, any>) => {

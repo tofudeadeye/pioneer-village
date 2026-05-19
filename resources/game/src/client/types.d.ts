@@ -152,7 +152,7 @@ declare namespace Game {
     isPedFacingCoord: isPedFacingCoord;
 
     // Lua Exports
-    // getStateValue: (entity: number, key: string) => any;
+    getStateValue: (entity: number, key: string) => any;
     getChildEntity: (entity: number, name: string) => number;
     setPedFaceFeature: (ped: number, index: number, scale: number) => void;
     makeHorseMale: (ped: number) => void;

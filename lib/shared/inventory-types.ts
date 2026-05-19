@@ -38,7 +38,7 @@ const InventoryTypes: Record<string, Inventory.Type> = {
   horse: {
     slots: 24,
     maxWeight: 100,
-    restrictions: Restrictions.Small,
+    restrictions: Restrictions.None,
   },
   stash: {
     slots: 64,
@@ -48,7 +48,7 @@ const InventoryTypes: Record<string, Inventory.Type> = {
   paperBag: {
     slots: 8,
     maxWeight: 6,
-    restrictions: Restrictions.Small,
+    restrictions: Restrictions.Tiny + Restrictions.Small,
   },
   // Character bird slots
   birds: {

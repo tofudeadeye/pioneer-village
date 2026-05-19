@@ -517,7 +517,7 @@ class StableController {
   async whistleLastOrNearby(whistleEventType: number): Promise<void> {
     const horsePed = GetSaddleHorseForPlayer(PlayerId());
     if (horsePed && this.whistleHorsePed(horsePed, whistleEventType)) {
-      console.log('Whistled current mount');
+      console.log('Whistled current mount', horsePed);
       return;
     }
 

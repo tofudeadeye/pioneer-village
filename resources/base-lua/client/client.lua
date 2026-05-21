@@ -1,0 +1,17 @@
+--local playerPed = PlayerPedId()
+--local targetEntity = GetLastMount(playerPed)
+--local offset = vector3(0.5, 0, 0)
+--local ikIndex = 3
+--Citizen.CreateThread(function()
+--    while true do
+--        Citizen.Wait(0)
+--        SetIkTarget(playerPed, ikIndex, targetEntity, 21030, offset.x, offset.y, offset.z, 0, -1, -1)
+--    end
+--end)
+
+-- IK Index
+-- 0 =
+-- 1 = Head
+-- 2 =
+-- 3 = Left Arm
+-- 4 = Right Arm

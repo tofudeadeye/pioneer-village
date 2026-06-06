@@ -88,14 +88,7 @@ declare namespace ClientRPC {
   interface Socket {
     ['world.registered-objects']: () => Record<string, number>;
     ['world.request-creation']: (name: string) => boolean;
-  }
-}
-
-// Client perspective - events sent to socket
-declare namespace ClientOut {
-  interface ToSocket {
-    ['world.register-object']: (name: string, netId: number) => void;
-    ['world.unregister-object']: (name: string) => void;
+    ['world.load-state']: (name: string) => Record<string, unknown>;
   }
 }
 
@@ -107,6 +100,3 @@ declare namespace ClientIn {
     'world.meteor-shower': () => void;
   }
 }
-
-// Raw Socket.io events for UI layer typing - DEDUPLICATED
-// Note: SocketIO.Events eliminated - use ClientIn.FromSocket directly

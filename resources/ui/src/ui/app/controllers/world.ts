@@ -16,4 +16,11 @@ export default (socket: Socket<SocketIO.Events, SocketIn.FromClient & SocketOut.
       });
     });
   });
+  onClientCall('world.load-state', (name) => {
+    return new Promise((resolve) => {
+      socket.emit('world.load-state', name, (state) => {
+        resolve(state);
+      });
+    });
+  });
 };

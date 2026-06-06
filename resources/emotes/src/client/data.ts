@@ -172,6 +172,12 @@ export const EMOTES: Record<string, EmoteInterface> = {
       flags: AnimFlag.REPEAT + AnimFlag.CANCELABLE,
     },
   },
+  handcuff: {
+    animation: {
+      dict: 'mp_arresting',
+      anim: 'idle',
+    },
+  },
   leanbar2: { scenario: `WORLD_HUMAN_BAR_DRINK_BARTENDER` },
   letscraft: { emote: `KIT_EMOTE_ACTION_LETS_CRAFT_1` },
   letsfish: { emote: `KIT_EMOTE_ACTION_LETS_FISH_1` },

@@ -1,6 +1,9 @@
-import { awaitSocket, emitSocket } from '@lib/server';
 import { Delay } from '@lib/functions';
 import { Vector3 } from '@lib/math';
+import { awaitSocket, emitSocket, onSocket } from '@lib/server';
+
+const CHECK_INTERVAL_MS = 10_000;
+const SPAWN_RANGE_MULTIPLIER = 2; // cellSize * SPAWN_RANGE_MULTIPLIER = max range to consider a player nearby
 
 class WorldController {
   protected static instance: WorldController;
@@ -13,16 +16,11 @@ class WorldController {
   }
 
   cellSize = 50;
-  cells: Map<number, Map<number, Set<string>>> = new Map();
   objects: Map<string, World.Object> = new Map();
-
-  stateBool: Map<string, boolean> = new Map();
-
   networkObjects: Map<string, number> = new Map();
   activeObjects: Map<string, number> = new Map();
 
   protected interval: CitizenTimer;
-
   protected receivedNetworkObjects = false;
 
   constructor() {
@@ -30,154 +28,157 @@ class WorldController {
       if (this.receivedNetworkObjects) {
         this.check();
       }
-    }, 10e3);
+    }, CHECK_INTERVAL_MS);
 
-    this.serverObjects();
+    this.startup();
+
+    // Live updates: the socket pushes new/changed persistent objects after the initial pull.
+    onSocket('world.persistent-objects', (objects) => {
+      this.applyPersistentObjects(objects);
+      this.check();
+    });
+
+    onSocket('world.net-id-exists', (netId, callback) => {
+      const entity = NetworkGetEntityFromNetworkId(netId);
+      const exists = entity !== 0 && DoesEntityExist(entity);
+      callback(exists);
+    });
+  }
+
+  async startup(): Promise<void> {
+    // Pull persistent objects directly rather than relying on the socket's connect-time push,
+    // which can fire before this resource has registered its listener (boot-order race).
+    const persistentObjects = await awaitSocket('world.persistent-objects');
+    this.applyPersistentObjects(persistentObjects);
+
+    await this.serverObjects();
+
+    this.check();
+  }
+
+  applyPersistentObjects(payload: Record<string, World.PersistentObject>): void {
+    for (const obj of Object.values(payload)) {
+      if (this.objects.has(obj.name)) continue;
+      this.register(GetHashKey(obj.model), obj.coords, obj.rotation, obj.name, { networked: obj.networked });
+    }
   }
 
   async serverObjects(): Promise<void> {
     const serverObjects = await awaitSocket('world.registered-objects');
-    console.log('serverObjects', serverObjects);
     for (const [name, id] of Object.entries(serverObjects)) {
-      console.log('NetworkDoesNetworkIdExist(id)', name, NetworkGetEntityFromNetworkId(id) !== 0);
-      if (NetworkGetEntityFromNetworkId(id) !== 0) {
-        this.activeObjects.set(name, NetworkGetEntityFromNetworkId(id));
+      const entity = NetworkGetEntityFromNetworkId(id);
+      if (entity !== 0 && DoesEntityExist(entity)) {
+        this.activeObjects.set(name, entity);
         this.networkObjects.set(name, id);
-        console.log('Net World Object', name, id, NetworkGetEntityFromNetworkId(id));
-      } else {
-        console.log('Net World Object', name, id, 'does not exist');
       }
     }
 
     this.receivedNetworkObjects = true;
   }
 
-  async playerInRange(objectCoords: Vector3Format, maxDistance = this.cellSize * 2): Promise<number | void> {
-    let closest = 99999;
+  async playerInRange(
+    objectCoords: Vector3Format,
+    maxDistance = this.cellSize * SPAWN_RANGE_MULTIPLIER,
+  ): Promise<number | void> {
+    let closest = Infinity;
     let closestPlayer = 0;
 
     const indexes = GetNumPlayerIndices();
 
     for (let i = 0; i < indexes; i++) {
       const serverId = Number(GetPlayerFromIndex(i));
-      if (serverId === 0) {
-        continue;
-      }
+      if (serverId === 0) continue;
 
       const playerPed = GetPlayerPed(String(serverId));
+      if (playerPed === 0) continue;
 
-      if (playerPed !== 0) {
-        const playerCoords = Vector3.fromArray(GetEntityCoords(playerPed));
+      const playerCoords = Vector3.fromArray(GetEntityCoords(playerPed));
+      const distance = playerCoords.getDistance(objectCoords);
 
-        const distance = playerCoords.getDistance(objectCoords);
-
-        if (distance < maxDistance && distance < closest) {
-          closest = distance;
-          closestPlayer = serverId;
-        }
+      if (distance < maxDistance && distance < closest) {
+        closest = distance;
+        closestPlayer = serverId;
       }
     }
 
-    if (closestPlayer) {
-      return closestPlayer;
-    }
-
-    return;
+    return closestPlayer || undefined;
   }
 
   async check(): Promise<void> {
-    for (const [cellX, columns] of this.cells.entries()) {
-      for (const [cellY, objectNames] of columns.entries()) {
-        for (const objectName of objectNames) {
-          if (!this.activeObjects.has(objectName)) {
-            if (this.objects.get(objectName)?.networked) {
-              // console.log('createObject', objectName);
-              this.createObject(objectName);
-            }
-          }
-        }
-      }
+    console.log('[World:Server] check:', this.objects.size, 'registered,', this.activeObjects.size, 'active');
+    for (const obj of this.objects.values()) {
+      if (this.activeObjects.has(obj.name)) continue;
+      if (!obj.networked) continue;
+      console.log('[World:Server] check: attempting spawn of', obj.name);
+      await this.createObject(obj.name);
     }
   }
 
-  round(n: number): number {
-    return Math.round(n / this.cellSize) * this.cellSize;
-  }
-
-  register(model: number, coords: Vector3Format, rotation: Vector3Format, name: string, networked = true): void {
+  register(
+    model: number,
+    coords: Vector3Format,
+    rotation: Vector3Format,
+    name: string,
+    options: { networked?: boolean } = {},
+  ): void {
     if (this.objects.has(name)) {
       console.warn(`Tried to register object already registered with name: "${name}"`);
       return;
     }
 
-    const coordsCell = {
-      x: this.round(coords.x),
-      y: this.round(coords.y),
-    };
-    if (!this.cells.has(coordsCell.x)) {
-      this.cells.set(coordsCell.x, new Map());
-      // console.log('new Map', coordsCell.x);
-    }
-    if (!this.cells.get(coordsCell.x)?.has(coordsCell.y)) {
-      this.cells.get(coordsCell.x)?.set(coordsCell.y, new Set());
-      // console.log('new Set', coordsCell.y);
-    }
-
     console.info(`Registering world object: ${name}`);
-    this.cells.get(coordsCell.x)?.get(coordsCell.y)?.add(name);
-    this.objects.set(name, { model, coords, rotation, name, networked });
+    this.objects.set(name, { model, coords, rotation, name, networked: options.networked ?? true });
   }
 
   async createObject(name: string): Promise<void> {
     const worldObject = this.objects.get(name);
+    if (!worldObject || !worldObject.networked) return;
 
-    if (worldObject && worldObject.networked) {
-      const closestPlayer = await this.playerInRange(worldObject.coords);
-      // console.log('closestPlayer', closestPlayer);
-
-      if (!closestPlayer) {
-        // console.log('No player in range', name);
-        return;
-      }
-
-      const entityId = CreateObject(
-        worldObject.model,
-        worldObject.coords.x,
-        worldObject.coords.y,
-        worldObject.coords.z,
-        true,
-        true,
-        false,
-      );
-      if (entityId !== 0) {
-        await Delay(1000);
-        console.log('Created:', name, entityId);
-        this.activeObjects.set(name, entityId);
-        const netId = NetworkGetNetworkIdFromEntity(entityId);
-
-        const owner = NetworkGetEntityOwner(entityId);
-        if (owner) {
-          emitNet('world.set-coord-rot', owner, netId, worldObject.coords, worldObject.rotation);
-        }
-
-        console.log('NetId:', netId);
-        this.networkObjects.set(name, netId);
-        emitSocket('world.register-object', name, netId);
-      } else {
-        console.log('Failed to create:', name);
-      }
+    const closestPlayer = await this.playerInRange(worldObject.coords);
+    if (!closestPlayer) {
+      console.log('[World:Server] createObject: no player in range of', name, '— skipping');
+      return;
     }
+    console.log('[World:Server] createObject: player', closestPlayer, 'in range of', name);
+
+    const entityId = CreateObject(
+      worldObject.model,
+      worldObject.coords.x,
+      worldObject.coords.y,
+      worldObject.coords.z,
+      true,
+      true,
+      false,
+    );
+    if (entityId === 0) {
+      console.log('[World:Server] createObject: CreateObject FAILED for', name);
+      return;
+    }
+
+    await Delay(1000);
+    this.activeObjects.set(name, entityId);
+
+    const netId = NetworkGetNetworkIdFromEntity(entityId);
+    const owner = NetworkGetEntityOwner(entityId);
+    console.log('[World:Server] createObject: spawned', name, 'entity', entityId, 'netId', netId, 'owner', owner);
+    if (owner) {
+      emitNet('world.set-coord-rot', owner, netId, worldObject.coords, worldObject.rotation);
+    } else {
+      console.log('[World:Server] createObject: NO OWNER for', name, '— rotation not applied');
+    }
+
+    this.networkObjects.set(name, netId);
+    emitSocket('world.register-object', name, netId);
   }
 
   async destroyObject(name: string): Promise<void> {
     const entityId = this.activeObjects.get(name);
-    if (entityId) {
-      DeleteEntity(entityId);
-      console.log('Destroyed:', name, entityId);
-      this.activeObjects.delete(name);
-      this.networkObjects.delete(name);
-      emitSocket('world.unregister-object', name);
-    }
+    if (!entityId) return;
+
+    DeleteEntity(entityId);
+    this.activeObjects.delete(name);
+    this.networkObjects.delete(name);
+    emitSocket('world.unregister-object', name);
   }
 
   getEntity(name: string): number | undefined {
@@ -186,15 +187,9 @@ class WorldController {
 
   cleanUp(): void {
     clearInterval(this.interval);
-    // for (const name of this.objects.keys()) {
-    //   emitSocket('world.unregister-object', name);
-    // }
-    // for (const entityId of this.activeObjects.values()) {
-    //   DeleteEntity(entityId);
-    // }
   }
 }
 
-const worldController = new WorldController();
+const worldController = WorldController.getInstance();
 
 export default worldController;

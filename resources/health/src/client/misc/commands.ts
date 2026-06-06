@@ -242,7 +242,7 @@ RegisterCommand(
         console.log('Update');
         const [entity, uiBones] = getUIBones();
         emitUI('doctor.state', { entity: entity, boneStatus: uiBones });
-      }, 1000);
+      }, 1_000);
 
       onUI('nui.close', () => {
         clearInterval(update);

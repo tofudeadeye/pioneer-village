@@ -213,6 +213,22 @@ export const DoorSchema = pgTable('Door', {
   state: smallint('state').default(-1),
 });
 
+export const WorldObjectsSchema = pgTable('WorldObjects', {
+  id: serial('id').primaryKey(),
+  name: varchar('name').unique().notNull(),
+  model: varchar('model').notNull(),
+  x: decimal('x').notNull(),
+  y: decimal('y').notNull(),
+  z: decimal('z').notNull(),
+  rotX: decimal('rotX').default('0.0'),
+  rotY: decimal('rotY').default('0.0'),
+  rotZ: decimal('rotZ').default('0.0'),
+  networked: boolean('networked').default(true),
+  state: json('state').default('{}').$type<Record<string, unknown>>(),
+  createdAt: timestamp('createdAt').defaultNow(),
+  updatedAt: timestamp('updatedAt'),
+});
+
 export const PigeonDeliveriesSchema = pgTable('PigeonDeliveries', {
   id: serial('id').primaryKey(),
   pigeonItemId: integer('pigeonItemId').notNull(),
@@ -527,6 +543,8 @@ export type ItemSchemaType = typeof ItemSchema.$inferSelect;
 export type NewItemSchemaType = typeof ItemSchema.$inferInsert;
 export type DoorSchemaType = typeof DoorSchema.$inferSelect;
 export type NewDoorSchemaType = typeof DoorSchema.$inferInsert;
+export type WorldObjectSchemaType = typeof WorldObjectsSchema.$inferSelect;
+export type NewWorldObjectSchemaType = typeof WorldObjectsSchema.$inferInsert;
 export type JobSchemaType = typeof JobsSchema.$inferSelect;
 export type NewJobSchemaType = typeof JobsSchema.$inferInsert;
 export type JobTaskSchemaType = typeof JobTasksSchema.$inferSelect;

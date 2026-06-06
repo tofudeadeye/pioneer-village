@@ -4,7 +4,7 @@ declare namespace SocketIn {
     'world.registered-objects': (callback: (objects: Record<string, number>) => void) => void;
     'world.register-object': (name: string, id: number) => void;
     'world.unregister-object': (name: string) => void;
-    'world.net-id-exists': (id: number) => void;
+    'world.persistent-objects': (callback: (objects: Record<string, World.PersistentObject>) => void) => void;
   }
 
   interface FromClient {
@@ -12,6 +12,8 @@ declare namespace SocketIn {
     'world.request-creation': (name: string, callback: (success: boolean) => void) => void;
     'world.register-object': (name: string, id: number) => void;
     'world.unregister-object': (name: string) => void;
+    'world.load-state': (name: string, callback: (state: Record<string, unknown>) => void) => void;
+    'world.update-state': (name: string, patch: Record<string, unknown>) => void;
   }
 }
 
@@ -20,6 +22,8 @@ declare namespace SocketOut {
   interface ToGameServer {
     ['world.register-object']: (name: string, netId: number) => void;
     ['world.unregister-object']: (name: string) => void;
+    ['world.persistent-objects']: (objects: Record<string, World.PersistentObject>) => void;
+    ['world.net-id-exists']: (id: number, callback: (exists: boolean) => void) => void;
   }
 
   interface ToClient {

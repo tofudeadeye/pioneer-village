@@ -270,6 +270,15 @@ const goToAnimCoords = async () => {
   await Delay(100);
   SetPedDesiredHeading(PVGame.playerPed(), GetEntityHeading(cradleEntity) + 180);
   await Delay(900);
+  TaskPedSlideToCoord(
+    PVGame.playerPed(),
+    animCoords.x,
+    animCoords.y,
+    animCoords.z,
+    GetEntityHeading(cradleEntity) + 180,
+    0.75,
+  );
+  await Delay(750);
 };
 
 const pickupBucket = async () => {

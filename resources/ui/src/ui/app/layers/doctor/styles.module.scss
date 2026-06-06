@@ -27,6 +27,8 @@
   transform-origin: center;
   @include mixins.flexCenter;
   flex-wrap: wrap;
+    filter: drop-shadow(0 -2px 0 var(--theme-black)) drop-shadow(0 2px 0 var(--theme-black)) drop-shadow(-2px 0 0 var(--theme-black))
+      drop-shadow(2px 0 0 var(--theme-black));
 
   &:after {
     transition: 250ms;
@@ -40,8 +42,8 @@
     text-transform: capitalize;
     width: 300%;
     text-align: center;
-    filter: drop-shadow(0 -2px 0 var(--theme-black)) drop-shadow(0 2px 0 var(--theme-black)) drop-shadow(-2px 0 0 var(--theme-black))
-      drop-shadow(2px 0 0 var(--theme-black));
+    //filter: drop-shadow(0 -2px 0 var(--theme-black)) drop-shadow(0 2px 0 var(--theme-black)) drop-shadow(-2px 0 0 var(--theme-black))
+    //  drop-shadow(2px 0 0 var(--theme-black));
     font-size: mixins.uiSize(20);
     font-family: 'Caveat', cursive;
   }

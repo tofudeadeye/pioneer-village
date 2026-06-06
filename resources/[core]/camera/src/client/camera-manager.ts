@@ -135,7 +135,7 @@ class CameraManager {
     const cam = this.get(id);
     console.log(`SetCamActive(${cam}, false);`);
     SetCamActive(cam, false);
-    RenderScriptCams(false, false, easeTime, false, false, 0);
+    RenderScriptCams(false, easeTime > 0, easeTime, false, false, 0);
     if (this.activeCam === cam) {
       this.activeCam = undefined;
       this.activeCamCoords = undefined;

@@ -2,6 +2,7 @@
 // Icons are organized by style (light, regular, solid, duotone)
 // Regular icons (add as needed)
 // Duotone icons
+import BadgeSheriffDuotone from '@fa/5/duotone/badge-sheriff.svg';
 import CashRegisterDuotone from '@fa/5/duotone/cash-register.svg';
 import GarageDuotone from '@fa/5/duotone/garage.svg';
 // Light icons
@@ -38,6 +39,7 @@ export const iconRegistry: Record<string, Record<string, ComponentType<any>>> = 
     'horse-saddle': HorseSaddleSolid,
     male: MaleSolid,
     recycle: RecycleSolid,
+    badge: BadgeSheriffDuotone,
     'wagon-covered': WagonCoveredSolid,
     sack: SackSolid,
     lasso: LassoSolid,

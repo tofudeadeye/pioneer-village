@@ -5,6 +5,18 @@ declare namespace World {
     rotation: Vector3Format;
     name: string;
     networked: boolean;
+    persistent?: boolean;
+    initialState?: Record<string, unknown>;
+    onSpawn?: (entityId: number) => void;
+  }
+
+  interface PersistentObject {
+    name: string;
+    model: string;
+    coords: { x: number; y: number; z: number };
+    rotation: { x: number; y: number; z: number };
+    networked: boolean;
+    state: Record<string, unknown>;
   }
 
   type PtfxStepBase = {
@@ -49,5 +61,6 @@ declare namespace ClientOut {
   interface ToSocket {
     'world.register-object': (name: string, netId: number) => void;
     'world.unregister-object': (name: string) => void;
+    'world.update-state': (name: string, patch: Record<string, unknown>) => void;
   }
 }

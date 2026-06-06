@@ -10,6 +10,9 @@ PVTarget.AddTarget({
       label: 'Delete Entity',
       icon: 'recycle',
       event: 'research:client:delete_entity',
+      isEnabled(data) {
+        return Boolean(data.entity && DoesEntityExist(data.entity) && !IsPedAPlayer(data.entity));
+      },
     },
   ],
   options: {

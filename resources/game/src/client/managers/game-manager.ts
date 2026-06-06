@@ -1016,7 +1016,8 @@ class GameManager {
       const [animCoords, animRot] =
         ((animTask?.flags ?? 0) & AnimFlag.OFFSET_POSITION) === AnimFlag.OFFSET_POSITION
           ? [coords, rotation]
-          : l === 0
+          : // If first animation in loop
+            l === 0
             ? this.getAnimOffset(animTask.dict, animName, coords, rotation)
             : [Vector3.fromArray(GetEntityCoords(animPed, false)), Vector3.fromArray(GetEntityRotation(animPed, 2))];
       TaskPlayAnimAdvanced(

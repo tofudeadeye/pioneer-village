@@ -4,6 +4,7 @@ import { Vector3 } from '@lib/math/vector3';
 
 import componentManager from './managers/component-manager';
 import gameManager from './managers/game-manager';
+import moveNetworkManager from './managers/move-network-manager';
 import vegModifierManager from './managers/veg-modifier-manager';
 
 // Character-related functionality from character-select controller
@@ -248,6 +249,50 @@ const vegRemoveAllSpheres: Game.vegRemoveAllSpheres = () => {
   vegModifierManager.removeAllSpheres();
 };
 
+const startMoveNetwork: Game.startMoveNetwork = (config) => {
+  return moveNetworkManager.start(config);
+};
+
+const setMoveNetworkSignalFloat: Game.setMoveNetworkSignalFloat = (id, signal, value) => {
+  moveNetworkManager.setSignalFloat(id, signal, value);
+};
+
+const setMoveNetworkSignalBool: Game.setMoveNetworkSignalBool = (id, signal, value) => {
+  moveNetworkManager.setSignalBool(id, signal, value);
+};
+
+const setMoveNetworkSignalVector: Game.setMoveNetworkSignalVector = (id, signal, x, y, z) => {
+  moveNetworkManager.setSignalVector(id, signal, x, y, z);
+};
+
+const requestMoveNetworkStateTransition: Game.requestMoveNetworkStateTransition = (id, stateName) => {
+  moveNetworkManager.requestStateTransition(id, stateName);
+};
+
+const getMoveNetworkEvent: Game.getMoveNetworkEvent = (id, eventName) => {
+  return moveNetworkManager.getEvent(id, eventName);
+};
+
+const hasMoveNetworkAnimEventFired: Game.hasMoveNetworkAnimEventFired = (id, eventHash) => {
+  return moveNetworkManager.hasAnimEventFired(id, eventHash);
+};
+
+const isMoveNetworkActive: Game.isMoveNetworkActive = (id) => {
+  return moveNetworkManager.isActive(id);
+};
+
+const isMoveNetworkReadyForTransition: Game.isMoveNetworkReadyForTransition = (id) => {
+  return moveNetworkManager.isReadyForTransition(id);
+};
+
+const stopMoveNetwork: Game.stopMoveNetwork = (id) => {
+  moveNetworkManager.stop(id);
+};
+
+const stopAllMoveNetworks: Game.stopAllMoveNetworks = () => {
+  moveNetworkManager.stopAll();
+};
+
 const getPlayerServerId = (): Game.playerServerId => {
   return gameManager.getPlayerServerId();
 };
@@ -315,6 +360,18 @@ exports<'game'>('destroyStateMachine', destroyStateMachine);
 exports<'game'>('vegAddSphereAtEntity', vegAddSphereAtEntity);
 exports<'game'>('vegAddVolume', vegAddVolume);
 exports<'game'>('vegRemoveAllSpheres', vegRemoveAllSpheres);
+
+exports<'game'>('startMoveNetwork', startMoveNetwork);
+exports<'game'>('setMoveNetworkSignalFloat', setMoveNetworkSignalFloat);
+exports<'game'>('setMoveNetworkSignalBool', setMoveNetworkSignalBool);
+exports<'game'>('setMoveNetworkSignalVector', setMoveNetworkSignalVector);
+exports<'game'>('requestMoveNetworkStateTransition', requestMoveNetworkStateTransition);
+exports<'game'>('getMoveNetworkEvent', getMoveNetworkEvent);
+exports<'game'>('hasMoveNetworkAnimEventFired', hasMoveNetworkAnimEventFired);
+exports<'game'>('isMoveNetworkActive', isMoveNetworkActive);
+exports<'game'>('isMoveNetworkReadyForTransition', isMoveNetworkReadyForTransition);
+exports<'game'>('stopMoveNetwork', stopMoveNetwork);
+exports<'game'>('stopAllMoveNetworks', stopAllMoveNetworks);
 
 exports<'game'>('getPlayerServerId', getPlayerServerId);
 exports<'game'>('getPlayerSteamId', getPlayerSteamId);

@@ -9,6 +9,7 @@ import './stuff/gold-panning';
 import './stuff/hats';
 import './stuff/horses';
 import './stuff/instruments';
+import './stuff/milking-cow';
 import './stuff/pigeons';
 import './stuff/police';
 import './stuff/ptfx';

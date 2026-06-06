@@ -80,6 +80,33 @@ declare namespace Game {
   type vegAddVolume = (volume: number, modifierType: number, flags: number) => number;
   type vegRemoveAllSpheres = () => void;
 
+  interface MoveNetworkConfig {
+    id: string;
+    entity: number;
+    networkDef: string;
+    clipSet?: string;
+    animDicts?: string[];
+    initialState?: string;
+    anchorCoords?: { x: number; y: number; z: number };
+    anchorRotation?: { x: number; y: number; z: number };
+    isAdvanced?: boolean;
+    blendInTime?: number;
+    flags?: number;
+    loadTimeoutMs?: number;
+  }
+
+  type startMoveNetwork = (config: MoveNetworkConfig) => Promise<boolean>;
+  type setMoveNetworkSignalFloat = (id: string, signal: string, value: number) => void;
+  type setMoveNetworkSignalBool = (id: string, signal: string, value: boolean) => void;
+  type setMoveNetworkSignalVector = (id: string, signal: string, x: number, y: number, z: number) => void;
+  type requestMoveNetworkStateTransition = (id: string, stateName: string) => void;
+  type getMoveNetworkEvent = (id: string, eventName: string) => boolean;
+  type hasMoveNetworkAnimEventFired = (id: string, eventHash: number) => boolean;
+  type isMoveNetworkActive = (id: string) => boolean;
+  type isMoveNetworkReadyForTransition = (id: string) => boolean;
+  type stopMoveNetwork = (id: string) => void;
+  type stopAllMoveNetworks = () => void;
+
   type skinPed = (ped: number, character: Character) => Promise<void>;
 
   type playerServerId = number;
@@ -141,6 +168,18 @@ declare namespace Game {
     vegAddSphereAtEntity: vegAddSphereAtEntity;
     vegAddVolume: vegAddVolume;
     vegRemoveAllSpheres: vegRemoveAllSpheres;
+
+    startMoveNetwork: startMoveNetwork;
+    setMoveNetworkSignalFloat: setMoveNetworkSignalFloat;
+    setMoveNetworkSignalBool: setMoveNetworkSignalBool;
+    setMoveNetworkSignalVector: setMoveNetworkSignalVector;
+    requestMoveNetworkStateTransition: requestMoveNetworkStateTransition;
+    getMoveNetworkEvent: getMoveNetworkEvent;
+    hasMoveNetworkAnimEventFired: hasMoveNetworkAnimEventFired;
+    isMoveNetworkActive: isMoveNetworkActive;
+    isMoveNetworkReadyForTransition: isMoveNetworkReadyForTransition;
+    stopMoveNetwork: stopMoveNetwork;
+    stopAllMoveNetworks: stopAllMoveNetworks;
 
     getPlayerServerId: () => number;
 

@@ -26,9 +26,14 @@ const closeDoor: Doors.CloseDoor = (doorHash: number, durationMultiplier = 1.0) 
   doorManager.closeDoor(doorHash, durationMultiplier);
 };
 
+const attemptLockpick: Doors.AttemptLockpick = (doorHash) => {
+  doorManager.attemptLockpick(doorHash);
+};
+
 exports<'doors'>('lockDoor', lockDoor);
 exports<'doors'>('unlockDoor', unlockDoor);
 exports<'doors'>('setDoorState', setDoorState);
 exports<'doors'>('getClosestDoor', getClosestDoor);
 exports<'doors'>('getClosestDoorToCoords', getClosestDoorToCoords);
 exports<'doors'>('closeDoor', closeDoor);
+exports<'doors'>('attemptLockpick', attemptLockpick);

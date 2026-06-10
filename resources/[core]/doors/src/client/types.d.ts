@@ -9,6 +9,7 @@ declare namespace Doors {
   type GetClosestDoor = () => number | null;
   type GetClosestDoorToCoords = (coords: Vector3Format) => number | null;
   type CloseDoor = (doorHash: number, durationMultiplier?: number) => void;
+  type AttemptLockpick = (doorHash: number) => void;
 
   interface ClientExports {
     lockDoor: LockDoor;
@@ -17,6 +18,7 @@ declare namespace Doors {
     getClosestDoor: GetClosestDoor;
     getClosestDoorToCoords: GetClosestDoorToCoords;
     closeDoor: CloseDoor;
+    attemptLockpick: AttemptLockpick;
   }
 }
 
@@ -30,14 +32,15 @@ declare namespace ClientRPC {
 // Client perspective - events received from various sources
 declare namespace ClientIn {
   interface FromSocket {
-    ['doors.set-door-state']: (doorHash: number, state: number) => void;
+    ['doors.set-door-state']: (doorHash: number, state: number, pairedHash?: number) => void;
+    ['doors.indicator']: (indicators: UI.Door.Indicator[]) => void;
   }
 }
 
 // Client perspective - events sent to various destinations
 declare namespace ClientOut {
   interface ToSocket {
-    ['doors.set-door-state']: (doorHash: number, state: number) => void;
+    ['doors.set-door-state']: (doorHash: number, state: number, pairedHash?: number) => void;
   }
 }
 

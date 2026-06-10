@@ -98,6 +98,7 @@ class Characters {
       .select()
       .from(CharactersSchema)
       .leftJoin(FacesSchema, eq(CharactersSchema.id, FacesSchema.characterId))
+      .leftJoin(AccountsSchema, eq(CharactersSchema.accountId, AccountsSchema.id))
       .where(eq(CharactersSchema.id, charId))
       .limit(1);
 
@@ -106,6 +107,7 @@ class Characters {
     const row = result[0];
     const characterData = row.Characters;
     const faceData = row.Faces;
+    const role = (row.Accounts?.role ?? 'USER') as 'USER' | 'DEVELOPER' | 'ADMIN';
 
     const characterWithFace: CharacterWithFace = {
       ...characterData,
@@ -149,6 +151,7 @@ class Characters {
       steamId: '',
       offline: true,
       userId: -1,
+      role,
     };
   }
 

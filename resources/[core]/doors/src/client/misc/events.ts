@@ -1,6 +1,6 @@
 import { PVBase, PVGame } from '@lib/client';
 import { emitSocket, emitUI, onUI } from '@lib/client/comms/ui';
-import { Delay } from '@lib/functions';
+import { Delay, lerp } from '@lib/functions';
 import { Vector3 } from '@lib/math';
 
 import doorManager from '../managers/door-manager';
@@ -36,8 +36,24 @@ const toggleDoor = async (doorHash: number) => {
   const prevState = doorManager.getDoorState(doorHash);
   console.log('[doors] prevState:', prevState);
   if (prevState !== 0) {
-    PVGame.taskPlayAnim(doorOpenAnim);
+    const doorEntity = doorManager.getDoorEntity(doorHash);
+    if (doorEntity) {
+      const keyholeCoords = Vector3.fromArray(GetOffsetFromEntityInWorldCoords(doorEntity, 1.0, 0.0, 1.0));
+      const angleTo = PVGame.getAngleTo(keyholeCoords);
+      if (angleTo > 20) {
+        await PVGame.turnPedToFaceCoord(
+          PVGame.playerPed(),
+          keyholeCoords.x,
+          keyholeCoords.y,
+          keyholeCoords.z,
+          lerp(250, 750, angleTo / 180),
+        );
+        await Delay(lerp(125, 250, angleTo / 180));
+        await PVGame.taskPlayAnim(doorOpenAnim);
+      }
+    }
   }
+
   const pairedHash = getPairedDoorHash(doorHash) ?? undefined;
   await doorManager.toggleDoorState(doorHash, true, pairedHash);
 

@@ -1,17 +1,14 @@
-import { PVBase, PVGame, awaitUI } from '@lib/client';
-import { emitSocket } from '@lib/client/comms/ui';
+import { PVBase, PVGame } from '@lib/client';
+import { emitSocket, onSocket } from '@lib/client/comms/ui';
 import { Vector3 } from '@lib/math';
 
-const CHECK_INTERVAL_MS = 5_000;
+const CHECK_INTERVAL_MS = 1_000;
 const SPAWN_RANGE = 100;
 const DESPAWN_RANGE = 150;
 
-interface RegisterOptions {
-  networked?: boolean;
-  persistent?: boolean;
-  initialState?: Record<string, unknown>;
-  onSpawn?: (entityId: number) => void;
-}
+type ObjectState = Record<string, unknown>;
+type SpawnHandler = (entityId: number, state: ObjectState) => void;
+type StateChangeHandler = (entityId: number | undefined, patch: ObjectState, state: ObjectState) => void;
 
 class WorldController {
   protected static instance: WorldController;
@@ -23,45 +20,49 @@ class WorldController {
     return WorldController.instance;
   }
 
-  objects: Map<string, World.Object> = new Map();
-  networkObjects: Map<string, number> = new Map();
+  objects: Map<string, World.ObjectDef> = new Map();
   activeObjects: Map<string, number> = new Map();
 
+  protected entityNames: Map<number, string> = new Map();
+  protected spawning: Set<string> = new Set();
+  protected spawnHandlers: Map<string, Set<SpawnHandler>> = new Map();
+  protected stateHandlers: Map<string, Set<StateChangeHandler>> = new Map();
   protected interval: CitizenTimer;
-  protected serverObjectsInterval: CitizenTimer;
-  protected receivedNetworkObjects = false;
 
   constructor() {
     this.interval = setInterval(() => {
-      if (this.receivedNetworkObjects) {
-        this.check();
-      }
+      this.check();
     }, CHECK_INTERVAL_MS);
 
-    this.serverObjectsInterval = setInterval(() => {
-      this.serverObjects();
-    }, CHECK_INTERVAL_MS);
+    onSocket('world.track-object', (def) => {
+      this.objects.set(def.name, def);
+      this.check();
+    });
+
+    onSocket('world.untrack-object', (name) => {
+      this.destroyObject(name);
+      this.objects.delete(name);
+    });
+
+    onSocket('world.state-changed', (name, patch) => {
+      this.applyRemoteState(name, patch);
+    });
+
+    onSocket('world.transform-changed', (name, coords, rotation) => {
+      this.applyRemoteTransform(name, coords, rotation);
+    });
+
+    on('onResourceStop', (resourceName: string) => {
+      if (resourceName !== GetCurrentResourceName()) return;
+      this.cleanUp();
+    });
+
+    // The socket server keeps per-client interest state across world resource restarts
+    // (its connection lives in the ui resource), so tell it to resend our track list.
+    emitSocket('world.request-sync');
   }
 
-  async serverObjects(): Promise<void> {
-    const serverObjects = await awaitUI('world.registered-objects');
-    const names = Object.keys(serverObjects);
-    // if (names.length > 0) {
-    //   console.log('[World:Client] serverObjects: socket reports', names.length, 'net objects:', names.join(', '));
-    // }
-    for (const [name, id] of Object.entries(serverObjects)) {
-      const exists = NetworkDoesNetworkIdExist(id);
-      // console.log(`[World:Client] serverObjects: ${name} netId=${id} exists=${exists}`);
-      if (exists) {
-        this.activeObjects.set(name, NetworkGetEntityFromNetworkId(id));
-        this.networkObjects.set(name, id);
-      }
-    }
-
-    this.receivedNetworkObjects = true;
-  }
-
-  async check(): Promise<void> {
+  check(): void {
     const playerCoords = Vector3.fromObject(PVGame.playerCoords());
 
     for (const obj of this.objects.values()) {
@@ -69,108 +70,171 @@ class WorldController {
       const isActive = this.activeObjects.has(obj.name);
 
       if (!isActive && distance < SPAWN_RANGE) {
-        if (obj.networked) {
-          if (await awaitUI('world.request-creation', obj.name)) {
-            this.createObject(obj.name);
-          }
-        } else {
-          this.createObject(obj.name);
-        }
-      } else if (isActive && distance > DESPAWN_RANGE && !obj.networked) {
-        // Networked objects are managed by FXServer ownership migration — only locally destroy non-networked props
+        this.createObject(obj.name);
+      } else if (isActive && distance > DESPAWN_RANGE) {
         this.destroyObject(obj.name);
       }
     }
   }
 
-  register(
-    model: number,
-    coords: Vector3Format,
-    rotation: Vector3Format,
-    name: string,
-    options: RegisterOptions = {},
-  ): void {
-    if (this.objects.has(name)) {
-      console.warn(`Tried to register object already registered with name: "${name}"`);
-      return;
-    }
+  protected async createObject(name: string): Promise<void> {
+    const def = this.objects.get(name);
+    if (!def || this.activeObjects.has(name) || this.spawning.has(name)) return;
 
-    console.info(`Registering world object: ${name}`);
-    this.objects.set(name, {
-      model,
-      coords,
-      rotation,
-      name,
-      networked: options.networked ?? true,
-      persistent: options.persistent ?? false,
-      initialState: options.initialState,
-      onSpawn: options.onSpawn,
-    });
-  }
+    this.spawning.add(name);
+    try {
+      const entityId = await PVGame.createObject(def.model, def.coords, def.rotation, false);
 
-  async createObject(name: string): Promise<void> {
-    const worldObject = this.objects.get(name);
-    if (!worldObject) return;
+      // The object may have been untracked while the model streamed in.
+      if (!this.objects.has(name)) {
+        PVBase.deleteEntity(entityId);
+        return;
+      }
 
-    const entityId = await PVGame.createObject(
-      worldObject.model,
-      worldObject.coords,
-      worldObject.rotation,
-      worldObject.networked,
-    );
+      this.activeObjects.set(name, entityId);
+      this.entityNames.set(entityId, name);
 
-    this.activeObjects.set(name, entityId);
-    if (worldObject.networked) {
-      const netId = NetworkGetNetworkIdFromEntity(entityId);
-      this.networkObjects.set(name, netId);
-      emitSocket('world.register-object', name, netId);
-    }
-
-    await this.seedState(worldObject, entityId);
-
-    worldObject.onSpawn?.(entityId);
-  }
-
-  protected async seedState(worldObject: World.Object, entityId: number): Promise<void> {
-    if (!worldObject.persistent) {
-      if (worldObject.initialState) {
-        for (const [key, value] of Object.entries(worldObject.initialState)) {
-          Entity(entityId).state.set(key, value, worldObject.networked);
+      const handlers = this.spawnHandlers.get(name);
+      if (handlers) {
+        for (const handler of handlers) {
+          handler(entityId, def.state);
         }
       }
-      return;
-    }
-
-    const stored = await awaitUI('world.load-state', worldObject.name);
-    const merged = { ...(worldObject.initialState ?? {}), ...stored };
-    for (const [key, value] of Object.entries(merged)) {
-      Entity(entityId).state.set(key, value, worldObject.networked);
+    } finally {
+      this.spawning.delete(name);
     }
   }
 
-  async destroyObject(name: string): Promise<void> {
+  protected destroyObject(name: string): void {
     const entityId = this.activeObjects.get(name);
     if (!entityId) return;
 
-    await PVBase.deleteEntity(entityId);
+    PVBase.deleteEntity(entityId);
     this.activeObjects.delete(name);
-    this.networkObjects.delete(name);
-    emitSocket('world.unregister-object', name);
+    this.entityNames.delete(entityId);
+  }
+
+  protected applyRemoteState(name: string, patch: ObjectState): void {
+    const def = this.objects.get(name);
+    if (!def) return;
+
+    const changed: ObjectState = {};
+    for (const [key, value] of Object.entries(patch)) {
+      if (JSON.stringify(def.state[key]) !== JSON.stringify(value)) {
+        changed[key] = value;
+      }
+    }
+    // An empty diff means this client already applied the patch locally (its own update echoed back).
+    if (Object.keys(changed).length === 0) return;
+
+    Object.assign(def.state, changed);
+
+    const handlers = this.stateHandlers.get(name);
+    if (handlers) {
+      const entityId = this.activeObjects.get(name);
+      for (const handler of handlers) {
+        handler(entityId, changed, def.state);
+      }
+    }
+  }
+
+  protected applyRemoteTransform(name: string, coords: Vector3Format, rotation: Vector3Format): void {
+    const def = this.objects.get(name);
+    if (!def) return;
+
+    // An identical transform means this client already applied it locally (its own update echoed back).
+    if (
+      JSON.stringify(def.coords) === JSON.stringify(coords) &&
+      JSON.stringify(def.rotation) === JSON.stringify(rotation)
+    ) {
+      return;
+    }
+
+    def.coords = coords;
+    def.rotation = rotation;
+
+    const entityId = this.activeObjects.get(name);
+    if (entityId && DoesEntityExist(entityId)) {
+      SetEntityCoordsNoOffset(entityId, coords.x, coords.y, coords.z, false, false, false);
+      SetEntityRotation(entityId, rotation.x, rotation.y, rotation.z, 0, false);
+    }
+  }
+
+  updateState(name: string, patch: ObjectState): void {
+    const def = this.objects.get(name);
+    if (!def) return;
+
+    Object.assign(def.state, patch);
+    emitSocket('world.update-state', name, patch);
+  }
+
+  updateTransform(name: string, coords: Vector3Format, rotation: Vector3Format): void {
+    const def = this.objects.get(name);
+    if (!def) return;
+
+    def.coords = coords;
+    def.rotation = rotation;
+
+    const entityId = this.activeObjects.get(name);
+    if (entityId && DoesEntityExist(entityId)) {
+      SetEntityCoordsNoOffset(entityId, coords.x, coords.y, coords.z, false, false, false);
+      SetEntityRotation(entityId, rotation.x, rotation.y, rotation.z, 0, false);
+    }
+
+    emitSocket('world.update-transform', name, coords, rotation);
   }
 
   getEntity(name: string): number | undefined {
     return this.activeObjects.get(name);
   }
 
+  getName(entityId: number): string | undefined {
+    return this.entityNames.get(entityId);
+  }
+
+  getState(name: string): ObjectState {
+    return this.objects.get(name)?.state ?? {};
+  }
+
+  onSpawn(name: string, handler: SpawnHandler): void {
+    let handlers = this.spawnHandlers.get(name);
+    if (!handlers) {
+      handlers = new Set();
+      this.spawnHandlers.set(name, handlers);
+    }
+    handlers.add(handler);
+
+    // Fire for objects that spawned before the handler was registered.
+    const entityId = this.activeObjects.get(name);
+    const def = this.objects.get(name);
+    if (entityId && def) {
+      handler(entityId, def.state);
+    }
+  }
+
+  onStateChange(name: string, handler: StateChangeHandler): void {
+    let handlers = this.stateHandlers.get(name);
+    if (!handlers) {
+      handlers = new Set();
+      this.stateHandlers.set(name, handlers);
+    }
+    handlers.add(handler);
+  }
+
+  reset(): void {
+    for (const name of [...this.activeObjects.keys()]) {
+      this.destroyObject(name);
+    }
+    this.check();
+  }
+
   cleanUp(): void {
     clearInterval(this.interval);
-    clearInterval(this.serverObjectsInterval);
-    for (const name of this.objects.keys()) {
-      emitSocket('world.unregister-object', name);
-    }
     for (const entityId of this.activeObjects.values()) {
       PVBase.deleteEntity(entityId);
     }
+    this.activeObjects.clear();
+    this.entityNames.clear();
   }
 }
 

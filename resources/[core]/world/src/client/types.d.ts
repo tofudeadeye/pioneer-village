@@ -83,20 +83,18 @@ declare namespace World {
   };
 }
 
-// Client perspective - RPC calls to various destinations
-declare namespace ClientRPC {
-  interface Socket {
-    ['world.registered-objects']: () => Record<string, number>;
-    ['world.request-creation']: (name: string) => boolean;
-    ['world.load-state']: (name: string) => Record<string, unknown>;
-  }
-}
-
 // Client perspective - events received from various sources
 declare namespace ClientIn {
   interface FromSocket {
+    'world.track-object': (def: World.ObjectDef) => void;
+    'world.untrack-object': (name: string) => void;
+    'world.state-changed': (name: string, patch: Record<string, unknown>) => void;
+    'world.transform-changed': (name: string, coords: Vector3Format, rotation: Vector3Format) => void;
+
     // Cron Events
     'world.geyser-show': (data: World.GeyserShowSteps) => void;
     'world.meteor-shower': () => void;
   }
+
+  interface FromServer {}
 }

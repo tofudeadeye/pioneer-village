@@ -13,7 +13,6 @@ import InventoryController from './controllers/inventory';
 import JobsController from './controllers/jobs';
 import StableController from './controllers/stable';
 import WeatherController from './controllers/weather';
-import WorldController from './controllers/world';
 import animationsStore from './stores/animations-store';
 import birdStore from './stores/bird-store';
 import characterSelectStore from './stores/character-select-store';
@@ -80,7 +79,6 @@ export default (socket: Socket<UISocketEvents, SocketServer.Client & SocketServe
   CarrierPigeonsController(socket);
   StableController(socket);
   WeatherController(socket);
-  WorldController(socket);
   BaseController(socket);
 
   // @ts-ignore

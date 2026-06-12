@@ -18,6 +18,7 @@ type CharacterWithFace = CharacterSchemaType & { face: FaceSchemaType | null };
 
 const COORDS_ZERO = { x: 0, y: 0, z: 0 };
 const COORD_THRESHOLD = 0.001;
+const COORD_PERSIST_INTERVAL_MS = 30_000;
 
 export const GetFaceDataFromDatabase = (result: CharacterWithFace): Game.Face => {
   // NOTE: There are defaults just in case, but they should never really not exist in the DB
@@ -70,6 +71,7 @@ class Characters {
   static readonly instance: Characters = new Characters();
 
   characters: PVCharacterData[] = []; // TODO This needs to be a Map<number, PVCharacterData> for faster access
+  private lastCoordsPersist: Map<number, number> = new Map();
 
   constructor() {
     if (Characters.instance) {
@@ -384,18 +386,25 @@ export type Prisma.CharactersCreateInput = {
       const newY = Number(coords.y.toFixed(3));
       const newZ = Number(coords.z.toFixed(3));
 
-      await db
-        .update(CharactersSchema)
-        .set({
-          lastX: newX.toFixed(3), // DB expects string for decimal type
-          lastY: newY.toFixed(3),
-          lastZ: newZ.toFixed(3),
-        })
-        .where(eq(CharactersSchema.id, characterId));
-
       this.updateLocalCharacterAtributeWithCharId(characterId, 'lastX', newX);
       this.updateLocalCharacterAtributeWithCharId(characterId, 'lastY', newY);
       this.updateLocalCharacterAtributeWithCharId(characterId, 'lastZ', newZ);
+
+      // Coords arrive every few seconds; the in-memory cache always tracks them, but
+      // persisting every push would hammer the database for data only read on login.
+      const lastPersist = this.lastCoordsPersist.get(characterId) ?? 0;
+      if (Date.now() - lastPersist >= COORD_PERSIST_INTERVAL_MS) {
+        this.lastCoordsPersist.set(characterId, Date.now());
+
+        await db
+          .update(CharactersSchema)
+          .set({
+            lastX: newX.toFixed(3), // DB expects string for decimal type
+            lastY: newY.toFixed(3),
+            lastZ: newZ.toFixed(3),
+          })
+          .where(eq(CharactersSchema.id, characterId));
+      }
     }
 
     this.updateLocalCharacterAtributeWithCharId(characterId, 'lastNow', Date.now());

@@ -1,21 +1,9 @@
 declare namespace World {
-  interface Object {
-    model: number;
-    coords: Vector3Format;
-    rotation: Vector3Format;
-    name: string;
-    networked: boolean;
-    persistent?: boolean;
-    initialState?: Record<string, unknown>;
-    onSpawn?: (entityId: number) => void;
-  }
-
-  interface PersistentObject {
+  interface ObjectDef {
     name: string;
     model: string;
-    coords: { x: number; y: number; z: number };
-    rotation: { x: number; y: number; z: number };
-    networked: boolean;
+    coords: Vector3Format;
+    rotation: Vector3Format;
     state: Record<string, unknown>;
   }
 
@@ -59,8 +47,8 @@ declare namespace World {
 // Extend the ClientOut.ToSocket namespace with world-specific socket events
 declare namespace ClientOut {
   interface ToSocket {
-    'world.register-object': (name: string, netId: number) => void;
-    'world.unregister-object': (name: string) => void;
+    'world.request-sync': () => void;
     'world.update-state': (name: string, patch: Record<string, unknown>) => void;
+    'world.update-transform': (name: string, coords: Vector3Format, rotation: Vector3Format) => void;
   }
 }

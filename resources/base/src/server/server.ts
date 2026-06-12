@@ -30,10 +30,12 @@ const getConnectedPlayers = () => {
   return players;
 };
 
+// 5s keeps socket-side coords fresh enough for world-object interest checks (a galloping
+// horse covers ~75m between pushes, well inside the interest radius buffer).
 setInterval(async () => {
   connectedPlayers = getConnectedPlayers();
   emitSocket('base.connected-players', connectedPlayers);
-}, 30_000);
+}, 5_000);
 
 on('playerDropped', () => {
   const src = global.source;

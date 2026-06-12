@@ -67,55 +67,39 @@ type LastParam<T extends (...args: any[]) => any> = Last<Parameters<T>>;
 type IsServer = typeof source extends number ? true : false;
 
 // Use conditional typing based on whether we're in server or client context
-type onClient = IsServer extends true
-  ? <T extends keyof ServerIn.FromClient>(
-      evtName: T,
-      callback: (...args: Parameters<ServerIn.FromClient[T]>) => void,
-    ) => void
-  : <T extends keyof (ClientIn.FromServer & ClientOut.ToServer)>(
-      evtName: T,
-      callback: (...args: Parameters<(ClientIn.FromServer & ClientOut.ToServer)[T]>) => void,
-    ) => void;
-type onClientCall = IsServer extends true
-  ? <T extends keyof ServerRPC.Client>(
-      evtName: T,
-      callback: (
-        serverId: number,
-        ...args: Parameters<ServerRPC.Client[T]>
-      ) => ReturnType<ServerRPC.Client[T]> | Promise<ReturnType<ServerRPC.Client[T]>>,
-    ) => void
-  : <T extends keyof ClientRPC.Server>(
-      evtName: T,
-      callback: (
-        serverId: number,
-        ...args: Parameters<ClientRPC.Server[T]>
-      ) => ReturnType<ClientRPC.Server[T]> | Promise<ReturnType<ClientRPC.Server[T]>>,
-    ) => void;
-type emitClient = IsServer extends true
-  ? <T extends keyof ServerOut.ToClient>(
-      evtName: T,
-      serverId: number,
-      ...args: Parameters<ServerOut.ToClient[T]>
-    ) => void
-  : <T extends keyof (ClientIn.FromServer & ClientOut.ToServer)>(
-      evtName: T,
-      serverId: number,
-      ...args: Parameters<(ClientIn.FromServer & ClientOut.ToServer)[T]>
-    ) => void;
-type awaitClient = IsServer extends true
-  ? <T extends keyof ServerRPC.Client>(
-      evtName: T,
-      serverId: number,
-      ...args: Parameters<ServerRPC.Client[T]>
-    ) => Promise<ReturnType<ServerRPC.Client[T]>>
-  : <T extends keyof ClientRPC.Server>(
-      evtName: T,
-      serverId: number,
-      ...args: Parameters<ClientRPC.Server[T]>
-    ) => Promise<ReturnType<ClientRPC.Server[T]>>;
+type onClient = <T extends keyof ServerIn.FromClient>(
+  evtName: T,
+  callback: (...args: Parameters<ServerIn.FromClient[T]>) => void,
+) => void;
+type onClientCall = <T extends keyof ServerRPC.Client>(
+  evtName: T,
+  callback: (
+    serverId: number,
+    ...args: Parameters<ServerRPC.Client[T]>
+  ) => ReturnType<ServerRPC.Client[T]> | Promise<ReturnType<ServerRPC.Client[T]>>,
+) => void;
+type emitClient = <T extends keyof ServerOut.ToClient>(
+  evtName: T,
+  serverId: number,
+  ...args: Parameters<ServerOut.ToClient[T]>
+) => void;
+type awaitClient = <T extends keyof ServerRPC.Client>(
+  evtName: T,
+  serverId: number,
+  ...args: Parameters<ServerRPC.Client[T]>
+) => Promise<ReturnType<ServerRPC.Client[T]>>;
 
-type onServer = onClient;
-type onServerCall = onClientCall;
+type onServer = <T extends keyof (ClientIn.FromServer & ClientOut.ToServer)>(
+  evtName: T,
+  callback: (...args: Parameters<(ClientIn.FromServer & ClientOut.ToServer)[T]>) => void,
+) => void;
+type onServerCall = <T extends keyof ClientRPC.Server>(
+  evtName: T,
+  callback: (
+    serverId: number,
+    ...args: Parameters<ClientRPC.Server[T]>
+  ) => ReturnType<ClientRPC.Server[T]> | Promise<ReturnType<ClientRPC.Server[T]>>,
+) => void;
 type emitServer = <T extends keyof (ClientIn.FromServer & ClientOut.ToServer)>(
   evtName: T,
   ...args: Parameters<(ClientIn.FromServer & ClientOut.ToServer)[T]>

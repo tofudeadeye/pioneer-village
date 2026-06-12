@@ -1,40 +1,55 @@
 import { PVGame, PVTarget, onResourceInit } from '@lib/client';
-import { emitSocket } from '@lib/client/comms/ui';
-import { Delay } from '@lib/functions';
 import { Vector3 } from '@lib/math';
 
 import worldController from './controllers/world-controller';
 
 const DOOR_L_NAME = 'serial::cellar-door-l';
 const DOOR_R_NAME = 'serial::cellar-door-r';
+const DOOR_NAMES = [DOOR_L_NAME, DOOR_R_NAME];
 const ANIM_DICT = 'script_rc@sklr@ig@ig1_opendoor';
 
 const setDoorOpen = (open: boolean) => {
-  const doorLeft = worldController.getEntity(DOOR_L_NAME);
-  const doorRight = worldController.getEntity(DOOR_R_NAME);
-  if (doorLeft) Entity(doorLeft).state.set('open', open, true);
-  if (doorRight) Entity(doorRight).state.set('open', open, true);
-  emitSocket('world.update-state', DOOR_L_NAME, { open });
-  emitSocket('world.update-state', DOOR_R_NAME, { open });
+  for (const name of DOOR_NAMES) {
+    worldController.updateState(name, { open });
+  }
 };
 
 const isDoorOpen = (entity: number | undefined): boolean => {
   if (!entity) return false;
-  return Entity(entity).state.open === true;
+  const name = worldController.getName(entity);
+  if (!name) return false;
+  return worldController.getState(name).open === true;
 };
 
-// Snap a door to its fully-open pose without playing the swing. Used when a door streams in
+const isLeftDoor = (entity: number): boolean => GetEntityModel(entity) === GetHashKey('P_CS_LUC_BASEDR');
+
+// Play a single door's swing animation. Used by the close interaction and for doors
+// animated remotely (another player changed the state).
+const playDoorAnim = (entity: number, open: boolean): void => {
+  const side = isLeftDoor(entity) ? 'l' : 'r';
+
+  const task: Anim.EntityTask = {
+    obj: entity,
+    dict: ANIM_DICT,
+    anim: open ? `arthur_open_doors_luc_basedr_${side}_door` : `enter_closed_doors_luc_basedr_${side}_door`,
+    stayInAnim: true,
+    flags: 32768,
+  };
+  if (open) {
+    task.delta = 0.4;
+  }
+
+  PVGame.taskPlayEntityAnim([task]);
+};
+
+// Snap a door to its fully-open pose without playing the swing. Used when a door spawns
 // already-open (restored from persisted state) so the player sees the end state, not the animation.
 const snapDoorOpen = (entity: number) => {
-  console.log('Snapping door open for entity', entity);
   PVGame.taskPlayEntityAnim([
     {
       obj: entity,
       dict: ANIM_DICT,
-      anim:
-        GetEntityModel(entity) === GetHashKey('P_CS_LUC_BASEDR')
-          ? 'arthur_open_doors_luc_basedr_l_door'
-          : 'arthur_open_doors_luc_basedr_r_door',
+      anim: isLeftDoor(entity) ? 'arthur_open_doors_luc_basedr_l_door' : 'arthur_open_doors_luc_basedr_r_door',
       delta: 0.9,
       stayInAnim: true,
       flags: 32768,
@@ -42,26 +57,18 @@ const snapDoorOpen = (entity: number) => {
   ]);
 };
 
-// Track which door entities we've already restored, so we only snap once per spawn.
-const restoredDoors: Set<number> = new Set();
-
-const restoreDoorStates = () => {
-  for (const name of [DOOR_L_NAME, DOOR_R_NAME]) {
-    const entity = worldController.getEntity(name);
-    if (!entity || !DoesEntityExist(entity)) {
-      restoredDoors.delete(entity ?? -1);
-      continue;
+for (const name of DOOR_NAMES) {
+  worldController.onSpawn(name, (entityId, state) => {
+    if (state.open === true) {
+      snapDoorOpen(entityId);
     }
-    if (restoredDoors.has(entity)) continue;
+  });
 
-    if (isDoorOpen(entity)) {
-      snapDoorOpen(entity);
-    }
-    restoredDoors.add(entity);
-  }
-};
-
-setInterval(restoreDoorStates, 1_000);
+  worldController.onStateChange(name, (entityId, patch) => {
+    if (entityId === undefined || !('open' in patch)) return;
+    playDoorAnim(entityId, patch.open === true);
+  });
+}
 
 const registerTargets = () => {
   PVTarget.AddTarget({
@@ -109,21 +116,11 @@ const registerTargets = () => {
 onResourceInit('target', registerTargets);
 
 on('world:client:open-cellar', async (_pEntity: number, _pArgs: Record<string, any>) => {
-  setDoorOpen(true);
   const animOffset = { x: -0.03258881, y: -1.82538, z: 0.7651197 };
 
   const doorLeft = worldController.getEntity(DOOR_L_NAME);
   const doorRight = worldController.getEntity(DOOR_R_NAME);
   if (!doorLeft || !doorRight) return;
-
-  console.log('Attempting to get control of doors');
-  await PVGame.getNetworkControlOfEntity(doorLeft);
-  await PVGame.getNetworkControlOfEntity(doorRight);
-  await Delay(10);
-  await PVGame.getNetworkControlOfEntity(doorLeft);
-  await PVGame.getNetworkControlOfEntity(doorRight);
-  console.log('Got control of doors');
-  console.log('Starting door open anim');
 
   const coords = Vector3.fromArray(
     GetOffsetFromEntityInWorldCoords(doorLeft, animOffset.x, animOffset.y, animOffset.z),
@@ -136,6 +133,7 @@ on('world:client:open-cellar', async (_pEntity: number, _pArgs: Record<string, a
   TaskGoToCoordAnyMeans(PVGame.playerPed(), coords.x, coords.y, coords.z, 1.5, 0, false, 0, 0);
   await PVGame.reachedCoords(coords, 0.5);
 
+  setDoorOpen(true);
   if (PVGame.playerCoords().z > 96.0) {
     PVGame.taskPlayAnimAdvArray(coords.toObject(), rot.toObject(), [
       {
@@ -165,24 +163,8 @@ on('world:client:open-cellar', async (_pEntity: number, _pArgs: Record<string, a
       },
     ]);
   } else {
-    PVGame.taskPlayEntityAnim([
-      {
-        obj: doorLeft,
-        dict: ANIM_DICT,
-        anim: 'arthur_open_doors_luc_basedr_l_door',
-        delta: 0.635,
-        stayInAnim: true,
-        flags: 32768,
-      },
-      {
-        obj: doorRight,
-        dict: ANIM_DICT,
-        anim: 'arthur_open_doors_luc_basedr_r_door',
-        delta: 0.4666,
-        stayInAnim: true,
-        flags: 32768,
-      },
-    ]);
+    playDoorAnim(doorLeft, true);
+    playDoorAnim(doorRight, true);
   }
 });
 
@@ -193,29 +175,6 @@ on('world:client:close-cellar', async (_pEntity: number, _pArgs: Record<string, 
   const doorRight = worldController.getEntity(DOOR_R_NAME);
   if (!doorLeft || !doorRight) return;
 
-  console.log('Attempting to get control of doors');
-  await PVGame.getNetworkControlOfEntity(doorLeft);
-  await PVGame.getNetworkControlOfEntity(doorRight);
-  await Delay(10);
-  await PVGame.getNetworkControlOfEntity(doorLeft);
-  await PVGame.getNetworkControlOfEntity(doorRight);
-  console.log('Got control of doors');
-  console.log('Starting door open anim');
-
-  PVGame.taskPlayEntityAnim([
-    {
-      obj: doorLeft,
-      dict: ANIM_DICT,
-      anim: 'enter_closed_doors_luc_basedr_l_door',
-      stayInAnim: true,
-      flags: 32768,
-    },
-    {
-      obj: doorRight,
-      dict: ANIM_DICT,
-      anim: 'enter_closed_doors_luc_basedr_r_door',
-      stayInAnim: true,
-      flags: 32768,
-    },
-  ]);
+  playDoorAnim(doorLeft, false);
+  playDoorAnim(doorRight, false);
 });

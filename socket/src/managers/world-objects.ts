@@ -3,8 +3,18 @@ import { eq } from 'drizzle-orm';
 import { db } from '../db/connection';
 import { type NewWorldObjectSchemaType, type WorldObjectSchemaType, WorldObjectsSchema } from '../db/schema';
 import { logInfoS } from '../helpers';
+import Characters from './characters';
 
 type WorldObjectState = Record<string, unknown>;
+
+const INTEREST_TICK_MS = 5_000;
+const INTEREST_RADIUS = 80;
+const INTEREST_RADIUS_SQ = INTEREST_RADIUS * INTEREST_RADIUS;
+
+interface CharacterInterest {
+  socket: PVCharacterData['socket'];
+  names: Set<string>;
+}
 
 const SEED_OBJECTS: NewWorldObjectSchemaType[] = [
   {
@@ -16,7 +26,6 @@ const SEED_OBJECTS: NewWorldObjectSchemaType[] = [
     rotX: '9.34038352966308',
     rotY: '0.22028501331806',
     rotZ: '39.96985626220703',
-    networked: true,
     state: { open: false },
   },
   {
@@ -28,7 +37,6 @@ const SEED_OBJECTS: NewWorldObjectSchemaType[] = [
     rotX: '9.34038352966308',
     rotY: '0.22028501331806',
     rotZ: '39.96985626220703',
-    networked: true,
     state: { open: false },
   },
 ];
@@ -38,6 +46,8 @@ class WorldObjects {
 
   private cache: Map<string, WorldObjectSchemaType> = new Map();
   private initialized = false;
+  private interestTimer: NodeJS.Timeout | null = null;
+  private interests: Map<number, CharacterInterest> = new Map();
 
   private constructor() {}
 
@@ -58,6 +68,8 @@ class WorldObjects {
 
     await this.seedDefaults();
 
+    this.startInterestTick();
+
     this.initialized = true;
     logInfoS('[WorldObjects]', `Initialized with ${this.cache.size} objects`);
   }
@@ -74,6 +86,16 @@ class WorldObjects {
     return (this.cache.get(name)?.state as WorldObjectState) ?? {};
   }
 
+  toObjectDef(row: WorldObjectSchemaType): World.ObjectDef {
+    return {
+      name: row.name,
+      model: row.model,
+      coords: { x: Number(row.x), y: Number(row.y), z: Number(row.z) },
+      rotation: { x: Number(row.rotX), y: Number(row.rotY), z: Number(row.rotZ) },
+      state: (row.state as WorldObjectState) ?? {},
+    };
+  }
+
   async upsert(row: NewWorldObjectSchemaType): Promise<WorldObjectSchemaType> {
     const [stored] = await db
       .insert(WorldObjectsSchema)
@@ -88,7 +110,6 @@ class WorldObjects {
           rotX: row.rotX,
           rotY: row.rotY,
           rotZ: row.rotZ,
-          networked: row.networked,
           updatedAt: new Date(),
         },
       })
@@ -115,6 +136,101 @@ class WorldObjects {
 
     this.cache.set(name, updated);
     return updated;
+  }
+
+  async setTransform(
+    name: string,
+    coords: Vector3Format,
+    rotation: Vector3Format,
+  ): Promise<WorldObjectSchemaType | undefined> {
+    const existing = this.cache.get(name);
+    if (!existing) {
+      logInfoS('[WorldObjects]', `setTransform: unknown object "${name}"`);
+      return undefined;
+    }
+
+    const [updated] = await db
+      .update(WorldObjectsSchema)
+      .set({
+        x: coords.x.toString(),
+        y: coords.y.toString(),
+        z: coords.z.toString(),
+        rotX: rotation.x.toString(),
+        rotY: rotation.y.toString(),
+        rotZ: rotation.z.toString(),
+        updatedAt: new Date(),
+      })
+      .where(eq(WorldObjectsSchema.name, name))
+      .returning();
+
+    this.cache.set(name, updated);
+    return updated;
+  }
+
+  // The user socket lives in the UI resource and survives a world resource restart, so the
+  // client announces a fresh start and we forget what was sent to it. The immediate tick
+  // resends the full track list without waiting for the next interval.
+  resyncSocket(socket: PVCharacterData['socket']): void {
+    for (const [characterId, interest] of this.interests.entries()) {
+      if (interest.socket === socket) {
+        this.interests.delete(characterId);
+      }
+    }
+    this.interestTick();
+  }
+
+  private startInterestTick(): void {
+    if (this.interestTimer) return;
+    this.interestTimer = setInterval(() => this.interestTick(), INTEREST_TICK_MS);
+    logInfoS('[WorldObjects]', 'Interest tick started');
+  }
+
+  private interestTick(): void {
+    const activeCharacterIds = new Set<number>();
+
+    for (const character of Characters.characters) {
+      if (!character || character.offline || !character.socket) continue;
+      activeCharacterIds.add(character.id);
+
+      let interest = this.interests.get(character.id);
+      // A new socket means the client lost everything it was tracking (reconnect or
+      // resource restart), so start from an empty set to resend the full track list.
+      if (!interest || interest.socket !== character.socket) {
+        interest = { socket: character.socket, names: new Set() };
+        this.interests.set(character.id, interest);
+      }
+
+      const inRange = new Set<string>();
+      for (const row of this.cache.values()) {
+        const dx = Number(row.x) - character.lastX;
+        const dy = Number(row.y) - character.lastY;
+        if (dx * dx + dy * dy <= INTEREST_RADIUS_SQ) {
+          inRange.add(row.name);
+        }
+      }
+
+      for (const name of inRange) {
+        if (interest.names.has(name)) continue;
+        const row = this.cache.get(name);
+        if (row) {
+          interest.socket.emit('__client__', 'world.track-object', this.toObjectDef(row));
+        }
+      }
+
+      for (const name of interest.names) {
+        if (!inRange.has(name)) {
+          interest.socket.emit('__client__', 'world.untrack-object', name);
+        }
+      }
+
+      interest.names = inRange;
+    }
+
+    for (const characterId of this.interests.keys()) {
+      if (!activeCharacterIds.has(characterId)) {
+        this.interests.delete(characterId);
+      }
+    }
   }
 
   private async seedDefaults(): Promise<void> {

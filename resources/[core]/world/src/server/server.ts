@@ -1,7 +1,5 @@
 import { PVBase, emitSocket } from '@lib/server';
 
-import './controllers/world-controller';
-
 // <editor-fold desc="Cron Events">
 const registerCronEvents = () => {
   emitSocket('cron.register-event', 'meteor-shower', {

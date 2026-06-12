@@ -8,7 +8,7 @@ import Characters from './characters';
 type WorldObjectState = Record<string, unknown>;
 
 const INTEREST_TICK_MS = 5_000;
-const INTEREST_RADIUS = 80;
+const INTEREST_RADIUS = 200;
 const INTEREST_RADIUS_SQ = INTEREST_RADIUS * INTEREST_RADIUS;
 
 interface CharacterInterest {

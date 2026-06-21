@@ -5,7 +5,7 @@ Client-side lifecycle manager for resource-owned NPC peds. Each resource instant
 ```ts
 import { PedManager } from '@lib/client';
 
-const manager = new PedManager();
+const manager = PedManager().getInstance();
 ```
 
 ---
@@ -52,7 +52,7 @@ Fires a random line from the pool on a random interval. Runs independently of th
 ```ts
 speech: {
   ref: '0822_S_M_M_BANKCLERK_01_WHITE_01',
-  lines: ['HOWS_IT_GOING', 'WELCOME'],
+  names: ['HOWS_IT_GOING', 'WELCOME'],
   params: 'speech_params_force',
   intervalMs: [15_000, 45_000], // [min, max] ms — picked randomly each time
 }
@@ -164,7 +164,7 @@ const handle = await manager.spawn('valentine-teller', {
   missionEntity: true,
   speech: {
     ref: '0822_S_M_M_BANKCLERK_01_WHITE_01',
-    lines: ['HOWS_IT_GOING', 'WELCOME'],
+    names: ['HOWS_IT_GOING', 'WELCOME'],
     params: 'speech_params_force',
     intervalMs: [15_000, 45_000],
   },

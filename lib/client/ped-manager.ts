@@ -9,7 +9,7 @@ const playAmbientSpeech = (entity: number, ref: string, name: string, params: st
 
 export interface PedSpeechConfig {
   ref: string;
-  lines: string[];
+  names: string[];
   params: string;
   /** [minMs, maxMs] random interval between speech lines */
   intervalMs: [number, number];
@@ -75,9 +75,17 @@ interface ManagedPed {
 const randomBetween = (min: number, max: number) => Math.random() * (max - min) + min;
 
 export class PedManager {
+  protected static instance: PedManager;
   private _peds: Map<string, ManagedPed> = new Map();
   /** Events that have already been registered with PVGameEvents (per-instance). */
   private _registeredReactionEvents: Set<keyof EventData> = new Set();
+
+  static getInstance(): PedManager {
+    if (!PedManager.instance) {
+      PedManager.instance = new PedManager();
+    }
+    return PedManager.instance;
+  }
 
   async spawn(id: string, config: PedConfig): Promise<number> {
     const existing = this._peds.get(id);
@@ -150,6 +158,18 @@ export class PedManager {
     if (managed) managed.routineRunning = true;
   }
 
+  playSpeech(id: string, psc: PedSpeechConfig): void {
+    const managed = this._peds.get(id);
+    console.log(`[PedManager] ped found: ${!!managed} with handle ${managed?.handle} - playSpeech "${id}" ref=${psc.ref} names=${psc.names.join(',')} params=${psc.params}`);
+
+    if (managed && DoesEntityExist(managed.handle)) {
+      if (managed.routineRunning) this.pauseRoutine(id);
+      const line = psc.names[Math.floor(Math.random() * psc.names.length)];
+      playAmbientSpeech(managed.handle, psc.ref, line, psc.params);
+      if (!managed.routineRunning) this.resumeRoutine(id);
+    }
+  }
+
   private _startSpeechLoop(managed: ManagedPed): void {
     const { speech } = managed.config;
     if (!speech) return;
@@ -158,7 +178,7 @@ export class PedManager {
       const delay = randomBetween(speech.intervalMs[0], speech.intervalMs[1]);
       managed.speechTimer = setTimeout(() => {
         if (DoesEntityExist(managed.handle)) {
-          const line = speech.lines[Math.floor(Math.random() * speech.lines.length)];
+          const line = speech.lines[Math.floor(Math.random() * speech.names.length)];
           playAmbientSpeech(managed.handle, speech.ref, line, speech.params);
         }
         schedule();

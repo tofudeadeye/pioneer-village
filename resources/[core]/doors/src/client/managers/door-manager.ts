@@ -1,6 +1,7 @@
 import { PVGame, PVInit, awaitUI } from '@lib/client';
 import { emitSocket } from '@lib/client/comms/ui';
 import { Vector3 } from '@lib/math';
+import { runDoorHooks } from '../misc/hooks';
 
 // Doors that should relock once they swing back to closed position.
 // Keyed by signed 32-bit door hash.
@@ -230,18 +231,27 @@ class DoorManager {
       return;
     }
     if (data.state !== state) {
+      const isUnlocking = state === 0;
+      const beforeHook = isUnlocking ? 'beforeUnlock' : 'beforeLock';
+      if (!(await runDoorHooks(beforeHook, doorHash))) return;
+
       data.state = state;
       DoorSystemSetDoorState(doorHash, state);
 
       if (emit) {
         emitSocket('doors.set-door-state', doorHash, state, pairedHash);
       }
+
+      const afterHook = isUnlocking ? 'afterUnlock' : 'afterLock';
+      await runDoorHooks(afterHook, doorHash);
     }
   }
 
   async attemptLockpick(doorHash: number): Promise<void> {
     const data = this.getDoor(doorHash);
     if (!data || data.state !== 1) return;
+
+    if (!(await runDoorHooks('onLockpick', doorHash))) return;
 
     // TODO: trigger lockpicking minigame here
     // On success, call: await this.setDoorStateBypass(doorHash, 0);

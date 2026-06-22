@@ -5,6 +5,7 @@ import { Vector3 } from '@lib/math';
 
 import doorManager from '../managers/door-manager';
 import { doorOpenAnim } from './anim-tasks';
+import { runDoorHooks } from './hooks';
 
 const INTERACT_DISTANCE = 3.0;
 const LOCKPICK_DISTANCE = 2.0;
@@ -231,6 +232,7 @@ onUI('character-client-update.getCharacter', (pCharacter: string) => {
 on('doors:client:key_interact', async () => {
   console.log('[doors] key_interact fired, lastIndicatorHash:', lastIndicatorHash);
   if (lastIndicatorHash === null) return;
+  if (!(await runDoorHooks('onInteract', lastIndicatorHash))) return;
   await toggleDoor(lastIndicatorHash);
 });
 

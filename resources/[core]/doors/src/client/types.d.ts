@@ -3,6 +3,16 @@ declare interface ClientExports {
 }
 
 declare namespace Doors {
+  type HookType =
+    | 'beforeUnlock'
+    | 'afterUnlock'
+    | 'beforeLock'
+    | 'afterLock'
+    | 'onInteract'
+    | 'onLockpick';
+
+  type HookCallback = (doorHash: number) => boolean | void | Promise<boolean | void>;
+
   type LockDoor = (doorHash: number) => void;
   type UnlockDoor = (doorHash: number) => void;
   type SetDoorState = (doorHash: number, state: number) => void;
@@ -10,6 +20,8 @@ declare namespace Doors {
   type GetClosestDoorToCoords = (coords: Vector3Format) => number | null;
   type CloseDoor = (doorHash: number, durationMultiplier?: number) => void;
   type AttemptLockpick = (doorHash: number) => void;
+  /** Register a hook callback for a door. Returns an unregister function. */
+  type OnDoorHook = (id: string, type: HookType, doorHash: number, fn: HookCallback) => () => void;
 
   interface ClientExports {
     lockDoor: LockDoor;
@@ -19,6 +31,7 @@ declare namespace Doors {
     getClosestDoorToCoords: GetClosestDoorToCoords;
     closeDoor: CloseDoor;
     attemptLockpick: AttemptLockpick;
+    onDoorHook: OnDoorHook;
   }
 }
 
